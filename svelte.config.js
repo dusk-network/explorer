@@ -1,5 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from "@sveltejs/adapter-static";
 
 // eslint-disable-next-line import/no-unresolved
 import { vitePreprocess } from "@sveltejs/kit/vite";
@@ -8,13 +7,14 @@ import { vitePreprocess } from "@sveltejs/kit/vite";
 const config = {
 	kit: {
 		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
+			pages: "build",
+			assets: "build",
 			fallback: undefined,
 			precompress: true,
 			strict: true
 		})
 	},
+
 	preprocess: vitePreprocess()
 };
 
