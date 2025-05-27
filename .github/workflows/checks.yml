@@ -24,8 +24,12 @@ jobs:
         with:
           filters: |
             run-ci:
-              - 'explorer/**'
-              - '.github/workflows/explorer_ci.yml'
+              - '**/*.{js,ts,svelte,json,md}'
+              - 'src/**'
+              - 'static/**'
+              - 'package*.json'
+              - '*.config.{js,ts}'
+              - '.github/workflows/checks.yml'
   lint-test:
     needs: changes
     if: needs.changes.outputs.run-ci == 'true' && (github.event.pull_request.draft == false || github.event_name == 'workflow_dispatch')
