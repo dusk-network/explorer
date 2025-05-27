@@ -51,7 +51,7 @@
 
     <LatestTransactionsCard
       on:retry={retry}
-      className="tables-layout"
+      className="tables-layoutABC"
       txns={data?.transactions}
       {error}
       {isSmallScreen}
