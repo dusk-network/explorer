@@ -1,21 +1,28 @@
 import adapter from "@sveltejs/adapter-static";
+import autoprefixer from "autoprefixer";
+import postCSSNested from "postcss-nested";
+import { sveltePreprocess } from "svelte-preprocess";
+import { loadEnv } from "vite";
 
-// eslint-disable-next-line import/no-unresolved
-import { vitePreprocess } from "@sveltejs/kit/vite";
+const env = loadEnv("", process.cwd());
+const fallBackBase = env.VITE_BASE_PATH ? `${env.VITE_BASE_PATH}/` : "";
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
-	kit: {
-		adapter: adapter({
-			pages: "build",
-			assets: "build",
-			fallback: undefined,
-			precompress: true,
-			strict: true
-		})
-	},
+  kit: {
+    adapter: adapter({ fallback: `${fallBackBase}index.html` }),
 
-	preprocess: vitePreprocess()
+    paths: {
+      base: /** @type {"" | `/${string}` | undefined} */ (env.VITE_BASE_PATH),
+    },
+  },
+  preprocess: [
+    sveltePreprocess({
+      postcss: {
+        plugins: [autoprefixer, postCSSNested],
+      },
+    }),
+  ],
 };
 
 export default config;
