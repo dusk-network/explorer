@@ -7,6 +7,14 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: 'Force run all checks'
+        required: false
+        default: false
+        type: boolean
+
 jobs:
   # JOB to run change detection
   changes:
