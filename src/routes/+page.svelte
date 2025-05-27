@@ -60,7 +60,7 @@
   </div>
 
   {#if nodesData}
-    <div class="world-map">
+    <div class="world-mapABC">
       <Card>
         <WorldMap nodes={nodesData} stroke={darkMode ? "white" : "black"} />
       </Card>
