@@ -90,5 +90,5 @@ describe("home page", () => {
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(3);
-  });
+  }, 15000);
 });

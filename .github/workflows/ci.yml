@@ -48,4 +48,3 @@ jobs:
 
       - name: Building the app
         run: npm run build
-
