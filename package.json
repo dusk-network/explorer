@@ -4,17 +4,17 @@
     "url": "https://dusk.network/",
     "mail": "info@dusk.network"
   },
-  "bugs": "https://github.com/dusk-network/rusk/issues",
+  "bugs": "https://github.com/dusk-network/explorer/issues",
   "engines": {
     "node": "^24.0.0"
   },
-  "homepage": "https://github.com/dusk-network/rusk/tree/master/explorer",
+  "homepage": "https://github.com/dusk-network/explorer",
   "license": "MPL-2.0",
   "name": "explorer",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/dusk-network/rusk.git"
+    "url": "https://github.com/dusk-network/explorer.git"
   },
   "scripts": {
     "build": "vite build",

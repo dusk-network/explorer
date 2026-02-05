@@ -293,18 +293,18 @@ and this project adheres to
 
 <!-- VERSIONS -->
 
-[Unreleased]: https://github.com/dusk-network/rusk/tree/master/explorer
-[1.5.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.5.0
-[1.4.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.4.0
-[1.3.3]: https://github.com/dusk-network/rusk/tree/explorer-v1.3.3
-[1.3.2]: https://github.com/dusk-network/rusk/tree/explorer-v1.3.2
-[1.3.1]: https://github.com/dusk-network/rusk/tree/explorer-v1.3.1
-[1.3.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.3.0
-[1.2.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.2.0
-[1.1.1]: https://github.com/dusk-network/rusk/tree/explorer-v1.1.1
-[1.1.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.1.0
-[1.0.1]: https://github.com/dusk-network/rusk/tree/explorer-v1.0.1
-[1.0.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.0.0
-[0.3.0]: https://github.com/dusk-network/rusk/tree/explorer-0.3.0
-[0.2.0]: https://github.com/dusk-network/rusk/tree/explorer-0.2.0
-[0.1.0]: https://github.com/dusk-network/rusk/tree/explorer-0.1.0
+[Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.5.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.5.0
+[1.4.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.4.0
+[1.3.3]: https://github.com/dusk-network/explorer/tree/explorer-v1.3.3
+[1.3.2]: https://github.com/dusk-network/explorer/tree/explorer-v1.3.2
+[1.3.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.3.1
+[1.3.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.3.0
+[1.2.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.2.0
+[1.1.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.1.1
+[1.1.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.1.0
+[1.0.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.0.1
+[1.0.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.0.0
+[0.3.0]: https://github.com/dusk-network/explorer/tree/explorer-0.3.0
+[0.2.0]: https://github.com/dusk-network/explorer/tree/explorer-0.2.0
+[0.1.0]: https://github.com/dusk-network/explorer/tree/explorer-0.1.0

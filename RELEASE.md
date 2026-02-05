@@ -78,8 +78,8 @@ All notable changes to Explorer will be documented in this file.
 
 <!-- VERSIONS -->
 
-[1.1.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.1.0
-[1.0.0]: https://github.com/dusk-network/rusk/tree/explorer-v1.0.0
+[1.1.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.1.0
+[1.0.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.0.0
 ```
 
 ### 5. Create and Review Pull Request
