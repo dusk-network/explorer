@@ -23,9 +23,9 @@ export default defineConfig(({ mode }) => {
       "import.meta.env.APP_BUILD_INFO": JSON.stringify(APP_BUILD_INFO),
       "import.meta.env.APP_VERSION": JSON.stringify(APP_VERSION),
       "process.env": {
-        API_ENDPOINT: env.VITE_API_ENDPOINT,
         VITE_BLOCKS_LIST_ENTRIES: env.VITE_BLOCKS_LIST_ENTRIES,
         VITE_CHAIN_INFO_ENTRIES: env.VITE_CHAIN_INFO_ENTRIES,
+        VITE_FEATURE_BLOB_HASHES: env.VITE_FEATURE_BLOB_HASHES,
         VITE_FEATURE_TOKENS: env.VITE_FEATURE_TOKENS,
         VITE_MARKET_DATA_REFETCH_INTERVAL:
           env.VITE_MARKET_DATA_REFETCH_INTERVAL,
@@ -50,15 +50,15 @@ export default defineConfig(({ mode }) => {
       alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
       coverage: {
         all: true,
-        include: ["src/**"],
+        include: ["src/**/*.{js,ts,svelte}"],
         provider: "istanbul",
       },
       env: {
         APP_BUILD_INFO: "hash1234 2024-01-12",
         APP_VERSION: "0.0.0",
-        VITE_API_ENDPOINT: "https://api.dusk.network/v1",
         VITE_BLOCKS_LIST_ENTRIES: "100",
         VITE_CHAIN_INFO_ENTRIES: "15",
+        VITE_FEATURE_BLOB_HASHES: "true",
         VITE_FEATURE_TOKENS: "true",
         VITE_MARKET_DATA_REFETCH_INTERVAL: "120000",
         VITE_NODE_URL: "https://nodes.dusk.network",

@@ -1,6 +1,4 @@
 import {
-  apply,
-  flatMapWith,
   fromPairs,
   getKey,
   getPath,
@@ -13,7 +11,7 @@ import {
 } from "lamb";
 
 import { failureToRejection } from "$lib/dusk/http";
-import { makeApiUrl, makeNodeUrl } from "$lib/url";
+import { makeNodeUrl } from "$lib/url";
 
 import {
   addCountAndUnique,
@@ -83,23 +81,6 @@ const gqlGet = (queryInfo) =>
 
 /**
  * @param {string} endpoint
- * @param {Record<string, any>} [params]
- * @returns {Promise<any>}
- */
-const apiGet = (endpoint, params) =>
-  fetch(makeApiUrl(endpoint, params), {
-    headers: {
-      Accept: "application/json",
-      "Accept-Charset": "utf-8",
-      Connection: "Keep-Alive",
-    },
-    method: "GET",
-  })
-    .then(failureToRejection)
-    .then((res) => res.json());
-
-/**
- * @param {string} endpoint
  * @returns {Promise<any>}
  */
 const nodePost = (endpoint) =>
@@ -119,14 +100,6 @@ const getLastHeight = () =>
   gqlGet({
     query: "query { block(height: -1) { header { height } } }",
   }).then(getPath("block.header.height"));
-
-/** @type {() => Promise<Pick<GQLTransaction, "err">[]>} */
-const getLast100BlocksTxs = () =>
-  gqlGet({
-    query: "query { blocks(last: 100) { transactions { err } } }",
-  })
-    .then(getKey("blocks"))
-    .then(flatMapWith(getKey("transactions")));
 
 const duskAPI = {
   /**
@@ -197,24 +170,69 @@ const duskAPI = {
   },
 
   /** @returns {Promise<MarketData>} */
-  getMarketData() {
-    /* eslint-disable camelcase */
+  async getMarketData() {
+    const COINGECKO_MARKET_URL = new URL(
+      "https://api.coingecko.com/api/v3/coins/dusk-network" +
+        "?community_data=false" +
+        "&developer_data=false" +
+        "&localization=false" +
+        "&market_data=true" +
+        "&sparkline=false" +
+        "&tickers=false"
+    );
 
-    return apiGet("https://api.coingecko.com/api/v3/coins/dusk-network", {
-      community_data: false,
-      developer_data: false,
-      localization: false,
-      market_data: true,
-      sparkline: false,
-      tickers: false,
-    })
-      .then(getKey("market_data"))
-      .then((data) => ({
-        currentPrice: data.current_price,
-        marketCap: data.market_cap,
-      }));
+    try {
+      // Fetch price data and circulating supply
+      const [coinGeckoData, circulatingSupply] = await Promise.all([
+        fetch(COINGECKO_MARKET_URL, {
+          headers: {
+            Accept: "application/json",
+            "Accept-Charset": "utf-8",
+            Connection: "Keep-Alive",
+          },
+          method: "GET",
+        })
+          .then(failureToRejection)
+          .then((res) => res.json())
+          .then(getKey("market_data")),
+        fetch("https://supply.dusk.network/")
+          .then(failureToRejection)
+          .then((res) => res.text())
+          .then((supply) => parseFloat(supply))
+          .catch(() => null),
+      ]);
 
-    /* eslint-enable camelcase */
+      const currentPrice = coinGeckoData.current_price;
+
+      // Calculate market cap using circulating supply if available, fallback to CoinGecko
+      /** @type {Record<string, number>} */
+      let marketCap;
+      if (
+        circulatingSupply !== null &&
+        !isNaN(circulatingSupply) &&
+        currentPrice?.usd
+      ) {
+        marketCap = {
+          usd: circulatingSupply * currentPrice.usd,
+        };
+        // Add other currencies
+        Object.keys(currentPrice).forEach((currency) => {
+          if (currency !== "usd" && currentPrice[currency]) {
+            marketCap[currency] = circulatingSupply * currentPrice[currency];
+          }
+        });
+      } else {
+        // Fallback to CoinGecko's market cap
+        marketCap = coinGeckoData.market_cap;
+      }
+
+      return {
+        currentPrice,
+        marketCap,
+      };
+    } catch (/** @type {any} */ error) {
+      throw new Error(`Failed to fetch market data: ${error.message}`);
+    }
   },
 
   /**
@@ -285,6 +303,7 @@ const duskAPI = {
   getProvisioners() {
     return nodePost("/on/node/provisioners");
   },
+
   /**
    * @returns {Promise<Stats>}
    */
@@ -292,8 +311,11 @@ const duskAPI = {
     return Promise.all([
       duskAPI.getProvisioners(),
       getLastHeight(),
-      getLast100BlocksTxs(),
-    ]).then(apply(calculateStats));
+      duskAPI.getTxCount(),
+    ]).then(([provisioners, lastHeight, txCount]) => ({
+      ...calculateStats(provisioners, lastHeight),
+      txCount,
+    }));
   },
 
   /**
@@ -328,6 +350,13 @@ const duskAPI = {
     return gqlGet(getTransactionsQueryInfo(amount))
       .then(getKey("transactions"))
       .then(transformTransactions);
+  },
+
+  /**
+   * @returns {Promise<{ public: number; shielded: number; total: number }>}
+   */
+  getTxCount() {
+    return nodePost("/on/stats/tx_count");
   },
 
   /**

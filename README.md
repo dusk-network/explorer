@@ -12,7 +12,7 @@ Explorer website.
 
 ## Build system and dev environment
 
-The build system assumes that you have at least Node.js v20.x installed. The LTS version is 20.11.1 at the time of writing.
+The build system assumes that you have at least Node.js v24.x installed. The LTS version is 24.13.0 at the time of writing.
 
 All terminal commands assume that you are positioned in root folder of the repository.
 Run `npm install` from the root folder to get the necessary dependencies.
@@ -24,7 +24,6 @@ The application defines these variables by reading a local `.env`
 ```
 # *_PATH variables can be empty string, must start with a slash otherwise, must not end with a slash
 
-VITE_API_ENDPOINT="https://api.dusk.network/v1"
 VITE_BASE_PATH="" # Optional, set to '/explorer' when deploying to an 'apps.*' subdomain
 VITE_BLOCKS_LIST_ENTRIES=100
 VITE_CHAIN_INFO_ENTRIES=15
@@ -36,6 +35,7 @@ VITE_RUSK_PATH="" # Optional, set to '/rusk' for dev mode
 VITE_STATS_REFETCH_INTERVAL=1000
 VITE_TRANSACTIONS_LIST_ENTRIES=100
 VITE_FEATURE_TOKENS=true
+VITE_FEATURE_BLOB_HASHES=true # requires node version >= 1.3.1-alpha.1
 ```
 
 ## Environment variables and dev mode
