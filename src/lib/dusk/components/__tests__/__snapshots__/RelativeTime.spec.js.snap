@@ -5,11 +5,16 @@ exports[`RelativeTime > should allow to put custom content in the default slot 1
   class="dusk-relative-time"
   datetime="2024-05-20T15:25:10.000Z"
 >
+  <!---->
+  <!---->
+  <!---->
   <span>
-    The relative time now is 
-    32 seconds ago
+    The relative time now is 32 seconds ago
   </span>
   
+  
+  
+  <!---->
 </time>
 `;
 
@@ -19,7 +24,10 @@ exports[`RelativeTime > should pass additional class names and attributes to the
   data-baz="baz"
   datetime="2024-05-20T15:25:10.000Z"
 >
+  <!---->
   30 seconds ago
+  
+  <!---->
 </time>
 `;
 
@@ -28,6 +36,9 @@ exports[`RelativeTime > should render the relative time of the given date and sh
   class="dusk-relative-time"
   datetime="2024-05-20T15:25:10.000Z"
 >
+  <!---->
   20 seconds ago
+  
+  <!---->
 </time>
 `;

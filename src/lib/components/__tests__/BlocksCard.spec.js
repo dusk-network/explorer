@@ -33,7 +33,7 @@ describe("Blocks Card", () => {
   it("should render the `BlocksCard` component", () => {
     const { container } = render(BlocksCard, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button is the card is in the loading state", () => {
@@ -46,7 +46,7 @@ describe("Blocks Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button if there is no more data to display", async () => {
@@ -60,7 +60,7 @@ describe("Blocks Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should hide the `Show More` button if an error has occurred", async () => {
@@ -71,6 +71,6 @@ describe("Blocks Card", () => {
       props: { ...props, error: new Error("error") },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

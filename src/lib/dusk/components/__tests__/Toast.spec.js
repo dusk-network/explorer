@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 import { get } from "svelte/store";
@@ -5,7 +6,8 @@ import { fly } from "svelte/transition";
 import { mdiAlertOutline } from "@mdi/js";
 
 import { Toast } from "..";
-import { toast, toastList } from "../toast/store";
+import { toast, toastList, toastTimer } from "../toast/store";
+/* eslint-enable import/no-duplicates */
 
 vi.mock("svelte/transition");
 
@@ -22,6 +24,9 @@ describe("Toast", () => {
 
   afterEach(() => {
     vi.mocked(fly).mockClear();
+    toastList.set([]);
+    toastTimer.set(0);
+    vi.clearAllTimers();
     cleanup();
   });
 
@@ -39,7 +44,7 @@ describe("Toast", () => {
 
     toast("success", "Render Toast 1", mdiAlertOutline);
 
-    await vi.advanceTimersToNextTimerAsync();
+    await vi.advanceTimersByTimeAsync(1);
 
     const items = getToastItems(list);
     const toastStoredList = get(toastList);
@@ -109,7 +114,7 @@ describe("Toast", () => {
     toast("success", "Render Toast 1", mdiAlertOutline);
     toast("info", "Render Toast 2", mdiAlertOutline);
 
-    await vi.advanceTimersToNextTimerAsync();
+    await vi.advanceTimersByTimeAsync(1);
 
     const items = getToastItems(list);
     const toastStoredList = get(toastList);

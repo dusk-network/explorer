@@ -42,7 +42,7 @@ describe("Navbar", () => {
   it("renders the Navbar component", () => {
     const { container } = render(Navbar);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should hide the mobile menu after a navigation event", async () => {

@@ -31,6 +31,6 @@ describe("Blocks Table", () => {
   it("should render the `BlocksTable` component", () => {
     const { container } = render(BlocksTable, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

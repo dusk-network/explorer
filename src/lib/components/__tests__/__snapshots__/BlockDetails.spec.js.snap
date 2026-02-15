@@ -4,6 +4,8 @@ exports[`Block Details > renders the Block Details component 1`] = `
 <div
   class="dusk-card data-card block-details"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -14,8 +16,12 @@ exports[`Block Details > renders the Block Details component 1`] = `
       Block Details
     </h1>
      
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="data-card__content"
   >
@@ -28,6 +34,7 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -42,19 +49,25 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           height
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
+        <!---->
         <a
           aria-disabled="false"
           class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
           href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
         >
+          <!---->
+          <!---->
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default dusk-anchor-button__icon"
             role="graphics-symbol"
@@ -65,18 +78,22 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
+          <!---->
           
-          
+          <!---->
         </a>
-         
-        495,868
-         
+        <!---->
+         495,868 
         <a
           aria-disabled="false"
           class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
           href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
         >
+          <!---->
+          <!---->
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default dusk-anchor-button__icon"
             role="graphics-symbol"
@@ -87,18 +104,24 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
+          <!---->
           
-          
+          <!---->
         </a>
-         
+        <!---->
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -113,8 +136,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           hash
+          <!---->
         </div>
       </dt>
        
@@ -125,8 +150,7 @@ exports[`Block Details > renders the Block Details component 1`] = `
           class="block-details__hash"
           slot="definition"
         >
-          bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f
-           
+          bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f 
           <div
             class="dusk-copy-button"
           >
@@ -137,6 +161,8 @@ exports[`Block Details > renders the Block Details component 1`] = `
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -147,19 +173,26 @@ exports[`Block Details > renders the Block Details component 1`] = `
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
         </span>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -174,8 +207,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           timestamp
+          <!---->
         </div>
       </dt>
        
@@ -187,16 +222,26 @@ exports[`Block Details > renders the Block Details component 1`] = `
           datetime="2024-04-16T20:07:02.000Z"
           slot="definition"
         >
+          <!---->
+          <!---->
+          <!---->
           Tue, 16 Apr 2024 20:07:02 GMT (last month)
           
+          
+          
+          <!---->
         </time>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -211,8 +256,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           transactions
+          <!---->
         </div>
       </dt>
        
@@ -220,13 +267,17 @@ exports[`Block Details > renders the Block Details component 1`] = `
         class="details-list__definition"
       >
         2
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -241,23 +292,28 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           block fees paid
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        0.000580718
-         DUSK
+        0.000580718 DUSK
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -272,23 +328,28 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           block reward
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        16
-         DUSK
+        16 DUSK
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -303,8 +364,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           block gas limit
+          <!---->
         </div>
       </dt>
        
@@ -312,13 +375,17 @@ exports[`Block Details > renders the Block Details component 1`] = `
         class="details-list__definition"
       >
         5,000,000,000
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -333,16 +400,17 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           gas used
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        580,718
-         
+        580,718 
         <div
           aria-label="Gas Used"
           class="dusk-progress-bar block-details__gas-used"
@@ -350,17 +418,21 @@ exports[`Block Details > renders the Block Details component 1`] = `
         >
           <div
             class="dusk-progress-bar__filler"
-            style="width: 0.01161436%"
+            style="width: 0.01161436%;"
           />
         </div>
-         
+        <!---->
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -375,8 +447,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           average gas price
+          <!---->
         </div>
       </dt>
        
@@ -384,13 +458,17 @@ exports[`Block Details > renders the Block Details component 1`] = `
         class="details-list__definition"
       >
         1
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -405,8 +483,10 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           state root hash
+          <!---->
         </div>
       </dt>
        
@@ -417,8 +497,7 @@ exports[`Block Details > renders the Block Details component 1`] = `
           class="block-details__hash"
           slot="definition"
         >
-          20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb
-           
+          20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb 
           <div
             class="dusk-copy-button"
           >
@@ -429,6 +508,8 @@ exports[`Block Details > renders the Block Details component 1`] = `
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -439,19 +520,26 @@ exports[`Block Details > renders the Block Details component 1`] = `
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
         </span>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -466,13 +554,12 @@ exports[`Block Details > renders the Block Details component 1`] = `
             />
           </svg>
           
+          <!---->
            
           <div
             class="block-details__switch-wrapper"
           >
-            header
-
-          
+            header 
             <div
               aria-checked="false"
               aria-disabled="false"
@@ -480,19 +567,28 @@ exports[`Block Details > renders the Block Details component 1`] = `
               role="switch"
               tabindex="0"
             />
+            <!---->
           </div>
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
+        <!---->
         
+        <!---->
       </dd>
+      <!---->
     </dl>
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -500,6 +596,8 @@ exports[`Block Details > should render the Block Details component with the payl
 <div
   class="dusk-card data-card block-details"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -510,8 +608,12 @@ exports[`Block Details > should render the Block Details component with the payl
       Block Details
     </h1>
      
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="data-card__content"
   >
@@ -524,6 +626,7 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -538,19 +641,25 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           height
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
+        <!---->
         <a
           aria-disabled="false"
           class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
           href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
         >
+          <!---->
+          <!---->
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default dusk-anchor-button__icon"
             role="graphics-symbol"
@@ -561,18 +670,22 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
+          <!---->
           
-          
+          <!---->
         </a>
-         
-        495,868
-         
+        <!---->
+         495,868 
         <a
           aria-disabled="false"
           class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
           href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
         >
+          <!---->
+          <!---->
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default dusk-anchor-button__icon"
             role="graphics-symbol"
@@ -583,18 +696,24 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
+          <!---->
           
-          
+          <!---->
         </a>
-         
+        <!---->
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -609,8 +728,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           hash
+          <!---->
         </div>
       </dt>
        
@@ -621,8 +742,7 @@ exports[`Block Details > should render the Block Details component with the payl
           class="block-details__hash"
           slot="definition"
         >
-          bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f
-           
+          bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f 
           <div
             class="dusk-copy-button"
           >
@@ -633,6 +753,8 @@ exports[`Block Details > should render the Block Details component with the payl
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -643,19 +765,26 @@ exports[`Block Details > should render the Block Details component with the payl
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
         </span>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -670,8 +799,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           timestamp
+          <!---->
         </div>
       </dt>
        
@@ -683,16 +814,26 @@ exports[`Block Details > should render the Block Details component with the payl
           datetime="2024-04-16T20:07:02.000Z"
           slot="definition"
         >
+          <!---->
+          <!---->
+          <!---->
           Tue, 16 Apr 2024 20:07:02 GMT (last month)
           
+          
+          
+          <!---->
         </time>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -707,8 +848,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           transactions
+          <!---->
         </div>
       </dt>
        
@@ -716,13 +859,17 @@ exports[`Block Details > should render the Block Details component with the payl
         class="details-list__definition"
       >
         2
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -737,23 +884,28 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           block fees paid
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        0.000580718
-         DUSK
+        0.000580718 DUSK
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -768,23 +920,28 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           block reward
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        16
-         DUSK
+        16 DUSK
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -799,8 +956,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           block gas limit
+          <!---->
         </div>
       </dt>
        
@@ -808,13 +967,17 @@ exports[`Block Details > should render the Block Details component with the payl
         class="details-list__definition"
       >
         5,000,000,000
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -829,16 +992,17 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           gas used
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
-        580,718
-         
+        580,718 
         <div
           aria-label="Gas Used"
           class="dusk-progress-bar block-details__gas-used"
@@ -846,17 +1010,21 @@ exports[`Block Details > should render the Block Details component with the payl
         >
           <div
             class="dusk-progress-bar__filler"
-            style="width: 0.01161436%"
+            style="width: 0.01161436%;"
           />
         </div>
-         
+        <!---->
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -871,8 +1039,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           average gas price
+          <!---->
         </div>
       </dt>
        
@@ -880,13 +1050,17 @@ exports[`Block Details > should render the Block Details component with the payl
         class="details-list__definition"
       >
         1
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -901,8 +1075,10 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           state root hash
+          <!---->
         </div>
       </dt>
        
@@ -913,8 +1089,7 @@ exports[`Block Details > should render the Block Details component with the payl
           class="block-details__hash"
           slot="definition"
         >
-          20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb
-           
+          20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb 
           <div
             class="dusk-copy-button"
           >
@@ -925,6 +1100,8 @@ exports[`Block Details > should render the Block Details component with the payl
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -935,19 +1112,26 @@ exports[`Block Details > should render the Block Details component with the payl
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
         </span>
+        <!---->
       </dd>
+      <!---->
+       
       <dt
         class="details-list__term"
       >
         <div
           class="details-list__term-layout"
         >
+          <!---->
           <svg
             class="dusk-icon dusk-icon--size--default detail-list__help"
             data-tooltip-id="main-tooltip"
@@ -962,13 +1146,12 @@ exports[`Block Details > should render the Block Details component with the payl
             />
           </svg>
           
+          <!---->
            
           <div
             class="block-details__switch-wrapper"
           >
-            header
-
-          
+            header 
             <div
               aria-checked="true"
               aria-disabled="false"
@@ -976,16 +1159,22 @@ exports[`Block Details > should render the Block Details component with the payl
               role="switch"
               tabindex="0"
             />
+            <!---->
           </div>
+          <!---->
         </div>
       </dt>
        
       <dd
         class="details-list__definition"
       >
+        <!---->
+        <!---->
         <div
           class="dusk-card block-details__payload dusk-card--on-surface"
         >
+          <!---->
+          <!---->
            
           <pre>
             {
@@ -1018,14 +1207,23 @@ exports[`Block Details > should render the Block Details component with the payl
   "hash": "22c7e588560a133d1c142c2fe4c067e8b500ced43d5f9ae19cf55f1caf4dd899"
 }
           </pre>
+          <!---->
            
+          <!---->
+          
         </div>
         
         
+        <!---->
       </dd>
+      <!---->
     </dl>
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;

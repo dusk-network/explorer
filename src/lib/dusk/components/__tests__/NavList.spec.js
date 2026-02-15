@@ -21,21 +21,25 @@ describe("NavList", () => {
   it("renders the NavList component", () => {
     const { container } = render(NavList, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the Nav List with the correct information", () => {
     const { container } = render(NavList, baseProps);
 
-    baseProps.navigation.forEach((item, index) => {
-      expect(
-        container.getElementsByClassName("dusk-nav-list__link")[index].innerHTML
-      ).toBe(item.title);
+    expect(baseProps.navigation.length).toBeGreaterThan(0);
 
-      expect(
+    baseProps.navigation.forEach((item, index) => {
+      const link = /** @type {HTMLAnchorElement} */ (
         container.getElementsByClassName("dusk-nav-list__link")[index]
-      ).toHaveAttribute("href", item.link);
+      );
+
+      expect(link.textContent?.trim()).toBe(item.title);
+
+      expect(link).toHaveAttribute("href", item.link);
     });
+
+    expect.assertions(baseProps.navigation.length * 2 + 1);
   });
 
   it("should pass additional class names and attributes to the rendered element", () => {
@@ -45,6 +49,6 @@ describe("NavList", () => {
     };
     const { container } = render(NavList, props);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

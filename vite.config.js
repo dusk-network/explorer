@@ -37,6 +37,11 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: commonPlugins,
+    resolve: {
+      // Vitest runs in Node, but these are DOM tests (jsdom). Prefer browser
+      // export conditions so Svelte resolves to the client runtime.
+      conditions: ["browser"],
+    },
     server: {
       proxy: {
         "/rusk": {
@@ -46,8 +51,6 @@ export default defineConfig(({ mode }) => {
       },
     },
     test: {
-      /** @see https://github.com/vitest-dev/vitest/issues/2834 */
-      alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
       coverage: {
         all: true,
         include: ["src/**/*.{js,ts,svelte}"],

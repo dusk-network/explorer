@@ -1,10 +1,11 @@
 <script>
+  /* eslint-disable import/no-duplicates */
   import { flip } from "svelte/animate";
   import { fly } from "svelte/transition";
+  /* eslint-enable import/no-duplicates */
   import { Icon } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
   import { toastList, toastTimer } from "./store";
-  import { onMount } from "svelte";
 
   import "./Toast.css";
 
@@ -19,9 +20,7 @@
 
   const classes = makeClassName(["dusk-toast", className]);
 
-  onMount(() => {
-    $toastTimer = timer;
-  });
+  $: $toastTimer = timer;
 </script>
 
 <ul {...$$restProps} class={classes}>

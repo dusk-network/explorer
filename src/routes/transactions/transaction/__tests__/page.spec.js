@@ -48,13 +48,13 @@ describe("Transaction Details", () => {
   it("should render the Transaction details page", async () => {
     const { container } = render(TransactionDetails);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     expect(duskAPI.getTransaction).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     // snapshot with received data from APIs
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

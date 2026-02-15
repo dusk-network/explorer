@@ -17,6 +17,6 @@ describe("Provisioners List", () => {
   it("renders the `ProvisionersList` component", () => {
     const { container } = render(ProvisionersList, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

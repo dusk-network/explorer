@@ -45,6 +45,14 @@ elementMethods.forEach((method) => {
   }
 });
 
+// Needed by Svelte's animation helpers (e.g. `animate:flip`) which use the Web Animations API.
+if (!Element.prototype.getAnimations) {
+  Object.defineProperty(Element.prototype, "getAnimations", {
+    value: () => [],
+    writable: true,
+  });
+}
+
 // Add custom jest matchers
 expect.extend(matchers);
 

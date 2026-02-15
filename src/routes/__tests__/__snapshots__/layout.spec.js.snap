@@ -2,21 +2,26 @@
 
 exports[`Main layout > should render the app's main layout 1`] = `
 <body>
+  <!---->
   <header>
     <nav
       class="dusk-navbar dusk-navbar--menu-hidden"
-      style="margin-bottom: 0"
+      style="margin-bottom: 0px;"
     >
       <a
         class="dusk-anchor dusk-anchor--on-surface dusk-navbar__logo"
         href="/some-base-path/"
       >
+        <!---->
         <img
           alt="Dusk Logo"
           sizes="(max-width: 1024px) 86px, 129px"
           src="/some-base-path/dusk_logo.svg"
         />
+        
+        <!---->
       </a>
+      <!---->
        
       <button
         aria-controls="dusk-navbar-menu"
@@ -25,6 +30,8 @@ exports[`Main layout > should render the app's main layout 1`] = `
         class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-navbar__toggle"
         type="button"
       >
+        <!---->
+        <!---->
         <svg
           class="dusk-icon dusk-icon--size--large dusk-button__icon"
           role="graphics-symbol"
@@ -35,9 +42,12 @@ exports[`Main layout > should render the app's main layout 1`] = `
           />
         </svg>
         
+        <!---->
          
-        
+        <!---->
+        <!---->
       </button>
+      <!---->
        
       <div
         class="dusk-navbar__menu dusk-navbar__menu--hidden"
@@ -48,47 +58,61 @@ exports[`Main layout > should render the app's main layout 1`] = `
         >
           unknown
         </span>
+        <!---->
          
+        <!---->
         <nav
           class="dusk-nav-list dusk-navbar__menu--links"
         >
-          
           <a
             class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
             href="/some-base-path/"
           >
+            <!---->
             Chain Info
+            
+            <!---->
           </a>
-          
           <a
             class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
             href="/some-base-path/blocks"
           >
+            <!---->
             Blocks
+            
+            <!---->
           </a>
-          
           <a
             class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
             href="/some-base-path/transactions"
           >
+            <!---->
             Transactions
+            
+            <!---->
           </a>
-          
           <a
             class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
             href="/some-base-path/provisioners"
           >
+            <!---->
             Provisioners
+            
+            <!---->
           </a>
-          
           <a
             class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
             href="/some-base-path/tokens"
           >
+            <!---->
             Tokens
+            
+            <!---->
           </a>
+          
         </nav>
         
+        <!---->
          
         <div
           class="dusk-navbar__menu--search"
@@ -98,6 +122,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
               class="textbox-button"
               style="width: 250px;"
             >
+              <!---->
               <input
                 class="dusk-textbox dusk-textbox-text textbox-button__input"
                 placeholder="Account/Block/Hash"
@@ -105,12 +130,16 @@ exports[`Main layout > should render the app's main layout 1`] = `
                 type="text"
               />
               
+              <!---->
                
               <button
                 class="dusk-button dusk-button--type--submit dusk-button--variant--primary dusk-button--size--default dusk-icon-button"
                 type="submit"
               >
+                <!---->
+                <!---->
                  
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -121,13 +150,20 @@ exports[`Main layout > should render the app's main layout 1`] = `
                   />
                 </svg>
                 
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </form>
+          <!---->
            
+          <!---->
         </div>
       </div>
     </nav>
+    <!---->
   </header>
    
   <main
@@ -136,6 +172,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
     <span>
       some text
     </span>
+    <!---->
   </main>
    
   <footer>
@@ -146,46 +183,44 @@ exports[`Main layout > should render the app's main layout 1`] = `
         class="footer__copyright-container"
       >
         <p>
-          © 2018 - 
-          2025
-           Dusk Network B.V. All Rights Reserved.
+          © 2018 - 2025 Dusk Network B.V. All Rights Reserved.
         </p>
          
         <p>
-          Explorer v
-          0.0.0
-           (
-          hash1234 2024-01-12
-          )
+          Explorer v0.0.0 (hash1234 2024-01-12)
         </p>
       </div>
        
       <div
         class="footer__explorers-links-container"
       >
-        
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.dusk.network/explorer"
         >
           Mainnet
+          <!---->
         </a>
         
-        
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.testnet.dusk.network/explorer"
         >
           Testnet
+          <!---->
         </a>
         
-        
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.devnet.dusk.network/explorer"
         >
           Devnet
+          <!---->
         </a>
+        
         
       </div>
        
@@ -197,31 +232,40 @@ exports[`Main layout > should render the app's main layout 1`] = `
           href="https://dusk.network/privacy-policy"
         >
           Privacy Policy
+          <!---->
         </a>
+        <!---->
          
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://dusk.network/terms-of-use"
         >
           Terms of Use
+          <!---->
         </a>
+        <!---->
       </div>
        
       <a
         class="dusk-anchor dusk-anchor--on-surface footer__logo"
         href="https://dusk.network"
       >
+        <!---->
         <picture>
           <img
             alt="Dusk Logo"
             sizes="(max-width:768px) 20px, 86px"
             src="/some-base-path/dusk_logo.svg"
           />
+          <!---->
         </picture>
+        
+        <!---->
       </a>
+      <!---->
     </div>
+    <!---->
   </footer>
-   
    
   <div
     aria-hidden="true"
@@ -232,10 +276,16 @@ exports[`Main layout > should render the app's main layout 1`] = `
   >
     
   </div>
+  <!---->
    
   <ul
     class="dusk-toast"
-  />
+  >
+    
+  </ul>
+  <!---->
+  
+  
   
 </body>
 `;

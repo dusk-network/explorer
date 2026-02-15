@@ -11,7 +11,7 @@ describe("Table", () => {
     expect(container.querySelector(".table-container")).toBeTruthy();
     expect(container.querySelector(".table")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the TableBody component", () => {
@@ -19,7 +19,7 @@ describe("Table", () => {
 
     expect(container.querySelector(".table__body")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the TableCell component", () => {
@@ -27,7 +27,7 @@ describe("Table", () => {
 
     expect(container.querySelector(".table__data-cell")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the TableCell component as a head cell", () => {
@@ -35,7 +35,7 @@ describe("Table", () => {
 
     expect(container.querySelector(".table__header-cell")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the TableHead component", () => {
@@ -43,7 +43,7 @@ describe("Table", () => {
 
     expect(container.querySelector(".table__head")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the TableRow component", () => {
@@ -51,6 +51,6 @@ describe("Table", () => {
 
     expect(container.querySelector(".table__row")).toBeTruthy();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

@@ -16,6 +16,6 @@ describe("Footer", () => {
   it("renders the Footer component", () => {
     const { container } = render(Footer);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

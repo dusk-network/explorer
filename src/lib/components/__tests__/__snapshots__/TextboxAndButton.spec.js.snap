@@ -5,6 +5,7 @@ exports[`TextField > renders the component with default values 1`] = `
   class="textbox-button foo bar"
   style="width: 250px;"
 >
+  <!---->
   <input
     class="dusk-textbox dusk-textbox-text textbox-button__input"
     placeholder="Search"
@@ -12,12 +13,16 @@ exports[`TextField > renders the component with default values 1`] = `
     type="text"
   />
   
+  <!---->
    
   <button
     class="dusk-button dusk-button--type--submit dusk-button--variant--primary dusk-button--size--default dusk-icon-button"
     type="submit"
   >
+    <!---->
+    <!---->
      
+    <!---->
     <svg
       class="dusk-icon dusk-icon--size--default dusk-button__icon"
       role="graphics-symbol"
@@ -28,7 +33,10 @@ exports[`TextField > renders the component with default values 1`] = `
       />
     </svg>
     
+    <!---->
+    <!---->
   </button>
+  <!---->
 </div>
 `;
 
@@ -37,6 +45,7 @@ exports[`TextField > updates input value on change 1`] = `
   class="textbox-button foo bar"
   style="width: 250px;"
 >
+  <!---->
   <input
     class="dusk-textbox dusk-textbox-text textbox-button__input"
     placeholder="Search"
@@ -44,12 +53,16 @@ exports[`TextField > updates input value on change 1`] = `
     type="text"
   />
   
+  <!---->
    
   <button
     class="dusk-button dusk-button--type--submit dusk-button--variant--primary dusk-button--size--default dusk-icon-button"
     type="submit"
   >
+    <!---->
+    <!---->
      
+    <!---->
     <svg
       class="dusk-icon dusk-icon--size--default dusk-button__icon"
       role="graphics-symbol"
@@ -60,6 +73,9 @@ exports[`TextField > updates input value on change 1`] = `
       />
     </svg>
     
+    <!---->
+    <!---->
   </button>
+  <!---->
 </div>
 `;

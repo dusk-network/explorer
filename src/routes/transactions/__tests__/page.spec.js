@@ -33,7 +33,7 @@ describe("Transactions page", () => {
     const { container, unmount } = render(Transactions);
 
     // snapshost in loading state
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getTransactionSpy).toHaveBeenNthCalledWith(
       1,
@@ -43,7 +43,7 @@ describe("Transactions page", () => {
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from GraphQL
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
@@ -83,6 +83,6 @@ describe("Transactions page", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

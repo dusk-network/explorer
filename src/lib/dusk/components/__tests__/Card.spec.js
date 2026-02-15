@@ -11,6 +11,6 @@ describe("Card", () => {
   it("renders the Card component", () => {
     const { container } = renderWithSimpleContent(Card, {});
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

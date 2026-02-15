@@ -2,9 +2,12 @@
 
 exports[`Transactions page > should render the Transactions page with the mobile layout 1`] = `
 <section>
+  <!---->
   <div
     class="dusk-card data-card"
   >
+    <!---->
+    <!---->
     <header
       class="data-card__header"
       slot="header"
@@ -24,39 +27,52 @@ exports[`Transactions page > should render the Transactions page with the mobile
         >
           Show More
         </span>
+        <!---->
       </button>
+      <!---->
     </header>
+    
+    <!---->
      
+    <!---->
     <div
       class="data-card__content"
     >
+      <!---->
       <div
         class="data-card__list"
       >
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
             >
+              <!---->
               4a4593a447ae768a20a28c534...a7442eff71e62833047514552
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -68,6 +84,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -78,11 +96,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -90,8 +114,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -103,18 +129,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:55:25.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -122,7 +156,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -130,8 +166,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -139,7 +177,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             50,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -147,17 +188,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221117
-             DUSK
+            0.008221117 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -165,8 +209,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -178,7 +224,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -186,17 +234,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -212,41 +265,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 blob
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
             >
+              <!---->
               47ae464b9cf13bbf6e7307ecd...71bc6698c9bc5fe3e5facba66
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -258,6 +325,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -268,11 +337,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -280,8 +355,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -293,18 +370,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:55:25.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -312,7 +397,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -320,8 +407,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -329,7 +418,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             50,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -337,17 +429,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221117
-             DUSK
+            0.008221117 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -355,8 +450,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -368,7 +465,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -376,17 +475,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -402,41 +506,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
             >
+              <!---->
               225dae3745d75fa7bbae7e029...de697c0be31a3fc176b36ea41
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -448,6 +566,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -458,11 +578,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -470,8 +596,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -483,18 +611,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:55:25.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -502,7 +638,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -510,8 +648,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -519,7 +659,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             50,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -527,17 +670,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220846
-             DUSK
+            0.008220846 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -545,8 +691,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -558,7 +706,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -566,17 +716,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -592,41 +747,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 blob
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
             >
+              <!---->
               03bae6e2e96709ebf41da7ca7...355332f467c0f32b3849de702
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -638,6 +807,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -648,11 +819,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -660,8 +837,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -673,18 +852,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:55:25.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -692,7 +879,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -700,8 +889,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -709,7 +900,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -717,17 +911,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221266
-             DUSK
+            0.008221266 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -735,8 +932,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -748,7 +947,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -756,17 +957,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -782,41 +988,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
             >
+              <!---->
               ed17ab505ab991e83194183b4...6c773767153414603a2b96964
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -828,6 +1048,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -838,11 +1060,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -850,8 +1078,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -863,18 +1093,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -882,7 +1120,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -890,8 +1130,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -899,7 +1141,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -907,17 +1152,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220422
-             DUSK
+            0.008220422 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -925,8 +1173,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -938,7 +1188,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -946,17 +1198,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -972,41 +1229,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
             >
+              <!---->
               cbac233a76cde9fdd129277e7...90c2472e7f316151f4b53666c
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1018,6 +1289,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1028,11 +1301,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1040,8 +1319,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -1053,18 +1334,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -1072,7 +1361,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1080,8 +1371,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -1089,7 +1382,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1097,17 +1393,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220926
-             DUSK
+            0.008220926 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1115,8 +1414,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -1128,7 +1429,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1136,17 +1439,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -1162,41 +1470,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
             >
+              <!---->
               a9abf02f549d21a89390eb18f...4c6740dc30e113f2314152b5d
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1208,6 +1530,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1218,11 +1542,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1230,8 +1560,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -1243,18 +1575,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -1262,7 +1602,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1270,8 +1612,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -1279,7 +1623,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1287,17 +1634,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221243
-             DUSK
+            0.008221243 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1305,8 +1655,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -1318,7 +1670,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1326,17 +1680,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -1352,41 +1711,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
             >
+              <!---->
               a7171542640d6b918928927ee...5f7990fe82796520084798b6f
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1398,6 +1771,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1408,11 +1783,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1420,8 +1801,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -1433,18 +1816,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -1452,7 +1843,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1460,8 +1853,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -1469,7 +1864,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1477,17 +1875,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220934
-             DUSK
+            0.008220934 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1495,8 +1896,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -1508,7 +1911,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1516,17 +1921,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -1542,41 +1952,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
             >
+              <!---->
               a171e5d05bd1e6478a4bcc7db...c3f94d49ffb71934776765465
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1588,6 +2012,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1598,11 +2024,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1610,8 +2042,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -1623,18 +2057,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -1642,7 +2084,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1650,8 +2094,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -1659,7 +2105,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1667,17 +2116,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220989
-             DUSK
+            0.008220989 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1685,8 +2137,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -1698,7 +2152,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1706,17 +2162,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -1732,41 +2193,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
             >
+              <!---->
               8fff9d4eb4818bfd66cfaf41b...50605e40fa8b1b1393ee0ac57
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1778,6 +2253,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1788,11 +2265,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1800,8 +2283,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -1813,18 +2298,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -1832,7 +2325,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1840,8 +2335,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -1849,7 +2346,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1857,17 +2357,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221018
-             DUSK
+            0.008221018 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1875,8 +2378,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -1888,7 +2393,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1896,17 +2403,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -1922,41 +2434,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=88c5c5ebedb181bed0927f41b55835b3801d505774efca243ae084caa9175e04"
             >
+              <!---->
               88c5c5ebedb181bed0927f41b...774efca243ae084caa9175e04
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1968,6 +2494,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1978,11 +2506,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -1990,8 +2524,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -2003,18 +2539,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -2022,7 +2566,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2030,8 +2576,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -2039,7 +2587,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2047,17 +2598,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220865
-             DUSK
+            0.008220865 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2065,8 +2619,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -2078,7 +2634,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2086,17 +2644,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -2112,41 +2675,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=65d9ef520afbe16722f3de439695d31ab3ae807d81ef8e3ebd0fe1f805833c2b"
             >
+              <!---->
               65d9ef520afbe16722f3de439...d81ef8e3ebd0fe1f805833c2b
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2158,6 +2735,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2168,11 +2747,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2180,8 +2765,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -2193,18 +2780,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -2212,7 +2807,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2220,8 +2817,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -2229,7 +2828,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2237,17 +2839,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008221367
-             DUSK
+            0.008221367 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2255,8 +2860,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -2268,7 +2875,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2276,17 +2885,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -2302,41 +2916,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=5d043c4a9c829891dd40c2c482c0e2b579bbe3e0ab7b2e240e47ab231d8fe112"
             >
+              <!---->
               5d043c4a9c829891dd40c2c48...0ab7b2e240e47ab231d8fe112
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2348,6 +2976,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2358,11 +2988,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2370,8 +3006,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -2383,18 +3021,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -2402,7 +3048,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2410,8 +3058,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -2419,7 +3069,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2427,17 +3080,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220508
-             DUSK
+            0.008220508 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2445,8 +3101,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -2458,7 +3116,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2466,17 +3126,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -2492,41 +3157,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=5c5aab71b215e835841aaf173bbfdca9372dd29018ee753d3ffd9eaa88158660"
             >
+              <!---->
               5c5aab71b215e835841aaf173...018ee753d3ffd9eaa88158660
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2538,6 +3217,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2548,11 +3229,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2560,8 +3247,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -2573,18 +3262,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -2592,7 +3289,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2600,8 +3299,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -2609,7 +3310,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2617,17 +3321,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220823
-             DUSK
+            0.008220823 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2635,8 +3342,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -2648,7 +3357,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2656,17 +3367,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -2682,41 +3398,55 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
-        
         <dl
           class="detail-list"
         >
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               ID
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
             <a
               class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
               href="/some-base-path/transactions/transaction?id=53085322f4c84b6a9d17c36996b51a8a05d2207752c733dd454e23f6ee0ca62c"
             >
+              <!---->
               53085322f4c84b6a9d17c3699...752c733dd454e23f6ee0ca62c
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2728,6 +3458,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2738,11 +3470,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2750,8 +3488,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               relative time
+              <!---->
             </div>
           </dt>
            
@@ -2763,18 +3503,26 @@ exports[`Transactions page > should render the Transactions page with the mobile
               datetime="2024-09-11T21:54:11.000Z"
               slot="definition"
             >
+              <!---->
               in 3 months
+              
+              <!---->
             </time>
+            <!---->
           </dd>
+          <!---->
            
+          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Price
+              <!---->
             </div>
           </dt>
            
@@ -2782,7 +3530,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             1
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2790,8 +3540,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Gas Limit
+              <!---->
             </div>
           </dt>
            
@@ -2799,7 +3551,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             500,000,000
+            <!---->
           </dd>
+          <!---->
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2807,17 +3562,20 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Fee
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            0.008220485
-             DUSK
+            0.008220485 DUSK
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2825,8 +3583,10 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Status
+              <!---->
             </div>
           </dt>
            
@@ -2838,7 +3598,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
             >
               success
             </span>
+            <!---->
           </dd>
+          <!---->
            
           <dt
             class="details-list__term details-list__term--table"
@@ -2846,17 +3608,22 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <div
               class="details-list__term-layout"
             >
+              <!---->
                
               Type
+              <!---->
             </div>
           </dt>
            
           <dd
             class="details-list__definition details-list__definition--table"
           >
+            <!---->
+            <!---->
             <div
               class="transaction-type"
             >
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--large transaction-type__icon"
                 data-tooltip-disabled="true"
@@ -2872,32 +3639,48 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 />
               </svg>
               
+              <!---->
                
               <span
                 class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
               >
                 transfer
               </span>
+              <!---->
                
+              <!---->
             </div>
             
+            
+            <!---->
           </dd>
+          <!---->
+          <!---->
         </dl>
+        
       </div>
       
+      <!---->
     </div>
     
+    <!---->
      
+    <!---->
+    
   </div>
   
+  <!---->
 </section>
 `;
 
 exports[`Transactions page > should render the Transactions page, start polling for blocks and stop the polling when unmounted 1`] = `
 <section>
+  <!---->
   <div
     class="dusk-card data-card"
   >
+    <!---->
+    <!---->
     <header
       class="data-card__header"
       slot="header"
@@ -2918,9 +3701,14 @@ exports[`Transactions page > should render the Transactions page, start polling 
         >
           Show More
         </span>
+        <!---->
       </button>
+      <!---->
     </header>
+    
+    <!---->
      
+    <!---->
     <div
       aria-label="Loading"
       class="dusk-progress-bar data-card__progress-bar"
@@ -2931,17 +3719,24 @@ exports[`Transactions page > should render the Transactions page, start polling 
       />
     </div>
     
+    <!---->
      
+    <!---->
+    
   </div>
   
+  <!---->
 </section>
 `;
 
 exports[`Transactions page > should render the Transactions page, start polling for blocks and stop the polling when unmounted 2`] = `
 <section>
+  <!---->
   <div
     class="dusk-card data-card"
   >
+    <!---->
+    <!---->
     <header
       class="data-card__header"
       slot="header"
@@ -2961,71 +3756,110 @@ exports[`Transactions page > should render the Transactions page, start polling 
         >
           Show More
         </span>
+        <!---->
       </button>
+      <!---->
     </header>
+    
+    <!---->
      
+    <!---->
     <div
       class="data-card__content"
     >
+      <!---->
       <div
         class="table-container transactions-table"
       >
         <table
           class="table"
         >
+          <!---->
           <thead
             class="table__head"
           >
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <th
                 class="table__header-cell align-left"
               >
+                <!---->
                 ID
+                
+                
               </th>
               
+              <!---->
                
+              <!---->
               <th
                 class="table__header-cell align-left"
               >
+                <!---->
                 Gas
+                
+                
               </th>
               
+              <!---->
                
+              <!---->
               <th
                 class="table__header-cell align-left"
               >
+                <!---->
                 Fee (DUSK)
+                
+                
               </th>
               
+              <!---->
                
+              <!---->
               <th
                 class="table__header-cell align-left"
               >
+                <!---->
                 Status
+                
+                
               </th>
               
+              <!---->
                
+              <!---->
               <th
                 class="table__header-cell align-left"
               >
+                <!---->
                 Type
+                
+                
               </th>
               
+              <!---->
+              <!---->
             </tr>
+            <!---->
           </thead>
+          <!---->
            
           <tbody
             class="table__body"
           >
-            
+            <!---->
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3033,8 +3867,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
                   >
+                    <!---->
                     4a4593a447...3047514552
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3046,6 +3884,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3056,31 +3896,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:55:25.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3088,35 +3940,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                50,000,000
+                 50,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221117
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3132,25 +3999,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     blob
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3158,8 +4033,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
                   >
+                    <!---->
                     47ae464b9c...3e5facba66
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3171,6 +4050,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3181,31 +4062,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:55:25.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3213,35 +4106,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                50,000,000
+                 50,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221117
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3257,25 +4165,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3283,8 +4199,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
                   >
+                    <!---->
                     225dae3745...176b36ea41
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3296,6 +4216,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3306,31 +4228,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:55:25.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3338,35 +4272,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                50,000,000
+                 50,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220846
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3382,25 +4331,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     blob
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3408,8 +4365,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
                   >
+                    <!---->
                     03bae6e2e9...b3849de702
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3421,6 +4382,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3431,31 +4394,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:55:25.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3463,35 +4438,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221266
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3507,25 +4497,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3533,8 +4531,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
                   >
+                    <!---->
                     ed17ab505a...03a2b96964
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3546,6 +4548,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3556,31 +4560,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3588,35 +4604,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220422
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3632,25 +4663,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3658,8 +4697,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
                   >
+                    <!---->
                     cbac233a76...1f4b53666c
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3671,6 +4714,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3681,31 +4726,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3713,35 +4770,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220926
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3757,25 +4829,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3783,8 +4863,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
                   >
+                    <!---->
                     a9abf02f54...2314152b5d
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3796,6 +4880,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3806,31 +4892,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3838,35 +4936,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221243
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -3882,25 +4995,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -3908,8 +5029,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
                   >
+                    <!---->
                     a717154264...0084798b6f
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -3921,6 +5046,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -3931,31 +5058,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -3963,35 +5102,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220934
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4007,25 +5161,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4033,8 +5195,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
                   >
+                    <!---->
                     a171e5d05b...4776765465
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4046,6 +5212,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4056,31 +5224,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4088,35 +5268,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220989
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4132,25 +5327,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4158,8 +5361,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
                   >
+                    <!---->
                     8fff9d4eb4...393ee0ac57
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4171,6 +5378,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4181,31 +5390,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4213,35 +5434,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221018
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4257,25 +5493,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4283,8 +5527,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=88c5c5ebedb181bed0927f41b55835b3801d505774efca243ae084caa9175e04"
                   >
+                    <!---->
                     88c5c5ebed...caa9175e04
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4296,6 +5544,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4306,31 +5556,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4338,35 +5600,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220865
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4382,25 +5659,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4408,8 +5693,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=65d9ef520afbe16722f3de439695d31ab3ae807d81ef8e3ebd0fe1f805833c2b"
                   >
+                    <!---->
                     65d9ef520a...f805833c2b
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4421,6 +5710,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4431,31 +5722,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4463,35 +5766,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008221367
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4507,25 +5825,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4533,8 +5859,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=5d043c4a9c829891dd40c2c482c0e2b579bbe3e0ab7b2e240e47ab231d8fe112"
                   >
+                    <!---->
                     5d043c4a9c...231d8fe112
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4546,6 +5876,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4556,31 +5888,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4588,35 +5932,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220508
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4632,25 +5991,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4658,8 +6025,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=5c5aab71b215e835841aaf173bbfdca9372dd29018ee753d3ffd9eaa88158660"
                   >
+                    <!---->
                     5c5aab71b2...aa88158660
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4671,6 +6042,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4681,31 +6054,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4713,35 +6098,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220823
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4757,25 +6157,33 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
-            
             <tr
               class="table__row"
             >
+              <!---->
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction__transaction-id-container"
                 >
@@ -4783,8 +6191,12 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     class="dusk-anchor dusk-anchor--on-surface transaction__link"
                     href="/some-base-path/transactions/transaction?id=53085322f4c84b6a9d17c36996b51a8a05d2207752c733dd454e23f6ee0ca62c"
                   >
+                    <!---->
                     53085322f4...f6ee0ca62c
+                    
+                    <!---->
                   </a>
+                  <!---->
                    
                   <div
                     class="dusk-copy-button"
@@ -4796,6 +6208,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
                       data-tooltip-text="Copy to clipboard"
                       type="button"
                     >
+                      <!---->
+                      <!---->
                       <svg
                         class="dusk-icon dusk-icon--size--default dusk-button__icon"
                         role="graphics-symbol"
@@ -4806,31 +6220,43 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         />
                       </svg>
                       
+                      <!---->
                        
-                      
+                      <!---->
+                      <!---->
                     </button>
+                    <!---->
                   </div>
+                  <!---->
                 </div>
                  
                 <time
                   class="dusk-relative-time transaction__time"
                   datetime="2024-09-11T21:54:11.000Z"
                 >
+                  <!---->
                   in 3 months
+                  
+                  <!---->
                 </time>
+                <!---->
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <b
                   class="transaction__fee-price-label"
                 >
                   PRICE:
                 </b>
-                 
-                1
+                 1
                 <br />
                  
                 <b
@@ -4838,35 +6264,50 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 >
                   LIMIT:
                 </b>
-                 
-                500,000,000
+                 500,000,000
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 0.008220485
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <span
                   class="dusk-badge dusk-badge--variant-success transaction-status"
                 >
                   success
                 </span>
+                
+                
               </td>
               
+              <!---->
                
+              <!---->
               <td
                 class="table__data-cell align-left"
               >
+                <!---->
                 <div
                   class="transaction-type"
                 >
+                  <!---->
                   <svg
                     class="dusk-icon dusk-icon--size--large transaction-type__icon"
                     data-tooltip-disabled="false"
@@ -4882,27 +6323,41 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     />
                   </svg>
                   
+                  <!---->
                    
                   <span
                     class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
                   >
                     transfer
                   </span>
+                  <!---->
                    
+                  <!---->
                 </div>
+                
+                
               </td>
               
-               
+              <!---->
+              <!---->
             </tr>
             
+            <!---->
           </tbody>
+          <!---->
+          <!---->
         </table>
       </div>
       
+      <!---->
     </div>
     
+    <!---->
      
+    <!---->
+    
   </div>
   
+  <!---->
 </section>
 `;

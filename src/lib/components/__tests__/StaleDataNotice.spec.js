@@ -74,7 +74,7 @@ describe("StaleDataNotice", () => {
 
     const { container } = render(StaleDataNotice, { target: document.body });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     vi.useRealTimers();
   });
@@ -98,6 +98,6 @@ describe("StaleDataNotice", () => {
       });
     });
 
-    expect(container.firstChild).toHaveClass("dusk-icon");
+    expect(container.firstElementChild).toHaveClass("dusk-icon");
   });
 });

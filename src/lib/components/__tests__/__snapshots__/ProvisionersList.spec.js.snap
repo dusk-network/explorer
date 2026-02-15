@@ -4,23 +4,27 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
 <dl
   class="detail-list provisioners-list"
 >
+  <!---->
   <dt
     class="details-list__term details-list__term--table"
   >
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Rank
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    #
-    1
+    #1
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -28,8 +32,10 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Staking address
+      <!---->
     </div>
   </dt>
    
@@ -52,6 +58,8 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
         data-tooltip-text="Copy to clipboard"
         type="button"
       >
+        <!---->
+        <!---->
         <svg
           class="dusk-icon dusk-icon--size--default dusk-button__icon"
           role="graphics-symbol"
@@ -62,11 +70,17 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
           />
         </svg>
         
+        <!---->
          
-        
+        <!---->
+        <!---->
       </button>
+      <!---->
     </div>
+    <!---->
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -74,8 +88,10 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Owner Key
+      <!---->
     </div>
   </dt>
    
@@ -89,7 +105,9 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     >
       No
     </span>
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -97,17 +115,20 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Active Stake
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    1,000,000
-     DUSK
+    1,000,000 DUSK
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -115,17 +136,20 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Inactive Stake
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    0
-     DUSK
+    0 DUSK
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -133,17 +157,20 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Maturity At
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    #
-    0
+    #0
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -151,17 +178,20 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       accumulated reward
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    12,178.759788262
-     DUSK
+    12,178.759788262 DUSK
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -169,8 +199,10 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Soft Slashes
+      <!---->
     </div>
   </dt>
    
@@ -178,7 +210,9 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     class="details-list__definition details-list__definition--table"
   >
     0
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -186,8 +220,10 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Hard Slashes
+      <!---->
     </div>
   </dt>
    
@@ -195,6 +231,9 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     class="details-list__definition details-list__definition--table"
   >
     0
+    <!---->
   </dd>
+  <!---->
+  <!---->
 </dl>
 `;

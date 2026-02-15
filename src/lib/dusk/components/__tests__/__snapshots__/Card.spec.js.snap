@@ -4,10 +4,15 @@ exports[`Card > renders the Card component 1`] = `
 <div
   class="dusk-card"
 >
+  <!---->
+  <!---->
    
   <span>
     some text
   </span>
+  <!---->
    
+  <!---->
+  
 </div>
 `;

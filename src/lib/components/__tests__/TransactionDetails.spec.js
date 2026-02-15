@@ -29,7 +29,7 @@ describe("Transaction Details", () => {
   it("renders the Transaction Details component", () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the Transaction Details component with the memo decoded", async () => {
@@ -37,7 +37,7 @@ describe("Transaction Details", () => {
 
     await fireEvent.click(getAllByRole("switch")[0]);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the Transaction Details component with the payload visible", async () => {
@@ -45,7 +45,7 @@ describe("Transaction Details", () => {
 
     await fireEvent.click(getAllByRole("switch")[1]);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should be able to render the details when they contain blob hashes", () => {
@@ -63,6 +63,6 @@ describe("Transaction Details", () => {
 
     const { container } = render(TransactionDetails, props);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

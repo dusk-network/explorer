@@ -7,5 +7,6 @@ exports[`Detail List > renders the Detail List component 1`] = `
   <span>
     some text
   </span>
+  <!---->
 </dl>
 `;

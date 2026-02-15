@@ -34,7 +34,7 @@ describe("Transactions List", () => {
   it('should render the `TransactionsList` component in "full" mode', () => {
     const { container } = render(TransactionsList, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it('should render the `TransactionsList` component in "compact" mode', () => {
@@ -45,7 +45,7 @@ describe("Transactions List", () => {
     };
     const { container } = render(TransactionsList, { ...baseProps, ...props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should auto-refresh relative times when the related prop is set to true", async () => {
@@ -59,22 +59,28 @@ describe("Transactions List", () => {
     const { container, rerender } = render(TransactionsList, props);
     const timeElement = getTimeElement(container);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"now"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"<!---->now<!---->"`);
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval * 3);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"now"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"<!---->now<!---->"`);
 
     await rerender({ ...props, autoRefreshTime: true });
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"3 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->3 seconds ago<!---->"`
+    );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"4 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->4 seconds ago<!---->"`
+    );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"5 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->5 seconds ago<!---->"`
+    );
   });
 });

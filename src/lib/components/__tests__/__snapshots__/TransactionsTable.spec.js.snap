@@ -7,59 +7,92 @@ exports[`Transactions Table > should pass additional class names to the rendered
   <table
     class="table"
   >
+    <!---->
     <thead
       class="table__head"
     >
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           ID
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Gas
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Fee (DUSK)
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Status
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Type
+          
+          
         </th>
         
+        <!---->
+        <!---->
       </tr>
+      <!---->
     </thead>
+    <!---->
      
     <tbody
       class="table__body"
     >
-      
+      <!---->
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -67,8 +100,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
             >
+              <!---->
               4a4593a447...3047514552
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -80,6 +117,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -90,31 +129,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -122,35 +173,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -166,25 +232,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -192,8 +266,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
             >
+              <!---->
               47ae464b9c...3e5facba66
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -205,6 +283,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -215,31 +295,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -247,35 +339,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -291,25 +398,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -317,8 +432,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
             >
+              <!---->
               225dae3745...176b36ea41
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -330,6 +449,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -340,31 +461,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -372,35 +505,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220846
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -416,25 +564,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -442,8 +598,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
             >
+              <!---->
               03bae6e2e9...b3849de702
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -455,6 +615,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -465,31 +627,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -497,35 +671,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221266
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -541,25 +730,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -567,8 +764,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
             >
+              <!---->
               ed17ab505a...03a2b96964
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -580,6 +781,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -590,31 +793,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -622,35 +837,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220422
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -666,25 +896,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -692,8 +930,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
             >
+              <!---->
               cbac233a76...1f4b53666c
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -705,6 +947,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -715,31 +959,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -747,35 +1003,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220926
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -791,25 +1062,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -817,8 +1096,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
             >
+              <!---->
               a9abf02f54...2314152b5d
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -830,6 +1113,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -840,31 +1125,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -872,35 +1169,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221243
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -916,25 +1228,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -942,8 +1262,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
             >
+              <!---->
               a717154264...0084798b6f
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -955,6 +1279,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -965,31 +1291,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -997,35 +1335,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220934
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1041,25 +1394,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1067,8 +1428,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
             >
+              <!---->
               a171e5d05b...4776765465
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1080,6 +1445,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1090,31 +1457,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -1122,35 +1501,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220989
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1166,25 +1560,33 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1192,8 +1594,12 @@ exports[`Transactions Table > should pass additional class names to the rendered
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
             >
+              <!---->
               8fff9d4eb4...393ee0ac57
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1205,6 +1611,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1215,31 +1623,43 @@ exports[`Transactions Table > should pass additional class names to the rendered
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -1247,35 +1667,50 @@ exports[`Transactions Table > should pass additional class names to the rendered
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221018
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1291,20 +1726,29 @@ exports[`Transactions Table > should pass additional class names to the rendered
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
       
+      <!---->
     </tbody>
+    <!---->
+    <!---->
   </table>
 </div>
 `;
@@ -1316,53 +1760,82 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
   <table
     class="table"
   >
+    <!---->
     <thead
       class="table__head"
     >
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           ID
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Fee (DUSK)
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Status
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Type
+          
+          
         </th>
         
+        <!---->
+        <!---->
       </tr>
+      <!---->
     </thead>
+    <!---->
      
     <tbody
       class="table__body"
     >
-      
+      <!---->
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1370,8 +1843,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
             >
+              <!---->
               4a4593a447...3047514552
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1383,6 +1860,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1393,46 +1872,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1448,25 +1952,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1474,8 +1986,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
             >
+              <!---->
               47ae464b9c...3e5facba66
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1487,6 +2003,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1497,46 +2015,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1552,25 +2095,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1578,8 +2129,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
             >
+              <!---->
               225dae3745...176b36ea41
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1591,6 +2146,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1601,46 +2158,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220846
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1656,25 +2238,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1682,8 +2272,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
             >
+              <!---->
               03bae6e2e9...b3849de702
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1695,6 +2289,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1705,46 +2301,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221266
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1760,25 +2381,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1786,8 +2415,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
             >
+              <!---->
               ed17ab505a...03a2b96964
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1799,6 +2432,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1809,46 +2444,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220422
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1864,25 +2524,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1890,8 +2558,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
             >
+              <!---->
               cbac233a76...1f4b53666c
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -1903,6 +2575,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1913,46 +2587,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220926
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -1968,25 +2667,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -1994,8 +2701,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
             >
+              <!---->
               a9abf02f54...2314152b5d
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2007,6 +2718,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2017,46 +2730,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221243
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2072,25 +2810,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2098,8 +2844,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
             >
+              <!---->
               a717154264...0084798b6f
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2111,6 +2861,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2121,46 +2873,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220934
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2176,25 +2953,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2202,8 +2987,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
             >
+              <!---->
               a171e5d05b...4776765465
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2215,6 +3004,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2225,46 +3016,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220989
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2280,25 +3096,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2306,8 +3130,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
             >
+              <!---->
               8fff9d4eb4...393ee0ac57
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2319,6 +3147,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2329,46 +3159,71 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221018
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2384,20 +3239,29 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
       
+      <!---->
     </tbody>
+    <!---->
+    <!---->
   </table>
 </div>
 `;
@@ -2409,59 +3273,92 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
   <table
     class="table"
   >
+    <!---->
     <thead
       class="table__head"
     >
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           ID
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Gas
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Fee (DUSK)
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Status
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           Type
+          
+          
         </th>
         
+        <!---->
+        <!---->
       </tr>
+      <!---->
     </thead>
+    <!---->
      
     <tbody
       class="table__body"
     >
-      
+      <!---->
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2469,8 +3366,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
             >
+              <!---->
               4a4593a447...3047514552
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2482,6 +3383,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2492,31 +3395,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -2524,35 +3439,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2568,25 +3498,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2594,8 +3532,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
             >
+              <!---->
               47ae464b9c...3e5facba66
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2607,6 +3549,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2617,31 +3561,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -2649,35 +3605,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221117
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2693,25 +3664,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2719,8 +3698,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
             >
+              <!---->
               225dae3745...176b36ea41
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2732,6 +3715,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2742,31 +3727,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -2774,35 +3771,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          50,000,000
+           50,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220846
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2818,25 +3830,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               blob
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2844,8 +3864,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
             >
+              <!---->
               03bae6e2e9...b3849de702
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2857,6 +3881,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2867,31 +3893,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:55:25.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -2899,35 +3937,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221266
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -2943,25 +3996,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -2969,8 +4030,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
             >
+              <!---->
               ed17ab505a...03a2b96964
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -2982,6 +4047,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -2992,31 +4059,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3024,35 +4103,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220422
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3068,25 +4162,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -3094,8 +4196,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
             >
+              <!---->
               cbac233a76...1f4b53666c
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -3107,6 +4213,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -3117,31 +4225,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3149,35 +4269,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220926
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3193,25 +4328,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -3219,8 +4362,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
             >
+              <!---->
               a9abf02f54...2314152b5d
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -3232,6 +4379,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -3242,31 +4391,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3274,35 +4435,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221243
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3318,25 +4494,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -3344,8 +4528,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
             >
+              <!---->
               a717154264...0084798b6f
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -3357,6 +4545,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -3367,31 +4557,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3399,35 +4601,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220934
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3443,25 +4660,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -3469,8 +4694,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
             >
+              <!---->
               a171e5d05b...4776765465
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -3482,6 +4711,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -3492,31 +4723,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3524,35 +4767,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008220989
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3568,25 +4826,33 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction__transaction-id-container"
           >
@@ -3594,8 +4860,12 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               class="dusk-anchor dusk-anchor--on-surface transaction__link"
               href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
             >
+              <!---->
               8fff9d4eb4...393ee0ac57
+              
+              <!---->
             </a>
+            <!---->
              
             <div
               class="dusk-copy-button"
@@ -3607,6 +4877,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -3617,31 +4889,43 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
            
           <time
             class="dusk-relative-time transaction__time"
             datetime="2024-09-11T21:54:11.000Z"
           >
+            <!---->
             in 3 months
+            
+            <!---->
           </time>
+          <!---->
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="transaction__fee-price-label"
           >
             PRICE:
           </b>
-           
-          1
+           1
           <br />
            
           <b
@@ -3649,35 +4933,50 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           >
             LIMIT:
           </b>
-           
-          500,000,000
+           500,000,000
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           0.008221018
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-success transaction-status"
           >
             success
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="true"
@@ -3693,20 +4992,29 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
       
+      <!---->
     </tbody>
+    <!---->
+    <!---->
   </table>
 </div>
 `;

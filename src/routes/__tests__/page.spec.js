@@ -57,7 +57,7 @@ describe("home page", () => {
     const { container, unmount } = render(HomePage);
 
     // snapshost in loading state
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
     expect(duskAPI.getLatestChainInfo).toHaveBeenNthCalledWith(
       1,
@@ -67,7 +67,7 @@ describe("home page", () => {
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     // snapshot with received data from GraphQL
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(fetchInterval - marketDataSettleTime);
 

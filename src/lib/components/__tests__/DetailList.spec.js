@@ -16,6 +16,6 @@ describe("Detail List", () => {
   it("renders the Detail List component", () => {
     const render = renderWithSimpleContent(DetailList, baseOptions);
 
-    expect(render.container.firstChild).toMatchSnapshot();
+    expect(render.container.firstElementChild).toMatchSnapshot();
   });
 });

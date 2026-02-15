@@ -4,9 +4,12 @@ exports[`Transaction Details > should render the Transaction details page 1`] = 
 <section
   class="transaction"
 >
+  <!---->
   <div
     class="dusk-card data-card transaction-details"
   >
+    <!---->
+    <!---->
     <header
       class="data-card__header"
       slot="header"
@@ -17,8 +20,12 @@ exports[`Transaction Details > should render the Transaction details page 1`] = 
         Transaction Details
       </h1>
        
+      <!---->
     </header>
+    
+    <!---->
      
+    <!---->
     <div
       aria-label="Loading"
       class="dusk-progress-bar data-card__progress-bar"
@@ -29,9 +36,13 @@ exports[`Transaction Details > should render the Transaction details page 1`] = 
       />
     </div>
     
+    <!---->
      
+    <!---->
+    
   </div>
   
+  <!---->
 </section>
 `;
 
@@ -39,9 +50,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
 <section
   class="transaction"
 >
+  <!---->
   <div
     class="dusk-card data-card transaction-details"
   >
+    <!---->
+    <!---->
     <header
       class="data-card__header"
       slot="header"
@@ -52,8 +66,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         Transaction Details
       </h1>
        
+      <!---->
     </header>
+    
+    <!---->
      
+    <!---->
     <div
       class="data-card__content"
     >
@@ -66,6 +84,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -80,20 +99,27 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             ID
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
           <a
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
           >
+            <!---->
             4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+            
+            <!---->
           </a>
+          <!---->
            
           <div
             class="dusk-copy-button"
@@ -105,6 +131,8 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -115,18 +143,25 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -141,8 +176,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             block height
+            <!---->
           </div>
         </dt>
          
@@ -153,15 +190,22 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
           >
+            <!---->
             487,166
+            
+            <!---->
           </a>
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -176,8 +220,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             timestamp
+            <!---->
           </div>
         </dt>
          
@@ -189,16 +235,26 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             datetime="2024-04-16T06:39:09.000Z"
             slot="definition"
           >
+            <!---->
+            <!---->
+            <!---->
             Tue, 16 Apr 2024 06:39:09 GMT (last month)
             
+            
+            
+            <!---->
           </time>
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -213,20 +269,27 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             from
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
           <a
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
           >
+            <!---->
             kT5BamV2Xq6JpnoCq9ux7EmYR...HdCeKtzExREcXZsmmMRLwKbXj
+            
+            <!---->
           </a>
+          <!---->
            
           <div
             class="dusk-copy-button"
@@ -238,6 +301,8 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -248,19 +313,25 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
+          <!---->
         </dd>
-        
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -275,20 +346,27 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             to
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
           <a
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
           >
+            <!---->
             mHWZo9qYUhqp2SEmtWN7EuDKF...GQZwCaeCS8uA63ZPKnGpjiUnj
+            
+            <!---->
           </a>
+          <!---->
            
           <div
             class="dusk-copy-button"
@@ -300,6 +378,8 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               data-tooltip-text="Copy to clipboard"
               type="button"
             >
+              <!---->
+              <!---->
               <svg
                 class="dusk-icon dusk-icon--size--default dusk-button__icon"
                 role="graphics-symbol"
@@ -310,19 +390,25 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                 />
               </svg>
               
+              <!---->
                
-              
+              <!---->
+              <!---->
             </button>
+            <!---->
           </div>
-           
+          <!---->
+          <!---->
         </dd>
-        
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -337,26 +423,38 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             amount
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
+          <!---->
+          <!---->
           9,812.378912731 DUSK ($3,614.3897725045)
           
-           
           
+          <!---->
+           
+          <!---->
+          
+          <!---->
+          <!---->
         </dd>
-        
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -371,8 +469,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             type
+            <!---->
           </div>
         </dt>
          
@@ -382,6 +482,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <div
             class="transaction-type"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--large transaction-type__icon"
               data-tooltip-disabled="false"
@@ -397,22 +498,28 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             <span
               class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
             >
               transfer
             </span>
+            <!---->
              
+            <!---->
           </div>
-           
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -427,8 +534,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             status
+            <!---->
           </div>
         </dt>
          
@@ -440,13 +549,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           >
             success
           </span>
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -461,26 +574,38 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             transaction fee
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
+          <!---->
+          <!---->
           0.000290766 DUSK ($0.0001071037)
           
-           
           
+          <!---->
            
+          <!---->
+          
+          <!---->
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -495,26 +620,38 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             gas price
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
+          <!---->
+          <!---->
           0.000000001 DUSK ($0.0000000004)
           
-           
           
+          <!---->
            
+          <!---->
+          
+          <!---->
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -529,8 +666,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             transaction gas limit
+            <!---->
           </div>
         </dt>
          
@@ -538,13 +677,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           500000000
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -559,8 +702,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             gas spent
+            <!---->
           </div>
         </dt>
          
@@ -568,13 +713,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           290766
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -589,8 +738,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             nonce
+            <!---->
           </div>
         </dt>
          
@@ -598,14 +749,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           156
+          <!---->
         </dd>
-        
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -620,12 +774,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             <div
               class="transaction-details__switch-wrapper"
             >
-              memo
-          
+              memo 
               <div
                 aria-checked="false"
                 aria-disabled="false"
@@ -633,24 +787,33 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                 role="switch"
                 tabindex="0"
               />
+              <!---->
             </div>
-             
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
+          <!---->
+          <!---->
+          <!---->
           some notes about the transaction
           
-           
+          
+          
+          <!---->
         </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
           <div
             class="details-list__term-layout"
           >
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -665,12 +828,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               />
             </svg>
             
+            <!---->
              
             <div
               class="transaction-details__switch-wrapper"
             >
-              payload
-          
+              payload 
               <div
                 aria-checked="false"
                 aria-disabled="false"
@@ -678,21 +841,32 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                 role="switch"
                 tabindex="0"
               />
+              <!---->
             </div>
-             
+            <!---->
           </div>
         </dt>
          
         <dd
           class="details-list__definition"
         >
-           
+          <!---->
+          
+          <!---->
         </dd>
+        <!---->
+         
+        <!---->
       </dl>
+      <!---->
     </div>
     
+    <!---->
      
+    <!---->
+    
   </div>
   
+  <!---->
 </section>
 `;

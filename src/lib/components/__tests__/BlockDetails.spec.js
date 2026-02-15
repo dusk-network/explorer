@@ -38,7 +38,7 @@ describe("Block Details", () => {
   it("renders the Block Details component", () => {
     const { container } = render(BlockDetails, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the previous block link if the prev block hash is empty or if the current height is `0`", async () => {
@@ -84,6 +84,6 @@ describe("Block Details", () => {
 
     await fireEvent.click(getByRole("switch"));
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });
