@@ -21,6 +21,6 @@ describe("Provisioners Table", () => {
   it("should render the `ProvisionersTable` component", () => {
     const { container } = render(ProvisionersTable, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

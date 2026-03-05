@@ -17,7 +17,7 @@ describe("TransactionStatus", () => {
   it("should render the transaction status", () => {
     const { container } = render(TransactionStatus, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should pass additional class names to the rendered `Badge` component", () => {
@@ -28,7 +28,7 @@ describe("TransactionStatus", () => {
 
     const { container } = render(TransactionStatus, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the status as error if it receives an error message", () => {
@@ -39,7 +39,7 @@ describe("TransactionStatus", () => {
 
     const { container } = render(TransactionStatus, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should add tooltip info if it receives an error message and the related property is set", () => {
@@ -51,7 +51,7 @@ describe("TransactionStatus", () => {
 
     const { container } = render(TransactionStatus, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("shouldn't add tooltip info if there's no error message, even if the related property is set to `true`", () => {
@@ -62,6 +62,6 @@ describe("TransactionStatus", () => {
 
     const { container } = render(TransactionStatus, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

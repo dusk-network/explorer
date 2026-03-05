@@ -24,7 +24,7 @@ describe("Provisioners Card", () => {
   it("should render the `ProvisionersCard` component", () => {
     const { container } = render(ProvisionersCard, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button is the card is in the loading state", () => {
@@ -37,7 +37,7 @@ describe("Provisioners Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button if there is no more data to display", async () => {
@@ -51,7 +51,7 @@ describe("Provisioners Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should hide the `Show More` button if an error has occurred", async () => {
@@ -62,6 +62,6 @@ describe("Provisioners Card", () => {
       props: { ...props, error: new Error("error") },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

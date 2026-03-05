@@ -17,6 +17,8 @@ const createPollingDataStore = (dataRetriever, fetchInterval) => {
   let resumeArgs = null;
 
   function visibilityChangeHandler() {
+    if (typeof document === "undefined") return;
+
     if (document.hidden && resumeArgs) {
       currentPollId++;
     } else if (resumeArgs) {
@@ -48,14 +50,18 @@ const createPollingDataStore = (dataRetriever, fetchInterval) => {
   };
 
   const stop = () => {
-    document.removeEventListener("visibilitychange", visibilityChangeHandler);
+    if (typeof document !== "undefined") {
+      document.removeEventListener("visibilitychange", visibilityChangeHandler);
+    }
     resumeArgs = null;
     currentPollId++;
   };
 
   /** @type {(...args: Parameters<dataRetriever>) => void} */
   const start = (...args) => {
-    document.addEventListener("visibilitychange", visibilityChangeHandler);
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", visibilityChangeHandler);
+    }
     resumeArgs = args;
     poll(++currentPollId, args);
   };

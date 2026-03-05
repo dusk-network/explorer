@@ -46,14 +46,14 @@ describe("StatisticsPanel", () => {
   it("should render the StatisticsPanel, query for the necessary info, start polling for stats and stop the polling when unmounted", async () => {
     const { container, unmount } = render(StatisticsPanel);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(duskAPI.getStats).toHaveBeenCalledTimes(1);
     expect(duskAPI.getStats).toHaveBeenNthCalledWith(1);
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     // snapshot with received data from APIs
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(
       statsFetchInterval - marketDataSettleTime

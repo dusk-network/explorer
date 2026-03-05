@@ -3,18 +3,22 @@
 exports[`Navbar > renders the Navbar component 1`] = `
 <nav
   class="dusk-navbar dusk-navbar--menu-hidden"
-  style="margin-bottom: 0"
+  style="margin-bottom: 0px;"
 >
   <a
     class="dusk-anchor dusk-anchor--on-surface dusk-navbar__logo"
     href="/some-base-path/"
   >
+    <!---->
     <img
       alt="Dusk Logo"
       sizes="(max-width: 1024px) 86px, 129px"
       src="/some-base-path/dusk_logo.svg"
     />
+    
+    <!---->
   </a>
+  <!---->
    
   <button
     aria-controls="dusk-navbar-menu"
@@ -23,6 +27,8 @@ exports[`Navbar > renders the Navbar component 1`] = `
     class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-navbar__toggle"
     type="button"
   >
+    <!---->
+    <!---->
     <svg
       class="dusk-icon dusk-icon--size--large dusk-button__icon"
       role="graphics-symbol"
@@ -33,9 +39,12 @@ exports[`Navbar > renders the Navbar component 1`] = `
       />
     </svg>
     
+    <!---->
      
-    
+    <!---->
+    <!---->
   </button>
+  <!---->
    
   <div
     class="dusk-navbar__menu dusk-navbar__menu--hidden"
@@ -46,47 +55,61 @@ exports[`Navbar > renders the Navbar component 1`] = `
     >
       unknown
     </span>
+    <!---->
      
+    <!---->
     <nav
       class="dusk-nav-list dusk-navbar__menu--links"
     >
-      
       <a
         class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
         href="/some-base-path/"
       >
+        <!---->
         Chain Info
+        
+        <!---->
       </a>
-      
       <a
         class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
         href="/some-base-path/blocks"
       >
+        <!---->
         Blocks
+        
+        <!---->
       </a>
-      
       <a
         class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
         href="/some-base-path/transactions"
       >
+        <!---->
         Transactions
+        
+        <!---->
       </a>
-      
       <a
         class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
         href="/some-base-path/provisioners"
       >
+        <!---->
         Provisioners
+        
+        <!---->
       </a>
-      
       <a
         class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
         href="/some-base-path/tokens"
       >
+        <!---->
         Tokens
+        
+        <!---->
       </a>
+      
     </nav>
     
+    <!---->
      
     <div
       class="dusk-navbar__menu--search"
@@ -96,6 +119,7 @@ exports[`Navbar > renders the Navbar component 1`] = `
           class="textbox-button"
           style="width: 250px;"
         >
+          <!---->
           <input
             class="dusk-textbox dusk-textbox-text textbox-button__input"
             placeholder="Account/Block/Hash"
@@ -103,12 +127,16 @@ exports[`Navbar > renders the Navbar component 1`] = `
             type="text"
           />
           
+          <!---->
            
           <button
             class="dusk-button dusk-button--type--submit dusk-button--variant--primary dusk-button--size--default dusk-icon-button"
             type="submit"
           >
+            <!---->
+            <!---->
              
+            <!---->
             <svg
               class="dusk-icon dusk-icon--size--default dusk-button__icon"
               role="graphics-symbol"
@@ -119,10 +147,16 @@ exports[`Navbar > renders the Navbar component 1`] = `
               />
             </svg>
             
+            <!---->
+            <!---->
           </button>
+          <!---->
         </div>
+        <!---->
       </form>
+      <!---->
        
+      <!---->
     </div>
   </div>
 </nav>

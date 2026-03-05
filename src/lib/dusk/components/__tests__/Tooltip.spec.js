@@ -124,73 +124,37 @@ describe("Tooltip", () => {
     const removeListenerSpy = vi.spyOn(document.body, "removeEventListener");
     const { unmount } = render(Tooltip, baseOptions);
     const handlers = addListenerSpy.mock.calls.map((call) => call[1]);
-
-    expect(addListenerSpy).toHaveBeenCalledTimes(5);
-    expect(addListenerSpy).toHaveBeenNthCalledWith(
-      1,
+    const types = [
       "focusin",
-      expect.any(Function),
-      true
-    );
-    expect(addListenerSpy).toHaveBeenNthCalledWith(
-      2,
       "focusout",
-      expect.any(Function),
-      true
-    );
-    expect(addListenerSpy).toHaveBeenNthCalledWith(
-      3,
       "keydown",
-      expect.any(Function),
-      true
-    );
-    expect(addListenerSpy).toHaveBeenNthCalledWith(
-      4,
       "mouseenter",
-      expect.any(Function),
-      true
-    );
-    expect(addListenerSpy).toHaveBeenNthCalledWith(
-      5,
       "mouseleave",
-      expect.any(Function),
-      true
-    );
+    ];
+
+    expect(addListenerSpy).toHaveBeenCalledTimes(types.length);
+
+    types.forEach((type, index) => {
+      expect(addListenerSpy).toHaveBeenNthCalledWith(
+        index + 1,
+        type,
+        expect.any(Function),
+        expect.objectContaining({ capture: true })
+      );
+    });
 
     unmount();
 
-    expect(removeListenerSpy).toHaveBeenCalledTimes(5);
+    expect(removeListenerSpy).toHaveBeenCalledTimes(types.length);
 
-    expect(removeListenerSpy).toHaveBeenNthCalledWith(
-      1,
-      "focusin",
-      handlers[0],
-      true
-    );
-    expect(removeListenerSpy).toHaveBeenNthCalledWith(
-      2,
-      "focusout",
-      handlers[1],
-      true
-    );
-    expect(removeListenerSpy).toHaveBeenNthCalledWith(
-      3,
-      "keydown",
-      handlers[2],
-      true
-    );
-    expect(removeListenerSpy).toHaveBeenNthCalledWith(
-      4,
-      "mouseenter",
-      handlers[3],
-      true
-    );
-    expect(removeListenerSpy).toHaveBeenNthCalledWith(
-      5,
-      "mouseleave",
-      handlers[4],
-      true
-    );
+    types.forEach((type, index) => {
+      expect(removeListenerSpy).toHaveBeenNthCalledWith(
+        index + 1,
+        type,
+        handlers[index],
+        expect.objectContaining({ capture: true })
+      );
+    });
 
     addListenerSpy.mockRestore();
     removeListenerSpy.mockRestore();

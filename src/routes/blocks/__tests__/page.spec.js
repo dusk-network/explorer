@@ -33,14 +33,14 @@ describe("Blocks page", () => {
     const { container, unmount } = render(Blocks);
 
     // snapshost in loading state
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
     expect(getBlocksSpy).toHaveBeenNthCalledWith(1, blocksListEntries);
 
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from GraphQL
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
@@ -71,6 +71,6 @@ describe("Blocks page", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

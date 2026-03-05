@@ -34,7 +34,7 @@ describe("Transactions Card", () => {
   it("should render the `TransactionsCard` component", () => {
     const { container } = render(TransactionsCard, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button if the card is in the loading state", async () => {
@@ -47,7 +47,7 @@ describe("Transactions Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should disable the `Show More` button if there is no more data to display", async () => {
@@ -61,7 +61,7 @@ describe("Transactions Card", () => {
 
     expect(getByRole("button", { name: "Show More" })).toBeDisabled();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should hide the `Show More` button if an error has occurred", async () => {
@@ -72,6 +72,6 @@ describe("Transactions Card", () => {
       props: { ...props, error: new Error("error") },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

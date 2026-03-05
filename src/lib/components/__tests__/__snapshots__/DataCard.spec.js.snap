@@ -4,6 +4,8 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -23,18 +25,27 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
       >
         Button
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="data-card__content"
   >
     <span>
       some text
     </span>
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -42,6 +53,8 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -61,18 +74,27 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
       >
         Button
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="data-card__content"
   >
     <span>
       some text
     </span>
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -80,6 +102,8 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -99,12 +123,18 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
       >
         Button
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="alert"
   >
+    <!---->
     <svg
       class="dusk-icon dusk-icon--size--large"
       role="graphics-symbol"
@@ -115,6 +145,7 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
       />
     </svg>
     
+    <!---->
      
     <header>
       <p>
@@ -126,6 +157,7 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
       >
         error
       </p>
+      <!---->
     </header>
      
     <button
@@ -137,10 +169,15 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
       >
         Retry
       </span>
+      <!---->
     </button>
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -148,6 +185,8 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -167,9 +206,14 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
       >
         Button
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     aria-label="Loading"
     class="dusk-progress-bar data-card__progress-bar"
@@ -180,7 +224,10 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
     />
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -188,6 +235,8 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -207,12 +256,18 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
       >
         Button
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
+  
+  <!---->
    
+  <!---->
   <div
     class="alert"
   >
+    <!---->
     <svg
       class="dusk-icon dusk-icon--size--large"
       role="graphics-symbol"
@@ -223,16 +278,22 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
       />
     </svg>
     
+    <!---->
      
     <header>
       <p>
         No data to display
       </p>
+      <!---->
     </header>
      
+    <!---->
   </div>
   
+  <!---->
    
+  <!---->
+  
 </div>
 `;
 
@@ -240,6 +301,8 @@ exports[`DataCard > should render the \`DataCard\` with a disabled button 1`] = 
 <div
   class="dusk-card data-card"
 >
+  <!---->
+  <!---->
   <header
     class="data-card__header"
     slot="header"
@@ -260,10 +323,18 @@ exports[`DataCard > should render the \`DataCard\` with a disabled button 1`] = 
       >
         Back
       </span>
+      <!---->
     </button>
+    <!---->
   </header>
-   
   
+  <!---->
    
+  <!---->
+  
+  <!---->
+   
+  <!---->
+  
 </div>
 `;

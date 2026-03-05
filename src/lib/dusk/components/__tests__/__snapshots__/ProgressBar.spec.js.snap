@@ -8,7 +8,7 @@ exports[`ProgressBar > re-renders the \`ProgressBar\` component when the current
 >
   <div
     class="dusk-progress-bar__filler"
-    style="width: 0%"
+    style="width: 0%;"
   />
 </div>
 `;
@@ -21,7 +21,7 @@ exports[`ProgressBar > re-renders the \`ProgressBar\` component when the current
 >
   <div
     class="dusk-progress-bar__filler"
-    style="width: 50%"
+    style="width: 50%;"
   />
 </div>
 `;
@@ -34,7 +34,7 @@ exports[`ProgressBar > renders the \`ProgressBar\` component with current percen
 >
   <div
     class="dusk-progress-bar__filler"
-    style="width: 0%"
+    style="width: 0%;"
   />
 </div>
 `;
@@ -59,7 +59,7 @@ exports[`ProgressBar > should pass additional class names to the rendered elemen
 >
   <div
     class="dusk-progress-bar__filler"
-    style="width: 0%"
+    style="width: 0%;"
   />
 </div>
 `;

@@ -17,7 +17,7 @@ describe("DataAlert", () => {
   it("should render the `DataAlert` in the no data state", () => {
     const { container } = render(DataAlert, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataAlert` in the error state", () => {
@@ -27,18 +27,17 @@ describe("DataAlert", () => {
       props: { ...baseProps, error },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should dispatch the `retry` event on button click", async () => {
     const eventHandler = vi.fn();
     const error = new Error("error");
-    const { component, getByRole } = render(DataAlert, {
-      ...baseOptions,
+    const { getByRole } = render(DataAlert, {
+      events: { retry: eventHandler },
       props: { ...baseProps, error },
     });
 
-    component.$on("retry", eventHandler);
     await fireEvent.click(getByRole("button"));
     expect(eventHandler).toHaveBeenCalledTimes(1);
   });

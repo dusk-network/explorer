@@ -26,14 +26,14 @@ describe("RelativeTime", () => {
 
   it("should render the relative time of the given date and should not updated it by default", async () => {
     const { container } = render(RelativeTime, baseOptions);
-    const textContent = container.firstChild?.textContent;
+    const textContent = container.firstElementChild?.textContent;
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(textContent).toMatchInlineSnapshot(`"20 seconds ago"`);
 
     await vi.advanceTimersByTimeAsync(10000);
 
-    expect(container.firstChild?.textContent).toBe(textContent);
+    expect(container.firstElementChild?.textContent).toBe(textContent);
   });
 
   it("should pass additional class names and attributes to the rendered element", () => {
@@ -44,26 +44,26 @@ describe("RelativeTime", () => {
     };
     const { container } = render(RelativeTime, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should update the relative time every second if the `autoRefresh` property is set to `true`", async () => {
     const props = { ...baseProps, autoRefresh: true };
     const { container } = render(RelativeTime, { ...baseOptions, props });
 
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"30 seconds ago"`
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"31 seconds ago"`
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"32 seconds ago"`
     );
   });
@@ -74,20 +74,20 @@ describe("RelativeTime", () => {
       props: { date: baseProps.date },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild).toMatchSnapshot();
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"The relative time now is 32 seconds ago"`
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"The relative time now is 33 seconds ago"`
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.firstChild?.textContent).toMatchInlineSnapshot(
+    expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"The relative time now is 34 seconds ago"`
     );
   });

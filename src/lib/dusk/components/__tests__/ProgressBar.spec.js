@@ -21,23 +21,23 @@ describe("ProgressBar", () => {
       props: { ariaLabel: baseProps.ariaLabel },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the `ProgressBar` component with current percentage set as zero", () => {
     const { container } = render(ProgressBar, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("re-renders the `ProgressBar` component when the current percentage property changes", async () => {
     const { container, rerender } = render(ProgressBar, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await rerender({ currentPercentage: 50 });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should pass additional class names to the rendered element", () => {
@@ -46,6 +46,6 @@ describe("ProgressBar", () => {
       props: { ...baseProps, className: "foo bar" },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

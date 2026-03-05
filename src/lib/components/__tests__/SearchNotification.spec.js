@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
+
 import { SearchNotification } from "../";
 
 describe("Search Notification", () => {
@@ -24,7 +25,7 @@ describe("Search Notification", () => {
   it("renders the Search Notification component with the query string", () => {
     const { container } = render(SearchNotification, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the Search Notification component with a Error message", () => {
@@ -37,13 +38,14 @@ describe("Search Notification", () => {
     };
     const { container } = render(SearchNotification, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should dispatch a 'close' event when the button is clicked", async () => {
-    const { component, getByRole } = render(SearchNotification, baseOptions);
-
-    component.$on("close", eventHandler);
+    const { getByRole } = render(SearchNotification, {
+      events: { close: eventHandler },
+      props: baseProps,
+    });
 
     const button = getByRole("button");
     await fireEvent.click(button);

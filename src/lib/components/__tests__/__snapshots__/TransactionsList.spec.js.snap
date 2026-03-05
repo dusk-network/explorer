@@ -4,26 +4,34 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
 <dl
   class="detail-list"
 >
+  <!---->
   <dt
     class="details-list__term details-list__term--table"
   >
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       ID
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
+    <!---->
     <a
       class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
       href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
     >
+      <!---->
       4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+      
+      <!---->
     </a>
+    <!---->
      
     <div
       class="dusk-copy-button"
@@ -35,6 +43,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
         data-tooltip-text="Copy to clipboard"
         type="button"
       >
+        <!---->
+        <!---->
         <svg
           class="dusk-icon dusk-icon--size--default dusk-button__icon"
           role="graphics-symbol"
@@ -45,11 +55,17 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
           />
         </svg>
         
+        <!---->
          
-        
+        <!---->
+        <!---->
       </button>
+      <!---->
     </div>
+    <!---->
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -57,8 +73,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       relative time
+      <!---->
     </div>
   </dt>
    
@@ -70,10 +88,16 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
+      <!---->
       last month
+      
+      <!---->
     </time>
+    <!---->
   </dd>
+  <!---->
    
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -81,17 +105,20 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Fee
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    0.000290766
-     DUSK
+    0.000290766 DUSK
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -99,8 +126,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Status
+      <!---->
     </div>
   </dt>
    
@@ -112,7 +141,9 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     >
       success
     </span>
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -120,17 +151,22 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Type
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
+    <!---->
+    <!---->
     <div
       class="transaction-type"
     >
+      <!---->
       <svg
         class="dusk-icon dusk-icon--size--large transaction-type__icon"
         data-tooltip-disabled="true"
@@ -146,16 +182,23 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
         />
       </svg>
       
+      <!---->
        
       <span
         class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
       >
         transfer
       </span>
+      <!---->
        
+      <!---->
     </div>
     
+    
+    <!---->
   </dd>
+  <!---->
+  <!---->
 </dl>
 `;
 
@@ -163,26 +206,34 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
 <dl
   class="detail-list"
 >
+  <!---->
   <dt
     class="details-list__term details-list__term--table"
   >
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       ID
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
+    <!---->
     <a
       class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
       href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
     >
+      <!---->
       4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+      
+      <!---->
     </a>
+    <!---->
      
     <div
       class="dusk-copy-button"
@@ -194,6 +245,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
         data-tooltip-text="Copy to clipboard"
         type="button"
       >
+        <!---->
+        <!---->
         <svg
           class="dusk-icon dusk-icon--size--default dusk-button__icon"
           role="graphics-symbol"
@@ -204,11 +257,17 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
           />
         </svg>
         
+        <!---->
          
-        
+        <!---->
+        <!---->
       </button>
+      <!---->
     </div>
+    <!---->
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -216,8 +275,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       relative time
+      <!---->
     </div>
   </dt>
    
@@ -229,18 +290,26 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
+      <!---->
       last month
+      
+      <!---->
     </time>
+    <!---->
   </dd>
+  <!---->
    
+  <!---->
   <dt
     class="details-list__term details-list__term--table"
   >
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Gas Price
+      <!---->
     </div>
   </dt>
    
@@ -248,7 +317,9 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     class="details-list__definition details-list__definition--table"
   >
     1
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -256,8 +327,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Gas Limit
+      <!---->
     </div>
   </dt>
    
@@ -265,7 +338,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     class="details-list__definition details-list__definition--table"
   >
     500,000,000
+    <!---->
   </dd>
+  <!---->
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -273,17 +349,20 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Fee
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    0.000290766
-     DUSK
+    0.000290766 DUSK
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -291,8 +370,10 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Status
+      <!---->
     </div>
   </dt>
    
@@ -304,7 +385,9 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     >
       success
     </span>
+    <!---->
   </dd>
+  <!---->
    
   <dt
     class="details-list__term details-list__term--table"
@@ -312,17 +395,22 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="details-list__term-layout"
     >
+      <!---->
        
       Type
+      <!---->
     </div>
   </dt>
    
   <dd
     class="details-list__definition details-list__definition--table"
   >
+    <!---->
+    <!---->
     <div
       class="transaction-type"
     >
+      <!---->
       <svg
         class="dusk-icon dusk-icon--size--large transaction-type__icon"
         data-tooltip-disabled="true"
@@ -338,15 +426,22 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
         />
       </svg>
       
+      <!---->
        
       <span
         class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
       >
         transfer
       </span>
+      <!---->
        
+      <!---->
     </div>
     
+    
+    <!---->
   </dd>
+  <!---->
+  <!---->
 </dl>
 `;

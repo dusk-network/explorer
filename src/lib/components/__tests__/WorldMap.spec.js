@@ -13,7 +13,7 @@ describe("World Map", () => {
     };
     const { container } = render(WorldMap, props);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("renders the WorldMap component even if nodes is empty array", () => {
@@ -22,6 +22,6 @@ describe("World Map", () => {
     };
     const { container } = render(WorldMap, props);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

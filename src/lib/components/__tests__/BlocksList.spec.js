@@ -32,7 +32,7 @@ describe("Blocks List", () => {
   it("renders the Blocks List component", () => {
     const { container } = render(BlocksList, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should auto-refresh relative times when the related prop is set to true", async () => {
@@ -43,22 +43,28 @@ describe("Blocks List", () => {
     const { container, rerender } = render(BlocksList, props);
     const timeElement = getTimeElement(container);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"now"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"<!---->now<!---->"`);
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval * 3);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"now"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"<!---->now<!---->"`);
 
     await rerender({ ...props, autoRefreshTime: true });
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"3 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->3 seconds ago<!---->"`
+    );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"4 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->4 seconds ago<!---->"`
+    );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
-    expect(timeElement.innerHTML).toMatchInlineSnapshot(`"5 seconds ago"`);
+    expect(timeElement.innerHTML).toMatchInlineSnapshot(
+      `"<!----><!----><!---->5 seconds ago<!---->"`
+    );
   });
 });

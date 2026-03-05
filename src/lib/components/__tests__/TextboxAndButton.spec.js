@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { mdiMagnify } from "@mdi/js";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
+
 import { TextboxAndButton } from "..";
 
 describe("TextField", () => {
@@ -31,7 +32,7 @@ describe("TextField", () => {
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("updates input value on change", async () => {
@@ -42,15 +43,17 @@ describe("TextField", () => {
 
     expect(input).toHaveValue("test value");
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("triggers click event on button click", async () => {
-    const { getByRole, component } = render(TextboxAndButton, baseOptions);
+    const mockClickHandler = vi.fn();
+    const { getByRole } = render(TextboxAndButton, {
+      events: { click: mockClickHandler },
+      props: baseProps,
+    });
     const button = getByRole("button");
 
-    const mockClickHandler = vi.fn();
-    component.$on("click", mockClickHandler);
     await fireEvent.click(button);
 
     expect(mockClickHandler).toHaveBeenCalledOnce();

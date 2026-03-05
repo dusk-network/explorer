@@ -27,7 +27,7 @@ describe("DataCard", () => {
       props: { ...baseProps, loading },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataCard` in the error state", () => {
@@ -37,7 +37,7 @@ describe("DataCard", () => {
       props: { ...baseProps, error },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataCard` in the no data state", () => {
@@ -47,7 +47,7 @@ describe("DataCard", () => {
       props: { ...baseProps, data },
     });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataCard` in the data state", () => {
@@ -57,7 +57,7 @@ describe("DataCard", () => {
       props: { ...baseProps, data },
     });
 
-    expect(renderWithSlots.container.firstChild).toMatchSnapshot();
+    expect(renderWithSlots.container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataCard` in the data state when loading is true", () => {
@@ -68,7 +68,7 @@ describe("DataCard", () => {
       props: { ...baseProps, data, loading },
     });
 
-    expect(renderWithSlots.container.firstChild).toMatchSnapshot();
+    expect(renderWithSlots.container.firstElementChild).toMatchSnapshot();
   });
 
   it("should pass the correct function to the button on click event", async () => {
@@ -100,6 +100,6 @@ describe("DataCard", () => {
     });
 
     expect(getByRole("button")).toBeDisabled();
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

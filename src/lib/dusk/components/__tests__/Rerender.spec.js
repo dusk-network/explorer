@@ -21,6 +21,7 @@ describe("renderWithSimpleContent", () => {
     const renderResult = render(component, options);
 
     mutationObserver.observe(renderResult.container, {
+      characterData: true,
       childList: true,
       subtree: true,
     });
@@ -48,15 +49,15 @@ describe("renderWithSimpleContent", () => {
       baseOptions
     );
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"0"`);
+    expect(container.textContent).toBe("0");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"1"`);
+    expect(container.textContent).toBe("1");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"2"`);
+    expect(container.textContent).toBe("2");
 
     expect(domMutations).toBe(2);
   });
@@ -68,23 +69,23 @@ describe("renderWithSimpleContent", () => {
       props,
     });
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"0"`);
+    expect(container.textContent).toBe("0");
 
     await vi.advanceTimersByTimeAsync(props.interval / 2);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"0"`);
+    expect(container.textContent).toBe("0");
 
     await vi.advanceTimersByTimeAsync(props.interval / 2);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"1"`);
+    expect(container.textContent).toBe("1");
 
     await vi.advanceTimersByTimeAsync(props.interval / 2);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"1"`);
+    expect(container.textContent).toBe("1");
 
     await vi.advanceTimersByTimeAsync(props.interval / 2);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(`"2"`);
+    expect(container.textContent).toBe("2");
     expect(domMutations).toBe(2);
   });
 
@@ -95,11 +96,11 @@ describe("renderWithSimpleContent", () => {
       props: { values },
     });
 
-    expect(container.innerHTML).toBe("1");
+    expect(container.textContent).toBe("1");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("2");
+    expect(container.textContent).toBe("2");
     expect(domMutations).toBe(1);
   });
 
@@ -112,41 +113,41 @@ describe("renderWithSimpleContent", () => {
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("2");
+    expect(container.textContent).toBe("2");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("0");
+    expect(container.textContent).toBe("0");
     expect(domMutations).toBe(2);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("0");
+    expect(container.textContent).toBe("0");
     expect(domMutations).toBe(2);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("NaN");
+    expect(container.textContent).toBe("NaN");
     expect(domMutations).toBe(3);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("NaN");
+    expect(container.textContent).toBe("NaN");
     expect(domMutations).toBe(3);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("3");
+    expect(container.textContent).toBe("3");
     expect(domMutations).toBe(4);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("3");
+    expect(container.textContent).toBe("3");
     expect(domMutations).toBe(4);
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toBe("4");
+    expect(container.textContent).toBe("4");
     expect(domMutations).toBe(5);
   });
 
@@ -156,21 +157,15 @@ describe("renderWithSimpleContent", () => {
       baseOptions
     );
 
-    expect(container.innerHTML).toMatchInlineSnapshot(
-      `"<span>now the value is: 0</span>"`
-    );
+    expect(container.textContent).toBe("now the value is: 0");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(
-      `"<span>now the value is: 1</span>"`
-    );
+    expect(container.textContent).toBe("now the value is: 1");
 
     await vi.advanceTimersByTimeAsync(1000);
 
-    expect(container.innerHTML).toMatchInlineSnapshot(
-      `"<span>now the value is: 2</span>"`
-    );
+    expect(container.textContent).toBe("now the value is: 2");
     expect(domMutations).toBe(2);
   });
 });

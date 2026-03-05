@@ -33,13 +33,13 @@ describe("Provisioners page", () => {
     const { container, unmount } = render(Provisioners);
 
     // snapshost in loading state
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
     expect(getProvisionersSpy).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from GraphQL
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(provisionersFetchInterval - 1);
 
@@ -67,6 +67,6 @@ describe("Provisioners page", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

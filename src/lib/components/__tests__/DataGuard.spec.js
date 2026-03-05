@@ -19,7 +19,7 @@ describe("DataGuard", () => {
   it("should render the `DataGuard` with the placeholder if no data is passed", () => {
     const { container } = render(DataGuard, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the `DataGuard` if data is present", () => {
@@ -29,6 +29,6 @@ describe("DataGuard", () => {
       props: { ...baseProps, data },
     });
 
-    expect(renderWithSlots.container.firstChild).toMatchSnapshot();
+    expect(renderWithSlots.container.firstElementChild).toMatchSnapshot();
   });
 });

@@ -36,7 +36,7 @@ describe("Block Details", () => {
   it("should render the Block Details page and query the necessary info", async () => {
     const { container } = render(BlockDetails);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
 
     expect(getBlockSpy).toHaveBeenCalledTimes(1);
     expect(getBlockDetailsSpy).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ describe("Block Details", () => {
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from APIs
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the Transaction section of the Block Details page with the mobile layout", async () => {
@@ -60,6 +60,6 @@ describe("Block Details", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

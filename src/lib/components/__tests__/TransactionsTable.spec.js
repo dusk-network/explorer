@@ -37,7 +37,7 @@ describe("Transactions Table", () => {
   it('should render the `TransactionsTable` component in "full" mode', () => {
     const { container } = render(TransactionsTable, baseOptions);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it('should render the `TransactionsTable` component in "compact" mode', () => {
@@ -45,13 +45,13 @@ describe("Transactions Table", () => {
     const props = { ...baseProps, mode: "compact" };
     const { container } = render(TransactionsTable, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should pass additional class names to the rendered element", () => {
     const props = { ...baseProps, className: "foo bar" };
     const { container } = render(TransactionsTable, { ...baseOptions, props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

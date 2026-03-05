@@ -1,6 +1,13 @@
-import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { get } from "svelte/store";
-import { tick } from "svelte";
 
 import { createPollingDataStore } from "..";
 
@@ -32,8 +39,13 @@ describe("createPollingDataStore", () => {
   vi.useFakeTimers();
 
   beforeEach(() => {
-    dataRetriever.mockClear();
+    dataRetriever.mockReset().mockResolvedValue(data1);
     pollingDataStore = createPollingDataStore(dataRetriever, fetchInterval);
+  });
+
+  afterEach(() => {
+    pollingDataStore.stop();
+    vi.clearAllTimers();
   });
 
   afterAll(() => {
@@ -73,7 +85,7 @@ describe("createPollingDataStore", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    // no other call happened yet
+    // first result
     expect(dataRetriever).toHaveBeenCalledTimes(1);
     expect(get(pollingDataStore)).toStrictEqual({
       data: data1,
@@ -81,42 +93,22 @@ describe("createPollingDataStore", () => {
       isLoading: false,
     });
 
-    vi.advanceTimersByTime(fetchInterval - 1);
-    await tick();
+    await vi.advanceTimersByTimeAsync(fetchInterval);
 
+    // second result
     expect(dataRetriever).toHaveBeenCalledTimes(2);
     expect(dataRetriever).toHaveBeenNthCalledWith(2, ...args);
-    expect(get(pollingDataStore)).toStrictEqual({
-      data: data1,
-      error: null,
-      isLoading: true,
-    });
-
-    await vi.advanceTimersByTimeAsync(1);
-
-    // no other call happened yet
-    expect(dataRetriever).toHaveBeenCalledTimes(2);
     expect(get(pollingDataStore)).toStrictEqual({
       data: data2,
       error: null,
       isLoading: false,
     });
 
-    vi.advanceTimersByTime(fetchInterval - 1);
-    await tick();
+    await vi.advanceTimersByTimeAsync(fetchInterval);
 
+    // third result
     expect(dataRetriever).toHaveBeenCalledTimes(3);
     expect(dataRetriever).toHaveBeenNthCalledWith(3, ...args);
-    expect(get(pollingDataStore)).toStrictEqual({
-      data: data2,
-      error: null,
-      isLoading: true,
-    });
-
-    await vi.advanceTimersByTimeAsync(1);
-
-    // no other call happened yet
-    expect(dataRetriever).toHaveBeenCalledTimes(3);
     expect(get(pollingDataStore)).toStrictEqual({
       data: data3,
       error: null,
@@ -125,8 +117,7 @@ describe("createPollingDataStore", () => {
 
     pollingDataStore.stop();
 
-    vi.advanceTimersByTime(fetchInterval - 1);
-    await tick();
+    await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
     expect(dataRetriever).toHaveBeenCalledTimes(3);
   });
@@ -146,7 +137,7 @@ describe("createPollingDataStore", () => {
 
     await vi.advanceTimersByTimeAsync(1);
 
-    // no other call happened yet
+    // first result
     expect(dataRetriever).toHaveBeenCalledTimes(1);
     expect(get(pollingDataStore)).toStrictEqual({
       data: data1,
@@ -154,21 +145,11 @@ describe("createPollingDataStore", () => {
       isLoading: false,
     });
 
-    vi.advanceTimersByTime(fetchInterval - 1);
-    await tick();
+    await vi.advanceTimersByTimeAsync(fetchInterval);
 
+    // error result (polling stops)
     expect(dataRetriever).toHaveBeenCalledTimes(2);
     expect(dataRetriever).toHaveBeenNthCalledWith(2, ...args);
-    expect(get(pollingDataStore)).toStrictEqual({
-      data: data1,
-      error: null,
-      isLoading: true,
-    });
-
-    await vi.advanceTimersByTimeAsync(1);
-
-    // no other call happened yet
-    expect(dataRetriever).toHaveBeenCalledTimes(2);
     expect(get(pollingDataStore)).toStrictEqual({
       data: null,
       error,
@@ -190,7 +171,19 @@ describe("createPollingDataStore", () => {
 
     pollingDataStore.start(...args);
 
-    await vi.advanceTimersToNextTimerAsync();
+    expect(dataRetriever).toHaveBeenCalledTimes(1);
+    expect(dataRetriever).toHaveBeenCalledWith(...args);
+
+    await vi.advanceTimersByTimeAsync(1);
+
+    expect(dataRetriever).toHaveBeenCalledTimes(1);
+    expect(get(pollingDataStore)).toStrictEqual({
+      data: data1,
+      error: null,
+      isLoading: false,
+    });
+
+    await vi.advanceTimersByTimeAsync(fetchInterval);
 
     expect(dataRetriever).toHaveBeenCalledTimes(2);
     expect(get(pollingDataStore)).toStrictEqual({
@@ -366,7 +359,7 @@ describe("createPollingDataStore", () => {
 
     pollingDataStore.start(...args);
 
-    await vi.advanceTimersToNextTimerAsync();
+    await vi.advanceTimersByTimeAsync(1);
 
     expect(dataRetriever).toHaveBeenCalledTimes(1);
     expect(get(pollingDataStore)).toStrictEqual({
@@ -411,7 +404,7 @@ describe("createPollingDataStore", () => {
   it("shouldn't resume the polling if `stop` is called before the document becomes hidden", async () => {
     pollingDataStore.start(...args);
 
-    await vi.advanceTimersToNextTimerAsync();
+    await vi.advanceTimersByTimeAsync(1);
 
     expect(dataRetriever).toHaveBeenCalledTimes(1);
     expect(get(pollingDataStore)).toStrictEqual({

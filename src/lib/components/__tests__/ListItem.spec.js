@@ -12,6 +12,6 @@ describe("List Item", () => {
   it("renders the List Item component", () => {
     const { container } = render(ListItem, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

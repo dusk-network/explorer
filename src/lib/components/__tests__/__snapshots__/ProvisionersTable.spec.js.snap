@@ -7,15 +7,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
   <table
     class="table"
   >
+    <!---->
     <thead
       class="table__head"
     >
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -29,13 +33,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             >
               ↓
             </span>
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -44,13 +54,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               Staking Address
             </span>
              
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -59,13 +75,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               Owner Key
             </span>
              
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -79,13 +101,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             >
               ↓
             </span>
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -94,13 +122,19 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               Accumulated Reward
             </span>
              
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
          
+        <!---->
         <th
           class="table__header-cell align-left"
         >
+          <!---->
           <button
             class="provisioners-table__header-button"
             type="button"
@@ -109,34 +143,48 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               Slashes
             </span>
              
+            <!---->
           </button>
+          
+          
         </th>
         
+        <!---->
+        <!---->
       </tr>
+      <!---->
     </thead>
+    <!---->
      
     <tbody
       class="table__body"
     >
-      
+      <!---->
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           1
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            n3qToJrMkY...jmEq6aNuj6
-             
+            n3qToJrMkY...jmEq6aNuj6 
             <div
               class="dusk-copy-button"
             >
@@ -147,6 +195,8 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -157,17 +207,26 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -175,20 +234,23 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          1,000,000
-           
+           1,000,000 
           <br />
            
           <b
@@ -196,9 +258,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -206,43 +266,48 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="12,178.759788262 DUSK"
             data-tooltip-type="info"
           >
-            12,178
-            .
+            12,178.
             <span
               class="decimal-shadow"
             >
               76
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -250,31 +315,39 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           2
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            s9mQHPDuKi...XxiM4ksRbH
-             
+            s9mQHPDuKi...XxiM4ksRbH 
             <div
               class="dusk-copy-button"
             >
@@ -285,6 +358,8 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -295,17 +370,26 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -314,20 +398,23 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           >
             Yes
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          510,000
-           
+           510,000 
           <br />
            
           <b
@@ -335,9 +422,7 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -345,43 +430,48 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           >
             Maturity At:
           </b>
+           #6,480
           
-          #
-          6,480
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="780.152437445 DUSK"
             data-tooltip-type="info"
           >
-            780
-            .
+            780.
             <span
               class="decimal-shadow"
             >
               15
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -389,31 +479,39 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           3
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            sX4JooVNAF...fCFZMqQhtz
-             
+            sX4JooVNAF...fCFZMqQhtz 
             <div
               class="dusk-copy-button"
             >
@@ -424,6 +522,8 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -434,17 +534,26 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -453,20 +562,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Yes
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          505,000
-           
+           505,000 
           <br />
            
           <b
@@ -474,9 +586,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -484,43 +594,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Maturity At:
           </b>
+           #38,880
           
-          #
-          38,880
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="2,063.426446466 DUSK"
             data-tooltip-type="info"
           >
-            2,063
-            .
+            2,063.
             <span
               class="decimal-shadow"
             >
               43
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -528,31 +643,39 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           4
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            scRkV9xaMC...XwXrJMpbfo
-             
+            scRkV9xaMC...XwXrJMpbfo 
             <div
               class="dusk-copy-button"
             >
@@ -563,6 +686,8 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -573,17 +698,26 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -591,20 +725,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          504,000
-           
+           504,000 
           <br />
            
           <b
@@ -612,9 +749,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -622,43 +757,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Maturity At:
           </b>
+           #15,120
           
-          #
-          15,120
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="5,190.546947071 DUSK"
             data-tooltip-type="info"
           >
-            5,190
-            .
+            5,190.
             <span
               class="decimal-shadow"
             >
               55
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -666,31 +806,39 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           5
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            m6dy2gz3jC...tW82FWtnpf
-             
+            m6dy2gz3jC...tW82FWtnpf 
             <div
               class="dusk-copy-button"
             >
@@ -701,6 +849,8 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -711,17 +861,26 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -729,20 +888,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -750,9 +912,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -760,43 +920,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="7,121.257296087 DUSK"
             data-tooltip-type="info"
           >
-            7,121
-            .
+            7,121.
             <span
               class="decimal-shadow"
             >
               26
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -804,31 +969,39 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           6
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            m9dVuRgr3C...94r33pFQyz
-             
+            m9dVuRgr3C...94r33pFQyz 
             <div
               class="dusk-copy-button"
             >
@@ -839,6 +1012,8 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -849,17 +1024,26 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -867,20 +1051,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -888,9 +1075,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -898,43 +1083,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="6,923.840604194 DUSK"
             data-tooltip-type="info"
           >
-            6,923
-            .
+            6,923.
             <span
               class="decimal-shadow"
             >
               84
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -942,31 +1132,39 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           7
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mTgXDqkyVa...gAseybAsfU
-             
+            mTgXDqkyVa...gAseybAsfU 
             <div
               class="dusk-copy-button"
             >
@@ -977,6 +1175,8 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -987,17 +1187,26 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -1006,20 +1215,23 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           >
             Yes
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -1027,9 +1239,7 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1037,43 +1247,48 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="7,518.756679536 DUSK"
             data-tooltip-type="info"
           >
-            7,518
-            .
+            7,518.
             <span
               class="decimal-shadow"
             >
               76
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1081,31 +1296,39 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           8
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mUUpjnXow2...SfzQcywzaW
-             
+            mUUpjnXow2...SfzQcywzaW 
             <div
               class="dusk-copy-button"
             >
@@ -1116,6 +1339,8 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1126,17 +1351,26 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -1145,20 +1379,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Yes
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -1166,9 +1403,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1176,43 +1411,48 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="7,653.541671166 DUSK"
             data-tooltip-type="info"
           >
-            7,653
-            .
+            7,653.
             <span
               class="decimal-shadow"
             >
               54
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1220,31 +1460,39 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           9
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mXKJ97xTtr...JgkCK2o7x4
-             
+            mXKJ97xTtr...JgkCK2o7x4 
             <div
               class="dusk-copy-button"
             >
@@ -1255,6 +1503,8 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1265,17 +1515,26 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -1283,20 +1542,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -1304,9 +1566,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1314,43 +1574,48 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="7,512.060104659 DUSK"
             data-tooltip-type="info"
           >
-            7,512
-            .
+            7,512.
             <span
               class="decimal-shadow"
             >
               06
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1358,31 +1623,39 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
-      
       <tr
         class="table__row"
       >
+        <!---->
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           10
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mdXsA3Ee1Y...K8VZPimZ2J
-             
+            mdXsA3Ee1Y...K8VZPimZ2J 
             <div
               class="dusk-copy-button"
             >
@@ -1393,6 +1666,8 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
               >
+                <!---->
+                <!---->
                 <svg
                   class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
@@ -1403,17 +1678,26 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                   />
                 </svg>
                 
+                <!---->
                  
-                
+                <!---->
+                <!---->
               </button>
+              <!---->
             </div>
+            <!---->
           </div>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             class="dusk-badge dusk-badge--variant-neutral"
             data-tooltip-id="provisioners-tooltip"
@@ -1421,20 +1705,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             No
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__stake-data-label"
           >
             Active:
           </b>
-           
-          500,000
-           
+           500,000 
           <br />
            
           <b
@@ -1442,9 +1729,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Inactive:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1452,43 +1737,48 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Maturity At:
           </b>
+           #0
           
-          #
-          0
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <span
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="7,973.118109253 DUSK"
             data-tooltip-type="info"
           >
-            7,973
-            .
+            7,973.
             <span
               class="decimal-shadow"
             >
               12
             </span>
           </span>
+          
+          
         </td>
         
+        <!---->
          
+        <!---->
         <td
           class="table__data-cell align-left"
         >
+          <!---->
           <b
             class="provisioners-table__slash-data-label"
           >
             Soft:
           </b>
-           
-          0
-           
+           0 
           <br />
            
           <b
@@ -1496,14 +1786,19 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           >
             Hard:
           </b>
-           
-          0
+           0
+          
+          
         </td>
         
-         
+        <!---->
+        <!---->
       </tr>
       
+      <!---->
     </tbody>
+    <!---->
+    <!---->
   </table>
 </div>
 `;

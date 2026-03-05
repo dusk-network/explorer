@@ -13,25 +13,25 @@ describe("Badge", () => {
   it('should render the Badge component using the type "neutral" as a default', () => {
     const { container } = render(Badge, baseProps);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it('should render the Badge component using the type "warning" variant', () => {
     const { container } = render(Badge, { ...baseProps, variant: "warning" });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it('should render the Badge component using the type "error" variant', () => {
     const { container } = render(Badge, { ...baseProps, variant: "error" });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it('should render the Badge component using the type "success" variant', () => {
     const { container } = render(Badge, { ...baseProps, variant: "success" });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should pass additional class names and attributes to the root element", () => {
@@ -42,7 +42,7 @@ describe("Badge", () => {
     };
     const { container } = render(Badge, { ...props });
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should only display a string 10 characters long", () => {
@@ -52,6 +52,6 @@ describe("Badge", () => {
       text: "ABCDEFGHIJK",
     };
     const { container } = render(Badge, { ...props });
-    expect(container.firstChild?.textContent?.length).toBe(10);
+    expect(container.firstElementChild?.textContent?.length).toBe(10);
   });
 });
