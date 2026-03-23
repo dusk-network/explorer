@@ -12,6 +12,9 @@ and this project adheres to
 
 ### Changed
 
+- chore: upgrade to Svelte 5 and Vite 7 [#278]
+- chore: dependency update to address newfound vulnerabilities [#279]
+
 ### Removed
 
 ### Fixed
@@ -290,6 +293,8 @@ dusk-network/rusk#3925: https://github.com/dusk-network/rusk/issues/3925
 dusk-network/rusk#3930: https://github.com/dusk-network/rusk/issues/3930
 dusk-network/rusk#3931: https://github.com/dusk-network/rusk/issues/3931
 dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
+[#278]: https://github.com/dusk-network/explorer/pull/278
+[#279]: https://github.com/dusk-network/explorer/issues/279
 
 <!-- VERSIONS -->
 
