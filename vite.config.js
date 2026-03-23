@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       // Vitest runs in Node, but these are DOM tests (jsdom). Prefer browser
       // export conditions so Svelte resolves to the client runtime.
-      conditions: ["browser"],
+      conditions: mode === "test" ? ["browser"] : undefined,
     },
     server: {
       proxy: {

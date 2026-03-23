@@ -28,7 +28,6 @@ exports[`Error page > should be able to render the error page even without an er
     <!---->
   </section>
   
-  
 </body>
 `;
 
@@ -59,7 +58,6 @@ exports[`Error page > should render the error page 1`] = `
     
     <!---->
   </section>
-  
   
 </body>
 `;
