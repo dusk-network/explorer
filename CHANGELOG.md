@@ -12,12 +12,16 @@ and this project adheres to
 
 ### Changed
 
-- chore: upgrade to Svelte 5 and Vite 7 [#278]
-- chore: dependency update to address newfound vulnerabilities [#279]
-
 ### Removed
 
 ### Fixed
+
+## [1.6.0] - 2026-03-25
+
+### Changed
+
+- chore: upgrade to Svelte 5 and Vite 7 [#278]
+- chore: dependency update to address newfound vulnerabilities [#279]
 
 ## [1.5.0] - 2026-02-04
 
@@ -299,6 +303,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.6.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.6.0
 [1.5.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.5.0
 [1.4.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.4.0
 [1.3.3]: https://github.com/dusk-network/explorer/tree/explorer-v1.3.3
