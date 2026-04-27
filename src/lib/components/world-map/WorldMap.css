@@ -6,13 +6,45 @@
 }
 
 .nodes-world-map__location {
-  fill-opacity: 0.5;
-  stroke: var(--primary-color);
-  stroke-width: 0.5px;
-  fill: var(--success);
+  color: var(--secondary-color-variant-dark);
+  cursor: default;
+  outline: none;
+  transition: color 0.2s ease;
 }
 
-.nodes-world-map__location:hover {
-  stroke: var(--background-color);
-  stroke-width: 0.5px;
+.dark .nodes-world-map__location {
+  color: var(--secondary-color);
+}
+
+.nodes-world-map__location-ring {
+  fill: color-mix(in oklab, currentColor, transparent 82%);
+  stroke: color-mix(in oklab, currentColor, transparent 38%);
+  stroke-width: 1.25px;
+}
+
+.nodes-world-map__location-core {
+  fill: currentColor;
+  stroke: color-mix(in oklab, var(--surface-color), transparent 8%);
+  stroke-width: 1.5px;
+}
+
+.nodes-world-map__location:hover,
+.nodes-world-map__location:focus-visible {
+  color: var(--secondary-color);
+}
+
+.dark .nodes-world-map__location:hover,
+.dark .nodes-world-map__location:focus-visible {
+  color: var(--secondary-color-variant-light);
+}
+
+.nodes-world-map__location:hover .nodes-world-map__location-ring,
+.nodes-world-map__location:focus-visible .nodes-world-map__location-ring {
+  fill: color-mix(in oklab, currentColor, transparent 74%);
+  stroke: currentColor;
+}
+
+.nodes-world-map__location:hover .nodes-world-map__location-core,
+.nodes-world-map__location:focus-visible .nodes-world-map__location-core {
+  stroke: var(--surface-color);
 }

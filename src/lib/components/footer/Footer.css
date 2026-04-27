@@ -1,6 +1,8 @@
 .footer {
-  padding-block: 1.25rem;
-  font-size: 0.875rem;
+  border-top: 1px solid color-mix(in oklab, var(--on-background-color), transparent 86%);
+  color: color-mix(in oklab, var(--on-background-color), transparent 16%);
+  padding-block: 1.5rem;
+  font-size: 0.82rem;
   display: grid;
   gap: 1.25em;
 }
@@ -24,12 +26,16 @@
 
 .footer__link,
 .footer__link:visited {
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--primary-color);
 }
 
 .footer__link:hover {
   color: var(--secondary-color);
+}
+
+.footer__logo img {
+  max-width: 5.4rem;
 }
 
 @media (min-width: 900px) {

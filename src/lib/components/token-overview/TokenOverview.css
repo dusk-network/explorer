@@ -1,10 +1,16 @@
 .token-overview-panel {
   display: flex;
-  padding: 1rem 1.375rem;
+  padding: 1.3rem 2rem;
   flex-direction: column;
-  row-gap: 0.75rem;
-  border-radius: 1.5rem;
-  background-color: var(--surface-color);
+  row-gap: 1rem;
+  border: 1px solid
+    color-mix(in oklab, var(--on-background-color), transparent 82%);
+  border-radius: var(--control-border-radius-size);
+  background-color: color-mix(
+    in oklab,
+    var(--surface-color),
+    var(--on-background-color) 3%
+  );
   width: 100%;
   text-transform: uppercase;
   position: relative;
@@ -26,14 +32,18 @@
 }
 
 .token-overview-panel__token-name {
+  font-family: var(--mono-font-family);
   font-weight: 500;
-  font-size: 1.125em;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
   margin-bottom: 0.3125rem;
 }
 
 .token-overview-panel__token-address-subheader {
-  font-size: 1.125em;
-  color: var(--text-color-secondary);
+  color: color-mix(in oklab, var(--on-background-color), transparent 18%);
+  font-family: var(--mono-font-family);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
 }
 
 .token-overview-panel__token-address {
@@ -42,7 +52,8 @@
 
 .token-overview-panel__separator {
   border: none;
-  border-top: 1px solid var(--taupe-grey);
+  border-top: 1px solid
+    color-mix(in oklab, var(--on-background-color), transparent 72%);
   margin: 0.5rem 0;
 }
 

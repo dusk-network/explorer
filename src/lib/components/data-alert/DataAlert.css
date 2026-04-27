@@ -1,13 +1,41 @@
 .alert {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-height: 400px;
+  width: calc(100% - 2.5rem);
+  min-height: 13rem;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.8rem;
+  margin: 0 auto 1.25rem;
+  border: 1px solid
+    color-mix(in oklab, var(--on-background-color), transparent 86%);
+  border-radius: var(--control-border-radius-size);
+  background-color: color-mix(
+    in oklab,
+    var(--surface-color),
+    var(--on-background-color) 2%
+  );
+  color: color-mix(in oklab, var(--on-background-color), transparent 18%);
+  font-family: var(--mono-font-family);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.alert .dusk-icon {
+  color: var(--secondary-color);
 }
 
 .alert__error-message {
+  max-width: 44rem;
+  color: color-mix(
+    in oklab,
+    var(--badge-error-color),
+    var(--on-background-color) 12%
+  );
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   text-align: center;
+  text-transform: none;
 }
