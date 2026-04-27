@@ -1,7 +1,8 @@
 .data-card {
-  --header-lateral-padding: 1.125rem;
-  --card-padding: 1rem;
+  --header-lateral-padding: 1.25rem;
+  --card-padding: 1.1rem;
   padding: var(--card-padding) 0 0;
+  min-height: 100%;
 }
 
 .data-card__loading-notice {
@@ -14,13 +15,26 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.625rem;
-  padding: 0 var(--header-lateral-padding) 1rem;
+  padding: 0 var(--header-lateral-padding) var(--card-padding);
 }
 
 .data-card__header-title {
+  font-family: var(--mono-font-family);
   font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 32.2px;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.data-card__header-title::before {
+  content: "[ ";
+  color: var(--secondary-color);
+}
+
+.data-card__header-title::after {
+  content: " ]";
+  color: var(--secondary-color);
 }
 
 .data-card__content {
@@ -35,7 +49,7 @@
 }
 
 .data-card__progress-bar .dusk-progress-bar__filler {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
 }
 
 .data-card__table,
