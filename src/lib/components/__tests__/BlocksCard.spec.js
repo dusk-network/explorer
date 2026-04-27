@@ -49,16 +49,18 @@ describe("Blocks Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should disable the `Show More` button if there is no more data to display", async () => {
+  it("should hide the `Show More` button if there is no more data to display", async () => {
     const loading = false;
     const blocks = data;
 
-    const { container, getByRole } = render(BlocksCard, {
+    const { container, queryByRole } = render(BlocksCard, {
       ...baseOptions,
       props: { ...baseProps, blocks, loading },
     });
 
-    expect(getByRole("button", { name: "Show More" })).toBeDisabled();
+    expect(
+      queryByRole("button", { name: "Show More" })
+    ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });

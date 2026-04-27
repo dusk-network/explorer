@@ -29,7 +29,7 @@
     {error}
     {loading}
     title="Tokens — {displayedTokens.length} Displayed Items"
-    headerButtonDetails={error
+    headerButtonDetails={error || (!loading && isLoadMoreDisabled)
       ? undefined
       : {
           action: () => loadMoreItems(),

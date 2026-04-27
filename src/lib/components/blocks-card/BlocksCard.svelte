@@ -39,7 +39,7 @@
   {error}
   {loading}
   title="Blocks — {displayedBlocks.length} Displayed Items"
-  headerButtonDetails={error
+  headerButtonDetails={error || (!loading && isLoadMoreDisabled)
     ? undefined
     : {
         action: () => loadMoreItems(),
