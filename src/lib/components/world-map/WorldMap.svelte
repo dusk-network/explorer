@@ -19,6 +19,12 @@
   const path = geoPath(projection);
 
   const radius = scaleSqrt().domain([0, 100]).range([0, 20]);
+
+  /** @param {number} count */
+  const markerRadius = (count) => Math.max(5, radius(count));
+
+  /** @param {number} count */
+  const markerCoreRadius = (count) => Math.max(2.5, markerRadius(count) * 0.45);
 </script>
 
 <svg class="nodes-world-map" viewBox="0 0 954 477">
@@ -37,16 +43,23 @@
   {/each}
   <g>
     {#each nodes ? nodes : [] as marker (`${marker.lon}x${marker.lat}`)}
-      <circle
+      <g
         class="nodes-world-map__location"
-        cx={projection([marker.lon, marker.lat])[0]}
-        cy={projection([marker.lon, marker.lat])[1]}
         data-tooltip-id="main-tooltip"
         data-tooltip-text={`${marker.country} - ${marker.city} - ${marker.count} ${marker.count === 1 ? "node" : "nodes"}`}
         data-tooltip-place="top"
         data-tooltip-type="info"
-        r={radius(marker.count)}
-      ></circle>
+        transform={`translate(${projection([marker.lon, marker.lat])[0]}, ${projection([marker.lon, marker.lat])[1]})`}
+      >
+        <circle
+          class="nodes-world-map__location-ring"
+          r={markerRadius(marker.count)}
+        ></circle>
+        <circle
+          class="nodes-world-map__location-core"
+          r={markerCoreRadius(marker.count)}
+        ></circle>
+      </g>
     {/each}
   </g>
 </svg>

@@ -13,11 +13,19 @@ exports[`Main layout > should render the app's main layout 1`] = `
         href="/some-base-path/"
       >
         <!---->
+        <!---->
         <img
           alt="Dusk Logo"
           sizes="(max-width: 1024px) 86px, 129px"
           src="/some-base-path/dusk_logo.svg"
         />
+        <!---->
+         
+        <span
+          class="dusk-navbar__app-label"
+        >
+          Explorer
+        </span>
         
         <!---->
       </a>

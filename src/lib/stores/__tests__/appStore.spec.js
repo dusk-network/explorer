@@ -101,6 +101,22 @@ describe("appStore", () => {
     vi.unstubAllEnvs();
   });
 
+  it("should use default values for list entry counts if the env vars are missing", async () => {
+    vi.stubEnv("VITE_BLOCKS_LIST_ENTRIES", "");
+    vi.stubEnv("VITE_CHAIN_INFO_ENTRIES", "");
+    vi.stubEnv("VITE_TRANSACTIONS_LIST_ENTRIES", "");
+
+    const { appStore } = await import("..");
+    const { blocksListEntries, chainInfoEntries, transactionsListEntries } =
+      get(appStore);
+
+    expect(blocksListEntries).toBe(100);
+    expect(chainInfoEntries).toBe(15);
+    expect(transactionsListEntries).toBe(100);
+
+    vi.unstubAllEnvs();
+  });
+
   it("should expose a service method to set the dark mode theme", async () => {
     const { appStore } = await import("..");
 
