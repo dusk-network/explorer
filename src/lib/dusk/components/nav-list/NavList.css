@@ -1,17 +1,20 @@
 .dusk-nav-list {
   display: flex;
   flex-direction: column;
-  row-gap: 3.5rem;
+  row-gap: 1.25rem;
   height: 100%;
 }
 
 .dusk-nav-list__link {
   display: block;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-family: var(--mono-font-family);
+  font-size: 1.1rem;
   font-weight: 500;
+  letter-spacing: 0.12em;
   line-height: 1;
   color: var(--primary-color);
+  text-decoration: none;
 }
 
 .dusk-nav-list__link:after {
@@ -35,14 +38,27 @@
 @media (min-width: 1024px) {
   .dusk-nav-list {
     flex-direction: row;
-    column-gap: 1.5rem;
+    column-gap: 0.35rem;
     width: 100%;
     justify-content: center;
+    background: color-mix(in oklab, var(--surface-color), var(--on-background-color) 2%);
+    border: 1px solid color-mix(in oklab, var(--on-background-color), transparent 82%);
+    border-radius: var(--control-border-radius-size);
+    height: auto;
+    padding: 0.25rem;
   }
 
   .dusk-nav-list__link {
     position: relative;
-    font-size: 0.875rem;
+    border-radius: calc(var(--control-border-radius-size) - 0.125rem);
+    color: color-mix(in oklab, var(--on-background-color), transparent 18%);
+    font-size: 0.72rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .dusk-nav-list__link:hover {
+    background: color-mix(in oklab, var(--surface-color), var(--secondary-color) 10%);
+    color: var(--on-background-color);
   }
 
   .dusk-nav-list__link:after {

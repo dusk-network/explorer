@@ -32,8 +32,12 @@
       });
   }
 
+  /** @type {string | null} */
+  let lastRequestedKey = null;
+
   $: key = $page.url.searchParams.get("key");
-  $: if (key) {
+  $: if (key && key !== lastRequestedKey) {
+    lastRequestedKey = key;
     getTransactions();
     fetchAccountStatus(key);
   }

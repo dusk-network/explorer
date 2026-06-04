@@ -75,7 +75,7 @@
       {error}
       {loading}
       title="{tokenData?.token.toUpperCase()} Transactions — {displayedTxns.length} Displayed Items"
-      headerButtonDetails={error
+      headerButtonDetails={error || (!loading && isLoadMoreDisabled)
         ? undefined
         : {
             action: () => loadMoreItems(),

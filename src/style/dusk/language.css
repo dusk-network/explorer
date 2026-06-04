@@ -2,13 +2,13 @@
   /* Theme colours */
 
   --page-background-color: var(--smokey-black);
-  --background-color: var(--light-grey);
-  --background-color-alt: #fff;
+  --background-color: #edeaf3;
+  --background-color-alt: #f7f5fb;
   --primary-color: var(--smokey-black);
   --secondary-color: var(--cornflower);
   --secondary-color-variant-dark: var(--cornflower-dark);
   --secondary-color-variant-light: var(--cornflower-light);
-  --surface-color: var(--magnolia);
+  --surface-color: #f7f5fb;
   --danger-color: var(--error);
   --error-color: var(--error-500);
   --error-color-variant-dark: var(--error-700);
@@ -18,6 +18,9 @@
   --success-color-variant-dark: var(--success-700);
   --warning-color: var(--warning-500);
   --warning-color-variant-dark: var(--warning-700);
+  --badge-error-color: var(--error-700);
+  --badge-success-color: #0b744f;
+  --badge-warning-color: #6f5600;
 
   --on-background-color: var(--smokey-black);
   --on-primary-color: var(--light-grey);
@@ -49,7 +52,7 @@
 
   /* Controls */
 
-  --control-border-radius-size: 1.5em;
+  --control-border-radius-size: 0.5rem;
   --control-border-size: 0.0625em;
   --control-font-size: 1em;
   --control-icon-size: 2em;
@@ -60,17 +63,17 @@
   --non-button-control-bg-color: #fff;
   --non-button-control-text-color: var(--smokey-black);
 
-  --control-bg-color: var(--smokey-black);
+  --control-bg-color: var(--cornflower);
   --control-bg-color-hover: var(--cornflower);
   --control-border-color: transparent;
   --control-border-color-hover: transparent;
-  --control-text-color: #fff;
+  --control-text-color: var(--smokey-black);
   --control-text-color-hover: var(--smokey-black);
 
-  --control-secondary-bg-color: #fff;
-  --control-secondary-bg-color-hover: var(--silver-metallic);
-  --control-secondary-border-color: transparent;
-  --control-secondary-border-color-hover: transparent;
+  --control-secondary-bg-color: transparent;
+  --control-secondary-bg-color-hover: rgb(16 16 16 / 0.045);
+  --control-secondary-border-color: #d4cedd;
+  --control-secondary-border-color-hover: var(--cornflower);
   --control-secondary-text-color: var(--smokey-black);
 
   --control-tertiary-bg-color: transparent;
@@ -115,11 +118,14 @@
 :root.dark {
   /* Theme colours */
 
-  --page-background-color: var(--jet);
+  --page-background-color: var(--smokey-black);
   --background-color: var(--smokey-black);
-  --background-color-alt: var(--granite-grey);
+  --background-color-alt: #151519;
   --primary-color: var(--light-grey);
-  --surface-color: var(--jet);
+  --surface-color: #151519;
+  --badge-error-color: color-mix(in oklab, var(--error-500), white 18%);
+  --badge-success-color: var(--success-color);
+  --badge-warning-color: var(--warning-color);
 
   --on-background-color: var(--light-grey);
   --on-primary-color: var(--smokey-black);
@@ -130,12 +136,14 @@
 
   /* Controls */
 
-  --non-button-control-bg-color: var(--smokey-black);
+  --non-button-control-bg-color: #101014;
   --non-button-control-text-color: var(--light-grey);
 
-  --control-bg-color: var(--light-grey);
+  --control-bg-color: var(--cornflower);
   --control-text-color: var(--smokey-black);
-  --control-secondary-bg-color: var(--smokey-black);
+  --control-secondary-bg-color: transparent;
+  --control-secondary-bg-color-hover: rgb(237 234 243 / 0.06);
+  --control-secondary-border-color: #34333a;
   --control-secondary-text-color: var(--light-grey);
   --control-tertiary-border-color: var(--light-grey);
   --control-tertiary-text-color: var(--light-grey);

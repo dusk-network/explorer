@@ -1461,216 +1461,363 @@ exports[`World Map > renders the WorldMap component with nodes 1`] = `
   />
   <!---->
   <g>
-    <circle
+    <g
       class="nodes-world-map__location"
-      cx="278.36058693579054"
-      cy="137.09953561971082"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - North Bergen - 15 nodes"
       data-tooltip-type="info"
-      r="7.745966692414834"
-    />
-    <circle
+      transform="translate(278.36058693579054, 137.09953561971082)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="7.745966692414834"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="3.4856850115866753"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="492.64105194164677"
-      cy="98.26551851620192"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="The Netherlands - Amsterdam - 15 nodes"
       data-tooltip-type="info"
-      r="7.745966692414834"
-    />
-    <circle
+      transform="translate(492.64105194164677, 98.26551851620192)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="7.745966692414834"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="3.4856850115866753"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="142.93856558575976"
-      cy="148.75817795737643"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - Santa Clara - 11 nodes"
       data-tooltip-type="info"
-      r="6.6332495807108"
-    />
-    <circle
+      transform="translate(142.93856558575976, 148.75817795737643)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="6.6332495807108"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.98496231131986"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="502.5314948484447"
-      cy="105.63780723867356"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Germany - Frankfurt am Main - 9 nodes"
       data-tooltip-type="info"
-      r="6"
-    />
-    <circle
+      transform="translate(502.5314948484447, 105.63780723867356)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="6"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.7"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="278.0851741113029"
-      cy="136.95115608690458"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - Clifton - 9 nodes"
       data-tooltip-type="info"
-      r="6"
-    />
-    <circle
+      transform="translate(278.0851741113029, 136.95115608690458)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="6"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.7"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="477.41163029491787"
-      cy="103.19628342487707"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United Kingdom - Portsmouth - 6 nodes"
       data-tooltip-type="info"
-      r="4.898979485566356"
-    />
-    <circle
+      transform="translate(477.41163029491787, 103.19628342487707)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="787.2580930362307"
-      cy="272.9026853543226"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Singapore - Singapore - 5 nodes"
       data-tooltip-type="info"
-      r="4.47213595499958"
-    />
-    <circle
+      transform="translate(787.2580930362307, 272.9026853543226)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="509.08295878165137"
-      cy="108.00248826588935"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Germany - Nuremberg - 4 nodes"
       data-tooltip-type="info"
-      r="4"
-    />
-    <circle
+      transform="translate(509.08295878165137, 108.00248826588935)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="540.4255559867421"
-      cy="73.1790455827178"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Finland - Helsinki - 2 nodes"
       data-tooltip-type="info"
-      r="2.82842712474619"
-    />
-    <circle
+      transform="translate(540.4255559867421, 73.1790455827178)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="903.3960689598642"
-      cy="394.10649360705395"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Australia - Alexandria - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(903.3960689598642, 394.10649360705395)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="504.4770593045916"
-      cy="121.19080165997127"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Italy - Milan - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(504.4770593045916, 121.19080165997127)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="903.3946492549263"
-      cy="393.7588696154186"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Australia - Sydney - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(903.3946492549263, 393.7588696154186)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="152.68630943540717"
-      cy="120.96284723543971"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - Hillsboro - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(152.68630943540717, 120.96284723543971)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="231.99077231200195"
-      cy="144.48756163096235"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - St Louis - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(231.99077231200195, 144.48756163096235)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="478.27185049321474"
-      cy="100.94490128574898"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United Kingdom - Slough - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(478.27185049321474, 100.94490128574898)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="157.62207579394016"
-      cy="115.01464500803107"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United States - Seattle - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(157.62207579394016, 115.01464500803107)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="457.96372253823597"
-      cy="97.23355658882414"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Ireland - Limerick - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(457.96372253823597, 97.23355658882414)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="512.0138651351721"
-      cy="104.44230085169693"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="Germany - Falkenstein - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(512.0138651351721, 104.44230085169693)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="486.2938312403943"
-      cy="109.91020930746086"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="France - Paris - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(486.2938312403943, 109.91020930746086)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="475.7496562258062"
-      cy="89.65702764619871"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="United Kingdom - Newcastle upon Tyne - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
-    <circle
+      transform="translate(475.7496562258062, 89.65702764619871)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
+    <g
       class="nodes-world-map__location"
-      cx="494.4884307246139"
-      cy="96.02422676552064"
       data-tooltip-id="main-tooltip"
       data-tooltip-place="top"
       data-tooltip-text="The Netherlands - Sneek - 1 node"
       data-tooltip-type="info"
-      r="2"
-    />
+      transform="translate(494.4884307246139, 96.02422676552064)"
+    >
+      <circle
+        class="nodes-world-map__location-ring"
+        r="5"
+      />
+      <circle
+        class="nodes-world-map__location-core"
+        r="2.5"
+      />
+    </g>
     
   </g>
 </svg>

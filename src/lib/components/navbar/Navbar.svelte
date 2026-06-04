@@ -107,6 +107,7 @@
       alt="Dusk Logo"
       sizes="(max-width: 1024px) 86px, 129px"
     />
+    <span class="dusk-navbar__app-label">Explorer</span>
   </AppAnchor>
   <Button
     aria-controls="dusk-navbar-menu"
