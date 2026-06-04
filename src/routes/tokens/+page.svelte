@@ -1,9 +1,10 @@
 <script>
+  import { get } from "svelte/store";
   import { DataCard, TokenListDetails, TokensTable } from "$lib/components";
   import { appStore } from "$lib/stores";
   import { tokens } from "$lib/mock-data";
 
-  const ITEMS_TO_DISPLAY = import.meta.env.VITE_CHAIN_INFO_ENTRIES;
+  const ITEMS_TO_DISPLAY = get(appStore).chainInfoEntries;
   let itemsToDisplay = ITEMS_TO_DISPLAY;
 
   const error = null;
@@ -29,7 +30,7 @@
     {error}
     {loading}
     title="Tokens — {displayedTokens.length} Displayed Items"
-    headerButtonDetails={error
+    headerButtonDetails={error || (!loading && isLoadMoreDisabled)
       ? undefined
       : {
           action: () => loadMoreItems(),

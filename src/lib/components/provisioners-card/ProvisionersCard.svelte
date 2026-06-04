@@ -1,11 +1,13 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { get } from "svelte/store";
   import {
     DataCard,
     ProvisionersList,
     ProvisionersTable,
   } from "$lib/components";
+  import { appStore } from "$lib/stores";
 
   /** @type {HostProvisioner[] | null}*/
   export let provisioners;
@@ -19,7 +21,7 @@
   /** @type {boolean} */
   export let isSmallScreen;
 
-  const ITEMS_TO_DISPLAY = import.meta.env.VITE_CHAIN_INFO_ENTRIES;
+  const ITEMS_TO_DISPLAY = get(appStore).chainInfoEntries;
 
   let itemsToDisplay = ITEMS_TO_DISPLAY;
 
@@ -94,7 +96,7 @@
   {error}
   {loading}
   title="Provisioners — {displayedProvisioners.length} Displayed Items"
-  headerButtonDetails={error
+  headerButtonDetails={error || (!loading && isLoadMoreDisabled)
     ? undefined
     : {
         action: () => loadMoreItems(),

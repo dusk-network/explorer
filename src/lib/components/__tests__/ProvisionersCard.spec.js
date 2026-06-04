@@ -40,16 +40,18 @@ describe("Provisioners Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should disable the `Show More` button if there is no more data to display", async () => {
+  it("should hide the `Show More` button if there is no more data to display", async () => {
     const loading = false;
     const provisioners = data;
 
-    const { container, getByRole } = render(ProvisionersCard, {
+    const { container, queryByRole } = render(ProvisionersCard, {
       ...baseOptions,
       props: { ...baseProps, loading, provisioners },
     });
 
-    expect(getByRole("button", { name: "Show More" })).toBeDisabled();
+    expect(
+      queryByRole("button", { name: "Show More" })
+    ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });

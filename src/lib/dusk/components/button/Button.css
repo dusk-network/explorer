@@ -80,7 +80,7 @@
 
 /* Icon Buttons */
 .dusk-icon-button:not(.dusk-icon-button--labeled) {
-  border-radius: 50%;
+  border-radius: var(--control-border-radius-size);
   padding: 0.2em;
 }
 

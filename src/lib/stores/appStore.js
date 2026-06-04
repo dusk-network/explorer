@@ -13,12 +13,19 @@ const DEFAULT_FETCH_INTERVAL = 10000;
 const DEFAULT_MARKET_FETCH_INTERVAL = 120000;
 const DEFAULT_PROVISIONERS_FETCH_INTERVAL = 30000;
 const DEFAULT_STATS_FETCH_INTERVAL = DEFAULT_FETCH_INTERVAL;
+const DEFAULT_BLOCKS_LIST_ENTRIES = 100;
+const DEFAULT_CHAIN_INFO_ENTRIES = 15;
+const DEFAULT_TRANSACTIONS_LIST_ENTRIES = 100;
 
 /** @type {AppStoreContent} */
 const initialState = {
   ...browserDefaults,
-  blocksListEntries: Number(import.meta.env.VITE_BLOCKS_LIST_ENTRIES),
-  chainInfoEntries: Number(import.meta.env.VITE_CHAIN_INFO_ENTRIES),
+  blocksListEntries:
+    Number(import.meta.env.VITE_BLOCKS_LIST_ENTRIES) ||
+    DEFAULT_BLOCKS_LIST_ENTRIES,
+  chainInfoEntries:
+    Number(import.meta.env.VITE_CHAIN_INFO_ENTRIES) ||
+    DEFAULT_CHAIN_INFO_ENTRIES,
   fetchInterval:
     Number(import.meta.env.VITE_REFETCH_INTERVAL) || DEFAULT_FETCH_INTERVAL,
   hasTouchSupport: "ontouchstart" in window || navigator.maxTouchPoints > 0,
@@ -36,14 +43,15 @@ const initialState = {
     /* eslint-enable camelcase */
   },
   provisionersFetchInterval: Number(
-    import.meta.env.PROVISIONERS_REFETCH_INTERVAL ||
+    import.meta.env.VITE_PROVISIONERS_REFETCH_INTERVAL ||
       DEFAULT_PROVISIONERS_FETCH_INTERVAL
   ),
   statsFetchInterval:
     Number(import.meta.env.VITE_STATS_REFETCH_INTERVAL) ||
     DEFAULT_STATS_FETCH_INTERVAL,
   transactionsListEntries: Number(
-    import.meta.env.VITE_TRANSACTIONS_LIST_ENTRIES
+    import.meta.env.VITE_TRANSACTIONS_LIST_ENTRIES ||
+      DEFAULT_TRANSACTIONS_LIST_ENTRIES
   ),
 };
 const store = writable(initialState);

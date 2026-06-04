@@ -73,7 +73,7 @@
     .landing {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .chain-info {
@@ -84,7 +84,7 @@
     .tables {
       order: 2;
       display: flex;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .tables-layout {
@@ -102,13 +102,14 @@
     .world-map .dusk-card {
       padding: 0;
       width: 100%;
+      overflow: hidden;
     }
 
     @media (min-width: 768px) {
       .chain-info {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.25rem;
+        gap: 1rem;
       }
     }
 

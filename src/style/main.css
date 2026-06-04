@@ -1,46 +1,12 @@
-@import url("./dusk/colors.css");
-@import url("./dusk/language.css");
-
-@font-face {
-  font-family: "Soehne";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url("/fonts/soehne-buch.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Soehne";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url("/fonts/soehne-kraftig.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Soehne Mono";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url("/fonts/soehne-mono-buch.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Soehne Mono";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src: url("/fonts/soehne-mono-kraftig.woff2") format("woff2");
-}
+@import "@duskit/css/main.css";
+@import url("./duskit-bridge.css");
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  padding: 0 3rem;
+  padding: 0 clamp(1rem, 3vw, 3rem);
 }
 
 html,
@@ -56,7 +22,7 @@ html {
   color: var(--on-background-color);
   font-family: var(--main-font-family);
   font-size: var(--main-font-size);
-  letter-spacing: 0.06125rem;
+  letter-spacing: 0;
 }
 
 #app-container {
@@ -67,8 +33,15 @@ html {
 
 #app-container > main {
   flex: 1;
-  padding: 1.25rem 0;
+  padding: 1.25rem 0 2rem;
   overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  letter-spacing: 0;
 }
 
 svg {

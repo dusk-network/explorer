@@ -7,11 +7,14 @@
 }
 
 .overview-panel__details-item-title {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.3125rem;
 }
 
 .overview-panel__details-item-subtitle {
-  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--on-background-color), transparent 22%);
+  font-family: var(--mono-font-family);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
 }

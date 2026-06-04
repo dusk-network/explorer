@@ -51,7 +51,79 @@ exports[`Transactions Card > should disable the \`Show More\` button if the card
 </div>
 `;
 
-exports[`Transactions Card > should disable the \`Show More\` button if there is no more data to display 1`] = `
+exports[`Transactions Card > should hide the \`Show More\` button if an error has occurred 1`] = `
+<div
+  class="dusk-card data-card"
+>
+  <!---->
+  <!---->
+  <header
+    class="data-card__header"
+    slot="header"
+  >
+    <h1
+      class="data-card__header-title"
+    >
+      Transactions — 0 Displayed Items
+    </h1>
+     
+    <!---->
+  </header>
+  
+  <!---->
+   
+  <!---->
+  <div
+    class="alert"
+  >
+    <!---->
+    <svg
+      class="dusk-icon dusk-icon--size--large"
+      role="graphics-symbol"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"
+      />
+    </svg>
+    
+    <!---->
+     
+    <header>
+      <p>
+        There was an error fetching the data.
+      </p>
+       
+      <p
+        class="alert__error-message"
+      >
+        error
+      </p>
+      <!---->
+    </header>
+     
+    <button
+      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
+      type="button"
+    >
+      <span
+        class="dusk-button__text"
+      >
+        Retry
+      </span>
+      <!---->
+    </button>
+    <!---->
+  </div>
+  
+  <!---->
+   
+  <!---->
+  
+</div>
+`;
+
+exports[`Transactions Card > should hide the \`Show More\` button if there is no more data to display 1`] = `
 <div
   class="dusk-card data-card"
 >
@@ -67,18 +139,6 @@ exports[`Transactions Card > should disable the \`Show More\` button if there is
       Transactions — 10 Displayed Items
     </h1>
      
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      disabled=""
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
     <!---->
   </header>
   
@@ -1840,78 +1900,6 @@ exports[`Transactions Card > should disable the \`Show More\` button if there is
       </table>
     </div>
     
-    <!---->
-  </div>
-  
-  <!---->
-   
-  <!---->
-  
-</div>
-`;
-
-exports[`Transactions Card > should hide the \`Show More\` button if an error has occurred 1`] = `
-<div
-  class="dusk-card data-card"
->
-  <!---->
-  <!---->
-  <header
-    class="data-card__header"
-    slot="header"
-  >
-    <h1
-      class="data-card__header-title"
-    >
-      Transactions — 0 Displayed Items
-    </h1>
-     
-    <!---->
-  </header>
-  
-  <!---->
-   
-  <!---->
-  <div
-    class="alert"
-  >
-    <!---->
-    <svg
-      class="dusk-icon dusk-icon--size--large"
-      role="graphics-symbol"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"
-      />
-    </svg>
-    
-    <!---->
-     
-    <header>
-      <p>
-        There was an error fetching the data.
-      </p>
-       
-      <p
-        class="alert__error-message"
-      >
-        error
-      </p>
-      <!---->
-    </header>
-     
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Retry
-      </span>
-      <!---->
-    </button>
     <!---->
   </div>
   

@@ -38,6 +38,7 @@
     "cookie": "0.7.2"
   },
   "dependencies": {
+    "@duskit/css": "0.4.0",
     "@floating-ui/dom": "1.7.6",
     "@mdi/js": "7.4.47",
     "d3-geo": "3.1.1",
