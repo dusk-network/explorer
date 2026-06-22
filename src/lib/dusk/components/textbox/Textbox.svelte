@@ -50,8 +50,7 @@
     class={classes}
     bind:this={inputElement}
     bind:value
-    on:input
-  ></textarea>
+    on:input></textarea>
 {:else}
   <input
     {...$$restProps}
