@@ -29,6 +29,8 @@ VITE_BLOCKS_LIST_ENTRIES=100
 VITE_CHAIN_INFO_ENTRIES=15
 VITE_MARKET_DATA_REFETCH_INTERVAL=120000
 VITE_NODE_URL="" # Optional, set to (e.g. 'https://nodes.dusk.network' to) override default
+VITE_DUSKEVM_ADAPTER_URL="/duskevm-rpc" # Optional adapter RPC URL for DuskEVM transaction links
+DUSKEVM_ADAPTER_PROXY_TARGET="http://localhost:8080" # Dev proxy target
 VITE_PROVISIONERS_REFETCH_INTERVAL=30000
 VITE_REFETCH_INTERVAL=10000
 VITE_RUSK_PATH="" # Optional, set to '/rusk' for dev mode
@@ -43,6 +45,8 @@ VITE_FEATURE_BLOB_HASHES=true # requires node version >= 1.3.1-alpha.1
 The application defaults to setting the node URL to `/`. In dev mode, requests made on `/rusk` are passed through a proxy to `localhost:8080`. When the app is running in dev mode, set `VITE_RUSK_PATH` to "/rusk".
 
 The application will determine which network it is connected to by the subdomain it is hosted under, to override this and connect to any node set `VITE_NODE_URL`. Note that only `https://` protocol URLs are valid.
+
+The `/tx/<canonical-hash>` compatibility route resolves the native Dusk transaction ID through `duskevm_getDuskTransactionIdByHash`. The `/block/<height>` compatibility route resolves Dusk block heights through Rusk. These routes allow a DuskEVM Blockscout instance to use the Dusk explorer as its parent-chain explorer. The transaction resolver uses `/duskevm-rpc` by default. Deployments should reverse proxy that path to the adapter and expose only the methods required by the explorer. In development, `DUSKEVM_ADAPTER_PROXY_TARGET` selects the proxy target.
 
 ## NPM scripts
 

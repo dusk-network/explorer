@@ -3,7 +3,7 @@ import { defineConfig, loadEnv } from "vite";
 import { execSync } from "child_process";
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
+  const env = loadEnv(mode, process.cwd(), "");
   const buildDate = new Date().toISOString().substring(0, 10);
   const buildHash = execSync(
     "git log -1 --grep='explorer:' --format=format:'%h'"
@@ -44,6 +44,10 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       proxy: {
+        "/duskevm-rpc": {
+          rewrite: () => "/",
+          target: env.DUSKEVM_ADAPTER_PROXY_TARGET || "http://localhost:8080",
+        },
         "/rusk": {
           rewrite: (path) => path.replace(/^\/rusk/, ""),
           target: "http://localhost:8080/",
