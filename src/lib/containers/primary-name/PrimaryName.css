@@ -1,0 +1,8 @@
+.primary-name {
+  min-width: 0;
+  font-family: var(--mono-font-family);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}

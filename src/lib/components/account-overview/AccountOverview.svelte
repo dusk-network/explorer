@@ -5,6 +5,7 @@
   import { createValueFormatter } from "$lib/dusk/value";
   import { addressCharPropertiesDefaults } from "$lib/constants";
   import { OverviewPanelDetailsItem } from "$lib/components";
+  import { PrimaryName } from "$lib/containers";
   import { luxToDusk } from "$lib/dusk/currency";
 
   import "./AccountOverview.css";
@@ -58,6 +59,8 @@
       rawValue={accountAddress}
       variant="secondary"
     />
+
+    <PrimaryName address={accountAddress} />
   </div>
 
   <hr class="account-overview-panel__separator" />
