@@ -321,6 +321,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <!---->
           </div>
           <!---->
+           
+          <!---->
+          
+          <!---->
           <!---->
         </dd>
         <!---->
@@ -397,6 +401,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             </button>
             <!---->
           </div>
+          <!---->
+           
+          <!---->
+          
           <!---->
           <!---->
         </dd>

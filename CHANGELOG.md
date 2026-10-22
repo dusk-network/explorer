@@ -10,7 +10,7 @@ and this project adheres to
 
 ### Added
 
-- Add .dusk name search and primary names on account pages
+- Add .dusk name search and primary names on account and transaction pages
 
 ### Changed
 

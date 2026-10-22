@@ -271,6 +271,10 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           <!---->
         </div>
         <!---->
+         
+        <!---->
+        
+        <!---->
         <!---->
       </dd>
       <!---->
@@ -347,6 +351,10 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           </button>
           <!---->
         </div>
+        <!---->
+         
+        <!---->
+        
         <!---->
         <!---->
       </dd>
@@ -1089,6 +1097,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <!---->
         </div>
         <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
         <!---->
       </dd>
       <!---->
@@ -1165,6 +1179,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
           </button>
           <!---->
         </div>
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
         <!---->
         <!---->
       </dd>
@@ -1918,6 +1938,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <!---->
         </div>
         <!---->
+         
+        <!---->
+        <!---->
+        
+        
+        <!---->
         <!---->
       </dd>
       <!---->
@@ -1994,6 +2020,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
           </button>
           <!---->
         </div>
+        <!---->
+         
+        <!---->
+        <!---->
+        
+        
         <!---->
         <!---->
       </dd>
@@ -2767,6 +2799,10 @@ exports[`Transaction Details > should be able to render the details when they co
           <!---->
         </div>
         <!---->
+         
+        <!---->
+        
+        <!---->
         <!---->
       </dd>
       <!---->
@@ -2843,6 +2879,10 @@ exports[`Transaction Details > should be able to render the details when they co
           </button>
           <!---->
         </div>
+        <!---->
+         
+        <!---->
+        
         <!---->
         <!---->
       </dd>

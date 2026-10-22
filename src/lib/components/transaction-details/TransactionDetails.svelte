@@ -24,6 +24,7 @@
     TransactionStatus,
     TransactionType,
   } from "$lib/components";
+  import { PrimaryName } from "$lib/containers";
   import { addressCharPropertiesDefaults } from "$lib/constants";
 
   import "./TransactionDetails.css";
@@ -146,6 +147,7 @@
             >{withMiddleEllipsis(data.from)}</AppAnchor
           >
           <CopyButton rawValue={data.from} name="Sender's address" />
+          <PrimaryName address={data.from} />
         </svelte:fragment>
       </ListItem>
     {/if}
@@ -161,6 +163,7 @@
             >{withMiddleEllipsis(data.to)}</AppAnchor
           >
           <CopyButton rawValue={data.to} name="Receiver's address" />
+          <PrimaryName address={data.to} />
         </svelte:fragment>
       </ListItem>
     {/if}

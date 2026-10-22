@@ -6,8 +6,15 @@ import { makeNodeUrl } from "$lib/url";
 
 /** @typedef {typeof import("./dusk-domains-releases.json").mainnet} Release */
 
+/** @typedef {{ name: string, url: string }} PrimaryName */
+
 /** @type {Map<string, Promise<import("@duskdomains/sdk/lens-reader").LensReader>>} */
 const readers = new Map();
+
+const PRIMARY_NAME_TTL_MS = 60_000;
+
+/** @type {Map<string, { expiresAt: number, name: Promise<PrimaryName | null> }>} */
+const primaryNames = new Map();
 
 const loadSdk = () => import("./sdk");
 
@@ -113,10 +120,11 @@ export async function resolveDuskName(query) {
 
 /**
  * The verified primary name of a Moonlight account and its page on the
- * Dusk Domains site, or `null` if the account has none.
+ * Dusk Domains site, or `null` if the account has none. An account is
+ * looked up once a minute at most; a failed lookup isn't kept.
  *
  * @param {string} address
- * @returns {Promise<{ name: string, url: string } | null>}
+ * @returns {Promise<PrimaryName | null>}
  */
 export async function getPrimaryName(address) {
   const release = await getRelease();
@@ -125,6 +133,31 @@ export async function getPrimaryName(address) {
     return null;
   }
 
+  const key = `${release.network}:${address}`;
+  const cached = primaryNames.get(key);
+
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.name;
+  }
+
+  const name = lookUpPrimaryName(release, address);
+
+  primaryNames.set(key, { expiresAt: Date.now() + PRIMARY_NAME_TTL_MS, name });
+  name.catch(() => {
+    if (primaryNames.get(key)?.name === name) {
+      primaryNames.delete(key);
+    }
+  });
+
+  return name;
+}
+
+/**
+ * @param {Release} release
+ * @param {string} address
+ * @returns {Promise<PrimaryName | null>}
+ */
+async function lookUpPrimaryName(release, address) {
   const endpoint = (await loadSdk()).decodeBase58(address);
 
   if (endpoint?.length !== 96) {

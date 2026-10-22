@@ -3,8 +3,14 @@ import { cleanup, fireEvent, render } from "@testing-library/svelte";
 
 import { apiMarketData, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
+import { getPrimaryName } from "$lib/dusk-domains";
 
 import { TransactionDetails } from "..";
+
+vi.mock("$lib/dusk-domains", async (importOriginal) => ({
+  .../** @type {object} */ (await importOriginal()),
+  getPrimaryName: vi.fn().mockResolvedValue(null),
+}));
 
 describe("Transaction Details", () => {
   vi.useFakeTimers();
@@ -46,6 +52,29 @@ describe("Transaction Details", () => {
     await fireEvent.click(getAllByRole("switch")[1]);
 
     expect(container.firstElementChild).toMatchSnapshot();
+  });
+
+  it("should show the sender's and receiver's primary names", async () => {
+    vi.mocked(getPrimaryName).mockImplementation(async (address) => {
+      const name = address === baseProps.data.from ? "alice.dusk" : "bob.dusk";
+
+      return { name, url: `https://dusk.domains/name/${name}` };
+    });
+
+    const { getByRole } = render(TransactionDetails, baseProps);
+
+    await vi.waitFor(() => {
+      expect(getByRole("link", { name: "alice.dusk" })).toHaveAttribute(
+        "href",
+        "https://dusk.domains/name/alice.dusk"
+      );
+      expect(getByRole("link", { name: "bob.dusk" })).toHaveAttribute(
+        "href",
+        "https://dusk.domains/name/bob.dusk"
+      );
+    });
+
+    vi.mocked(getPrimaryName).mockResolvedValue(null);
   });
 
   it("should be able to render the details when they contain blob hashes", () => {

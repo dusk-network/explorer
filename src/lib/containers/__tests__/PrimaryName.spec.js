@@ -10,7 +10,10 @@ import { PrimaryName } from "..";
 vi.mock("@duskdomains/sdk/lens-reader", () => ({ createLensReader: vi.fn() }));
 
 describe("PrimaryName", () => {
-  const props = { address: hostProvisioners[0].key };
+  // Names are kept for a minute, so each case looks up its own account.
+  const props = (/** @type {number} */ i) => ({
+    address: hostProvisioners[i].key,
+  });
   const reader = { verifyPrimary: vi.fn() };
 
   vi.mocked(createLensReader).mockResolvedValue(/** @type {any} */ (reader));
@@ -26,7 +29,9 @@ describe("PrimaryName", () => {
       primary: { spelling: "tdi.dusk" },
     });
 
-    const { findByRole, queryByRole } = render(PrimaryName, { props });
+    const { findByRole, queryByRole } = render(PrimaryName, {
+      props: props(0),
+    });
 
     expect(queryByRole("link")).toBeNull();
 
@@ -40,15 +45,20 @@ describe("PrimaryName", () => {
   });
 
   it.each([
-    ["has no primary name", () => reader.verifyPrimary.mockResolvedValue(null)],
+    [
+      "has no primary name",
+      1,
+      () => reader.verifyPrimary.mockResolvedValue(null),
+    ],
     [
       "can't be read",
+      2,
       () => reader.verifyPrimary.mockRejectedValue(new Error("offline")),
     ],
-  ])("should show nothing when the name %s", async (_, arrange) => {
+  ])("should show nothing when the name %s", async (_, i, arrange) => {
     arrange();
 
-    const { container } = render(PrimaryName, { props });
+    const { container } = render(PrimaryName, { props: props(i) });
 
     await vi.waitFor(() => expect(reader.verifyPrimary).toHaveBeenCalled());
     await new Promise((resolve) => setTimeout(resolve));

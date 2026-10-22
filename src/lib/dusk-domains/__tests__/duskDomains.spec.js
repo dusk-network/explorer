@@ -151,6 +151,32 @@ describe("getPrimaryName", () => {
     expect(reader.verifyPrimary).toHaveBeenCalledTimes(1);
   });
 
+  it("should look an account up once a minute at most, and retry a failed lookup", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+
+    const { reader, getPrimaryName } = await setup(2);
+    const found = {
+      name: "tdi.dusk",
+      url: "https://testnet.dusk.domains/name/tdi.dusk",
+    };
+
+    reader.verifyPrimary
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValue({ primary: { spelling: "tdi.dusk" } });
+
+    await expect(getPrimaryName(account)).rejects.toThrow("offline");
+    await expect(getPrimaryName(account)).resolves.toStrictEqual(found);
+    await expect(getPrimaryName(account)).resolves.toStrictEqual(found);
+    expect(reader.verifyPrimary).toHaveBeenCalledTimes(2);
+
+    vi.advanceTimersByTime(60_000);
+
+    await expect(getPrimaryName(account)).resolves.toStrictEqual(found);
+    expect(reader.verifyPrimary).toHaveBeenCalledTimes(3);
+
+    vi.useRealTimers();
+  });
+
   it("should ask the node for its network before the layout has", async () => {
     const { reader, getPrimaryName } = await setup(undefined);
     const { duskAPI } = await import("$lib/services");
