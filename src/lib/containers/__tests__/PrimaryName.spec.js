@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { base } from "$app/paths";
 import { cleanup, render } from "@testing-library/svelte";
 import { createLensReader } from "@duskdomains/sdk/lens-reader";
 
@@ -24,24 +25,42 @@ describe("PrimaryName", () => {
     reader.verifyPrimary.mockReset();
   });
 
-  it("should link the account's verified primary name to its Dusk Domains page", async () => {
+  it("should lead with the verified primary name, then the shortened address", async () => {
+    const { address } = props(0);
+
     reader.verifyPrimary.mockResolvedValueOnce({
       primary: { spelling: "tdi.dusk" },
     });
 
-    const { findByRole, queryByRole } = render(PrimaryName, {
-      props: props(0),
-    });
+    const { findByRole, getByRole, getByText, queryByRole } = render(
+      PrimaryName,
+      { props: { address, href: `/accounts/?key=${address}` } }
+    );
 
     expect(queryByRole("link")).toBeNull();
 
-    const link = await findByRole("link");
+    const name = await findByRole("link", { name: "tdi.dusk" });
 
-    expect(link).toHaveTextContent("tdi.dusk");
-    expect(link).toHaveAttribute(
-      "href",
-      "https://testnet.dusk.domains/name/tdi.dusk"
-    );
+    expect(name).toHaveAttribute("href", `${base}/accounts/?key=${address}`);
+    expect(
+      getByRole("link", { name: "Open tdi.dusk on Dusk Domains" })
+    ).toHaveAttribute("href", "https://testnet.dusk.domains/name/tdi.dusk");
+    expect(
+      getByText(`${address.slice(0, 6)}...${address.slice(-6)}`)
+    ).toBeInTheDocument();
+  });
+
+  it("should show the name as text without a link to the account", async () => {
+    reader.verifyPrimary.mockResolvedValueOnce({
+      primary: { spelling: "tdi.dusk" },
+    });
+
+    const { findByText, getAllByRole } = render(PrimaryName, {
+      props: props(3),
+    });
+
+    expect((await findByText("tdi.dusk")).tagName).toBe("SPAN");
+    expect(getAllByRole("link")).toHaveLength(1);
   });
 
   it.each([

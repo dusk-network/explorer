@@ -40,18 +40,20 @@
   <div class="account-overview-panel__address-wrapper">
     <p class="account-overview-panel__header">
       Account:
-      <b class="account-overview-panel__address">
-        {middleEllipsis(
-          accountAddress,
-          calculateAdaptiveCharCount(
-            screenWidth,
-            minScreenWidth,
-            maxScreenWidth,
-            minCharCount,
-            maxCharCount
-          )
-        )}</b
-      >
+      <PrimaryName address={accountAddress}>
+        <b class="account-overview-panel__address">
+          {middleEllipsis(
+            accountAddress,
+            calculateAdaptiveCharCount(
+              screenWidth,
+              minScreenWidth,
+              maxScreenWidth,
+              minCharCount,
+              maxCharCount
+            )
+          )}</b
+        >
+      </PrimaryName>
     </p>
 
     <CopyButton
@@ -59,8 +61,6 @@
       rawValue={accountAddress}
       variant="secondary"
     />
-
-    <PrimaryName address={accountAddress} />
   </div>
 
   <hr class="account-overview-panel__separator" />

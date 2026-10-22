@@ -1,4 +1,5 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import { base } from "$app/paths";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 
 import { apiMarketData, gqlTransaction } from "$lib/mock-data";
@@ -66,13 +67,16 @@ describe("Transaction Details", () => {
     await vi.waitFor(() => {
       expect(getByRole("link", { name: "alice.dusk" })).toHaveAttribute(
         "href",
-        "https://dusk.domains/name/alice.dusk"
+        `${base}/accounts/?key=${baseProps.data.from}`
       );
       expect(getByRole("link", { name: "bob.dusk" })).toHaveAttribute(
         "href",
-        "https://dusk.domains/name/bob.dusk"
+        `${base}/accounts/?key=${baseProps.data.to}`
       );
     });
+    expect(
+      getByRole("link", { name: "Open alice.dusk on Dusk Domains" })
+    ).toHaveAttribute("href", "https://dusk.domains/name/alice.dusk");
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
   });
