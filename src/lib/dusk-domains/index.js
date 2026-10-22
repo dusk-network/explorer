@@ -1,1 +1,6 @@
-export { getPrimaryName, isDuskName, resolveDuskName } from "./duskDomains";
+export {
+  getPrimaryName,
+  getSearchedName,
+  isDuskName,
+  resolveDuskName,
+} from "./duskDomains";

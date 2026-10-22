@@ -23,7 +23,11 @@
       const query = value;
 
       resolveDuskName(query)
-        .then((address) => goto(`/accounts/?key=${address}`))
+        .then((address) =>
+          goto(
+            `/accounts/?key=${address}&name=${encodeURIComponent(query.trim().toLowerCase())}`
+          )
+        )
         .catch((res) => dispatch("invalid", { query, res }))
         .finally(resetField);
       return;

@@ -6,6 +6,7 @@
   import { addressCharPropertiesDefaults } from "$lib/constants";
   import { OverviewPanelDetailsItem } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
+  import { getSearchedName } from "$lib/dusk-domains";
   import { luxToDusk } from "$lib/dusk/currency";
 
   import "./AccountOverview.css";
@@ -13,6 +14,19 @@
   export let accountAddress;
   export let errorFetchingAccountStatus;
   export let accountBalance;
+
+  /**
+   * The `.dusk` name searched for to reach this account, if any. It shows
+   * only once it resolves to the account, and not when it is the
+   * account's primary name.
+   *
+   * @type {string | null}
+   */
+  export let searchedName = null;
+
+  $: searchedNameShown = getSearchedName(searchedName, accountAddress).catch(
+    () => null
+  );
 
   /** @type {number} */
   let screenWidth = window.innerWidth;
@@ -62,6 +76,13 @@
       variant="secondary"
     />
   </div>
+  {#await searchedNameShown then name}
+    {#if name}
+      <p class="account-overview-panel__searched-name">
+        {name} points to this account
+      </p>
+    {/if}
+  {/await}
 
   <hr class="account-overview-panel__separator" />
   <div class="account-overview-panel__details">

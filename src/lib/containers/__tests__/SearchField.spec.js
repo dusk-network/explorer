@@ -53,7 +53,7 @@ describe("SearchField", () => {
 
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledWith(
-        `/some-base-path/accounts/?key=${account}`
+        `/some-base-path/accounts/?key=${account}&name=tdi.dusk`
       )
     );
     expect(reader.resolve).toHaveBeenCalledWith("tdi.dusk", [

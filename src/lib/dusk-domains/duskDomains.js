@@ -153,6 +153,32 @@ export async function getPrimaryName(address) {
 }
 
 /**
+ * The `.dusk` name someone searched for to reach an account, to show on
+ * the account's page: the name in canonical form when it resolves to that
+ * account and isn't already its primary name, or `null`. A name in a link
+ * proves nothing until it is resolved.
+ *
+ * @param {string | null} name
+ * @param {string} address
+ * @returns {Promise<string | null>}
+ */
+export async function getSearchedName(name, address) {
+  if (!name || !isDuskName(name)) {
+    return null;
+  }
+
+  const canonical = name.trim().toLowerCase();
+  const [account, primary] = await Promise.all([
+    resolveDuskName(canonical).catch(() => null),
+    getPrimaryName(address).catch(() => null),
+  ]);
+
+  return account === address && primary?.name.toLowerCase() !== canonical
+    ? canonical
+    : null;
+}
+
+/**
  * @param {Release} release
  * @param {string} address
  * @returns {Promise<PrimaryName | null>}

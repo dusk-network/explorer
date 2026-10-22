@@ -193,6 +193,41 @@ describe("getPrimaryName", () => {
   });
 });
 
+describe("getSearchedName", () => {
+  const other = hostProvisioners[1].key;
+
+  it("should give a searched name only when it leads to the account and isn't its primary", async () => {
+    const { reader, getSearchedName } = await setup(2);
+
+    reader.resolve.mockResolvedValue(
+      resolved("Active", { value: accountBytes })
+    );
+    reader.verifyPrimary.mockResolvedValue({
+      primary: { spelling: "tdi.dusk" },
+    });
+
+    await expect(getSearchedName("Domains.dusk ", account)).resolves.toBe(
+      "domains.dusk"
+    );
+    expect(reader.resolve).toHaveBeenCalledWith("domains.dusk", [
+      "moonlight_address",
+    ]);
+    await expect(getSearchedName("TDI.dusk", account)).resolves.toBeNull();
+    await expect(getSearchedName("domains.dusk", other)).resolves.toBeNull();
+  });
+
+  it("should give null without a name, for other input and when the lookup fails", async () => {
+    const { reader, getSearchedName } = await setup(2);
+
+    reader.resolve.mockRejectedValue(new Error("offline"));
+    reader.verifyPrimary.mockResolvedValue(null);
+
+    await expect(getSearchedName(null, account)).resolves.toBeNull();
+    await expect(getSearchedName("domains", account)).resolves.toBeNull();
+    await expect(getSearchedName("domains.dusk", account)).resolves.toBeNull();
+  });
+});
+
 it("should be off on other networks", async () => {
   const { createReader, getPrimaryName, resolveDuskName } = await setup(3);
 
