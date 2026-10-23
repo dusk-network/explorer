@@ -47,6 +47,7 @@
   font-family: var(--mono-font-family);
   font-size: 0.78rem;
   text-transform: none;
+  overflow-wrap: anywhere;
 }
 
 .account-overview-panel__separator {

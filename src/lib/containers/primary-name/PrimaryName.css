@@ -12,7 +12,7 @@
 .primary-name {
   font-family: var(--mono-font-family);
   text-transform: none;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .primary-name__site,

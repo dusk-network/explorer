@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
+import { tick } from "svelte";
 
 import { hostProvisioners } from "$lib/mock-data";
 import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
@@ -26,7 +27,7 @@ describe("AccountOverview", () => {
   });
 
   it("should show the searched name once it leads to the account", async () => {
-    vi.mocked(getSearchedName).mockResolvedValue("domains.dusk");
+    vi.mocked(getSearchedName).mockResolvedValueOnce("domains.dusk");
 
     const { container } = render(AccountOverview, {
       ...baseProps,
@@ -50,6 +51,9 @@ describe("AccountOverview", () => {
 
     await vi.waitFor(() => expect(getPrimaryName).toHaveBeenCalled());
     expect(getSearchedName).toHaveBeenCalledWith(null, accountAddress);
+    // Let the lookup settle before checking that nothing shows.
+    await vi.mocked(getSearchedName).mock.results[0].value;
+    await tick();
     expect(
       container.querySelector(".account-overview-panel__searched-name")
     ).toBeNull();
