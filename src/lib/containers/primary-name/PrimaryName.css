@@ -1,0 +1,33 @@
+/* Wraps between the name and the address, not inside the name. */
+.primary-name-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+  row-gap: 0.125rem;
+  min-width: 0;
+  line-break: auto;
+}
+
+.primary-name {
+  font-family: var(--mono-font-family);
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.primary-name__site,
+.primary-name__address {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 45%);
+}
+
+.primary-name__site {
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.primary-name__address {
+  font-family: var(--mono-font-family);
+  font-size: 0.78rem;
+  letter-spacing: normal;
+  white-space: nowrap;
+}

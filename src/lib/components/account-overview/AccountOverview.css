@@ -19,6 +19,7 @@
 
 .account-overview-panel__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   min-height: 2.5rem;
@@ -28,9 +29,25 @@
   letter-spacing: 0.08em;
 }
 
-.account-overview-panel__address {
+.account-overview-panel__address,
+.account-overview-panel__header .primary-name {
   font-weight: 500;
   font-family: var(--mono-font-family);
+}
+
+/* Addresses are case-sensitive: never uppercase them. */
+.account-overview-panel__address,
+.account-overview-panel__header .primary-name__address {
+  text-transform: none;
+}
+
+.account-overview-panel__searched-name {
+  margin: -0.5rem 0 0;
+  color: color-mix(in oklab, var(--on-surface-color), transparent 45%);
+  font-family: var(--mono-font-family);
+  font-size: 0.78rem;
+  text-transform: none;
+  overflow-wrap: anywhere;
 }
 
 .account-overview-panel__separator {

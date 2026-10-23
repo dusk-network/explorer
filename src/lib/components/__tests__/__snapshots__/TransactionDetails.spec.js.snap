@@ -230,6 +230,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
@@ -239,6 +241,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           
           <!---->
         </a>
+        
+        
         <!---->
          
         <div
@@ -307,6 +311,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
@@ -316,6 +322,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           
           <!---->
         </a>
+        
+        
         <!---->
          
         <div
@@ -1048,6 +1056,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
@@ -1057,6 +1068,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
           
           <!---->
         </a>
+        
+        
+        
         <!---->
          
         <div
@@ -1125,6 +1139,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
@@ -1134,6 +1151,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
           
           <!---->
         </a>
+        
+        
+        
         <!---->
          
         <div
@@ -1877,6 +1897,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
@@ -1886,6 +1909,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
           
           <!---->
         </a>
+        
+        
+        
         <!---->
          
         <div
@@ -1954,6 +1980,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
@@ -1963,6 +1992,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
           
           <!---->
         </a>
+        
+        
+        
         <!---->
          
         <div
@@ -2726,6 +2758,8 @@ exports[`Transaction Details > should be able to render the details when they co
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
@@ -2735,6 +2769,8 @@ exports[`Transaction Details > should be able to render the details when they co
           
           <!---->
         </a>
+        
+        
         <!---->
          
         <div
@@ -2803,6 +2839,8 @@ exports[`Transaction Details > should be able to render the details when they co
         class="details-list__definition"
       >
         <!---->
+        <!---->
+        <!---->
         <a
           class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
           href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
@@ -2812,6 +2850,8 @@ exports[`Transaction Details > should be able to render the details when they co
           
           <!---->
         </a>
+        
+        
         <!---->
          
         <div
