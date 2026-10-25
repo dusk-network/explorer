@@ -36,6 +36,7 @@
   let lastRequestedKey = null;
 
   $: key = $page.url.searchParams.get("key");
+  $: searchedName = $page.url.searchParams.get("name");
   $: if (key && key !== lastRequestedKey) {
     lastRequestedKey = key;
     getTransactions();
@@ -52,6 +53,7 @@
         {errorFetchingAccountStatus}
         accountBalance={accountStatus?.balance}
         accountAddress={key}
+        {searchedName}
       />
     </article>
 

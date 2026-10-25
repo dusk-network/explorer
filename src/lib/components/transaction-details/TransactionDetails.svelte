@@ -24,6 +24,7 @@
     TransactionStatus,
     TransactionType,
   } from "$lib/components";
+  import { PrimaryName } from "$lib/containers";
   import { addressCharPropertiesDefaults } from "$lib/constants";
 
   import "./TransactionDetails.css";
@@ -140,11 +141,13 @@
       <ListItem tooltipText="The sender of the transaction">
         <svelte:fragment slot="term">from</svelte:fragment>
         <svelte:fragment slot="definition">
-          <AppAnchor
-            className="transaction-details__list-anchor"
-            href="/accounts/?key={data.from}"
-            >{withMiddleEllipsis(data.from)}</AppAnchor
-          >
+          <PrimaryName address={data.from} href="/accounts/?key={data.from}">
+            <AppAnchor
+              className="transaction-details__list-anchor"
+              href="/accounts/?key={data.from}"
+              >{withMiddleEllipsis(data.from)}</AppAnchor
+            >
+          </PrimaryName>
           <CopyButton rawValue={data.from} name="Sender's address" />
         </svelte:fragment>
       </ListItem>
@@ -155,11 +158,13 @@
       <ListItem tooltipText="The receiver of the transaction">
         <svelte:fragment slot="term">to</svelte:fragment>
         <svelte:fragment slot="definition">
-          <AppAnchor
-            className="transaction-details__list-anchor"
-            href="/accounts/?key={data.to}"
-            >{withMiddleEllipsis(data.to)}</AppAnchor
-          >
+          <PrimaryName address={data.to} href="/accounts/?key={data.to}">
+            <AppAnchor
+              className="transaction-details__list-anchor"
+              href="/accounts/?key={data.to}"
+              >{withMiddleEllipsis(data.to)}</AppAnchor
+            >
+          </PrimaryName>
           <CopyButton rawValue={data.to} name="Receiver's address" />
         </svelte:fragment>
       </ListItem>
