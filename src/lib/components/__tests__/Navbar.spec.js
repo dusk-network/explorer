@@ -1,5 +1,6 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render } from "@testing-library/svelte";
+import { tick } from "svelte";
 import * as appNavigation from "$app/navigation";
 
 import { hostProvisioners } from "$lib/mock-data";
@@ -112,6 +113,69 @@ describe("Navbar", () => {
     });
 
     expect(getNotificationElement(container)).toBeNull();
+  });
+
+  it("should make room for the search notification again once it floats, as when a tablet is turned", async () => {
+    /** @type {Array<{ callback: ResizeObserverCallback, targets: Element[] }>} */
+    const observers = [];
+
+    vi.stubGlobal(
+      "ResizeObserver",
+      class {
+        /** @param {ResizeObserverCallback} callback */
+        constructor(callback) {
+          this.callback = callback;
+          /** @type {Element[]} */
+          this.targets = [];
+          observers.push(this);
+        }
+
+        /** @param {Element} target */
+        observe(target) {
+          this.targets.push(target);
+        }
+
+        unobserve() {}
+
+        disconnect() {
+          this.targets = [];
+        }
+      }
+    );
+
+    const { container } = render(Navbar);
+    const nav = /** @type {HTMLElement} */ (container.querySelector("nav"));
+
+    // Narrow: the notification sits in the page's flow and needs no room.
+    await showSearchNotification(container);
+    await tick();
+
+    const notification = /** @type {HTMLElement} */ (
+      getNotificationElement(container)
+    );
+
+    expect(nav.style.marginBottom).toBe("0px");
+
+    // Wide: it floats over the page, so the navbar makes room below it.
+    const style = document.createElement("style");
+
+    style.textContent =
+      ".dusk-navbar__menu--search-notification { position: absolute; }";
+    document.head.append(style);
+    Object.defineProperty(notification, "clientHeight", { value: 120 });
+
+    for (const observer of observers) {
+      if (observer.targets.includes(notification)) {
+        observer.callback([], /** @type {any} */ (observer));
+      }
+    }
+
+    await tick();
+
+    expect(nav.style.marginBottom).toBe("120px");
+
+    style.remove();
+    vi.unstubAllGlobals();
   });
 
   it("should keep the search out of the menu, so phones show it without opening the menu", () => {

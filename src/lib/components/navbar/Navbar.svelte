@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, tick } from "svelte";
+  import { createEventDispatcher, onDestroy, tick } from "svelte";
   import { mdiClose, mdiMenu } from "@mdi/js";
   import { afterNavigate } from "$app/navigation";
 
@@ -51,22 +51,53 @@
 
   const dispatch = createEventDispatcher();
 
-  /**
-   * Makes room below the navbar for the search notification, where it
-   * floats over the page (wide screens).
-   */
-  async function createEmptySpace() {
-    await tick();
+  /** @type {ResizeObserver | undefined} */
+  let notificationObserver;
 
-    const notification = document.getElementsByClassName(
+  const getNotification = () =>
+    document.getElementsByClassName(
       "dusk-navbar__menu--search-notification"
     )[0];
+
+  /**
+   * Room below the navbar for the search notification, where it floats
+   * over the page (wide screens).
+   */
+  function updateOffset() {
+    const notification = getNotification();
 
     offset =
       notification && getComputedStyle(notification).position === "absolute"
         ? notification.clientHeight
         : 0;
   }
+
+  /**
+   * Makes that room, and keeps it right while the notification shows: its
+   * size can change, and so can the viewport, across the width where the
+   * notification starts floating.
+   */
+  async function createEmptySpace() {
+    await tick();
+
+    const notification = getNotification();
+
+    notificationObserver?.disconnect();
+
+    if (notification) {
+      notificationObserver = new ResizeObserver(updateOffset);
+      notificationObserver.observe(notification);
+      notificationObserver.observe(document.documentElement);
+    }
+
+    updateOffset();
+  }
+
+  $: if (!showSearchNotification) {
+    notificationObserver?.disconnect();
+  }
+
+  onDestroy(() => notificationObserver?.disconnect());
 
   /**
    * @param {NodeInfo} nodeInfo
