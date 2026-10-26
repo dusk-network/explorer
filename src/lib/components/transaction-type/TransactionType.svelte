@@ -1,5 +1,6 @@
 <script>
   import { Badge } from "$lib/dusk/components";
+  import { summarizeTransaction } from "$lib/chain-info";
   import { describeCall } from "$lib/contracts";
   import "./TransactionType.css";
   import { page } from "$app/stores";
@@ -24,15 +25,19 @@
    * @param {Transaction} transaction
    * @returns {"in" | "out" | "self" | undefined}
    */
-  const getTransactionDirection = ({ from, to }) => {
+  const getTransactionDirection = (transaction) => {
     const key = $page.url.searchParams.get("key");
-    if (key === from && key === to) {
+    const { from, to } = summarizeTransaction(transaction);
+    const sender = from?.kind === "account" ? from.address : undefined;
+    const receiver = to?.kind === "account" ? to.address : undefined;
+
+    if (key === sender && key === receiver) {
       return "self";
     }
-    if (key === from) {
+    if (key === sender) {
       return "out";
     }
-    if (key === to) {
+    if (key === receiver) {
       return "in";
     }
     return undefined;

@@ -10,6 +10,31 @@
  */
 
 /**
+ * Where a transaction went. The node leaves a public transfer's receiver
+ * out when it is the sender, so a public value with no receiver went back
+ * to the sender; otherwise a call went to its contract.
+ *
+ * @param {Transaction} tx
+ * @param {boolean} isShielded
+ * @returns {TransactionParty | null}
+ */
+function receiverOf(tx, isShielded) {
+  if (tx.to) {
+    return { address: tx.to, kind: "account" };
+  }
+
+  if (tx.from && tx.amount) {
+    return { address: tx.from, kind: "account" };
+  }
+
+  if (tx.contract) {
+    return { id: tx.contract, kind: "contract" };
+  }
+
+  return isShielded ? { kind: "shielded" } : null;
+}
+
+/**
  * Who sent a transaction, where it went and how much DUSK it moved, as
  * the node's JSON shows it. A shielded transaction hides its sender,
  * receiver and value, but not the deposit it sends to a contract.
@@ -34,14 +59,7 @@ function summarizeTransaction(tx) {
       ? { kind: "shielded" }
       : null;
 
-  /** @type {TransactionParty | null} */
-  const to = tx.to
-    ? { address: tx.to, kind: "account" }
-    : tx.contract
-      ? { id: tx.contract, kind: "contract" }
-      : isShielded
-        ? { kind: "shielded" }
-        : null;
+  const to = receiverOf(tx, isShielded);
 
   /** @type {TransactionAmount} */
   const amount = tx.amount

@@ -37,6 +37,25 @@ describe("summarizeTransaction", () => {
     });
   });
 
+  it("should give a public transfer to its own sender that sender as the receiver", () => {
+    // The node leaves the receiver out when it is the sender.
+    const toSelf = { ...transfer, to: null };
+
+    expect(summarizeTransaction(toSelf)).toStrictEqual({
+      amount: { kind: "value", lux: transfer.amount },
+      from: { address: transfer.from, kind: "account" },
+      to: { address: transfer.from, kind: "account" },
+    });
+    // Also when it calls a contract on the way: the value goes to the sender.
+    expect(
+      summarizeTransaction({ ...toSelf, contract: stake, deposit: 5 }).to
+    ).toStrictEqual({ address: transfer.from, kind: "account" });
+    // Without a value, the call's contract is where it went.
+    expect(
+      summarizeTransaction({ ...toSelf, amount: 0, contract: stake }).to
+    ).toStrictEqual({ id: stake, kind: "contract" });
+  });
+
   it("should say what a shielded transaction hides, but not its deposit", () => {
     const shielded = {
       ...transfer,
