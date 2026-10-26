@@ -230,6 +230,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <!---->
           <!---->
           <!---->
+          <!---->
           <a
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
@@ -239,6 +240,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             
             <!---->
           </a>
+          
           
           
           <!---->
@@ -312,6 +314,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <!---->
           <!---->
           <!---->
+          <!---->
           <a
             class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
             href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
@@ -321,6 +324,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             
             <!---->
           </a>
+          
           
           
           <!---->
