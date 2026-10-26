@@ -80,8 +80,40 @@ describe("summarizeTransaction", () => {
   });
 
   it("should give no receiver when a public transaction has none", () => {
-    const deploy = { ...transfer, amount: 0, contract: undefined, to: null };
+    const deploy = {
+      ...transfer,
+      amount: 0,
+      contract: undefined,
+      method: "deploy",
+      to: null,
+    };
 
     expect(summarizeTransaction(deploy).to).toBeNull();
+  });
+
+  it("should send a call that moves no value to its contract, not to a named receiver", () => {
+    const call = {
+      ...transfer,
+      amount: 0,
+      contract: stake,
+      deposit: 7,
+      method: "stake",
+    };
+
+    expect(summarizeTransaction(call)).toStrictEqual({
+      amount: { kind: "deposit", lux: 7 },
+      from: { address: transfer.from, kind: "account" },
+      to: { id: stake, kind: "contract" },
+    });
+  });
+
+  it("should give a zero-value transfer to its own sender that sender as the receiver", () => {
+    const toSelf = { ...transfer, amount: 0, method: "transfer", to: null };
+
+    expect(summarizeTransaction(toSelf)).toStrictEqual({
+      amount: { kind: "value", lux: 0 },
+      from: { address: transfer.from, kind: "account" },
+      to: { address: transfer.from, kind: "account" },
+    });
   });
 });

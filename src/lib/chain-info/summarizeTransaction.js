@@ -10,20 +10,27 @@
  */
 
 /**
- * Where a transaction went. The node leaves a public transfer's receiver
- * out when it is the sender, so a public value with no receiver went back
- * to the sender; otherwise a call went to its contract.
+ * Where a transaction went. A call that sends no value went to its
+ * contract, whatever receiver it names. The node leaves a public
+ * transfer's receiver out when it is the sender, so a transfer with no
+ * receiver went back to the sender, with or without a value. A value sent
+ * along with a call goes to the receiver, or to the sender when none is
+ * named.
  *
  * @param {Transaction} tx
  * @param {boolean} isShielded
  * @returns {TransactionParty | null}
  */
 function receiverOf(tx, isShielded) {
+  if (tx.contract && !tx.amount) {
+    return { id: tx.contract, kind: "contract" };
+  }
+
   if (tx.to) {
     return { address: tx.to, kind: "account" };
   }
 
-  if (tx.from && tx.amount) {
+  if (tx.from && (tx.amount || (!tx.contract && tx.method === "transfer"))) {
     return { address: tx.from, kind: "account" };
   }
 
