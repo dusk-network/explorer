@@ -74,6 +74,7 @@
       <svelte:fragment slot="term">height</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchorButton
+          aria-label="Previous block"
           className="block-details__list-anchor"
           href="/blocks/block?id={data.header.prevblockhash}"
           icon={{ path: mdiArrowLeft }}
@@ -81,6 +82,7 @@
         />
         {formatter(data.header.height)}
         <AppAnchorButton
+          aria-label="Next block"
           className="block-details__list-anchor"
           href="/blocks/block?id={data.header.nextblockhash}"
           icon={{ path: mdiArrowRight }}
@@ -198,6 +200,7 @@
           header
 
           <Switch
+            aria-label="Show block header"
             className="block-details__payload-switch"
             onSurface={true}
             bind:value={isPayloadToggled}

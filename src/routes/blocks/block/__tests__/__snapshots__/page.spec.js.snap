@@ -163,6 +163,7 @@ exports[`Block Details > should render the Block Details page and query the nece
             <!---->
             <a
               aria-disabled="false"
+              aria-label="Previous block"
               class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
             >
@@ -189,6 +190,7 @@ exports[`Block Details > should render the Block Details page and query the nece
              495,868 
             <a
               aria-disabled="false"
+              aria-label="Next block"
               class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
             >
@@ -256,7 +258,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                 class="dusk-copy-button"
               >
                 <button
-                  aria-label="Copy Address"
+                  aria-label="Copy block hash"
                   class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
                   data-tooltip-id="main-tooltip"
                   data-tooltip-text="Copy to clipboard"
@@ -603,7 +605,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                 class="dusk-copy-button"
               >
                 <button
-                  aria-label="Copy Address"
+                  aria-label="Copy state root hash"
                   class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
                   data-tooltip-id="main-tooltip"
                   data-tooltip-text="Copy to clipboard"
@@ -664,6 +666,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                 <div
                   aria-checked="false"
                   aria-disabled="false"
+                  aria-label="Show block header"
                   class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
                   role="switch"
                   tabindex="0"
@@ -834,7 +837,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                       class="dusk-copy-button"
                     >
                       <button
-                        aria-label="Copy Address"
+                        aria-label="Copy transaction ID"
                         class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                         data-tooltip-id="main-tooltip"
                         data-tooltip-text="Copy to clipboard"
@@ -939,22 +942,16 @@ exports[`Block Details > should render the Block Details page and query the nece
                   <div
                     class="transaction-type"
                   >
-                    <!---->
-                    <svg
-                      class="dusk-icon dusk-icon--size--large transaction-type__icon"
+                    <span
+                      class="transaction-type__privacy"
                       data-tooltip-disabled="false"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-place="top"
-                      data-tooltip-text="Public"
+                      data-tooltip-text="Sender, receiver and amount are visible to everyone"
                       data-tooltip-type="info"
-                      role="graphics-symbol"
-                      viewBox="0 0 24 24"
                     >
-                      <path
-                        d="M21 11C21 16.5 17.2 21.7 12 23C6.8 21.7 3 16.5 3 11V5L12 1L21 5V11M12 21C15.8 20 19 15.5 19 11.2V6.3L12 3.2L5 6.3V11.2C5 15.5 8.2 20 12 21M14.8 11H10.5V8.5C10.5 7.7 11.2 7.2 12 7.2S13.5 7.7 13.5 8.5V9H14.8V8.5C14.8 7.1 13.4 6 12 6S9.2 7.1 9.2 8.5V11C8.6 11 8 11.6 8 12.2V15.7C8 16.4 8.6 17 9.2 17H14.7C15.4 17 16 16.4 16 15.8V12.3C16 11.6 15.4 11 14.8 11Z"
-                      />
-                    </svg>
-                    
+                      Public
+                    </span>
                     <!---->
                      
                     <span
@@ -1000,7 +997,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                       class="dusk-copy-button"
                     >
                       <button
-                        aria-label="Copy Address"
+                        aria-label="Copy transaction ID"
                         class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                         data-tooltip-id="main-tooltip"
                         data-tooltip-text="Copy to clipboard"
@@ -1105,22 +1102,16 @@ exports[`Block Details > should render the Block Details page and query the nece
                   <div
                     class="transaction-type"
                   >
-                    <!---->
-                    <svg
-                      class="dusk-icon dusk-icon--size--large transaction-type__icon"
+                    <span
+                      class="transaction-type__privacy"
                       data-tooltip-disabled="false"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-place="top"
-                      data-tooltip-text="Shielded"
+                      data-tooltip-text="Sender, receiver and amount are hidden"
                       data-tooltip-type="info"
-                      role="graphics-symbol"
-                      viewBox="0 0 24 24"
                     >
-                      <path
-                        d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.1 14.8,9.5V11C15.4,11 16,11.6 16,12.3V15.8C16,16.4 15.4,17 14.7,17H9.2C8.6,17 8,16.4 8,15.7V12.2C8,11.6 8.6,11 9.2,11V9.5C9.2,8.1 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,9.5V11H13.5V9.5C13.5,8.7 12.8,8.2 12,8.2Z"
-                      />
-                    </svg>
-                    
+                      Shielded
+                    </span>
                     <!---->
                      
                     <span
@@ -1230,6 +1221,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <!---->
             <a
               aria-disabled="false"
+              aria-label="Previous block"
               class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
             >
@@ -1256,6 +1248,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
              495,868 
             <a
               aria-disabled="false"
+              aria-label="Next block"
               class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
             >
@@ -1323,7 +1316,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-copy-button"
               >
                 <button
-                  aria-label="Copy Address"
+                  aria-label="Copy block hash"
                   class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
                   data-tooltip-id="main-tooltip"
                   data-tooltip-text="Copy to clipboard"
@@ -1670,7 +1663,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-copy-button"
               >
                 <button
-                  aria-label="Copy Address"
+                  aria-label="Copy state root hash"
                   class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
                   data-tooltip-id="main-tooltip"
                   data-tooltip-text="Copy to clipboard"
@@ -1731,6 +1724,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 <div
                   aria-checked="false"
                   aria-disabled="false"
+                  aria-label="Show block header"
                   class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
                   role="switch"
                   tabindex="0"
@@ -1843,7 +1837,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy transaction ID"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -2108,22 +2102,16 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="transaction-type"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--large transaction-type__icon"
+              <span
+                class="transaction-type__privacy"
                 data-tooltip-disabled="false"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="Public"
+                data-tooltip-text="Sender, receiver and amount are visible to everyone"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
               >
-                <path
-                  d="M21 11C21 16.5 17.2 21.7 12 23C6.8 21.7 3 16.5 3 11V5L12 1L21 5V11M12 21C15.8 20 19 15.5 19 11.2V6.3L12 3.2L5 6.3V11.2C5 15.5 8.2 20 12 21M14.8 11H10.5V8.5C10.5 7.7 11.2 7.2 12 7.2S13.5 7.7 13.5 8.5V9H14.8V8.5C14.8 7.1 13.4 6 12 6S9.2 7.1 9.2 8.5V11C8.6 11 8 11.6 8 12.2V15.7C8 16.4 8.6 17 9.2 17H14.7C15.4 17 16 16.4 16 15.8V12.3C16 11.6 15.4 11 14.8 11Z"
-                />
-              </svg>
-              
+                Public
+              </span>
               <!---->
                
               <span
@@ -2193,7 +2181,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy transaction ID"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -2458,22 +2446,16 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="transaction-type"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--large transaction-type__icon"
+              <span
+                class="transaction-type__privacy"
                 data-tooltip-disabled="false"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="Shielded"
+                data-tooltip-text="Sender, receiver and amount are hidden"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
               >
-                <path
-                  d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.1 14.8,9.5V11C15.4,11 16,11.6 16,12.3V15.8C16,16.4 15.4,17 14.7,17H9.2C8.6,17 8,16.4 8,15.7V12.2C8,11.6 8.6,11 9.2,11V9.5C9.2,8.1 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,9.5V11H13.5V9.5C13.5,8.7 12.8,8.2 12,8.2Z"
-                />
-              </svg>
-              
+                Shielded
+              </span>
               <!---->
                
               <span

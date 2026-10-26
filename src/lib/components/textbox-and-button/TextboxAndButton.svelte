@@ -22,6 +22,13 @@
   /** @type {string | undefined} */
   export let buttonText = undefined;
 
+  /**
+   * The button's accessible name, for a button that shows only an icon.
+   *
+   * @type {string | undefined}
+   */
+  export let buttonLabel = undefined;
+
   /** @type {string | Undefined} */
   export let className = undefined;
 
@@ -119,6 +126,7 @@
     on:paste
   />
   <Button
+    aria-label={buttonLabel}
     on:click
     type="submit"
     {icon}

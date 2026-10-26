@@ -71,7 +71,7 @@
         )}</AppAnchor
       >
       <CopyButton
-        name="Transaction's ID"
+        name="Transaction ID"
         rawValue={data.txid}
         variant="secondary"
       />

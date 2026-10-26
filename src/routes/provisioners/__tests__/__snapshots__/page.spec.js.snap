@@ -123,7 +123,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -493,7 +493,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -864,7 +864,7 @@ Consensus: s9mQHPDuKiUwomr7k6S3mmeqd...HMfX2f3uis4hi33XxiM4ksRbH"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -1235,7 +1235,7 @@ Consensus: sX4JooVNAFov3Xx9cfZHtRemi...dTyEvw5Cb3UqGEqfCFZMqQhtz"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -1605,7 +1605,7 @@ Consensus: sX4JooVNAFov3Xx9cfZHtRemi...dTyEvw5Cb3UqGEqfCFZMqQhtz"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -1975,7 +1975,7 @@ Consensus: sX4JooVNAFov3Xx9cfZHtRemi...dTyEvw5Cb3UqGEqfCFZMqQhtz"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -2345,7 +2345,7 @@ Consensus: sX4JooVNAFov3Xx9cfZHtRemi...dTyEvw5Cb3UqGEqfCFZMqQhtz"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -2716,7 +2716,7 @@ Consensus: mTgXDqkyVacn7zCgoJfk7rKMV...nRE4uXaAhpCPPSjgAseybAsfU"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -3087,7 +3087,7 @@ Consensus: mUUpjnXow2LHwm8a65cJsckTe...xrsre7jNbLdDocqSfzQcywzaW"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -3457,7 +3457,7 @@ Consensus: mUUpjnXow2LHwm8a65cJsckTe...xrsre7jNbLdDocqSfzQcywzaW"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -3827,7 +3827,7 @@ Consensus: mUUpjnXow2LHwm8a65cJsckTe...xrsre7jNbLdDocqSfzQcywzaW"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -4197,7 +4197,7 @@ Consensus: mUUpjnXow2LHwm8a65cJsckTe...xrsre7jNbLdDocqSfzQcywzaW"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -4568,7 +4568,7 @@ Consensus: mgmcqkk1VFfsa1ko7ydBjhVuM...EWDB1wsvV5avoC2xddxLvEDVP"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -4938,7 +4938,7 @@ Consensus: mgmcqkk1VFfsa1ko7ydBjhVuM...EWDB1wsvV5avoC2xddxLvEDVP"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -5309,7 +5309,7 @@ Consensus: nV71a9Hec6jeXVFkUN6JvgiLD...6cHcvb326rbXNgYA4pNWv4roh"
               class="dusk-copy-button"
             >
               <button
-                aria-label="Copy Address"
+                aria-label="Copy staking address"
                 class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
@@ -5920,7 +5920,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6083,7 +6083,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6247,7 +6247,7 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6411,7 +6411,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6574,7 +6574,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6737,7 +6737,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -6900,7 +6900,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7064,7 +7064,7 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7228,7 +7228,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7391,7 +7391,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7554,7 +7554,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7717,7 +7717,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -7881,7 +7881,7 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -8044,7 +8044,7 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"
@@ -8208,7 +8208,7 @@ Consensus: nV71a9Hec6...A4pNWv4roh"
                     class="dusk-copy-button"
                   >
                     <button
-                      aria-label="Copy Address"
+                      aria-label="Copy staking address"
                       class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
                       data-tooltip-id="main-tooltip"
                       data-tooltip-text="Copy to clipboard"

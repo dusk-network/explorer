@@ -138,6 +138,7 @@ exports[`Navbar > renders the Navbar component 1`] = `
           <!---->
            
           <button
+            aria-label="Search"
             class="dusk-button dusk-button--type--submit dusk-button--variant--primary dusk-button--size--default dusk-icon-button"
             type="submit"
           >

@@ -14,9 +14,16 @@ and this project adheres to
 
 ### Changed
 
+- Say "Public" or "Shielded" in words next to the transaction type
+
 ### Removed
 
 ### Fixed
+
+- Fix keyboard focus getting stuck on the memo and payload switches
+- Fix staking addresses and transaction IDs shown in capitals on phones
+- Fix unnamed switches, copy buttons, search button and block arrows for screen readers
+- Fix type badges running into the card edge and the small Dusk Domains link on phones
 
 ## [1.6.0] - 2026-03-25
 

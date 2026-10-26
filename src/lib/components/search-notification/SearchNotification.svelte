@@ -24,6 +24,7 @@
       ></span
     >
     <Button
+      aria-label="Close"
       className="search-notification__header-action"
       on:click={() => dispatch("close")}
       icon={{

@@ -79,6 +79,7 @@
 <form on:submit|preventDefault={submitHandler}>
   <TextboxAndButton
     bind:value
+    buttonLabel="Search"
     placeholder="Account/Block/Hash"
     icon={{
       path: mdiMagnify,

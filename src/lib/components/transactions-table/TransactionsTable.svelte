@@ -61,7 +61,7 @@
               >{middleEllipsis(transaction.txid, HASH_CHARS_LENGTH)}</AppAnchor
             >
             <CopyButton
-              name="Transaction's ID"
+              name="Transaction ID"
               rawValue={transaction.txid}
               variant="secondary"
             />

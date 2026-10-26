@@ -29,9 +29,15 @@
     }
   }
 
-  /** @type {import("svelte/elements").KeyboardEventHandler<HTMLDivElement>} */
+  /**
+   * Space and Enter toggle the switch. Every other key, Tab included,
+   * keeps its default behaviour.
+   *
+   * @type {import("svelte/elements").KeyboardEventHandler<HTMLDivElement>}
+   */
   function handleKeyDown(event) {
-    if (!disabled && event.key === " ") {
+    if (!disabled && (event.key === " " || event.key === "Enter")) {
+      event.preventDefault();
       toggleSwitch();
     }
   }
@@ -50,7 +56,7 @@
   class={makeClassName(["dusk-switch", className])}
   class:dusk-switch--on-surface={onSurface}
   on:click={handleClick}
-  on:keydown|preventDefault={handleKeyDown}
+  on:keydown={handleKeyDown}
   role="switch"
   tabindex={disabled ? -1 : tabindex}
 ></div>

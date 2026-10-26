@@ -68,7 +68,7 @@
     <svelte:fragment slot="definition"
       ><span class="provisioners-list__staking-address">{provisionerKey}</span>
       <CopyButton
-        name="Provisioner's staking address"
+        name="Staking address"
         rawValue={data.key}
         variant="secondary"
       />

@@ -1,6 +1,5 @@
 <script>
-  import { mdiShieldLock, mdiShieldLockOpenOutline } from "@mdi/js";
-  import { Badge, Icon } from "$lib/dusk/components";
+  import { Badge } from "$lib/dusk/components";
   import "./TransactionType.css";
   import { page } from "$app/stores";
 
@@ -29,24 +28,22 @@
     }
     return undefined;
   };
+
+  $: isPublic = data.txtype.toLowerCase() === "moonlight";
 </script>
 
 <div class="transaction-type">
   {#if !isAccountsPage}
-    <Icon
-      className="transaction-type__icon"
+    <span
+      class="transaction-type__privacy"
       data-tooltip-disabled={!displayTooltips}
       data-tooltip-id="main-tooltip"
-      data-tooltip-text={data.txtype.toLowerCase() === "moonlight"
-        ? "Public"
-        : "Shielded"}
+      data-tooltip-text={isPublic
+        ? "Sender, receiver and amount are visible to everyone"
+        : "Sender, receiver and amount are hidden"}
       data-tooltip-place="top"
-      data-tooltip-type="info"
-      path={data.txtype.toLowerCase() === "moonlight"
-        ? mdiShieldLockOpenOutline
-        : mdiShieldLock}
-      size="large"
-    />
+      data-tooltip-type="info">{isPublic ? "Public" : "Shielded"}</span
+    >
   {/if}
   <Badge
     className="transaction-type__method-badge"

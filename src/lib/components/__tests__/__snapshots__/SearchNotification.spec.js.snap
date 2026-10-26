@@ -22,6 +22,7 @@ exports[`Search Notification > renders the Search Notification component with a 
     </span>
      
     <button
+      aria-label="Close"
       class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button search-notification__header-action"
       type="button"
     >
@@ -83,6 +84,7 @@ exports[`Search Notification > renders the Search Notification component with th
     </span>
      
     <button
+      aria-label="Close"
       class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button search-notification__header-action"
       type="button"
     >

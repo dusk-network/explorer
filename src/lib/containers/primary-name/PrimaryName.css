@@ -21,8 +21,34 @@
 }
 
 .primary-name__site {
+  position: relative;
   font-size: 0.8rem;
   text-decoration: none;
+}
+
+/*
+ * The arrow's target, centred on it and clear of the name beside it:
+ * 24px with a mouse, 44px on touch screens.
+ */
+.primary-name__site::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: translate(-50%, -50%);
+}
+
+@media (pointer: coarse) {
+  .primary-name__site {
+    margin-inline: 0.875rem;
+  }
+
+  .primary-name__site::after {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
 }
 
 .primary-name__address {
