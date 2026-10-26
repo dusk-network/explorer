@@ -15,6 +15,7 @@ and this project adheres to
 - Name the contract a call went to, with plain words for common calls
 - Add an account's stake and stake rewards to its page
 - Add a search to the provisioners page
+- Show primary .dusk names in the From / To of transaction lists
 
 ### Changed
 

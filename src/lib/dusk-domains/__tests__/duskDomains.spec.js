@@ -4,6 +4,7 @@ import { decodeBase58 } from "@duskdomains/sdk";
 import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
 
 import releases from "../dusk-domains-releases.json";
+import { aggregateReply, countCalls } from "./aggregateReply";
 
 vi.mock("@duskdomains/sdk/lens-reader", () => ({ createLensReader: vi.fn() }));
 
@@ -77,6 +78,7 @@ describe("resolveDuskName", () => {
     expect(createReader).toHaveBeenCalledTimes(1);
     expect(createReader).toHaveBeenCalledWith(releases.testnet, {
       artifactBaseUrl: "https://testnet.dusk.domains/",
+      fetch: expect.any(Function),
       nodeUrl: "https://testnet.nodes.dusk.network/",
     });
   });
@@ -153,7 +155,7 @@ describe("getPrimaryName", () => {
     expect(reader.verifyPrimary).toHaveBeenCalledTimes(1);
   });
 
-  it("should look an account up once a minute at most, and retry a failed lookup", async () => {
+  it("should look an account up once a session, and retry a failed lookup", async () => {
     vi.useFakeTimers({ toFake: ["Date"] });
 
     const { reader, getPrimaryName } = await setup(2);
@@ -171,12 +173,82 @@ describe("getPrimaryName", () => {
     await expect(getPrimaryName(account)).resolves.toStrictEqual(found);
     expect(reader.verifyPrimary).toHaveBeenCalledTimes(2);
 
-    vi.advanceTimersByTime(60_000);
+    vi.advanceTimersByTime(3_600_000);
 
     await expect(getPrimaryName(account)).resolves.toStrictEqual(found);
-    expect(reader.verifyPrimary).toHaveBeenCalledTimes(3);
+    expect(reader.verifyPrimary).toHaveBeenCalledTimes(2);
 
     vi.useRealTimers();
+  });
+
+  it("should look up again alone a name the lens refused for want of gas in a batch", async () => {
+    const { createReader, getPrimaryName } = await setup(2);
+    const refused = Object.assign(new Error("Lens refused: GasBudget"), {
+      reason: "refused",
+      refusal: { cause: null, code: "GasBudget" },
+    });
+    const batched = {
+      resolve: vi.fn(),
+      verifyPrimary: vi.fn().mockRejectedValue(refused),
+    };
+    const direct = {
+      resolve: vi.fn(),
+      verifyPrimary: vi
+        .fn()
+        .mockResolvedValue({ primary: { spelling: "tdi.dusk" } }),
+    };
+
+    createReader
+      .mockResolvedValueOnce(/** @type {any} */ (batched))
+      .mockResolvedValueOnce(/** @type {any} */ (direct));
+
+    await expect(getPrimaryName(account)).resolves.toStrictEqual({
+      name: "tdi.dusk",
+      url: "https://testnet.dusk.domains/name/tdi.dusk",
+    });
+    expect(batched.verifyPrimary).toHaveBeenCalledTimes(1);
+    expect(direct.verifyPrimary).toHaveBeenCalledExactlyOnceWith(
+      decodeBase58(account)
+    );
+    // The batched reader reads through Multicall for Dusk, the direct one not.
+    expect(createReader.mock.calls[0][1]).toHaveProperty("fetch");
+    expect(createReader.mock.calls[1][1]).not.toHaveProperty("fetch");
+  });
+
+  it("should leave any other failed lookup failed, without reading it again", async () => {
+    const { createReader, reader, getPrimaryName, getPrimaryNames } =
+      await setup(2);
+    const other = hostProvisioners[1].key;
+
+    reader.verifyPrimary
+      .mockRejectedValueOnce(
+        Object.assign(new Error("Lens evidence does not check"), {
+          reason: "evidence",
+        })
+      )
+      .mockRejectedValueOnce(
+        Object.assign(new Error("Lens refused: InvalidEndpoint"), {
+          reason: "refused",
+          refusal: { cause: null, code: "InvalidEndpoint" },
+        })
+      );
+
+    await expect(getPrimaryName(account)).rejects.toThrow(
+      "Lens evidence does not check"
+    );
+    await expect(getPrimaryNames([other])).resolves.toStrictEqual(new Map());
+    expect(reader.verifyPrimary).toHaveBeenCalledTimes(2);
+    expect(createReader).toHaveBeenCalledTimes(1);
+
+    // Nor is a failure kept: the next lookup reads again.
+    reader.verifyPrimary.mockResolvedValue(null);
+
+    await expect(getPrimaryNames([account, other])).resolves.toStrictEqual(
+      new Map([
+        [account, null],
+        [other, null],
+      ])
+    );
   });
 
   it("should ask the node for its network before the layout has", async () => {
@@ -192,6 +264,78 @@ describe("getPrimaryName", () => {
       name: "tdi.dusk",
       url: "https://testnet.dusk.domains/name/tdi.dusk",
     });
+  });
+});
+
+describe("getPrimaryNames", () => {
+  const multicall =
+    "93de287b7d349d678a0038fe7772e8960e1a84a1b5da2d0b1f62f532616ce1d4";
+  const accounts = hostProvisioners.slice(0, 5).map(({ key }) => key);
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("should look up a list's accounts in one Multicall for Dusk query, each once a session", async () => {
+    vi.stubEnv("VITE_NODE_URL", "https://testnet.nodes.dusk.network");
+
+    const { createReader, getPrimaryNames } = await setup(2);
+    const lens = releases.testnet.lens.contractId;
+    const fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async (_, init) => {
+        const calls = countCalls(init?.body);
+        const names = Array.from({ length: calls }, (slot, i) => ({
+          Ok: new TextEncoder().encode(i % 2 ? "" : `name${i}.dusk`),
+        }));
+
+        return new Response(aggregateReply(names));
+      });
+
+    // A reader that sends each read through the fetch it was given, as the
+    // SDK's transport does, and reads a name from its reply.
+    createReader.mockImplementation(
+      async (_, options) =>
+        /** @type {any} */ ({
+          resolve: vi.fn(),
+          verifyPrimary: async (/** @type {Uint8Array} */ endpoint) => {
+            const fetch = /** @type {typeof globalThis.fetch} */ (
+              options.fetch
+            );
+            const res = await fetch(
+              `https://testnet.nodes.dusk.network/on/contracts:${lens}/reverse`,
+              { body: new Uint8Array(endpoint), method: "POST" }
+            );
+            const spelling = new TextDecoder().decode(await res.arrayBuffer());
+
+            return spelling ? { primary: { spelling } } : null;
+          },
+        })
+    );
+
+    const names = await getPrimaryNames([...accounts, accounts[0], null]);
+
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(String(fetchSpy.mock.calls[0][0])).toBe(
+      `https://testnet.nodes.dusk.network/on/contracts:${multicall}/aggregate`
+    );
+    expect(countCalls(fetchSpy.mock.calls[0][1]?.body)).toBe(5);
+    expect([...names]).toStrictEqual(
+      accounts.map((address, i) => [
+        address,
+        i % 2
+          ? null
+          : {
+              name: `name${i}.dusk`,
+              url: `https://testnet.dusk.domains/name/name${i}.dusk`,
+            },
+      ])
+    );
+
+    // The same accounts again: the names are kept for the session.
+    await getPrimaryNames(accounts);
+
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 });
 

@@ -81,3 +81,21 @@ function summarizeTransaction(tx) {
 }
 
 export default summarizeTransaction;
+
+/**
+ * The public accounts that sent or received the given transactions, each
+ * once, as their From and To show them.
+ *
+ * @param {Transaction[]} transactions
+ * @returns {string[]}
+ */
+export const accountsOf = (transactions) => [
+  ...new Set(
+    transactions
+      .flatMap(({ from, to }) => [from, to])
+      .filter(
+        /** @returns {address is string} */
+        (address) => typeof address === "string" && address !== ""
+      )
+  ),
+];

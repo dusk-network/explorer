@@ -6,6 +6,8 @@
     TransactionsList,
     TransactionsTable,
   } from "$lib/components";
+  import { accountsOf } from "$lib/chain-info";
+  import { getPrimaryNames } from "$lib/dusk-domains";
   import { makeClassName } from "$lib/dusk/string";
   import { goto } from "$lib/navigation";
 
@@ -30,7 +32,24 @@
   /** @type {boolean} */
   export let isSmallScreen;
 
+  /**
+   * The verified primary names of the accounts the list shows: one lookup
+   * for all of them, which Multicall for Dusk carries in one query, and
+   * none for an account already looked up this session.
+   *
+   * @type {Map<string, { name: string, url: string } | null>}
+   */
+  let names = new Map();
+
+  /** @param {Transaction[]} shown */
+  function lookUpNames(shown) {
+    getPrimaryNames(accountsOf(shown)).then((found) => {
+      names = new Map([...names, ...found]);
+    });
+  }
+
   $: classes = makeClassName(["latest-transactions-card", className]);
+  $: lookUpNames(txns ?? []);
 </script>
 
 <DataCard
@@ -55,6 +74,7 @@
         data={txn}
         mode={isOnHomeScreen ? "compact" : "full"}
         {displayTooltips}
+        {names}
       />
     {/each}
   {:else}
@@ -63,6 +83,7 @@
       className="latest-transactions-card__table"
       {displayTooltips}
       mode={isOnHomeScreen ? "compact" : "full"}
+      {names}
     />
   {/if}
 </DataCard>

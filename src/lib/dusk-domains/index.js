@@ -1,5 +1,6 @@
 export {
   getPrimaryName,
+  getPrimaryNames,
   getSearchedName,
   isDuskDomainsContract,
   isDuskName,

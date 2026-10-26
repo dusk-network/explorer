@@ -37,6 +37,20 @@
    */
   export let mode;
 
+  /**
+   * The verified primary names of the listed accounts, looked up together.
+   *
+   * @type {Map<string, { name: string, url: string } | null>}
+   */
+  export let names = new Map();
+
+  /**
+   * @param {Map<string, { name: string, url: string } | null>} found
+   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
+   */
+  const nameOf = (found, party) =>
+    party?.kind === "account" ? found.get(party.address) : undefined;
+
   const duskFormatter = createFeeFormatter("en");
 
   $: isFull = mode === "full";
@@ -94,11 +108,11 @@
         <TableCell>
           <span class="transaction__party">
             <span class="sr-only">From</span>
-            <TransactionParty party={from} />
+            <TransactionParty name={nameOf(names, from)} party={from} />
           </span>
           <span class="transaction__party">
             <span class="sr-only">To</span>
-            <TransactionParty party={to} />
+            <TransactionParty name={nameOf(names, to)} party={to} />
           </span>
         </TableCell>
         <TableCell>
