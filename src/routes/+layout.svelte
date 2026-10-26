@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   import { Toast, Tooltip } from "$lib/dusk/components";
-  import { Footer, Navbar } from "$lib/components";
+  import { Footer, Navbar, TestnetStrip } from "$lib/components";
   import { appStore } from "$lib/stores";
   import { duskAPI } from "$lib/services";
   import "../style/main.css";
@@ -30,6 +30,7 @@
 </script>
 
 <header>
+  <TestnetStrip />
   <Navbar on:toggleMenu={(e) => toggleScroll(e.detail)} />
 </header>
 <main id="explorer">

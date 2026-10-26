@@ -40,6 +40,22 @@ vi.mock("$lib/services", async (importOriginal) => ({
   },
 }));
 
+/**
+ * The store as a page gets it, fresh, with what the node said of its
+ * network: mainnet unless told otherwise.
+ *
+ * @param {Partial<NodeInfo>} [nodeInfo]
+ * @returns {Promise<MarketDataStore>}
+ */
+// eslint-disable-next-line camelcase
+async function importStore(nodeInfo = { chain_id: 1 }) {
+  const { default: freshAppStore } = await import("../appStore");
+
+  freshAppStore.setNodeInfo({ ...get(freshAppStore).nodeInfo, ...nodeInfo });
+
+  return (await import("../marketDataStore")).default;
+}
+
 describe("marketDataStore", async () => {
   const storeKey = "market-data";
   const { marketDataFetchInterval } = get(appStore);
@@ -57,7 +73,7 @@ describe("marketDataStore", async () => {
 
     localStorage.clear();
 
-    marketDataStore = (await import("../marketDataStore")).default;
+    marketDataStore = await importStore();
   });
 
   afterAll(() => {
@@ -165,6 +181,58 @@ describe("marketDataStore", async () => {
     expect(duskAPI.getMarketData).toHaveBeenCalledTimes(2);
   });
 
+  describe("Off mainnet", () => {
+    const noMarketData = {
+      data: null,
+      error: null,
+      isLoading: false,
+      lastUpdate: null,
+    };
+
+    beforeEach(() => {
+      vi.resetModules();
+      vi.clearAllTimers();
+      vi.mocked(duskAPI.getMarketData).mockClear();
+    });
+
+    it("should ask for no market data and give none on a test network, even with data stored", async () => {
+      localStorage.setItem(
+        storeKey,
+        JSON.stringify({ data: "C", lastUpdate: new Date(Date.now()) })
+      );
+
+      // eslint-disable-next-line camelcase
+      marketDataStore = await importStore({ chain_id: 2 });
+
+      await vi.advanceTimersByTimeAsync(marketDataFetchInterval * 3);
+
+      expect(duskAPI.getMarketData).not.toHaveBeenCalled();
+      expect(get(marketDataStore)).toStrictEqual(noMarketData);
+    });
+
+    it("should wait for the node to say it is on mainnet before asking", async () => {
+      marketDataStore = await importStore({});
+
+      await vi.advanceTimersByTimeAsync(marketDataFetchInterval);
+
+      expect(duskAPI.getMarketData).not.toHaveBeenCalled();
+      expect(get(marketDataStore)).toStrictEqual(noMarketData);
+
+      await importStore();
+
+      expect(duskAPI.getMarketData).toHaveBeenCalledTimes(1);
+
+      await vi.advanceTimersByTimeAsync(settleTime);
+
+      expect(get(marketDataStore)).toStrictEqual({
+        data: fakeMarketDataA,
+        error: null,
+        isLoading: false,
+        lastUpdate: new Date(),
+      });
+    });
+  });
+
   describe("Stale data checks", () => {
     const startingStore = {
       data: null,
@@ -258,7 +326,7 @@ describe("marketDataStore", async () => {
 
       localStorage.setItem(storeKey, JSON.stringify(storedData));
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       expect(get(marketDataStore)).toStrictEqual({
         error: null,
@@ -285,7 +353,7 @@ describe("marketDataStore", async () => {
       // we don't want to see our fake error in the console
       consoleErrorSpy.mockImplementationOnce(() => {});
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
       expect(get(marketDataStore)).toStrictEqual({
@@ -307,7 +375,7 @@ describe("marketDataStore", async () => {
         })
       );
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       expect(duskAPI.getMarketData).toHaveBeenCalledTimes(1);
 
@@ -328,7 +396,7 @@ describe("marketDataStore", async () => {
         })
       );
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       expect(duskAPI.getMarketData).not.toHaveBeenCalled();
 
@@ -346,7 +414,7 @@ describe("marketDataStore", async () => {
     });
 
     it("should save the received data in local storage if the request has new data", async () => {
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       await vi.advanceTimersByTimeAsync(settleTime);
 
@@ -374,7 +442,7 @@ describe("marketDataStore", async () => {
         rejectAfter(settleTime, error)
       );
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       await vi.advanceTimersByTimeAsync(settleTime);
 
@@ -398,7 +466,7 @@ describe("marketDataStore", async () => {
       // we don't want to see our fake error in the console
       consoleErrorSpy.mockImplementationOnce(() => {});
 
-      marketDataStore = (await import("../marketDataStore")).default;
+      marketDataStore = await importStore();
 
       await vi.advanceTimersByTimeAsync(settleTime);
 

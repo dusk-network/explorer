@@ -18,6 +18,7 @@
   import { DataGuard, StaleDataNotice } from "$lib/components";
   import { duskAPI } from "$lib/services";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
+  import { isMainnet } from "$lib/network";
   import { appStore, marketDataStore, nodeLocationStore } from "$lib/stores";
 
   import "./StatisticsPanel.css";
@@ -46,28 +47,33 @@
   $: ({ data: marketData } = $marketDataStore);
   $: ({ data: statsData } = $pollingStatsDataStore);
   $: ({ data: nodesData } = $nodeLocationStore);
+  // Test DUSK has no value: no price or market cap off mainnet.
+  $: marketStatistics = isMainnet($appStore.nodeInfo)
+    ? [
+        [
+          {
+            approximate: false,
+            attributes: null,
+            canBeStale: true,
+            compact: true,
+            data: marketData?.currentPrice.usd,
+            icon: mdiCurrencyUsd,
+            title: "Dusk Price",
+          },
+          {
+            approximate: false,
+            attributes: null,
+            canBeStale: true,
+            compact: true,
+            data: marketData?.marketCap.usd,
+            icon: mdiCurrencyUsd,
+            title: "Total Market Cap",
+          },
+        ],
+      ]
+    : [];
   $: statistics = [
-    [
-      {
-        approximate: false,
-        attributes: null,
-        canBeStale: true,
-        compact: true,
-        data: marketData?.currentPrice.usd,
-        icon: mdiCurrencyUsd,
-        title: "Dusk Price",
-      },
-      {
-        approximate: false,
-        attributes: null,
-        canBeStale: true,
-        compact: true,
-        data: marketData?.marketCap.usd,
-        icon: mdiCurrencyUsd,
-        title: "Total Market Cap",
-      },
-    ],
-
+    ...marketStatistics,
     [
       {
         approximate: !!statsData?.activeStake,

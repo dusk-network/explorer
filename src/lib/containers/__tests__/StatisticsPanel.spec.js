@@ -1,5 +1,5 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { act, cleanup, render } from "@testing-library/svelte";
 import { get } from "svelte/store";
 
 import { resolveAfter } from "$lib/dusk/promise";
@@ -43,7 +43,17 @@ describe("StatisticsPanel", () => {
     vi.doUnmock("$lib/services");
   });
 
+  /** @param {number} chainId */
+  const setChain = (chainId) =>
+    appStore.setNodeInfo({
+      ...get(appStore).nodeInfo,
+      // eslint-disable-next-line camelcase
+      chain_id: chainId,
+    });
+
   it("should render the StatisticsPanel, query for the necessary info, start polling for stats and stop the polling when unmounted", async () => {
+    setChain(1);
+
     const { container, unmount } = render(StatisticsPanel);
 
     expect(container.firstElementChild).toMatchSnapshot();
@@ -72,5 +82,25 @@ describe("StatisticsPanel", () => {
     await vi.advanceTimersByTimeAsync(statsFetchInterval * 10);
 
     expect(duskAPI.getStats).toHaveBeenCalledTimes(3);
+  });
+  it("should show no DUSK price or market cap on a test network", async () => {
+    vi.mocked(duskAPI.getStats).mockClear();
+    setChain(2);
+
+    const { container, getByText, queryByText } = render(StatisticsPanel);
+
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    expect(queryByText("Dusk Price")).toBeNull();
+    expect(queryByText("Total Market Cap")).toBeNull();
+    expect(getByText("Current Stake")).toBeInTheDocument();
+    expect(
+      container.querySelectorAll(".statistics-panel__statistics-item")
+    ).toHaveLength(8);
+
+    await act(() => setChain(1));
+
+    expect(getByText("Dusk Price")).toBeInTheDocument();
+    expect(getByText("Total Market Cap")).toBeInTheDocument();
   });
 });

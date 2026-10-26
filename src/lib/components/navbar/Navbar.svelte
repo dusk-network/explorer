@@ -6,6 +6,7 @@
   import { Badge, Button, NavList } from "$lib/dusk/components";
   import { AppAnchor, AppImage, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
+  import { getNetworkName, isConnected } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./Navbar.css";
@@ -98,36 +99,6 @@
   }
 
   onDestroy(() => notificationObserver?.disconnect());
-
-  /**
-   * @param {NodeInfo} nodeInfo
-   */
-  const isConnected = (nodeInfo) => {
-    const chainId = nodeInfo.chain_id;
-    return Number.isInteger(chainId) || chainId === null || false;
-  };
-
-  /**
-   * @param {NodeInfo} nodeInfo
-   */
-  const getNetworkName = (nodeInfo) => {
-    switch (nodeInfo.chain_id) {
-      case 1:
-        return "mainnet";
-
-      case 2:
-        return "testnet";
-
-      case 3:
-        return "devnet";
-
-      case 41:
-        return "mainnet dry-run #2";
-
-      default:
-        return "localnet";
-    }
-  };
 
   afterNavigate(() => {
     hidden = true;

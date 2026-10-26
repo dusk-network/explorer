@@ -7,7 +7,7 @@ import {
   it,
   vi,
 } from "vitest";
-import { cleanup, fireEvent } from "@testing-library/svelte";
+import { act, cleanup, fireEvent } from "@testing-library/svelte";
 import { get } from "svelte/store";
 import { duskAPI } from "$lib/services";
 import { appStore as realAppStore } from "$lib/stores";
@@ -203,5 +203,24 @@ describe("Main layout", () => {
     expect(get(appStore).nodeInfo).toStrictEqual(nodeInfoInitialState);
 
     vi.useRealTimers();
+  });
+
+  it("should say at the top of a test network that test DUSK has no value", async () => {
+    const { getByRole, queryByRole } = renderWithSimpleContent(
+      MainLayout,
+      baseOptions
+    );
+
+    await vi.advanceTimersByTimeAsync(1);
+
+    const strip = /** @type {HTMLElement} */ (getByRole("note"));
+
+    expect(strip).toHaveTextContent("Testnet · Test DUSK has no value");
+    expect(strip.nextElementSibling).toHaveClass("dusk-navbar");
+
+    // eslint-disable-next-line camelcase
+    await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
+
+    expect(queryByRole("note")).toBeNull();
   });
 });

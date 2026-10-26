@@ -16,6 +16,7 @@ and this project adheres to
 - Add an account's stake and stake rewards to its page
 - Add a search to the provisioners page
 - Show primary .dusk names in the From / To of transaction lists
+- Say at the top of a test network that test DUSK has no value
 
 ### Changed
 
@@ -31,6 +32,7 @@ and this project adheres to
 - Keep the search text after a miss, say why nothing was found and offer the .dusk name to try
 - Link provisioners to their account page, and keep their rows short on phones
 - Move "Show more" and the count to the bottom of lists
+- Show no DUSK price, market cap or dollar values off mainnet
 
 ### Removed
 

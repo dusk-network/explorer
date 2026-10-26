@@ -2,6 +2,7 @@ import { derived, get } from "svelte/store";
 
 import { createPollingDataStore } from "$lib/dusk/svelte-stores";
 import { MarketDataInfo } from "$lib/market-data";
+import { isMainnet } from "$lib/network";
 import { duskAPI } from "$lib/services";
 
 import appStore from "./appStore";
@@ -91,17 +92,48 @@ function isDataStale() {
   );
 }
 
-if (!initialState.lastUpdate || isDataStale()) {
-  pollingDataStore.start();
-} else {
-  setTimeout(
-    pollingDataStore.start,
-    +initialState.lastUpdate + fetchInterval - Date.now()
-  );
+function startPolling() {
+  if (!initialState.lastUpdate || isDataStale()) {
+    pollingDataStore.start();
+  } else {
+    setTimeout(
+      pollingDataStore.start,
+      +initialState.lastUpdate + fetchInterval - Date.now()
+    );
+  }
 }
+
+/** @type {MarketDataStoreContent} */
+const noMarketData = {
+  data: null,
+  error: null,
+  isLoading: false,
+  lastUpdate: null,
+};
+
+/**
+ * Test DUSK has no value: the store asks for market data, and gives what
+ * it has, only once the node says it is on mainnet.
+ */
+const shownMarketData = derived(
+  [marketDataStore, appStore],
+  ([$marketDataStore, $appStore], set) => {
+    set(isMainnet($appStore.nodeInfo) ? $marketDataStore : noMarketData);
+  },
+  noMarketData
+);
+
+let isPolling = false;
+
+appStore.subscribe(({ nodeInfo }) => {
+  if (!isPolling && isMainnet(nodeInfo)) {
+    isPolling = true;
+    startPolling();
+  }
+});
 
 /** @type {MarketDataStore} */
 export default {
   isDataStale,
-  subscribe: marketDataStore.subscribe,
+  subscribe: shownMarketData.subscribe,
 };
