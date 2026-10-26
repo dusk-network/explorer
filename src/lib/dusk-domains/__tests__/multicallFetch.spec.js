@@ -359,6 +359,83 @@ describe("createMulticallFetch", () => {
       expect(signals[0].aborted).toBe(true);
     });
 
+    it("should cancel a read sent alone whose body stalls once its reader gives up", async () => {
+      /** @type {AbortSignal[]} */
+      const signals = [];
+      // Headers at once, then a body that only ends when the request aborts.
+      const base = vi.fn(
+        /** @type {(input: RequestInfo | URL, init?: RequestInit) => Promise<Response>} */ (
+          async (_, init) => {
+            const signal = /** @type {AbortSignal} */ (init?.signal);
+
+            signals.push(signal);
+
+            return new Response(
+              new ReadableStream({
+                start: (stream) =>
+                  signal.addEventListener("abort", () =>
+                    stream.error(signal.reason)
+                  ),
+              })
+            );
+          }
+        )
+      );
+      const fetch = createMulticallFetch({
+        fetch: base,
+        gasFor,
+        nodeUrl: NODE,
+      });
+      const { controller, init, url } = abortable(1);
+      const reading = fetch(url, init)
+        .then((res) => res.arrayBuffer())
+        .catch((error) => error);
+
+      await vi.waitFor(() => expect(base).toHaveBeenCalledTimes(1));
+      await new Promise((resolve) => setTimeout(resolve));
+
+      expect(signals[0].aborted).toBe(false);
+
+      controller.abort(new Error("timeout"));
+
+      await vi.waitFor(() => expect(signals[0].aborted).toBe(true));
+      expect(await reading).toBeInstanceOf(Error);
+    });
+
+    it("should stop forwarding a reader's abort once it has read the body", async () => {
+      /** @type {AbortSignal[]} */
+      const signals = [];
+      const base = vi.fn(
+        /** @type {(input: RequestInfo | URL, init?: RequestInit) => Promise<Response>} */ (
+          async (_, init) => {
+            signals.push(/** @type {AbortSignal} */ (init?.signal));
+
+            return new Response(new Uint8Array([7, 8]));
+          }
+        )
+      );
+      const fetch = createMulticallFetch({
+        fetch: base,
+        gasFor,
+        nodeUrl: NODE,
+      });
+      const reads = [abortable(1), abortable(1)];
+      const answers = await Promise.all(
+        reads.map(({ init, url }) => fetch(url, init))
+      );
+
+      expect(await Promise.all(answers.map(body))).toStrictEqual([
+        "0708",
+        "0708",
+      ]);
+
+      for (const { controller } of reads) {
+        controller.abort();
+      }
+
+      expect(signals[0].aborted).toBe(false);
+    });
+
     it("should keep an aggregate for reads that share one signal until it aborts", async () => {
       const [base, signals] = hangingNode();
       const fetch = createMulticallFetch({

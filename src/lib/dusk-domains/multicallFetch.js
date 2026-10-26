@@ -221,6 +221,57 @@ const whileAnyWaits = (waiters) => {
 };
 
 /**
+ * The response with a body that calls `done` once, when it has been read to
+ * its end, failed or been cancelled; at once when it has none.
+ *
+ * @param {Response} res
+ * @param {() => void} done
+ * @returns {Response}
+ */
+const untilRead = (res, done) => {
+  if (!res.body) {
+    done();
+
+    return res;
+  }
+
+  const reader = res.body.getReader();
+  let open = true;
+  const close = () => {
+    if (open) {
+      open = false;
+      done();
+    }
+  };
+
+  return new Response(
+    new ReadableStream({
+      cancel: (reason) => {
+        close();
+
+        return reader.cancel(reason);
+      },
+      pull: async (stream) => {
+        try {
+          const chunk = await reader.read();
+
+          if (chunk.done) {
+            close();
+            stream.close();
+          } else {
+            stream.enqueue(chunk.value);
+          }
+        } catch (error) {
+          close();
+          stream.error(error);
+        }
+      },
+    }),
+    { headers: res.headers, status: res.status, statusText: res.statusText }
+  );
+};
+
+/**
  * A rate limit is the node's answer to every read in the query: each gets
  * its wait, and the node's Date, which a wait given as a date counts from.
  *
@@ -290,30 +341,37 @@ export function createMulticallFetch({
     FIRST_REPLY;
 
   /**
-   * One read sent on its own, its answer given to every waiter. A lone
-   * waiter keeps its abort signal.
+   * One read sent on its own, its answer given to every waiter. Their
+   * signals can abort it until each has read or dropped its body.
    *
    * @param {Call} call
    */
   const alone = (call) => {
     const watch = whileAnyWaits(call.waiters);
 
-    base(call.input, { ...call.waiters[0].init, signal: watch.signal })
-      .then(
-        (res) => {
-          const copies = call.waiters.map((_, i) =>
-            i === call.waiters.length - 1 ? res : res.clone()
-          );
-
-          call.waiters.forEach((waiter, i) => waiter.resolve(copies[i]));
-        },
-        (error) => {
-          for (const waiter of call.waiters) {
-            waiter.reject(error);
+    base(call.input, { ...call.waiters[0].init, signal: watch.signal }).then(
+      (res) => {
+        let open = call.waiters.length;
+        const done = () => {
+          if (--open === 0) {
+            watch.release();
           }
+        };
+
+        call.waiters.forEach((waiter, i) =>
+          waiter.resolve(
+            untilRead(i === call.waiters.length - 1 ? res : res.clone(), done)
+          )
+        );
+      },
+      (error) => {
+        watch.release();
+
+        for (const waiter of call.waiters) {
+          waiter.reject(error);
         }
-      )
-      .finally(watch.release);
+      }
+    );
   };
 
   /**

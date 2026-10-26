@@ -91,11 +91,12 @@ export default summarizeTransaction;
  */
 export const accountsOf = (transactions) => [
   ...new Set(
-    transactions
-      .flatMap(({ from, to }) => [from, to])
-      .filter(
-        /** @returns {address is string} */
-        (address) => typeof address === "string" && address !== ""
-      )
+    transactions.flatMap((tx) => {
+      const { from, to } = summarizeTransaction(tx);
+
+      return [from, to].flatMap((party) =>
+        party?.kind === "account" ? [party.address] : []
+      );
+    })
   ),
 ];
