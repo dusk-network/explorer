@@ -221,13 +221,20 @@ const whileAnyWaits = (waiters) => {
 };
 
 /**
- * A rate limit is the node's answer to every read in the query.
+ * A rate limit is the node's answer to every read in the query: each gets
+ * its wait, and the node's Date, which a wait given as a date counts from.
  *
  * @param {Call[]} batch
  * @param {Response} res
  */
 const rateLimited = (batch, res) => {
+  /** @type {Record<string, string>} */
   const headers = { "Retry-After": res.headers.get("Retry-After") ?? "" };
+  const date = res.headers.get("Date");
+
+  if (date) {
+    headers.Date = date;
+  }
 
   for (const call of batch) {
     answerAll(

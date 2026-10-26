@@ -199,6 +199,30 @@ describe("createMulticallFetch", () => {
     expect(base).toHaveBeenCalledTimes(1);
   });
 
+  it("should give every read the node's own clock with a Retry-After date", async () => {
+    // A reader counts a date's wait from the reply's Date, not its own clock.
+    const headers = {
+      Date: "Mon, 26 Oct 2026 04:00:00 GMT",
+      "Retry-After": "Mon, 26 Oct 2026 04:00:05 GMT",
+    };
+    const base = node(
+      () => new Response("slow down", { headers, status: 503 })
+    );
+    const fetch = createMulticallFetch({ fetch: base, gasFor, nodeUrl: NODE });
+    const answers = await Promise.all([
+      fetch(...read("reverse", [1])),
+      fetch(...read("reverse", [2])),
+    ]);
+
+    for (const answer of answers) {
+      expect(answer.status).toBe(503);
+      expect(answer.headers.get("Date")).toBe(headers.Date);
+      expect(answer.headers.get("Retry-After")).toBe(headers["Retry-After"]);
+    }
+
+    expect(base).toHaveBeenCalledTimes(1);
+  });
+
   it("should send the reads alone after a 503 that says nothing of when to come back", async () => {
     const base = node((url) =>
       url === AGGREGATE
