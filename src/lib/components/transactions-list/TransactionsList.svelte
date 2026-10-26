@@ -4,13 +4,14 @@
   import { onMount } from "svelte";
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
   import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
-  import { createValueFormatter } from "$lib/dusk/value";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { createFeeFormatter, luxToDusk } from "$lib/dusk/currency";
+  import { summarizeTransaction } from "$lib/chain-info";
   import {
     AppAnchor,
     DataGuard,
     DetailList,
     ListItem,
+    TransactionParty,
     TransactionStatus,
     TransactionType,
   } from "$lib/components";
@@ -33,7 +34,7 @@
   /** @type {number} */
   let screenWidth = window.innerWidth;
 
-  const formatter = createValueFormatter("en");
+  const duskFormatter = createFeeFormatter("en");
 
   const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
     addressCharPropertiesDefaults;
@@ -49,6 +50,8 @@
 
     return () => resizeObserver.disconnect();
   });
+
+  $: ({ amount, from, to } = summarizeTransaction(data));
 </script>
 
 <DetailList>
@@ -87,41 +90,61 @@
     <svelte:fragment slot="term">relative time</svelte:fragment>
     <RelativeTime
       autoRefresh={autoRefreshTime}
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text={data.date.toUTCString()}
       date={data.date}
       className="transaction-details__list-timestamp"
       slot="definition"
     />
   </ListItem>
 
-  {#if mode === "full"}
-    <!-- GAS PRICE -->
-    <ListItem
-      tooltipText={displayTooltips ? "The transaction gas price in lux" : ""}
-    >
-      <svelte:fragment slot="term">Gas Price</svelte:fragment>
-      <svelte:fragment slot="definition">
-        {formatter(data.gasprice)}
-      </svelte:fragment>
-    </ListItem>
+  <!-- FROM -->
+  <ListItem
+    tooltipText={displayTooltips ? "The sender of the transaction" : ""}
+  >
+    <svelte:fragment slot="term">From</svelte:fragment>
+    <svelte:fragment slot="definition">
+      <TransactionParty party={from} />
+    </svelte:fragment>
+  </ListItem>
 
-    <!-- GAS LIMIT -->
-    <ListItem
-      tooltipText={displayTooltips ? "The transaction gas limit in lux" : ""}
-    >
-      <svelte:fragment slot="term">Gas Limit</svelte:fragment>
+  <!-- TO -->
+  <ListItem
+    tooltipText={displayTooltips
+      ? "The receiver of the transaction, or the contract it called"
+      : ""}
+  >
+    <svelte:fragment slot="term">To</svelte:fragment>
+    <svelte:fragment slot="definition">
+      <TransactionParty party={to} />
+    </svelte:fragment>
+  </ListItem>
+
+  <!-- AMOUNT -->
+  <ListItem
+    tooltipText={displayTooltips
+      ? "The DUSK sent to the receiver, or to the contract it called"
+      : ""}
+  >
+    <svelte:fragment slot="term">Amount</svelte:fragment>
+    <svelte:fragment slot="definition">
+      {#if amount.kind === "shielded"}
+        Shielded
+      {:else}
+        {duskFormatter(luxToDusk(amount.lux))} DUSK
+      {/if}
+    </svelte:fragment>
+  </ListItem>
+
+  {#if mode === "full"}
+    <!-- TX FEE -->
+    <ListItem tooltipText={displayTooltips ? "The transaction fee amount" : ""}>
+      <svelte:fragment slot="term">Fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {formatter(data.gaslimit)}
+        {duskFormatter(luxToDusk(data.feepaid))} DUSK
       </svelte:fragment>
     </ListItem>
   {/if}
-
-  <!-- TX FEE -->
-  <ListItem tooltipText={displayTooltips ? "The transaction fee amount" : ""}>
-    <svelte:fragment slot="term">Fee</svelte:fragment>
-    <svelte:fragment slot="definition">
-      {formatter(luxToDusk(data.feepaid))} DUSK
-    </svelte:fragment>
-  </ListItem>
 
   <!-- STATUS -->
   <ListItem tooltipText={displayTooltips ? "The transaction status" : ""}>
@@ -140,7 +163,7 @@
     <svelte:fragment slot="term">Type</svelte:fragment>
     <svelte:fragment slot="definition"
       ><DataGuard data={data.method && data.txtype}>
-        <TransactionType {data} {displayTooltips} />
+        <TransactionType {data} {displayTooltips} showPrivacy={false} />
       </DataGuard></svelte:fragment
     >
   </ListItem>

@@ -206,9 +206,12 @@ describe("getSearchedName", () => {
       primary: { spelling: "tdi.dusk" },
     });
 
-    await expect(getSearchedName("Domains.dusk ", account)).resolves.toBe(
-      "domains.dusk"
-    );
+    await expect(
+      getSearchedName("Domains.dusk ", account)
+    ).resolves.toStrictEqual({
+      name: "domains.dusk",
+      url: `${releases.testnet.site}/name/domains.dusk`,
+    });
     expect(reader.resolve).toHaveBeenCalledWith("domains.dusk", [
       "moonlight_address",
     ]);
@@ -225,6 +228,26 @@ describe("getSearchedName", () => {
     await expect(getSearchedName(null, account)).resolves.toBeNull();
     await expect(getSearchedName("domains", account)).resolves.toBeNull();
     await expect(getSearchedName("domains.dusk", account)).resolves.toBeNull();
+  });
+});
+
+describe("isDuskDomainsContract", () => {
+  it("should know the contracts of the pinned releases, and only those", async () => {
+    const { isDuskDomainsContract } = await import("..");
+    const ids = Object.values(releases).flatMap((release) => [
+      release.lens.contractId,
+      ...release.contracts.map(({ contractId }) => contractId),
+    ]);
+
+    for (const id of ids) {
+      await expect(isDuskDomainsContract(id)).resolves.toBe(true);
+    }
+
+    await expect(
+      isDuskDomainsContract(
+        "0200000000000000000000000000000000000000000000000000000000000000"
+      )
+    ).resolves.toBe(false);
   });
 });
 

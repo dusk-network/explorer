@@ -1,0 +1,12 @@
+.transaction-party {
+  font-family: var(--mono-font-family);
+  white-space: nowrap;
+}
+
+.transaction-party--contract[data-tooltip-id] {
+  cursor: help;
+}
+
+.transaction-party--hidden {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
+}

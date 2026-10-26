@@ -13,12 +13,41 @@ vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   getPrimaryName: vi.fn().mockResolvedValue(null),
 }));
 
+/** @param {string} text */
+const toHex = (text) => Buffer.from(text, "utf8").toString("hex");
+
+/**
+ * The terms of the details list, in order.
+ *
+ * @param {HTMLElement} container
+ */
+const getTerms = (container) =>
+  Array.from(container.querySelectorAll("dt"), (dt) =>
+    dt.textContent?.trim().toLowerCase()
+  );
+
+/**
+ * The definition beside a term.
+ *
+ * @param {HTMLElement} container
+ * @param {string} term
+ */
+const getDefinition = (container, term) =>
+  Array.from(container.querySelectorAll("dt"))
+    .find((dt) => dt.textContent?.trim().toLowerCase() === term)
+    ?.nextElementSibling?.textContent?.replace(/\s+/g, " ")
+    .trim();
+
 describe("Transaction Details", () => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date(2024, 4, 20));
 
+  const transaction = transformTransaction(gqlTransaction.tx);
+
+  // The node gives memos in hex.
+  const memo = "some notes about the transaction";
   const baseProps = {
-    data: transformTransaction(gqlTransaction.tx),
+    data: { ...transaction, memo: toHex(memo) },
     error: null,
     loading: false,
     market: {
@@ -39,29 +68,176 @@ describe("Transaction Details", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("renders the Transaction Details component with the memo decoded", async () => {
-    const { container, getAllByRole } = render(TransactionDetails, baseProps);
+  it("should show the loading state before there is data", () => {
+    const { getByRole } = render(TransactionDetails, {
+      ...baseProps,
+      data: /** @type {any} */ (null),
+      loading: true,
+    });
 
-    await fireEvent.click(getAllByRole("switch")[0]);
+    expect(getByRole("progressbar")).toBeInTheDocument();
+  });
+
+  it("renders the Transaction Details component with the payload visible", async () => {
+    const { container, getByRole } = render(TransactionDetails, baseProps);
+
+    await fireEvent.click(getByRole("switch", { name: "Show payload" }));
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("renders the Transaction Details component with the payload visible", async () => {
-    const { container, getAllByRole } = render(TransactionDetails, baseProps);
+  it("should lead with the status, the parties and the amount, and end with the technical details", () => {
+    const { container } = render(TransactionDetails, baseProps);
 
-    await fireEvent.click(getAllByRole("switch")[1]);
+    expect(getTerms(container)).toStrictEqual([
+      "id",
+      "status",
+      "from",
+      "to",
+      "amount",
+      "transaction fee",
+      "timestamp",
+      "type",
+      "memo",
+      "block height",
+      "gas price",
+      "transaction gas limit",
+      "gas spent",
+      "nonce",
+      "payload",
+    ]);
+  });
 
-    expect(container.firstElementChild).toMatchSnapshot();
+  it("should show amounts in DUSK, with dollars rounded to cents", () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(getDefinition(container, "amount")).toBe(
+      "9,812.378912731 DUSK ($3,614.39)"
+    );
+    expect(getDefinition(container, "transaction fee")).toBe(
+      "0.000290766 DUSK (< $0.01)"
+    );
+  });
+
+  it("should show amounts in DUSK when there is no price", () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      market: null,
+    });
+
+    expect(getDefinition(container, "amount")).toBe("9,812.378912731 DUSK");
+    expect(getDefinition(container, "transaction fee")).toBe(
+      "0.000290766 DUSK"
+    );
+  });
+
+  it("should give gas in one format, the price in LUX", () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(getDefinition(container, "gas price")).toBe("1 LUX");
+    expect(getDefinition(container, "transaction gas limit")).toBe(
+      "500,000,000"
+    );
+    expect(getDefinition(container, "gas spent")).toBe("290,766");
+  });
+
+  it("should show the full ID and addresses on wide screens", () => {
+    const { getByRole } = render(TransactionDetails, baseProps);
+
+    expect(getByRole("link", { name: transaction.txid })).toBeInTheDocument();
+    expect(
+      getByRole("link", { name: /** @type {string} */ (transaction.from) })
+    ).toBeInTheDocument();
+  });
+
+  it("should show the memo as text, with hex as an option", async () => {
+    const { container, getByRole } = render(TransactionDetails, baseProps);
+
+    expect(getDefinition(container, "memo")).toBe(`${memo} Hex`);
+
+    await fireEvent.click(getByRole("switch", { name: "Show memo as hex" }));
+
+    expect(getDefinition(container, "memo")).toBe(`${toHex(memo)} Hex`);
+  });
+
+  it("should show a memo that isn't text as hex, without a switch", () => {
+    const { container, queryByRole } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, memo: "ff00ff" },
+    });
+
+    expect(getDefinition(container, "memo")).toBe("ff00ff");
+    expect(queryByRole("switch", { name: "Show memo as hex" })).toBeNull();
   });
 
   it("should name the memo and payload switches", () => {
     const { getByRole } = render(TransactionDetails, baseProps);
 
     expect(
-      getByRole("switch", { name: "Show memo as text" })
+      getByRole("switch", { name: "Show memo as hex" })
     ).toBeInTheDocument();
     expect(getByRole("switch", { name: "Show payload" })).toBeInTheDocument();
+  });
+
+  it("should name the contract a call went to and what the call did", async () => {
+    const stake =
+      "0200000000000000000000000000000000000000000000000000000000000000";
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        amount: 0,
+        contract: stake,
+        deposit: 0,
+        method: "withdraw",
+        to: null,
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(getDefinition(container, "contract")).toBe(
+        `Stake contract ${stake}`
+      );
+      expect(getDefinition(container, "type")).toBe(
+        "Public withdraw Claim rewards"
+      );
+    });
+    expect(getTerms(container)).not.toContain("to");
+  });
+
+  it("should show the DUSK a call sends to its contract as the amount", () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        amount: 0,
+        contract:
+          "0200000000000000000000000000000000000000000000000000000000000000",
+        deposit: 1_000_000_000_000,
+        method: "stake",
+        to: null,
+      },
+      market: null,
+    });
+
+    expect(getDefinition(container, "amount")).toBe("1,000.00 DUSK");
+  });
+
+  it("should say what a shielded transaction hides", () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        amount: undefined,
+        from: undefined,
+        to: undefined,
+        txtype: "Phoenix",
+      },
+    });
+
+    expect(getDefinition(container, "from")).toBe("Shielded");
+    expect(getDefinition(container, "to")).toBe("Shielded");
+    expect(getDefinition(container, "amount")).toBe("Shielded");
   });
 
   it("should show the sender's and receiver's primary names", async () => {

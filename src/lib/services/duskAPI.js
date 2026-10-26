@@ -95,6 +95,13 @@ const nodePost = (endpoint) =>
     .then(failureToRejection)
     .then((res) => res.json());
 
+/**
+ * The node info request in flight, which callers at the same time share.
+ *
+ * @type {Promise<NodeInfo> | null}
+ */
+let nodeInfoRequest = null;
+
 /** @type {() => Promise<number>} */
 const getLastHeight = () =>
   gqlGet({
@@ -284,10 +291,16 @@ const duskAPI = {
   },
 
   /**
+   * Callers at the same time share one request.
+   *
    * @returns {Promise<NodeInfo>}
    */
   getNodeInfo() {
-    return nodePost("/on/node/info");
+    nodeInfoRequest ??= nodePost("/on/node/info").finally(() => {
+      nodeInfoRequest = null;
+    });
+
+    return nodeInfoRequest;
   },
 
   /**

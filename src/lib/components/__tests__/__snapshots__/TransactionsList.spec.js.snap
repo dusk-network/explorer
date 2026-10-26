@@ -85,6 +85,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   >
     <time
       class="dusk-relative-time transaction-details__list-timestamp"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text="Tue, 16 Apr 2024 06:39:09 GMT"
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
@@ -97,6 +99,35 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   </dd>
   <!---->
    
+  <dt
+    class="details-list__term details-list__term--table"
+  >
+    <div
+      class="details-list__term-layout"
+    >
+      <!---->
+       
+      From
+      <!---->
+    </div>
+  </dt>
+   
+  <dd
+    class="details-list__definition details-list__definition--table"
+  >
+    <!---->
+    <a
+      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+      href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+    >
+      <!---->
+      kT5Bam...LwKbXj
+      
+      <!---->
+    </a>
+    
+    <!---->
+  </dd>
   <!---->
    
   <dt
@@ -107,7 +138,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     >
       <!---->
        
-      Fee
+      To
       <!---->
     </div>
   </dt>
@@ -115,9 +146,44 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    0.000290766 DUSK
+    <!---->
+    <a
+      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+      href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+    >
+      <!---->
+      mHWZo9...pjiUnj
+      
+      <!---->
+    </a>
+    
     <!---->
   </dd>
+  <!---->
+   
+  <dt
+    class="details-list__term details-list__term--table"
+  >
+    <div
+      class="details-list__term-layout"
+    >
+      <!---->
+       
+      Amount
+      <!---->
+    </div>
+  </dt>
+   
+  <dd
+    class="details-list__definition details-list__definition--table"
+  >
+    <!---->
+    9,812.378912731 DUSK
+    
+    <!---->
+  </dd>
+  <!---->
+   
   <!---->
    
   <dt
@@ -166,16 +232,6 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="transaction-type"
     >
-      <span
-        class="transaction-type__privacy"
-        data-tooltip-disabled="true"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-place="top"
-        data-tooltip-text="Sender, receiver and amount are visible to everyone"
-        data-tooltip-type="info"
-      >
-        Public
-      </span>
       <!---->
        
       <span
@@ -183,6 +239,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       >
         transfer
       </span>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -281,6 +339,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   >
     <time
       class="dusk-relative-time transaction-details__list-timestamp"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text="Tue, 16 Apr 2024 06:39:09 GMT"
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
@@ -293,7 +353,6 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   </dd>
   <!---->
    
-  <!---->
   <dt
     class="details-list__term details-list__term--table"
   >
@@ -302,7 +361,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     >
       <!---->
        
-      Gas Price
+      From
       <!---->
     </div>
   </dt>
@@ -310,7 +369,17 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    1
+    <!---->
+    <a
+      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+      href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+    >
+      <!---->
+      kT5Bam...LwKbXj
+      
+      <!---->
+    </a>
+    
     <!---->
   </dd>
   <!---->
@@ -323,7 +392,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     >
       <!---->
        
-      Gas Limit
+      To
       <!---->
     </div>
   </dt>
@@ -331,10 +400,42 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    500,000,000
+    <!---->
+    <a
+      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+      href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+    >
+      <!---->
+      mHWZo9...pjiUnj
+      
+      <!---->
+    </a>
+    
     <!---->
   </dd>
   <!---->
+   
+  <dt
+    class="details-list__term details-list__term--table"
+  >
+    <div
+      class="details-list__term-layout"
+    >
+      <!---->
+       
+      Amount
+      <!---->
+    </div>
+  </dt>
+   
+  <dd
+    class="details-list__definition details-list__definition--table"
+  >
+    <!---->
+    9,812.378912731 DUSK
+    
+    <!---->
+  </dd>
   <!---->
    
   <dt
@@ -404,16 +505,6 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <div
       class="transaction-type"
     >
-      <span
-        class="transaction-type__privacy"
-        data-tooltip-disabled="true"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-place="top"
-        data-tooltip-text="Sender, receiver and amount are visible to everyone"
-        data-tooltip-type="info"
-      >
-        Public
-      </span>
       <!---->
        
       <span
@@ -421,6 +512,8 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       >
         transfer
       </span>
+      <!---->
+       
       <!---->
        
       <!---->

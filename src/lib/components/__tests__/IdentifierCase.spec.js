@@ -56,11 +56,15 @@ describe("Identifier case", () => {
   });
 
   it("should keep the case of a transaction ID in the phone list", () => {
-    const { getByRole } = render(TransactionsList, {
-      props: { data: transformTransaction(gqlTransaction.tx), mode: "full" },
+    const transaction = transformTransaction(gqlTransaction.tx);
+    const { container } = render(TransactionsList, {
+      props: { data: transaction, mode: "full" },
     });
-    const link = getByRole("link", { name: /\.\.\./ });
+    const link = /** @type {HTMLElement} */ (
+      container.querySelector(`a[href$="?id=${transaction.txid}"]`)
+    );
 
+    expect(link.textContent).toMatch(/[a-f]/);
     expect(getComputedStyle(link).textTransform).not.toBe("uppercase");
   });
 });

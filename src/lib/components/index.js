@@ -11,6 +11,7 @@ export { default as DataAlert } from "./data-alert/DataAlert.svelte";
 export { default as DataCard } from "./data-card/DataCard.svelte";
 export { default as DataGuard } from "./data-guard/DataGuard.svelte";
 export { default as DetailList } from "./detail-list/DetailList.svelte";
+export { default as DuskName } from "./dusk-name/DuskName.svelte";
 export { default as Footer } from "./footer/Footer.svelte";
 export { default as LatestBlocksCard } from "./latest-blocks-card/LatestBlocksCard.svelte";
 export { default as LatestTransactionsCard } from "./latest-transactions-card/LatestTransactionsCard.svelte";
@@ -22,6 +23,7 @@ export { default as ProvisionersTable } from "./provisioners-table/ProvisionersT
 export { default as SearchNotification } from "./search-notification/SearchNotification.svelte";
 export { default as StaleDataNotice } from "./stale-data-notice/StaleDataNotice.svelte";
 export { default as TextboxAndButton } from "./textbox-and-button/TextboxAndButton.svelte";
+export { default as TransactionParty } from "./transaction-party/TransactionParty.svelte";
 export { default as TransactionsCard } from "./transactions-card/TransactionsCard.svelte";
 export { default as TransactionDetails } from "./transaction-details/TransactionDetails.svelte";
 export { default as TransactionsList } from "./transactions-list/TransactionsList.svelte";

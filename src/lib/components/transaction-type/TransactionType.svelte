@@ -1,5 +1,6 @@
 <script>
   import { Badge } from "$lib/dusk/components";
+  import { describeCall } from "$lib/contracts";
   import "./TransactionType.css";
   import { page } from "$app/stores";
 
@@ -7,6 +8,14 @@
 
   /** @type {boolean} */
   export let displayTooltips = false;
+
+  /**
+   * Whether to say "Public" or "Shielded". Tables leave it out: their
+   * From / To column already shows what a shielded transaction hides.
+   *
+   * @type {boolean}
+   */
+  export let showPrivacy = true;
 
   const BADGE_TEXT_MAX_LENGTH = 20;
   const isAccountsPage = $page.url.pathname.includes("accounts");
@@ -30,10 +39,15 @@
   };
 
   $: isPublic = data.txtype.toLowerCase() === "moonlight";
+
+  // Plain words for a common call, beside its method name.
+  $: callLabel = data.contract
+    ? describeCall(data.contract, data.method).then(({ label }) => label)
+    : Promise.resolve(null);
 </script>
 
 <div class="transaction-type">
-  {#if !isAccountsPage}
+  {#if showPrivacy && !isAccountsPage}
     <span
       class="transaction-type__privacy"
       data-tooltip-disabled={!displayTooltips}
@@ -56,6 +70,11 @@
       text={getTransactionDirection(data) ?? "N/A"}
     />
   {/if}
+  {#await callLabel then label}
+    {#if label}
+      <span class="transaction-type__label">{label}</span>
+    {/if}
+  {/await}
 </div>
 
 <style lang="postcss">

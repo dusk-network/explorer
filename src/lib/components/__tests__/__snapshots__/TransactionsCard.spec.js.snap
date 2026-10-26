@@ -150,7 +150,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
   >
     <!---->
     <div
-      class="table-container transactions-table"
+      class="table-container transactions-table transactions-table--full"
     >
       <table
         class="table"
@@ -180,13 +180,26 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__header-cell align-left"
             >
               <!---->
-              Gas
+              From / To
               
               
             </th>
             
             <!---->
              
+            <!---->
+            <th
+              class="table__header-cell align-left"
+            >
+              <!---->
+              Amount (DUSK)
+              
+              
+            </th>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <th
               class="table__header-cell align-left"
@@ -209,6 +222,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               
             </th>
             
+            <!---->
             <!---->
              
             <!---->
@@ -287,16 +301,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:55:25.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                  datetime="2024-09-11T21:55:25.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -308,26 +330,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               50,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -355,6 +419,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -364,16 +429,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -381,6 +436,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   blob
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -447,16 +504,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:55:25.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                  datetime="2024-09-11T21:55:25.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -468,26 +533,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               50,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -515,6 +622,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -524,16 +632,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -541,6 +639,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -607,16 +707,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:55:25.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                  datetime="2024-09-11T21:55:25.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -628,26 +736,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               50,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -675,6 +825,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -684,16 +835,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -701,6 +842,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   blob
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -767,16 +910,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:55:25.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                  datetime="2024-09-11T21:55:25.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -788,26 +939,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -835,6 +1028,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -844,16 +1038,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -861,6 +1045,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -927,16 +1113,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -948,26 +1142,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -995,6 +1231,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1004,16 +1241,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1021,6 +1248,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -1087,16 +1316,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -1108,26 +1345,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -1155,6 +1434,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1164,16 +1444,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1181,6 +1451,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -1247,16 +1519,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -1268,26 +1548,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -1315,6 +1637,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1324,16 +1647,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1341,6 +1654,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -1407,16 +1722,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -1428,26 +1751,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -1475,6 +1840,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1484,16 +1850,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1501,6 +1857,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -1567,16 +1925,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -1588,26 +1954,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -1635,6 +2043,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1644,16 +2053,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1661,6 +2060,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->
@@ -1727,16 +2128,24 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 <!---->
               </div>
                
-              <time
-                class="dusk-relative-time transaction__time"
-                datetime="2024-09-11T21:54:11.000Z"
+              <span
+                class="transaction__time"
               >
+                <time
+                  class="dusk-relative-time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                  datetime="2024-09-11T21:54:11.000Z"
+                >
+                  <!---->
+                  in 3 months
+                  
+                  <!---->
+                </time>
                 <!---->
-                in 3 months
-                
+                 
                 <!---->
-              </time>
-              <!---->
+              </span>
               
               
             </td>
@@ -1748,26 +2157,68 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               class="table__data-cell align-left"
             >
               <!---->
-              <b
-                class="transaction__fee-price-label"
+              <span
+                class="transaction__party"
               >
-                PRICE:
-              </b>
-               1
-              <br />
+                <span
+                  class="sr-only"
+                >
+                  From
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
                
-              <b
-                class="transaction__fee-limit-label"
+              <span
+                class="transaction__party"
               >
-                LIMIT:
-              </b>
-               500,000,000
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  - - -
+                </span>
+                
+                <!---->
+              </span>
               
               
             </td>
             
             <!---->
              
+            <!---->
+            <td
+              class="table__data-cell align-left"
+            >
+              <!---->
+              <!---->
+              <span
+                class="transaction__muted"
+              >
+                0.00
+              </span>
+              
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
             <!---->
             <td
               class="table__data-cell align-left"
@@ -1795,6 +2246,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
             </td>
             
             <!---->
+            <!---->
              
             <!---->
             <td
@@ -1804,16 +2256,6 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
               <div
                 class="transaction-type"
               >
-                <span
-                  class="transaction-type__privacy"
-                  data-tooltip-disabled="false"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                  data-tooltip-type="info"
-                >
-                  Public
-                </span>
                 <!---->
                  
                 <span
@@ -1821,6 +2263,8 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
                 >
                   transfer
                 </span>
+                <!---->
+                 
                 <!---->
                  
                 <!---->

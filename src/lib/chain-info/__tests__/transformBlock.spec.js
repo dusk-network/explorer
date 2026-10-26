@@ -30,7 +30,9 @@ describe("transformBlock", () => {
           blockhash:
             "bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f",
           blockheight: 495868,
+          contract: undefined,
           date: new Date(blockData.transactions[0].blockTimestamp * 1000),
+          deposit: 0,
           feepaid: 290866,
           from: undefined,
           gaslimit: 500000000,
@@ -52,7 +54,9 @@ describe("transformBlock", () => {
           blockhash:
             "bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f",
           blockheight: 495868,
+          contract: undefined,
           date: new Date(blockData.transactions[1].blockTimestamp * 1000),
+          deposit: 0,
           feepaid: 289852,
           from: undefined,
           gaslimit: 500000000,

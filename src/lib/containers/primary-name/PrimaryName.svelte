@@ -1,10 +1,6 @@
 <script>
-  import { AppAnchor } from "$lib/components";
-  import { Anchor } from "$lib/dusk/components";
-  import { middleEllipsis } from "$lib/dusk/string";
+  import { DuskName } from "$lib/components";
   import { getPrimaryName } from "$lib/dusk-domains";
-
-  import "./PrimaryName.css";
 
   /** @type {string} */
   export let address;
@@ -26,21 +22,7 @@
   <slot />
 {:then found}
   {#if found}
-    <span class="primary-name-group">
-      {#if href}
-        <AppAnchor className="primary-name" {href}>{found.name}</AppAnchor>
-      {:else}
-        <span class="primary-name">{found.name}</span>
-      {/if}
-      <Anchor
-        aria-label="Open {found.name} on Dusk Domains"
-        className="primary-name__site"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-text="Open on Dusk Domains"
-        href={found.url}>↗</Anchor
-      >
-      <span class="primary-name__address">{middleEllipsis(address, 6)}</span>
-    </span>
+    <DuskName {address} {href} name={found} />
   {:else}
     <slot />
   {/if}

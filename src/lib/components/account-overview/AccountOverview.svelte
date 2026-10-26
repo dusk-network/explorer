@@ -4,9 +4,9 @@
   import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
   import { addressCharPropertiesDefaults } from "$lib/constants";
-  import { OverviewPanelDetailsItem } from "$lib/components";
+  import { DuskName, OverviewPanelDetailsItem } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
-  import { getSearchedName } from "$lib/dusk-domains";
+  import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
   import { luxToDusk } from "$lib/dusk/currency";
 
   import "./AccountOverview.css";
@@ -16,9 +16,9 @@
   export let accountBalance;
 
   /**
-   * The `.dusk` name searched for to reach this account, if any. It shows
-   * only once it resolves to the account, and not when it is the
-   * account's primary name.
+   * The `.dusk` name searched for to reach this account, if any. It leads
+   * the header once it resolves to the account, and the account's primary
+   * name follows; it shows nothing more when it is the primary name.
    *
    * @type {string | null}
    */
@@ -26,6 +26,9 @@
 
   $: searchedNameShown = getSearchedName(searchedName, accountAddress).catch(
     () => null
+  );
+  $: primaryNameShown = searchedNameShown.then((searched) =>
+    searched ? getPrimaryName(accountAddress).catch(() => null) : null
   );
 
   /** @type {number} */
@@ -48,26 +51,34 @@
 
   const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
     addressCharPropertiesDefaults;
+
+  $: shortAddress = middleEllipsis(
+    accountAddress,
+    calculateAdaptiveCharCount(
+      screenWidth,
+      minScreenWidth,
+      maxScreenWidth,
+      minCharCount,
+      maxCharCount
+    )
+  );
 </script>
 
 <section class="account-overview-panel">
   <div class="account-overview-panel__address-wrapper">
     <p class="account-overview-panel__header">
       Account:
-      <PrimaryName address={accountAddress}>
-        <b class="account-overview-panel__address">
-          {middleEllipsis(
-            accountAddress,
-            calculateAdaptiveCharCount(
-              screenWidth,
-              minScreenWidth,
-              maxScreenWidth,
-              minCharCount,
-              maxCharCount
-            )
-          )}</b
-        >
-      </PrimaryName>
+      {#await searchedNameShown}
+        <b class="account-overview-panel__address">{shortAddress}</b>
+      {:then searched}
+        {#if searched}
+          <DuskName address={accountAddress} name={searched} />
+        {:else}
+          <PrimaryName address={accountAddress}>
+            <b class="account-overview-panel__address">{shortAddress}</b>
+          </PrimaryName>
+        {/if}
+      {/await}
     </p>
 
     <CopyButton
@@ -76,10 +87,10 @@
       variant="secondary"
     />
   </div>
-  {#await searchedNameShown then name}
-    {#if name}
+  {#await primaryNameShown then primary}
+    {#if primary}
       <p class="account-overview-panel__searched-name">
-        {name} points to this account
+        Primary name: <DuskName name={primary} />
       </p>
     {/if}
   {/await}

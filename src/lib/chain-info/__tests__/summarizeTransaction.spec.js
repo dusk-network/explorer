@@ -1,0 +1,68 @@
+import { describe, expect, it } from "vitest";
+
+import { gqlTransaction } from "$lib/mock-data";
+
+import { summarizeTransaction, transformTransaction } from "..";
+
+describe("summarizeTransaction", () => {
+  const transfer = transformTransaction(gqlTransaction.tx);
+  const stake =
+    "0200000000000000000000000000000000000000000000000000000000000000";
+
+  it("should give a public transfer's sender, receiver and value", () => {
+    expect(summarizeTransaction(transfer)).toStrictEqual({
+      amount: { kind: "value", lux: transfer.amount },
+      from: { address: transfer.from, kind: "account" },
+      to: { address: transfer.to, kind: "account" },
+    });
+  });
+
+  it("should give a contract call's contract and the deposit it sends", () => {
+    const call = {
+      ...transfer,
+      amount: 0,
+      contract: stake,
+      deposit: 1_000_000_000_000,
+      to: undefined,
+    };
+
+    expect(summarizeTransaction(call)).toStrictEqual({
+      amount: { kind: "deposit", lux: 1_000_000_000_000 },
+      from: { address: transfer.from, kind: "account" },
+      to: { id: stake, kind: "contract" },
+    });
+    expect(summarizeTransaction({ ...call, deposit: 0 }).amount).toStrictEqual({
+      kind: "value",
+      lux: 0,
+    });
+  });
+
+  it("should say what a shielded transaction hides, but not its deposit", () => {
+    const shielded = {
+      ...transfer,
+      amount: undefined,
+      from: undefined,
+      to: undefined,
+      txtype: "Phoenix",
+    };
+
+    expect(summarizeTransaction(shielded)).toStrictEqual({
+      amount: { kind: "shielded" },
+      from: { kind: "shielded" },
+      to: { kind: "shielded" },
+    });
+    expect(
+      summarizeTransaction({ ...shielded, contract: stake, deposit: 5 })
+    ).toStrictEqual({
+      amount: { kind: "deposit", lux: 5 },
+      from: { kind: "shielded" },
+      to: { id: stake, kind: "contract" },
+    });
+  });
+
+  it("should give no receiver when a public transaction has none", () => {
+    const deploy = { ...transfer, amount: 0, contract: undefined, to: null };
+
+    expect(summarizeTransaction(deploy).to).toBeNull();
+  });
+});

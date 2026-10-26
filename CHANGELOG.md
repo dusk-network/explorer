@@ -11,15 +11,24 @@ and this project adheres to
 ### Added
 
 - Add .dusk name search and primary names on account and transaction pages
+- Add From / To and Amount to transaction lists
+- Name the contract a call went to, with plain words for common calls
 
 ### Changed
 
 - Say "Public" or "Shielded" in words next to the transaction type
+- Move gas price and limit from transaction lists to the transaction page
+- Lead the transaction page with status, sender, receiver and amount, with full IDs on wide screens
+- Show memos as text, with hex as an option
+- Round dollar values to cents, give the gas price in LUX and separate thousands everywhere
+- Show the full time when hovering a list's relative time
+- Lead an account page with the searched name, then its primary name
 
 ### Removed
 
 ### Fixed
 
+- Fix amounts and fees missing from the transaction page when the DUSK price isn't available
 - Fix keyboard focus getting stuck on the memo and payload switches
 - Fix staking addresses and transaction IDs shown in capitals on phones
 - Fix unnamed switches, copy buttons, search button and block arrows for screen readers
