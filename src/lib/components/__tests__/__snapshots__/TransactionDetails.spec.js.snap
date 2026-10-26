@@ -810,6 +810,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
     </dl>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    
@@ -1665,6 +1667,8 @@ exports[`Transaction Details > renders the Transaction Details component with th
     </dl>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    
@@ -2635,6 +2639,8 @@ exports[`Transaction Details > should be able to render the details when they co
     </dl>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    

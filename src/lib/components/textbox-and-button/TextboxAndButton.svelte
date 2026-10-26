@@ -29,6 +29,13 @@
    */
   export let buttonLabel = undefined;
 
+  /**
+   * The text field's accessible name.
+   *
+   * @type {string | undefined}
+   */
+  export let label = undefined;
+
   /** @type {string | Undefined} */
   export let className = undefined;
 
@@ -115,6 +122,7 @@
   on:focusout={closeField}
 >
   <Textbox
+    aria-label={label}
     className="textbox-button__input"
     bind:this={inputElement}
     bind:value

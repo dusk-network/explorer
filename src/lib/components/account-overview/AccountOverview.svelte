@@ -4,7 +4,11 @@
   import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
   import { addressCharPropertiesDefaults } from "$lib/constants";
-  import { DuskName, OverviewPanelDetailsItem } from "$lib/components";
+  import {
+    DuskAmount,
+    DuskName,
+    OverviewPanelDetailsItem,
+  } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
   import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
   import { luxToDusk } from "$lib/dusk/currency";
@@ -14,6 +18,17 @@
   export let accountAddress;
   export let errorFetchingAccountStatus;
   export let accountBalance;
+
+  /**
+   * The stake of the account's key: `undefined` while it loads and `null`
+   * when there is none.
+   *
+   * @type {AccountStake | null | undefined}
+   */
+  export let stake = undefined;
+
+  /** @type {boolean} */
+  export let errorFetchingStake = false;
 
   /**
    * The `.dusk` name searched for to reach this account, if any. It leads
@@ -35,7 +50,7 @@
   let screenWidth = window.innerWidth;
 
   const formatter = createValueFormatter("en");
-  const fixedNumberFormatter = createValueFormatter("en", 2, 2);
+  const duskFormatter = createValueFormatter("en", 2, 2);
 
   onMount(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -97,26 +112,59 @@
 
   <hr class="account-overview-panel__separator" />
   <div class="account-overview-panel__details">
-    <OverviewPanelDetailsItem subtitle="Current Balance">
+    <OverviewPanelDetailsItem subtitle="Public balance">
       {#if errorFetchingAccountStatus}
         <p>N/A</p>
       {:else if accountBalance !== undefined}
-        {@const formatted = fixedNumberFormatter(luxToDusk(accountBalance))}
-        {@const parts = formatted.split(".")}
-        <p
-          class="account-overview-panel__balance"
-          data-tooltip-id="main-tooltip"
-          data-tooltip-place="right"
-          data-tooltip-type="info"
-          data-tooltip-text="{formatter(luxToDusk(accountBalance))} DUSK"
-        >
-          {parts[0]}.<span class="decimal-shadow">{parts[1]}</span> DUSK
-        </p>
+        <DuskAmount
+          className="account-overview-panel__balance"
+          lux={accountBalance}
+        />
+      {:else}
+        <p>Loading...</p>
+      {/if}
+    </OverviewPanelDetailsItem>
+
+    <OverviewPanelDetailsItem subtitle="Stake">
+      {#if errorFetchingStake}
+        <p>N/A</p>
+      {:else if stake !== undefined}
+        <DuskAmount
+          className="account-overview-panel__balance"
+          lux={(stake?.active ?? 0) + (stake?.inactive ?? 0)}
+        />
+      {:else}
+        <p>Loading...</p>
+      {/if}
+    </OverviewPanelDetailsItem>
+
+    <OverviewPanelDetailsItem subtitle="Stake rewards">
+      {#if errorFetchingStake}
+        <p>N/A</p>
+      {:else if stake !== undefined}
+        <DuskAmount
+          className="account-overview-panel__balance"
+          lux={stake?.reward ?? 0}
+        />
       {:else}
         <p>Loading...</p>
       {/if}
     </OverviewPanelDetailsItem>
   </div>
+
+  {#if stake && (stake.active || stake.inactive)}
+    <p class="account-overview-panel__note account-overview-panel__stake">
+      Active {duskFormatter(luxToDusk(stake.active))} DUSK · Inactive {duskFormatter(
+        luxToDusk(stake.inactive)
+      )} DUSK · Eligible from block {formatter(stake.eligibility)} · Slashes:
+      {stake.faults} soft, {stake.hardFaults} hard
+    </p>
+  {/if}
+
+  <p class="account-overview-panel__note">
+    Everything on this page is public: names, public balance, stake and
+    transactions. Shielded funds aren't shown.
+  </p>
 </section>
 
 <style lang="postcss">

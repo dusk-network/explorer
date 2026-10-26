@@ -41,6 +41,26 @@ describe("Search Notification", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it("should offer to search a suggested .dusk name", async () => {
+    const onSuggest = vi.fn();
+    const { getByRole } = render(SearchNotification, {
+      events: { suggest: onSuggest },
+      props: {
+        data: {
+          query: "alice",
+          res: new Error("No account, block or transaction matches this."),
+          suggestion: "alice.dusk",
+        },
+      },
+    });
+
+    await fireEvent.click(getByRole("button", { name: "Search alice.dusk" }));
+
+    expect(onSuggest).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ detail: "alice.dusk" })
+    );
+  });
+
   it("should dispatch a 'close' event when the button is clicked", async () => {
     const { getByRole } = render(SearchNotification, {
       events: { close: eventHandler },

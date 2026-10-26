@@ -1,0 +1,19 @@
+.provisioners-card__search {
+  padding: 0 var(--header-lateral-padding) var(--card-padding);
+}
+
+.provisioners-card__search .dusk-textbox {
+  width: 100%;
+  max-width: 32rem;
+  border-color: color-mix(
+    in oklab,
+    var(--on-background-color),
+    transparent 82%
+  );
+}
+
+.provisioners-card__empty {
+  padding: 0 var(--header-lateral-padding) var(--card-padding);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}

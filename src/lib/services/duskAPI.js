@@ -12,12 +12,14 @@ import {
 
 import { failureToRejection } from "$lib/dusk/http";
 import { makeNodeUrl } from "$lib/url";
+import { STAKE_CONTRACT } from "$lib/constants";
 
 import {
   addCountAndUnique,
   calculateStats,
   transformBlock,
   transformSearchResult,
+  transformStake,
   transformTransaction,
 } from "$lib/chain-info";
 
@@ -315,6 +317,27 @@ const duskAPI = {
   /** @returns {Promise<HostProvisioner[]>} */
   getProvisioners() {
     return nodePost("/on/node/provisioners");
+  },
+
+  /**
+   * The stake of an account's key, or `null` if it has none: one query to
+   * the stake contract, which the node answers in JSON.
+   *
+   * @param {string} address
+   * @returns {Promise<AccountStake | null>}
+   */
+  getStake(address) {
+    return fetch(makeNodeUrl(`/on/contracts:${STAKE_CONTRACT}/get_stake`), {
+      body: JSON.stringify(address),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then(failureToRejection)
+      .then((res) => res.json())
+      .then(transformStake);
   },
 
   /**

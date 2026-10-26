@@ -11,6 +11,7 @@ export { default as DataAlert } from "./data-alert/DataAlert.svelte";
 export { default as DataCard } from "./data-card/DataCard.svelte";
 export { default as DataGuard } from "./data-guard/DataGuard.svelte";
 export { default as DetailList } from "./detail-list/DetailList.svelte";
+export { default as DuskAmount } from "./dusk-amount/DuskAmount.svelte";
 export { default as DuskName } from "./dusk-name/DuskName.svelte";
 export { default as Footer } from "./footer/Footer.svelte";
 export { default as LatestBlocksCard } from "./latest-blocks-card/LatestBlocksCard.svelte";

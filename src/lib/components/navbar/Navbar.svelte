@@ -22,6 +22,9 @@
   /** @type {*} */
   let notificationData;
 
+  /** @type {SearchField} */
+  let searchField;
+
   let navigation = [
     {
       link: "/",
@@ -48,11 +51,21 @@
 
   const dispatch = createEventDispatcher();
 
+  /**
+   * Makes room below the navbar for the search notification, where it
+   * floats over the page (wide screens).
+   */
   async function createEmptySpace() {
     await tick();
-    offset = document.getElementsByClassName(
+
+    const notification = document.getElementsByClassName(
       "dusk-navbar__menu--search-notification"
-    )[0]?.clientHeight;
+    )[0];
+
+    offset =
+      notification && getComputedStyle(notification).position === "absolute"
+        ? notification.clientHeight
+        : 0;
   }
 
   /**
@@ -131,24 +144,29 @@
       variant={isConnected(nodeInfo) ? "success" : "warning"}
     />
     <NavList className="dusk-navbar__menu--links" {navigation} />
-    <div class="dusk-navbar__menu--search">
-      <SearchField
-        on:invalid={(e) => {
-          notificationData = e.detail;
-          showSearchNotification = true;
-          createEmptySpace();
-        }}
-      />
+  </div>
+  <div class="dusk-navbar__search">
+    <SearchField
+      bind:this={searchField}
+      on:invalid={(e) => {
+        notificationData = e.detail;
+        showSearchNotification = true;
+        createEmptySpace();
+      }}
+    />
 
-      {#if showSearchNotification}
-        <SearchNotification
-          data={notificationData}
-          on:close={() => {
-            showSearchNotification = false;
-          }}
-          className="dusk-navbar__menu--search-notification"
-        />
-      {/if}
-    </div>
+    {#if showSearchNotification}
+      <SearchNotification
+        data={notificationData}
+        on:close={() => {
+          showSearchNotification = false;
+        }}
+        on:suggest={(e) => {
+          showSearchNotification = false;
+          searchField.search(e.detail);
+        }}
+        className="dusk-navbar__menu--search-notification"
+      />
+    {/if}
   </div>
 </nav>

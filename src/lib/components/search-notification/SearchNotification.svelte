@@ -5,7 +5,7 @@
   import { makeClassName } from "$lib/dusk/string";
   import "./SearchNotification.css";
 
-  /** @type {{query: string, res: Array<[]> | Error}} */
+  /** @type {{query: string, res: Array<[]> | Error, suggestion?: string}} */
   export let data;
 
   /** @type {string | Undefined} */
@@ -19,8 +19,8 @@
 <Card className={classes}>
   <header slot="header" class="search-notification__header">
     <span class="search-notification__header-text"
-      >The search string you entered is: <span
-        class="search-notification__content-query">{data.query}</span
+      >Nothing found for <span class="search-notification__content-query"
+        >{data.query}</span
       ></span
     >
     <Button
@@ -35,9 +35,19 @@
       variant="tertiary"
     />
   </header>
-  {#if data.res instanceof Error}
-    <span class="search-notification__content">
-      {data.res.message}
-    </span>
-  {/if}
+  <div aria-live="polite" class="search-notification__body">
+    {#if data.res instanceof Error}
+      <span class="search-notification__content">
+        {data.res.message}
+      </span>
+    {/if}
+    {#if data.suggestion}
+      <Button
+        className="search-notification__suggestion"
+        on:click={() => dispatch("suggest", data.suggestion)}
+        text="Search {data.suggestion}"
+        variant="secondary"
+      />
+    {/if}
+  </div>
 </Card>

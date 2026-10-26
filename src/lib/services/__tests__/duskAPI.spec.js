@@ -327,6 +327,56 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
+  it("should read an account's stake from the stake contract in one JSON query", async () => {
+    const address = mockData.hostProvisioners[0].key;
+
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        amount: {
+          eligibility: "123120",
+          locked: "999637120000000",
+          value: "362880000000",
+        },
+        faults: 10,
+        // eslint-disable-next-line camelcase
+        hard_faults: 0,
+        reward: "31027186",
+      })
+    );
+
+    await expect(duskAPI.getStake(address)).resolves.toStrictEqual({
+      active: 362880000000,
+      eligibility: 123120,
+      faults: 10,
+      hardFaults: 0,
+      inactive: 999637120000000,
+      reward: 31027186,
+    });
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    const [url, init] = fetchSpy.mock.calls[0];
+
+    expect(String(url)).toBe(
+      new URL(
+        "/on/contracts:0200000000000000000000000000000000000000000000000000000000000000/get_stake",
+        node
+      ).href
+    );
+    expect(init).toMatchObject({
+      body: JSON.stringify(address),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+  });
+
+  it("should give no stake for a key the stake contract doesn't know", async () => {
+    fetchSpy.mockResolvedValueOnce(new Response("null", { status: 200 }));
+
+    await expect(
+      duskAPI.getStake(mockData.hostProvisioners[0].key)
+    ).resolves.toBeNull();
+  });
+
   it("should expose a method to retrieve the statistics", async () => {
     const lastBlockHeight = 1498332;
     const txCount = {

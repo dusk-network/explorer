@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { STAKE_CONTRACT, TRANSFER_CONTRACT, describeCall } from "..";
+import { STAKE_CONTRACT, TRANSFER_CONTRACT } from "$lib/constants";
+
+import { describeCall } from "..";
 
 describe("describeCall", () => {
   const duskDomainsStore =

@@ -8,6 +8,7 @@
     TableHead,
     TableRow,
   } from "$lib/components/table";
+  import { AppAnchor } from "$lib/components";
   import { Badge, CopyButton } from "$lib/dusk/components";
   import { luxToDusk } from "$lib/dusk/currency";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
@@ -209,7 +210,9 @@
 
         <TableCell>
           <div class="provisioners-table__staking-address-wrapper">
-            {middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}
+            <AppAnchor href="/accounts/?key={consensusAddress}"
+              >{middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}</AppAnchor
+            >
             <CopyButton
               name="Staking address"
               rawValue={consensusAddress}

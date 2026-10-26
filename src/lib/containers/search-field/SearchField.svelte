@@ -7,72 +7,88 @@
   import { goto } from "$lib/navigation";
   import { duskAPI } from "$lib/services";
 
-  /** @type {String}*/
-  let value;
+  import explainSearchMiss from "./explainSearchMiss";
 
-  const errorMessage = "It looks like there is an issue with your input.";
+  /** @type {String}*/
+  let value = "";
 
   const dispatch = createEventDispatcher();
 
-  function resetField() {
+  /**
+   * Tells why a search found nothing. What was typed stays in the box,
+   * to correct it.
+   *
+   * @param {string} query
+   * @param {Error} res
+   * @param {string} [suggestion] A `.dusk` name to search instead
+   */
+  const notFound = (query, res, suggestion) =>
+    dispatch("invalid", { query, res, suggestion });
+
+  /** @param {string} query */
+  function explainMiss(query) {
+    const { message, suggestion } = explainSearchMiss(query);
+
+    notFound(query, new Error(message), suggestion);
+  }
+
+  /** @param {string} path */
+  function open(path) {
     value = "";
+
+    return goto(path);
+  }
+
+  /**
+   * Searches for the given text, as if typed in the box.
+   *
+   * @param {string} query
+   */
+  export function search(query) {
+    value = query;
+    submitHandler();
   }
 
   function submitHandler() {
-    if (value && isDuskName(value)) {
-      const query = value;
+    const query = value.trim();
 
-      resolveDuskName(query)
-        .then((address) =>
-          goto(
-            `/accounts/?key=${address}&name=${encodeURIComponent(query.trim().toLowerCase())}`
-          )
-        )
-        .catch((res) => dispatch("invalid", { query, res }))
-        .finally(resetField);
+    if (!query) {
       return;
     }
 
-    const validInputRegex = /^[a-zA-Z0-9]+$/;
-    if (!value || !validInputRegex.test(value)) {
-      dispatch("invalid", {
-        query: value,
-        res: new Error("Input must contain only alphanumeric characters"),
-      });
-      resetField();
+    if (isDuskName(query)) {
+      resolveDuskName(query)
+        .then((address) =>
+          open(
+            `/accounts/?key=${address}&name=${encodeURIComponent(query.toLowerCase())}`
+          )
+        )
+        .catch((res) => notFound(query, res));
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9]+$/.test(query)) {
+      explainMiss(query);
       return;
     }
 
     duskAPI
-      .search(value)
+      .search(query)
       .then((data) => {
-        if (!data) {
-          dispatch("invalid", {
-            query: value,
-            res: new Error(errorMessage),
-          });
-          return;
-        }
-        switch (data.type) {
+        switch (data?.type) {
           case "block":
-            goto(`/blocks/block?id=${data.id}`);
-            break;
+            return open(`/blocks/block?id=${data.id}`);
           case "transaction":
-            goto(`/transactions/transaction?id=${data.id}`);
-            break;
+            return open(`/transactions/transaction?id=${data.id}`);
           case "account":
-            goto(`/accounts/?key=${data.id}`);
-            break;
+            return open(`/accounts/?key=${data.id}`);
           default:
-            dispatch("invalid", {
-              query: value,
-              res: new Error(errorMessage),
-            });
+            return explainMiss(query);
         }
       })
-      .finally(() => {
-        resetField();
-      });
+      .catch(() =>
+        notFound(query, new Error("The search failed. Please try again."))
+      );
   }
 </script>
 
@@ -80,7 +96,10 @@
   <TextboxAndButton
     bind:value
     buttonLabel="Search"
-    placeholder="Account/Block/Hash"
+    expandedFieldWidth={340}
+    fieldWidth={300}
+    label="Search by address, block, transaction or .dusk name"
+    placeholder="Address, hash or .dusk name"
     icon={{
       path: mdiMagnify,
       position: "after",

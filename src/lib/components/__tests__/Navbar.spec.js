@@ -2,7 +2,15 @@ import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render } from "@testing-library/svelte";
 import * as appNavigation from "$app/navigation";
 
+import { hostProvisioners } from "$lib/mock-data";
+import { resolveDuskName } from "$lib/dusk-domains";
+
 import { Navbar } from "..";
+
+vi.mock("$lib/dusk-domains", async (importOriginal) => ({
+  .../** @type {object} */ (await importOriginal()),
+  resolveDuskName: vi.fn(),
+}));
 
 /** @param {HTMLElement} container */
 const getNotificationElement = (container) =>
@@ -15,8 +23,7 @@ async function showSearchNotification(container) {
     form.querySelector("input[type='text']")
   );
 
-  searchInput.value = "foobar"; // invalid search
-
+  await fireEvent.input(searchInput, { target: { value: "foo_bar" } }); // invalid search
   await fireEvent.submit(form);
 }
 
@@ -105,5 +112,47 @@ describe("Navbar", () => {
     });
 
     expect(getNotificationElement(container)).toBeNull();
+  });
+
+  it("should keep the search out of the menu, so phones show it without opening the menu", () => {
+    const { container } = render(Navbar);
+    const menu = /** @type {HTMLDivElement} */ (
+      container.querySelector("#dusk-navbar-menu")
+    );
+
+    expect(menu).toHaveClass("dusk-navbar__menu--hidden");
+    expect(menu.querySelector("form")).toBeNull();
+    expect(container.querySelector(".dusk-navbar__search form")).not.toBeNull();
+  });
+
+  it("should search the .dusk name the notification suggests", async () => {
+    const account = hostProvisioners[0].key;
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    vi.mocked(resolveDuskName).mockResolvedValueOnce(account);
+
+    const { container, getByRole } = render(Navbar);
+    const input = getByRole("textbox");
+
+    await fireEvent.input(input, { target: { value: "alice" } });
+    await fireEvent.submit(
+      /** @type {HTMLFormElement} */ (input.closest("form"))
+    );
+
+    const suggestion = await vi.waitFor(() =>
+      getByRole("button", { name: "Search alice.dusk" })
+    );
+
+    await fireEvent.click(suggestion);
+
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledWith(
+        `/some-base-path/accounts/?key=${account}&name=alice.dusk`
+      )
+    );
+    expect(resolveDuskName).toHaveBeenCalledWith("alice.dusk");
+    expect(getNotificationElement(container)).toBeNull();
+
+    gotoSpy.mockRestore();
   });
 });

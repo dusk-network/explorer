@@ -49,5 +49,10 @@
     <div class="data-card__content">
       <slot />
     </div>
+    {#if $$slots.footer}
+      <footer class="data-card__footer">
+        <slot name="footer" />
+      </footer>
+    {/if}
   {/if}
 </Card>

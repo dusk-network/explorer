@@ -7,6 +7,7 @@
     TransactionsList,
     TransactionsTable,
   } from "$lib/components";
+  import { Button } from "$lib/dusk/components";
   import { appStore } from "$lib/stores";
 
   /** @type {Transaction[] | null}*/
@@ -29,8 +30,7 @@
   let displayedTxns;
 
   $: displayedTxns = txns ? txns.slice(0, itemsToDisplay) : [];
-  $: isLoadMoreDisabled =
-    (txns && itemsToDisplay >= txns.length) || (loading && txns === null);
+  $: hasMore = Boolean(txns && itemsToDisplay < txns.length);
 
   const loadMoreItems = () => {
     if (txns && itemsToDisplay < txns.length) {
@@ -39,20 +39,7 @@
   };
 </script>
 
-<DataCard
-  on:retry
-  data={txns}
-  {error}
-  {loading}
-  title="Transactions — {displayedTxns.length} Displayed Items"
-  headerButtonDetails={error || (!loading && isLoadMoreDisabled)
-    ? undefined
-    : {
-        action: () => loadMoreItems(),
-        disabled: isLoadMoreDisabled,
-        label: "Show More",
-      }}
->
+<DataCard on:retry data={txns} {error} {loading} title="Transactions">
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedTxns as txn (txn)}
@@ -66,4 +53,12 @@
       mode="full"
     />
   {/if}
+  <svelte:fragment slot="footer">
+    <span class="data-card__count"
+      >{displayedTxns.length} of {txns?.length ?? 0}</span
+    >
+    {#if hasMore}
+      <Button on:click={loadMoreItems} text="Show More" variant="tertiary" />
+    {/if}
+  </svelte:fragment>
 </DataCard>

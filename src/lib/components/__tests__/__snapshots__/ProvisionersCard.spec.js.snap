@@ -1,56 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Provisioners Card > should disable the \`Show More\` button is the card is in the loading state 1`] = `
-<div
-  class="dusk-card data-card"
->
-  <!---->
-  <!---->
-  <header
-    class="data-card__header"
-    slot="header"
-  >
-    <h1
-      class="data-card__header-title"
-    >
-      Provisioners — 0 Displayed Items
-    </h1>
-     
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      disabled=""
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
-    <!---->
-  </header>
-  
-  <!---->
-   
-  <!---->
-  <div
-    aria-label="Loading"
-    class="dusk-progress-bar data-card__progress-bar"
-    role="progressbar"
-  >
-    <div
-      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
-    />
-  </div>
-  
-  <!---->
-   
-  <!---->
-  
-</div>
-`;
-
 exports[`Provisioners Card > should hide the \`Show More\` button if an error has occurred 1`] = `
 <div
   class="dusk-card data-card"
@@ -64,7 +13,7 @@ exports[`Provisioners Card > should hide the \`Show More\` button if an error ha
     <h1
       class="data-card__header-title"
     >
-      Provisioners — 0 Displayed Items
+      Provisioners
     </h1>
      
     <!---->
@@ -136,7 +85,7 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
     <h1
       class="data-card__header-title"
     >
-      Provisioners — 10 Displayed Items
+      Provisioners
     </h1>
      
     <!---->
@@ -148,7 +97,20 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
   <div
     class="data-card__content"
   >
-    <!---->
+    <div
+      class="provisioners-card__search"
+    >
+      <!---->
+      <input
+        aria-label="Search provisioners by staking or owner address"
+        class="dusk-textbox dusk-textbox-search"
+        placeholder="Staking or owner address"
+        type="search"
+      />
+      
+      <!---->
+    </div>
+     
     <div
       class="table-container provisioners-table data-card__table"
     >
@@ -332,7 +294,17 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                m6dy2gz3jC...tW82FWtnpf 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
+                >
+                  <!---->
+                  m6dy2gz3jC...tW82FWtnpf
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -495,7 +467,17 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                m9dVuRgr3C...94r33pFQyz 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
+                >
+                  <!---->
+                  m9dVuRgr3C...94r33pFQyz
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -658,7 +640,17 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mTgXDqkyVa...gAseybAsfU 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
+                >
+                  <!---->
+                  mTgXDqkyVa...gAseybAsfU
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -822,7 +814,17 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mUUpjnXow2...SfzQcywzaW 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
+                >
+                  <!---->
+                  mUUpjnXow2...SfzQcywzaW
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -986,7 +988,17 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mXKJ97xTtr...JgkCK2o7x4 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
+                >
+                  <!---->
+                  mXKJ97xTtr...JgkCK2o7x4
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1149,7 +1161,17 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mdXsA3Ee1Y...K8VZPimZ2J 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
+                >
+                  <!---->
+                  mdXsA3Ee1Y...K8VZPimZ2J
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1312,7 +1334,17 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mHGvQ9Xdjz...iTfxTvgn7f 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mHGvQ9XdjzuGyixBGrMeeC7EdX9QZNWV64FQWWwTMhFYmdskMbZkQMGiKC3DXqx8ALS4ipC3TJ9NckHPzD7AC1Tfc1GH3TrCxAZ8o93rPux7H5V95Q3hPxdxHiTfxTvgn7f"
+                >
+                  <!---->
+                  mHGvQ9Xdjz...iTfxTvgn7f
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1476,7 +1508,17 @@ Consensus: mHGvQ9Xdjz...iTfxTvgn7f"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mUJHMDEBiT...FHNxRNhoAA 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mUJHMDEBiTUVJU5U76Krb5wwMXK6R7CjBrTTGFFAZzgwnasxspJMbcUjedRsY8TbrRfxCuyhmvgb7Kv4chjvHNDsyWA6J8XTSCPH4y5PeqLyLvCCdgUnQ74FDFHNxRNhoAA"
+                >
+                  <!---->
+                  mUJHMDEBiT...FHNxRNhoAA
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1640,7 +1682,17 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mLx5HUo5Ph...BrRgEzoka8 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mLx5HUo5PhsobwgMJhzL9j8TY7TjC13EsxHL7cKLTmMJ9BqvnG2RttD2uMg1FEDprnSvmN7BwCkpr6wW9XSco2ASrUjou2neUXj4uq16NreXVk4jmfr3CEHqvBrRgEzoka8"
+                >
+                  <!---->
+                  mLx5HUo5Ph...BrRgEzoka8
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1803,7 +1855,17 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               <div
                 class="provisioners-table__staking-address-wrapper"
               >
-                mWvq9EWD9b...oU7BY2oEDe 
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface"
+                  href="/some-base-path/accounts/?key=mWvq9EWD9b8gQw5uD4GnYaV8Wsn86youaZ1ghCjwTkTyghBnrMz1tGdwKRnjd3svKQE1fMxfdu6M64pEN9NCUhcbwrER4s3HKpYGEp4m7pfsBMoDjbYzTTUxooU7BY2oEDe"
+                >
+                  <!---->
+                  mWvq9EWD9b...oU7BY2oEDe
+                  
+                  <!---->
+                </a>
+                <!---->
+                 
                 <div
                   class="dusk-copy-button"
                 >
@@ -1949,9 +2011,23 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
         <!---->
       </table>
     </div>
-    
+    <!---->
     <!---->
   </div>
+   
+  <footer
+    class="data-card__footer"
+  >
+    <span
+      class="data-card__count"
+    >
+      10 of 10
+    </span>
+     
+    <!---->
+    <!---->
+  </footer>
+  <!---->
   
   <!---->
    
@@ -1973,7 +2049,7 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
     <h1
       class="data-card__header-title"
     >
-      Provisioners — 0 Displayed Items
+      Provisioners
     </h1>
      
     <!---->
@@ -1982,6 +2058,45 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
   <!---->
    
   <!---->
+  
+  <!---->
+   
+  <!---->
+  
+</div>
+`;
+
+exports[`Provisioners Card > should show no \`Show More\` button while the card is loading 1`] = `
+<div
+  class="dusk-card data-card"
+>
+  <!---->
+  <!---->
+  <header
+    class="data-card__header"
+    slot="header"
+  >
+    <h1
+      class="data-card__header-title"
+    >
+      Provisioners
+    </h1>
+     
+    <!---->
+  </header>
+  
+  <!---->
+   
+  <!---->
+  <div
+    aria-label="Loading"
+    class="dusk-progress-bar data-card__progress-bar"
+    role="progressbar"
+  >
+    <div
+      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
+    />
+  </div>
   
   <!---->
    

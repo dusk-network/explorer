@@ -3,11 +3,11 @@
 <script>
   import { onMount } from "svelte";
 
-  import { Badge, CopyButton } from "$lib/dusk/components";
+  import { CopyButton } from "$lib/dusk/components";
   import { luxToDusk } from "$lib/dusk/currency";
   import { createValueFormatter } from "$lib/dusk/value";
   import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
-  import { DetailList, ListItem } from "$lib/components";
+  import { AppAnchor, DetailList, ListItem } from "$lib/components";
 
   import "./ProvisionersList.css";
 
@@ -29,7 +29,7 @@
   /** @type {number} */
   let screenWidth = window.innerWidth;
 
-  const formatter = createValueFormatter("en");
+  const duskFormatter = createValueFormatter("en", 2, 2);
 
   onMount(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -54,19 +54,19 @@
 </script>
 
 <DetailList className="provisioners-list">
-  <!-- RANKING -->
-  <ListItem tooltipText={displayTooltips ? "Rank by stake size" : ""}>
-    <svelte:fragment slot="term">Rank</svelte:fragment>
+  <!-- RANK AND STAKING ADDRESS -->
+  <ListItem
+    tooltipText={displayTooltips
+      ? "Rank by stake, and the staking address. Open it for its stake and rewards."
+      : ""}
+  >
+    <svelte:fragment slot="term">Provisioner</svelte:fragment>
     <svelte:fragment slot="definition">
-      #{data.rank}
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- STAKING ADDRESS -->
-  <ListItem tooltipText={displayTooltips ? "The staking address used" : ""}>
-    <svelte:fragment slot="term">Staking address</svelte:fragment>
-    <svelte:fragment slot="definition"
-      ><span class="provisioners-list__staking-address">{provisionerKey}</span>
+      <span class="provisioners-list__rank">#{data.rank}</span>
+      <AppAnchor
+        className="provisioners-list__staking-address"
+        href="/accounts/?key={data.key}">{provisionerKey}</AppAnchor
+      >
       <CopyButton
         name="Staking address"
         rawValue={data.key}
@@ -75,82 +75,66 @@
     </svelte:fragment>
   </ListItem>
 
-  <!-- Owner Key -->
+  <!-- STAKE -->
   <ListItem
     tooltipText={displayTooltips
-      ? "Whether this provisioner uses a separate owner key"
+      ? "Active stake takes part in consensus. Inactive stake doesn't."
       : ""}
   >
-    <svelte:fragment slot="term">Owner Key</svelte:fragment>
+    <svelte:fragment slot="term">Stake</svelte:fragment>
     <svelte:fragment slot="definition">
-      <Badge
-        data-tooltip-id="provisioners-tooltip"
-        data-tooltip-text={data.hasSeparateOwner
-          ? `Owner: ${middleEllipsis(data.ownerAddress, adaptiveCharCount)}
-Consensus: ${middleEllipsis(data.key, adaptiveCharCount)}`
-          : `Consensus: ${middleEllipsis(data.key, adaptiveCharCount)}`}
-        text={data.hasSeparateOwner ? "Yes" : "No"}
-      />
+      <span>
+        {duskFormatter(luxToDusk(data.amount))} DUSK
+        {#if data.locked_amt}
+          <span class="provisioners-list__muted"
+            >+ {duskFormatter(luxToDusk(data.locked_amt))} inactive</span
+          >
+        {/if}
+      </span>
     </svelte:fragment>
   </ListItem>
 
-  <!-- ACTIVE STAKED AMOUNT -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The staked tokens that are being utilized in the consensus process"
-      : ""}
-  >
-    <svelte:fragment slot="term">Active Stake</svelte:fragment>
-    <svelte:fragment slot="definition"
-      >{formatter(luxToDusk(data.amount))} DUSK</svelte:fragment
-    >
-  </ListItem>
-
-  <!-- INACTIVE STAKED AMOUNT -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The staked tokens that are not currently being used for block validation or are not participating in the consensus process"
-      : ""}
-  >
-    <svelte:fragment slot="term">Inactive Stake</svelte:fragment>
-    <svelte:fragment slot="definition"
-      >{formatter(luxToDusk(data.locked_amt))} DUSK</svelte:fragment
-    >
-  </ListItem>
-
-  <!-- STAKE MATURE INFO -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The block at which the stake is expected to start participating in the consensus"
-      : ""}
-  >
-    <svelte:fragment slot="term">Maturity At</svelte:fragment>
-    <svelte:fragment slot="definition">
-      #{formatter(data.eligibility)}</svelte:fragment
-    >
-  </ListItem>
-
   <!-- REWARD -->
-  <ListItem tooltipText={displayTooltips ? "The accumulated reward" : ""}>
-    <svelte:fragment slot="term">accumulated reward</svelte:fragment>
+  <ListItem tooltipText={displayTooltips ? "The rewards not yet claimed" : ""}>
+    <svelte:fragment slot="term">Reward</svelte:fragment>
     <svelte:fragment slot="definition">
-      {formatter(luxToDusk(data.reward))} DUSK
+      {duskFormatter(luxToDusk(data.reward))} DUSK
     </svelte:fragment>
   </ListItem>
 
   <!-- SLASHES -->
-  <ListItem tooltipText={displayTooltips ? "Soft slashes" : ""}>
-    <svelte:fragment slot="term">Soft Slashes</svelte:fragment>
+  <ListItem
+    tooltipText={displayTooltips
+      ? "Soft slashes for missed duties, hard slashes for faults"
+      : ""}
+  >
+    <svelte:fragment slot="term">Slashes</svelte:fragment>
     <svelte:fragment slot="definition">
-      {formatter(data.faults)}
+      {data.faults} soft, {data.hard_faults} hard
     </svelte:fragment>
   </ListItem>
 
-  <!-- HARD SLASHES -->
-  <ListItem tooltipText={displayTooltips ? "Hard slashes" : ""}>
-    <svelte:fragment slot="term">Hard Slashes</svelte:fragment>
-    <svelte:fragment slot="definition">
-      {formatter(data.hard_faults)}
-    </svelte:fragment>
-  </ListItem>
+  {#if data.hasSeparateOwner}
+    <!-- OWNER -->
+    <ListItem
+      tooltipText={displayTooltips
+        ? "The key that owns the stake, when it isn't the staking key"
+        : ""}
+    >
+      <svelte:fragment slot="term">Owner</svelte:fragment>
+      <svelte:fragment slot="definition">
+        {#if data.ownerType === "Account"}
+          <AppAnchor
+            className="provisioners-list__staking-address"
+            href="/accounts/?key={data.ownerAddress}"
+            >{middleEllipsis(data.ownerAddress, adaptiveCharCount)}</AppAnchor
+          >
+        {:else}
+          <span class="provisioners-list__staking-address"
+            >Contract {middleEllipsis(data.ownerAddress, 4)}</span
+          >
+        {/if}
+      </svelte:fragment>
+    </ListItem>
+  {/if}
 </DetailList>

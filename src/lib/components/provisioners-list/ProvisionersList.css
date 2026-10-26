@@ -6,3 +6,12 @@
 .provisioners-list__staking-address {
   font-family: var(--mono-font-family);
 }
+
+.provisioners-list__rank {
+  font-family: var(--mono-font-family);
+}
+
+.provisioners-list__muted {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 35%);
+  white-space: nowrap;
+}

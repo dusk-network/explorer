@@ -184,7 +184,17 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            n3qToJrMkY...jmEq6aNuj6 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
+            >
+              <!---->
+              n3qToJrMkY...jmEq6aNuj6
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -347,7 +357,17 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            s9mQHPDuKi...XxiM4ksRbH 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=s9mQHPDuKiUwomr7k6S3mmeqd8rwpXENtvmCY7f9ndukC4VQH385ePgzHdiw6vWoJX7ee1oZEFSYXXZtVr4326XmZrkTbranxdYz89Vrd1HMfX2f3uis4hi33XxiM4ksRbH"
+            >
+              <!---->
+              s9mQHPDuKi...XxiM4ksRbH
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -511,7 +531,17 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            sX4JooVNAF...fCFZMqQhtz 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=sX4JooVNAFov3Xx9cfZHtRemijsggdRKrywC14jfGyZn5k2wupNvyY9ZLu7YTuh3CpuyKsftbmzYPzdgptG6Rq9UayDXeaPwFHanmXpUqGdTyEvw5Cb3UqGEqfCFZMqQhtz"
+            >
+              <!---->
+              sX4JooVNAF...fCFZMqQhtz
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -675,7 +705,17 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            scRkV9xaMC...XwXrJMpbfo 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=scRkV9xaMCNTsjEx2mwDABavD5exRSNAyCnTZT9hYi2HGKPRAYhqzff5BmdsXgqaYRxgSxkyiDUBFiyHGhuHxMC2R5ztdmG8QUe6jBXsyFMJoGx6H9faXfyA2XwXrJMpbfo"
+            >
+              <!---->
+              scRkV9xaMC...XwXrJMpbfo
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -838,7 +878,17 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            m6dy2gz3jC...tW82FWtnpf 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
+            >
+              <!---->
+              m6dy2gz3jC...tW82FWtnpf
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -1001,7 +1051,17 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            m9dVuRgr3C...94r33pFQyz 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
+            >
+              <!---->
+              m9dVuRgr3C...94r33pFQyz
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -1164,7 +1224,17 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mTgXDqkyVa...gAseybAsfU 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
+            >
+              <!---->
+              mTgXDqkyVa...gAseybAsfU
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -1328,7 +1398,17 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mUUpjnXow2...SfzQcywzaW 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
+            >
+              <!---->
+              mUUpjnXow2...SfzQcywzaW
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -1492,7 +1572,17 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mXKJ97xTtr...JgkCK2o7x4 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
+            >
+              <!---->
+              mXKJ97xTtr...JgkCK2o7x4
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
@@ -1655,7 +1745,17 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           <div
             class="provisioners-table__staking-address-wrapper"
           >
-            mdXsA3Ee1Y...K8VZPimZ2J 
+            <a
+              class="dusk-anchor dusk-anchor--on-surface"
+              href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
+            >
+              <!---->
+              mdXsA3Ee1Y...K8VZPimZ2J
+              
+              <!---->
+            </a>
+            <!---->
+             
             <div
               class="dusk-copy-button"
             >
