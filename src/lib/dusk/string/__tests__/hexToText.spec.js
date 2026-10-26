@@ -15,6 +15,25 @@ describe("hexToText", () => {
     expect(hexToText("0102030405")).toBeNull();
   });
 
+  it("should give `null` for text with control, bidi or zero-width characters", () => {
+    const hex = (/** @type {string} */ text) =>
+      Array.from(new TextEncoder().encode(text), (b) =>
+        b.toString(16).padStart(2, "0")
+      ).join("");
+
+    // C1 control (NEL) and right-to-left override
+    expect(hexToText("c285")).toBeNull();
+    expect(hexToText("e280ae")).toBeNull();
+    expect(hexToText(hex("pay \u202Etxt.exe"))).toBeNull();
+    expect(hexToText(hex("a\u2066b\u2069"))).toBeNull();
+    expect(hexToText(hex("a\u200Bb"))).toBeNull();
+    expect(hexToText(hex("a\uFEFFb"))).toBeNull();
+    // A leading byte order mark too, which a decoder would drop
+    expect(hexToText("efbbbf6869")).toBeNull();
+    expect(hexToText(hex("a\u2028b"))).toBeNull();
+    expect(hexToText(hex("tab\there\r\nok"))).toBe("tab\there\r\nok");
+  });
+
   it("should give `null` for values that aren't hex", () => {
     expect(hexToText("")).toBeNull();
     expect(hexToText("abc")).toBeNull();
