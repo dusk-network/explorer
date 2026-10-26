@@ -58,6 +58,33 @@
       });
   }
 
+  /** @type {{ date: Date, height: number } | null} */
+  let tip = null;
+
+  let isTipAsked = false;
+
+  // A stake's dates count from the last block: one more query, once, and
+  // only for a provisioner.
+  function askForTip() {
+    if (isTipAsked) {
+      return;
+    }
+
+    isTipAsked = true;
+    duskAPI.getChainTip().then(
+      (last) => {
+        tip = last;
+      },
+      () => {
+        isTipAsked = false;
+      }
+    );
+  }
+
+  $: if (stake && (stake.active || stake.inactive)) {
+    askForTip();
+  }
+
   /** @type {string | null} */
   let lastRequestedKey = null;
 
@@ -83,6 +110,7 @@
         accountAddress={key}
         {searchedName}
         {stake}
+        {tip}
       />
     </article>
 

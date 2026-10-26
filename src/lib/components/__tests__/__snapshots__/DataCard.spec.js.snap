@@ -13,7 +13,19 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -64,7 +76,19 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -115,7 +139,19 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -198,7 +234,19 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -248,7 +296,19 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -314,7 +374,19 @@ exports[`DataCard > should render the \`DataCard\` with a disabled button 1`] = 
     <h1
       class="data-card__header-title"
     >
-      Title
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Title 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button

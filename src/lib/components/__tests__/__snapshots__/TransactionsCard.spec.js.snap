@@ -13,7 +13,19 @@ exports[`Transactions Card > should hide the \`Show More\` button if an error ha
     <h1
       class="data-card__header-title"
     >
-      Transactions
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Transactions 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -85,7 +97,19 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
     <h1
       class="data-card__header-title"
     >
-      Transactions
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Transactions 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -2310,7 +2334,19 @@ exports[`Transactions Card > should render the \`TransactionsCard\` component 1`
     <h1
       class="data-card__header-title"
     >
-      Transactions
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Transactions 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -2340,7 +2376,19 @@ exports[`Transactions Card > should show no \`Show More\` button while the card 
     <h1
       class="data-card__header-title"
     >
-      Transactions
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Transactions 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->

@@ -227,6 +227,18 @@ describe("Transaction Details", () => {
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
+  it("should make each field's help reachable from the keyboard, with its text as the description", () => {
+    const { getAllByRole } = render(TransactionDetails, baseProps);
+    const [help] = getAllByRole("button", { name: "More information" });
+
+    expect(help.tagName).toBe("BUTTON");
+    expect(help).toHaveAccessibleDescription("The ID of the transaction");
+    expect(help).toHaveAttribute(
+      "data-tooltip-text",
+      "The ID of the transaction"
+    );
+  });
+
   it("should show amounts in DUSK, with dollars rounded to cents", () => {
     const { container } = render(TransactionDetails, baseProps);
 

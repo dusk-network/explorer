@@ -98,6 +98,9 @@
     notificationObserver?.disconnect();
   }
 
+  // A search that found nothing replaces the page below until it is closed.
+  $: dispatch("searchMiss", showSearchNotification);
+
   onDestroy(() => notificationObserver?.disconnect());
 
   afterNavigate(() => {

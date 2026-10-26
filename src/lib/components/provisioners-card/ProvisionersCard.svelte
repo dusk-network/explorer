@@ -8,6 +8,7 @@
     ProvisionersTable,
   } from "$lib/components";
   import { Button, Textbox } from "$lib/dusk/components";
+  import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
   import { appStore } from "$lib/stores";
 
   import "./ProvisionersCard.css";
@@ -95,10 +96,51 @@
         }))
     : [];
 
+  /**
+   * What each `.dusk` name searched for resolved to: the account, or why
+   * there is none. One lookup per name typed in full; a failed one is
+   * tried again.
+   *
+   * @type {Record<string, { account?: string, error?: string }>}
+   */
+  let lookups = {};
+
+  /** @param {string} name */
+  function lookUp(name) {
+    const known = lookups[name];
+
+    if (known && !known.error) {
+      return;
+    }
+
+    lookups = { ...lookups, [name]: {} };
+    resolveDuskName(name).then(
+      (account) => {
+        lookups = { ...lookups, [name]: { account } };
+      },
+      (/** @type {Error} */ failure) => {
+        lookups = { ...lookups, [name]: { error: failure.message } };
+      }
+    );
+  }
+
   $: search = query.trim().toLowerCase();
-  $: foundProvisioners = search
-    ? enrichedProvisioners.filter((p) => matches(p, search))
-    : enrichedProvisioners;
+  $: nameSearched = isDuskName(search) ? search : null;
+  $: if (nameSearched) {
+    lookUp(nameSearched);
+  }
+  $: searchedName = nameSearched
+    ? { name: nameSearched, ...lookups[nameSearched] }
+    : null;
+  $: foundProvisioners = searchedName
+    ? enrichedProvisioners.filter(
+        (p) =>
+          p.key === searchedName?.account ||
+          p.ownerAddress === searchedName?.account
+      )
+    : search
+      ? enrichedProvisioners.filter((p) => matches(p, search))
+      : enrichedProvisioners;
   $: displayedProvisioners = foundProvisioners.slice(0, itemsToDisplay);
   $: hasMore = itemsToDisplay < foundProvisioners.length;
 
@@ -112,15 +154,23 @@
 <DataCard on:retry data={provisioners} {error} {loading} title="Provisioners">
   <div class="provisioners-card__search">
     <Textbox
-      aria-label="Search provisioners by staking or owner address"
+      aria-label="Search provisioners by staking or owner address, or .dusk name"
       bind:value={query}
-      placeholder="Staking or owner address"
+      placeholder="Staking or owner address, or .dusk name"
       type="search"
     />
   </div>
   {#if !displayedProvisioners.length}
     <p class="provisioners-card__empty">
-      No provisioner has an address with “{query.trim()}”.
+      {#if searchedName?.error}
+        {searchedName.error}
+      {:else if searchedName && !searchedName.account}
+        Looking up {searchedName.name}…
+      {:else if searchedName}
+        No provisioner has {searchedName.name}'s address.
+      {:else}
+        No provisioner has an address with “{query.trim()}”.
+      {/if}
     </p>
   {:else if isSmallScreen}
     <div class="data-card__list">

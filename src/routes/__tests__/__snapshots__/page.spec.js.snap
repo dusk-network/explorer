@@ -379,7 +379,19 @@ exports[`home page > should render the home page, start polling for the latest c
         <h1
           class="data-card__header-title"
         >
-          Blocks
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            [
+          </span>
+           Blocks 
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            ]
+          </span>
         </h1>
          
         <button
@@ -430,7 +442,19 @@ exports[`home page > should render the home page, start polling for the latest c
         <h1
           class="data-card__header-title"
         >
-          Transactions
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            [
+          </span>
+           Transactions 
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            ]
+          </span>
         </h1>
          
         <button
@@ -1957,7 +1981,19 @@ exports[`home page > should render the home page, start polling for the latest c
         <h1
           class="data-card__header-title"
         >
-          Blocks
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            [
+          </span>
+           Blocks 
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            ]
+          </span>
         </h1>
          
         <button
@@ -3481,7 +3517,19 @@ exports[`home page > should render the home page, start polling for the latest c
         <h1
           class="data-card__header-title"
         >
-          Transactions
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            [
+          </span>
+           Transactions 
+          <span
+            aria-hidden="true"
+            class="data-card__bracket"
+          >
+            ]
+          </span>
         </h1>
          
         <button

@@ -10,6 +10,7 @@ import {
   unless,
 } from "lamb";
 
+import { unixTsToDate } from "$lib/dusk/date";
 import { failureToRejection } from "$lib/dusk/http";
 import { makeNodeUrl } from "$lib/url";
 import { STAKE_CONTRACT } from "$lib/constants";
@@ -163,6 +164,20 @@ const duskAPI = {
     return gqlGet(getBlocksQueryInfo(amount))
       .then(getKey("blocks"))
       .then(transformBlocks);
+  },
+
+  /**
+   * The height and time of the last block, in one query.
+   *
+   * @returns {Promise<{ date: Date, height: number }>}
+   */
+  getChainTip() {
+    return gqlGet({
+      query: "query { block(height: -1) { header { height timestamp } } }",
+    }).then(({ block }) => ({
+      date: unixTsToDate(block.header.timestamp),
+      height: block.header.height,
+    }));
   },
 
   /**

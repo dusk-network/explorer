@@ -12,6 +12,7 @@
   import { PrimaryName } from "$lib/containers";
   import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
 
   import "./AccountOverview.css";
 
@@ -29,6 +30,14 @@
 
   /** @type {boolean} */
   export let errorFetchingStake = false;
+
+  /**
+   * The last block, to tell when the stake takes part: `null` until it is
+   * known, or when it couldn't be read.
+   *
+   * @type {{ date: Date, height: number } | null}
+   */
+  export let tip = null;
 
   /**
    * The `.dusk` name searched for to reach this account, if any. It leads
@@ -49,7 +58,20 @@
   /** @type {number} */
   let screenWidth = window.innerWidth;
 
+  /** Blocks come every 10 seconds, on mainnet and testnet alike. */
+  const BLOCK_MS = 10_000;
+
   const formatter = createValueFormatter("en");
+
+  /**
+   * When a block comes, or came, as the last block and the block time
+   * tell.
+   *
+   * @param {number} height
+   * @param {{ date: Date, height: number }} last
+   */
+  const estimateDate = (height, last) =>
+    new Date(last.date.getTime() + (height - last.height) * BLOCK_MS);
 
   onMount(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -66,6 +88,9 @@
   const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
     addressCharPropertiesDefaults;
 
+  // An account with a stake is a provisioner.
+  $: isProvisioner = !!(stake && (stake.active || stake.inactive));
+
   $: shortAddress = middleEllipsis(
     accountAddress,
     calculateAdaptiveCharCount(
@@ -81,7 +106,7 @@
 <section class="account-overview-panel">
   <div class="account-overview-panel__address-wrapper">
     <p class="account-overview-panel__header">
-      Account:
+      {isProvisioner ? "Provisioner" : "Account"}:
       {#await searchedNameShown}
         <b class="account-overview-panel__address">{shortAddress}</b>
       {:then searched}
@@ -151,7 +176,7 @@
     </OverviewPanelDetailsItem>
   </div>
 
-  {#if stake && (stake.active || stake.inactive)}
+  {#if stake && isProvisioner}
     <p class="account-overview-panel__note account-overview-panel__stake">
       Active <span title="{formatDuskExact(stake.active)} DUSK"
         >{formatDusk(stake.active)} DUSK</span
@@ -160,8 +185,20 @@
       <span title="{formatDuskExact(stake.inactive)} DUSK"
         >{formatDusk(stake.inactive)} DUSK</span
       >
-      · Eligible from block {formatter(stake.eligibility)} · Slashes: {stake.faults}
-      soft, {stake.hardFaults} hard
+      ·
+      {#if tip}
+        <span title="Block {formatter(stake.eligibility)}"
+          >{stake.eligibility > tip.height
+            ? "Eligible from about"
+            : "Eligible since about"}
+          {formatDateTime(estimateDate(stake.eligibility, tip), {
+            seconds: false,
+          })}</span
+        >
+      {:else}
+        Eligible from block {formatter(stake.eligibility)}
+      {/if}
+      · Slashes: {stake.faults} soft, {stake.hardFaults} hard
     </p>
   {/if}
 

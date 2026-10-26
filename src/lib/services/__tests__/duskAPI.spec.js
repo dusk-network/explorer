@@ -327,6 +327,24 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
+  it("should read the last block's height and time in one query", async () => {
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        block: { header: { height: 4692520, timestamp: 1793032599 } },
+      })
+    );
+
+    await expect(duskAPI.getChainTip()).resolves.toStrictEqual({
+      date: new Date(1793032599 * 1000),
+      height: 4692520,
+    });
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
+    expect(fetchSpy.mock.calls[0][1]?.body).toBe(
+      "query { block(height: -1) { header { height timestamp } } }"
+    );
+  });
+
   it("should read an account's stake from the stake contract in one JSON query", async () => {
     const address = mockData.hostProvisioners[0].key;
 

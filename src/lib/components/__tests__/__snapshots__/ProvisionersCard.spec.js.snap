@@ -13,7 +13,19 @@ exports[`Provisioners Card > should hide the \`Show More\` button if an error ha
     <h1
       class="data-card__header-title"
     >
-      Provisioners
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Provisioners 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -85,7 +97,19 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
     <h1
       class="data-card__header-title"
     >
-      Provisioners
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Provisioners 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -102,9 +126,9 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
     >
       <!---->
       <input
-        aria-label="Search provisioners by staking or owner address"
+        aria-label="Search provisioners by staking or owner address, or .dusk name"
         class="dusk-textbox dusk-textbox-search"
-        placeholder="Staking or owner address"
+        placeholder="Staking or owner address, or .dusk name"
         type="search"
       />
       
@@ -2089,7 +2113,19 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
     <h1
       class="data-card__header-title"
     >
-      Provisioners
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Provisioners 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -2119,7 +2155,19 @@ exports[`Provisioners Card > should show no \`Show More\` button while the card 
     <h1
       class="data-card__header-title"
     >
-      Provisioners
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Provisioners 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->

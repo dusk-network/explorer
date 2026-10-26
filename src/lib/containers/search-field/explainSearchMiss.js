@@ -15,6 +15,14 @@ function explainSearchMiss(query) {
   const text = query.trim();
   const isHex = /^[0-9a-f]+$/i.test(text);
 
+  // An ID as wallets and lists shorten it: its start and end.
+  if (/^[0-9a-f]{4,}(?:…|\.{2,3})[0-9a-f]{4,}$/i.test(text)) {
+    return {
+      message:
+        "This is a shortened ID. Copy the whole ID, 64 characters, and search again.",
+    };
+  }
+
   if (/^\d+$/.test(text)) {
     return { message: "There is no block at this height." };
   }

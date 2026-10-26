@@ -31,7 +31,11 @@
 
 <Card className={classes}>
   <header slot="header" class="data-card__header">
-    <h1 class="data-card__header-title">{title}</h1>
+    <h1 class="data-card__header-title">
+      <span aria-hidden="true" class="data-card__bracket">[</span>
+      {title}
+      <span aria-hidden="true" class="data-card__bracket">]</span>
+    </h1>
     {#if headerButtonDetails}
       <Button
         on:click={headerButtonDetails.action}

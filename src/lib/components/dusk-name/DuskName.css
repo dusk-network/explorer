@@ -17,7 +17,8 @@
 
 .primary-name__site,
 .primary-name__address {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 45%);
+  /* 4.5:1 or more on the light and the dark card. */
+  color: color-mix(in oklab, var(--on-surface-color), transparent 35%);
 }
 
 .primary-name__site {

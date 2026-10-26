@@ -27,13 +27,24 @@
   });
 
   const { hasTouchSupport } = $appStore;
+
+  /**
+   * Whether the last search found nothing: its notice stands in for the
+   * page, so the previous result can't pass for its answer.
+   */
+  let hasSearchMissed = false;
 </script>
 
 <header>
   <TestnetStrip />
-  <Navbar on:toggleMenu={(e) => toggleScroll(e.detail)} />
+  <Navbar
+    on:searchMiss={(e) => {
+      hasSearchMissed = e.detail;
+    }}
+    on:toggleMenu={(e) => toggleScroll(e.detail)}
+  />
 </header>
-<main id="explorer">
+<main hidden={hasSearchMissed} id="explorer">
   <slot />
 </main>
 <footer>

@@ -13,7 +13,19 @@ exports[`Block Details > renders the Block Details component 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Block Details
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Block Details 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -34,21 +46,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-1"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The height of the block indicates the length of the block chain and is increased with each additional block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-1"
+            >
+              The height of the block indicates the length of the block chain and is increased with each additional block
+            </span>
+          </button>
           <!---->
            
           height
@@ -123,21 +150,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-2"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The hash for the header of the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-2"
+            >
+              The hash for the header of the block
+            </span>
+          </button>
           <!---->
            
           hash
@@ -194,21 +236,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-3"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The date and time the block was created"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-3"
+            >
+              The date and time the block was created
+            </span>
+          </button>
           <!---->
            
           timestamp
@@ -243,21 +300,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-4"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The number of transactions included in the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-4"
+            >
+              The number of transactions included in the block
+            </span>
+          </button>
           <!---->
            
           transactions
@@ -279,21 +351,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-5"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The total fees paid for the transactions in the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-5"
+            >
+              The total fees paid for the transactions in the block
+            </span>
+          </button>
           <!---->
            
           block fees paid
@@ -315,21 +402,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-6"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-6"
+            >
+              The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block
+            </span>
+          </button>
           <!---->
            
           block reward
@@ -351,21 +453,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-7"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The block gas limit"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-7"
+            >
+              The block gas limit
+            </span>
+          </button>
           <!---->
            
           block gas limit
@@ -387,21 +504,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-8"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The amount of gas used generating the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-8"
+            >
+              The amount of gas used generating the block
+            </span>
+          </button>
           <!---->
            
           gas used
@@ -434,21 +566,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-9"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The average gas price for the transactions within the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-9"
+            >
+              The average gas price for the transactions within the block
+            </span>
+          </button>
           <!---->
            
           average gas price
@@ -470,21 +617,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-10"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The state root hash"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-10"
+            >
+              The state root hash
+            </span>
+          </button>
           <!---->
            
           state root hash
@@ -541,21 +703,36 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-11"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The block header information"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-11"
+            >
+              The block header information
+            </span>
+          </button>
           <!---->
            
           <div
@@ -610,7 +787,19 @@ exports[`Block Details > should render the Block Details component with the payl
     <h1
       class="data-card__header-title"
     >
-      Block Details
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Block Details 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -631,21 +820,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-45"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The height of the block indicates the length of the block chain and is increased with each additional block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-45"
+            >
+              The height of the block indicates the length of the block chain and is increased with each additional block
+            </span>
+          </button>
           <!---->
            
           height
@@ -720,21 +924,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-46"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The hash for the header of the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-46"
+            >
+              The hash for the header of the block
+            </span>
+          </button>
           <!---->
            
           hash
@@ -791,21 +1010,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-47"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The date and time the block was created"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-47"
+            >
+              The date and time the block was created
+            </span>
+          </button>
           <!---->
            
           timestamp
@@ -840,21 +1074,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-48"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The number of transactions included in the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-48"
+            >
+              The number of transactions included in the block
+            </span>
+          </button>
           <!---->
            
           transactions
@@ -876,21 +1125,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-49"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The total fees paid for the transactions in the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-49"
+            >
+              The total fees paid for the transactions in the block
+            </span>
+          </button>
           <!---->
            
           block fees paid
@@ -912,21 +1176,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-50"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-50"
+            >
+              The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block
+            </span>
+          </button>
           <!---->
            
           block reward
@@ -948,21 +1227,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-51"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The block gas limit"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-51"
+            >
+              The block gas limit
+            </span>
+          </button>
           <!---->
            
           block gas limit
@@ -984,21 +1278,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-52"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The amount of gas used generating the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-52"
+            >
+              The amount of gas used generating the block
+            </span>
+          </button>
           <!---->
            
           gas used
@@ -1031,21 +1340,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-53"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The average gas price for the transactions within the block"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-53"
+            >
+              The average gas price for the transactions within the block
+            </span>
+          </button>
           <!---->
            
           average gas price
@@ -1067,21 +1391,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-54"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The state root hash"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-54"
+            >
+              The state root hash
+            </span>
+          </button>
           <!---->
            
           state root hash
@@ -1138,21 +1477,36 @@ exports[`Block Details > should render the Block Details component with the payl
         <div
           class="details-list__term-layout"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
+          <button
+            aria-describedby="list-item-help-55"
+            aria-label="More information"
+            class="detail-list__help"
             data-tooltip-id="main-tooltip"
             data-tooltip-place="top"
             data-tooltip-text="The block header information"
             data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
+            type="button"
           >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <span
+              hidden=""
+              id="list-item-help-55"
+            >
+              The block header information
+            </span>
+          </button>
           <!---->
            
           <div

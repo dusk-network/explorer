@@ -38,6 +38,10 @@ vi.mock("$lib/services", async (importOriginal) => {
       getAccountStatus: vi
         .fn()
         .mockResolvedValue({ balance: 1_484_920_000_000, nonce: 15 }),
+      getChainTip: vi.fn().mockResolvedValue({
+        date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
+        height: 123_000,
+      }),
       getMoonlightAccountTransactions: vi.fn().mockResolvedValue([]),
       getStake: vi.fn().mockResolvedValue({
         active: 1_000_000_000_000,
@@ -80,14 +84,26 @@ describe("Account page", () => {
     expect(duskAPI.getStake).toHaveBeenCalledExactlyOnceWith(key);
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
     expect(getByText("Public balance")).toBeInTheDocument();
-    expect(
-      container
-        .querySelector(".account-overview-panel__stake")
-        ?.textContent?.replace(/\s+/g, " ")
-        .trim()
-    ).toBe(
-      "Active 1,000 DUSK · Inactive 0 DUSK · Eligible from block 123,120 · Slashes: 1 soft, 0 hard"
+    // The stake's block, 120 blocks after the last one, comes in about
+    // 20 minutes.
+    await vi.waitFor(() =>
+      expect(
+        container
+          .querySelector(".account-overview-panel__stake")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim()
+      ).toBe(
+        "Active 1,000 DUSK · Inactive 0 DUSK · Eligible from about Mon 26 Oct 2026, 10:20 UTC · Slashes: 1 soft, 0 hard"
+      )
     );
+    expect(getByText(/Eligible from about/)).toHaveAttribute(
+      "title",
+      "Block 123,120"
+    );
+    expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
+    expect(
+      container.querySelector(".account-overview-panel__header")
+    ).toHaveTextContent(/^Provisioner:/);
     expect(container.textContent).toContain("Shielded funds aren't shown.");
   });
 
@@ -109,5 +125,36 @@ describe("Account page", () => {
       ])
     );
     expect(duskAPI.getStake).toHaveBeenCalledTimes(1);
+  });
+
+  it("should say since when a stake has taken part, and give the block on hover", async () => {
+    vi.mocked(duskAPI.getChainTip).mockResolvedValueOnce({
+      date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
+      height: 123_120 + 8640,
+    });
+
+    const { findByText } = render(AccountPage);
+
+    expect(
+      await findByText(/Eligible since about Sun 25 Oct 2026, 10:00 UTC/)
+    ).toHaveAttribute("title", "Block 123,120");
+  });
+
+  it("should call an account without a stake an account, and read no block for it", async () => {
+    vi.mocked(duskAPI.getStake).mockResolvedValueOnce(null);
+
+    const { container } = render(AccountPage);
+
+    await vi.waitFor(() =>
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+    );
+
+    expect(
+      container.querySelector(".account-overview-panel__header")
+    ).toHaveTextContent(/^Account:/);
+    expect(
+      container.querySelector(".account-overview-panel__stake")
+    ).toBeNull();
+    expect(duskAPI.getChainTip).not.toHaveBeenCalled();
   });
 });

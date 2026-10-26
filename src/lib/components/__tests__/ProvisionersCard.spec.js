@@ -1,9 +1,15 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { slice } from "lamb";
 
 import { hostProvisioners } from "$lib/mock-data";
+import { resolveDuskName } from "$lib/dusk-domains";
 import { ProvisionersCard } from "..";
+
+vi.mock("$lib/dusk-domains", async (importOriginal) => ({
+  .../** @type {object} */ (await importOriginal()),
+  resolveDuskName: vi.fn(),
+}));
 
 describe("Provisioners Card", () => {
   const data = slice(hostProvisioners, 0, 10);
@@ -20,6 +26,10 @@ describe("Provisioners Card", () => {
   };
 
   afterEach(cleanup);
+
+  afterAll(() => {
+    vi.doUnmock("$lib/dusk-domains");
+  });
 
   it("should render the `ProvisionersCard` component", () => {
     const { container } = render(ProvisionersCard, baseOptions);
@@ -52,9 +62,7 @@ describe("Provisioners Card", () => {
     );
     const shown = () => container.querySelectorAll("tbody tr").length;
 
-    expect(
-      container.querySelector(".data-card__header-title")
-    ).toHaveTextContent(/^Provisioners$/);
+    expect(getByRole("heading", { name: "Provisioners" })).toBeInTheDocument();
     expect(shown()).toBe(15);
     expect(footer.textContent).toMatch(/^\s*15 of \d+/);
 
@@ -70,7 +78,7 @@ describe("Provisioners Card", () => {
       props: { ...baseProps, provisioners: hostProvisioners },
     });
     const search = getByRole("searchbox", {
-      name: "Search provisioners by staking or owner address",
+      name: "Search provisioners by staking or owner address, or .dusk name",
     });
     const rows = () =>
       Array.from(container.querySelectorAll("tbody tr"), (row) =>
@@ -91,6 +99,46 @@ describe("Provisioners Card", () => {
     expect(container.textContent).toContain(
       "No provisioner has an address with “no such address”."
     );
+  });
+
+  it("should find a provisioner by a .dusk name, with one lookup", async () => {
+    const third = hostProvisioners[2];
+    const { container, findByText, getByRole } = render(ProvisionersCard, {
+      ...baseOptions,
+      props: { ...baseProps, provisioners: hostProvisioners },
+    });
+    const search = getByRole("searchbox");
+    const rows = () =>
+      Array.from(container.querySelectorAll("tbody tr"), (row) =>
+        row.querySelector("a")?.getAttribute("href")
+      );
+
+    vi.mocked(resolveDuskName).mockResolvedValueOnce(third.key);
+    await fireEvent.input(search, { target: { value: "domains.dus" } });
+    await fireEvent.input(search, { target: { value: "Domains.dusk" } });
+
+    await vi.waitFor(() =>
+      expect(rows()).toStrictEqual([
+        `/some-base-path/accounts/?key=${third.key}`,
+      ])
+    );
+    expect(resolveDuskName).toHaveBeenCalledExactlyOnceWith("domains.dusk");
+
+    vi.mocked(resolveDuskName).mockResolvedValueOnce("someone-else");
+    await fireEvent.input(search, { target: { value: "alice.dusk" } });
+
+    expect(
+      await findByText("No provisioner has alice.dusk's address.")
+    ).toBeInTheDocument();
+
+    vi.mocked(resolveDuskName).mockRejectedValueOnce(
+      new Error("This name is not registered.")
+    );
+    await fireEvent.input(search, { target: { value: "nobody.dusk" } });
+
+    expect(
+      await findByText("This name is not registered.")
+    ).toBeInTheDocument();
   });
 
   it("should hide the `Show More` button if there is no more data to display", async () => {

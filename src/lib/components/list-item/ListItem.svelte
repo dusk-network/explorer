@@ -1,5 +1,9 @@
 <svelte:options immutable={true} />
 
+<script context="module">
+  let helpCount = 0;
+</script>
+
 <script>
   import { Icon } from "$lib/dusk/components";
   import { mdiInformationOutline } from "@mdi/js";
@@ -12,6 +16,7 @@
   export let tooltipText = "";
 
   const context = getContext("DUSK:list-item:context") || "";
+  const helpId = `list-item-help-${++helpCount}`;
 </script>
 
 <dt
@@ -20,15 +25,20 @@
 >
   <div class="details-list__term-layout">
     {#if tooltipText}
-      <Icon
-        className="detail-list__help"
-        path={mdiInformationOutline}
-        size="default"
+      <!-- The help shows on hover, on focus and on a tap. -->
+      <button
+        aria-describedby={helpId}
+        aria-label="More information"
+        class="detail-list__help"
         data-tooltip-id="main-tooltip"
-        data-tooltip-text={tooltipText}
         data-tooltip-place="top"
+        data-tooltip-text={tooltipText}
         data-tooltip-type="info"
-      />
+        type="button"
+      >
+        <Icon path={mdiInformationOutline} size="default" />
+        <span hidden id={helpId}>{tooltipText}</span>
+      </button>
     {/if}
     <slot name="term" />
   </div>

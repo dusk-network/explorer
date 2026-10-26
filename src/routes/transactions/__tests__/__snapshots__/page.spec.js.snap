@@ -15,7 +15,19 @@ exports[`Transactions page > should render the Transactions page with the mobile
       <h1
         class="data-card__header-title"
       >
-        Transactions
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Transactions 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->
@@ -4197,7 +4209,19 @@ exports[`Transactions page > should render the Transactions page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Transactions
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Transactions 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->
@@ -4241,7 +4265,19 @@ exports[`Transactions page > should render the Transactions page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Transactions
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Transactions 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->

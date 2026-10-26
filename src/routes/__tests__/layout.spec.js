@@ -223,4 +223,33 @@ describe("Main layout", () => {
 
     expect(queryByRole("note")).toBeNull();
   });
+
+  it("should show a search that found nothing in place of the page, until it is closed", async () => {
+    const { container, getByRole } = renderWithSimpleContent(
+      MainLayout,
+      baseOptions
+    );
+    const main = /** @type {HTMLElement} */ (container.querySelector("main"));
+    const input = /** @type {HTMLInputElement} */ (
+      container.querySelector("input")
+    );
+
+    expect(main).toBeVisible();
+
+    await fireEvent.input(input, { target: { value: "bad_name" } });
+    await fireEvent.submit(
+      /** @type {HTMLFormElement} */ (input.closest("form"))
+    );
+
+    expect(container.querySelector(".search-notification")).toHaveTextContent(
+      "Nothing found for bad_name"
+    );
+    expect(main).not.toBeVisible();
+
+    await fireEvent.click(
+      /** @type {HTMLElement} */ (getByRole("button", { name: "Close" }))
+    );
+
+    expect(main).toBeVisible();
+  });
 });
