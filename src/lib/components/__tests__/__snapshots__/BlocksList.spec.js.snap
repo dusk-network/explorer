@@ -52,6 +52,8 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
   >
     <time
       class="dusk-relative-time block-details__list-timestamp"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
       datetime="2024-04-16T20:07:02.000Z"
       slot="definition"
     >
@@ -152,7 +154,11 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    16 DUSK
+    <span
+      title="16 DUSK"
+    >
+      16 DUSK
+    </span>
     <!---->
   </dd>
   <!---->

@@ -1,3 +1,69 @@
+/* The leading sentence: who sent how much to whom, and when. */
+.transaction-details__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 0 1.125rem 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid
+    color-mix(in oklab, var(--on-surface-color), transparent 85%);
+}
+
+.transaction-details__summary-text {
+  /* "0x" stays as typed, not as a multiplication sign. */
+  font-feature-settings: "calt" 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.transaction-details__summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  color: color-mix(in oklab, var(--on-surface-color), transparent 25%);
+  font-size: 0.875rem;
+}
+
+.transaction-details__summary-failed {
+  color: var(--badge-error-color);
+  font-weight: 500;
+}
+
+/* Folded: gas, the nonce and the payload. */
+.transaction-details__technical {
+  margin: 1.25rem 1.125rem 0;
+  border-top: 1px solid
+    color-mix(in oklab, var(--on-surface-color), transparent 85%);
+}
+
+.transaction-details__technical-summary {
+  padding: 1rem 0;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.transaction-details__technical-summary:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+.transaction-details__technical .transaction-details__list {
+  padding: 0;
+}
+
+.transaction-details__evm {
+  min-width: 0;
+}
+
+.transaction-details__evm-address {
+  font-family: var(--mono-font-family);
+  font-feature-settings: "calt" 0;
+  overflow-wrap: anywhere;
+}
+
 .transaction-details__list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -113,9 +179,10 @@
     text-transform: none;
   }
 
+  /* The folded list's values line up with the ones above it. */
   .transaction-details__list {
     display: inline-grid;
-    grid-template-columns: minmax(0, auto) minmax(0, 3fr);
+    grid-template-columns: minmax(16.25rem, auto) minmax(0, 3fr);
   }
 
   .transaction-details__payload {

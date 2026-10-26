@@ -65,7 +65,12 @@ describe("Transactions List", () => {
       "status",
       "type",
     ]);
-    expect(container.textContent).toContain("9,812.378912731 DUSK");
+    expect(container.textContent).toContain("9,812.3789 DUSK");
+    expect(
+      Array.from(container.querySelectorAll("[title]"), (el) =>
+        el.getAttribute("title")
+      )
+    ).toStrictEqual(["9,812.378912731 DUSK", "0.000290766 DUSK"]);
 
     rerender({ ...baseProps, mode: "compact" });
 

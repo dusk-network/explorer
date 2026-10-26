@@ -93,6 +93,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
               datetime="2024-05-28T14:26:54.000Z"
               slot="definition"
             >
@@ -193,7 +195,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -250,6 +256,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
               datetime="2024-05-28T14:26:51.000Z"
               slot="definition"
             >
@@ -350,7 +358,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -407,6 +419,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
               datetime="2024-05-28T14:26:47.000Z"
               slot="definition"
             >
@@ -507,7 +521,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -564,6 +582,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
               datetime="2024-05-28T14:26:45.000Z"
               slot="definition"
             >
@@ -664,7 +684,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -721,6 +745,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
               datetime="2024-05-28T14:26:42.000Z"
               slot="definition"
             >
@@ -821,7 +847,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -878,6 +908,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
               datetime="2024-05-28T14:26:39.000Z"
               slot="definition"
             >
@@ -978,7 +1010,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1035,6 +1071,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
               datetime="2024-05-28T14:26:35.000Z"
               slot="definition"
             >
@@ -1135,7 +1173,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1192,6 +1234,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
               datetime="2024-05-28T14:26:32.000Z"
               slot="definition"
             >
@@ -1292,7 +1336,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1349,6 +1397,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
               datetime="2024-05-28T14:26:29.000Z"
               slot="definition"
             >
@@ -1449,7 +1499,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1506,6 +1560,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
               datetime="2024-05-28T14:26:24.000Z"
               slot="definition"
             >
@@ -1606,7 +1662,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1663,6 +1723,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:21 UTC"
               datetime="2024-05-28T14:26:21.000Z"
               slot="definition"
             >
@@ -1763,7 +1825,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1820,6 +1886,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:26:09 UTC"
               datetime="2024-05-28T14:26:09.000Z"
               slot="definition"
             >
@@ -1920,7 +1988,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1977,6 +2049,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:25:58 UTC"
               datetime="2024-05-28T14:25:58.000Z"
               slot="definition"
             >
@@ -2077,7 +2151,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2134,6 +2212,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:25:55 UTC"
               datetime="2024-05-28T14:25:55.000Z"
               slot="definition"
             >
@@ -2234,7 +2314,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2291,6 +2375,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           >
             <time
               class="dusk-relative-time block-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue 28 May 2024, 14:25:36 UTC"
               datetime="2024-05-28T14:25:36.000Z"
               slot="definition"
             >
@@ -2391,7 +2477,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            16 DUSK
+            <span
+              title="16 DUSK"
+            >
+              16 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2604,6 +2694,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
                   datetime="2024-05-28T14:26:54.000Z"
                 >
                   <!---->
@@ -2660,7 +2752,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -2691,6 +2787,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
                   datetime="2024-05-28T14:26:51.000Z"
                 >
                   <!---->
@@ -2747,7 +2845,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -2778,6 +2880,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
                   datetime="2024-05-28T14:26:47.000Z"
                 >
                   <!---->
@@ -2834,7 +2938,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -2865,6 +2973,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
                   datetime="2024-05-28T14:26:45.000Z"
                 >
                   <!---->
@@ -2921,7 +3031,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -2952,6 +3066,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
                   datetime="2024-05-28T14:26:42.000Z"
                 >
                   <!---->
@@ -3008,7 +3124,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3039,6 +3159,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
                   datetime="2024-05-28T14:26:39.000Z"
                 >
                   <!---->
@@ -3095,7 +3217,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3126,6 +3252,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
                   datetime="2024-05-28T14:26:35.000Z"
                 >
                   <!---->
@@ -3182,7 +3310,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3213,6 +3345,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
                   datetime="2024-05-28T14:26:32.000Z"
                 >
                   <!---->
@@ -3269,7 +3403,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3300,6 +3438,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
                   datetime="2024-05-28T14:26:29.000Z"
                 >
                   <!---->
@@ -3356,7 +3496,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3387,6 +3531,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
                   datetime="2024-05-28T14:26:24.000Z"
                 >
                   <!---->
@@ -3443,7 +3589,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3474,6 +3624,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:21 UTC"
                   datetime="2024-05-28T14:26:21.000Z"
                 >
                   <!---->
@@ -3530,7 +3682,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3561,6 +3717,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:26:09 UTC"
                   datetime="2024-05-28T14:26:09.000Z"
                 >
                   <!---->
@@ -3617,7 +3775,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3648,6 +3810,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:25:58 UTC"
                   datetime="2024-05-28T14:25:58.000Z"
                 >
                   <!---->
@@ -3704,7 +3868,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3735,6 +3903,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:25:55 UTC"
                   datetime="2024-05-28T14:25:55.000Z"
                 >
                   <!---->
@@ -3791,7 +3961,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>
@@ -3822,6 +3996,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                  
                 <time
                   class="dusk-relative-time block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Tue 28 May 2024, 14:25:36 UTC"
                   datetime="2024-05-28T14:25:36.000Z"
                 >
                   <!---->
@@ -3878,7 +4054,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                 class="table__data-cell align-left"
               >
                 <!---->
-                16
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
                 
                 
               </td>

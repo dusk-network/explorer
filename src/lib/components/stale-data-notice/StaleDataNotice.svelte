@@ -1,9 +1,10 @@
 <script>
   import { mdiAlertOutline } from "@mdi/js";
   import { Icon } from "$lib/dusk/components";
+  import { formatDateTime } from "$lib/dusk/date";
   import { marketDataStore } from "$lib/stores";
 
-  $: tooltipText = `Stale Data \nLast Update: ${$marketDataStore.lastUpdate?.toUTCString()}`;
+  $: tooltipText = `Stale Data \nLast Update: ${$marketDataStore.lastUpdate ? formatDateTime($marketDataStore.lastUpdate) : ""}`;
   $: isStaleData = $marketDataStore.lastUpdate && marketDataStore.isDataStale();
 </script>
 

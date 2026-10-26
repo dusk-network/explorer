@@ -11,7 +11,7 @@
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
   import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
 
   import "./AccountOverview.css";
 
@@ -50,7 +50,6 @@
   let screenWidth = window.innerWidth;
 
   const formatter = createValueFormatter("en");
-  const duskFormatter = createValueFormatter("en", 2, 2);
 
   onMount(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -154,10 +153,15 @@
 
   {#if stake && (stake.active || stake.inactive)}
     <p class="account-overview-panel__note account-overview-panel__stake">
-      Active {duskFormatter(luxToDusk(stake.active))} DUSK · Inactive {duskFormatter(
-        luxToDusk(stake.inactive)
-      )} DUSK · Eligible from block {formatter(stake.eligibility)} · Slashes:
-      {stake.faults} soft, {stake.hardFaults} hard
+      Active <span title="{formatDuskExact(stake.active)} DUSK"
+        >{formatDusk(stake.active)} DUSK</span
+      >
+      · Inactive
+      <span title="{formatDuskExact(stake.inactive)} DUSK"
+        >{formatDusk(stake.inactive)} DUSK</span
+      >
+      · Eligible from block {formatter(stake.eligibility)} · Slashes: {stake.faults}
+      soft, {stake.hardFaults} hard
     </p>
   {/if}
 

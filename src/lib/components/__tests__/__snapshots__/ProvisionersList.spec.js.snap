@@ -89,7 +89,12 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     class="details-list__definition details-list__definition--table"
   >
     <span>
-      1,000,000.00 DUSK 
+      <span
+        title="1,000,000 DUSK"
+      >
+        1,000,000 DUSK
+      </span>
+       
       <!---->
     </span>
     <!---->
@@ -112,7 +117,11 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    12,178.76 DUSK
+    <span
+      title="12,178.759788262 DUSK"
+    >
+      12,178.7597 DUSK
+    </span>
     <!---->
   </dd>
   <!---->

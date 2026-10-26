@@ -370,7 +370,13 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -378,7 +384,13 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -399,17 +411,9 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="7,121.257296087 DUSK"
-                data-tooltip-type="info"
+                title="7,121.257296087 DUSK"
               >
-                7,121.
-                <span
-                  class="decimal-shadow"
-                >
-                  26
-                </span>
+                7,121.2572
               </span>
               
               
@@ -543,7 +547,13 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -551,7 +561,13 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -572,17 +588,9 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="6,923.840604194 DUSK"
-                data-tooltip-type="info"
+                title="6,923.840604194 DUSK"
               >
-                6,923.
-                <span
-                  class="decimal-shadow"
-                >
-                  84
-                </span>
+                6,923.8406
               </span>
               
               
@@ -717,7 +725,13 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -725,7 +739,13 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -746,17 +766,9 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="7,518.756679536 DUSK"
-                data-tooltip-type="info"
+                title="7,518.756679536 DUSK"
               >
-                7,518.
-                <span
-                  class="decimal-shadow"
-                >
-                  76
-                </span>
+                7,518.7566
               </span>
               
               
@@ -891,7 +903,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -899,7 +917,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -920,17 +944,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="7,653.541671166 DUSK"
-                data-tooltip-type="info"
+                title="7,653.541671166 DUSK"
               >
-                7,653.
-                <span
-                  class="decimal-shadow"
-                >
-                  54
-                </span>
+                7,653.5416
               </span>
               
               
@@ -1064,7 +1080,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -1072,7 +1094,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1093,17 +1121,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="7,512.060104659 DUSK"
-                data-tooltip-type="info"
+                title="7,512.060104659 DUSK"
               >
-                7,512.
-                <span
-                  class="decimal-shadow"
-                >
-                  06
-                </span>
+                7,512.0601
               </span>
               
               
@@ -1237,7 +1257,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Active:
               </b>
-               500,000 
+               
+              <span
+                title="500,000 DUSK"
+              >
+                500,000
+              </span>
+               
               <br />
                
               <b
@@ -1245,7 +1271,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1266,17 +1298,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="7,973.118109253 DUSK"
-                data-tooltip-type="info"
+                title="7,973.118109253 DUSK"
               >
-                7,973.
-                <span
-                  class="decimal-shadow"
-                >
-                  12
-                </span>
+                7,973.1181
               </span>
               
               
@@ -1411,7 +1435,13 @@ Consensus: mHGvQ9Xdjz...iTfxTvgn7f"
               >
                 Active:
               </b>
-               4,800 
+               
+              <span
+                title="4,800 DUSK"
+              >
+                4,800
+              </span>
+               
               <br />
                
               <b
@@ -1419,7 +1449,13 @@ Consensus: mHGvQ9Xdjz...iTfxTvgn7f"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1440,17 +1476,9 @@ Consensus: mHGvQ9Xdjz...iTfxTvgn7f"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="89.505343279 DUSK"
-                data-tooltip-type="info"
+                title="89.505343279 DUSK"
               >
-                89.
-                <span
-                  class="decimal-shadow"
-                >
-                  51
-                </span>
+                89.5053
               </span>
               
               
@@ -1585,7 +1613,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Active:
               </b>
-               4,800 
+               
+              <span
+                title="4,800 DUSK"
+              >
+                4,800
+              </span>
+               
               <br />
                
               <b
@@ -1593,7 +1627,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1614,17 +1654,9 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="73.800637305 DUSK"
-                data-tooltip-type="info"
+                title="73.800637305 DUSK"
               >
-                73.
-                <span
-                  class="decimal-shadow"
-                >
-                  80
-                </span>
+                73.8006
               </span>
               
               
@@ -1758,7 +1790,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Active:
               </b>
-               1,234 
+               
+              <span
+                title="1,234 DUSK"
+              >
+                1,234
+              </span>
+               
               <br />
                
               <b
@@ -1766,7 +1804,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1787,17 +1831,9 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="29.633646022 DUSK"
-                data-tooltip-type="info"
+                title="29.633646022 DUSK"
               >
-                29.
-                <span
-                  class="decimal-shadow"
-                >
-                  63
-                </span>
+                29.6336
               </span>
               
               
@@ -1931,7 +1967,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Active:
               </b>
-               1,000 
+               
+              <span
+                title="1,000 DUSK"
+              >
+                1,000
+              </span>
+               
               <br />
                
               <b
@@ -1939,7 +1981,13 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
               >
                 Inactive:
               </b>
-               0 
+               
+              <span
+                title="0 DUSK"
+              >
+                0
+              </span>
+               
               <br />
                
               <b
@@ -1960,17 +2008,9 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
             >
               <!---->
               <span
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="1.613840782 DUSK"
-                data-tooltip-type="info"
+                title="1.613840782 DUSK"
               >
-                1.
-                <span
-                  class="decimal-shadow"
-                >
-                  61
-                </span>
+                1.6138
               </span>
               
               

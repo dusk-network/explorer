@@ -48,4 +48,44 @@ describe("describeCall", () => {
       name: "Stake contract",
     });
   });
+
+  it("should name the DuskEVM bridge and its calls on testnet only", async () => {
+    const bridge =
+      "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
+    const portal =
+      "14eeb3d4021aff09af2c515603a01f8d956a7f6411d11a1b1c0b0561a93fb1b9";
+
+    await expect(
+      describeCall(bridge, "depositETHToWithValue", 2)
+    ).resolves.toEqual({ label: "Deposit to DuskEVM", name: "DuskEVM bridge" });
+    await expect(
+      describeCall(portal, "proveWithdrawalTransaction", 2)
+    ).resolves.toEqual({
+      label: "Prove withdrawal",
+      name: "DuskEVM bridge portal",
+    });
+    await expect(
+      describeCall(bridge, "depositETHToWithValue", 1)
+    ).resolves.toEqual({ label: null, name: null });
+    await expect(
+      describeCall(bridge, "depositETHToWithValue")
+    ).resolves.toEqual({ label: null, name: null });
+  });
+
+  it("should name Sozu's pool on its network", async () => {
+    const mainnetPool =
+      "6fdfdc713a18fc6ca2ad20eb2b4a3305a935ef47d6a872d9a4df8bc9fd9d169e";
+
+    await expect(describeCall(mainnetPool, "sozu_stake", 1)).resolves.toEqual({
+      label: "Liquid stake",
+      name: "Sozu liquid staking",
+    });
+    await expect(
+      describeCall(mainnetPool, "stake_activate", 1)
+    ).resolves.toEqual({ label: null, name: "Sozu liquid staking" });
+    await expect(describeCall(mainnetPool, "sozu_stake", 2)).resolves.toEqual({
+      label: null,
+      name: null,
+    });
+  });
 });

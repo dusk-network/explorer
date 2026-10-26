@@ -227,7 +227,7 @@ exports[`Block Details > renders the Block Details component 1`] = `
           <!---->
           <!---->
           <!---->
-          Tue, 16 Apr 2024 20:07:02 GMT (last month)
+          Tue 16 Apr 2024, 20:07:02 UTC (last month)
           
           
           
@@ -824,7 +824,7 @@ exports[`Block Details > should render the Block Details component with the payl
           <!---->
           <!---->
           <!---->
-          Tue, 16 Apr 2024 20:07:02 GMT (last month)
+          Tue 16 Apr 2024, 20:07:02 UTC (last month)
           
           
           

@@ -2075,6 +2075,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:22 UTC"
                     datetime="2024-05-29T07:22:22.000Z"
                   >
                     <!---->
@@ -2131,7 +2133,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2162,6 +2168,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:19 UTC"
                     datetime="2024-05-29T07:22:19.000Z"
                   >
                     <!---->
@@ -2218,7 +2226,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2249,6 +2261,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:16 UTC"
                     datetime="2024-05-29T07:22:16.000Z"
                   >
                     <!---->
@@ -2305,7 +2319,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2336,6 +2354,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:13 UTC"
                     datetime="2024-05-29T07:22:13.000Z"
                   >
                     <!---->
@@ -2392,7 +2412,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2423,6 +2447,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:10 UTC"
                     datetime="2024-05-29T07:22:10.000Z"
                   >
                     <!---->
@@ -2479,7 +2505,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2510,6 +2540,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:22:02 UTC"
                     datetime="2024-05-29T07:22:02.000Z"
                   >
                     <!---->
@@ -2566,7 +2598,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2597,6 +2633,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:49 UTC"
                     datetime="2024-05-29T07:21:49.000Z"
                   >
                     <!---->
@@ -2653,7 +2691,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2684,6 +2726,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:45 UTC"
                     datetime="2024-05-29T07:21:45.000Z"
                   >
                     <!---->
@@ -2740,7 +2784,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2771,6 +2819,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:42 UTC"
                     datetime="2024-05-29T07:21:42.000Z"
                   >
                     <!---->
@@ -2827,7 +2877,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2858,6 +2912,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:38 UTC"
                     datetime="2024-05-29T07:21:38.000Z"
                   >
                     <!---->
@@ -2914,7 +2970,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -2945,6 +3005,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:35 UTC"
                     datetime="2024-05-29T07:21:35.000Z"
                   >
                     <!---->
@@ -3001,7 +3063,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -3032,6 +3098,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:32 UTC"
                     datetime="2024-05-29T07:21:32.000Z"
                   >
                     <!---->
@@ -3088,7 +3156,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -3119,6 +3191,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:28 UTC"
                     datetime="2024-05-29T07:21:28.000Z"
                   >
                     <!---->
@@ -3175,7 +3249,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -3206,6 +3284,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:25 UTC"
                     datetime="2024-05-29T07:21:25.000Z"
                   >
                     <!---->
@@ -3262,7 +3342,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -3293,6 +3377,8 @@ exports[`home page > should render the home page, start polling for the latest c
                    
                   <time
                     class="dusk-relative-time block__time"
+                    data-tooltip-id="main-tooltip"
+                    data-tooltip-text="Wed 29 May 2024, 07:21:21 UTC"
                     datetime="2024-05-29T07:21:21.000Z"
                   >
                     <!---->
@@ -3349,7 +3435,11 @@ exports[`home page > should render the home page, start polling for the latest c
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  16
+                  <span
+                    title="16 DUSK"
+                  >
+                    16
+                  </span>
                   
                   
                 </td>
@@ -3520,7 +3610,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -3594,8 +3684,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -3617,16 +3708,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -3668,7 +3761,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -3742,8 +3835,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -3765,16 +3859,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -3816,7 +3912,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -3890,8 +3986,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -3913,16 +4010,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -3964,7 +4063,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -4038,8 +4137,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4061,16 +4161,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4112,7 +4214,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -4186,8 +4288,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4209,16 +4312,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4260,7 +4365,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 29 May 2024 05:42:08 GMT"
+                      data-tooltip-text="Wed 29 May 2024, 05:42:08 UTC"
                       datetime="2024-05-29T05:42:08.000Z"
                     >
                       <!---->
@@ -4334,8 +4439,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4357,16 +4463,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4408,7 +4516,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 29 May 2024 05:41:58 GMT"
+                      data-tooltip-text="Wed 29 May 2024, 05:41:58 UTC"
                       datetime="2024-05-29T05:41:58.000Z"
                     >
                       <!---->
@@ -4482,8 +4590,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4505,16 +4614,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4556,7 +4667,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 29 May 2024 05:40:57 GMT"
+                      data-tooltip-text="Wed 29 May 2024, 05:40:57 UTC"
                       datetime="2024-05-29T05:40:57.000Z"
                     >
                       <!---->
@@ -4630,8 +4741,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4653,16 +4765,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4704,7 +4818,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -4778,8 +4892,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4801,16 +4916,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -4852,7 +4969,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -4926,8 +5043,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -4949,16 +5067,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -5000,7 +5120,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5074,8 +5194,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -5097,16 +5218,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -5148,7 +5271,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5222,8 +5345,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -5245,16 +5369,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -5296,7 +5422,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5370,8 +5496,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -5393,16 +5520,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -5444,7 +5573,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5518,8 +5647,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -5541,16 +5671,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   
@@ -5592,7 +5724,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5666,8 +5798,9 @@ exports[`home page > should render the home page, start polling for the latest c
                   <!---->
                   <span
                     class="transaction__muted"
+                    title="0 DUSK"
                   >
-                    0.00
+                    0
                   </span>
                   
                   
@@ -5689,16 +5822,18 @@ exports[`home page > should render the home page, start polling for the latest c
                     <!---->
                      
                     <span
-                      class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+                      class="transaction-type__call"
                     >
-                      transfer
+                      <span
+                        class="transaction-type__label"
+                      >
+                        Transfer
+                      </span>
+                      <!---->
+                       
+                      <!---->
                     </span>
-                    <!---->
                      
-                    <!---->
-                     
-                    <!---->
-                    
                     <!---->
                   </div>
                   

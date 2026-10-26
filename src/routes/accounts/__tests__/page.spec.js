@@ -74,14 +74,19 @@ describe("Account page", () => {
         Array.from(container.querySelectorAll(".dusk-amount"), (amount) =>
           amount.textContent?.trim()
         )
-      ).toStrictEqual(["1,484.92 DUSK", "1,000.00 DUSK", "31.03 DUSK"])
+      ).toStrictEqual(["1,484.92 DUSK", "1,000 DUSK", "31.0271 DUSK"])
     );
 
     expect(duskAPI.getStake).toHaveBeenCalledExactlyOnceWith(key);
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
     expect(getByText("Public balance")).toBeInTheDocument();
-    expect(container.textContent).toMatch(
-      /Active 1,000\.00 DUSK · Inactive 0\.00 DUSK · Eligible from block 123,120 · Slashes:\s+1 soft, 0 hard/
+    expect(
+      container
+        .querySelector(".account-overview-panel__stake")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim()
+    ).toBe(
+      "Active 1,000 DUSK · Inactive 0 DUSK · Eligible from block 123,120 · Slashes: 1 soft, 0 hard"
     );
     expect(container.textContent).toContain("Shielded funds aren't shown.");
   });

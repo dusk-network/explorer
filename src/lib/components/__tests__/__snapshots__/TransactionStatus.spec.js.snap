@@ -15,7 +15,7 @@ exports[`TransactionStatus > should pass additional class names to the rendered 
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status foo bar"
 >
-  success
+  completed
 </span>
 `;
 
@@ -31,7 +31,7 @@ exports[`TransactionStatus > should render the transaction status 1`] = `
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status"
 >
-  success
+  completed
 </span>
 `;
 
@@ -39,6 +39,6 @@ exports[`TransactionStatus > shouldn't add tooltip info if there's no error mess
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status"
 >
-  success
+  completed
 </span>
 `;

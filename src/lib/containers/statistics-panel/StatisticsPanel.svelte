@@ -11,7 +11,11 @@
   } from "@mdi/js";
   import { onDestroy, onMount } from "svelte";
 
-  import { createCurrencyFormatter, luxToDusk } from "$lib/dusk/currency";
+  import {
+    createCurrencyFormatter,
+    formatDuskExact,
+    luxToDusk,
+  } from "$lib/dusk/currency";
   import { createCompactFormatter } from "$lib/dusk/value";
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
@@ -80,8 +84,8 @@
         attributes: {
           "data-tooltip-id": "main-tooltip",
           "data-tooltip-place": "top",
-          "data-tooltip-text": luxToDusk(statsData?.activeStake)
-            ? `${luxToDusk(statsData?.activeStake)} DUSK`
+          "data-tooltip-text": statsData?.activeStake
+            ? `${formatDuskExact(statsData.activeStake)} DUSK`
             : "--- DUSK",
           "data-tooltip-type": "info",
         },
@@ -98,8 +102,8 @@
         attributes: {
           "data-tooltip-id": "main-tooltip",
           "data-tooltip-place": "top",
-          "data-tooltip-text": luxToDusk(statsData?.waitingStake)
-            ? `${luxToDusk(statsData?.waitingStake)} DUSK`
+          "data-tooltip-text": statsData?.waitingStake
+            ? `${formatDuskExact(statsData.waitingStake)} DUSK`
             : "--- DUSK",
           "data-tooltip-type": "info",
         },

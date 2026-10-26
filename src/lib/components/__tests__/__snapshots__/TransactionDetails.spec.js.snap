@@ -25,6 +25,32 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
   <div
     class="data-card__content"
   >
+    <p
+      class="transaction-details__summary"
+    >
+      <span
+        class="transaction-details__summary-text"
+      >
+        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+      </span>
+       
+      <span
+        class="transaction-details__summary-meta"
+      >
+        <span>
+          Completed
+        </span>
+         
+        <span
+          aria-hidden="true"
+        >
+          ·
+        </span>
+         Tue 16 Apr 2024, 06:39:09 UTC
+      </span>
+    </p>
+     
     <dl
       class="transaction-details__list"
     >
@@ -139,7 +165,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <span
           class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
         >
-          success
+          completed
         </span>
         <!---->
       </dd>
@@ -226,6 +252,8 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         
         <!---->
       </dd>
+      <!---->
+       
       <!---->
        
       <dt
@@ -432,7 +460,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           <!---->
           <!---->
           <!---->
-          Tue, 16 Apr 2024 06:39:09 GMT (last month)
+          Tue 16 Apr 2024, 06:39:09 UTC (last month)
           
           
           
@@ -489,13 +517,12 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           <!---->
            
           <span
-            class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+            class="transaction-type__call"
           >
-            transfer
+            <!---->
+             
+            <!---->
           </span>
-          <!---->
-           
-          <!---->
            
           <!---->
         </div>
@@ -611,203 +638,217 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <!---->
       </dd>
       <!---->
-       
-      <dt
-        class="details-list__term"
+    </dl>
+     
+    <details
+      class="transaction-details__technical"
+    >
+      <summary
+        class="transaction-details__technical-summary"
       >
-        <div
-          class="details-list__term-layout"
+        Technical details
+      </summary>
+       
+      <dl
+        class="transaction-details__list"
+      >
+        <dt
+          class="details-list__term"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas price
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        1 LUX
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas limit"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          transaction gas limit
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        500,000,000
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The amount of gas spent generating the transaction"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas spent
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        290,766
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The number of transactions sent from this address"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          nonce
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        156
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction payload"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
           <div
-            class="transaction-details__switch-wrapper"
+            class="details-list__term-layout"
           >
-            payload 
-            <div
-              aria-checked="false"
-              aria-disabled="false"
-              aria-label="Show payload"
-              class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
-              role="switch"
-              tabindex="0"
-            />
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas price
             <!---->
           </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          1 LUX
           <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
+        </dd>
         <!---->
-        
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas limit"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            transaction gas limit
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          500,000,000
+          <!---->
+        </dd>
         <!---->
-      </dd>
-      <!---->
-       
-      <!---->
-    </dl>
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The amount of gas spent generating the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas spent
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          290,766
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The number of transactions sent from this address"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            nonce
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          156
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction payload"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <div
+              class="transaction-details__switch-wrapper"
+            >
+              payload 
+              <div
+                aria-checked="false"
+                aria-disabled="false"
+                aria-label="Show payload"
+                class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
+                role="switch"
+                tabindex="0"
+              />
+              <!---->
+            </div>
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <!---->
+          
+          <!---->
+        </dd>
+        <!---->
+         
+        <!---->
+      </dl>
+    </details>
     <!---->
   </div>
    
@@ -845,6 +886,32 @@ exports[`Transaction Details > renders the Transaction Details component with th
   <div
     class="data-card__content"
   >
+    <p
+      class="transaction-details__summary"
+    >
+      <span
+        class="transaction-details__summary-text"
+      >
+        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+      </span>
+       
+      <span
+        class="transaction-details__summary-meta"
+      >
+        <span>
+          Completed
+        </span>
+         
+        <span
+          aria-hidden="true"
+        >
+          ·
+        </span>
+         Tue 16 Apr 2024, 06:39:09 UTC
+      </span>
+    </p>
+     
     <dl
       class="transaction-details__list"
     >
@@ -959,7 +1026,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <span
           class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
         >
-          success
+          completed
         </span>
         <!---->
       </dd>
@@ -1048,6 +1115,10 @@ exports[`Transaction Details > renders the Transaction Details component with th
         
         <!---->
       </dd>
+      <!---->
+       
+      <!---->
+      
       <!---->
        
       <dt
@@ -1256,7 +1327,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <!---->
           <!---->
           <!---->
-          Tue, 16 Apr 2024 06:39:09 GMT (last month)
+          Tue 16 Apr 2024, 06:39:09 UTC (last month)
           
           
           
@@ -1313,16 +1384,18 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <!---->
            
           <span
-            class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+            class="transaction-type__call"
           >
-            transfer
+            <span
+              class="transaction-type__label"
+            >
+              Transfer
+            </span>
+            <!---->
+             
+            <!---->
           </span>
-          <!---->
            
-          <!---->
-           
-          <!---->
-          
           <!---->
         </div>
         <!---->
@@ -1437,205 +1510,218 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <!---->
       </dd>
       <!---->
-       
-      <dt
-        class="details-list__term"
+    </dl>
+     
+    <details
+      class="transaction-details__technical"
+    >
+      <summary
+        class="transaction-details__technical-summary"
       >
-        <div
-          class="details-list__term-layout"
+        Technical details
+      </summary>
+       
+      <dl
+        class="transaction-details__list"
+      >
+        <dt
+          class="details-list__term"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas price
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        1 LUX
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas limit"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          transaction gas limit
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        500,000,000
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The amount of gas spent generating the transaction"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas spent
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        290,766
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The number of transactions sent from this address"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          nonce
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        156
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction payload"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
           <div
-            class="transaction-details__switch-wrapper"
+            class="details-list__term-layout"
           >
-            payload 
-            <div
-              aria-checked="true"
-              aria-disabled="false"
-              aria-label="Show payload"
-              class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
-              role="switch"
-              tabindex="0"
-            />
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas price
             <!---->
           </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          1 LUX
           <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
+        </dd>
         <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas limit"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            transaction gas limit
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          500,000,000
+          <!---->
+        </dd>
         <!---->
-        <div
-          class="dusk-card transaction-details__payload dusk-card--on-surface"
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The amount of gas spent generating the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas spent
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          290,766
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The number of transactions sent from this address"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            nonce
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          156
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction payload"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <div
+              class="transaction-details__switch-wrapper"
+            >
+              payload 
+              <div
+                aria-checked="true"
+                aria-disabled="false"
+                aria-label="Show payload"
+                class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
+                role="switch"
+                tabindex="0"
+              />
+              <!---->
+            </div>
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
         >
           <!---->
           <!---->
-           
-          <pre>
-            {
+          <div
+            class="dusk-card transaction-details__payload dusk-card--on-surface"
+          >
+            <!---->
+            <!---->
+             
+            <pre>
+              {
   "type": "moonlight",
   "sender": "kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj",
   "receiver": "mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj",
@@ -1651,20 +1737,21 @@ exports[`Transaction Details > renders the Transaction Details component with th
   "is_deploy": false,
   "memo": null
 }
-          </pre>
-          <!---->
-           
-          <!---->
+            </pre>
+            <!---->
+             
+            <!---->
+            
+          </div>
           
-        </div>
-        
-        
+          
+          <!---->
+        </dd>
         <!---->
-      </dd>
-      <!---->
-       
-      <!---->
-    </dl>
+         
+        <!---->
+      </dl>
+    </details>
     <!---->
   </div>
    
@@ -1702,6 +1789,32 @@ exports[`Transaction Details > should be able to render the details when they co
   <div
     class="data-card__content"
   >
+    <p
+      class="transaction-details__summary"
+    >
+      <span
+        class="transaction-details__summary-text"
+      >
+        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+      </span>
+       
+      <span
+        class="transaction-details__summary-meta"
+      >
+        <span>
+          Completed
+        </span>
+         
+        <span
+          aria-hidden="true"
+        >
+          ·
+        </span>
+         Tue 16 Apr 2024, 06:39:09 UTC
+      </span>
+    </p>
+     
     <dl
       class="transaction-details__list"
     >
@@ -1816,7 +1929,7 @@ exports[`Transaction Details > should be able to render the details when they co
         <span
           class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
         >
-          success
+          completed
         </span>
         <!---->
       </dd>
@@ -1903,6 +2016,8 @@ exports[`Transaction Details > should be able to render the details when they co
         
         <!---->
       </dd>
+      <!---->
+       
       <!---->
        
       <dt
@@ -2109,7 +2224,7 @@ exports[`Transaction Details > should be able to render the details when they co
           <!---->
           <!---->
           <!---->
-          Tue, 16 Apr 2024 06:39:09 GMT (last month)
+          Tue 16 Apr 2024, 06:39:09 UTC (last month)
           
           
           
@@ -2166,13 +2281,12 @@ exports[`Transaction Details > should be able to render the details when they co
           <!---->
            
           <span
-            class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+            class="transaction-type__call"
           >
-            transfer
+            <!---->
+             
+            <!---->
           </span>
-          <!---->
-           
-          <!---->
            
           <!---->
         </div>
@@ -2288,355 +2402,369 @@ exports[`Transaction Details > should be able to render the details when they co
         <!---->
       </dd>
       <!---->
-       
-      <dt
-        class="details-list__term"
+    </dl>
+     
+    <details
+      class="transaction-details__technical"
+    >
+      <summary
+        class="transaction-details__technical-summary"
       >
-        <div
-          class="details-list__term-layout"
+        Technical details
+      </summary>
+       
+      <dl
+        class="transaction-details__list"
+      >
+        <dt
+          class="details-list__term"
         >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas price
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        1 LUX
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction gas limit"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          transaction gas limit
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        500,000,000
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The amount of gas spent generating the transaction"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          gas spent
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        290,766
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The number of transactions sent from this address"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
-          nonce
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        156
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction payload"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
-          
-          <!---->
-           
           <div
-            class="transaction-details__switch-wrapper"
+            class="details-list__term-layout"
           >
-            payload 
-            <div
-              aria-checked="false"
-              aria-disabled="false"
-              aria-label="Show payload"
-              class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
-              role="switch"
-              tabindex="0"
-            />
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas price
             <!---->
           </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          1 LUX
           <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
+        </dd>
         <!---->
-        
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas limit"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            transaction gas limit
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          500,000,000
+          <!---->
+        </dd>
         <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The amount of gas spent generating the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            gas spent
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          290,766
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The number of transactions sent from this address"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            nonce
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          156
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction payload"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            <div
+              class="transaction-details__switch-wrapper"
+            >
+              payload 
+              <div
+                aria-checked="false"
+                aria-disabled="false"
+                aria-label="Show payload"
+                class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
+                role="switch"
+                tabindex="0"
+              />
+              <!---->
+            </div>
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
         >
           <!---->
-          <svg
-            class="dusk-icon dusk-icon--size--default detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The list of blob hashes"
-            data-tooltip-type="info"
-            role="graphics-symbol"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-            />
-          </svg>
           
           <!---->
-           
-          Blob hashes
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <ul
-          class="transaction-details__blob-hashes"
-        >
-          <li
-            class="transaction-details__blob-hash"
-          >
-            <pre>
-              0261047715f0e937f3ab3d6bdfb1bf1894995f89f64ed19a26a1d59bb2d7b629
-            </pre>
-             
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy blob hash"
-                class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
-            <!---->
-          </li>
-          <li
-            class="transaction-details__blob-hash"
-          >
-            <pre>
-              b3d5296139ba0f44912b87a19b47ea7f229131182405d9f082c5fbbeed8c121b
-            </pre>
-             
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy blob hash"
-                class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
-            <!---->
-          </li>
-          <li
-            class="transaction-details__blob-hash"
-          >
-            <pre>
-              8f6bce4e1f233d6de022e3ac1ab3a262695991460e9f78eca288fd623083142f
-            </pre>
-             
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy blob hash"
-                class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
-            <!---->
-          </li>
-          
-        </ul>
+        </dd>
         <!---->
-      </dd>
-      <!---->
-    </dl>
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The list of blob hashes"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            Blob hashes
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <ul
+            class="transaction-details__blob-hashes"
+          >
+            <li
+              class="transaction-details__blob-hash"
+            >
+              <pre>
+                0261047715f0e937f3ab3d6bdfb1bf1894995f89f64ed19a26a1d59bb2d7b629
+              </pre>
+               
+              <div
+                class="dusk-copy-button"
+              >
+                <button
+                  aria-label="Copy blob hash"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Copy to clipboard"
+                  type="button"
+                >
+                  <!---->
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </button>
+                <!---->
+              </div>
+              <!---->
+            </li>
+            <li
+              class="transaction-details__blob-hash"
+            >
+              <pre>
+                b3d5296139ba0f44912b87a19b47ea7f229131182405d9f082c5fbbeed8c121b
+              </pre>
+               
+              <div
+                class="dusk-copy-button"
+              >
+                <button
+                  aria-label="Copy blob hash"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Copy to clipboard"
+                  type="button"
+                >
+                  <!---->
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </button>
+                <!---->
+              </div>
+              <!---->
+            </li>
+            <li
+              class="transaction-details__blob-hash"
+            >
+              <pre>
+                8f6bce4e1f233d6de022e3ac1ab3a262695991460e9f78eca288fd623083142f
+              </pre>
+               
+              <div
+                class="dusk-copy-button"
+              >
+                <button
+                  aria-label="Copy blob hash"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Copy to clipboard"
+                  type="button"
+                >
+                  <!---->
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                   
+                  <!---->
+                  <!---->
+                </button>
+                <!---->
+              </div>
+              <!---->
+            </li>
+            
+          </ul>
+          <!---->
+        </dd>
+        <!---->
+      </dl>
+    </details>
     <!---->
   </div>
    

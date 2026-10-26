@@ -27,7 +27,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
     >
       <!---->
-      4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+      487768...ac0e04
       
       <!---->
     </a>
@@ -86,7 +86,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <time
       class="dusk-relative-time transaction-details__list-timestamp"
       data-tooltip-id="main-tooltip"
-      data-tooltip-text="Tue, 16 Apr 2024 06:39:09 GMT"
+      data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
@@ -178,7 +178,11 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     class="details-list__definition details-list__definition--table"
   >
     <!---->
-    9,812.378912731 DUSK
+    <span
+      title="9,812.378912731 DUSK"
+    >
+      9,812.3789 DUSK
+    </span>
     
     <!---->
   </dd>
@@ -205,7 +209,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <span
       class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
     >
-      success
+      completed
     </span>
     <!---->
   </dd>
@@ -235,13 +239,12 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       <!---->
        
       <span
-        class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+        class="transaction-type__call"
       >
-        transfer
+        <!---->
+         
+        <!---->
       </span>
-      <!---->
-       
-      <!---->
        
       <!---->
     </div>
@@ -281,7 +284,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
     >
       <!---->
-      4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+      487768...ac0e04
       
       <!---->
     </a>
@@ -340,7 +343,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <time
       class="dusk-relative-time transaction-details__list-timestamp"
       data-tooltip-id="main-tooltip"
-      data-tooltip-text="Tue, 16 Apr 2024 06:39:09 GMT"
+      data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
       datetime="2024-04-16T06:39:09.000Z"
       slot="definition"
     >
@@ -432,7 +435,11 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     class="details-list__definition details-list__definition--table"
   >
     <!---->
-    9,812.378912731 DUSK
+    <span
+      title="9,812.378912731 DUSK"
+    >
+      9,812.3789 DUSK
+    </span>
     
     <!---->
   </dd>
@@ -454,7 +461,11 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
   <dd
     class="details-list__definition details-list__definition--table"
   >
-    0.000290766 DUSK
+    <span
+      title="0.000290766 DUSK"
+    >
+      0.0003 DUSK
+    </span>
     <!---->
   </dd>
   <!---->
@@ -478,7 +489,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
     <span
       class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
     >
-      success
+      completed
     </span>
     <!---->
   </dd>
@@ -508,13 +519,12 @@ exports[`Transactions List > should render the \`TransactionsList\` component in
       <!---->
        
       <span
-        class="dusk-badge dusk-badge--variant-neutral transaction-type__method-badge"
+        class="transaction-type__call"
       >
-        transfer
+        <!---->
+         
+        <!---->
       </span>
-      <!---->
-       
-      <!---->
        
       <!---->
     </div>

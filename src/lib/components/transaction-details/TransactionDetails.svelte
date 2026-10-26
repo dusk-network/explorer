@@ -5,10 +5,11 @@
   import { Card, CopyButton, RelativeTime, Switch } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
-    createFeeFormatter,
     createFiatFormatter,
+    formatDuskExact,
     luxToDusk,
   } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import {
     calculateAdaptiveCharCount,
     hexToText,
@@ -26,8 +27,10 @@
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
   import { addressCharPropertiesDefaults } from "$lib/constants";
-  import { summarizeTransaction } from "$lib/chain-info";
-  import { describeCall } from "$lib/contracts";
+  import { describeTransaction, summarizeTransaction } from "$lib/chain-info";
+  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
+  import { getPrimaryName } from "$lib/dusk-domains";
+  import { appStore } from "$lib/stores";
 
   import "./TransactionDetails.css";
 
@@ -47,7 +50,6 @@
   export let market;
 
   const formatter = createValueFormatter("en");
-  const duskFormatter = createFeeFormatter("en");
   const fiatFormatter = createFiatFormatter("en", "usd");
 
   const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
@@ -81,17 +83,56 @@
         );
 
   /**
-   * An amount in DUSK, with its value in dollars when the price is known.
+   * An amount in DUSK, every decimal of it, with its value in dollars when
+   * the price is known: on mainnet only.
    *
    * @param {number} lux
    */
   const toDuskAndUsd = (lux) => {
-    const dusk = luxToDusk(lux);
     const price = market?.currentPrice.usd;
 
     return price === undefined
-      ? `${duskFormatter(dusk)} DUSK`
-      : `${duskFormatter(dusk)} DUSK (${fiatFormatter(dusk * price)})`;
+      ? `${formatDuskExact(lux)} DUSK`
+      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
+  };
+
+  /**
+   * A party as the leading sentence names it, at first by its short
+   * address: the names come from lookups the rows below make too.
+   *
+   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
+   * @returns {string | null}
+   */
+  const shortNameOf = (party) =>
+    party?.kind === "account"
+      ? middleEllipsis(party.address, 6)
+      : party?.kind === "contract"
+        ? `contract ${middleEllipsis(party.id, 4)}`
+        : null;
+
+  /**
+   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
+   * @param {number | null | undefined} chainId
+   * @returns {Promise<string | null>}
+   */
+  const nameOf = async (party, chainId) => {
+    const short = shortNameOf(party);
+
+    if (party?.kind === "account") {
+      return getPrimaryName(party.address).then(
+        (found) => found?.name ?? short,
+        () => short
+      );
+    }
+
+    if (party?.kind === "contract") {
+      return describeCall(party.id, "", chainId).then(
+        ({ name }) => name ?? short,
+        () => short
+      );
+    }
+
+    return short;
   };
 
   onMount(() => {
@@ -113,9 +154,34 @@
     ? summarizeTransaction(data)
     : { amount: null, from: null, to: null });
   $: memoText = data ? hexToText(data.memo) : null;
+  $: chainId = $appStore.nodeInfo.chain_id;
   $: contractName = data?.contract
-    ? describeCall(data.contract, data.method).then(({ name }) => name)
+    ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
     : Promise.resolve(null);
+
+  // Who a deposit to DuskEVM pays, from its call data.
+  $: duskEvmRecipient = data
+    ? bridgeDepositRecipient(data, chainId).catch(() => null)
+    : Promise.resolve(null);
+  $: shortLead = data
+    ? describeTransaction(data, {
+        from: shortNameOf(from),
+        to: shortNameOf(to),
+      })
+    : "";
+  $: lead = data
+    ? Promise.all([
+        nameOf(from, chainId),
+        nameOf(to, chainId),
+        duskEvmRecipient,
+      ]).then(([fromName, toName, duskEvm]) =>
+        describeTransaction(data, {
+          duskEvm: duskEvm && `${duskEvm.slice(0, 6)}...${duskEvm.slice(-4)}`,
+          from: fromName,
+          to: toName,
+        })
+      )
+    : Promise.resolve("");
 </script>
 
 <DataCard
@@ -126,6 +192,20 @@
   className={classes}
   title="Transaction Details"
 >
+  <!-- Who sent how much to whom, whether it went through, and when. -->
+  <p class="transaction-details__summary">
+    <span class="transaction-details__summary-text"
+      >{#await lead}{shortLead}{:then sentence}{sentence}{/await}</span
+    >
+    <span class="transaction-details__summary-meta">
+      <span class:transaction-details__summary-failed={!!data.txerror}
+        >{data.txerror ? "Failed" : "Completed"}</span
+      >
+      <span aria-hidden="true">·</span>
+      {formatDateTime(data.date)}
+    </span>
+  </p>
+
   <dl class="transaction-details__list">
     <!-- TRANSACTION ID -->
     <ListItem tooltipText="The ID of the transaction">
@@ -177,6 +257,21 @@
     {/if}
 
     <!-- TO -->
+    {#await duskEvmRecipient then duskEvm}
+      {#if duskEvm}
+        <ListItem tooltipText="The DuskEVM account the deposit goes to">
+          <svelte:fragment slot="term">to</svelte:fragment>
+          <svelte:fragment slot="definition">
+            <span class="transaction-details__evm"
+              ><span class="transaction-details__evm-address"
+                >{shorten(duskEvm)}</span
+              > on DuskEVM</span
+            >
+            <CopyButton rawValue={duskEvm} name="DuskEVM address" />
+          </svelte:fragment>
+        </ListItem>
+      {/if}
+    {/await}
     {#if to?.kind === "account"}
       <ListItem tooltipText="The receiver of the transaction">
         <svelte:fragment slot="term">to</svelte:fragment>
@@ -264,7 +359,7 @@
         date={data.date}
         slot="definition"
         ><svelte:fragment let:relativeTime
-          >{`${data.date.toUTCString()} (${relativeTime})`}</svelte:fragment
+          >{`${formatDateTime(data.date)} (${relativeTime})`}</svelte:fragment
         ></RelativeTime
       >
     </ListItem>
@@ -310,81 +405,93 @@
         ></svelte:fragment
       >
     </ListItem>
+  </dl>
 
-    <!-- GAS PRICE -->
-    <ListItem
-      tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+  <!-- Gas, the nonce and the payload, for those who want them. -->
+  <details class="transaction-details__technical">
+    <summary class="transaction-details__technical-summary"
+      >Technical details</summary
     >
-      <svelte:fragment slot="term">gas price</svelte:fragment>
-      <svelte:fragment slot="definition"
-        >{formatter(data.gasprice)} LUX</svelte:fragment
+    <dl class="transaction-details__list">
+      <!-- GAS PRICE -->
+      <ListItem
+        tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
       >
-    </ListItem>
-
-    <!-- GAS LIMIT -->
-    <ListItem tooltipText="The transaction gas limit">
-      <svelte:fragment slot="term">transaction gas limit</svelte:fragment>
-      <svelte:fragment slot="definition"
-        >{formatter(data.gaslimit)}</svelte:fragment
-      >
-    </ListItem>
-
-    <!-- GAS SPENT -->
-    <ListItem tooltipText="The amount of gas spent generating the transaction">
-      <svelte:fragment slot="term">gas spent</svelte:fragment>
-      <svelte:fragment slot="definition"
-        >{formatter(data.gasspent)}</svelte:fragment
-      >
-    </ListItem>
-
-    <!-- NONCE -->
-    {#if data.txtype.toLowerCase() === "moonlight" && data.nonce}
-      <ListItem tooltipText="The number of transactions sent from this address">
-        <svelte:fragment slot="term">nonce</svelte:fragment>
-        <svelte:fragment slot="definition">{data.nonce}</svelte:fragment>
+        <svelte:fragment slot="term">gas price</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{formatter(data.gasprice)} LUX</svelte:fragment
+        >
       </ListItem>
-    {/if}
 
-    <!-- PAYLOAD -->
-    <ListItem tooltipText="The transaction payload">
-      <svelte:fragment slot="term">
-        <div class="transaction-details__switch-wrapper">
-          payload
-          <Switch
-            aria-label="Show payload"
-            className="transaction-details__payload-switch"
-            onSurface={true}
-            bind:value={isPayloadToggled}
-          />
-        </div>
-      </svelte:fragment>
+      <!-- GAS LIMIT -->
+      <ListItem tooltipText="The transaction gas limit">
+        <svelte:fragment slot="term">transaction gas limit</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{formatter(data.gaslimit)}</svelte:fragment
+        >
+      </ListItem>
 
-      <svelte:fragment slot="definition">
-        {#if isPayloadToggled}
-          <Card onSurface={true} className="transaction-details__payload">
-            <pre>{data.payload
-                ? JSON.stringify(data.payload, null, 2)
-                : "---"}</pre>
-          </Card>
-        {/if}
-      </svelte:fragment>
-    </ListItem>
+      <!-- GAS SPENT -->
+      <ListItem
+        tooltipText="The amount of gas spent generating the transaction"
+      >
+        <svelte:fragment slot="term">gas spent</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{formatter(data.gasspent)}</svelte:fragment
+        >
+      </ListItem>
 
-    {#if data.blobHashes.length}
-      <!-- BLOB HASHES -->
-      <ListItem tooltipText="The list of blob hashes">
-        <svelte:fragment slot="term">Blob hashes</svelte:fragment>
+      <!-- NONCE -->
+      {#if data.txtype.toLowerCase() === "moonlight" && data.nonce}
+        <ListItem
+          tooltipText="The number of transactions sent from this address"
+        >
+          <svelte:fragment slot="term">nonce</svelte:fragment>
+          <svelte:fragment slot="definition">{data.nonce}</svelte:fragment>
+        </ListItem>
+      {/if}
+
+      <!-- PAYLOAD -->
+      <ListItem tooltipText="The transaction payload">
+        <svelte:fragment slot="term">
+          <div class="transaction-details__switch-wrapper">
+            payload
+            <Switch
+              aria-label="Show payload"
+              className="transaction-details__payload-switch"
+              onSurface={true}
+              bind:value={isPayloadToggled}
+            />
+          </div>
+        </svelte:fragment>
+
         <svelte:fragment slot="definition">
-          <ul class="transaction-details__blob-hashes">
-            {#each data.blobHashes as blobHash (blobHash)}
-              <li class="transaction-details__blob-hash">
-                <pre>{shorten(blobHash)}</pre>
-                <CopyButton rawValue={blobHash} name="Blob hash" />
-              </li>
-            {/each}
-          </ul>
+          {#if isPayloadToggled}
+            <Card onSurface={true} className="transaction-details__payload">
+              <pre>{data.payload
+                  ? JSON.stringify(data.payload, null, 2)
+                  : "---"}</pre>
+            </Card>
+          {/if}
         </svelte:fragment>
       </ListItem>
-    {/if}
-  </dl>
+
+      {#if data.blobHashes.length}
+        <!-- BLOB HASHES -->
+        <ListItem tooltipText="The list of blob hashes">
+          <svelte:fragment slot="term">Blob hashes</svelte:fragment>
+          <svelte:fragment slot="definition">
+            <ul class="transaction-details__blob-hashes">
+              {#each data.blobHashes as blobHash (blobHash)}
+                <li class="transaction-details__blob-hash">
+                  <pre>{shorten(blobHash)}</pre>
+                  <CopyButton rawValue={blobHash} name="Blob hash" />
+                </li>
+              {/each}
+            </ul>
+          </svelte:fragment>
+        </ListItem>
+      {/if}
+    </dl>
+  </details>
 </DataCard>

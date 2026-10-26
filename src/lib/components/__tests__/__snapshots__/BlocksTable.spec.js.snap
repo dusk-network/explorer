@@ -95,6 +95,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
             datetime="2024-05-28T14:26:54.000Z"
           >
             <!---->
@@ -151,7 +153,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -182,6 +188,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
             datetime="2024-05-28T14:26:51.000Z"
           >
             <!---->
@@ -238,7 +246,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -269,6 +281,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
             datetime="2024-05-28T14:26:47.000Z"
           >
             <!---->
@@ -325,7 +339,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -356,6 +374,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
             datetime="2024-05-28T14:26:45.000Z"
           >
             <!---->
@@ -412,7 +432,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -443,6 +467,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
             datetime="2024-05-28T14:26:42.000Z"
           >
             <!---->
@@ -499,7 +525,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -530,6 +560,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
             datetime="2024-05-28T14:26:39.000Z"
           >
             <!---->
@@ -586,7 +618,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -617,6 +653,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
             datetime="2024-05-28T14:26:35.000Z"
           >
             <!---->
@@ -673,7 +711,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -704,6 +746,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
             datetime="2024-05-28T14:26:32.000Z"
           >
             <!---->
@@ -760,7 +804,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -791,6 +839,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
             datetime="2024-05-28T14:26:29.000Z"
           >
             <!---->
@@ -847,7 +897,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>
@@ -878,6 +932,8 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
            
           <time
             class="dusk-relative-time block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
             datetime="2024-05-28T14:26:24.000Z"
           >
             <!---->
@@ -934,7 +990,11 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
           class="table__data-cell align-left"
         >
           <!---->
-          16
+          <span
+            title="16 DUSK"
+          >
+            16
+          </span>
           
           
         </td>

@@ -4,7 +4,8 @@
   import { AppAnchor, DetailList, ListItem } from "$lib/components";
   import { ProgressBar, RelativeTime } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import "./BlocksList.css";
 
   /** @type {boolean} */
@@ -46,6 +47,8 @@
     <RelativeTime
       autoRefresh={autoRefreshTime}
       className="block-details__list-timestamp"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text={formatDateTime(data.header.date)}
       date={data.header.date}
       slot="definition"
     />
@@ -103,7 +106,9 @@
   >
     <svelte:fragment slot="term">rewards</svelte:fragment>
     <svelte:fragment slot="definition">
-      {formatter(luxToDusk(data.header.reward))} DUSK
+      <span title="{formatDuskExact(data.header.reward)} DUSK"
+        >{formatDusk(data.header.reward)} DUSK</span
+      >
     </svelte:fragment>
   </ListItem>
 </DetailList>
