@@ -199,6 +199,169 @@ describe("createMulticallFetch", () => {
     expect(base).toHaveBeenCalledTimes(1);
   });
 
+  it("should send the reads alone after a 503 that says nothing of when to come back", async () => {
+    const base = node((url) =>
+      url === AGGREGATE
+        ? new Response("unavailable", { status: 503 })
+        : new Response(bytes("aa"))
+    );
+    const fetch = createMulticallFetch({ fetch: base, gasFor, nodeUrl: NODE });
+    const answers = await Promise.all([
+      fetch(...read("reverse", [1])),
+      fetch(...read("reverse", [2])),
+    ]);
+
+    expect(answers.map((r) => r.status)).toStrictEqual([200, 200]);
+    expect(base.mock.calls.map(([url]) => url)).toStrictEqual([
+      AGGREGATE,
+      `${NODE}/on/contracts:${LENS}/reverse`,
+      `${NODE}/on/contracts:${LENS}/reverse`,
+    ]);
+  });
+
+  it("should give every read a 503's status when it says when to come back", async () => {
+    const base = node(
+      () =>
+        new Response("busy", { headers: { "Retry-After": "3" }, status: 503 })
+    );
+    const fetch = createMulticallFetch({ fetch: base, gasFor, nodeUrl: NODE });
+    const answers = await Promise.all([
+      fetch(...read("reverse", [1])),
+      fetch(...read("reverse", [2])),
+    ]);
+
+    expect(
+      answers.map((r) => [r.status, r.headers.get("Retry-After")])
+    ).toStrictEqual([
+      [503, "3"],
+      [503, "3"],
+    ]);
+    expect(base).toHaveBeenCalledTimes(1);
+  });
+
+  describe("Cancelling", () => {
+    /**
+     * A node that never answers: each request waits until its signal aborts.
+     *
+     * @returns {[import("vitest").Mock, AbortSignal[]]}
+     */
+    function hangingNode() {
+      /** @type {AbortSignal[]} */
+      const signals = [];
+      const base = vi.fn(
+        /** @type {(input: RequestInfo | URL, init?: RequestInit) => Promise<Response>} */ (
+          (_, init) =>
+            new Promise((resolve, reject) => {
+              const signal = /** @type {AbortSignal} */ (init?.signal);
+
+              signals.push(signal);
+              signal?.addEventListener("abort", () => reject(signal.reason));
+            })
+        )
+      );
+
+      return [base, signals];
+    }
+
+    /**
+     * A read as the lens reader sends it, with a signal of its own.
+     *
+     * @param {number} arg
+     */
+    const abortable = (arg) => {
+      const controller = new AbortController();
+      const [url, init] = read("reverse", [arg]);
+
+      return { controller, init: { ...init, signal: controller.signal }, url };
+    };
+
+    it("should cancel an aggregate once every read waiting on it has given up, and send nothing more", async () => {
+      const [base, signals] = hangingNode();
+      const fetch = createMulticallFetch({
+        fetch: base,
+        gasFor,
+        nodeUrl: NODE,
+      });
+      const reads = [abortable(1), abortable(2)];
+      const answers = reads.map(({ init, url }) =>
+        fetch(url, init).catch((error) => error)
+      );
+
+      await vi.waitFor(() => expect(base).toHaveBeenCalledTimes(1));
+
+      expect(signals[0]).toBeInstanceOf(AbortSignal);
+      expect(signals[0].aborted).toBe(false);
+
+      reads[0].controller.abort(new Error("timeout"));
+      await Promise.resolve();
+
+      // One read still waits.
+      expect(signals[0].aborted).toBe(false);
+
+      reads[1].controller.abort(new Error("timeout"));
+      await Promise.all(answers);
+
+      expect(signals[0].aborted).toBe(true);
+      await new Promise((resolve) => setTimeout(resolve));
+      expect(base).toHaveBeenCalledTimes(1);
+    });
+
+    it("should cancel a read sent alone for two waiters once both have given up", async () => {
+      const [base, signals] = hangingNode();
+      const fetch = createMulticallFetch({
+        fetch: base,
+        gasFor,
+        nodeUrl: NODE,
+      });
+      const reads = [abortable(1), abortable(1)];
+      const answers = reads.map(({ init, url }) =>
+        fetch(url, init).catch((error) => error)
+      );
+
+      await vi.waitFor(() => expect(base).toHaveBeenCalledTimes(1));
+
+      expect(base.mock.calls[0][0]).toBe(
+        `${NODE}/on/contracts:${LENS}/reverse`
+      );
+
+      reads[0].controller.abort();
+      await Promise.resolve();
+
+      expect(signals[0].aborted).toBe(false);
+
+      reads[1].controller.abort();
+      await Promise.all(answers);
+
+      expect(signals[0].aborted).toBe(true);
+    });
+
+    it("should keep an aggregate for reads that share one signal until it aborts", async () => {
+      const [base, signals] = hangingNode();
+      const fetch = createMulticallFetch({
+        fetch: base,
+        gasFor,
+        nodeUrl: NODE,
+      });
+      // The reader's deployment check sends two reads with one signal.
+      const controller = new AbortController();
+      const answers = [read("binding"), read("lens_interface")].map(
+        ([url, init]) =>
+          fetch(url, { ...init, signal: controller.signal }).catch(
+            (error) => error
+          )
+      );
+
+      await vi.waitFor(() => expect(base).toHaveBeenCalledTimes(1));
+
+      expect(signals[0].aborted).toBe(false);
+
+      controller.abort();
+      await Promise.all(answers);
+
+      expect(signals[0].aborted).toBe(true);
+    });
+  });
+
   it(`should put at most ${MAX_BATCH} reads in one aggregate`, async () => {
     /** @type {number[]} */
     const sizes = [];
