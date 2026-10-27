@@ -1,6 +1,7 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
+import { STAKE_CONTRACT } from "$lib/constants";
 import { gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 
@@ -70,6 +71,34 @@ describe("Transactions List", () => {
       `/some-base-path/transactions/transaction?id=${transaction.txid}`
     );
     expect(container.textContent).not.toMatch(/gas|fee/i);
+  });
+
+  it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+    const call = {
+      ...transaction,
+      amount: 0,
+      contract: STAKE_CONTRACT,
+      deposit: 0,
+      method: "stake",
+      to: null,
+    };
+    const toContract = render(TransactionsList, { data: call }).container;
+    const toAccount = render(TransactionsList, {
+      // A value sent along: the receiver is an account.
+      data: { ...call, amount: 1_000_000_000, to: transaction.to },
+    }).container;
+
+    await vi.waitFor(() => {
+      expect(
+        toContract.querySelector(".transaction-row__line")
+      ).toHaveTextContent(/^Contract call · stake$/);
+      expect(
+        toAccount.querySelector(".transaction-row__line")
+      ).toHaveTextContent(/^Stake contract · stake$/);
+    });
+    expect(
+      toAccount.querySelector(".transaction-row__parties")
+    ).toHaveTextContent(`To ${short(String(transaction.to))}`);
   });
 
   it("should say a failure first, and mute what it didn't send", async () => {

@@ -38,3 +38,15 @@
   outline: 2px solid var(--calm-focus);
   outline-offset: -2px;
 }
+
+/*
+ * With a mouse, the exact reward and the full time show on hover. On a
+ * touch screen a tap there opens the block, as anywhere in the row.
+ */
+@media (hover: hover) {
+  .block-row .row-amount [title],
+  .block-row .dusk-relative-time {
+    position: relative;
+    z-index: 1;
+  }
+}

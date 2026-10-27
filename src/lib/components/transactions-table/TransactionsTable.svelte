@@ -126,7 +126,7 @@
                 <TransactionType
                   data={transaction}
                   {displayTooltips}
-                  nameContract={false}
+                  nameContract={to?.kind !== "contract"}
                   showPrivacy={false}
                 /></span
               >

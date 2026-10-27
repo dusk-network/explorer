@@ -55,17 +55,16 @@
 
   /**
    * An amount in DUSK, every decimal of it, with its value in dollars when
-   * the price is known: on mainnet only.
+   * the price is known: on mainnet only. The price is an argument, so that
+   * an amount shown before the price came gets its dollars when it comes.
    *
    * @param {number} lux
+   * @param {number | undefined} price A DUSK's price in dollars
    */
-  const toDuskAndUsd = (lux) => {
-    const price = market?.currentPrice.usd;
-
-    return price === undefined
+  const toDuskAndUsd = (lux, price) =>
+    price === undefined
       ? `${formatDuskExact(lux)} DUSK`
       : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
-  };
 
   /**
    * A party as the leading sentence names it, at first by its short
@@ -107,6 +106,7 @@
   };
 
   $: classes = makeClassName(["transaction-details", "detail-page", className]);
+  $: usdPrice = market?.currentPrice.usd;
 
   // The card shows the details only once there is data.
   $: ({ amount, from, to } = data
@@ -316,7 +316,7 @@
         {#if amount?.kind === "shielded"}
           <span class="transaction-details__hidden">Shielded</span>
         {:else if amount}
-          {toDuskAndUsd(amount.lux)}
+          {toDuskAndUsd(amount.lux, usdPrice)}
           <StaleDataNotice />
         {/if}
       </svelte:fragment>
@@ -329,7 +329,7 @@
       >
         <svelte:fragment slot="term">Deposit</svelte:fragment>
         <svelte:fragment slot="definition">
-          {toDuskAndUsd(data.deposit)}
+          {toDuskAndUsd(data.deposit, usdPrice)}
           <StaleDataNotice />
         </svelte:fragment>
       </ListItem>
@@ -339,7 +339,7 @@
     <ListItem>
       <svelte:fragment slot="term">Transaction fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {toDuskAndUsd(data.feepaid)}
+        {toDuskAndUsd(data.feepaid, usdPrice)}
         <StaleDataNotice />
       </svelte:fragment>
     </ListItem>

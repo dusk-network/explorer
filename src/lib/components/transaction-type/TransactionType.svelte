@@ -20,7 +20,7 @@
 
   /**
    * Whether a call with no plain words for it is named by its contract. A
-   * row whose receiver already names the contract says "Contract call".
+   * row whose receiver already is the contract says "Contract call".
    *
    * @type {boolean}
    */

@@ -91,7 +91,7 @@
       <TransactionType
         {data}
         {displayTooltips}
-        nameContract={false}
+        nameContract={to?.kind !== "contract"}
         showPrivacy={false}
       /></span
     >

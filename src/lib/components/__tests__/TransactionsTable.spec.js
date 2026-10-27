@@ -155,20 +155,38 @@ describe("Transactions Table", () => {
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
     });
 
-    it('should say "Contract call" for a call with no plain words, as its receiver names the contract', async () => {
+    it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+      const stake = { ...call, method: "stake", txerror: "" };
       const { container } = render(TransactionsTable, {
         props: {
-          data: [{ ...call, method: "stake", txerror: "" }],
+          data: [
+            stake,
+            // A value sent along: the receiver is an account.
+            {
+              ...stake,
+              amount: 1_000_000_000,
+              to: transfer.to,
+              txid: "e".repeat(64),
+            },
+          ],
           mode: "full",
         },
       });
-      const [row] = container.querySelectorAll("tbody tr");
+      const [toContract, toAccount] = container.querySelectorAll("tbody tr");
 
       await vi.waitFor(() => {
-        expect(readOut(row, ".transaction__parties")).toMatch(
+        expect(readOut(toContract, ".transaction__parties")).toMatch(
           / To Stake contract$/
         );
-        expect(textOf(row, ".transaction__line")).toBe("Contract call · stake");
+        expect(textOf(toContract, ".transaction__line")).toBe(
+          "Contract call · stake"
+        );
+        expect(readOut(toAccount, ".transaction__parties")).toMatch(
+          ` To ${transfer.to?.slice(0, 6)}...${transfer.to?.slice(-6)}`
+        );
+        expect(textOf(toAccount, ".transaction__line")).toBe(
+          "Stake contract · stake"
+        );
       });
     });
 

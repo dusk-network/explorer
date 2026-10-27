@@ -79,3 +79,15 @@
   position: relative;
   z-index: 1;
 }
+
+/*
+ * With a mouse, the exact amount and the full time show on hover. On a
+ * touch screen a tap there opens the transaction, as anywhere in the row.
+ */
+@media (hover: hover) {
+  .transaction-row .row-amount [title],
+  .transaction-row .dusk-relative-time {
+    position: relative;
+    z-index: 1;
+  }
+}

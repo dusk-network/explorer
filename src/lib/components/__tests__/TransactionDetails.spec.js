@@ -470,4 +470,22 @@ describe("Transaction Details", () => {
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
+
+  it("should add the dollars once the price comes, on a page opened before it", async () => {
+    const { container, rerender } = render(TransactionDetails, {
+      ...baseProps,
+      market: null,
+    });
+
+    expect(getDefinition(container, "amount")).toBe("9,812.378912731 DUSK");
+
+    await rerender({ market: baseProps.market });
+
+    expect(getDefinition(container, "amount")).toBe(
+      "9,812.378912731 DUSK ($3,614.39)"
+    );
+    expect(getDefinition(container, "transaction fee")).toBe(
+      "0.000290766 DUSK (< $0.01)"
+    );
+  });
 });
