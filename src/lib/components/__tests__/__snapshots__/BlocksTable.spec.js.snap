@@ -163,11 +163,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -292,11 +288,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -421,11 +413,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -550,11 +538,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -679,11 +663,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -808,11 +788,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -937,11 +913,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -1066,11 +1038,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -1195,11 +1163,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>
@@ -1324,11 +1288,7 @@ exports[`Blocks Table > should render the \`BlocksTable\` component 1`] = `
             0
           </span>
            
-          <span
-            class="row-line block__gas-price"
-          >
-            avg price 0
-          </span>
+          <!---->
           
           
         </td>

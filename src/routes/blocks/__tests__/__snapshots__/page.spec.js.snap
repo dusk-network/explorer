@@ -1673,11 +1673,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -1802,11 +1798,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -1931,11 +1923,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2060,11 +2048,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2189,11 +2173,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2318,11 +2298,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2447,11 +2423,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2576,11 +2548,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2705,11 +2673,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2834,11 +2798,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -2963,11 +2923,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -3092,11 +3048,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -3221,11 +3173,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -3350,11 +3298,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>
@@ -3479,11 +3423,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                   0
                 </span>
                  
-                <span
-                  class="row-line block__gas-price"
-                >
-                  avg price 0
-                </span>
+                <!---->
                 
                 
               </td>

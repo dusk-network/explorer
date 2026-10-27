@@ -1,35 +1,36 @@
 /*
- * The web wallet's explainer cards: a grid of quiet cards, each with its
- * label, muted, above its number. Pairs (current and pending stake, active
- * and pending provisioners) stand one above the other on wide screens, and
- * side by side on phones.
+ * The web wallet's explainer cards for the four numbers that matter most,
+ * each label muted above its number; the rest in one quiet card of smaller
+ * labels and values.
  */
 .statistics-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   width: 100%;
 }
 
 .statistics-panel__statistics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-.statistics-panel__statistics-column {
-  display: contents;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .statistics-panel__statistics-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   min-width: 0;
-  padding: 0.875rem 1rem 1rem;
-  border: 1px solid var(--calm-line2);
-  border-radius: 1rem;
 }
 
 .statistics-panel__statistics-item[data-tooltip-id] {
   cursor: help;
+}
+
+.statistics-panel__statistics-item--primary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.125rem 1.25rem 1.25rem;
+  border: 1px solid var(--calm-line2);
+  border-radius: 1rem;
 }
 
 .statistics-panel__statistics-item-title {
@@ -55,9 +56,14 @@
   align-items: baseline;
   column-gap: 0.375rem;
   min-width: 0;
-  font-size: 1.25rem;
-  line-height: 1.25;
+  margin: 0;
   font-variant-numeric: tabular-nums;
+}
+
+.statistics-panel__statistics-item--primary
+  .statistics-panel__statistics-item-value-container {
+  font-size: 1.5rem;
+  line-height: 1.25;
 }
 
 .statistics-panel__statistics-item-value {
@@ -82,63 +88,103 @@
   content: "~";
 }
 
-/* Phones: smaller cards, so the latest transactions start on the first screen. */
+/* The rest: one card, its labels and values small. */
+.statistics-panel__secondary {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid var(--calm-line);
+  border-radius: 1rem;
+}
+
+.statistics-panel__statistics-item--secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.statistics-panel__statistics-item--secondary
+  .statistics-panel__statistics-item-value-container {
+  font-size: 0.9375rem;
+}
+
+.statistics-panel__statistics-item--secondary
+  .statistics-panel__statistics-item-unit {
+  font-size: 0.8125rem;
+}
+
+/* Tablets: the rest in two rows. */
+@media (max-width: 63.99rem) {
+  .statistics-panel__secondary {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Phones: the four as small cards, two to a row, without icons; the rest
+ * as a list of labels and values.
+ */
 @media (max-width: 47.99rem) {
-  .statistics-panel__statistics {
+  .statistics-panel {
     gap: 0.5rem;
   }
 
-  .statistics-panel__statistics-item {
-    gap: 0.375rem;
-    padding: 0.75rem 0.875rem 0.8125rem;
+  .statistics-panel__statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .statistics-panel__statistics-item--primary {
+    gap: 0.25rem;
+    padding: 0.625rem 0.875rem 0.75rem;
     border-radius: 0.875rem;
   }
 
   .statistics-panel__statistics-item-title {
-    gap: 0.375rem;
     font-size: 0.78125rem;
   }
 
   .statistics-panel__statistics-item-title .dusk-icon {
-    width: 0.875rem;
-    height: 0.875rem;
+    display: none;
   }
 
-  .statistics-panel__statistics-item-value-container {
+  .statistics-panel__statistics-item--primary
+    .statistics-panel__statistics-item-value-container {
     font-size: 1.125rem;
   }
 
   .statistics-panel__statistics-item-unit {
     font-size: 0.8125rem;
   }
-}
 
-/* Tablets: two pairs to a row. */
-@media (min-width: 48rem) {
-  .statistics-panel__statistics {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .statistics-panel__secondary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0.25rem 0.875rem;
+    border-radius: 0.875rem;
   }
-}
 
-/* Wide screens: one column per pair, the pair one above the other. */
-@media (min-width: 75rem) {
-  .statistics-panel__statistics {
-    grid-template-columns: none;
-    grid-template-rows: repeat(2, auto);
-    grid-auto-columns: minmax(0, 1fr);
-    grid-auto-flow: column;
+  .statistics-panel__statistics-item--secondary {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 1rem;
+    padding: 0.5rem 0;
   }
 
-  .statistics-panel__statistics-item {
-    padding: 1.125rem 1.25rem 1.25rem;
+  .statistics-panel__statistics-item--secondary
+    + .statistics-panel__statistics-item--secondary {
+    border-top: 1px solid var(--calm-line);
   }
 
-  .statistics-panel__statistics-item-value-container {
-    font-size: 1.5rem;
-  }
-
-  .statistics-panel__statistics-item-unit {
-    font-size: 0.9375rem;
+  .statistics-panel__statistics-item--secondary
+    .statistics-panel__statistics-item-value-container {
+    justify-content: flex-end;
+    font-size: 0.875rem;
+    text-align: right;
   }
 }

@@ -48,6 +48,10 @@ and this project adheres to
 - Show the home page's numbers as cards, with their labels above them
 - Show lists as rows: an icon, who and what, then the amount and the time
 - Show IDs and addresses in full on the transaction page, their ends set apart, each with Copy
+- Give a transaction's status and time once, under its sentence, and leave out an empty memo
+- Keep field help to the terms that need it
+- Lead the home page with four numbers as cards, the rest in one smaller row
+- Leave gas off the home page's blocks, and give a block's average gas price only when it has one
 
 ### Removed
 

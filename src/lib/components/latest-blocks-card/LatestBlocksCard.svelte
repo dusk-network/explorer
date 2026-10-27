@@ -42,6 +42,10 @@
       <BlocksList data={block} />
     {/each}
   {:else}
-    <BlocksTable data={blocks} className="latest-blocks-card__table" />
+    <BlocksTable
+      data={blocks}
+      className="latest-blocks-card__table"
+      showGas={false}
+    />
   {/if}
 </DataCard>

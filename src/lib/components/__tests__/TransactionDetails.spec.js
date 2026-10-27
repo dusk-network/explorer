@@ -108,14 +108,13 @@ describe("Transaction Details", () => {
   it("should lead with the status, the parties and the amount, and end with the technical details", () => {
     const { container } = render(TransactionDetails, baseProps);
 
+    // The status and the time are in the line under the sentence.
     expect(getTerms(container)).toStrictEqual([
       "id",
-      "status",
       "from",
       "to",
       "amount",
       "transaction fee",
-      "timestamp",
       "type",
       "memo",
       "block height",
@@ -177,12 +176,37 @@ describe("Transaction Details", () => {
     ).toHaveTextContent("Failed");
   });
 
-  it("should give the time in the viewer's zone, and how long ago", () => {
+  it("should give the status and the time in the viewer's zone once, under the sentence", () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(getDefinition(container, "timestamp")).toMatch(
-      /^Tue 16 Apr 2024, 06:39:09 UTC \(last month\)$/
-    );
+    expect(
+      container.querySelector(".transaction-details__summary-meta")
+    ).toHaveTextContent(/^Completed · Tue 16 Apr 2024, 06:39:09 UTC$/);
+    expect(getTerms(container)).not.toContain("status");
+    expect(getTerms(container)).not.toContain("timestamp");
+  });
+
+  it("should leave out a memo or a payload that isn't there", () => {
+    const { container, queryByRole } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, memo: "", payload: "" },
+    });
+
+    expect(getTerms(container)).not.toContain("memo");
+    expect(getTerms(container)).not.toContain("payload");
+    expect(queryByRole("switch", { name: "Show payload" })).toBeNull();
+  });
+
+  it('should give a failure\'s error on hover of "Failed", and in the technical details', () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, txerror: "Panic" },
+    });
+
+    expect(
+      container.querySelector(".transaction-details__summary-failed")
+    ).toHaveAttribute("data-tooltip-text", "Panic");
+    expect(getDefinition(container, "error")).toBe("Panic");
   });
 
   it("should name the DuskEVM bridge on testnet, and say which DuskEVM address a deposit pays", async () => {
@@ -234,15 +258,20 @@ describe("Transaction Details", () => {
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should make each field's help reachable from the keyboard, with its text as the description", () => {
+  it("should explain only the terms that need it, with help reachable from the keyboard", () => {
     const { getAllByRole } = render(TransactionDetails, baseProps);
-    const [help] = getAllByRole("button", { name: "More information" });
+    const helps = getAllByRole("button", { name: "More information" });
 
-    expect(help.tagName).toBe("BUTTON");
-    expect(help).toHaveAccessibleDescription("The ID of the transaction");
-    expect(help).toHaveAttribute(
-      "data-tooltip-text",
-      "The ID of the transaction"
+    expect(
+      helps.map((help) => help.getAttribute("data-tooltip-text"))
+    ).toStrictEqual([
+      "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
+      "The most gas the transaction could use. Only the gas spent is paid for",
+      "The number of transactions sent from this address",
+    ]);
+    expect(helps[0].tagName).toBe("BUTTON");
+    expect(helps[0]).toHaveAccessibleDescription(
+      "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
     );
   });
 

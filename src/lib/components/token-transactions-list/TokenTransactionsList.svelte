@@ -47,9 +47,7 @@
 
 <DetailList>
   {#if data.from}
-    <ListItem
-      tooltipText={displayTooltips ? "The sender of the transactions" : ""}
-    >
+    <ListItem>
       <svelte:fragment slot="term">From</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor href={`/account/?account=${data.from}`}>
@@ -68,9 +66,7 @@
     </ListItem>
   {/if}
   {#if data.to}
-    <ListItem
-      tooltipText={displayTooltips ? "The recipient of the transaction" : ""}
-    >
+    <ListItem>
       <svelte:fragment slot="term">To</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor href={`/account/?account=${data.to}`}>
@@ -90,7 +86,7 @@
   {/if}
 
   <!-- TRANSACTION ID -->
-  <ListItem tooltipText={displayTooltips ? "The ID of the transaction" : ""}>
+  <ListItem>
     <svelte:fragment slot="term">ID</svelte:fragment>
     <svelte:fragment slot="definition">
       <AppAnchor
@@ -112,7 +108,7 @@
 
   <!-- AMOUNT -->
   {#if data.amount}
-    <ListItem tooltipText={displayTooltips ? "The transaction amount" : ""}>
+    <ListItem>
       <svelte:fragment slot="term">Amount</svelte:fragment>
       <svelte:fragment slot="definition">
         {formatter(luxToDusk(data.amount))} DUSK
@@ -121,7 +117,7 @@
   {/if}
 
   <!-- TX FEE -->
-  <ListItem tooltipText={displayTooltips ? "The transaction fee amount" : ""}>
+  <ListItem>
     <svelte:fragment slot="term">Fee</svelte:fragment>
     <svelte:fragment slot="definition">
       {formatter(luxToDusk(data.feepaid))} DUSK
@@ -129,7 +125,7 @@
   </ListItem>
 
   <!-- STATUS -->
-  <ListItem tooltipText={displayTooltips ? "The transaction status" : ""}>
+  <ListItem>
     <svelte:fragment slot="term">Status</svelte:fragment>
     <svelte:fragment slot="definition">
       <TransactionStatus
@@ -141,7 +137,7 @@
   </ListItem>
 
   <!-- TYPE -->
-  <ListItem tooltipText={displayTooltips ? "The transaction type" : ""}>
+  <ListItem>
     <svelte:fragment slot="term">Type</svelte:fragment>
     <svelte:fragment slot="definition"
       ><DataGuard data={data.method && data.txtype}>

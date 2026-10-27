@@ -1,6 +1,7 @@
 @import "@duskit/css/main.css";
 @import url("./duskit-bridge.css");
 @import url("./app-components/rows.css");
+@import url("./app-components/details.css");
 
 * {
   box-sizing: border-box;

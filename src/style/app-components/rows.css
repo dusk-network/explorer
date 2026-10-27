@@ -47,3 +47,9 @@
   color: var(--calm-muted);
   font-weight: 400;
 }
+
+/* In a row, a DuskEVM receiver stays on its line, cut at its end if need be. */
+.transaction__parties .transaction-party--evm,
+.transaction-row__parties .transaction-party--evm {
+  white-space: nowrap;
+}
