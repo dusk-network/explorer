@@ -41,4 +41,25 @@ describe("DataAlert", () => {
     await fireEvent.click(getByRole("button"));
     expect(eventHandler).toHaveBeenCalledTimes(1);
   });
+
+  it("should say what an empty list means, as its card tells it", () => {
+    const { container } = render(DataAlert, {
+      props: { emptyText: "No transactions in this block.", error: null },
+    });
+
+    expect(container.firstElementChild).toHaveTextContent(
+      /^No transactions in this block\.$/
+    );
+  });
+
+  it("should say a load failed, give its error, and offer to try again", () => {
+    const { container, getByRole } = render(DataAlert, {
+      props: { error: new Error("Request timed out") },
+    });
+
+    expect(container.firstElementChild).toHaveTextContent(
+      /^Couldn't load this\.\s*Request timed out\s*Try again$/
+    );
+    expect(getByRole("button", { name: "Try again" })).toBeInTheDocument();
+  });
 });

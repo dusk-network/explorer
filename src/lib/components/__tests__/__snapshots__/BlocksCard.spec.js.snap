@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Blocks Card > should disable the \`Show More\` button is the card is in the loading state 1`] = `
+exports[`Blocks Card > should hide the \`Show more\` button if an error has occurred 1`] = `
 <div
   class="dusk-card data-card data-card--page"
 >
@@ -13,60 +13,7 @@ exports[`Blocks Card > should disable the \`Show More\` button is the card is in
     <h1
       class="data-card__header-title"
     >
-      Blocks — 0 Displayed Items
-      
-    </h1>
-    <!---->
-     
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
-      disabled=""
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
-    <!---->
-  </header>
-  
-  <!---->
-   
-  <!---->
-  <div
-    aria-label="Loading"
-    class="dusk-progress-bar data-card__progress-bar"
-    role="progressbar"
-  >
-    <div
-      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
-    />
-  </div>
-  
-  <!---->
-   
-  <!---->
-  
-</div>
-`;
-
-exports[`Blocks Card > should hide the \`Show More\` button if an error has occurred 1`] = `
-<div
-  class="dusk-card data-card data-card--page"
->
-  <!---->
-  <!---->
-  <header
-    class="data-card__header"
-    slot="header"
-  >
-    <h1
-      class="data-card__header-title"
-    >
-      Blocks — 0 Displayed Items
+      Blocks
       
     </h1>
     <!---->
@@ -78,45 +25,45 @@ exports[`Blocks Card > should hide the \`Show More\` button if an error has occu
    
   <!---->
   <div
-    class="alert"
+    class="alert alert--error"
   >
-    <!---->
-    <svg
-      class="dusk-icon dusk-icon--size--large"
-      role="graphics-symbol"
-      viewBox="0 0 24 24"
+    <p
+      class="alert__title"
     >
-      <path
-        d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"
-      />
-    </svg>
-    
-    <!---->
-     
-    <header>
-      <p>
-        There was an error fetching the data.
-      </p>
-       
-      <p
-        class="alert__error-message"
-      >
-        error
-      </p>
       <!---->
-    </header>
+      <svg
+        class="dusk-icon dusk-icon--size--default"
+        role="graphics-symbol"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z"
+        />
+      </svg>
+      
+      <!---->
+      Couldn't load this.
+    </p>
+     
+    <p
+      class="alert__error-message"
+    >
+      error
+    </p>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small"
       type="button"
     >
       <span
         class="dusk-button__text"
       >
-        Retry
+        Try again
       </span>
       <!---->
     </button>
+    <!---->
     <!---->
   </div>
   
@@ -127,7 +74,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if an error has occu
 </div>
 `;
 
-exports[`Blocks Card > should hide the \`Show More\` button if there is no more data to display 1`] = `
+exports[`Blocks Card > should hide the \`Show more\` button if there is no more data to display 1`] = `
 <div
   class="dusk-card data-card data-card--page"
 >
@@ -140,7 +87,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
     <h1
       class="data-card__header-title"
     >
-      Blocks — 10 Displayed Items
+      Blocks
       
     </h1>
     <!---->
@@ -1487,6 +1434,18 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
     <!---->
   </div>
    
+  <footer
+    class="data-card__footer"
+  >
+    <span
+      class="data-card__count"
+    >
+      10 of 10
+    </span>
+     
+    <!---->
+    <!---->
+  </footer>
   <!---->
   
   <!---->
@@ -1509,28 +1468,58 @@ exports[`Blocks Card > should render the \`BlocksCard\` component 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Blocks — 0 Displayed Items
+      Blocks
       
     </h1>
     <!---->
      
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
     <!---->
   </header>
   
   <!---->
    
   <!---->
+  
+  <!---->
+   
+  <!---->
+  
+</div>
+`;
+
+exports[`Blocks Card > should show no \`Show more\` button while the card is loading 1`] = `
+<div
+  class="dusk-card data-card data-card--page"
+>
+  <!---->
+  <!---->
+  <header
+    class="data-card__header"
+    slot="header"
+  >
+    <h1
+      class="data-card__header-title"
+    >
+      Blocks
+      
+    </h1>
+    <!---->
+     
+    <!---->
+  </header>
+  
+  <!---->
+   
+  <!---->
+  <div
+    aria-label="Loading"
+    class="dusk-progress-bar data-card__progress-bar"
+    role="progressbar"
+  >
+    <div
+      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
+    />
+  </div>
   
   <!---->
    

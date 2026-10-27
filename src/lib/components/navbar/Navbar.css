@@ -96,7 +96,7 @@
 
 /* Under the search, in the page's flow. */
 .dusk-navbar .dusk-navbar__menu--search-notification {
-  margin-top: 1rem;
+  margin: 1rem 0 1.5rem;
 }
 
 /* Wide screens: one row, the search between the pages and the network. */
@@ -122,11 +122,12 @@
     width: min(23.75rem, 30vw);
   }
 
+  /* Where the page would start, at a reading width. */
   .dusk-navbar .dusk-navbar__menu--search-notification {
     grid-area: notice;
-    justify-self: center;
+    justify-self: start;
     width: min(40rem, 100%);
-    margin-top: 2.25rem;
+    margin: 2.25rem 0 3rem calc(var(--page-gutter) - 1.5rem);
   }
 }
 

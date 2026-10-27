@@ -52,6 +52,12 @@ and this project adheres to
 - Keep field help to the terms that need it
 - Lead the home page with four numbers as cards, the rest in one smaller row
 - Leave gas off the home page's blocks, and give a block's average gas price only when it has one
+- Lead the block page with its height, time and transaction count, with technical details folded
+- Show an account's balances as cards and a provisioner's stake as rows, with the address in full and Copy
+- Say Sent, Received or Sent to itself for an account's transfers, with signed amounts
+- Show provisioners as rows, with the owner's address when it isn't the staking key
+- Move the blocks list's count and "Show more" to the bottom
+- Say "Page not found" with a way home, and say plainly when a list is empty or failed to load
 
 ### Removed
 

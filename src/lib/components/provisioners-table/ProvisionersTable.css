@@ -1,16 +1,46 @@
+/* Provisioners as the web wallet's History rows: who, what they stake, earn and lost. */
+.provisioners-table .table__data-cell {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 .provisioners-table *[data-tooltip-id] {
   cursor: help;
 }
 
-.provisioners-table__stake-data-label,
-.provisioners-table__slash-data-label {
-  font-weight: 500;
+.provisioners-table__rank {
+  color: var(--calm-muted);
+}
+
+/* Addresses are case-sensitive: shown as they are, in Söhne Mono. */
+.provisioners-table__address {
+  font-family: var(--mono-font-family);
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+  font-size: 0.8125rem;
 }
 
 .provisioners-table__staking-address-wrapper {
   display: flex;
   align-items: center;
-  gap: var(--default-gap);
+  gap: 0.125rem;
+}
+
+.provisioners-table__owner {
+  color: var(--calm-muted);
+}
+
+.provisioners-table__muted {
+  color: var(--calm-subtle);
+}
+
+.provisioners-table__stake-line {
+  display: block;
+}
+
+.provisioners-table .row-amount {
+  display: block;
 }
 
 .provisioners-table__header-button {
@@ -23,15 +53,24 @@
   background: none;
   color: inherit;
   font: inherit;
-  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.provisioners-table__header-button:hover {
+  color: var(--calm-text);
 }
 
 .provisioners-table__header-button:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--calm-focus);
   outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
 .provisioners-table__header-sort-indicator {
-  font-size: 0.75em;
-  opacity: 0.7;
+  font-size: 0.875em;
+}
+
+/* The amounts' headers line up with them, at the right. */
+.provisioners-table .table__header-cell:nth-child(n + 4) {
+  text-align: right;
 }

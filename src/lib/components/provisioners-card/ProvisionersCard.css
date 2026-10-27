@@ -1,19 +1,38 @@
+/* A filter field, as the web wallet's: filled, rounded, quiet. */
 .provisioners-card__search {
-  padding: 0 var(--header-lateral-padding) var(--card-padding);
+  margin-bottom: 1rem;
 }
 
 .provisioners-card__search .dusk-textbox {
   width: 100%;
-  max-width: 32rem;
-  border-color: color-mix(
-    in oklab,
-    var(--on-background-color),
-    transparent 82%
-  );
+  max-width: 26rem;
+  height: 2.375rem;
+  padding: 0 0.875rem;
+  border: 0 none;
+  border-radius: 0.625rem;
+  background-color: var(--calm-s1);
+  font-size: 0.875rem;
+}
+
+.provisioners-card__search .dusk-textbox:read-write:enabled:focus {
+  box-shadow:
+    0 0 0 1px var(--calm-focus),
+    0 0 0 3px var(--calm-focus-ring);
 }
 
 .provisioners-card__empty {
-  padding: 0 var(--header-lateral-padding) var(--card-padding);
+  margin: 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--calm-line);
+  color: var(--calm-muted);
   font-size: 0.875rem;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 47.99rem) {
+  .provisioners-card__search .dusk-textbox {
+    max-width: none;
+    height: 2.75rem;
+    font-size: 1rem;
+  }
 }

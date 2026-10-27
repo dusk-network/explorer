@@ -514,17 +514,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <span
               class="transaction-type__call"
             >
+              <!---->
               <span
                 class="transaction-type__label"
               >
                 Transfer
               </span>
+              
               <!---->
                
               <!---->
             </span>
-             
-            <!---->
           </div>
           <!---->
         </dd>

@@ -14,7 +14,11 @@
     TransactionParty,
     TransactionType,
   } from "$lib/components";
-  import { summarizeTransaction } from "$lib/chain-info";
+  import {
+    amountSign,
+    directionOf,
+    summarizeTransaction,
+  } from "$lib/chain-info";
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
@@ -44,6 +48,14 @@
    * @type {Map<string, { name: string, url: string } | null>}
    */
   export let names = new Map();
+
+  /**
+   * The account whose page lists the transactions: each then says which
+   * way it went for it, by its icon and its amount's sign.
+   *
+   * @type {string | undefined}
+   */
+  export let account = undefined;
 
   /**
    * @param {Map<string, { name: string, url: string } | null>} found
@@ -79,10 +91,11 @@
     {#each data as transaction (transaction)}
       {@const { amount, from, to } = summarizeTransaction(transaction)}
       {@const failed = !!transaction.txerror}
+      {@const direction = directionOf(transaction, account)}
       <TableRow>
         <TableCell>
           <div class="transaction__main">
-            <TransactionIcon {transaction} />
+            <TransactionIcon {direction} {transaction} />
             <div class="transaction__who">
               <span class="transaction__parties">
                 <span class="transaction__party">
@@ -158,7 +171,8 @@
             <span
               class="row-amount"
               class:row-amount--muted={failed || amount.lux === 0}
-              ><span title="{formatDuskExact(amount.lux)} DUSK"
+              >{amountSign(direction, amount.lux, failed)}<span
+                title="{formatDuskExact(amount.lux)} DUSK"
                 >{formatDusk(amount.lux)}</span
               >
               <span class="row-unit">DUSK</span></span

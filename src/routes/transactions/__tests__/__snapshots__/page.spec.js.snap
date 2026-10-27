@@ -96,17 +96,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Blob
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -118,6 +118,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -228,17 +229,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -250,6 +251,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -360,17 +362,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Blob
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -382,6 +384,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -492,17 +495,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -514,6 +517,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -624,17 +628,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -646,6 +650,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -756,17 +761,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -778,6 +783,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -888,17 +894,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -910,6 +916,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1020,17 +1027,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1042,6 +1049,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1152,17 +1160,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1174,6 +1182,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1284,17 +1293,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1306,6 +1315,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1416,17 +1426,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1438,6 +1448,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1548,17 +1559,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1570,6 +1581,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1680,17 +1692,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1702,6 +1714,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1812,17 +1825,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1834,6 +1847,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -1944,17 +1958,17 @@ exports[`Transactions page > should render the Transactions page with the mobile
                 <span
                   class="transaction-type__call"
                 >
+                  <!---->
                   <span
                     class="transaction-type__label"
                   >
                     Transfer
                   </span>
+                  
                   <!---->
                    
                   <!---->
                 </span>
-                 
-                <!---->
               </div>
               <!---->
             </span>
@@ -1966,6 +1980,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="row-amount row-amount--muted"
             >
+              
               <span
                 title="0 DUSK"
               >
@@ -2287,17 +2302,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Blob
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -2429,6 +2444,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -2523,17 +2539,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -2665,6 +2681,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -2759,17 +2776,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Blob
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -2901,6 +2918,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -2995,17 +3013,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -3137,6 +3155,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -3231,17 +3250,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -3373,6 +3392,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -3467,17 +3487,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -3609,6 +3629,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -3703,17 +3724,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -3845,6 +3866,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -3939,17 +3961,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -4081,6 +4103,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -4175,17 +4198,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -4317,6 +4340,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -4411,17 +4435,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -4553,6 +4577,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -4647,17 +4672,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -4789,6 +4814,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -4883,17 +4909,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -5025,6 +5051,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -5119,17 +5146,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -5261,6 +5288,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -5355,17 +5383,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -5497,6 +5525,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >
@@ -5591,17 +5620,17 @@ exports[`Transactions page > should render the Transactions page, start polling 
                         <span
                           class="transaction-type__call"
                         >
+                          <!---->
                           <span
                             class="transaction-type__label"
                           >
                             Transfer
                           </span>
+                          
                           <!---->
                            
                           <!---->
                         </span>
-                         
-                        <!---->
                       </div>
                       <!---->
                     </span>
@@ -5733,6 +5762,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                 <span
                   class="row-amount row-amount--muted"
                 >
+                  
                   <span
                     title="0 DUSK"
                   >

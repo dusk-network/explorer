@@ -51,7 +51,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             type="button"
           >
             <span>
-              Staking Address
+              Staking address
             </span>
              
             <!---->
@@ -72,7 +72,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             type="button"
           >
             <span>
-              Owner Key
+              Owner
             </span>
              
             <!---->
@@ -119,7 +119,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             type="button"
           >
             <span>
-              Accumulated Reward
+              Rewards
             </span>
              
             <!---->
@@ -169,7 +169,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          1
+          <span
+            class="provisioners-table__rank"
+          >
+            1
+          </span>
           
           
         </td>
@@ -185,11 +189,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
             >
               <!---->
-              n3qToJrMkY...jmEq6aNuj6
+              n3qToJ...6aNuj6
               
               <!---->
             </a>
@@ -200,7 +204,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -237,12 +241,48 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: n3qToJrMkY...jmEq6aNuj6"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="1,000,000 DUSK"
+            >
+              1,000,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -252,58 +292,23 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="1,000,000 DUSK"
-          >
-            1,000,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="12,178.759788262 DUSK"
+            class="row-amount"
           >
-            12,178.7597
+            <span
+              title="12,178.759788262 DUSK"
+            >
+              12,178.7597
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -313,23 +318,14 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -346,7 +342,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          2
+          <span
+            class="provisioners-table__rank"
+          >
+            2
+          </span>
           
           
         </td>
@@ -362,11 +362,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=s9mQHPDuKiUwomr7k6S3mmeqd8rwpXENtvmCY7f9ndukC4VQH385ePgzHdiw6vWoJX7ee1oZEFSYXXZtVr4326XmZrkTbranxdYz89Vrd1HMfX2f3uis4hi33XxiM4ksRbH"
             >
               <!---->
-              s9mQHPDuKi...XxiM4ksRbH
+              s9mQHP...4ksRbH
               
               <!---->
             </a>
@@ -377,7 +377,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -414,13 +414,53 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
+            class="provisioners-table__address provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Owner: 0200000000...0000000000
-Consensus: s9mQHPDuKi...XxiM4ksRbH"
+            data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Yes
+            Contract 0200...0000
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="510,000 DUSK"
+            >
+              510,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <span>
+              eligible from block 6,480
+            </span>
+            <!---->
           </span>
           
           
@@ -430,58 +470,23 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="510,000 DUSK"
-          >
-            510,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #6,480
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="780.152437445 DUSK"
+            class="row-amount"
           >
-            780.1524
+            <span
+              title="780.152437445 DUSK"
+            >
+              780.1524
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -491,23 +496,14 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -524,7 +520,11 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           class="table__data-cell align-left"
         >
           <!---->
-          3
+          <span
+            class="provisioners-table__rank"
+          >
+            3
+          </span>
           
           
         </td>
@@ -540,11 +540,11 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=sX4JooVNAFov3Xx9cfZHtRemijsggdRKrywC14jfGyZn5k2wupNvyY9ZLu7YTuh3CpuyKsftbmzYPzdgptG6Rq9UayDXeaPwFHanmXpUqGdTyEvw5Cb3UqGEqfCFZMqQhtz"
             >
               <!---->
-              sX4JooVNAF...fCFZMqQhtz
+              sX4Joo...MqQhtz
               
               <!---->
             </a>
@@ -555,7 +555,7 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -592,13 +592,53 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
+            class="provisioners-table__address provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Owner: 0200000000...0000000000
-Consensus: sX4JooVNAF...fCFZMqQhtz"
+            data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Yes
+            Contract 0200...0000
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="505,000 DUSK"
+            >
+              505,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <span>
+              eligible from block 38,880
+            </span>
+            <!---->
           </span>
           
           
@@ -608,58 +648,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="505,000 DUSK"
-          >
-            505,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #38,880
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="2,063.426446466 DUSK"
+            class="row-amount"
           >
-            2,063.4264
+            <span
+              title="2,063.426446466 DUSK"
+            >
+              2,063.4264
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -669,23 +674,14 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -702,7 +698,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
-          4
+          <span
+            class="provisioners-table__rank"
+          >
+            4
+          </span>
           
           
         </td>
@@ -718,11 +718,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=scRkV9xaMCNTsjEx2mwDABavD5exRSNAyCnTZT9hYi2HGKPRAYhqzff5BmdsXgqaYRxgSxkyiDUBFiyHGhuHxMC2R5ztdmG8QUe6jBXsyFMJoGx6H9faXfyA2XwXrJMpbfo"
             >
               <!---->
-              scRkV9xaMC...XwXrJMpbfo
+              scRkV9...JMpbfo
               
               <!---->
             </a>
@@ -733,7 +733,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -770,12 +770,51 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: scRkV9xaMC...XwXrJMpbfo"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="504,000 DUSK"
+            >
+              504,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <span>
+              eligible from block 15,120
+            </span>
+            <!---->
           </span>
           
           
@@ -785,58 +824,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="504,000 DUSK"
-          >
-            504,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #15,120
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="5,190.546947071 DUSK"
+            class="row-amount"
           >
-            5,190.5469
+            <span
+              title="5,190.546947071 DUSK"
+            >
+              5,190.5469
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -846,23 +850,14 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -879,7 +874,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
-          5
+          <span
+            class="provisioners-table__rank"
+          >
+            5
+          </span>
           
           
         </td>
@@ -895,11 +894,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
             >
               <!---->
-              m6dy2gz3jC...tW82FWtnpf
+              m6dy2g...FWtnpf
               
               <!---->
             </a>
@@ -910,7 +909,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -947,12 +946,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: m6dy2gz3jC...tW82FWtnpf"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -962,58 +997,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="7,121.257296087 DUSK"
+            class="row-amount"
           >
-            7,121.2572
+            <span
+              title="7,121.257296087 DUSK"
+            >
+              7,121.2572
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1023,23 +1023,14 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -1056,7 +1047,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
-          6
+          <span
+            class="provisioners-table__rank"
+          >
+            6
+          </span>
           
           
         </td>
@@ -1072,11 +1067,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
             >
               <!---->
-              m9dVuRgr3C...94r33pFQyz
+              m9dVuR...3pFQyz
               
               <!---->
             </a>
@@ -1087,7 +1082,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -1124,12 +1119,48 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: m9dVuRgr3C...94r33pFQyz"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1139,58 +1170,23 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="6,923.840604194 DUSK"
+            class="row-amount"
           >
-            6,923.8406
+            <span
+              title="6,923.840604194 DUSK"
+            >
+              6,923.8406
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1200,23 +1196,14 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -1233,7 +1220,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
-          7
+          <span
+            class="provisioners-table__rank"
+          >
+            7
+          </span>
           
           
         </td>
@@ -1249,11 +1240,11 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
             >
               <!---->
-              mTgXDqkyVa...gAseybAsfU
+              mTgXDq...ybAsfU
               
               <!---->
             </a>
@@ -1264,7 +1255,7 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -1301,13 +1292,50 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
+            class="provisioners-table__address provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Owner: 0200000000...0000000000
-Consensus: mTgXDqkyVa...gAseybAsfU"
+            data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Yes
+            Contract 0200...0000
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1317,58 +1345,23 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="7,518.756679536 DUSK"
+            class="row-amount"
           >
-            7,518.7566
+            <span
+              title="7,518.756679536 DUSK"
+            >
+              7,518.7566
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1378,23 +1371,14 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -1411,7 +1395,11 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           class="table__data-cell align-left"
         >
           <!---->
-          8
+          <span
+            class="provisioners-table__rank"
+          >
+            8
+          </span>
           
           
         </td>
@@ -1427,11 +1415,11 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
             >
               <!---->
-              mUUpjnXow2...SfzQcywzaW
+              mUUpjn...cywzaW
               
               <!---->
             </a>
@@ -1442,7 +1430,7 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -1479,13 +1467,50 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
+            class="provisioners-table__address provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Owner: 0200000000...0000000000
-Consensus: mUUpjnXow2...SfzQcywzaW"
+            data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Yes
+            Contract 0200...0000
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1495,58 +1520,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="7,653.541671166 DUSK"
+            class="row-amount"
           >
-            7,653.5416
+            <span
+              title="7,653.541671166 DUSK"
+            >
+              7,653.5416
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1556,23 +1546,14 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -1589,7 +1570,11 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           class="table__data-cell align-left"
         >
           <!---->
-          9
+          <span
+            class="provisioners-table__rank"
+          >
+            9
+          </span>
           
           
         </td>
@@ -1605,11 +1590,11 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
             >
               <!---->
-              mXKJ97xTtr...JgkCK2o7x4
+              mXKJ97...K2o7x4
               
               <!---->
             </a>
@@ -1620,7 +1605,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -1657,12 +1642,48 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: mXKJ97xTtr...JgkCK2o7x4"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1672,58 +1693,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="7,512.060104659 DUSK"
+            class="row-amount"
           >
-            7,512.0601
+            <span
+              title="7,512.060104659 DUSK"
+            >
+              7,512.0601
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1733,23 +1719,14 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>
@@ -1766,7 +1743,11 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           class="table__data-cell align-left"
         >
           <!---->
-          10
+          <span
+            class="provisioners-table__rank"
+          >
+            10
+          </span>
           
           
         </td>
@@ -1782,11 +1763,11 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             class="provisioners-table__staking-address-wrapper"
           >
             <a
-              class="dusk-anchor dusk-anchor--on-surface"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
               href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
             >
               <!---->
-              mdXsA3Ee1Y...K8VZPimZ2J
+              mdXsA3...PimZ2J
               
               <!---->
             </a>
@@ -1797,7 +1778,7 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
             >
               <button
                 aria-label="Copy staking address"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Copy to clipboard"
                 type="button"
@@ -1834,12 +1815,48 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
           class="table__data-cell align-left"
         >
           <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-neutral"
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text="Consensus: mdXsA3Ee1Y...K8VZPimZ2J"
+            class="provisioners-table__muted"
           >
-            No
+            —
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-right"
+        >
+          <!---->
+          <span
+            class="row-amount"
+          >
+            <span
+              title="500,000 DUSK"
+            >
+              500,000
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
+          </span>
+           
+          <span
+            class="row-line provisioners-table__stake-line"
+          >
+            <!---->
+             
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1849,58 +1866,23 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Active:
-          </b>
-           
-          <span
-            title="500,000 DUSK"
-          >
-            500,000
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Inactive:
-          </b>
-           
-          <span
-            title="0 DUSK"
-          >
-            0
-          </span>
-           
-          <br />
-           
-          <b
-            class="provisioners-table__stake-data-label"
-          >
-            Maturity At:
-          </b>
-           #0
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
           <span
-            title="7,973.118109253 DUSK"
+            class="row-amount"
           >
-            7,973.1181
+            <span
+              title="7,973.118109253 DUSK"
+            >
+              7,973.1181
+            </span>
+             
+            <span
+              class="row-unit"
+            >
+              DUSK
+            </span>
           </span>
           
           
@@ -1910,23 +1892,14 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
          
         <!---->
         <td
-          class="table__data-cell align-left"
+          class="table__data-cell align-right"
         >
           <!---->
-          <b
-            class="provisioners-table__slash-data-label"
+          <span
+            class="provisioners-table__muted"
           >
-            Soft:
-          </b>
-           0 
-          <br />
-           
-          <b
-            class="provisioners-table__slash-data-label"
-          >
-            Hard:
-          </b>
-           0
+            0 soft, 0 hard
+          </span>
           
           
         </td>

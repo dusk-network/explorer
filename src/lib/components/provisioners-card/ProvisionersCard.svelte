@@ -151,7 +151,14 @@
   };
 </script>
 
-<DataCard on:retry data={provisioners} {error} {loading} title="Provisioners">
+<DataCard
+  on:retry
+  data={provisioners}
+  emptyText="No provisioners yet."
+  {error}
+  {loading}
+  title="Provisioners"
+>
   <div class="provisioners-card__search">
     <Textbox
       aria-label="Search provisioners by staking or owner address, or .dusk name"
@@ -185,11 +192,13 @@
     />
   {/if}
   <svelte:fragment slot="footer">
-    <span class="data-card__count"
-      >{displayedProvisioners.length} of {foundProvisioners.length}</span
-    >
+    {#if foundProvisioners.length}
+      <span class="data-card__count"
+        >{displayedProvisioners.length} of {foundProvisioners.length}</span
+      >
+    {/if}
     {#if hasMore}
-      <Button on:click={loadMoreItems} text="Show More" variant="tertiary" />
+      <Button on:click={loadMoreItems} text="Show more" variant="secondary" />
     {/if}
   </svelte:fragment>
 </DataCard>

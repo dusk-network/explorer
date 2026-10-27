@@ -95,6 +95,40 @@ describe("Block Details", () => {
     ).toBeInTheDocument();
   });
 
+  it("should lead with the height, its time and how many transactions it holds, and explain only what needs it", () => {
+    const { container, getAllByRole } = render(BlockDetails, baseProps);
+    const count = baseProps.data.transactions.data.length;
+
+    expect(
+      container.querySelector(".block-details__summary-text")
+    ).toHaveTextContent(/^Block 487,166$|^Block [\d,]+$/);
+    expect(
+      container.querySelector(".block-details__summary-meta")
+    ).toHaveTextContent(new RegExp(`· ${count} transactions?$`));
+    expect(
+      Array.from(container.querySelectorAll("dt"), (dt) => {
+        const term = /** @type {Element} */ (dt.cloneNode(true));
+
+        term.querySelector(".detail-list__help")?.remove();
+
+        return term.textContent?.trim();
+      })
+    ).toStrictEqual([
+      "Hash",
+      "Block reward",
+      "Block fees paid",
+      "Gas used",
+      "Average gas price",
+      "State root hash",
+      "Header",
+    ]);
+    expect(
+      getAllByRole("button", { name: "More information" }).map((help) =>
+        help.getAttribute("data-tooltip-text")
+      )
+    ).toHaveLength(2);
+  });
+
   it("should render the Block Details component with the payload visible", async () => {
     const { container, getByRole } = render(BlockDetails, baseProps);
 

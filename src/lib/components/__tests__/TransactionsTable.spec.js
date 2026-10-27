@@ -247,6 +247,31 @@ describe("Transactions Table", () => {
     });
   });
 
+  it("should sign each amount by which way it went for the account whose page it is", () => {
+    const transfer = transformTransaction(gqlTransaction.tx);
+    const { container } = render(TransactionsTable, {
+      props: {
+        account: String(transfer.from),
+        data: [
+          transfer,
+          {
+            ...transfer,
+            from: String(transfer.to),
+            to: transfer.from,
+            txid: "e".repeat(64),
+          },
+        ],
+        mode: "full",
+      },
+    });
+
+    expect(
+      Array.from(container.querySelectorAll(".row-amount"), (amount) =>
+        amount.textContent?.replace(/\s+/g, " ").trim()
+      )
+    ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
+  });
+
   it("should pass additional class names to the rendered element", () => {
     const props = { ...baseProps, className: "foo bar" };
     const { container } = render(TransactionsTable, { ...baseOptions, props });

@@ -1,6 +1,5 @@
 <script>
   import { page } from "$app/stores";
-  import { Card } from "$lib/dusk/components";
   import { AccountOverview, TransactionsCard } from "$lib/components/";
   import { duskAPI } from "$lib/services";
   import { appStore } from "$lib/stores";
@@ -131,14 +130,21 @@
 
     <TransactionsCard
       on:retry={getTransactions}
+      account={key}
       txns={data}
       {error}
       loading={isLoading}
       {isSmallScreen}
+      variant="section"
     />
   </section>
 {:else}
-  <Card>
-    <p>Account not provided.</p>
-  </Card>
+  <p class="account-missing">No account given.</p>
 {/if}
+
+<style lang="postcss">
+  .account-missing {
+    margin: 0;
+    color: var(--calm-muted);
+  }
+</style>

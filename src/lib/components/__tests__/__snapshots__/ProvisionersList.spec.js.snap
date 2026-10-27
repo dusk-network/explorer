@@ -32,7 +32,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
       href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
     >
       <!---->
-      n3qToJrMkYCnUkJkFG2a7fEVn...AmwiScS256TCMZZjmEq6aNuj6
+      n3qToJ...6aNuj6
       
       <!---->
     </a>
@@ -43,7 +43,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     >
       <button
         aria-label="Copy staking address"
-        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
         data-tooltip-id="main-tooltip"
         data-tooltip-text="Copy to clipboard"
         type="button"

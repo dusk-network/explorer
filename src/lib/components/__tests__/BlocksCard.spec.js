@@ -1,5 +1,5 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { compose, mapWith, take } from "lamb";
 
 import { gqlBlocks } from "$lib/mock-data";
@@ -36,20 +36,46 @@ describe("Blocks Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should disable the `Show More` button is the card is in the loading state", () => {
+  it("should show no `Show more` button while the card is loading", () => {
     const loading = true;
 
-    const { container, getByRole } = render(BlocksCard, {
+    const { container, queryByRole } = render(BlocksCard, {
       ...baseOptions,
       props: { ...baseProps, loading },
     });
 
-    expect(getByRole("button", { name: "Show More" })).toBeDisabled();
+    expect(queryByRole("button", { name: "Show more" })).toBeNull();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should hide the `Show More` button if there is no more data to display", async () => {
+  it("should give the count and the `Show more` button at the bottom of the list", async () => {
+    const blocks = mapWith(transformBlock)(take(20)(gqlBlocks.blocks));
+    const { container, getByRole, queryByRole } = render(BlocksCard, {
+      ...baseOptions,
+      props: { ...baseProps, blocks },
+    });
+    const footer = /** @type {HTMLElement} */ (
+      container.querySelector(".data-card__footer")
+    );
+
+    expect(
+      getByRole("heading", { level: 1, name: "Blocks" })
+    ).toBeInTheDocument();
+    expect(footer).toHaveTextContent("15 of 20");
+    expect(
+      footer.compareDocumentPosition(
+        /** @type {HTMLElement} */ (container.querySelector("table"))
+      )
+    ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
+
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
+
+    expect(footer).toHaveTextContent("20 of 20");
+    expect(queryByRole("button", { name: "Show more" })).toBeNull();
+  });
+
+  it("should hide the `Show more` button if there is no more data to display", async () => {
     const loading = false;
     const blocks = data;
 
@@ -58,14 +84,12 @@ describe("Blocks Card", () => {
       props: { ...baseProps, blocks, loading },
     });
 
-    expect(
-      queryByRole("button", { name: "Show More" })
-    ).not.toBeInTheDocument();
+    expect(queryByRole("button", { name: "Show more" })).toBeNull();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should hide the `Show More` button if an error has occurred", async () => {
+  it("should hide the `Show more` button if an error has occurred", async () => {
     const props = { ...baseProps, error: new Error("error") };
 
     const { container } = render(BlocksCard, {

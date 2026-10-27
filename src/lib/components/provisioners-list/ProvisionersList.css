@@ -1,17 +1,34 @@
+/* A provisioner on a phone: a quiet card of labels and values. */
+.provisioners-list.detail-list {
+  margin-bottom: 0.75rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--calm-line2);
+  border-radius: 0.875rem;
+}
+
+.provisioners-list .details-list__term:first-of-type,
+.provisioners-list .details-list__definition:first-of-type {
+  border-top: 0 none;
+}
+
 .provisioners-list *[data-tooltip-id] {
   cursor: help;
 }
 
-/* Addresses are case-sensitive: show them as they are. */
+/* Addresses are case-sensitive: shown as they are, in Söhne Mono. */
 .provisioners-list__staking-address {
   font-family: var(--mono-font-family);
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+  font-size: 0.8125rem;
 }
 
 .provisioners-list__rank {
-  font-family: var(--mono-font-family);
+  color: var(--calm-muted);
 }
 
 .provisioners-list__muted {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 35%);
+  color: var(--calm-muted);
   white-space: nowrap;
 }

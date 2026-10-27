@@ -159,11 +159,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -295,6 +295,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -390,11 +391,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -526,6 +527,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -621,11 +623,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -757,6 +759,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -852,11 +855,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -988,6 +991,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -1083,11 +1087,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -1219,6 +1223,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -1314,11 +1319,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -1450,6 +1455,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -1545,11 +1551,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -1681,6 +1687,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -1776,11 +1783,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -1912,6 +1919,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -2007,11 +2015,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -2143,6 +2151,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -2238,11 +2247,11 @@ exports[`Transactions Table > should pass additional class names to the rendered
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -2374,6 +2383,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -2540,11 +2550,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -2594,6 +2604,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -2705,11 +2716,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -2759,6 +2770,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -2870,11 +2882,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -2924,6 +2936,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3035,11 +3048,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3089,6 +3102,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3200,11 +3214,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3254,6 +3268,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3365,11 +3380,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3419,6 +3434,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3530,11 +3546,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3584,6 +3600,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3695,11 +3712,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3749,6 +3766,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -3860,11 +3878,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -3914,6 +3932,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -4025,11 +4044,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -4079,6 +4098,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -4285,11 +4305,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -4421,6 +4441,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -4516,11 +4537,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -4652,6 +4673,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -4747,11 +4769,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -4883,6 +4905,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -4978,11 +5001,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -5114,6 +5137,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -5209,11 +5233,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -5345,6 +5369,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -5440,11 +5465,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -5576,6 +5601,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -5671,11 +5697,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -5807,6 +5833,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -5902,11 +5929,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -6038,6 +6065,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -6133,11 +6161,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -6269,6 +6297,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >
@@ -6364,11 +6393,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
                     class="transaction-type__call"
                   >
                     <!---->
+                    
+                    <!---->
                      
                     <!---->
                   </span>
-                   
-                  <!---->
                 </div>
                 <!---->
               </span>
@@ -6500,6 +6529,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <span
             class="row-amount row-amount--muted"
           >
+            
             <span
               title="0 DUSK"
             >

@@ -27,6 +27,9 @@
   /** @type {string | Undefined} */
   export let className = undefined;
 
+  /** What the card says when there is nothing to show. */
+  export let emptyText = "Nothing to show.";
+
   /**
    * How the title reads: a page's heading, the heading of a section of the
    * home page, with its link to the whole list beside it, or the small line
@@ -63,7 +66,7 @@
   {#if loading && !data}
     <ProgressBar ariaLabel="Loading" className="data-card__progress-bar" />
   {:else if error || hasEmptyData}
-    <DataAlert on:retry {error} />
+    <DataAlert on:retry {emptyText} {error} />
   {:else if data}
     <div class="data-card__content">
       <slot />

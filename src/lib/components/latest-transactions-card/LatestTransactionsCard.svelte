@@ -59,6 +59,9 @@
   {loading}
   className={classes}
   title="Transactions"
+  emptyText={isOnHomeScreen
+    ? "No transactions yet."
+    : "No transactions in this block."}
   variant="section"
   headerButtonDetails={isOnHomeScreen
     ? {

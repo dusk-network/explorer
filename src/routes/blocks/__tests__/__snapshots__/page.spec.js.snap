@@ -15,22 +15,11 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       <h1
         class="data-card__header-title"
       >
-        Blocks — 15 Displayed Items
+        Blocks
         
       </h1>
       <!---->
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -1400,6 +1389,29 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       <!---->
     </div>
      
+    <footer
+      class="data-card__footer"
+    >
+      <span
+        class="data-card__count"
+      >
+        15 of 100
+      </span>
+       
+      <button
+        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
+        type="button"
+      >
+        <span
+          class="dusk-button__text"
+        >
+          Show more
+        </span>
+        <!---->
+      </button>
+      <!---->
+      <!---->
+    </footer>
     <!---->
     
     <!---->
@@ -1427,23 +1439,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       <h1
         class="data-card__header-title"
       >
-        Blocks — 0 Displayed Items
+        Blocks
         
       </h1>
       <!---->
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
-        disabled=""
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -1485,22 +1485,11 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       <h1
         class="data-card__header-title"
       >
-        Blocks — 15 Displayed Items
+        Blocks
         
       </h1>
       <!---->
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -3468,6 +3457,29 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       <!---->
     </div>
      
+    <footer
+      class="data-card__footer"
+    >
+      <span
+        class="data-card__count"
+      >
+        15 of 100
+      </span>
+       
+      <button
+        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
+        type="button"
+      >
+        <span
+          class="dusk-button__text"
+        >
+          Show more
+        </span>
+        <!---->
+      </button>
+      <!---->
+      <!---->
+    </footer>
     <!---->
     
     <!---->

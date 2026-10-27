@@ -457,11 +457,11 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="transaction-type__call"
           >
             <!---->
+            
+            <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>
@@ -1243,17 +1243,17 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <span
             class="transaction-type__call"
           >
+            <!---->
             <span
               class="transaction-type__label"
             >
               Transfer
             </span>
+            
             <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>
@@ -2050,11 +2050,11 @@ exports[`Transaction Details > should be able to render the details when they co
             class="transaction-type__call"
           >
             <!---->
+            
+            <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>

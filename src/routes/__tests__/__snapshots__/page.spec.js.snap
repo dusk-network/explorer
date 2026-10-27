@@ -3874,17 +3874,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -3934,6 +3934,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4044,17 +4045,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4104,6 +4105,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4214,17 +4216,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4274,6 +4276,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4384,17 +4387,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4444,6 +4447,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4554,17 +4558,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4614,6 +4618,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4724,17 +4729,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4784,6 +4789,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -4894,17 +4900,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -4954,6 +4960,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5064,17 +5071,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5124,6 +5131,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5234,17 +5242,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5294,6 +5302,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5404,17 +5413,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5464,6 +5473,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5574,17 +5584,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5634,6 +5644,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5744,17 +5755,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5804,6 +5815,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -5914,17 +5926,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -5974,6 +5986,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -6084,17 +6097,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -6144,6 +6157,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >
@@ -6254,17 +6268,17 @@ exports[`home page > should render the home page, start polling for the latest c
                           <span
                             class="transaction-type__call"
                           >
+                            <!---->
                             <span
                               class="transaction-type__label"
                             >
                               Transfer
                             </span>
+                            
                             <!---->
                              
                             <!---->
                           </span>
-                           
-                          <!---->
                         </div>
                         <!---->
                       </span>
@@ -6314,6 +6328,7 @@ exports[`home page > should render the home page, start polling for the latest c
                   <span
                     class="row-amount row-amount--muted"
                   >
+                    
                     <span
                       title="0 DUSK"
                     >

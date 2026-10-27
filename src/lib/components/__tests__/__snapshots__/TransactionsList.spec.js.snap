@@ -98,11 +98,11 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
           class="transaction-type__call"
         >
           <!---->
+          
+          <!---->
            
           <!---->
         </span>
-         
-        <!---->
       </div>
       <!---->
     </span>
@@ -114,6 +114,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
     <span
       class="row-amount"
     >
+      
       <span
         title="9,812.378912731 DUSK"
       >
