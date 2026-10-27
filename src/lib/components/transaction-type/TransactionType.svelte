@@ -1,5 +1,5 @@
 <script>
-  import { directionOf } from "$lib/chain-info";
+  import { directionOf, visibilityOf } from "$lib/chain-info";
   import { describeCall } from "$lib/contracts";
   import { appStore } from "$lib/stores";
   import "./TransactionType.css";
@@ -51,28 +51,11 @@
     self: "Sent to itself",
   };
 
-  $: isPublic = data.txtype.toLowerCase() === "moonlight";
+  $: visibility = visibilityOf(data);
   $: direction =
     isAccountsPage && !data.contract && data.method === "transfer"
       ? directionOf(data, $page.url.searchParams.get("key"))
       : undefined;
-
-  /**
-   * What a transaction shows everyone. A shielded call hides its sender and
-   * the value it moves, but not the contract it calls or the DUSK it sends
-   * to it.
-   *
-   * @param {Transaction} transaction
-   * @param {boolean} isPublicTransaction
-   */
-  const privacyOf = (transaction, isPublicTransaction) =>
-    isPublicTransaction
-      ? "Sender, receiver and amount are visible to everyone"
-      : !transaction.contract
-        ? "Sender, receiver and amount are hidden"
-        : transaction.deposit
-          ? "Sender and value are hidden. The contract called and the DUSK sent to it are public"
-          : "Sender and value are hidden. The contract called is public";
 
   // A call shows plain words, or the contract's name, beside its method.
   $: callLabel = data.contract
@@ -91,9 +74,9 @@
       class="transaction-type__privacy"
       data-tooltip-disabled={!displayTooltips}
       data-tooltip-id="main-tooltip"
-      data-tooltip-text={privacyOf(data, isPublic)}
+      data-tooltip-text={visibility.seen}
       data-tooltip-place="top"
-      data-tooltip-type="info">{isPublic ? "Public" : "Shielded"}</span
+      data-tooltip-type="info">{visibility.label}</span
     >
   {/if}
   <span class="transaction-type__call">

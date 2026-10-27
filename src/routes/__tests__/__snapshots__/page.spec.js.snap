@@ -1143,11 +1143,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Current stake
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -1185,11 +1188,25 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Last block
+            <span
+              class="statistics-panel__live statistics-panel__live--waiting"
+              role="status"
+            >
+              <span
+                aria-hidden="true"
+                class="statistics-panel__live-dot"
+              />
+              <!---->
+              Waiting for blocks
+            </span>
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -1227,11 +1244,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Total transactions
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -1269,11 +1289,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Active provisioners
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -1314,6 +1337,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -1344,6 +1369,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -1374,6 +1401,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -1409,6 +1438,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -2742,11 +2773,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Current stake
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -2784,11 +2818,25 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Last block
+            <span
+              class="statistics-panel__live statistics-panel__live--waiting"
+              role="status"
+            >
+              <span
+                aria-hidden="true"
+                class="statistics-panel__live-dot"
+              />
+              <!---->
+              Waiting for blocks
+            </span>
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -2826,11 +2874,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Total transactions
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -2868,11 +2919,14 @@ exports[`home page > should render the home page, start polling for the latest c
             
             <!---->
             Active provisioners
+            <!---->
           </span>
            
           <div
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <div
               class="statistics-panel__statistics-item-value"
             >
@@ -2913,6 +2967,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -2943,6 +2999,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -2973,6 +3031,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >
@@ -3008,6 +3068,8 @@ exports[`home page > should render the home page, start polling for the latest c
           <dd
             class="statistics-panel__statistics-item-value-container"
           >
+            <!---->
+             
             <span
               class="statistics-panel__statistics-item-value"
             >

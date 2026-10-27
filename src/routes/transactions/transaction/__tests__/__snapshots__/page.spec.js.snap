@@ -147,7 +147,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             class="transaction-details__summary-meta detail-summary__meta"
           >
             <span
-              class="transaction-details__outcome"
+              class="transaction-details__outcome transaction-details__outcome--completed"
               data-tooltip-type="error"
             >
               <!---->
@@ -523,16 +523,6 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="false"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -550,6 +540,42 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               <!---->
             </span>
           </div>
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+             
+            Visibility
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <span
+            class="transaction-details__visibility"
+            slot="definition"
+          >
+            <span
+              class="transaction-details__visibility-label"
+            >
+              Public
+            </span>
+             
+            <span
+              class="transaction-details__visibility-seen"
+            >
+              Sender, receiver and amount are visible to everyone
+            </span>
+          </span>
           <!---->
         </dd>
         <!---->
@@ -630,7 +656,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-9"
+                aria-describedby="list-item-help-10"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -654,7 +680,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                  
                 <span
                   hidden=""
-                  id="list-item-help-9"
+                  id="list-item-help-10"
                 >
                   The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
                 </span>
@@ -681,7 +707,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-10"
+                aria-describedby="list-item-help-11"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -705,7 +731,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                  
                 <span
                   hidden=""
-                  id="list-item-help-10"
+                  id="list-item-help-11"
                 >
                   The most gas the transaction could use. Only the gas spent is paid for
                 </span>
@@ -753,7 +779,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-12"
+                aria-describedby="list-item-help-13"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -777,7 +803,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                  
                 <span
                   hidden=""
-                  id="list-item-help-12"
+                  id="list-item-help-13"
                 >
                   The number of transactions sent from this address
                 </span>

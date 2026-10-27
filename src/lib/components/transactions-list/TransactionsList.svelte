@@ -53,6 +53,12 @@
   /** Lists show an ID as its first and last six characters. */
   const ID_CHARS = 6;
 
+  /**
+   * A phone's row shows an address as its first and last four characters,
+   * as wide as six and three dots: the receiver's name keeps its room.
+   */
+  const ADDRESS_CHARS = 4;
+
   $: ({ amount, from, to } = summarizeTransaction(data));
   $: failed = !!data.txerror;
   $: direction = directionOf(data, account);
@@ -69,13 +75,20 @@
     <span class="transaction-row__parties">
       <span class="transaction-row__party">
         <span class="sr-only">From</span>
-        <TransactionParty name={nameOf(names, from)} party={from} />
+        <TransactionParty
+          chars={ADDRESS_CHARS}
+          ellipsis="…"
+          name={nameOf(names, from)}
+          party={from}
+        />
       </span>
       {#if to}
         <span aria-hidden="true" class="transaction-row__arrow">→</span>
         <span class="transaction-row__party">
           <span class="sr-only">To</span>
           <TransactionParty
+            chars={ADDRESS_CHARS}
+            ellipsis="…"
             name={nameOf(names, to)}
             party={to}
             transaction={data}

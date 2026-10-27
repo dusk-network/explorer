@@ -54,13 +54,23 @@ const titlesOf = (container, which) =>
     container.querySelectorAll(
       `.statistics-panel__statistics-item--${which} .statistics-panel__statistics-item-title`
     ),
-    (title) => title.textContent?.trim()
+    (title) => {
+      const label = /** @type {Element} */ (title.cloneNode(true));
+
+      // The last block's label says whether new blocks come, after it.
+      label.querySelector(".statistics-panel__live")?.remove();
+
+      return label.textContent?.trim();
+    }
   );
 
 describe("StatisticsPanel", () => {
   const { statsFetchInterval } = get(appStore);
 
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+    vi.mocked(duskAPI.getStats).mockResolvedValue(mockData.apiStats);
+  });
 
   afterAll(() => {
     vi.useRealTimers();
@@ -162,5 +172,82 @@ describe("StatisticsPanel", () => {
     );
     // First in the panel, before the numbers.
     expect(container.firstElementChild?.firstElementChild).toBe(face);
+  });
+
+  it("should say the chain is live while new blocks come, and that it waits for them when none has come for half a minute", async () => {
+    let lastBlock = mockData.apiStats.lastBlock;
+
+    vi.mocked(duskAPI.getStats).mockImplementation(async () => ({
+      ...mockData.apiStats,
+      lastBlock,
+    }));
+
+    const { getByRole } = render(StatisticsPanel);
+    const status = getByRole("status");
+
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(status).toHaveTextContent(/^Live$/);
+    expect(status).not.toHaveClass("statistics-panel__live--waiting");
+    expect(
+      status.closest(".statistics-panel__statistics-item-title")
+    ).toHaveTextContent(/^Last block/);
+
+    // The same block, poll after poll.
+    await vi.advanceTimersByTimeAsync(29_000);
+
+    expect(status).toHaveTextContent(/^Live$/);
+
+    await vi.advanceTimersByTimeAsync(2_000);
+
+    expect(status).toHaveTextContent(/^Waiting for blocks$/);
+    expect(status).toHaveClass("statistics-panel__live--waiting");
+
+    lastBlock += 1;
+    await vi.advanceTimersByTimeAsync(statsFetchInterval);
+
+    expect(status).toHaveTextContent(/^Live$/);
+    expect(status).not.toHaveClass("statistics-panel__live--waiting");
+  });
+
+  it("should not call a chain live that had stopped before the page opened", async () => {
+    vi.mocked(duskAPI.getStats).mockResolvedValue({
+      ...mockData.apiStats,
+      lastBlockDate: new Date(Date.now() - 5 * 60_000),
+    });
+
+    const { getByRole } = render(StatisticsPanel);
+
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(getByRole("status")).toHaveTextContent(/^Waiting for blocks$/);
+  });
+
+  it("should mark a number rounded to show as about that much, with a sign that can't pass for a minus", async () => {
+    setChain(1);
+
+    const { container } = render(StatisticsPanel);
+
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    const abouts = Array.from(
+      container.querySelectorAll(".statistics-panel__statistics-item-about")
+    );
+
+    // The current stake, as a card, and the pending stake, in the row.
+    expect(abouts).toHaveLength(2);
+
+    for (const about of abouts) {
+      expect(about.querySelector("[aria-hidden='true']")).toHaveTextContent(
+        /^≈$/
+      );
+      expect(about.querySelector(".sr-only")).toHaveTextContent(/^about$/);
+      expect(about.nextElementSibling).toHaveClass(
+        "statistics-panel__statistics-item-value"
+      );
+    }
+
+    expect(container.textContent).not.toContain("~");
+    expect(container.querySelector(".approximate")).toBeNull();
   });
 });

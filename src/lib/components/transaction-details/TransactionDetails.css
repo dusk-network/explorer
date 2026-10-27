@@ -14,7 +14,12 @@
   cursor: help;
 }
 
-.transaction-details__summary-failed {
+/* The outcome in its colour: green when it went through, red when it failed. */
+.transaction-details__outcome--completed {
+  color: var(--calm-online-text);
+}
+
+.transaction-details__outcome--failed {
   color: var(--calm-danger);
 }
 
@@ -42,6 +47,19 @@
 
 .transaction-details__hidden {
   color: var(--calm-muted);
+}
+
+/* Public or shielded, and under it what that shows everyone. */
+.transaction-details__visibility {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+}
+
+.transaction-details__visibility-seen {
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
 }
 
 .transaction-details__memo {

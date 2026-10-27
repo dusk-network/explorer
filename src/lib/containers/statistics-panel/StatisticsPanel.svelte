@@ -42,15 +42,55 @@
     $appStore.statsFetchInterval
   );
 
+  /** No new block for this long, and the page says it waits for one. */
+  const WAITING_AFTER = 30_000;
+
+  /** The newest block the page has seen, and when it came. */
+  let newest = { at: 0, height: -1 };
+
+  /** The time, to the second, to tell how long ago that was. */
+  let now = Date.now();
+
+  /** @type {ReturnType<typeof setInterval> | undefined} */
+  let clock;
+
+  /**
+   * A block is new when the page first sees its height. The first one the
+   * page sees came no later than the block's own time: a chain that has
+   * stopped isn't live when the page opens on it.
+   *
+   * @param {number | undefined} height
+   * @param {Date | undefined} date
+   */
+  function see(height, date) {
+    if (height === undefined || height === newest.height) {
+      return;
+    }
+
+    now = Date.now();
+    newest = {
+      at: newest.height < 0 && date ? Math.min(now, date.getTime()) : now,
+      height,
+    };
+  }
+
   onMount(() => {
     pollingStatsDataStore.start();
+    clock = setInterval(() => {
+      now = Date.now();
+    }, 1000);
   });
 
-  onDestroy(pollingStatsDataStore.stop);
+  onDestroy(() => {
+    pollingStatsDataStore.stop();
+    clearInterval(clock);
+  });
 
   $: ({ data: marketData } = $marketDataStore);
   $: ({ data: statsData } = $pollingStatsDataStore);
   $: ({ data: nodesData } = $nodeLocationStore);
+  $: see(statsData?.lastBlock, statsData?.lastBlockDate);
+  $: live = newest.height >= 0 && now - newest.at < WAITING_AFTER;
   // Test DUSK has no value: no price or market cap off mainnet.
   /**
    * @typedef {{
@@ -259,13 +299,31 @@
         {...item.attributes}
       >
         <span class="statistics-panel__statistics-item-title"
-          ><Icon path={item.icon} size="default" />{item.title}</span
+          ><Icon
+            path={item.icon}
+            size="default"
+          />{item.title}{#if key === "lastBlock"}
+            <!-- Live while new blocks come, and says so when none has for a while. -->
+            <span
+              class="statistics-panel__live"
+              class:statistics-panel__live--waiting={!live}
+              role="status"
+              >{#key newest.height}<span
+                  aria-hidden="true"
+                  class="statistics-panel__live-dot"
+                ></span>{/key}{live ? "Live" : "Waiting for blocks"}</span
+            >
+          {/if}</span
         >
         <div class="statistics-panel__statistics-item-value-container">
-          <div
-            class="statistics-panel__statistics-item-value"
-            class:approximate={item.approximate}
-          >
+          {#if item.approximate}
+            <span class="statistics-panel__statistics-item-about"
+              ><span aria-hidden="true">≈</span><span class="sr-only"
+                >about</span
+              ></span
+            >
+          {/if}
+          <div class="statistics-panel__statistics-item-value">
             <DataGuard data={item.data}>
               {item.prefix}{#if item.compact}
                 {formatter(item.data)}
@@ -297,10 +355,14 @@
       >
         <dt class="statistics-panel__statistics-item-title">{item.title}</dt>
         <dd class="statistics-panel__statistics-item-value-container">
-          <span
-            class="statistics-panel__statistics-item-value"
-            class:approximate={item.approximate}
-          >
+          {#if item.approximate}
+            <span class="statistics-panel__statistics-item-about"
+              ><span aria-hidden="true">≈</span><span class="sr-only"
+                >about</span
+              ></span
+            >
+          {/if}
+          <span class="statistics-panel__statistics-item-value">
             <DataGuard data={item.data}>
               {item.prefix}{#if item.compact}
                 {formatter(item.data)}

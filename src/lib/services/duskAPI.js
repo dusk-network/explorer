@@ -107,12 +107,6 @@ const nodePost = (endpoint) =>
  */
 let nodeInfoRequest = null;
 
-/** @type {() => Promise<number>} */
-const getLastHeight = () =>
-  gqlGet({
-    query: "query { block(height: -1) { header { height } } }",
-  }).then(getPath("block.header.height"));
-
 const duskAPI = {
   /**
    * @param {string} address
@@ -383,10 +377,11 @@ const duskAPI = {
   getStats() {
     return Promise.all([
       duskAPI.getProvisioners(),
-      getLastHeight(),
+      duskAPI.getChainTip(),
       duskAPI.getTxCount(),
-    ]).then(([provisioners, lastHeight, txCount]) => ({
-      ...calculateStats(provisioners, lastHeight),
+    ]).then(([provisioners, tip, txCount]) => ({
+      ...calculateStats(provisioners, tip.height),
+      lastBlockDate: tip.date,
       txCount,
     }));
   },

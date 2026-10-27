@@ -3,9 +3,13 @@
  * the headline, a line under it, label and value rows on hairlines, and
  * the technical details folded.
  */
-/* At a reading width, from the page's left edge, as the lists below them. */
+/*
+ * From the page's left edge, as the lists below them, and wide enough for
+ * a public account's address, 131 characters, to fit on one line with its
+ * Copy beside it.
+ */
 .detail-page.data-card {
-  max-width: 48rem;
+  max-width: 70rem;
 }
 
 .detail-summary {

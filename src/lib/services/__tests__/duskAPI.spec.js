@@ -501,8 +501,9 @@ describe("duskAPI", () => {
     ).resolves.toBeNull();
   });
 
-  it("should expose a method to retrieve the statistics", async () => {
+  it("should expose a method to retrieve the statistics, with when the last block was made", async () => {
     const lastBlockHeight = 1498332;
+    const lastBlockTimestamp = 1713249549;
     const txCount = {
       public: 13742,
       shielded: 2621,
@@ -510,13 +511,22 @@ describe("duskAPI", () => {
     };
     const expectedStats = {
       ...calculateStats(mockData.hostProvisioners, lastBlockHeight),
+      lastBlockDate: new Date(lastBlockTimestamp * 1000),
       txCount,
     };
 
     fetchSpy
       .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
       .mockResolvedValueOnce(
-        makeOKResponse({ block: { header: { height: lastBlockHeight } } })
+        makeOKResponse({
+          block: {
+            header: {
+              hash: "ab12",
+              height: lastBlockHeight,
+              timestamp: lastBlockTimestamp,
+            },
+          },
+        })
       )
       .mockResolvedValueOnce(makeOKResponse(txCount));
 
@@ -542,7 +552,7 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[1][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[1][1]).toMatchInlineSnapshot(`
       {
-        "body": "query { block(height: -1) { header { height } } }",
+        "body": "query { block(height: -1) { header { hash height timestamp } } }",
         "headers": {
           "Accept": "application/json",
           "Accept-Charset": "utf-8",

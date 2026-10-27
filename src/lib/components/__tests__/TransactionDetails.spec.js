@@ -116,6 +116,7 @@ describe("Transaction Details", () => {
       "amount",
       "transaction fee",
       "type",
+      "visibility",
       "memo",
       "block height",
       "gas price",
@@ -172,8 +173,28 @@ describe("Transaction Details", () => {
     });
 
     expect(
-      failed.container.querySelector(".transaction-details__summary-failed")
+      failed.container.querySelector(".transaction-details__outcome--failed")
     ).toHaveTextContent("Failed");
+  });
+
+  it("should give the status in its colour: green when it went through, red when it failed", () => {
+    const { container } = render(TransactionDetails, baseProps);
+    const outcome = container.querySelector(".transaction-details__outcome");
+
+    expect(outcome).toHaveTextContent(/^Completed$/);
+    expect(outcome).toHaveClass("transaction-details__outcome--completed");
+    expect(outcome).not.toHaveClass("transaction-details__outcome--failed");
+
+    cleanup();
+
+    const failed = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, txerror: "Panic" },
+    }).container.querySelector(".transaction-details__outcome");
+
+    expect(failed).toHaveTextContent(/^Failed$/);
+    expect(failed).toHaveClass("transaction-details__outcome--failed");
+    expect(failed).not.toHaveClass("transaction-details__outcome--completed");
   });
 
   it("should give the status and the time in the viewer's zone once, under the sentence", () => {
@@ -204,7 +225,7 @@ describe("Transaction Details", () => {
     });
 
     expect(
-      container.querySelector(".transaction-details__summary-failed")
+      container.querySelector(".transaction-details__outcome--failed")
     ).toHaveAttribute("data-tooltip-text", "Panic");
     expect(getDefinition(container, "error")).toBe("Panic");
   });
@@ -245,7 +266,10 @@ describe("Transaction Details", () => {
         `DuskEVM bridge ${bridge}`
       );
       expect(getDefinition(container, "type")).toBe(
-        "Public Deposit to DuskEVM · depositETHToWithValue"
+        "Deposit to DuskEVM · depositETHToWithValue"
+      );
+      expect(getDefinition(container, "visibility")).toBe(
+        "Public Sender, receiver and amount are visible to everyone"
       );
       expect(
         container.querySelector(".transaction-details__summary-text")
@@ -396,9 +420,7 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `Stake contract ${stake}`
       );
-      expect(getDefinition(container, "type")).toBe(
-        "Public Claim rewards · withdraw"
-      );
+      expect(getDefinition(container, "type")).toBe("Claim rewards · withdraw");
     });
     expect(getTerms(container)).not.toContain("to");
   });
@@ -436,6 +458,22 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "from")).toBe("Shielded");
     expect(getDefinition(container, "to")).toBe("Shielded");
     expect(getDefinition(container, "amount")).toBe("Shielded");
+    expect(getDefinition(container, "visibility")).toBe(
+      "Shielded Sender, receiver and amount are hidden"
+    );
+  });
+
+  it("should say in a row of its own that a transaction is public, and what that shows", async () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(getDefinition(container, "visibility")).toBe(
+      "Public Sender, receiver and amount are visible to everyone"
+    );
+    // Not as a tag beside the type any more.
+    await vi.waitFor(() =>
+      expect(getDefinition(container, "type")).toBe("Transfer")
+    );
+    expect(container.querySelector(".transaction-type__privacy")).toBeNull();
   });
 
   it("should show the sender's and receiver's primary names", async () => {

@@ -19,6 +19,8 @@
   --calm-pending: #8a5a00;
   --calm-danger: #b42318;
   --calm-online: #1e8e4e;
+  /* The online green as words: darker on the light page, to read at 5.5:1. */
+  --calm-online-text: #18723d;
   --calm-pill: #141416;
   --calm-on-pill: #f6f5f2;
   --calm-scrim: rgb(20 20 22 / 0.4);
@@ -175,6 +177,7 @@
   --calm-pending: #e8b96a;
   --calm-danger: #e37a7a;
   --calm-online: #3fb871;
+  --calm-online-text: var(--calm-online);
   --calm-pill: #f2f0eb;
   --calm-on-pill: #141416;
   --chain-blue: #71b1ff;

@@ -79,7 +79,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           class="transaction-details__summary-meta detail-summary__meta"
         >
           <span
-            class="transaction-details__outcome"
+            class="transaction-details__outcome transaction-details__outcome--completed"
             data-tooltip-type="error"
           >
             <!---->
@@ -449,16 +449,6 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="transaction-type"
         >
-          <span
-            class="transaction-type__privacy"
-            data-tooltip-disabled="false"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Sender, receiver and amount are visible to everyone"
-            data-tooltip-type="info"
-          >
-            Public
-          </span>
           <!---->
            
           <span
@@ -471,6 +461,42 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             <!---->
           </span>
         </div>
+        <!---->
+      </dd>
+      <!---->
+       
+      <dt
+        class="details-list__term"
+      >
+        <div
+          class="details-list__term-layout"
+        >
+          <!---->
+           
+          Visibility
+          <!---->
+        </div>
+      </dt>
+       
+      <dd
+        class="details-list__definition"
+      >
+        <span
+          class="transaction-details__visibility"
+          slot="definition"
+        >
+          <span
+            class="transaction-details__visibility-label"
+          >
+            Public
+          </span>
+           
+          <span
+            class="transaction-details__visibility-seen"
+          >
+            Sender, receiver and amount are visible to everyone
+          </span>
+        </span>
         <!---->
       </dd>
       <!---->
@@ -570,7 +596,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-9"
+              aria-describedby="list-item-help-10"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -594,7 +620,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                
               <span
                 hidden=""
-                id="list-item-help-9"
+                id="list-item-help-10"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
@@ -621,7 +647,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-10"
+              aria-describedby="list-item-help-11"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -645,7 +671,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                
               <span
                 hidden=""
-                id="list-item-help-10"
+                id="list-item-help-11"
               >
                 The most gas the transaction could use. Only the gas spent is paid for
               </span>
@@ -693,7 +719,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-12"
+              aria-describedby="list-item-help-13"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -717,7 +743,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                
               <span
                 hidden=""
-                id="list-item-help-12"
+                id="list-item-help-13"
               >
                 The number of transactions sent from this address
               </span>
@@ -868,7 +894,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           class="transaction-details__summary-meta detail-summary__meta"
         >
           <span
-            class="transaction-details__outcome"
+            class="transaction-details__outcome transaction-details__outcome--completed"
             data-tooltip-type="error"
           >
             <!---->
@@ -1244,16 +1270,6 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="transaction-type"
         >
-          <span
-            class="transaction-type__privacy"
-            data-tooltip-disabled="false"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Sender, receiver and amount are visible to everyone"
-            data-tooltip-type="info"
-          >
-            Public
-          </span>
           <!---->
            
           <span
@@ -1271,6 +1287,42 @@ exports[`Transaction Details > renders the Transaction Details component with th
             <!---->
           </span>
         </div>
+        <!---->
+      </dd>
+      <!---->
+       
+      <dt
+        class="details-list__term"
+      >
+        <div
+          class="details-list__term-layout"
+        >
+          <!---->
+           
+          Visibility
+          <!---->
+        </div>
+      </dt>
+       
+      <dd
+        class="details-list__definition"
+      >
+        <span
+          class="transaction-details__visibility"
+          slot="definition"
+        >
+          <span
+            class="transaction-details__visibility-label"
+          >
+            Public
+          </span>
+           
+          <span
+            class="transaction-details__visibility-seen"
+          >
+            Sender, receiver and amount are visible to everyone
+          </span>
+        </span>
         <!---->
       </dd>
       <!---->
@@ -1370,7 +1422,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-22"
+              aria-describedby="list-item-help-24"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -1394,7 +1446,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-22"
+                id="list-item-help-24"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
@@ -1421,7 +1473,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-23"
+              aria-describedby="list-item-help-25"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -1445,7 +1497,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-23"
+                id="list-item-help-25"
               >
                 The most gas the transaction could use. Only the gas spent is paid for
               </span>
@@ -1493,7 +1545,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-25"
+              aria-describedby="list-item-help-27"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -1517,7 +1569,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-25"
+                id="list-item-help-27"
               >
                 The number of transactions sent from this address
               </span>
@@ -1688,7 +1740,7 @@ exports[`Transaction Details > should be able to render the details when they co
           class="transaction-details__summary-meta detail-summary__meta"
         >
           <span
-            class="transaction-details__outcome"
+            class="transaction-details__outcome transaction-details__outcome--completed"
             data-tooltip-type="error"
           >
             <!---->
@@ -2058,16 +2110,6 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="transaction-type"
         >
-          <span
-            class="transaction-type__privacy"
-            data-tooltip-disabled="false"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Sender, receiver and amount are visible to everyone"
-            data-tooltip-type="info"
-          >
-            Public
-          </span>
           <!---->
            
           <span
@@ -2080,6 +2122,42 @@ exports[`Transaction Details > should be able to render the details when they co
             <!---->
           </span>
         </div>
+        <!---->
+      </dd>
+      <!---->
+       
+      <dt
+        class="details-list__term"
+      >
+        <div
+          class="details-list__term-layout"
+        >
+          <!---->
+           
+          Visibility
+          <!---->
+        </div>
+      </dt>
+       
+      <dd
+        class="details-list__definition"
+      >
+        <span
+          class="transaction-details__visibility"
+          slot="definition"
+        >
+          <span
+            class="transaction-details__visibility-label"
+          >
+            Public
+          </span>
+           
+          <span
+            class="transaction-details__visibility-seen"
+          >
+            Sender, receiver and amount are visible to everyone
+          </span>
+        </span>
         <!---->
       </dd>
       <!---->
@@ -2179,7 +2257,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-295"
+              aria-describedby="list-item-help-361"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2203,7 +2281,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-295"
+                id="list-item-help-361"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
@@ -2230,7 +2308,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-296"
+              aria-describedby="list-item-help-362"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2254,7 +2332,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-296"
+                id="list-item-help-362"
               >
                 The most gas the transaction could use. Only the gas spent is paid for
               </span>
@@ -2302,7 +2380,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-298"
+              aria-describedby="list-item-help-364"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2326,7 +2404,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-298"
+                id="list-item-help-364"
               >
                 The number of transactions sent from this address
               </span>

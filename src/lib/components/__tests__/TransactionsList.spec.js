@@ -26,6 +26,14 @@ describe("Transactions List", () => {
   /** @param {string} value */
   const short = (value) => `${value.slice(0, 6)}...${value.slice(-6)}`;
 
+  /**
+   * An address as a phone's row gives it: its first and last four
+   * characters, as wide as six and three dots.
+   *
+   * @param {string} value
+   */
+  const shortAddress = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
+
   const timeRefreshInterval = 1000;
 
   afterEach(cleanup);
@@ -52,7 +60,7 @@ describe("Transactions List", () => {
       .forEach((arrow) => arrow.remove());
 
     expect(parties.textContent?.replace(/\s+/g, " ").trim()).toBe(
-      `From ${short(String(transaction.from))} To ${short(String(transaction.to))}`
+      `From ${shortAddress(String(transaction.from))} To ${shortAddress(String(transaction.to))}`
     );
     expect(container.textContent).toContain("9,812.3789 DUSK");
     expect(
@@ -98,7 +106,30 @@ describe("Transactions List", () => {
     });
     expect(
       toAccount.querySelector(".transaction-row__parties")
-    ).toHaveTextContent(`To ${short(String(transaction.to))}`);
+    ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
+  });
+
+  it("should give the sender's address short, so the receiver's name keeps its room", async () => {
+    const { container } = render(TransactionsList, {
+      data: {
+        ...transaction,
+        amount: 0,
+        contract: STAKE_CONTRACT,
+        deposit: 0,
+        method: "stake",
+        to: null,
+      },
+    });
+    const [sender, receiver] = container.querySelectorAll(
+      ".transaction-row__party"
+    );
+
+    expect(sender).toHaveTextContent(
+      new RegExp(`^From ${shortAddress(String(transaction.from))}$`)
+    );
+    await vi.waitFor(() =>
+      expect(receiver).toHaveTextContent(/^To Stake contract$/)
+    );
   });
 
   it("should say a failure first, and mute what it didn't send", async () => {
