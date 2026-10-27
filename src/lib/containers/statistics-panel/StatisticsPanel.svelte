@@ -45,33 +45,66 @@
   /** No new block for this long, and the page says it waits for one. */
   const WAITING_AFTER = 30_000;
 
-  /** The newest block the page has seen, and when it came. */
+  /** A read this long after the one before it, or longer, follows a gap. */
+  const GAP_AFTER = $appStore.statsFetchInterval + 5_000;
+
+  /** The newest block the page has read, and when it came. */
   let newest = { at: 0, height: -1 };
 
   /** The time, to the second, to tell how long ago that was. */
   let now = Date.now();
 
+  /** The last answer read, and when it came. */
+  let lastRead = { at: 0, data: /** @type {Stats | null} */ (null) };
+
+  /** Whether the reading stopped since then: a hidden tab or a failed read. */
+  let interrupted = false;
+
   /** @type {ReturnType<typeof setInterval> | undefined} */
   let clock;
 
   /**
-   * A block is new when the page first sees its height. The first one the
-   * page sees came no later than the block's own time: a chain that has
-   * stopped isn't live when the page opens on it.
+   * When a new height's block came. Read on a regular poll, as the page
+   * watched, it came now, whatever the viewer's clock says. Read when the
+   * page opens, or after a gap, it came at its own time, no later than
+   * now: a chain that stopped meanwhile isn't live.
    *
-   * @param {number | undefined} height
-   * @param {Date | undefined} date
+   * @param {Stats | null} data
+   * @param {Error | null} error
    */
-  function see(height, date) {
-    if (height === undefined || height === newest.height) {
+  function read(data, error) {
+    if (error) {
+      interrupted = true;
+
       return;
     }
 
-    now = Date.now();
-    newest = {
-      at: newest.height < 0 && date ? Math.min(now, date.getTime()) : now,
-      height,
-    };
+    if (!data || data === lastRead.data) {
+      return;
+    }
+
+    const arrived = Date.now();
+    const regular =
+      newest.height >= 0 && !interrupted && arrived - lastRead.at <= GAP_AFTER;
+    const made = data.lastBlockDate?.getTime() ?? arrived;
+
+    if (data.lastBlock !== newest.height) {
+      newest = {
+        at: regular ? arrived : Math.min(arrived, made),
+        height: data.lastBlock,
+      };
+    }
+
+    now = arrived;
+    lastRead = { at: arrived, data };
+    interrupted = false;
+  }
+
+  /** A hidden tab stops the reading: the next read follows a gap. */
+  function noteHidden() {
+    if (document.hidden) {
+      interrupted = true;
+    }
   }
 
   onMount(() => {
@@ -79,18 +112,33 @@
     clock = setInterval(() => {
       now = Date.now();
     }, 1000);
+    document.addEventListener("visibilitychange", noteHidden);
   });
 
   onDestroy(() => {
     pollingStatsDataStore.stop();
     clearInterval(clock);
+    document.removeEventListener("visibilitychange", noteHidden);
   });
 
   $: ({ data: marketData } = $marketDataStore);
-  $: ({ data: statsData } = $pollingStatsDataStore);
+  $: ({ data: statsData, error: statsError } = $pollingStatsDataStore);
   $: ({ data: nodesData } = $nodeLocationStore);
-  $: see(statsData?.lastBlock, statsData?.lastBlockDate);
-  $: live = newest.height >= 0 && now - newest.at < WAITING_AFTER;
+  $: read(statsData, statsError);
+
+  /**
+   * Live while new blocks come, waiting once the newest read is over 30
+   * seconds old; nothing said while the last block can't be read, or
+   * hasn't been yet.
+   *
+   * @type {"live" | "waiting" | "unknown"}
+   */
+  $: chain =
+    statsError || newest.height < 0
+      ? "unknown"
+      : now - newest.at < WAITING_AFTER
+        ? "live"
+        : "waiting";
   // Test DUSK has no value: no price or market cap off mainnet.
   /**
    * @typedef {{
@@ -306,12 +354,14 @@
             <!-- Live while new blocks come, and says so when none has for a while. -->
             <span
               class="statistics-panel__live"
-              class:statistics-panel__live--waiting={!live}
+              class:statistics-panel__live--waiting={chain === "waiting"}
               role="status"
-              >{#key newest.height}<span
-                  aria-hidden="true"
-                  class="statistics-panel__live-dot"
-                ></span>{/key}{live ? "Live" : "Waiting for blocks"}</span
+              >{#if chain !== "unknown"}{#key newest.height}<span
+                    aria-hidden="true"
+                    class="statistics-panel__live-dot"
+                  ></span>{/key}{chain === "live"
+                  ? "Live"
+                  : "Waiting for blocks"}{/if}</span
             >
           {/if}</span
         >

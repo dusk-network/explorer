@@ -501,6 +501,49 @@ describe("duskAPI", () => {
     ).resolves.toBeNull();
   });
 
+  it("should still give the last block and its time when the provisioners or the transaction count can't be read", async () => {
+    const height = 1498332;
+    const timestamp = 1713249549;
+    const txCount = { public: 13742, shielded: 2621, total: 16363 };
+    const tip = () =>
+      makeOKResponse({
+        block: { header: { hash: "ab12", height, timestamp } },
+      });
+
+    fetchSpy
+      .mockRejectedValueOnce(new Error("Provisioners unreachable"))
+      .mockResolvedValueOnce(tip())
+      .mockResolvedValueOnce(makeOKResponse(txCount));
+
+    await expect(duskAPI.getStats()).resolves.toStrictEqual({
+      lastBlock: height,
+      lastBlockDate: new Date(timestamp * 1000),
+      txCount,
+    });
+
+    fetchSpy
+      .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
+      .mockResolvedValueOnce(tip())
+      .mockRejectedValueOnce(new Error("Count unreachable"));
+
+    await expect(duskAPI.getStats()).resolves.toStrictEqual({
+      ...calculateStats(mockData.hostProvisioners, height),
+      lastBlockDate: new Date(timestamp * 1000),
+      txCount: undefined,
+    });
+  });
+
+  it("should give no statistics when the last block can't be read", async () => {
+    fetchSpy
+      .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
+      .mockRejectedValueOnce(new Error("Node unreachable"))
+      .mockResolvedValueOnce(
+        makeOKResponse({ public: 1, shielded: 0, total: 1 })
+      );
+
+    await expect(duskAPI.getStats()).rejects.toThrow("Node unreachable");
+  });
+
   it("should expose a method to retrieve the statistics, with when the last block was made", async () => {
     const lastBlockHeight = 1498332;
     const lastBlockTimestamp = 1713249549;

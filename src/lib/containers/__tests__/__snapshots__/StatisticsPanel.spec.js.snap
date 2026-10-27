@@ -140,15 +140,10 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         <!---->
         Last block
         <span
-          class="statistics-panel__live statistics-panel__live--waiting"
+          class="statistics-panel__live"
           role="status"
         >
-          <span
-            aria-hidden="true"
-            class="statistics-panel__live-dot"
-          />
           <!---->
-          Waiting for blocks
         </span>
         <!---->
       </span>
@@ -597,12 +592,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           class="statistics-panel__live"
           role="status"
         >
+          <!---->
           <span
             aria-hidden="true"
             class="statistics-panel__live-dot"
           />
           <!---->
           Live
+          <!---->
         </span>
         <!---->
       </span>

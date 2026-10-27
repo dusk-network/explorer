@@ -1189,15 +1189,10 @@ exports[`home page > should render the home page, start polling for the latest c
             <!---->
             Last block
             <span
-              class="statistics-panel__live statistics-panel__live--waiting"
+              class="statistics-panel__live"
               role="status"
             >
-              <span
-                aria-hidden="true"
-                class="statistics-panel__live-dot"
-              />
               <!---->
-              Waiting for blocks
             </span>
             <!---->
           </span>
@@ -2819,15 +2814,10 @@ exports[`home page > should render the home page, start polling for the latest c
             <!---->
             Last block
             <span
-              class="statistics-panel__live statistics-panel__live--waiting"
+              class="statistics-panel__live"
               role="status"
             >
-              <span
-                aria-hidden="true"
-                class="statistics-panel__live-dot"
-              />
               <!---->
-              Waiting for blocks
             </span>
             <!---->
           </span>

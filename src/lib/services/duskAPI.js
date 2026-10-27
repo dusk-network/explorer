@@ -372,18 +372,30 @@ const duskAPI = {
   },
 
   /**
+   * The network's numbers. Without the last block there are none; the
+   * provisioners or the transaction count, when they can't be read, leave
+   * out only their own.
+   *
    * @returns {Promise<Stats>}
    */
   getStats() {
-    return Promise.all([
+    return Promise.allSettled([
       duskAPI.getProvisioners(),
       duskAPI.getChainTip(),
       duskAPI.getTxCount(),
-    ]).then(([provisioners, tip, txCount]) => ({
-      ...calculateStats(provisioners, tip.height),
-      lastBlockDate: tip.date,
-      txCount,
-    }));
+    ]).then(([provisioners, tip, txCount]) => {
+      if (tip.status === "rejected") {
+        throw tip.reason;
+      }
+
+      return {
+        ...(provisioners.status === "fulfilled"
+          ? calculateStats(provisioners.value, tip.value.height)
+          : { lastBlock: tip.value.height }),
+        lastBlockDate: tip.value.date,
+        txCount: txCount.status === "fulfilled" ? txCount.value : undefined,
+      };
+    });
   },
 
   /**

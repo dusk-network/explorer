@@ -64,6 +64,25 @@ const titlesOf = (container, which) =>
     }
   );
 
+/**
+ * Hides the page, or shows it again, as a browser does with a tab.
+ *
+ * @param {boolean} hidden
+ */
+const setHidden = (hidden) => {
+  Object.defineProperty(document, "hidden", {
+    configurable: true,
+    get: () => hidden,
+  });
+  document.dispatchEvent(new Event("visibilitychange"));
+};
+
+/** The page as jsdom has it: shown. */
+const showPage = () => {
+  // @ts-ignore The own property set above, over jsdom's own.
+  delete document.hidden;
+};
+
 describe("StatisticsPanel", () => {
   const { statsFetchInterval } = get(appStore);
 
@@ -208,6 +227,116 @@ describe("StatisticsPanel", () => {
 
     expect(status).toHaveTextContent(/^Live$/);
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
+  });
+
+  it("should make no claim about the chain before the first answer comes", async () => {
+    /** @type {(stats: Stats) => void} */
+    let answer = () => {};
+
+    vi.mocked(duskAPI.getStats).mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          answer = resolve;
+        })
+    );
+
+    const { getByRole } = render(StatisticsPanel);
+    const status = getByRole("status");
+
+    // A slow first answer isn't a stalled chain.
+    await vi.advanceTimersByTimeAsync(31_000);
+
+    expect(status).toHaveTextContent(/^$/);
+    expect(status.querySelector(".statistics-panel__live-dot")).toBeNull();
+
+    answer(mockData.apiStats);
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(status).toHaveTextContent(/^Live$/);
+  });
+
+  it("should make no claim about the chain while its last block can't be read", async () => {
+    vi.mocked(duskAPI.getStats).mockRejectedValue(new Error("Unreachable"));
+
+    const { getByRole } = render(StatisticsPanel);
+    const status = getByRole("status");
+
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(status).toHaveTextContent(/^$/);
+
+    await vi.advanceTimersByTimeAsync(31_000);
+
+    expect(status).toHaveTextContent(/^$/);
+    expect(status).not.toHaveClass("statistics-panel__live--waiting");
+  });
+
+  it("should date a block read after a gap by its own time, not by the read", async () => {
+    let stats = {
+      ...mockData.apiStats,
+      lastBlock: 100,
+      lastBlockDate: new Date(Date.now()),
+    };
+
+    vi.mocked(duskAPI.getStats).mockImplementation(async () => stats);
+
+    const { getByRole } = render(StatisticsPanel);
+    const status = getByRole("status");
+
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(status).toHaveTextContent(/^Live$/);
+
+    // The tab is hidden for five minutes, and the chain stops at a newer
+    // block meanwhile.
+    try {
+      setHidden(true);
+      await vi.advanceTimersByTimeAsync(5 * 60_000);
+      stats = {
+        ...mockData.apiStats,
+        lastBlock: 130,
+        lastBlockDate: new Date(Date.now() - 4 * 60_000),
+      };
+      setHidden(false);
+      await vi.advanceTimersByTimeAsync(0);
+    } finally {
+      showPage();
+    }
+
+    expect(status).toHaveTextContent(/^Waiting for blocks$/);
+  });
+
+  it("should call a chain live as it moves, on a viewer's clock two minutes fast", async () => {
+    const fast = 2 * 60_000;
+    let lastBlock = 100;
+
+    // Each block made just now, by the chain's time: two minutes ago by
+    // the viewer's clock.
+    vi.mocked(duskAPI.getStats).mockImplementation(async () => ({
+      ...mockData.apiStats,
+      lastBlock,
+      lastBlockDate: new Date(Date.now() - fast),
+    }));
+
+    const { getByRole } = render(StatisticsPanel);
+    const status = getByRole("status");
+
+    // On opening, the page has only the block's own time to go by.
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(status).toHaveTextContent(/^Waiting for blocks$/);
+
+    // The next block comes on a regular poll: the chain moved as the page
+    // watched.
+    lastBlock += 1;
+    await vi.advanceTimersByTimeAsync(statsFetchInterval);
+
+    expect(status).toHaveTextContent(/^Live$/);
+
+    // Then no block for half a minute.
+    await vi.advanceTimersByTimeAsync(31_000);
+
+    expect(status).toHaveTextContent(/^Waiting for blocks$/);
   });
 
   it("should not call a chain live that had stopped before the page opened", async () => {
