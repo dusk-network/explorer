@@ -348,25 +348,32 @@ describe("duskAPI", () => {
     );
   });
 
-  it("should read the blocks in a range of heights in one query, newest first", async () => {
+  it("should read the blocks after a height, and that height's hash, in one query, newest first", async () => {
     const oldestFirst = [...mockData.gqlBlocks.blocks.slice(0, 3)].reverse();
 
-    fetchSpy.mockResolvedValueOnce(makeOKResponse({ blocks: oldestFirst }));
-
-    await expect(duskAPI.getBlocksInRange(10, 25)).resolves.toStrictEqual(
-      mockData.gqlBlocks.blocks.slice(0, 3).map(transformBlock)
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        anchor: { header: { hash: "abc" } },
+        blocks: oldestFirst,
+      })
     );
+
+    await expect(duskAPI.getBlocksAfter(10, 25)).resolves.toStrictEqual({
+      anchor: "abc",
+      blocks: mockData.gqlBlocks.blocks.slice(0, 3).map(transformBlock),
+    });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($from: Int!, $to: Int!) { blocks(range: [$from, $to]) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($at: Float!, $from: Int!, $to: Int!) { anchor: block(height: $at) { header { hash } }, blocks(range: [$from, $to]) {...BlockInfo} }",
         "headers": {
           "Accept": "application/json",
           "Accept-Charset": "utf-8",
           "Connection": "Keep-Alive",
           "Content-Type": "application/json",
-          "Rusk-gqlvar-from": "10",
+          "Rusk-gqlvar-at": "10",
+          "Rusk-gqlvar-from": "11",
           "Rusk-gqlvar-to": "25",
         },
         "method": "POST",
@@ -374,13 +381,14 @@ describe("duskAPI", () => {
     `);
   });
 
-  it("should read the transactions of a range of heights, with their blocks, in one query, newest first", async () => {
+  it("should read the transactions of the blocks after a height, with those blocks and that height's hash, in one query, newest first", async () => {
     const [newer, older] = mockData.gqlBlocks.blocks.filter(
       (block) => block.transactions.length
     );
 
     fetchSpy.mockResolvedValueOnce(
       makeOKResponse({
+        anchor: null,
         blocks: [
           { header: older.header, transactions: older.transactions },
           { header: newer.header, transactions: newer.transactions },
@@ -389,11 +397,13 @@ describe("duskAPI", () => {
     );
 
     await expect(
-      duskAPI.getTransactionsInRange(older.header.height, newer.header.height)
+      duskAPI.getTransactionsAfter(older.header.height - 1, newer.header.height)
     ).resolves.toStrictEqual({
+      anchor: null,
       blocks: [newer, older].map(({ header }) => ({
         hash: header.hash,
         height: header.height,
+        prevblockhash: header.prevBlockHash,
       })),
       transactions: [...newer.transactions, ...older.transactions].map(
         transformTransaction
@@ -402,12 +412,13 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query($from: Int!, $to: Int!) { blocks(range: [$from, $to]) { header { hash, height }, transactions {...TransactionInfo} } }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query($at: Float!, $from: Int!, $to: Int!) { anchor: block(height: $at) { header { hash } }, blocks(range: [$from, $to]) { header { hash, height, prevBlockHash }, transactions {...TransactionInfo} } }",
         "headers": {
           "Accept": "application/json",
           "Accept-Charset": "utf-8",
           "Connection": "Keep-Alive",
           "Content-Type": "application/json",
+          "Rusk-gqlvar-at": "1365376",
           "Rusk-gqlvar-from": "1365377",
           "Rusk-gqlvar-to": "1365383",
         },

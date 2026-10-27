@@ -24,25 +24,22 @@ describe("Transactions page", () => {
     .mockResolvedValue(gqlTransactions.transactions.map(transformTransaction));
 
   // The node has no block after the last one.
-  const getTransactionsInRangeSpy = vi
-    .spyOn(duskAPI, "getTransactionsInRange")
-    .mockResolvedValue({
-      blocks: [{ hash: tip.hash, height: tip.height }],
-      transactions: [],
-    });
+  const getTransactionsAfterSpy = vi
+    .spyOn(duskAPI, "getTransactionsAfter")
+    .mockResolvedValue({ anchor: tip.hash, blocks: [], transactions: [] });
 
   afterEach(() => {
     cleanup();
     getChainTipSpy.mockClear();
     getTransactionSpy.mockClear();
-    getTransactionsInRangeSpy.mockClear();
+    getTransactionsAfterSpy.mockClear();
   });
 
   afterAll(() => {
     vi.useRealTimers();
     getChainTipSpy.mockRestore();
     getTransactionSpy.mockRestore();
-    getTransactionsInRangeSpy.mockRestore();
+    getTransactionsAfterSpy.mockRestore();
   });
 
   it("should render the Transactions page, start polling for blocks and stop the polling when unmounted", async () => {
@@ -65,8 +62,8 @@ describe("Transactions page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
-    expect(getTransactionsInRangeSpy).toHaveBeenCalledTimes(1);
-    expect(getTransactionsInRangeSpy).toHaveBeenNthCalledWith(
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(1);
+    expect(getTransactionsAfterSpy).toHaveBeenNthCalledWith(
       1,
       tip.height,
       tip.height + 199
@@ -74,7 +71,7 @@ describe("Transactions page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(getTransactionsInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(2);
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getChainTipSpy).toHaveBeenCalledTimes(1);
 
@@ -82,7 +79,7 @@ describe("Transactions page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(getTransactionsInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(2);
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
   });
 

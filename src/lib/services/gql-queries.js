@@ -89,18 +89,21 @@ export const getBlocksQueryInfo = (amount) => ({
 });
 
 /**
- * The blocks from height `from` to height `to`, both included, oldest
- * first: the ones the node has.
+ * The hash of the block at height `from`, and the blocks after it up to
+ * height `to`, oldest first: the ones the node has.
  *
  * @param {number} from
  * @param {number} to
  */
-export const getBlocksRangeQueryInfo = (from, to) => ({
+export const getBlocksAfterQueryInfo = (from, to) => ({
   query: `
     ${blockFragment}
-    query($from: Int!, $to: Int!) { blocks(range: [$from, $to]) {...BlockInfo} }
+    query($at: Float!, $from: Int!, $to: Int!) {
+      anchor: block(height: $at) { header { hash } },
+      blocks(range: [$from, $to]) {...BlockInfo}
+    }
   `,
-  variables: { from, to },
+  variables: { at: from, from: from + 1, to },
 });
 
 /** @param {number} amount */
@@ -122,23 +125,25 @@ export const getMempoolTx = (id) => ({
 });
 
 /**
- * The transactions of the blocks from height `from` to height `to`, both
- * included, with each block's height and hash, oldest first.
+ * The hash of the block at height `from`, and the transactions of the
+ * blocks after it up to height `to`, with each block's height, hash and
+ * previous block's hash, oldest first.
  *
  * @param {number} from
  * @param {number} to
  */
-export const getTransactionsRangeQueryInfo = (from, to) => ({
+export const getTransactionsAfterQueryInfo = (from, to) => ({
   query: `
     ${transactionFragment}
-    query($from: Int!, $to: Int!) {
+    query($at: Float!, $from: Int!, $to: Int!) {
+      anchor: block(height: $at) { header { hash } },
       blocks(range: [$from, $to]) {
-        header { hash, height },
+        header { hash, height, prevBlockHash },
         transactions {...TransactionInfo}
       }
     }
   `,
-  variables: { from, to },
+  variables: { at: from, from: from + 1, to },
 });
 
 /** @param {number} amount */

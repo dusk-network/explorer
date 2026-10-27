@@ -5,19 +5,26 @@ import { followBlocks, followChainInfo, followTransactions } from "..";
 /**
  * @param {string} txid
  * @param {number} blockheight
+ * @param {string} [blockhash]
  */
-const tx = (txid, blockheight) =>
-  /** @type {Transaction} */ ({ blockheight, txid });
+const tx = (txid, blockheight, blockhash = `hash-${blockheight}`) =>
+  /** @type {Transaction} */ ({ blockhash, blockheight, txid });
 
 /**
  * @param {number} height
  * @param {string[]} [txids]
  * @param {string} [hash]
+ * @param {string} [prevblockhash]
  */
-const block = (height, txids = [], hash = `hash-${height}`) =>
+const block = (
+  height,
+  txids = [],
+  hash = `hash-${height}`,
+  prevblockhash = `hash-${height - 1}`
+) =>
   /** @type {Block} */ ({
-    header: { hash, height },
-    transactions: { data: txids.map((txid) => tx(txid, height)) },
+    header: { hash, height, prevblockhash },
+    transactions: { data: txids.map((txid) => tx(txid, height, hash)) },
   });
 
 /** @param {{ header: { height: number } }[]} blocks */
@@ -39,7 +46,9 @@ function makeChain(tip, txs = {}) {
   const chain = {
     /** @param {number} height @param {string[]} [txids] @param {string} [hash] */
     add(height, txids = [], hash = undefined) {
-      blocks.set(height, block(height, txids, hash));
+      const prev = blocks.get(height - 1)?.header.hash;
+
+      blocks.set(height, block(height, txids, hash, prev));
       chain.tip = Math.max(chain.tip, height);
     },
     /** @param {number} from @param {number} to */
@@ -56,6 +65,10 @@ function makeChain(tip, txs = {}) {
       }
 
       return found;
+    },
+    /** @param {number} height */
+    hashAt(height) {
+      return (height <= chain.tip && blocks.get(height)?.header.hash) || null;
     },
     /** @param {number} amount */
     last(amount) {
@@ -81,9 +94,11 @@ function makeChain(tip, txs = {}) {
 /** @param {ReturnType<typeof makeChain>} chain */
 const blocksReader = (chain) => ({
   getBlocks: vi.fn(async (/** @type {number} */ amount) => chain.last(amount)),
-  getBlocksInRange: vi.fn(
-    async (/** @type {number} */ from, /** @type {number} */ to) =>
-      chain.between(from, to)
+  getBlocksAfter: vi.fn(
+    async (/** @type {number} */ from, /** @type {number} */ to) => ({
+      anchor: chain.hashAt(from),
+      blocks: chain.between(from + 1, to),
+    })
   ),
   getLatestChainInfo: vi.fn(async (/** @type {number} */ amount) => ({
     blocks: chain.last(amount),
@@ -102,14 +117,16 @@ const transactionsReader = (chain) => ({
   getTransactions: vi.fn(async (/** @type {number} */ amount) =>
     chain.lastTransactions(amount)
   ),
-  getTransactionsInRange: vi.fn(
+  getTransactionsAfter: vi.fn(
     async (/** @type {number} */ from, /** @type {number} */ to) => {
-      const found = chain.between(from, to);
+      const found = chain.between(from + 1, to);
 
       return {
+        anchor: chain.hashAt(from),
         blocks: found.map(({ header }) => ({
           hash: header.hash,
           height: header.height,
+          prevblockhash: header.prevblockhash,
         })),
         transactions: found.flatMap((b) => b.transactions.data),
       };
@@ -118,7 +135,7 @@ const transactionsReader = (chain) => ({
 });
 
 describe("followBlocks", () => {
-  it("should read the whole list once, then only the blocks from the newest it has", async () => {
+  it("should read the whole list once, then only the blocks after the newest it has", async () => {
     const chain = makeChain(10);
     const api = blocksReader(chain);
     const read = followBlocks(api);
@@ -126,18 +143,18 @@ describe("followBlocks", () => {
     expect(heights(await read(5))).toStrictEqual([10, 9, 8, 7, 6]);
     expect(api.getBlocks).toHaveBeenCalledTimes(1);
     expect(api.getBlocks).toHaveBeenCalledWith(5);
-    expect(api.getBlocksInRange).not.toHaveBeenCalled();
+    expect(api.getBlocksAfter).not.toHaveBeenCalled();
 
     chain.add(11);
     chain.add(12);
 
     expect(heights(await read(5))).toStrictEqual([12, 11, 10, 9, 8]);
-    expect(api.getBlocksInRange).toHaveBeenCalledTimes(1);
-    expect(api.getBlocksInRange).toHaveBeenLastCalledWith(10, 15);
+    expect(api.getBlocksAfter).toHaveBeenCalledTimes(1);
+    expect(api.getBlocksAfter).toHaveBeenLastCalledWith(10, 15);
 
     // Nothing new: the same blocks.
     expect(heights(await read(5))).toStrictEqual([12, 11, 10, 9, 8]);
-    expect(api.getBlocksInRange).toHaveBeenLastCalledWith(12, 17);
+    expect(api.getBlocksAfter).toHaveBeenLastCalledWith(12, 17);
     expect(api.getBlocks).toHaveBeenCalledTimes(1);
   });
 
@@ -167,6 +184,28 @@ describe("followBlocks", () => {
     expect(api.getBlocks).toHaveBeenCalledTimes(2);
   });
 
+  it("should read the whole list again when the first block after its newest doesn't follow it", async () => {
+    const chain = makeChain(10);
+    const api = blocksReader(chain);
+    const read = followBlocks(api);
+
+    await read(5);
+
+    // Block 10 was replaced between the two parts of the read.
+    chain.add(10, [], "another-hash");
+    chain.add(11);
+    api.getBlocksAfter.mockResolvedValueOnce({
+      anchor: "hash-10",
+      blocks: chain.between(11, 15),
+    });
+
+    const blocks = await read(5);
+
+    expect(heights(blocks)).toStrictEqual([11, 10, 9, 8, 7]);
+    expect(blocks[1].header.hash).toBe("another-hash");
+    expect(api.getBlocks).toHaveBeenCalledTimes(2);
+  });
+
   it("should read the whole list again when more blocks came than a read takes", async () => {
     const chain = makeChain(10);
     const api = blocksReader(chain);
@@ -179,7 +218,7 @@ describe("followBlocks", () => {
     }
 
     expect(heights(await read(5))).toStrictEqual([30, 29, 28, 27, 26]);
-    expect(api.getBlocksInRange).toHaveBeenCalledWith(10, 15);
+    expect(api.getBlocksAfter).toHaveBeenCalledWith(10, 15);
     expect(api.getBlocks).toHaveBeenCalledTimes(2);
   });
 
@@ -189,7 +228,7 @@ describe("followBlocks", () => {
     const read = followBlocks(api);
 
     await read(5);
-    api.getBlocksInRange.mockRejectedValueOnce(new Error("offline"));
+    api.getBlocksAfter.mockRejectedValueOnce(new Error("offline"));
 
     await expect(read(5)).rejects.toThrow("offline");
 
@@ -214,7 +253,7 @@ describe("followBlocks", () => {
 
     expect(heights(a)).toStrictEqual([11, 10, 9, 8, 7]);
     expect(heights(b)).toStrictEqual([11, 10, 9, 8, 7]);
-    expect(api.getBlocksInRange.mock.calls).toStrictEqual([
+    expect(api.getBlocksAfter.mock.calls).toStrictEqual([
       [10, 15],
       [11, 16],
     ]);
@@ -239,7 +278,7 @@ describe("followChainInfo", () => {
     expect(heights(second.blocks)).toStrictEqual([12, 11, 10]);
     expect(ids(second.transactions)).toStrictEqual(["k1", "k2", "i1"]);
     expect(api.getLatestChainInfo).toHaveBeenCalledTimes(1);
-    expect(api.getBlocksInRange).toHaveBeenCalledWith(10, 13);
+    expect(api.getBlocksAfter).toHaveBeenCalledWith(10, 13);
   });
 
   it("should add a block's transactions the first read's list missed", async () => {
@@ -276,6 +315,29 @@ describe("followChainInfo", () => {
     expect(ids(info.transactions)).toStrictEqual(["k1", "g1"]);
   });
 
+  it("should leave out the transactions of a block the blocks read replaced, and take the new block's", async () => {
+    const chain = makeChain(10, { 9: ["i1"], 10: ["j1"] });
+    const api = blocksReader(chain);
+    const read = followChainInfo(api);
+
+    // The transactions were read before block 10 was replaced, the blocks after.
+    const transactions = chain.lastTransactions(3);
+
+    chain.add(10, ["j2"], "another-hash");
+    api.getLatestChainInfo.mockResolvedValueOnce({
+      blocks: chain.last(3),
+      transactions,
+    });
+
+    expect(ids((await read(3)).transactions)).toStrictEqual(["j2", "i1"]);
+
+    // The next blocks follow the new block 10: nothing is read again.
+    chain.add(11);
+
+    expect(ids((await read(3)).transactions)).toStrictEqual(["j2", "i1"]);
+    expect(api.getLatestChainInfo).toHaveBeenCalledTimes(1);
+  });
+
   it("should read the whole lists again when the chain no longer has its newest block", async () => {
     const chain = makeChain(10, { 9: ["i1"] });
     const api = blocksReader(chain);
@@ -306,12 +368,12 @@ describe("followTransactions", () => {
     chain.add(12);
 
     expect(ids(await read(3))).toStrictEqual(["k1", "i1", "f1"]);
-    expect(api.getTransactionsInRange).toHaveBeenLastCalledWith(10, 209);
+    expect(api.getTransactionsAfter).toHaveBeenLastCalledWith(10, 209);
 
     chain.add(13, ["m1"]);
 
     expect(ids(await read(3))).toStrictEqual(["m1", "k1", "i1"]);
-    expect(api.getTransactionsInRange).toHaveBeenLastCalledWith(12, 211);
+    expect(api.getTransactionsAfter).toHaveBeenLastCalledWith(12, 211);
     expect(api.getTransactions).toHaveBeenCalledTimes(1);
   });
 
@@ -343,6 +405,26 @@ describe("followTransactions", () => {
     expect(api.getTransactions).toHaveBeenCalledTimes(2);
   });
 
+  it("should read the whole list again when the first block after the last it saw doesn't follow it", async () => {
+    const chain = makeChain(10, { 9: ["i1"] });
+    const api = transactionsReader(chain);
+    const read = followTransactions(api);
+
+    await read(3);
+
+    // Block 10 was replaced between the two parts of the read.
+    chain.add(10, ["j1"], "another-hash");
+    chain.add(11, ["k1"]);
+    api.getTransactionsAfter.mockResolvedValueOnce({
+      anchor: "hash-10",
+      blocks: [{ hash: "hash-11", height: 11, prevblockhash: "another-hash" }],
+      transactions: [tx("k1", 11)],
+    });
+
+    expect(ids(await read(3))).toStrictEqual(["k1", "j1", "i1"]);
+    expect(api.getTransactions).toHaveBeenCalledTimes(2);
+  });
+
   it("should read the whole list again when more blocks came than a read takes", async () => {
     const chain = makeChain(10, { 9: ["i1"] });
     const api = transactionsReader(chain);
@@ -364,7 +446,7 @@ describe("followTransactions", () => {
     const read = followTransactions(api);
 
     await read(3);
-    api.getTransactionsInRange.mockRejectedValueOnce(new Error("offline"));
+    api.getTransactionsAfter.mockRejectedValueOnce(new Error("offline"));
 
     await expect(read(3)).rejects.toThrow("offline");
     expect(ids(await read(3))).toStrictEqual(["i1"]);

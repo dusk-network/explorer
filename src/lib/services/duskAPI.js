@@ -28,14 +28,14 @@ import {
   getBlockDetailsQueryInfo,
   getBlockHashQueryInfo,
   getBlockQueryInfo,
+  getBlocksAfterQueryInfo,
   getBlocksQueryInfo,
-  getBlocksRangeQueryInfo,
   getFullMoonlightAccountHistoryQuery,
   getLatestChainQueryInfo,
   getMempoolTx,
   getTransactionQueryInfo,
+  getTransactionsAfterQueryInfo,
   getTransactionsQueryInfo,
-  getTransactionsRangeQueryInfo,
   searchByHashQueryInfo,
   transactionFragment,
 } from "./gql-queries";
@@ -169,18 +169,22 @@ const duskAPI = {
   },
 
   /**
-   * The blocks from height `from` to height `to`, both included, newest
-   * first as `getBlocks` gives them: the ones the node has.
+   * The blocks after height `from` up to height `to`, newest first as
+   * `getBlocks` gives them, and the hash of the block at `from`, which
+   * they follow when the chain didn't change in between: the ones the node
+   * has, in one query.
    *
    * @param {number} from
    * @param {number} to
-   * @returns {Promise<Block[]>}
+   * @returns {Promise<{ anchor: string | null, blocks: Block[] }>}
    */
-  getBlocksInRange(from, to) {
-    return gqlGet(getBlocksRangeQueryInfo(from, to))
-      .then(getKey("blocks"))
-      .then(transformBlocks)
-      .then((blocks) => blocks.reverse());
+  getBlocksAfter(from, to) {
+    return gqlGet(getBlocksAfterQueryInfo(from, to)).then(
+      ({ anchor, blocks }) => ({
+        anchor: anchor?.header.hash ?? null,
+        blocks: transformBlocks(blocks).reverse(),
+      })
+    );
   },
 
   /**
@@ -422,24 +426,27 @@ const duskAPI = {
   },
 
   /**
-   * The transactions of the blocks from height `from` to height `to`, both
-   * included, newest first as `getTransactions` gives them, and those
-   * blocks' heights and hashes, newest first: the ones the node has.
+   * The transactions of the blocks after height `from` up to height `to`,
+   * newest first as `getTransactions` gives them, those blocks' heights,
+   * hashes and previous blocks' hashes, newest first, and the hash of the
+   * block at `from`: the ones the node has, in one query.
    *
    * @param {number} from
    * @param {number} to
-   * @returns {Promise<{ blocks: { hash: string, height: number }[], transactions: Transaction[] }>}
+   * @returns {Promise<{ anchor: string | null, blocks: { hash: string, height: number, prevblockhash: string }[], transactions: Transaction[] }>}
    */
-  getTransactionsInRange(from, to) {
-    return gqlGet(getTransactionsRangeQueryInfo(from, to)).then(
-      ({ blocks }) => {
-        /** @type {{ header: { hash: string, height: number }, transactions: GQLTransaction[] }[]} */
+  getTransactionsAfter(from, to) {
+    return gqlGet(getTransactionsAfterQueryInfo(from, to)).then(
+      ({ anchor, blocks }) => {
+        /** @type {{ header: { hash: string, height: number, prevBlockHash: string }, transactions: GQLTransaction[] }[]} */
         const newestFirst = [...blocks].reverse();
 
         return {
+          anchor: anchor?.header.hash ?? null,
           blocks: newestFirst.map(({ header }) => ({
             hash: header.hash,
             height: header.height,
+            prevblockhash: header.prevBlockHash,
           })),
           transactions: newestFirst.flatMap((block) =>
             transformTransactions(block.transactions)

@@ -20,20 +20,20 @@ describe("Blocks page", () => {
   const getBlocksSpy = vi.spyOn(duskAPI, "getBlocks").mockResolvedValue(blocks);
 
   // The node has no block after the newest one.
-  const getBlocksInRangeSpy = vi
-    .spyOn(duskAPI, "getBlocksInRange")
-    .mockResolvedValue([blocks[0]]);
+  const getBlocksAfterSpy = vi
+    .spyOn(duskAPI, "getBlocksAfter")
+    .mockResolvedValue({ anchor: blocks[0].header.hash, blocks: [] });
 
   afterEach(() => {
     cleanup();
     getBlocksSpy.mockClear();
-    getBlocksInRangeSpy.mockClear();
+    getBlocksAfterSpy.mockClear();
   });
 
   afterAll(() => {
     vi.useRealTimers();
     getBlocksSpy.mockRestore();
-    getBlocksInRangeSpy.mockRestore();
+    getBlocksAfterSpy.mockRestore();
   });
 
   it("should render the Blocks page, start polling for blocks and stop the polling when unmounted", async () => {
@@ -51,8 +51,8 @@ describe("Blocks page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
-    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(1);
-    expect(getBlocksInRangeSpy).toHaveBeenNthCalledWith(
+    expect(getBlocksAfterSpy).toHaveBeenCalledTimes(1);
+    expect(getBlocksAfterSpy).toHaveBeenNthCalledWith(
       1,
       newest,
       newest + blocksListEntries
@@ -60,7 +60,7 @@ describe("Blocks page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getBlocksAfterSpy).toHaveBeenCalledTimes(2);
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
     expect(container.querySelectorAll(".blocks-table tbody tr")).toHaveLength(
       Math.min(blocks.length, get(appStore).chainInfoEntries)
@@ -70,7 +70,7 @@ describe("Blocks page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getBlocksAfterSpy).toHaveBeenCalledTimes(2);
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
   });
 

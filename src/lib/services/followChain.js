@@ -1,9 +1,10 @@
 /**
  * The latest blocks and transactions, kept up to date by asking the node
  * only for what is new: the first read asks for the whole list, and each
- * read after it only for the blocks from the newest one it has. When that
- * block is no longer the chain's at its height, or more blocks came than a
- * read takes, the read asks for the whole list again.
+ * read after it only for the blocks after the newest one it has, with that
+ * block's hash. When that block is no longer the chain's at its height, the
+ * first block after it doesn't follow it, or more blocks came than a read
+ * takes, the read asks for the whole list again.
  *
  * Each read gives new objects for the entries, as a whole list would, so
  * that the rows showing them are drawn again, with their times.
@@ -14,10 +15,15 @@ const MAX_RANGE = 200;
 
 /** @typedef {{ hash: string, height: number }} BlockRef */
 
+/** @typedef {BlockRef & { prevblockhash: string }} LinkedBlockRef */
+
 /**
  * @typedef {{
  *   getBlocks: (amount: number) => Promise<Block[]>,
- *   getBlocksInRange: (from: number, to: number) => Promise<Block[]>,
+ *   getBlocksAfter: (
+ *     from: number,
+ *     to: number
+ *   ) => Promise<{ anchor: string | null, blocks: Block[] }>,
  * }} BlocksReader
  */
 
@@ -31,10 +37,14 @@ const MAX_RANGE = 200;
  * @typedef {{
  *   getChainTip: () => Promise<BlockRef>,
  *   getTransactions: (amount: number) => Promise<Transaction[]>,
- *   getTransactionsInRange: (
+ *   getTransactionsAfter: (
  *     from: number,
  *     to: number
- *   ) => Promise<{ blocks: BlockRef[], transactions: Transaction[] }>,
+ *   ) => Promise<{
+ *     anchor: string | null,
+ *     blocks: LinkedBlockRef[],
+ *     transactions: Transaction[],
+ *   }>,
  * }} TransactionsReader
  */
 
@@ -73,35 +83,39 @@ function oneAtATime(read) {
 const copies = (entries) => entries.map((entry) => ({ ...entry }));
 
 /**
- * The heights a range read asks for after a block: one more than a list of
- * `amount` takes, so that a full read says more blocks may follow.
+ * The heights a read asks for after a block: as many as a list of `amount`
+ * takes, so that a full read says more blocks may follow.
  *
  * @param {number} amount
  */
 const spanFor = (amount) => Math.min(amount, MAX_RANGE - 1);
 
 /**
- * Whether a range read from the height of `newest` carries on from it: the
- * chain still has `newest` at that height, and the read wasn't full, as
- * more blocks may follow it then.
+ * Whether a read of the blocks after `newest` carries on from it: the
+ * chain still has `newest` at its height, the first block read follows it,
+ * and the read wasn't full, as more blocks may follow it then.
  *
- * @param {BlockRef[]} range The blocks read, newest first
+ * @param {{ anchor: string | null, blocks: LinkedBlockRef[] }} read The hash
+ *   at the height of `newest`, and the blocks after it, newest first
  * @param {BlockRef} newest
  * @param {number} span
  */
-function carriesOn(range, newest, span) {
-  const first = range.at(-1);
+function carriesOn({ anchor, blocks }, newest, span) {
+  const first = blocks.at(-1);
 
   return (
-    !!first &&
-    first.height === newest.height &&
-    first.hash === newest.hash &&
-    range.length <= span
+    anchor === newest.hash &&
+    (!first || first.prevblockhash === newest.hash) &&
+    blocks.length < span
   );
 }
 
-/** @type {(block: Block) => BlockRef} */
-const refOf = ({ header }) => ({ hash: header.hash, height: header.height });
+/** @type {(block: Block) => LinkedBlockRef} */
+const refOf = ({ header }) => ({
+  hash: header.hash,
+  height: header.height,
+  prevblockhash: header.prevblockhash,
+});
 
 /**
  * The blocks after the newest of `held`, newest first, or `null` when the
@@ -119,9 +133,14 @@ async function readBlocksAfter(api, held, amount) {
 
   const newest = refOf(held[0]);
   const span = spanFor(amount);
-  const range = await api.getBlocksInRange(newest.height, newest.height + span);
+  const { anchor, blocks } = await api.getBlocksAfter(
+    newest.height,
+    newest.height + span
+  );
 
-  return carriesOn(range.map(refOf), newest, span) ? range.slice(0, -1) : null;
+  return carriesOn({ anchor, blocks: blocks.map(refOf) }, newest, span)
+    ? blocks
+    : null;
 }
 
 /**
@@ -198,20 +217,38 @@ export function followChainInfo(api) {
 
   /**
    * The whole lists. The blocks and the transactions are read in one query
-   * but not at one instant: a block the transactions missed adds its own.
+   * but not at one instant: a block the transactions missed adds its own,
+   * and so does one that replaced the block they were read from, whose
+   * transactions are left out.
    *
    * @type {(amount: number) => Promise<ChainInfo>}
    */
   async function readAll(amount) {
     const { blocks, transactions } = await api.getLatestChainInfo(amount);
+    const hashAt = new Map(
+      blocks.map(({ header }) => [header.height, header.hash])
+    );
+    const replaced = new Set(
+      transactions
+        .filter(
+          ({ blockhash, blockheight }) =>
+            (hashAt.get(blockheight) ?? blockhash) !== blockhash
+        )
+        .map(({ blockheight }) => blockheight)
+    );
+    const kept = transactions.filter(
+      ({ blockheight }) => !replaced.has(blockheight)
+    );
+    const newest = kept[0]?.blockheight ?? -1;
+    const fromBlocks = blocks
+      .filter(
+        ({ header }) => header.height > newest || replaced.has(header.height)
+      )
+      .flatMap((block) => block.transactions.data);
 
     return {
       blocks,
-      transactions: newestTransactions(
-        transactionsAbove(blocks, transactions[0]?.blockheight ?? -1),
-        transactions,
-        amount
-      ),
+      transactions: newestTransactions(fromBlocks, kept, amount),
     };
   }
 
@@ -280,20 +317,20 @@ export function followTransactions(api) {
    */
   async function readNew(last, amount) {
     const span = MAX_RANGE - 1;
-    const from = last.height;
-    const range = await api.getTransactionsInRange(from, from + span);
+    const read = await api.getTransactionsAfter(
+      last.height,
+      last.height + span
+    );
 
-    if (!carriesOn(range.blocks, last, span)) {
+    if (!carriesOn(read, last, span)) {
       return null;
     }
 
-    seen = range.blocks[0];
+    const [newest] = read.blocks;
 
-    return newestTransactions(
-      range.transactions.filter(({ blockheight }) => blockheight > from),
-      held,
-      amount
-    );
+    seen = newest ? { hash: newest.hash, height: newest.height } : last;
+
+    return newestTransactions(read.transactions, held, amount);
   }
 
   /**

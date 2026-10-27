@@ -32,9 +32,10 @@ vi.mock("$lib/services", async (importOriginal) => {
       ...original.duskAPI,
 
       // The node has no block after the newest one.
-      getBlocksInRange: vi
-        .fn()
-        .mockResolvedValue([transformBlock(gqlLatestChainInfo.blocks[0])]),
+      getBlocksAfter: vi.fn().mockResolvedValue({
+        anchor: gqlLatestChainInfo.blocks[0].header.hash,
+        blocks: [],
+      }),
       getLatestChainInfo: vi.fn().mockResolvedValue({
         blocks: gqlLatestChainInfo.blocks.map(transformBlock),
         transactions: gqlLatestChainInfo.transactions.map(transformTransaction),
@@ -78,9 +79,9 @@ describe("home page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval - marketDataSettleTime);
 
-    // Then only the blocks from the newest one on.
-    expect(duskAPI.getBlocksInRange).toHaveBeenCalledTimes(1);
-    expect(duskAPI.getBlocksInRange).toHaveBeenNthCalledWith(
+    // Then only the blocks after the newest one.
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(1);
+    expect(duskAPI.getBlocksAfter).toHaveBeenNthCalledWith(
       1,
       newest,
       newest + chainInfoEntries
@@ -88,14 +89,14 @@ describe("home page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(duskAPI.getBlocksInRange).toHaveBeenCalledTimes(2);
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(2);
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
 
     unmount();
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(duskAPI.getBlocksInRange).toHaveBeenCalledTimes(2);
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(2);
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
   }, 15000);
 });
