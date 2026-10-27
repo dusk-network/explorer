@@ -67,6 +67,7 @@ and this project adheres to
 - Give a transaction's own ID as text to copy, not as a link to its own page
 - Show a transaction's status in green when it went through and in red when it failed
 - Mark rounded numbers with "≈" instead of "~"
+- Set detail pages' labels in a column on wide screens, each value and its Copy right after it
 
 ### Removed
 

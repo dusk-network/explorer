@@ -62,6 +62,13 @@
   font-size: 0.8125rem;
 }
 
+/* Wide screens: at the start of the value's column, as every value. */
+@media (min-width: 64rem) {
+  .transaction-details__visibility {
+    align-items: flex-start;
+  }
+}
+
 .transaction-details__memo {
   min-width: 0;
   white-space: pre-wrap;

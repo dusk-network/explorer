@@ -64,8 +64,15 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  max-width: 70rem;
+  max-width: 82rem;
   margin-top: 0.75rem;
+}
+
+/* Wide screens: the address on one line, its Copy right after it. */
+@media (min-width: 64rem) {
+  .account-overview-panel__address-row {
+    justify-content: flex-start;
+  }
 }
 
 .account-overview-panel__details {

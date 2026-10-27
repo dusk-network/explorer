@@ -5,11 +5,11 @@
  */
 /*
  * From the page's left edge, as the lists below them, and wide enough for
- * a public account's address, 131 characters, to fit on one line with its
- * Copy beside it.
+ * a public account's address, 131 characters, to fit on one line after its
+ * label, with its Copy after it.
  */
 .detail-page.data-card {
-  max-width: 70rem;
+  max-width: 82rem;
 }
 
 .detail-summary {
@@ -114,6 +114,44 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+/*
+ * From 1024 px up, as explorers lay them out: the labels in a column of
+ * their own, each value right after its label and its Copy right after it,
+ * a long hash on one line. Narrower, a long value goes under its label.
+ */
+@media (min-width: 64rem) {
+  .detail-rows {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+
+  .detail-rows .details-list__term--wide,
+  .detail-rows .details-list__definition--wide {
+    grid-column: auto;
+  }
+
+  .detail-rows .details-list__term--wide {
+    padding-bottom: 0.75rem;
+  }
+
+  .detail-rows .details-list__definition,
+  .detail-rows .details-list__definition--wide {
+    justify-content: flex-start;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--calm-line);
+    text-align: left;
+  }
+
+  /* A long value starts on its label's line, its Copy centred on it. */
+  .detail-rows .details-list__definition--wide:has(> .dusk-copy-button) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .detail-rows .details-list__definition--wide > .dusk-copy-button {
+    margin-top: -0.3125rem;
+  }
 }
 
 @media (max-width: 47.99rem) {
