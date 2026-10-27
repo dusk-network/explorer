@@ -54,6 +54,21 @@ describe("Navbar", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it("should show the Dusk wordmark, a thin line and the app's name, as one link home", () => {
+    const { getByRole } = render(Navbar);
+    const brand = getByRole("link", { name: "Dusk Explorer, home" });
+
+    expect(brand.querySelector(".dusk-navbar__wordmark")).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
+    expect(brand.querySelector(".dusk-navbar__divider")).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
+    expect(brand).toHaveTextContent(/^Explorer$/);
+  });
+
   it("should mark the page shown among the pages", () => {
     const { getByRole } = render(Navbar);
     const pages = getByRole("navigation", { name: "Explorer pages" });

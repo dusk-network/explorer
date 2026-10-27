@@ -19,7 +19,7 @@
   import { createCompactFormatter } from "$lib/dusk/value";
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
-  import { DataGuard, StaleDataNotice } from "$lib/components";
+  import { DataGuard, StaleDataNotice, WorldMap } from "$lib/components";
   import { duskAPI } from "$lib/services";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
   import { isMainnet } from "$lib/network";
@@ -239,10 +239,18 @@
 </script>
 
 <!--
-  The four numbers that matter most as cards, their labels muted above them;
-  the rest in one quiet row of smaller labels and values.
+  The network's map first, and beside it the four numbers that matter most
+  as cards, their labels above them; the rest in one quiet row of smaller
+  labels and values.
 -->
 <div class="statistics-panel">
+  <figure class="statistics-panel__face">
+    <WorldMap nodes={nodesData ?? []} />
+    <figcaption class="statistics-panel__face-caption">
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
   <div class="statistics-panel__statistics">
     {#each primary as key (key)}
       {@const item = items[key]}

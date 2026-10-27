@@ -58,6 +58,11 @@ and this project adheres to
 - Show provisioners as rows, with the owner's address when it isn't the staking key
 - Move the blocks list's count and "Show more" to the bottom
 - Say "Page not found" with a way home, and say plainly when a list is empty or failed to load
+- Set section heads, column heads and the numbers' labels in small mono capitals, section heads between grey brackets
+- Show the DUSK wordmark and EXPLORER in the top bar
+- Show links to blocks, transactions and accounts, and text links, in blue, and block heights in mono
+- Lead the home page with the network's map, saying what its rings are, and the four main numbers beside it
+- Give a transaction's own ID as text to copy, not as a link to its own page
 
 ### Removed
 

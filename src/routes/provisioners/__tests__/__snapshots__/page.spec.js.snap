@@ -15,9 +15,13 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Provisioners
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -73,7 +77,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
             >
               <!---->
@@ -312,7 +316,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=s9mQHPDuKiUwomr7k6S3mmeqd8rwpXENtvmCY7f9ndukC4VQH385ePgzHdiw6vWoJX7ee1oZEFSYXXZtVr4326XmZrkTbranxdYz89Vrd1HMfX2f3uis4hi33XxiM4ksRbH"
             >
               <!---->
@@ -606,7 +610,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=sX4JooVNAFov3Xx9cfZHtRemijsggdRKrywC14jfGyZn5k2wupNvyY9ZLu7YTuh3CpuyKsftbmzYPzdgptG6Rq9UayDXeaPwFHanmXpUqGdTyEvw5Cb3UqGEqfCFZMqQhtz"
             >
               <!---->
@@ -900,7 +904,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=scRkV9xaMCNTsjEx2mwDABavD5exRSNAyCnTZT9hYi2HGKPRAYhqzff5BmdsXgqaYRxgSxkyiDUBFiyHGhuHxMC2R5ztdmG8QUe6jBXsyFMJoGx6H9faXfyA2XwXrJMpbfo"
             >
               <!---->
@@ -1139,7 +1143,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
             >
               <!---->
@@ -1378,7 +1382,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
             >
               <!---->
@@ -1617,7 +1621,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
             >
               <!---->
@@ -1911,7 +1915,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
             >
               <!---->
@@ -2205,7 +2209,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
             >
               <!---->
@@ -2444,7 +2448,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
             >
               <!---->
@@ -2683,7 +2687,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mdca2ea2KpRZaW6s6NkYAY29wbprGPGGo8MmB812HxUXcvb8dDDE8J4GjN9VH9FbB8GJdohgFKoK2oDFLyL5cCsDtPU1maWw1o7Xnzo7uHBPg8MmRfxyBCUVRji7SxM2zBD"
             >
               <!---->
@@ -2922,7 +2926,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=mgmcqkk1VFfsa1ko7ydBjhVuM9WuVFDGby9JthvDWsKX9kyqdNeqrSzbW1ccQ19sVfbHgVzfYwdGLipYdPcU4ZD5CjsbRmzZeEQ3WBZHUcEWDB1wsvV5avoC2xddxLvEDVP"
             >
               <!---->
@@ -3216,7 +3220,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=n2DPucZgNznPCfhRfAS8aHQUktJYZ99wAUcYM5Qijs7XyENoF6w1bzHuHdX9duEcZTX1X7o7tX9UkFF35AE8JzdbGqN5zYNAnyGJXVogBzbDNKwS6GhaRRR9f95PUxRwtD1"
             >
               <!---->
@@ -3455,7 +3459,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=nV71a9Hec6jeXVFkUN6JvgiLDTucp1R4g6GewvnL7nYLbRrcxuPtFHt2PNjApDaLXLKTBEEwMdefjnQgKtBFaJAtA1jxkF9K2EKW1nBea26cHcvb326rbXNgYA4pNWv4roh"
             >
               <!---->
@@ -3749,7 +3753,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             </span>
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+              class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
               href="/some-base-path/accounts/?key=nXqyaSYaTas47KNqNwVtpNyfCsTmvYMQ2bXcmtpVbiuMLn9NsE7SwsJFq1bLh9jtwRSN7Wkg7h53DV1DSdEPnD3dwsMxy4hmYaiRmeqGw9z6tpqYcyaGWjURkQpLqoCPDeD"
             >
               <!---->
@@ -4085,9 +4089,13 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Provisioners
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -4142,9 +4150,13 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Provisioners
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -4358,7 +4370,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
                   >
                     <!---->
@@ -4531,7 +4543,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=s9mQHPDuKiUwomr7k6S3mmeqd8rwpXENtvmCY7f9ndukC4VQH385ePgzHdiw6vWoJX7ee1oZEFSYXXZtVr4326XmZrkTbranxdYz89Vrd1HMfX2f3uis4hi33XxiM4ksRbH"
                   >
                     <!---->
@@ -4709,7 +4721,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=sX4JooVNAFov3Xx9cfZHtRemijsggdRKrywC14jfGyZn5k2wupNvyY9ZLu7YTuh3CpuyKsftbmzYPzdgptG6Rq9UayDXeaPwFHanmXpUqGdTyEvw5Cb3UqGEqfCFZMqQhtz"
                   >
                     <!---->
@@ -4887,7 +4899,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=scRkV9xaMCNTsjEx2mwDABavD5exRSNAyCnTZT9hYi2HGKPRAYhqzff5BmdsXgqaYRxgSxkyiDUBFiyHGhuHxMC2R5ztdmG8QUe6jBXsyFMJoGx6H9faXfyA2XwXrJMpbfo"
                   >
                     <!---->
@@ -5063,7 +5075,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
                   >
                     <!---->
@@ -5236,7 +5248,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
                   >
                     <!---->
@@ -5409,7 +5421,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
                   >
                     <!---->
@@ -5584,7 +5596,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
                   >
                     <!---->
@@ -5759,7 +5771,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
                   >
                     <!---->
@@ -5932,7 +5944,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
                   >
                     <!---->
@@ -6105,7 +6117,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mdca2ea2KpRZaW6s6NkYAY29wbprGPGGo8MmB812HxUXcvb8dDDE8J4GjN9VH9FbB8GJdohgFKoK2oDFLyL5cCsDtPU1maWw1o7Xnzo7uHBPg8MmRfxyBCUVRji7SxM2zBD"
                   >
                     <!---->
@@ -6278,7 +6290,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=mgmcqkk1VFfsa1ko7ydBjhVuM9WuVFDGby9JthvDWsKX9kyqdNeqrSzbW1ccQ19sVfbHgVzfYwdGLipYdPcU4ZD5CjsbRmzZeEQ3WBZHUcEWDB1wsvV5avoC2xddxLvEDVP"
                   >
                     <!---->
@@ -6453,7 +6465,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=n2DPucZgNznPCfhRfAS8aHQUktJYZ99wAUcYM5Qijs7XyENoF6w1bzHuHdX9duEcZTX1X7o7tX9UkFF35AE8JzdbGqN5zYNAnyGJXVogBzbDNKwS6GhaRRR9f95PUxRwtD1"
                   >
                     <!---->
@@ -6626,7 +6638,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=nV71a9Hec6jeXVFkUN6JvgiLDTucp1R4g6GewvnL7nYLbRrcxuPtFHt2PNjApDaLXLKTBEEwMdefjnQgKtBFaJAtA1jxkF9K2EKW1nBea26cHcvb326rbXNgYA4pNWv4roh"
                   >
                     <!---->
@@ -6801,7 +6813,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                   class="provisioners-table__staking-address-wrapper"
                 >
                   <a
-                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                    class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                     href="/some-base-path/accounts/?key=nXqyaSYaTas47KNqNwVtpNyfCsTmvYMQ2bXcmtpVbiuMLn9NsE7SwsJFq1bLh9jtwRSN7Wkg7h53DV1DSdEPnD3dwsMxy4hmYaiRmeqGw9z6tpqYcyaGWjURkQpLqoCPDeD"
                   >
                     <!---->

@@ -50,14 +50,14 @@
 
 {#if party?.kind === "account" && name}
   <AppAnchor
-    className="transaction-party transaction-party--named"
+    className="transaction-party transaction-party--named chain-link"
     data-tooltip-id="main-tooltip"
     data-tooltip-text="{name.name} · {middleEllipsis(party.address, chars)}"
     href="/accounts/?key={party.address}">{name.name}</AppAnchor
   >
 {:else if party?.kind === "account"}
   <AppAnchor
-    className="transaction-party transaction-party--account"
+    className="transaction-party transaction-party--account chain-link"
     href="/accounts/?key={party.address}"
     >{middleEllipsis(party.address, chars)}</AppAnchor
   >

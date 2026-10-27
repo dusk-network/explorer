@@ -1,4 +1,7 @@
-/* The web wallet's History table: small muted headers, rows on hairlines. */
+/*
+ * The web wallet's History table: small muted headers in the ledger's type,
+ * rows on hairlines.
+ */
 .table-container {
   overflow-x: auto;
   max-width: 100%;
@@ -15,9 +18,12 @@
   padding: 0 1rem 0.625rem;
   border-bottom: 1px solid var(--calm-line2);
   color: var(--calm-subtle);
-  font-size: 0.78125rem;
+  font-family: var(--mono-font-family);
+  font-size: var(--ledger-font-size);
   font-weight: 400;
+  letter-spacing: var(--ledger-letter-spacing);
   text-align: left;
+  text-transform: uppercase;
   text-wrap: nowrap;
 }
 

@@ -10,7 +10,7 @@
   export let nodes;
 
   /**
-   * The land's lines: by default the map's colour, a quiet neutral.
+   * The land's lines: by default the map's colour, the text's.
    *
    * @type {string}
    */
@@ -31,15 +31,21 @@
   const markerCoreRadius = (count) => Math.max(2.5, markerRadius(count) * 0.45);
 </script>
 
-<svg class="nodes-world-map" viewBox="0 0 954 477">
+<!--
+  The network's face, at the head of the home page: the land in full
+  contrast, from 75°N to 47°S, where the land and the nodes are; each place
+  where provisioners run nodes as a ring, the bigger the more nodes. Its
+  caption says so in words.
+-->
+<svg aria-hidden="true" class="nodes-world-map" viewBox="0 30 954 410">
   <defs>
     <pattern
       id="vertical-lines"
       patternUnits="userSpaceOnUse"
-      width="5"
+      width="7"
       height="10"
     >
-      <line x1="2.5" y1="0" x2="2.5" y2="10" {stroke} stroke-width="1" />
+      <line x1="3.5" y1="0" x2="3.5" y2="10" {stroke} stroke-width="1.4" />
     </pattern>
   </defs>
   {#each dataset.features as data, index (index)}

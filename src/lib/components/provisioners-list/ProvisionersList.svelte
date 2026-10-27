@@ -34,7 +34,7 @@
     <svelte:fragment slot="definition">
       <span class="provisioners-list__rank">#{data.rank}</span>
       <AppAnchor
-        className="provisioners-list__staking-address"
+        className="provisioners-list__staking-address chain-link"
         href="/accounts/?key={data.key}"
         >{middleEllipsis(data.key, ADDRESS_CHARS)}</AppAnchor
       >
@@ -98,7 +98,7 @@
       <svelte:fragment slot="definition">
         {#if data.ownerType === "Account"}
           <AppAnchor
-            className="provisioners-list__staking-address"
+            className="provisioners-list__staking-address chain-link"
             href="/accounts/?key={data.ownerAddress}"
             >{middleEllipsis(data.ownerAddress, ADDRESS_CHARS)}</AppAnchor
           >

@@ -308,18 +308,29 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "gas spent")).toBe("290,766");
   });
 
-  it("should show the full ID and addresses on wide screens", () => {
-    const { getByRole } = render(TransactionDetails, baseProps);
+  it("should give its own ID in full to copy, as it opens nothing, and the addresses as links", () => {
+    const { container, getByRole, queryByRole } = render(
+      TransactionDetails,
+      baseProps
+    );
 
-    expect(getByRole("link", { name: transaction.txid })).toBeInTheDocument();
+    expect(getDefinition(container, "id")).toBe(transaction.txid);
+    expect(queryByRole("link", { name: transaction.txid })).toBeNull();
     expect(
       getByRole("link", { name: /** @type {string} */ (transaction.from) })
-    ).toBeInTheDocument();
+    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.from}`);
+    expect(
+      getByRole("link", { name: /** @type {string} */ (transaction.to) })
+    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.to}`);
   });
 
   it("should give the ID and the addresses in full, their ends set apart, each with a Copy", () => {
-    const { getByRole } = render(TransactionDetails, baseProps);
-    const id = getByRole("link", { name: transaction.txid });
+    const { container, getByRole } = render(TransactionDetails, baseProps);
+    const id = /** @type {Element} */ (
+      Array.from(container.querySelectorAll("dt")).find(
+        (dt) => termOf(dt) === "id"
+      )?.nextElementSibling
+    );
 
     expect(
       Array.from(id.querySelectorAll(".full-value__end"), (end) =>

@@ -1,15 +1,10 @@
 <script>
   import { onMount } from "svelte";
 
-  import {
-    LatestBlocksCard,
-    LatestTransactionsCard,
-    WorldMap,
-  } from "$lib/components";
+  import { LatestBlocksCard, LatestTransactionsCard } from "$lib/components";
   import { StatisticsPanel } from "$lib/containers";
-  import { Card } from "$lib/dusk/components";
   import { duskAPI, followChainInfo } from "$lib/services";
-  import { appStore, nodeLocationStore } from "$lib/stores";
+  import { appStore } from "$lib/stores";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
 
   const pollingDataStore = createPollingDataStore(
@@ -19,7 +14,6 @@
 
   $: ({ data, error, isLoading } = $pollingDataStore);
   $: ({ chainInfoEntries, isSmallScreen } = $appStore);
-  $: ({ data: nodesData } = $nodeLocationStore);
 
   const retry = () => {
     pollingDataStore.start(chainInfoEntries);
@@ -59,14 +53,6 @@
       loading={isLoading}
     />
   </div>
-
-  {#if nodesData}
-    <div class="world-map">
-      <Card>
-        <WorldMap nodes={nodesData} />
-      </Card>
-    </div>
-  {/if}
 </section>
 
 <style lang="postcss">
@@ -92,19 +78,6 @@
       min-width: 0;
     }
 
-    .world-map {
-      order: 3;
-      width: 100%;
-    }
-
-    .world-map .dusk-card {
-      width: 100%;
-      padding: 1.5rem;
-      overflow: hidden;
-      border: 1px solid var(--calm-line2);
-      background-color: transparent;
-    }
-
     @media (max-width: 74.99rem) {
       .tables {
         grid-template-columns: minmax(0, 1fr);
@@ -119,10 +92,6 @@
 
       .tables-layout--transactions {
         order: -1;
-      }
-
-      .world-map .dusk-card {
-        padding: 0.75rem;
       }
     }
   }

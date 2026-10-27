@@ -17,9 +17,25 @@ exports[`Transaction Details > should render the Transaction details page 1`] = 
       <h1
         class="data-card__header-title"
       >
+        <!---->
+        <span
+          aria-hidden="true"
+          class="ledger-bracket"
+        >
+          [
+        </span>
         Transaction
+        <span
+          aria-hidden="true"
+          class="ledger-bracket"
+        >
+          ]
+        </span>
+        
         
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -65,9 +81,25 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
       <h1
         class="data-card__header-title"
       >
+        <!---->
+        <span
+          aria-hidden="true"
+          class="ledger-bracket"
+        >
+          [
+        </span>
         Transaction
+        <span
+          aria-hidden="true"
+          class="ledger-bracket"
+        >
+          ]
+        </span>
+        
         
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -165,33 +197,25 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <span
             class="transaction-details__value"
           >
-            <a
-              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-              href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+            <span
+              class="full-value"
             >
-              <!---->
-              <span
-                class="full-value"
+              <b
+                class="full-value__end"
               >
-                <b
-                  class="full-value__end"
-                >
-                  487768
-                </b>
-                <span
-                  class="full-value__middle"
-                >
-                  7c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4
-                </span>
-                <b
-                  class="full-value__end full-value__tail"
-                >
-                  ac0e04
-                </b>
+                487768
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                7c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4
               </span>
-              
-              <!---->
-            </a>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                ac0e04
+              </b>
+            </span>
             <!---->
           </span>
            
@@ -261,7 +285,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <!---->
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor chain-link"
               href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
             >
               <!---->
@@ -360,7 +384,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <!---->
              
             <a
-              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor chain-link"
               href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
             >
               <!---->
@@ -574,7 +598,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           <a
-            class="dusk-anchor dusk-anchor--on-surface transaction-details__block-link"
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__block-link chain-link"
             href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
           >
             <!---->

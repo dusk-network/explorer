@@ -9,7 +9,6 @@
   import { accountsOf } from "$lib/chain-info";
   import { getPrimaryNames } from "$lib/dusk-domains";
   import { makeClassName } from "$lib/dusk/string";
-  import { goto } from "$lib/navigation";
 
   /** @type {string | Undefined} */
   export let className = undefined;
@@ -63,12 +62,8 @@
     ? "No transactions yet."
     : "No transactions in this block."}
   variant="section"
-  headerButtonDetails={isOnHomeScreen
-    ? {
-        action: () => goto("/transactions"),
-        disabled: false,
-        label: "All transactions",
-      }
+  headerLink={isOnHomeScreen
+    ? { href: "/transactions", label: "All transactions" }
     : undefined}
 >
   {#if isSmallScreen}

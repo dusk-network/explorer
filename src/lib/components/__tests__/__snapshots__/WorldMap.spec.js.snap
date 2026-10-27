@@ -2,21 +2,22 @@
 
 exports[`World Map > renders the WorldMap component even if nodes is empty array 1`] = `
 <svg
+  aria-hidden="true"
   class="nodes-world-map"
-  viewBox="0 0 954 477"
+  viewBox="0 30 954 410"
 >
   <defs>
     <pattern
       height="10"
       id="vertical-lines"
       patternUnits="userSpaceOnUse"
-      width="5"
+      width="7"
     >
       <line
         stroke="currentColor"
-        stroke-width="1"
-        x1="2.5"
-        x2="2.5"
+        stroke-width="1.4"
+        x1="3.5"
+        x2="3.5"
         y1="0"
         y2="10"
       />
@@ -735,21 +736,22 @@ exports[`World Map > renders the WorldMap component even if nodes is empty array
 
 exports[`World Map > renders the WorldMap component with nodes 1`] = `
 <svg
+  aria-hidden="true"
   class="nodes-world-map"
-  viewBox="0 0 954 477"
+  viewBox="0 30 954 410"
 >
   <defs>
     <pattern
       height="10"
       id="vertical-lines"
       patternUnits="userSpaceOnUse"
-      width="5"
+      width="7"
     >
       <line
         stroke="currentColor"
-        stroke-width="1"
-        x1="2.5"
-        x2="2.5"
+        stroke-width="1.4"
+        x1="3.5"
+        x2="3.5"
         y1="0"
         y2="10"
       />

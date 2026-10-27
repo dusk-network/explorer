@@ -177,16 +177,12 @@
   </div>
 
   <dl class="transaction-details__list detail-rows">
-    <!-- TRANSACTION ID -->
+    <!-- TRANSACTION ID: this page's own, to copy -->
     <ListItem wide>
       <svelte:fragment slot="term">ID</svelte:fragment>
       <svelte:fragment slot="definition">
         <span class="transaction-details__value">
-          <AppAnchor
-            className="transaction-details__list-anchor"
-            href="/transactions/transaction?id={data.txid}"
-            ><FullValue value={data.txid} /></AppAnchor
-          >
+          <FullValue value={data.txid} />
         </span>
         <CopyButton
           name="Transaction ID"
@@ -210,7 +206,7 @@
                 showAddress={false}
               />
               <AppAnchor
-                className="transaction-details__list-anchor"
+                className="transaction-details__list-anchor chain-link"
                 href="/accounts/?key={from.address}"
                 ><FullValue value={from.address} /></AppAnchor
               >
@@ -260,7 +256,7 @@
               showAddress={false}
             />
             <AppAnchor
-              className="transaction-details__list-anchor"
+              className="transaction-details__list-anchor chain-link"
               href="/accounts/?key={to.address}"
               ><FullValue value={to.address} /></AppAnchor
             >
@@ -379,7 +375,7 @@
       <svelte:fragment slot="term">Block height</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor
-          className="transaction-details__block-link"
+          className="transaction-details__block-link chain-link"
           href="/blocks/block?id={data.blockhash}"
           >{formatter(data.blockheight)}</AppAnchor
         ></svelte:fragment

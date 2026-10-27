@@ -57,7 +57,7 @@
             >
             <div class="block__who">
               <AppAnchor
-                className="block__link"
+                className="block__link chain-link"
                 href={`/blocks/block?id=${block.header.hash}`}
                 >{numberFormatter(block.header.height)}</AppAnchor
               >

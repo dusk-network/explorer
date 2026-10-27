@@ -40,7 +40,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
          
         <!---->
         <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
           href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
         >
           <!---->
@@ -70,7 +70,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
          
         <!---->
         <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
           href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
         >
           <!---->

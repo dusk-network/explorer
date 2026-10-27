@@ -216,7 +216,7 @@
         <TableCell>
           <div class="provisioners-table__staking-address-wrapper">
             <AppAnchor
-              className="provisioners-table__address"
+              className="provisioners-table__address chain-link"
               href="/accounts/?key={consensusAddress}"
               >{middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}</AppAnchor
             >

@@ -126,7 +126,7 @@ describe("Account page", () => {
     expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
     expect(
       container.querySelector(".account-overview-panel__kind")
-    ).toHaveTextContent(/^Provisioner$/);
+    ).toHaveTextContent(/^\[Provisioner\]$/);
     expect(container.textContent).toContain("Shielded funds aren't shown.");
   });
 
@@ -175,7 +175,7 @@ describe("Account page", () => {
 
     expect(
       container.querySelector(".account-overview-panel__kind")
-    ).toHaveTextContent(/^Account$/);
+    ).toHaveTextContent(/^\[Account\]$/);
     expect(
       container.querySelector(".account-overview-panel__stake")
     ).toBeNull();

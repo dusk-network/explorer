@@ -11,8 +11,12 @@
   import { base } from "$app/paths";
   import { page } from "$app/stores";
 
-  import { Icon, NavList } from "$lib/dusk/components";
-  import { duskIcon } from "$lib/dusk/icons";
+  import { NavList } from "$lib/dusk/components";
+  import {
+    DUSK_WORDMARK_GLYPH,
+    DUSK_WORDMARK_LETTERS,
+    DUSK_WORDMARK_VIEW_BOX,
+  } from "$lib/dusk/icons";
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
   import { getNetworkName, isConnected } from "$lib/network";
@@ -159,8 +163,17 @@
     className="dusk-navbar__brand"
     href="/"
   >
-    <Icon className="dusk-navbar__glyph" path={duskIcon} />
-    <span class="dusk-navbar__brand-name">Dusk Explorer</span>
+    <!-- The Dusk wordmark, a thin line and the app's name, as the wallet's. -->
+    <svg
+      aria-hidden="true"
+      class="dusk-navbar__wordmark"
+      viewBox={DUSK_WORDMARK_VIEW_BOX}
+    >
+      <path d={DUSK_WORDMARK_GLYPH} fill-rule="evenodd" />
+      <path d={DUSK_WORDMARK_LETTERS} />
+    </svg>
+    <span aria-hidden="true" class="dusk-navbar__divider"></span>
+    <span class="dusk-navbar__app-label">Explorer</span>
   </AppAnchor>
 
   <NavList

@@ -4,6 +4,23 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
 <div
   class="statistics-panel"
 >
+  <figure
+    class="statistics-panel__face"
+  >
+    <svg
+      class="nodes-world-map"
+      data-places="21"
+    />
+    <!---->
+     
+    <figcaption
+      class="statistics-panel__face-caption"
+    >
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
+   
   <div
     class="statistics-panel__statistics"
   >
@@ -387,6 +404,23 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
 <div
   class="statistics-panel"
 >
+  <figure
+    class="statistics-panel__face"
+  >
+    <svg
+      class="nodes-world-map"
+      data-places="21"
+    />
+    <!---->
+     
+    <figcaption
+      class="statistics-panel__face-caption"
+    >
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
+   
   <div
     class="statistics-panel__statistics"
   >

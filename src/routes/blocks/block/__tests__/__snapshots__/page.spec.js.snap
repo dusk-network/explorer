@@ -20,9 +20,25 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h1
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Block
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h1>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -66,9 +82,25 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h2
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Transactions
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h2>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -118,9 +150,25 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h1
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Block
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h1>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -623,9 +671,25 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h2
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Transactions
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h2>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -826,7 +890,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     class="transaction__transaction-id-container"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                      class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                       href="/some-base-path/transactions/transaction?id=3a3f6f90a1012ae751b4448bcb8e98def0ba2b18170239bd69fcf8e2e37f0602"
                     >
                       <!---->
@@ -1088,7 +1152,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     class="transaction__transaction-id-container"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                      class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                       href="/some-base-path/transactions/transaction?id=07bfabea1d94c16f2dc3697fa642f6cecea6e81bf76b9644efbb6e2723b76d00"
                     >
                       <!---->
@@ -1255,9 +1319,25 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         <h1
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Block
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h1>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -1760,9 +1840,25 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         <h2
           class="data-card__header-title"
         >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            [
+          </span>
           Transactions
+          <span
+            aria-hidden="true"
+            class="ledger-bracket"
+          >
+            ]
+          </span>
+          
           
         </h2>
+        <!---->
+         
         <!---->
          
         <!---->

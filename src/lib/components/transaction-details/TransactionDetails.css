@@ -25,19 +25,10 @@
   min-width: 0;
 }
 
-.transaction-details__list-anchor,
-.transaction-details__list-anchor:visited {
-  text-decoration: none;
-}
-
-.transaction-details__list-anchor:hover .full-value__middle {
-  color: var(--calm-text);
-}
-
-.transaction-details__block-link,
-.transaction-details__block-link:visited {
-  text-decoration-line: underline;
-  text-decoration-color: var(--calm-line2);
+/* The block's height in Söhne Mono. */
+.transaction-details__block-link {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
 }
 
 .transaction-details__evm {

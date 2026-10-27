@@ -1,0 +1,37 @@
+/*
+ * A head in the ledger's type, as [ BLOCKS ]: its brackets in the muted
+ * text's colour, a space from the word, drawn and not read.
+ */
+.ledger-bracket {
+  --bracket-gap: 0.6em;
+
+  display: inline-block;
+  width: 1ch;
+  color: var(--calm-muted);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.ledger-bracket:first-child {
+  margin-right: var(--bracket-gap);
+}
+
+.ledger-bracket:last-child {
+  margin-left: var(--bracket-gap);
+}
+
+/*
+ * Phones: the opening bracket and its space hang in the page's margin, so
+ * the word lines up with what is under it. The space is tighter, to keep
+ * the bracket clear of the screen's edge. A bracket is 1ch wide, to the
+ * pixel.
+ */
+@media (max-width: 47.99rem) {
+  .ledger-bracket {
+    --bracket-gap: 0.3em;
+  }
+
+  .ledger-bracket:first-child {
+    margin-left: calc(-1ch - var(--bracket-gap));
+  }
+}

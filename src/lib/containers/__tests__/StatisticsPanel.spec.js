@@ -2,6 +2,7 @@ import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
 import { get } from "svelte/store";
 
+import * as mockData from "$lib/mock-data";
 import { resolveAfter } from "$lib/dusk/promise";
 import { duskAPI } from "$lib/services";
 import { appStore } from "$lib/stores";
@@ -12,6 +13,15 @@ const marketDataSettleTime = vi.hoisted(() => {
   vi.useFakeTimers();
 
   return 100;
+});
+// The map's countries are drawn in full on the home page's snapshot.
+vi.mock("$lib/components", async (importOriginal) => {
+  /** @type {import("$lib/components")} */
+  const original = await importOriginal();
+  const { default: WorldMapStub } =
+    await import("./test-components/WorldMapStub.svelte");
+
+  return { ...original, WorldMap: WorldMapStub };
 });
 vi.mock("$lib/services", async (importOriginal) => {
   /** @type {import("$lib/services")} */
@@ -54,6 +64,7 @@ describe("StatisticsPanel", () => {
 
   afterAll(() => {
     vi.useRealTimers();
+    vi.doUnmock("$lib/components");
     vi.doUnmock("$lib/services");
   });
 
@@ -132,5 +143,24 @@ describe("StatisticsPanel", () => {
     // On mainnet the price leads, and the market cap follows.
     expect(titlesOf(container, "primary")[0]).toBe("DUSK price");
     expect(titlesOf(container, "secondary")[0]).toBe("Market cap");
+  });
+
+  it("should lead with the network's map, and say what its rings are", async () => {
+    const { container } = render(StatisticsPanel);
+
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    const face = container.querySelector(".statistics-panel__face");
+
+    expect(face?.tagName).toBe("FIGURE");
+    expect(face?.querySelector(".nodes-world-map")).toHaveAttribute(
+      "data-places",
+      String(mockData.nodeLocationsCount.length)
+    );
+    expect(face?.querySelector("figcaption")).toHaveTextContent(
+      "Rings show where provisioners run nodes. The bigger the ring, the more nodes."
+    );
+    // First in the panel, before the numbers.
+    expect(container.firstElementChild?.firstElementChild).toBe(face);
   });
 });
