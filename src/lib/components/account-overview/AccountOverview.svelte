@@ -155,7 +155,7 @@
       {:else if stake !== undefined}
         <DuskAmount
           className="account-overview-panel__balance"
-          lux={(stake?.active ?? 0) + (stake?.inactive ?? 0)}
+          lux={(stake?.active ?? 0n) + (stake?.inactive ?? 0n)}
         />
       {:else}
         <p>Loading...</p>
@@ -168,7 +168,7 @@
       {:else if stake !== undefined}
         <DuskAmount
           className="account-overview-panel__balance"
-          lux={stake?.reward ?? 0}
+          lux={stake?.reward ?? 0n}
         />
       {:else}
         <p>Loading...</p>

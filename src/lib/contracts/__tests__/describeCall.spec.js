@@ -30,12 +30,22 @@ describe("describeCall", () => {
 
   it("should name Dusk Domains contracts and their common calls", async () => {
     await expect(
-      describeCall(duskDomainsStore, "issue_reserved")
+      describeCall(duskDomainsStore, "issue_reserved", 1)
     ).resolves.toEqual({ label: "Reserved name issued", name: "Dusk Domains" });
-    await expect(describeCall(duskDomainsStore, "commit")).resolves.toEqual({
+    await expect(describeCall(duskDomainsStore, "commit", 1)).resolves.toEqual({
       label: null,
       name: "Dusk Domains",
     });
+  });
+
+  it("should name Dusk Domains contracts on their own network only", async () => {
+    // A mainnet contract, called on testnet, on a devnet, or before the
+    // node has said which network it is on.
+    for (const chainId of [2, 3, undefined]) {
+      await expect(
+        describeCall(duskDomainsStore, "issue_reserved", chainId)
+      ).resolves.toEqual({ label: null, name: null });
+    }
   });
 
   it("should know nothing of other contracts or inherited keys", async () => {

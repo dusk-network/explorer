@@ -93,9 +93,9 @@ const duskDomainsLabels = new Map([
 
 /**
  * The name of a known contract, and plain words for a common call to it.
- * Either is `null` when there is none. Contracts others deployed are known
- * on their own network only, once the node has said which it is on. It
- * reads nothing from the node.
+ * Either is `null` when there is none. Contracts others deployed, Dusk
+ * Domains' among them, are known on their own network only, once the node
+ * has said which it is on. It reads nothing from the node.
  *
  * @param {string} contractId
  * @param {string} method
@@ -112,7 +112,7 @@ async function describeCall(contractId, method, chainId = undefined) {
     return { label: known.labels?.get(method) ?? null, name: known.name };
   }
 
-  return (await isDuskDomainsContract(contractId).catch(() => false))
+  return (await isDuskDomainsContract(contractId, chainId).catch(() => false))
     ? { label: duskDomainsLabels.get(method) ?? null, name: "Dusk Domains" }
     : { label: null, name: null };
 }

@@ -56,6 +56,23 @@
 
   $: isPublic = data.txtype.toLowerCase() === "moonlight";
 
+  /**
+   * What a transaction shows everyone. A shielded call hides its sender and
+   * the value it moves, but not the contract it calls or the DUSK it sends
+   * to it.
+   *
+   * @param {Transaction} transaction
+   * @param {boolean} isPublicTransaction
+   */
+  const privacyOf = (transaction, isPublicTransaction) =>
+    isPublicTransaction
+      ? "Sender, receiver and amount are visible to everyone"
+      : !transaction.contract
+        ? "Sender, receiver and amount are hidden"
+        : transaction.deposit
+          ? "Sender and value are hidden. The contract called and the DUSK sent to it are public"
+          : "Sender and value are hidden. The contract called is public";
+
   // A call shows plain words, or the contract's name, beside its method.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
@@ -70,9 +87,7 @@
       class="transaction-type__privacy"
       data-tooltip-disabled={!displayTooltips}
       data-tooltip-id="main-tooltip"
-      data-tooltip-text={isPublic
-        ? "Sender, receiver and amount are visible to everyone"
-        : "Sender, receiver and amount are hidden"}
+      data-tooltip-text={privacyOf(data, isPublic)}
       data-tooltip-place="top"
       data-tooltip-type="info">{isPublic ? "Public" : "Shielded"}</span
     >

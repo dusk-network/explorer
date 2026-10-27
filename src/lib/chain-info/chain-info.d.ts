@@ -1,14 +1,14 @@
 type AccountStake = {
   /** The stake taking part in consensus, in LUX. */
-  active: number;
+  active: bigint;
   /** The block from which the stake takes part. */
   eligibility: number;
   faults: number;
   hardFaults: number;
   /** The stake that is locked, in LUX. */
-  inactive: number;
+  inactive: bigint;
   /** The rewards not yet claimed, in LUX. */
-  reward: number;
+  reward: bigint;
 };
 
 type BlockHeader = {

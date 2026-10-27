@@ -67,10 +67,13 @@
   order: 2;
   width: 100%;
   /*
-    On a small viewport, the navbar's first row is 80px tall and the search
-    below it 4.25rem, the box plus the gap: the opened menu fills the rest.
+    On a small viewport, the opened menu fills the screen below where it
+    starts (--menu-top, measured: under a test network's strip, the logo,
+    the search and any notice), and scrolls if it needs more. Until it is
+    measured: the logo's 80px row and the search's 4.25rem.
   */
-  height: calc(100dvh - 80px - 4.25rem);
+  height: calc(100dvh - var(--menu-top, calc(80px + 4.25rem)));
+  overflow-y: auto;
   gap: 1.25rem;
   padding-top: 1rem;
 }
@@ -128,6 +131,7 @@
 
   .dusk-navbar__menu {
     height: 100%;
+    overflow-y: visible;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

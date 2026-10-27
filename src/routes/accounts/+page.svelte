@@ -14,22 +14,35 @@
     }
   };
 
+  /**
+   * The account reads in flight answer only for the account last asked
+   * for: going A → B → A, the first A's late answer is dropped.
+   */
+  let generation = 0;
+
   let errorFetchingAccountStatus = false;
   /** @type {AccountStatus|null} */
   let accountStatus = null;
 
-  /** @param {string} accountKey */
-  function fetchAccountStatus(accountKey) {
+  /**
+   * @param {string} accountKey
+   * @param {number} asked The generation that asks
+   */
+  function fetchAccountStatus(accountKey, asked) {
     accountStatus = null;
-    duskAPI
-      .getAccountStatus(accountKey)
-      .then((status) => {
-        accountStatus = status;
-        errorFetchingAccountStatus = false;
-      })
-      .catch(() => {
-        errorFetchingAccountStatus = true;
-      });
+    duskAPI.getAccountStatus(accountKey).then(
+      (status) => {
+        if (asked === generation) {
+          accountStatus = status;
+          errorFetchingAccountStatus = false;
+        }
+      },
+      () => {
+        if (asked === generation) {
+          errorFetchingAccountStatus = true;
+        }
+      }
+    );
   }
 
   let errorFetchingStake = false;
@@ -40,22 +53,23 @@
    * One read of the stake contract per account shown.
    *
    * @param {string} accountKey
+   * @param {number} asked The generation that asks
    */
-  function fetchStake(accountKey) {
+  function fetchStake(accountKey, asked) {
     stake = undefined;
     errorFetchingStake = false;
-    duskAPI
-      .getStake(accountKey)
-      .then((result) => {
-        if (accountKey === lastRequestedKey) {
+    duskAPI.getStake(accountKey).then(
+      (result) => {
+        if (asked === generation) {
           stake = result;
         }
-      })
-      .catch(() => {
-        if (accountKey === lastRequestedKey) {
+      },
+      () => {
+        if (asked === generation) {
           errorFetchingStake = true;
         }
-      });
+      }
+    );
   }
 
   /** @type {{ date: Date, height: number } | null} */
@@ -92,9 +106,10 @@
   $: searchedName = $page.url.searchParams.get("name");
   $: if (key && key !== lastRequestedKey) {
     lastRequestedKey = key;
+    generation += 1;
     getTransactions();
-    fetchAccountStatus(key);
-    fetchStake(key);
+    fetchAccountStatus(key, generation);
+    fetchStake(key, generation);
   }
   $: ({ data, error, isLoading } = $dataStore);
   $: ({ isSmallScreen } = $appStore);

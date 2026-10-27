@@ -21,4 +21,27 @@ describe("TransactionType", () => {
 
     expect(getByText(label)).toHaveClass("transaction-type__privacy");
   });
+
+  it("should say what a shielded call hides, and what it shows", () => {
+    const shielded = { ...transaction, txtype: "Phoenix" };
+    const stake =
+      "0200000000000000000000000000000000000000000000000000000000000000";
+    const privacy = (/** @type {Transaction} */ data) => {
+      cleanup();
+
+      return render(TransactionType, { props: { data, displayTooltips: true } })
+        .getByText("Shielded")
+        .getAttribute("data-tooltip-text");
+    };
+
+    expect(privacy(shielded)).toBe("Sender, receiver and amount are hidden");
+    expect(
+      privacy({ ...shielded, contract: stake, deposit: 1_000_000_000_000 })
+    ).toBe(
+      "Sender and value are hidden. The contract called and the DUSK sent to it are public"
+    );
+    expect(privacy({ ...shielded, contract: stake, deposit: 0 })).toBe(
+      "Sender and value are hidden. The contract called is public"
+    );
+  });
 });

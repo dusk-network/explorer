@@ -90,6 +90,40 @@ describe("SearchField", () => {
     expect(gotoSpy).not.toHaveBeenCalled();
   });
 
+  it("should drop the answer of a search a newer one overtook", async () => {
+    const slow = Promise.withResolvers();
+    const onInvalid = vi.fn();
+    const { getByRole } = render(SearchField, {
+      events: { invalid: onInvalid },
+    });
+    const input = getByRole("textbox");
+    const submit = async (/** @type {string} */ query) => {
+      await fireEvent.input(input, { target: { value: query } });
+      await fireEvent.submit(
+        /** @type {HTMLFormElement} */ (input.closest("form"))
+      );
+    };
+
+    searchSpy
+      .mockReturnValueOnce(/** @type {any} */ (slow.promise))
+      .mockResolvedValueOnce({ id: account, type: "account" });
+
+    await submit("12345");
+    await submit("67890");
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
+        `/some-base-path/accounts/?key=${account}`
+      )
+    );
+
+    // The first search finds nothing, after the second opened its page.
+    slow.resolve(null);
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(onInvalid).not.toHaveBeenCalled();
+    expect(gotoSpy).toHaveBeenCalledTimes(1);
+  });
+
   it("should keep what was typed and say what didn't match", async () => {
     const onInvalid = await search("e5f314fb49a8a2f8");
 

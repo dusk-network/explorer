@@ -1,23 +1,29 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { act, cleanup, render } from "@testing-library/svelte";
 
 import { duskAPI } from "$lib/services";
 
 import AccountPage from "../+page.svelte";
 
-const key = vi.hoisted(
-  () =>
-    "qxwSidLBa1rJ74ngfP4GUCaNsAYjMboDPHzbmiVEMmNNK26hVkYe8QccH6ipYdVRsUDnx9QS1KBeu8ZoMDFpXJJE6YCcHy2AykvJ7eEAGc7PGDgCZFV5YJBxzukADkQ2Bgr"
-);
+const { key, pages } = vi.hoisted(() => ({
+  key: "qxwSidLBa1rJ74ngfP4GUCaNsAYjMboDPHzbmiVEMmNNK26hVkYe8QccH6ipYdVRsUDnx9QS1KBeu8ZoMDFpXJJE6YCcHy2AykvJ7eEAGc7PGDgCZFV5YJBxzukADkQ2Bgr",
+  /** @type {{ open: (account: string) => void }} */
+  pages: { open: () => {} },
+}));
 
 vi.mock("$app/stores", async (importOriginal) => {
-  const { readable } = await import("svelte/store");
+  const { writable } = await import("svelte/store");
+  /** @param {string} account */
+  const at = (account) => ({
+    url: new URL(`http://localhost/accounts/?key=${account}`),
+  });
+  const page = writable(at(key));
+
+  pages.open = (account) => page.set(at(account));
 
   return {
     .../** @type {object} */ (await importOriginal()),
-    page: readable({
-      url: new URL(`http://localhost/accounts/?key=${key}`),
-    }),
+    page: { subscribe: page.subscribe },
   };
 });
 
@@ -44,12 +50,12 @@ vi.mock("$lib/services", async (importOriginal) => {
       }),
       getMoonlightAccountTransactions: vi.fn().mockResolvedValue([]),
       getStake: vi.fn().mockResolvedValue({
-        active: 1_000_000_000_000,
+        active: 1_000_000_000_000n,
         eligibility: 123_120,
         faults: 1,
         hardFaults: 0,
-        inactive: 0,
-        reward: 31_027_186_000,
+        inactive: 0n,
+        reward: 31_027_186_000n,
       }),
     },
   };
@@ -59,6 +65,7 @@ describe("Account page", () => {
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    pages.open(key);
   });
 
   afterAll(() => {
@@ -157,4 +164,51 @@ describe("Account page", () => {
     ).toBeNull();
     expect(duskAPI.getChainTip).not.toHaveBeenCalled();
   });
+
+  it.each([
+    ["answer", (/** @type {any} */ late) => late.resolve(stakeOf(1n))],
+    ["failure", (/** @type {any} */ late) => late.reject(new Error("late"))],
+  ])(
+    "should drop a stake read's late %s once the page has moved on, even back to the same account",
+    async (_, settleLate) => {
+      const other =
+        "n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6";
+      const late = Promise.withResolvers();
+
+      vi.mocked(duskAPI.getStake)
+        .mockReturnValueOnce(/** @type {any} */ (late.promise))
+        .mockResolvedValueOnce(stakeOf(5n))
+        .mockResolvedValueOnce(stakeOf(2n));
+
+      const { container } = render(AccountPage);
+      const rewards = () =>
+        container.querySelectorAll(".dusk-amount")[2]?.textContent?.trim();
+
+      await act(() => pages.open(other));
+      await act(() => pages.open(key));
+      await vi.waitFor(() => expect(rewards()).toBe("2 DUSK"));
+
+      settleLate(late);
+      await new Promise((resolve) => setTimeout(resolve));
+
+      expect(rewards()).toBe("2 DUSK");
+      expect(duskAPI.getStake).toHaveBeenCalledTimes(3);
+    }
+  );
 });
+
+/**
+ * A stake with only rewards, in whole DUSK.
+ *
+ * @param {bigint} dusk
+ */
+function stakeOf(dusk) {
+  return {
+    active: 0n,
+    eligibility: 0,
+    faults: 0,
+    hardFaults: 0,
+    inactive: 0n,
+    reward: dusk * 1_000_000_000n,
+  };
+}

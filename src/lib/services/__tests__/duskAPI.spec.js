@@ -363,12 +363,12 @@ describe("duskAPI", () => {
     );
 
     await expect(duskAPI.getStake(address)).resolves.toStrictEqual({
-      active: 362880000000,
+      active: 362880000000n,
       eligibility: 123120,
       faults: 10,
       hardFaults: 0,
-      inactive: 999637120000000,
-      reward: 31027186,
+      inactive: 999637120000000n,
+      reward: 31027186n,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
 
@@ -384,6 +384,30 @@ describe("duskAPI", () => {
       body: JSON.stringify(address),
       headers: { "Content-Type": "application/json" },
       method: "POST",
+    });
+  });
+
+  it("should keep stake amounts exact, past what a number holds", async () => {
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        amount: {
+          eligibility: "3086640",
+          locked: "1048434300000001",
+          value: "13102790940789549",
+        },
+        faults: 0,
+        // eslint-disable-next-line camelcase
+        hard_faults: 0,
+        reward: "9007199254740993",
+      })
+    );
+
+    await expect(
+      duskAPI.getStake(mockData.hostProvisioners[0].key)
+    ).resolves.toMatchObject({
+      active: 13102790940789549n,
+      inactive: 1048434300000001n,
+      reward: 9007199254740993n,
     });
   });
 

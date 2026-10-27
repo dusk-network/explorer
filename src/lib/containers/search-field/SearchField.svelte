@@ -12,6 +12,12 @@
   /** @type {String}*/
   let value = "";
 
+  /**
+   * The searches made so far: only the latest one's answer counts, so a
+   * slow miss can't stand in for a newer search's page.
+   */
+  let searches = 0;
+
   const dispatch = createEventDispatcher();
 
   /**
@@ -49,21 +55,39 @@
     submitHandler();
   }
 
+  /** Drops the answers of the searches in flight, as after leaving the page. */
+  export function cancel() {
+    searches += 1;
+  }
+
   function submitHandler() {
     const query = value.trim();
+    const current = ++searches;
+
+    /**
+     * Runs an answer's step only if no search came after it.
+     *
+     * @template {any[]} T
+     * @param {(...args: T) => unknown} step
+     */
+    const ifLatest =
+      (step) =>
+      (/** @type {T} */ ...args) =>
+        current === searches ? step(...args) : undefined;
 
     if (!query) {
       return;
     }
 
     if (isDuskName(query)) {
-      resolveDuskName(query)
-        .then((address) =>
+      resolveDuskName(query).then(
+        ifLatest((address) =>
           open(
             `/accounts/?key=${address}&name=${encodeURIComponent(query.toLowerCase())}`
           )
-        )
-        .catch((res) => notFound(query, res));
+        ),
+        ifLatest((res) => notFound(query, res))
+      );
       return;
     }
 
@@ -72,9 +96,8 @@
       return;
     }
 
-    duskAPI
-      .search(query)
-      .then((data) => {
+    duskAPI.search(query).then(
+      ifLatest((data) => {
         switch (data?.type) {
           case "block":
             return open(`/blocks/block?id=${data.id}`);
@@ -85,10 +108,11 @@
           default:
             return explainMiss(query);
         }
-      })
-      .catch(() =>
+      }),
+      ifLatest(() =>
         notFound(query, new Error("The search failed. Please try again."))
-      );
+      )
+    );
   }
 </script>
 

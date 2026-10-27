@@ -26,6 +26,24 @@
   /** @type {SearchField} */
   let searchField;
 
+  /** @type {HTMLElement | undefined} */
+  let menu;
+
+  /**
+   * Where the opened menu starts on a small screen: under a test network's
+   * strip, the logo, the search and any notice. It takes the rest of the
+   * screen and scrolls within it.
+   */
+  let menuTop = 0;
+
+  async function measureMenu() {
+    await tick();
+
+    if (!hidden && menu) {
+      menuTop = Math.max(0, menu.getBoundingClientRect().top);
+    }
+  }
+
   let navigation = [
     {
       link: "/",
@@ -92,6 +110,7 @@
     }
 
     updateOffset();
+    measureMenu();
   }
 
   $: if (!showSearchNotification) {
@@ -107,10 +126,14 @@
     hidden = true;
     dispatch("toggleMenu", hidden);
     showSearchNotification = false;
+    // A search still in flight was for the page left behind.
+    searchField?.cancel();
   });
 
   $: ({ darkMode, nodeInfo } = $appStore);
 </script>
+
+<svelte:window on:resize={measureMenu} />
 
 <nav
   style={showSearchNotification
@@ -136,12 +159,15 @@
     on:click={() => {
       hidden = !hidden;
       dispatch("toggleMenu", hidden);
+      measureMenu();
     }}
   />
   <div
+    bind:this={menu}
     class="dusk-navbar__menu"
     class:dusk-navbar__menu--hidden={hidden}
     id="dusk-navbar-menu"
+    style:--menu-top={menuTop ? `${menuTop}px` : undefined}
   >
     <Badge
       className="dusk-navbar__menu--network"

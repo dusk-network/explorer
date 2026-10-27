@@ -9,7 +9,7 @@
    * An amount in LUX, shown in DUSK to at most four decimals, in full on
    * hover.
    *
-   * @type {number}
+   * @type {bigint | number | string}
    */
   export let lux;
 
