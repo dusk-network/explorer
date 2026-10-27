@@ -10,10 +10,30 @@
   color: var(--calm-text);
 }
 
+/*
+ * The rings breathe, all together: from the chain's blue to a lighter one
+ * and back, slowly, once every 3 seconds. Still where motion is reduced.
+ */
 .nodes-world-map__location {
   color: var(--chain-blue);
   cursor: default;
   outline: none;
+  animation-name: nodes-world-map-pulse;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes nodes-world-map-pulse {
+  50% {
+    color: var(--chain-blue-glow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nodes-world-map__location {
+    animation-name: none;
+  }
 }
 
 /* A little stronger than the stripes, to stand out from them. */

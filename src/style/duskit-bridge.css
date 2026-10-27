@@ -32,6 +32,8 @@
    * the light one, 5.5:1 on the page and 5:1 on a hovered row.
    */
   --chain-blue: #005ed1;
+  /* The map's rings breathe out to this lighter blue, and back. */
+  --chain-blue-glow: #5a9be6;
   --calm-focus: var(--chain-blue);
   --calm-focus-ring: rgb(0 94 209 / 0.3);
 
@@ -181,6 +183,7 @@
   --calm-pill: #f2f0eb;
   --calm-on-pill: #141416;
   --chain-blue: #71b1ff;
+  --chain-blue-glow: #b9d9ff;
   --calm-focus-ring: rgb(113 177 255 / 0.35);
   --calm-scrim: rgb(5 5 6 / 0.66);
   --calm-test: #b9aeff;

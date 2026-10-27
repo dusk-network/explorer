@@ -68,6 +68,7 @@ and this project adheres to
 - Show a transaction's status in green when it went through and in red when it failed
 - Mark rounded numbers with "≈" instead of "~"
 - Set detail pages' labels in a column on wide screens, each value and its Copy right after it
+- Pulse the map's rings softly, and keep them still when motion is reduced
 
 ### Removed
 
