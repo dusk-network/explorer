@@ -15,18 +15,25 @@ describe("Blocks page", () => {
   vi.setSystemTime(new Date(2024, 4, 30));
 
   const { blocksListEntries, fetchInterval } = get(appStore);
-  const getBlocksSpy = vi
-    .spyOn(duskAPI, "getBlocks")
-    .mockResolvedValue(gqlBlocks.blocks.map(transformBlock));
+  const blocks = gqlBlocks.blocks.map(transformBlock);
+  const newest = blocks[0].header.height;
+  const getBlocksSpy = vi.spyOn(duskAPI, "getBlocks").mockResolvedValue(blocks);
+
+  // The node has no block after the newest one.
+  const getBlocksInRangeSpy = vi
+    .spyOn(duskAPI, "getBlocksInRange")
+    .mockResolvedValue([blocks[0]]);
 
   afterEach(() => {
     cleanup();
     getBlocksSpy.mockClear();
+    getBlocksInRangeSpy.mockClear();
   });
 
   afterAll(() => {
     vi.useRealTimers();
     getBlocksSpy.mockRestore();
+    getBlocksInRangeSpy.mockRestore();
   });
 
   it("should render the Blocks page, start polling for blocks and stop the polling when unmounted", async () => {
@@ -44,19 +51,27 @@ describe("Blocks page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
-    expect(getBlocksSpy).toHaveBeenCalledTimes(2);
-    expect(getBlocksSpy).toHaveBeenNthCalledWith(2, blocksListEntries);
+    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(1);
+    expect(getBlocksInRangeSpy).toHaveBeenNthCalledWith(
+      1,
+      newest,
+      newest + blocksListEntries
+    );
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(getBlocksSpy).toHaveBeenCalledTimes(3);
-    expect(getBlocksSpy).toHaveBeenNthCalledWith(3, blocksListEntries);
+    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getBlocksSpy).toHaveBeenCalledTimes(1);
+    expect(container.querySelectorAll(".blocks-table tbody tr")).toHaveLength(
+      Math.min(blocks.length, get(appStore).chainInfoEntries)
+    );
 
     unmount();
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(getBlocksSpy).toHaveBeenCalledTimes(3);
+    expect(getBlocksInRangeSpy).toHaveBeenCalledTimes(2);
+    expect(getBlocksSpy).toHaveBeenCalledTimes(1);
   });
 
   it("should render the Blocks page with the mobile layout", async () => {

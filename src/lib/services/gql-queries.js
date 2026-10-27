@@ -88,6 +88,21 @@ export const getBlocksQueryInfo = (amount) => ({
   variables: { amount },
 });
 
+/**
+ * The blocks from height `from` to height `to`, both included, oldest
+ * first: the ones the node has.
+ *
+ * @param {number} from
+ * @param {number} to
+ */
+export const getBlocksRangeQueryInfo = (from, to) => ({
+  query: `
+    ${blockFragment}
+    query($from: Int!, $to: Int!) { blocks(range: [$from, $to]) {...BlockInfo} }
+  `,
+  variables: { from, to },
+});
+
 /** @param {number} amount */
 export const getLatestChainQueryInfo = (amount) => ({
   query: `
@@ -104,6 +119,26 @@ export const getLatestChainQueryInfo = (amount) => ({
 export const getMempoolTx = (id) => ({
   query: "query($id: String!) { mempoolTx(hash: $id) { isDeploy } }",
   variables: { id },
+});
+
+/**
+ * The transactions of the blocks from height `from` to height `to`, both
+ * included, with each block's height and hash, oldest first.
+ *
+ * @param {number} from
+ * @param {number} to
+ */
+export const getTransactionsRangeQueryInfo = (from, to) => ({
+  query: `
+    ${transactionFragment}
+    query($from: Int!, $to: Int!) {
+      blocks(range: [$from, $to]) {
+        header { hash, height },
+        transactions {...TransactionInfo}
+      }
+    }
+  `,
+  variables: { from, to },
 });
 
 /** @param {number} amount */

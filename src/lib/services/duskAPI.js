@@ -29,11 +29,13 @@ import {
   getBlockHashQueryInfo,
   getBlockQueryInfo,
   getBlocksQueryInfo,
+  getBlocksRangeQueryInfo,
   getFullMoonlightAccountHistoryQuery,
   getLatestChainQueryInfo,
   getMempoolTx,
   getTransactionQueryInfo,
   getTransactionsQueryInfo,
+  getTransactionsRangeQueryInfo,
   searchByHashQueryInfo,
   transactionFragment,
 } from "./gql-queries";
@@ -167,15 +169,31 @@ const duskAPI = {
   },
 
   /**
-   * The height and time of the last block, in one query.
+   * The blocks from height `from` to height `to`, both included, newest
+   * first as `getBlocks` gives them: the ones the node has.
    *
-   * @returns {Promise<{ date: Date, height: number }>}
+   * @param {number} from
+   * @param {number} to
+   * @returns {Promise<Block[]>}
+   */
+  getBlocksInRange(from, to) {
+    return gqlGet(getBlocksRangeQueryInfo(from, to))
+      .then(getKey("blocks"))
+      .then(transformBlocks)
+      .then((blocks) => blocks.reverse());
+  },
+
+  /**
+   * The height, hash and time of the last block, in one query.
+   *
+   * @returns {Promise<{ date: Date, hash: string, height: number }>}
    */
   getChainTip() {
     return gqlGet({
-      query: "query { block(height: -1) { header { height timestamp } } }",
+      query: "query { block(height: -1) { header { hash height timestamp } } }",
     }).then(({ block }) => ({
       date: unixTsToDate(block.header.timestamp),
+      hash: block.header.hash,
       height: block.header.height,
     }));
   },
@@ -401,6 +419,34 @@ const duskAPI = {
     return gqlGet(getTransactionsQueryInfo(amount))
       .then(getKey("transactions"))
       .then(transformTransactions);
+  },
+
+  /**
+   * The transactions of the blocks from height `from` to height `to`, both
+   * included, newest first as `getTransactions` gives them, and those
+   * blocks' heights and hashes, newest first: the ones the node has.
+   *
+   * @param {number} from
+   * @param {number} to
+   * @returns {Promise<{ blocks: { hash: string, height: number }[], transactions: Transaction[] }>}
+   */
+  getTransactionsInRange(from, to) {
+    return gqlGet(getTransactionsRangeQueryInfo(from, to)).then(
+      ({ blocks }) => {
+        /** @type {{ header: { hash: string, height: number }, transactions: GQLTransaction[] }[]} */
+        const newestFirst = [...blocks].reverse();
+
+        return {
+          blocks: newestFirst.map(({ header }) => ({
+            hash: header.hash,
+            height: header.height,
+          })),
+          transactions: newestFirst.flatMap((block) =>
+            transformTransactions(block.transactions)
+          ),
+        };
+      }
+    );
   },
 
   /**
