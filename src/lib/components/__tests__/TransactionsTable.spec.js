@@ -75,6 +75,34 @@ describe("Transactions Table", () => {
         td.textContent?.replace(/\s+/g, " ").trim()
       );
 
+    /**
+     * What a part of a row says, as a screen reader reads it: the arrow
+     * between the sender and the receiver is drawn, not read.
+     *
+     * @param {Element} row
+     * @param {string} selector
+     */
+    const readOut = (row, selector) => {
+      const part = /** @type {Element} */ (
+        row.querySelector(selector)?.cloneNode(true)
+      );
+
+      part
+        .querySelectorAll("[aria-hidden='true']")
+        .forEach((el) => el.remove());
+
+      return part.textContent?.replace(/\s+/g, " ").trim();
+    };
+
+    /**
+     * What a part of a row shows.
+     *
+     * @param {Element} row
+     * @param {string} selector
+     */
+    const textOf = (row, selector) =>
+      row.querySelector(selector)?.textContent?.replace(/\s+/g, " ").trim();
+
     it("should show who sent how much to whom, and leave gas to the transaction page", async () => {
       const { container, getAllByText, getByRole, getByText } = render(
         TransactionsTable,
@@ -85,19 +113,18 @@ describe("Transactions Table", () => {
       const rows = container.querySelectorAll("tbody tr");
 
       expect(getHeaders(container)).toStrictEqual([
+        "Transaction",
         "ID",
-        "From / To",
-        "Amount (DUSK)",
-        "Fee (DUSK)",
-        "Status",
-        "Type",
+        "Time",
+        "Fee",
+        "Amount",
       ]);
-      expect(
-        getCells(/** @type {HTMLElement} */ (rows[0])).slice(1, 3)
-      ).toStrictEqual([
-        `From ${transfer.from?.slice(0, 6)}...${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}...${transfer.to?.slice(-6)}`,
-        "9,812.3789",
-      ]);
+      expect(readOut(rows[0], ".transaction__parties")).toBe(
+        `From ${transfer.from?.slice(0, 6)}...${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}...${transfer.to?.slice(-6)}`
+      );
+      expect(getCells(/** @type {HTMLElement} */ (rows[0]))[4]).toBe(
+        "9,812.3789 DUSK"
+      );
       // Four decimals at most, as in the wallets, and every one on hover.
       expect(getByText("9,812.3789")).toHaveAttribute(
         "title",
@@ -112,15 +139,37 @@ describe("Transactions Table", () => {
           name: `${transfer.to?.slice(0, 6)}...${transfer.to?.slice(-6)}`,
         })
       ).toHaveAttribute("href", `/some-base-path/accounts/?key=${transfer.to}`);
-      await vi.waitFor(() =>
-        expect(
-          getCells(/** @type {HTMLElement} */ (rows[1])).slice(1, 3)
-        ).toStrictEqual([
-          `From ${transfer.from?.slice(0, 6)}...${transfer.from?.slice(-6)} To Stake contract`,
-          "0",
-        ])
+      await vi.waitFor(() => {
+        expect(readOut(rows[1], ".transaction__parties")).toBe(
+          `From ${transfer.from?.slice(0, 6)}...${transfer.from?.slice(-6)} To Stake contract`
+        );
+        // A failure says so first, and what failed sent nothing: its amount is muted.
+        expect(textOf(rows[1], ".transaction__line")).toBe(
+          "Failed · Claim rewards · withdraw"
+        );
+      });
+      expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
+      expect(rows[1].querySelector(".row-amount")).toHaveClass(
+        "row-amount--muted"
       );
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
+    });
+
+    it('should say "Contract call" for a call with no plain words, as its receiver names the contract', async () => {
+      const { container } = render(TransactionsTable, {
+        props: {
+          data: [{ ...call, method: "stake", txerror: "" }],
+          mode: "full",
+        },
+      });
+      const [row] = container.querySelectorAll("tbody tr");
+
+      await vi.waitFor(() => {
+        expect(readOut(row, ".transaction__parties")).toMatch(
+          / To Stake contract$/
+        );
+        expect(textOf(row, ".transaction__line")).toBe("Contract call · stake");
+      });
     });
 
     it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", () => {
@@ -179,24 +228,22 @@ describe("Transactions Table", () => {
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
     });
 
-    it("should fit the home page: no fee or status column, failures beside the time", () => {
+    it("should fit the home page: no fee or time column, the time under the amount, failures first", () => {
       const { container } = render(TransactionsTable, {
         props: { data: [transfer, call], mode: "compact" },
       });
       const rows = container.querySelectorAll("tbody tr");
 
       expect(getHeaders(container)).toStrictEqual([
+        "Transaction",
         "ID",
-        "From / To",
-        "Amount (DUSK)",
-        "Type",
+        "Amount",
       ]);
-      expect(getCells(/** @type {HTMLElement} */ (rows[0]))[0]).not.toContain(
-        "Failed"
-      );
-      expect(getCells(/** @type {HTMLElement} */ (rows[1]))[0]).toMatch(
-        / · Failed$/
-      );
+      expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
+      expect(textOf(rows[1], ".transaction__line")).toMatch(/^Failed · /);
+      expect(
+        rows[0].querySelectorAll("td")[2].querySelector("time")
+      ).toHaveAttribute("data-tooltip-text", "Tue 16 Apr 2024, 06:39:09 UTC");
     });
   });
 

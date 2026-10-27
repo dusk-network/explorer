@@ -1,62 +1,39 @@
+/* A quiet chip: status words carry their colour on a neutral ground. */
 .dusk-badge {
-  padding: 0.35em 0.8em;
-  border-radius: var(--control-border-radius-size);
-  text-transform: uppercase;
-  font-family: var(--mono-font-family);
-  font-size: 0.75em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em 0.75em;
+  border: 0 none;
+  border-radius: 999px;
+  background-color: var(--calm-s2);
+  color: var(--calm-muted);
+  font-family: inherit;
+  font-size: 0.8125em;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  border-style: solid;
-  border-width: 0.0625em;
+  letter-spacing: 0;
+  line-height: 1.2;
   text-align: center;
+  text-transform: none;
 }
 
 .dusk-badge--variant-neutral {
-  background-color: transparent;
-  border-color: var(--on-background-color);
-  color: var(--on-background-color);
+  color: var(--calm-text);
 }
 
 .dusk-badge--variant-alt {
-  background-color: white;
-  border-color: white;
-  color: var(--on-background-color);
+  background-color: var(--calm-pill);
+  color: var(--calm-on-pill);
 }
 
 .dusk-badge--variant-warning {
-  background-color: color-mix(
-    in oklab,
-    var(--badge-warning-color),
-    transparent 84%
-  );
-  border-color: color-mix(
-    in oklab,
-    var(--badge-warning-color),
-    transparent 54%
-  );
-  color: var(--badge-warning-color);
+  color: var(--calm-pending);
 }
 
 .dusk-badge--variant-error {
-  background-color: color-mix(
-    in oklab,
-    var(--badge-error-color),
-    transparent 84%
-  );
-  border-color: color-mix(in oklab, var(--badge-error-color), transparent 54%);
-  color: var(--badge-error-color);
+  color: var(--calm-danger);
 }
 
 .dusk-badge--variant-success {
-  background-color: color-mix(
-    in oklab,
-    var(--badge-success-color),
-    transparent 84%
-  );
-  border-color: color-mix(
-    in oklab,
-    var(--badge-success-color),
-    transparent 54%
-  );
-  color: var(--badge-success-color);
+  color: var(--calm-online);
 }

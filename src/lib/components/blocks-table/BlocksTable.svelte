@@ -1,7 +1,9 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { RelativeTime } from "$lib/dusk/components";
+  import { mdiCubeOutline } from "@mdi/js";
+
+  import { Icon, RelativeTime } from "$lib/dusk/components";
   import { AppAnchor } from "$lib/components";
   import {
     Table,
@@ -32,37 +34,55 @@
   <TableHead>
     <TableRow>
       <TableCell type="th">Block</TableCell>
-      <TableCell type="th">Gas</TableCell>
-      <TableCell type="th">Txn(s)</TableCell>
-      <TableCell type="th">Rewards (Dusk)</TableCell>
+      <TableCell align="right" type="th">Transactions</TableCell>
+      <TableCell align="right" type="th">Gas used</TableCell>
+      <TableCell align="right" type="th">Reward</TableCell>
     </TableRow>
   </TableHead>
   <TableBody>
     {#each data as block (block)}
       <TableRow>
         <TableCell>
-          <AppAnchor
-            className="block__link"
-            href={`/blocks/block?id=${block.header.hash}`}
-            >{numberFormatter(block.header.height)}</AppAnchor
+          <div class="block__main">
+            <span aria-hidden="true" class="row-icon"
+              ><Icon path={mdiCubeOutline} /></span
+            >
+            <div class="block__who">
+              <AppAnchor
+                className="block__link"
+                href={`/blocks/block?id=${block.header.hash}`}
+                >{numberFormatter(block.header.height)}</AppAnchor
+              >
+              <span class="row-line">
+                <RelativeTime
+                  className="block__time"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text={formatDateTime(block.header.date)}
+                  date={block.header.date}
+                />
+              </span>
+            </div>
+          </div>
+        </TableCell>
+        <TableCell align="right"
+          >{numberFormatter(block.transactions.data.length)}</TableCell
+        >
+        <TableCell align="right">
+          <span class="block__gas"
+            >{numberFormatter(block.transactions.stats.gasUsed)}</span
           >
-          <RelativeTime
-            className="block__time"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text={formatDateTime(block.header.date)}
-            date={block.header.date}
-          />
+          <span class="row-line block__gas-price"
+            >avg price {numberFormatter(
+              block.transactions.stats.averageGasPrice
+            )}</span
+          >
         </TableCell>
-        <TableCell>
-          <b class="block__fee-avg-label">AVG PRICE:</b>
-          {numberFormatter(block.transactions.stats.averageGasPrice)}<br />
-          <b class="block__fee-total-label">USED:</b>
-          {numberFormatter(block.transactions.stats.gasUsed)}
-        </TableCell>
-        <TableCell>{numberFormatter(block.transactions.data.length)}</TableCell>
-        <TableCell
-          ><span title="{formatDuskExact(block.header.reward)} DUSK"
-            >{formatDusk(block.header.reward)}</span
+        <TableCell align="right"
+          ><span class="row-amount"
+            ><span title="{formatDuskExact(block.header.reward)} DUSK"
+              >{formatDusk(block.header.reward)}</span
+            >
+            <span class="row-unit">DUSK</span></span
           ></TableCell
         >
       </TableRow>

@@ -13,8 +13,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -28,34 +28,37 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          DUSK price
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
-            
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
+          
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Dusk Price
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -69,28 +72,31 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Market cap
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
-            
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
+          
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Total Market Cap
-        </span>
       </div>
       
     </div>
@@ -104,8 +110,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         data-tooltip-text="--- DUSK"
         data-tooltip-type="info"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -119,26 +125,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Current stake
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Current Stake
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
@@ -147,8 +156,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         data-tooltip-text="--- DUSK"
         data-tooltip-type="info"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -162,26 +171,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Pending stake
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Pending Stake
-        </span>
       </div>
       
     </div>
@@ -191,8 +203,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -206,32 +218,35 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Last block
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Last Block
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -245,26 +260,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Total transactions
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Total Transactions
-        </span>
       </div>
       
     </div>
@@ -274,8 +292,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -289,32 +307,35 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Active provisioners
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Active Provisioners
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -328,26 +349,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Pending provisioners
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
-            <span>
-              - - -
+            <span
+              class="data-guard__empty"
+            >
+              —
             </span>
             
             <!---->
-             
-            <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Pending Provisioners
-        </span>
       </div>
       
     </div>
@@ -357,8 +381,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -372,34 +396,40 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Largest node cluster
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             15
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <span
+            class="statistics-panel__statistics-item-unit"
+          >
+            nodes
+          </span>
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Largest Node Cluster
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -413,28 +443,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Largest cluster location
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             North Bergen, US
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Largest Cluster Location
-        </span>
       </div>
       
     </div>
@@ -456,8 +487,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -471,36 +502,37 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          DUSK price
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            $
             0.368
-            
-            
-            
             <!---->
-             
-            <!---->
+            
             
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
+          
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Dusk Price
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -514,30 +546,31 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Market cap
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            $
             168.00M
-            
-            
-            
             <!---->
-             
-            <!---->
+            
             
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
+          
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Total Market Cap
-        </span>
       </div>
       
     </div>
@@ -551,8 +584,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         data-tooltip-text="58,226,174.026663408 DUSK"
         data-tooltip-type="info"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -566,28 +599,34 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Current stake
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value approximate"
           >
             <!---->
             <!---->
-            <!---->
+            
             58.23M
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <span
+            class="statistics-panel__statistics-item-unit"
+          >
+            DUSK
+          </span>
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Current Stake
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
@@ -596,8 +635,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         data-tooltip-text="2,573,278.329709436 DUSK"
         data-tooltip-type="info"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -611,28 +650,34 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Pending stake
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value approximate"
           >
             <!---->
             <!---->
-            <!---->
+            
             2.57M
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <span
+            class="statistics-panel__statistics-item-unit"
+          >
+            DUSK
+          </span>
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Pending Stake
-        </span>
       </div>
       
     </div>
@@ -642,8 +687,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -657,28 +702,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Last block
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             487,596
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Last Block
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
@@ -686,8 +732,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         data-tooltip-place="top"
         data-tooltip-text="Public: 13,742, Shielded: 2,621"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -701,28 +747,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Total transactions
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             16,363
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Total Transactions
-        </span>
       </div>
       
     </div>
@@ -732,8 +779,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -747,34 +794,35 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Active provisioners
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             945
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Active Provisioners
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -788,28 +836,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Pending provisioners
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             34
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Pending Provisioners
-        </span>
       </div>
       
     </div>
@@ -819,8 +868,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -834,34 +883,40 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Largest node cluster
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             15
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <span
+            class="statistics-panel__statistics-item-unit"
+          >
+            nodes
+          </span>
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Largest Node Cluster
-        </span>
       </div>
       <div
         class="statistics-panel__statistics-item"
       >
-        <div
-          class="statistics-panel__statistics-item-value-container"
+        <span
+          class="statistics-panel__statistics-item-title"
         >
           <!---->
           <svg
@@ -875,28 +930,29 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           </svg>
           
           <!---->
-           
+          Largest cluster location
+        </span>
+         
+        <div
+          class="statistics-panel__statistics-item-value-container"
+        >
           <div
             class="statistics-panel__statistics-item-value"
           >
             <!---->
             <!---->
-            <!---->
+            
             North Bergen, US
-            
-            
-            
             <!---->
-             
+            
+            
             <!---->
           </div>
+           
+          <!---->
+           
+          <!---->
         </div>
-         
-        <span
-          class="statistics-panel__statistics-item-title"
-        >
-          Largest Cluster Location
-        </span>
       </div>
       
     </div>

@@ -9,8 +9,12 @@
   /** @type {NodeLocation[] | null}*/
   export let nodes;
 
-  /** @type {string} */
-  export let stroke = "black";
+  /**
+   * The land's lines: by default the map's colour, a quiet neutral.
+   *
+   * @type {string}
+   */
+  export let stroke = "currentColor";
 
   /** @type {import("d3-geo").GeoProjection}*/
   const projection = geoNaturalEarth1().scale(195).center([0, 8]);

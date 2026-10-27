@@ -1,4 +1,81 @@
-/* Show IDs as they are, as on the transaction page. */
-.transaction-details__list-link {
-  font-family: var(--mono-font-family);
+/*
+ * A row of the web wallet's History on a phone: the icon, who and what on
+ * the left, the amount and the time on the right.
+ */
+.transaction-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--calm-line);
+}
+
+.transaction-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.transaction-row__parties {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* The sender keeps its width; the receiver is cut to fit, with an ellipsis. */
+.transaction-row__party,
+.transaction-row__arrow {
+  flex: 0 0 auto;
+}
+
+.transaction-row__party:last-child:not(:first-child) {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-row__arrow {
+  color: var(--calm-subtle);
+  font-weight: 400;
+}
+
+/* The type and its method read as one line, cut at its end if need be. */
+.transaction-row__line .transaction-type,
+.transaction-row__line .transaction-type__call {
+  display: inline;
+}
+
+.transaction-row__end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+  font-size: 0.875rem;
+}
+
+/* The whole row opens the transaction; the names stay links of their own. */
+.transaction-row__link {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+}
+
+.transaction-row__link:focus-visible {
+  outline: 2px solid var(--calm-focus);
+  outline-offset: -2px;
+}
+
+.transaction-row .transaction-party {
+  position: relative;
+  z-index: 1;
 }

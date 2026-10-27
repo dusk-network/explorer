@@ -91,16 +91,16 @@ describe("StatisticsPanel", () => {
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    expect(queryByText("Dusk Price")).toBeNull();
-    expect(queryByText("Total Market Cap")).toBeNull();
-    expect(getByText("Current Stake")).toBeInTheDocument();
+    expect(queryByText("DUSK price")).toBeNull();
+    expect(queryByText("Market cap")).toBeNull();
+    expect(getByText("Current stake")).toBeInTheDocument();
     expect(
       container.querySelectorAll(".statistics-panel__statistics-item")
     ).toHaveLength(8);
 
     await act(() => setChain(1));
 
-    expect(getByText("Dusk Price")).toBeInTheDocument();
-    expect(getByText("Total Market Cap")).toBeInTheDocument();
+    expect(getByText("DUSK price")).toBeInTheDocument();
+    expect(getByText("Market cap")).toBeInTheDocument();
   });
 });

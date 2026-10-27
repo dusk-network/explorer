@@ -120,8 +120,8 @@
   <TextboxAndButton
     bind:value
     buttonLabel="Search"
-    expandedFieldWidth={340}
-    fieldWidth={300}
+    expandedFieldWidth={380}
+    fieldWidth={380}
     label="Search by address, block, transaction or .dusk name"
     placeholder="Address, hash or .dusk name"
     icon={{

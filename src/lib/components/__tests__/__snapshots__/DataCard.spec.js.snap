@@ -2,7 +2,7 @@
 
 exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -13,23 +13,13 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       type="button"
     >
       <span
@@ -65,7 +55,7 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
 
 exports[`DataCard > should render the \`DataCard\` in the data state when loading is true 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -76,23 +66,13 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       type="button"
     >
       <span
@@ -128,7 +108,7 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
 
 exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -139,23 +119,13 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       type="button"
     >
       <span
@@ -223,7 +193,7 @@ exports[`DataCard > should render the \`DataCard\` in the error state 1`] = `
 
 exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -234,23 +204,13 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       type="button"
     >
       <span
@@ -285,7 +245,7 @@ exports[`DataCard > should render the \`DataCard\` in the loading state 1`] = `
 
 exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -296,23 +256,13 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       type="button"
     >
       <span
@@ -363,7 +313,7 @@ exports[`DataCard > should render the \`DataCard\` in the no data state 1`] = `
 
 exports[`DataCard > should render the \`DataCard\` with a disabled button 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -374,23 +324,13 @@ exports[`DataCard > should render the \`DataCard\` with a disabled button 1`] = 
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Title 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Title
+      
     </h1>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--small data-card__header-action"
       disabled=""
       type="button"
     >

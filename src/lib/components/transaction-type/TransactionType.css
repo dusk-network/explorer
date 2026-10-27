@@ -1,11 +1,12 @@
+/* Plain words, and the method name beside them in small mono: wrapped, never cut. */
 .transaction-type {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem 0.5rem;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  min-width: 0;
 }
 
-/* Plain words, and the method name beside them: wrapped, never cut. */
 .transaction-type__call {
   display: inline-flex;
   flex-wrap: wrap;
@@ -14,33 +15,26 @@
   min-width: 0;
 }
 
-.transaction-type__label {
-  font-size: 0.8125rem;
-}
-
 .transaction-type__method {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 25%);
+  color: var(--calm-muted);
   font-family: var(--mono-font-family);
-  font-size: 0.75rem;
+  font-size: 0.92em;
   overflow-wrap: anywhere;
 }
 
 .transaction-type__separator {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 50%);
+  color: var(--calm-subtle);
 }
 
-/* In tables, the method goes under the plain words, as the time goes under the ID. */
-.table__data-cell .transaction-type__call {
-  flex-direction: column;
-}
-
-.table__data-cell .transaction-type__separator {
-  display: none;
-}
-
+/* Public or shielded: a quiet chip before the words. */
 .transaction-type__privacy {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 25%);
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.0625rem 0.5rem;
+  border-radius: 999px;
+  background-color: var(--calm-s2);
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
 }
 
 .transaction-type__privacy[data-tooltip-disabled="false"] {

@@ -19,6 +19,8 @@ type IconSize = "small" | "default" | "large";
 type NavListProp = NavListItem[];
 
 type NavListItem = {
+  /** An icon, for where the list shows them (the phone's bar). */
+  icon?: string;
   title: string;
   link: string;
 };

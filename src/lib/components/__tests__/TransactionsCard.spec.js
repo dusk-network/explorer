@@ -43,7 +43,7 @@ describe("Transactions Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should show no `Show More` button while the card is loading", async () => {
+  it("should show no `Show more` button while the card is loading", async () => {
     const loading = true;
 
     const { container, queryByRole } = render(TransactionsCard, {
@@ -52,13 +52,13 @@ describe("Transactions Card", () => {
     });
 
     expect(
-      queryByRole("button", { name: "Show More" })
+      queryByRole("button", { name: "Show more" })
     ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should give the count and the `Show More` button at the bottom of the list", async () => {
+  it("should give the count and the `Show more` button at the bottom of the list", async () => {
     const txns = mapWith(transformTransaction)(
       take(20)(gqlTransactions.transactions)
     );
@@ -70,7 +70,6 @@ describe("Transactions Card", () => {
       container.querySelector(".data-card__footer")
     );
 
-    // The brackets are drawn, not read.
     expect(
       getByRole("heading", { level: 1, name: "Transactions" })
     ).toBeInTheDocument();
@@ -81,15 +80,15 @@ describe("Transactions Card", () => {
       )
     ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
 
-    await fireEvent.click(getByRole("button", { name: "Show More" }));
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
 
     expect(footer).toHaveTextContent("20 of 20");
     expect(
-      queryByRole("button", { name: "Show More" })
+      queryByRole("button", { name: "Show more" })
     ).not.toBeInTheDocument();
   });
 
-  it("should hide the `Show More` button if there is no more data to display", async () => {
+  it("should hide the `Show more` button if there is no more data to display", async () => {
     const loading = false;
     const txns = data;
 
@@ -99,7 +98,7 @@ describe("Transactions Card", () => {
     });
 
     expect(
-      queryByRole("button", { name: "Show More" })
+      queryByRole("button", { name: "Show more" })
     ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
@@ -145,7 +144,7 @@ describe("Transactions Card", () => {
     ).toHaveLength(15);
   });
 
-  it("should hide the `Show More` button if an error has occurred", async () => {
+  it("should hide the `Show more` button if an error has occurred", async () => {
     const props = { ...baseProps, error: new Error("error") };
 
     const { container } = render(TransactionsCard, {

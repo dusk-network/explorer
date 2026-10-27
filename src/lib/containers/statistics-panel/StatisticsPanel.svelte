@@ -62,7 +62,9 @@
             compact: true,
             data: marketData?.currentPrice.usd,
             icon: mdiCurrencyUsd,
-            title: "Dusk Price",
+            prefix: "$",
+            title: "DUSK price",
+            unit: "",
           },
           {
             approximate: false,
@@ -71,7 +73,9 @@
             compact: true,
             data: marketData?.marketCap.usd,
             icon: mdiCurrencyUsd,
-            title: "Total Market Cap",
+            prefix: "$",
+            title: "Market cap",
+            unit: "",
           },
         ],
       ]
@@ -95,7 +99,9 @@
           ? luxToDusk(statsData?.activeStake)
           : undefined,
         icon: duskIcon,
-        title: "Current Stake",
+        prefix: "",
+        title: "Current stake",
+        unit: "DUSK",
       },
       {
         approximate: !!statsData?.waitingStake,
@@ -113,7 +119,9 @@
           ? luxToDusk(statsData?.waitingStake)
           : undefined,
         icon: duskIcon,
-        title: "Pending Stake",
+        prefix: "",
+        title: "Pending stake",
+        unit: "DUSK",
       },
     ],
 
@@ -125,7 +133,9 @@
         compact: false,
         data: statsData?.lastBlock,
         icon: mdiCubeOutline,
-        title: "Last Block",
+        prefix: "",
+        title: "Last block",
+        unit: "",
       },
       {
         approximate: false,
@@ -142,7 +152,9 @@
         compact: true,
         data: statsData?.txCount?.total,
         icon: mdiSwapVertical,
-        title: "Total Transactions",
+        prefix: "",
+        title: "Total transactions",
+        unit: "",
       },
     ],
 
@@ -154,7 +166,9 @@
         compact: true,
         data: statsData?.activeProvisioners,
         icon: mdiAccountGroupOutline,
-        title: "Active Provisioners",
+        prefix: "",
+        title: "Active provisioners",
+        unit: "",
       },
       {
         approximate: false,
@@ -163,7 +177,9 @@
         compact: true,
         data: statsData?.waitingProvisioners,
         icon: mdiAccountGroupOutline,
-        title: "Pending Provisioners",
+        prefix: "",
+        title: "Pending provisioners",
+        unit: "",
       },
     ],
 
@@ -175,7 +191,9 @@
         compact: true,
         data: nodesData?.length ? nodesData[0].count : null,
         icon: mdiTransitConnectionVariant,
-        title: "Largest Node Cluster",
+        prefix: "",
+        title: "Largest node cluster",
+        unit: "nodes",
       },
       {
         approximate: false,
@@ -186,26 +204,31 @@
           ? `${nodesData[0].city}, ${nodesData[0].countryCode}`
           : null,
         icon: mdiMapMarker,
-        title: "Largest Cluster Location",
+        prefix: "",
+        title: "Largest cluster location",
+        unit: "",
       },
     ],
   ];
 </script>
 
+<!-- One card per number: the label above, muted, and the number below. -->
 <div class="statistics-panel">
   <div class="statistics-panel__statistics">
     {#each statistics as statistic, index (index)}
       <div class="statistics-panel__statistics-column">
         {#each statistic as item (`${item.title}`)}
           <div class="statistics-panel__statistics-item" {...item.attributes}>
+            <span class="statistics-panel__statistics-item-title"
+              ><Icon path={item.icon} size="default" />{item.title}</span
+            >
             <div class="statistics-panel__statistics-item-value-container">
-              <Icon path={item.icon} size="default" />
               <div
                 class="statistics-panel__statistics-item-value"
                 class:approximate={item.approximate}
               >
                 <DataGuard data={item.data}>
-                  {#if item.compact}
+                  {item.prefix}{#if item.compact}
                     {formatter(item.data)}
                   {:else if item.compact === null}
                     {item.data}
@@ -213,14 +236,16 @@
                     {valueFormatter(item.data)}
                   {/if}
                 </DataGuard>
-                {#if item.canBeStale}
-                  <StaleDataNotice />
-                {/if}
               </div>
+              {#if item.unit && (item.data || item.data === 0)}
+                <span class="statistics-panel__statistics-item-unit"
+                  >{item.unit}</span
+                >
+              {/if}
+              {#if item.canBeStale}
+                <StaleDataNotice />
+              {/if}
             </div>
-            <span class="statistics-panel__statistics-item-title"
-              >{item.title}</span
-            >
           </div>
         {/each}
       </div>

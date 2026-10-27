@@ -39,16 +39,23 @@ const getTerms = (container) =>
   Array.from(container.querySelectorAll("dt"), termOf);
 
 /**
- * The definition beside a term.
+ * The definition beside a term, without the word on its Copy button.
  *
  * @param {HTMLElement} container
  * @param {string} term
  */
-const getDefinition = (container, term) =>
-  Array.from(container.querySelectorAll("dt"))
-    .find((dt) => termOf(dt) === term)
-    ?.nextElementSibling?.textContent?.replace(/\s+/g, " ")
-    .trim();
+const getDefinition = (container, term) => {
+  const definition = Array.from(container.querySelectorAll("dt")).find(
+    (dt) => termOf(dt) === term
+  )?.nextElementSibling;
+  const value = /** @type {Element | undefined} */ (
+    definition?.cloneNode(true)
+  );
+
+  value?.querySelectorAll(".dusk-copy-button").forEach((copy) => copy.remove());
+
+  return value?.textContent?.replace(/\s+/g, " ").trim();
+};
 
 describe("Transaction Details", () => {
   vi.useFakeTimers();
@@ -279,6 +286,26 @@ describe("Transaction Details", () => {
     expect(
       getByRole("link", { name: /** @type {string} */ (transaction.from) })
     ).toBeInTheDocument();
+  });
+
+  it("should give the ID and the addresses in full, their ends set apart, each with a Copy", () => {
+    const { getByRole } = render(TransactionDetails, baseProps);
+    const id = getByRole("link", { name: transaction.txid });
+
+    expect(
+      Array.from(id.querySelectorAll(".full-value__end"), (end) =>
+        end.textContent?.trim()
+      )
+    ).toStrictEqual([transaction.txid.slice(0, 6), transaction.txid.slice(-6)]);
+    expect(
+      getByRole("button", { name: "Copy transaction ID" })
+    ).toHaveTextContent(/^Copy$/);
+    expect(
+      getByRole("button", { name: "Copy sender's address" })
+    ).toHaveTextContent(/^Copy$/);
+    expect(
+      getByRole("button", { name: "Copy receiver's address" })
+    ).toHaveTextContent(/^Copy$/);
   });
 
   it("should show the memo as text, with hex as an option", async () => {

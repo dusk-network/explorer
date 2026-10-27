@@ -43,6 +43,11 @@ and this project adheres to
 - Say "Completed" or "Failed" for a transaction's status
 - Call an account with a stake a provisioner, with an estimated date for its eligibility
 - Show a failed search in place of the previous page, and say when a searched ID is shortened
+- Match the Dusk web wallet's look: its fonts, calm colours in light and dark, and its top bar
+- Move the pages to a bar at the bottom of the screen on phones, in place of the menu
+- Show the home page's numbers as cards, with their labels above them
+- Show lists as rows: an icon, who and what, then the amount and the time
+- Show IDs and addresses in full on the transaction page, their ends set apart, each with Copy
 
 ### Removed
 

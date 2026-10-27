@@ -1,14 +1,18 @@
-/* The bridge's violet strip, across the page's full width. */
+/* The web wallet's violet strip, across the page's full width. */
 .testnet-strip {
-  margin: 0 calc(-1 * var(--page-gutter));
-  padding: 0.5rem var(--page-gutter);
-  border-bottom: 1px solid var(--test-network-line-color);
-  background-color: var(--test-network-bg-color);
-  color: var(--test-network-color);
+  box-sizing: border-box;
+  height: 2.1875rem;
+  padding: 0 1rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--calm-test-line);
+  background-color: var(--calm-test-bg);
+  color: var(--calm-test);
   font-size: 0.84375rem;
   font-weight: 500;
-  line-height: 1.25rem;
+  line-height: 2.125rem;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .testnet-strip__separator {

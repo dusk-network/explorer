@@ -1,7 +1,45 @@
 :root {
   /*
+   * The calm look, as in the Dusk web wallet: one neutral surface family,
+   * text in three strengths, and colour only where it carries meaning
+   * (pending, failed, online, focus, a test network). The light values are
+   * the default; the dark ones follow under `.dark`.
+   */
+  --calm-s0: #f6f5f2;
+  --calm-s1: #eeede9;
+  --calm-s2: #e5e3de;
+  --calm-s3: #dad8d2;
+  --calm-panel: #f1f0ec;
+  --calm-field: #fff;
+  --calm-text: #141416;
+  --calm-muted: #5b5862;
+  --calm-subtle: #6a6771;
+  --calm-line: rgb(20 20 22 / 0.09);
+  --calm-line2: rgb(20 20 22 / 0.15);
+  --calm-pending: #8a5a00;
+  --calm-danger: #b42318;
+  --calm-online: #1e8e4e;
+  --calm-pill: #141416;
+  --calm-on-pill: #f6f5f2;
+  --calm-focus: #0b66d6;
+  --calm-focus-ring: rgb(11 102 214 / 0.3);
+  --calm-scrim: rgb(20 20 22 / 0.4);
+
+  /* Violet is a test network, as on the bridge and in the wallets. */
+  --calm-test: #5b4bc4;
+  --calm-test-bg: #eeebfb;
+  --calm-test-line: rgb(91 75 196 / 0.25);
+
+  /*
+   * Addresses, hashes and code: Söhne Mono, evenly spaced. Ligatures and
+   * contextual alternates are off where it is used, so "0x" stays as typed.
+   */
+  --mono-font-family:
+    "Soehne Mono", ui-monospace, "SF Mono", menlo, consolas, monospace;
+
+  /*
    * Compatibility bridge for app-local components that still consume the
-   * pre-Duskit token names. Values come from the original Dusk language refresh.
+   * pre-Duskit token names, mapped onto the calm look.
    */
 
   --granite-grey: #636167;
@@ -13,56 +51,36 @@
   --silver-metallic: #a8a5af;
   --taupe-grey: #908e94;
 
-  --cornflower: #71b1ff;
-  --cornflower-dark: #0b79ff;
-  --cornflower-light: #a4cdff;
-  --accent-light-900: #04336b;
-  --accent-dark-900: #abd1ff;
+  --page-background-color: var(--calm-s0);
+  --background-color: var(--calm-s0);
+  --background-color-alt: var(--calm-s1);
+  --primary-color: var(--calm-text);
+  --secondary-color: var(--calm-text);
+  --secondary-color-variant-dark: var(--calm-text);
+  --secondary-color-variant-light: var(--calm-muted);
+  --surface-color: var(--calm-s1);
+  --danger-color: var(--calm-danger);
+  --error-color: var(--calm-danger);
+  --error-color-variant-dark: var(--calm-danger);
+  --info-color: var(--calm-text);
+  --info-color-variant-dark: var(--calm-text);
+  --success-color: var(--calm-online);
+  --success-color-variant-dark: var(--calm-online);
+  --warning-color: var(--calm-pending);
+  --warning-color-variant-dark: var(--calm-pending);
+  --badge-error-color: var(--calm-danger);
+  --badge-success-color: var(--calm-online);
+  --badge-warning-color: var(--calm-pending);
 
-  --success: #16db93;
-  --warning: #ffcf23;
-  --error: #ed254e;
-  --info: #71b1ff;
-
-  --success-500: #16db93;
-  --success-700: #0f9363;
-  --warning-500: #ffcf23;
-  --warning-700: #d1a300;
-  --error-500: #ed254e;
-  --error-700: #8e112c;
-  --info-500: #71b1ff;
-  --info-700: #0863d1;
-
-  --page-background-color: var(--smokey-black);
-  --background-color: #edeaf3;
-  --background-color-alt: #f7f5fb;
-  --primary-color: var(--smokey-black);
-  --secondary-color: var(--cornflower);
-  --secondary-color-variant-dark: var(--cornflower-dark);
-  --secondary-color-variant-light: var(--cornflower-light);
-  --surface-color: #f7f5fb;
-  --danger-color: var(--error);
-  --error-color: var(--error-500);
-  --error-color-variant-dark: var(--error-700);
-  --info-color: var(--info-500);
-  --info-color-variant-dark: var(--info-700);
-  --success-color: var(--success-500);
-  --success-color-variant-dark: var(--success-700);
-  --warning-color: var(--warning-500);
-  --warning-color-variant-dark: var(--warning-700);
-  --badge-error-color: var(--error-700);
-  --badge-success-color: #0b744f;
-  --badge-warning-color: #6f5600;
-
-  --on-background-color: var(--smokey-black);
-  --on-primary-color: var(--light-grey);
-  --on-secondary-color: var(--smokey-black);
-  --on-surface-color: var(--smokey-black);
+  --on-background-color: var(--calm-text);
+  --on-primary-color: var(--calm-on-pill);
+  --on-secondary-color: var(--calm-on-pill);
+  --on-surface-color: var(--calm-text);
   --on-danger-color: #fff;
   --on-error-color: #fff;
-  --on-info-color: var(--smokey-black);
-  --on-success-color: var(--smokey-black);
-  --on-warning-color: var(--smokey-black);
+  --on-info-color: var(--calm-text);
+  --on-success-color: var(--calm-text);
+  --on-warning-color: var(--calm-text);
 
   --main-font-family: var(--sans-font-family);
   --main-font-size: 16px;
@@ -75,99 +93,81 @@
   --tablet-grid-template-columns: 1fr 1fr;
   --desktop-grid-template-columns: 1fr 1fr 1fr;
 
-  --control-border-radius-size: 0.5rem;
+  --control-border-radius-size: 0.75rem;
   --control-border-size: 0.0625em;
   --control-font-size: 1em;
   --control-icon-size: 2em;
-  --control-padding: 0.625em 0.875em;
+  --control-padding: 0.75em 1.25em;
   --control-small-font-size: 0.875em;
-  --control-small-padding: 0.625em 0.875em;
+  --control-small-padding: 0.5em 0.875em;
 
-  --non-button-control-bg-color: #fff;
-  --non-button-control-text-color: var(--smokey-black);
+  --non-button-control-bg-color: var(--calm-field);
+  --non-button-control-text-color: var(--calm-text);
 
-  --control-bg-color: var(--cornflower);
-  --control-bg-color-hover: var(--cornflower);
+  --control-bg-color: var(--calm-pill);
+  --control-bg-color-hover: var(--calm-pill);
   --control-border-color: transparent;
   --control-border-color-hover: transparent;
-  --control-text-color: var(--smokey-black);
-  --control-text-color-hover: var(--smokey-black);
+  --control-text-color: var(--calm-on-pill);
+  --control-text-color-hover: var(--calm-on-pill);
 
-  --control-secondary-bg-color: transparent;
-  --control-secondary-bg-color-hover: rgb(16 16 16 / 0.045);
-  --control-secondary-border-color: #d4cedd;
-  --control-secondary-border-color-hover: var(--cornflower);
-  --control-secondary-text-color: var(--smokey-black);
+  --control-secondary-bg-color: var(--calm-s2);
+  --control-secondary-bg-color-hover: var(--calm-s3);
+  --control-secondary-border-color: transparent;
+  --control-secondary-border-color-hover: transparent;
+  --control-secondary-text-color: var(--calm-text);
 
   --control-tertiary-bg-color: transparent;
-  --control-tertiary-bg-color-hover: var(--cornflower);
-  --control-tertiary-border-color: var(--smokey-black);
-  --control-tertiary-border-color-hover: var(--cornflower);
-  --control-tertiary-text-color: var(--smokey-black);
+  --control-tertiary-bg-color-hover: var(--calm-s2);
+  --control-tertiary-border-color: transparent;
+  --control-tertiary-border-color-hover: transparent;
+  --control-tertiary-text-color: var(--calm-text);
 
-  --anchor-color-on-surface: var(--accent-light-900);
-  --anchor-color: var(--secondary-color);
-  --anchor-color-visited: var(--secondary-color);
-  --anchor-color-hover: var(--secondary-color-variant-light);
-  --anchor-color-active: var(--secondary-color-variant-light);
+  --anchor-color-on-surface: var(--calm-text);
+  --anchor-color: var(--calm-text);
+  --anchor-color-visited: var(--calm-text);
+  --anchor-color-hover: var(--calm-text);
+  --anchor-color-active: var(--calm-muted);
 
-  --progress-bar-height: 0.3125em;
-  --progress-bg-color: var(--primary-color);
-  --progress-filler-color: var(--success-color);
+  --progress-bar-height: 0.375em;
+  --progress-bg-color: var(--calm-s3);
+  --progress-filler-color: var(--calm-text);
 
   --checkbox-control-size: 1.2em;
   --checkbox-control-border-radius: 20%;
   --checkbox-control-border-width: 0.2em;
-  --checkbox-control-border-color: var(--smokey-black);
-  --checkbox-control-checked-bg-color: var(--smokey-black);
+  --checkbox-control-border-color: var(--calm-text);
+  --checkbox-control-checked-bg-color: var(--calm-text);
 
-  --divider-color-primary: var(--taupe-grey);
-  --banner-info-color: var(--info-color-variant-dark);
-  --banner-warning-color: var(--warning-color-variant-dark);
-  --banner-error-color: var(--error-color-variant-dark);
-
-  /* Violet is a test network, as on the bridge and in the wallets. */
-  --test-network-color: #5b4bc4;
-  --test-network-bg-color: #eeebfb;
-  --test-network-line-color: rgb(91 75 196 / 0.25);
+  --divider-color-primary: var(--calm-line2);
+  --banner-info-color: var(--calm-muted);
+  --banner-warning-color: var(--calm-pending);
+  --banner-error-color: var(--calm-danger);
 }
 
 :root.dark {
-  --page-background-color: var(--smokey-black);
-  --background-color: var(--smokey-black);
-  --background-color-alt: #151519;
-  --primary-color: var(--light-grey);
-  --surface-color: #151519;
-  --badge-error-color: color-mix(in oklab, var(--error-500), white 18%);
-  --badge-success-color: var(--success-color);
-  --badge-warning-color: var(--warning-color);
+  --calm-s0: #101010;
+  --calm-s1: #18181b;
+  --calm-s2: #232327;
+  --calm-s3: #2c2c31;
+  --calm-panel: #141416;
+  --calm-field: #0c0c0d;
+  --calm-text: #f2f0eb;
+  --calm-muted: #a8a5af;
+  --calm-subtle: #8d8a94;
+  --calm-line: rgb(242 240 235 / 0.08);
+  --calm-line2: rgb(242 240 235 / 0.14);
+  --calm-pending: #e8b96a;
+  --calm-danger: #e37a7a;
+  --calm-online: #3fb871;
+  --calm-pill: #f2f0eb;
+  --calm-on-pill: #141416;
+  --calm-focus: #71b1ff;
+  --calm-focus-ring: rgb(113 177 255 / 0.35);
+  --calm-scrim: rgb(5 5 6 / 0.66);
+  --calm-test: #b9aeff;
+  --calm-test-bg: #1b1830;
+  --calm-test-line: rgb(185 174 255 / 0.28);
 
-  --on-background-color: var(--light-grey);
-  --on-primary-color: var(--smokey-black);
-  --on-surface-color: var(--light-grey);
-
-  --anchor-color-on-surface: var(--accent-dark-900);
-
-  --test-network-color: #b9aeff;
-  --test-network-bg-color: #1b1830;
-  --test-network-line-color: rgb(185 174 255 / 0.28);
-
-  --non-button-control-bg-color: #101014;
-  --non-button-control-text-color: var(--light-grey);
-
-  --control-bg-color: var(--cornflower);
-  --control-text-color: var(--smokey-black);
-  --control-secondary-bg-color: transparent;
-  --control-secondary-bg-color-hover: rgb(237 234 243 / 0.06);
-  --control-secondary-border-color: #34333a;
-  --control-secondary-text-color: var(--light-grey);
-  --control-tertiary-border-color: var(--light-grey);
-  --control-tertiary-text-color: var(--light-grey);
-
-  --checkbox-control-border-color: var(--light-grey);
-  --checkbox-control-checked-bg-color: var(--light-grey);
-
-  --banner-info-color: var(--info-color);
-  --banner-warning-color: var(--warning-color);
-  --banner-error-color: var(--error-color);
+  color-scheme: dark;
 }

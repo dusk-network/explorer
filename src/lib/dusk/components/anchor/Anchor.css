@@ -1,5 +1,8 @@
+/* Links read as the text around them, and underline on hover. */
 .dusk-anchor {
   text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .dusk-anchor--off-surface {
@@ -25,6 +28,6 @@
   color: var(--anchor-color-on-surface);
 }
 
-.dusk-anchor--on-surface:hover {
-  text-decoration: underline;
+.dusk-anchor:not(.dusk-anchor-button):hover {
+  text-decoration-line: underline;
 }

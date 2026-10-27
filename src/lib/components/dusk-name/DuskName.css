@@ -1,6 +1,6 @@
 /* Wraps between the name and the address, not inside the name. */
 .primary-name-group {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: baseline;
   column-gap: 0.5rem;
@@ -9,16 +9,16 @@
   line-break: auto;
 }
 
+/* A name in the text's face, as the web wallet shows them. */
 .primary-name {
-  font-family: var(--mono-font-family);
+  font-weight: 500;
   text-transform: none;
   overflow-wrap: anywhere;
 }
 
 .primary-name__site,
 .primary-name__address {
-  /* 4.5:1 or more on the light and the dark card. */
-  color: color-mix(in oklab, var(--on-surface-color), transparent 35%);
+  color: var(--calm-muted);
 }
 
 .primary-name__site {

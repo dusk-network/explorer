@@ -65,14 +65,14 @@
   {error}
   {loading}
   className={classes}
-  title="Block Details"
+  title="Block details"
 >
   <dl class="block-details__list">
     <!-- HEIGHT -->
     <ListItem
       tooltipText="The height of the block indicates the length of the block chain and is increased with each additional block"
     >
-      <svelte:fragment slot="term">height</svelte:fragment>
+      <svelte:fragment slot="term">Height</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchorButton
           aria-label="Previous block"
@@ -94,7 +94,7 @@
 
     <!-- BLOCK HASH -->
     <ListItem tooltipText="The hash for the header of the block">
-      <svelte:fragment slot="term">hash</svelte:fragment>
+      <svelte:fragment slot="term">Hash</svelte:fragment>
       <span class="block-details__hash" slot="definition"
         >{middleEllipsis(
           data.header.hash,
@@ -106,7 +106,7 @@
 
     <!-- TIMESTAMP -->
     <ListItem tooltipText="The date and time the block was created">
-      <svelte:fragment slot="term">timestamp</svelte:fragment>
+      <svelte:fragment slot="term">Timestamp</svelte:fragment>
       <RelativeTime
         autoRefresh={true}
         className="block-details__list-timestamp"
@@ -120,7 +120,7 @@
 
     <!-- TRANSACTIONS -->
     <ListItem tooltipText="The number of transactions included in the block">
-      <svelte:fragment slot="term">transactions</svelte:fragment>
+      <svelte:fragment slot="term">Transactions</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatter(data.transactions.data.length)}</svelte:fragment
       >
@@ -130,7 +130,7 @@
     <ListItem
       tooltipText="The total fees paid for the transactions in the block"
     >
-      <svelte:fragment slot="term">block fees paid</svelte:fragment>
+      <svelte:fragment slot="term">Block fees paid</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatDuskExact(data.header.feespaid)} DUSK</svelte:fragment
       >
@@ -140,7 +140,7 @@
     <ListItem
       tooltipText="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
     >
-      <svelte:fragment slot="term">block reward</svelte:fragment>
+      <svelte:fragment slot="term">Block reward</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatDuskExact(data.header.reward)} DUSK</svelte:fragment
       >
@@ -148,7 +148,7 @@
 
     <!-- BLOCK GAS LIMIT -->
     <ListItem tooltipText="The block gas limit">
-      <svelte:fragment slot="term">block gas limit</svelte:fragment>
+      <svelte:fragment slot="term">Block gas limit</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatter(data.transactions.stats.gasLimit)}</svelte:fragment
       >
@@ -156,7 +156,7 @@
 
     <!-- GAS USED -->
     <ListItem tooltipText="The amount of gas used generating the block">
-      <svelte:fragment slot="term">gas used</svelte:fragment>
+      <svelte:fragment slot="term">Gas used</svelte:fragment>
       <svelte:fragment slot="definition">
         {formatter(data.transactions.stats.gasUsed)}
 
@@ -176,7 +176,7 @@
     <ListItem
       tooltipText="The average gas price for the transactions within the block"
     >
-      <svelte:fragment slot="term">average gas price</svelte:fragment>
+      <svelte:fragment slot="term">Average gas price</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatter(data.transactions.stats.averageGasPrice)}</svelte:fragment
       >
@@ -184,7 +184,7 @@
 
     <!-- STATE ROOT HASH -->
     <ListItem tooltipText="The state root hash">
-      <svelte:fragment slot="term">state root hash</svelte:fragment>
+      <svelte:fragment slot="term">State root hash</svelte:fragment>
       <span class="block-details__hash" slot="definition"
         >{middleEllipsis(
           data.header.statehash,
@@ -198,7 +198,7 @@
     <ListItem tooltipText="The block header information">
       <svelte:fragment slot="term">
         <div class="block-details__switch-wrapper">
-          header
+          Header
 
           <Switch
             aria-label="Show block header"

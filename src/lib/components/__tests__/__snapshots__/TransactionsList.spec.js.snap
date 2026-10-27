@@ -1,538 +1,164 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Transactions List > should render the \`TransactionsList\` component in "compact" mode 1`] = `
-<dl
-  class="detail-list"
+exports[`Transactions List > should render the \`TransactionsList\` component 1`] = `
+<div
+  class="transaction-row"
 >
-  <!---->
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      ID
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
+  <span
+    aria-hidden="true"
+    class="row-icon"
   >
     <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
-      href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+    <svg
+      class="dusk-icon dusk-icon--size--default"
+      role="graphics-symbol"
+      viewBox="0 0 24 24"
     >
-      <!---->
-      487768...ac0e04
-      
-      <!---->
-    </a>
-    <!---->
-     
-    <div
-      class="dusk-copy-button"
-    >
-      <button
-        aria-label="Copy transaction ID"
-        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-text="Copy to clipboard"
-        type="button"
-      >
-        <!---->
-        <!---->
-        <svg
-          class="dusk-icon dusk-icon--size--default dusk-button__icon"
-          role="graphics-symbol"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-          />
-        </svg>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </button>
-      <!---->
-    </div>
-    <!---->
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      relative time
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <time
-      class="dusk-relative-time transaction-details__list-timestamp"
-      data-tooltip-id="main-tooltip"
-      data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
-      datetime="2024-04-16T06:39:09.000Z"
-      slot="definition"
-    >
-      <!---->
-      last month
-      
-      <!---->
-    </time>
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      From
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
-      href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
-    >
-      <!---->
-      kT5Bam...LwKbXj
-      
-      <!---->
-    </a>
+      <path
+        d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+      />
+    </svg>
     
     <!---->
-  </dd>
+  </span>
   <!---->
    
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      To
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
-      href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
-    >
-      <!---->
-      mHWZo9...pjiUnj
-      
-      <!---->
-    </a>
-    
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Amount
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <span
-      title="9,812.378912731 DUSK"
-    >
-      9,812.3789 DUSK
-    </span>
-    
-    <!---->
-  </dd>
-  <!---->
-   
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Status
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
+  <div
+    class="transaction-row__main"
   >
     <span
-      class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
+      class="transaction-row__parties"
     >
-      completed
-    </span>
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Type
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <!---->
-    <div
-      class="transaction-type"
-    >
-      <!---->
-       
       <span
-        class="transaction-type__call"
+        class="transaction-row__party"
       >
-        <!---->
+        <span
+          class="sr-only"
+        >
+          From
+        </span>
          
+        <!---->
+        <a
+          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+          href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+        >
+          <!---->
+          kT5Bam...LwKbXj
+          
+          <!---->
+        </a>
+        
         <!---->
       </span>
        
-      <!---->
-    </div>
-    
-    
-    <!---->
-  </dd>
-  <!---->
-  <!---->
-</dl>
-`;
-
-exports[`Transactions List > should render the \`TransactionsList\` component in "full" mode 1`] = `
-<dl
-  class="detail-list"
->
-  <!---->
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      ID
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
-      href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
-    >
-      <!---->
-      487768...ac0e04
-      
-      <!---->
-    </a>
-    <!---->
-     
-    <div
-      class="dusk-copy-button"
-    >
-      <button
-        aria-label="Copy transaction ID"
-        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-text="Copy to clipboard"
-        type="button"
-      >
-        <!---->
-        <!---->
-        <svg
-          class="dusk-icon dusk-icon--size--default dusk-button__icon"
-          role="graphics-symbol"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-          />
-        </svg>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </button>
-      <!---->
-    </div>
-    <!---->
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      relative time
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <time
-      class="dusk-relative-time transaction-details__list-timestamp"
-      data-tooltip-id="main-tooltip"
-      data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
-      datetime="2024-04-16T06:39:09.000Z"
-      slot="definition"
-    >
-      <!---->
-      last month
-      
-      <!---->
-    </time>
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      From
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
-      href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
-    >
-      <!---->
-      kT5Bam...LwKbXj
-      
-      <!---->
-    </a>
-    
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      To
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <a
-      class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
-      href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
-    >
-      <!---->
-      mHWZo9...pjiUnj
-      
-      <!---->
-    </a>
-    
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Amount
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <span
-      title="9,812.378912731 DUSK"
-    >
-      9,812.3789 DUSK
-    </span>
-    
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Fee
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <span
-      title="0.000290766 DUSK"
-    >
-      0.0003 DUSK
-    </span>
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Status
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <span
-      class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
-    >
-      completed
-    </span>
-    <!---->
-  </dd>
-  <!---->
-   
-  <dt
-    class="details-list__term details-list__term--table"
-  >
-    <div
-      class="details-list__term-layout"
-    >
-      <!---->
-       
-      Type
-      <!---->
-    </div>
-  </dt>
-   
-  <dd
-    class="details-list__definition details-list__definition--table"
-  >
-    <!---->
-    <!---->
-    <div
-      class="transaction-type"
-    >
-      <!---->
-       
       <span
-        class="transaction-type__call"
+        aria-hidden="true"
+        class="transaction-row__arrow"
       >
-        <!---->
-         
-        <!---->
+        →
       </span>
        
+      <span
+        class="transaction-row__party"
+      >
+        <span
+          class="sr-only"
+        >
+          To
+        </span>
+         
+        <!---->
+        <a
+          class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account"
+          href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+        >
+          <!---->
+          mHWZo9...pjiUnj
+          
+          <!---->
+        </a>
+        
+        <!---->
+      </span>
       <!---->
-    </div>
-    
+    </span>
+     
+    <span
+      class="row-line transaction-row__line"
+    >
+      <!---->
+       
+      <div
+        class="transaction-type"
+      >
+        <!---->
+         
+        <span
+          class="transaction-type__call"
+        >
+          <!---->
+           
+          <!---->
+        </span>
+         
+        <!---->
+      </div>
+      <!---->
+    </span>
+  </div>
+   
+  <div
+    class="transaction-row__end"
+  >
+    <span
+      class="row-amount"
+    >
+      <span
+        title="9,812.378912731 DUSK"
+      >
+        9,812.3789
+      </span>
+       
+      <span
+        class="row-unit"
+      >
+        DUSK
+      </span>
+    </span>
+    <!---->
+     
+    <span
+      class="row-line transaction-row__time"
+    >
+      <time
+        class="dusk-relative-time"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
+        datetime="2024-04-16T06:39:09.000Z"
+      >
+        <!---->
+        last month
+        
+        <!---->
+      </time>
+      <!---->
+    </span>
+  </div>
+   
+  <a
+    class="dusk-anchor dusk-anchor--on-surface transaction-row__link"
+    href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+  >
+    <!---->
+    <span
+      class="sr-only"
+    >
+      Transaction 487768...ac0e04
+    </span>
     
     <!---->
-  </dd>
+  </a>
   <!---->
-  <!---->
-</dl>
+</div>
 `;

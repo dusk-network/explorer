@@ -1,11 +1,32 @@
-.block__fee-avg-label,
-.block__fee-total-label {
+/* Blocks as the web wallet's History rows: the height, when, and what it held. */
+.blocks-table .table__data-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.blocks-table .table__data-cell:first-child {
+  width: 100%;
+}
+
+.block__main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.375rem;
+}
+
+.block__who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.block__link {
   font-weight: 500;
 }
 
-.block__time {
+.block__gas,
+.block__gas-price {
   display: block;
-  font-size: 0.75rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.2rem;
 }

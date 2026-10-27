@@ -58,7 +58,7 @@ describe("Identifier case", () => {
   it("should keep the case of a transaction ID in the phone list", () => {
     const transaction = transformTransaction(gqlTransaction.tx);
     const { container } = render(TransactionsList, {
-      props: { data: transaction, mode: "full" },
+      props: { data: transaction },
     });
     const link = /** @type {HTMLElement} */ (
       container.querySelector(`a[href$="?id=${transaction.txid}"]`)

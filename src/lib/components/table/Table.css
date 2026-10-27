@@ -1,3 +1,4 @@
+/* The web wallet's History table: small muted headers, rows on hairlines. */
 .table-container {
   overflow-x: auto;
   max-width: 100%;
@@ -6,36 +7,26 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  border-style: hidden;
-  font-family: var(--mono-font-family);
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
 }
 
 .table__header-cell {
+  padding: 0 1rem 0.625rem;
+  border-bottom: 1px solid var(--calm-line2);
+  color: var(--calm-subtle);
+  font-size: 0.78125rem;
+  font-weight: 400;
   text-align: left;
-  padding: 0.85rem 1.125rem;
-  font-weight: 500;
-  font-size: 0.72rem;
-  background-color: color-mix(
-    in oklab,
-    var(--surface-color),
-    var(--on-background-color) 4%
-  );
-  position: sticky;
-  top: 0;
-  z-index: 1;
   text-wrap: nowrap;
-  color: color-mix(in oklab, var(--on-background-color), transparent 24%);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .table__data-cell {
-  border-top: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 88%);
-  padding: 0.75rem 1.125rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--calm-line);
+  font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
-  font-size: 0.75rem;
 }
 
 .table__header-cell.align-left,
@@ -51,12 +42,8 @@
   text-align: right;
 }
 
-.table__row:hover {
-  background-color: color-mix(
-    in oklab,
-    var(--surface-color),
-    var(--secondary-color) 7%
-  );
+.table__body .table__row:hover {
+  background-color: var(--calm-s1);
 }
 
 .table__data-cell .dusk-badge {

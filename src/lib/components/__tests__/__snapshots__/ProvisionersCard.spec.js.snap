@@ -2,7 +2,7 @@
 
 exports[`Provisioners Card > should hide the \`Show More\` button if an error has occurred 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -13,20 +13,10 @@ exports[`Provisioners Card > should hide the \`Show More\` button if an error ha
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Provisioners 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Provisioners
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -86,7 +76,7 @@ exports[`Provisioners Card > should hide the \`Show More\` button if an error ha
 
 exports[`Provisioners Card > should hide the \`Show More\` button if there is no more data to display 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -97,20 +87,10 @@ exports[`Provisioners Card > should hide the \`Show More\` button if there is no
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Provisioners 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Provisioners
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -2102,7 +2082,7 @@ Consensus: mUJHMDEBiT...FHNxRNhoAA"
 
 exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -2113,20 +2093,10 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Provisioners 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Provisioners
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -2144,7 +2114,7 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
 
 exports[`Provisioners Card > should show no \`Show More\` button while the card is loading 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -2155,20 +2125,10 @@ exports[`Provisioners Card > should show no \`Show More\` button while the card 
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Provisioners 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Provisioners
+      
     </h1>
+    <!---->
      
     <!---->
   </header>

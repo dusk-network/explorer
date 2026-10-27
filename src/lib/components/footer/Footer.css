@@ -1,70 +1,66 @@
+/* Small print, in the muted text: the copyright, the version and links. */
 .footer {
-  border-top: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 86%);
-  color: color-mix(in oklab, var(--on-background-color), transparent 16%);
-  padding-block: 1.5rem;
-  font-size: 0.82rem;
-  display: grid;
-  gap: 1.25em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding: 1.25rem 0 1.75rem;
+  border-top: 1px solid var(--calm-line);
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+}
+
+.footer p {
+  margin: 0;
 }
 
 .footer__copyright-container {
   display: flex;
-  flex-direction: column;
-  gap: 0.625em;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-right: auto;
 }
 
 .footer__explorers-links-container,
 .footer__misc-links-container {
   display: flex;
-  flex-direction: row;
-  gap: var(--default-gap);
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
 }
 
-.footer__misc-links-container {
-  margin-bottom: 1.25em;
-}
-
-.footer__link,
-.footer__link:visited {
+.footer .footer__link,
+.footer .footer__link:visited {
+  color: var(--calm-muted);
   text-decoration: none;
-  color: var(--primary-color);
 }
 
-.footer__link:hover {
-  color: var(--secondary-color);
+.footer .footer__link:hover {
+  color: var(--calm-text);
+  text-decoration: underline;
+}
+
+.footer__logo {
+  display: inline-flex;
+  opacity: 0.7;
+}
+
+.footer__logo:hover {
+  opacity: 1;
 }
 
 .footer__logo img {
-  max-width: 5.4rem;
+  display: block;
+  width: auto;
+  height: 0.875rem;
 }
 
-@media (min-width: 900px) {
+@media (max-width: 47.99rem) {
   .footer {
-    grid-template-columns: 1fr auto auto auto;
-    gap: 2.5em;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .footer__copyright-container {
-    grid-area: 1 / 1 / 2 / 1;
-  }
-
-  .footer__explorers-links-container {
-    grid-area: 1 / 2 / 2 / 2;
-  }
-
-  .footer__misc-links-container {
-    grid-area: 1 / 3 / 2 / 3;
-    margin-bottom: 0;
-  }
-
-  .footer__logo {
-    grid-area: 1 / 4 / 1 / 5;
-  }
-
-  .footer__explorers-links-container,
-  .footer__misc-links-container {
-    display: flex;
     flex-direction: column;
   }
 }

@@ -18,7 +18,7 @@
   );
 
   $: ({ data, error, isLoading } = $pollingDataStore);
-  $: ({ chainInfoEntries, darkMode, isSmallScreen } = $appStore);
+  $: ({ chainInfoEntries, isSmallScreen } = $appStore);
   $: ({ data: nodesData } = $nodeLocationStore);
 
   const retry = () => {
@@ -35,6 +35,7 @@
 </script>
 
 <section class="landing">
+  <h1 class="sr-only">Dusk Explorer</h1>
   <article class="chain-info">
     <StatisticsPanel />
   </article>
@@ -42,7 +43,7 @@
   <div class="tables">
     <LatestBlocksCard
       on:retry={retry}
-      className="tables-layout"
+      className="tables-layout tables-layout--blocks"
       blocks={data?.blocks}
       {error}
       {isSmallScreen}
@@ -51,7 +52,7 @@
 
     <LatestTransactionsCard
       on:retry={retry}
-      className="tables-layout"
+      className="tables-layout tables-layout--transactions"
       txns={data?.transactions}
       {error}
       {isSmallScreen}
@@ -62,7 +63,7 @@
   {#if nodesData}
     <div class="world-map">
       <Card>
-        <WorldMap nodes={nodesData} stroke={darkMode ? "white" : "black"} />
+        <WorldMap nodes={nodesData} />
       </Card>
     </div>
   {/if}
@@ -73,63 +74,55 @@
     .landing {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2.5rem;
     }
 
     .chain-info {
-      grid-template-columns: 1fr;
       order: 1;
     }
 
     .tables {
       order: 2;
-      display: flex;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
     }
 
     .tables-layout {
-      width: 50%;
+      min-width: 0;
     }
 
     .world-map {
       order: 3;
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
       width: 100%;
     }
 
     .world-map .dusk-card {
-      padding: 0;
       width: 100%;
+      padding: 1.5rem;
       overflow: hidden;
+      border: 1px solid var(--calm-line2);
+      background-color: transparent;
     }
 
-    @media (min-width: 768px) {
-      .chain-info {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 1380px) {
+    @media (max-width: 74.99rem) {
       .tables {
-        flex-direction: column;
-      }
-
-      .tables-layout {
-        width: 100%;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    @media (max-width: 1024px) {
-      .tables {
-        order: 3;
+    /* Phones and tablets, with the lists' rows: the latest transactions first. */
+    @media (max-width: 64rem) {
+      .landing {
+        gap: 2rem;
       }
 
-      .world-map {
-        order: 2;
+      .tables-layout--transactions {
+        order: -1;
+      }
+
+      .world-map .dusk-card {
+        padding: 0.75rem;
       }
     }
   }

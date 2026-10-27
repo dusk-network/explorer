@@ -20,8 +20,10 @@ describe("Transactions List", () => {
   /** @type {import("svelte").ComponentProps<TransactionsList>} */
   const baseProps = {
     data: transaction,
-    mode: "full",
   };
+
+  /** @param {string} value */
+  const short = (value) => `${value.slice(0, 6)}...${value.slice(-6)}`;
 
   const timeRefreshInterval = 1000;
 
@@ -31,50 +33,59 @@ describe("Transactions List", () => {
     vi.useRealTimers();
   });
 
-  it('should render the `TransactionsList` component in "full" mode', () => {
+  it("should render the `TransactionsList` component", () => {
     const { container } = render(TransactionsList, baseProps);
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it('should render the `TransactionsList` component in "compact" mode', () => {
-    /** @type {import("svelte").ComponentProps<TransactionsList>} */
-    const props = {
-      ...baseProps,
-      mode: "compact",
-    };
-    const { container } = render(TransactionsList, { ...baseProps, ...props });
+  it("should show who sent how much to whom, what it did and when, and leave the rest to the transaction page", () => {
+    const { container, getByRole } = render(TransactionsList, baseProps);
+    const parties = /** @type {Element} */ (
+      container.querySelector(".transaction-row__parties")?.cloneNode(true)
+    );
 
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
+    // The arrow between them is drawn, not read.
+    parties
+      .querySelectorAll("[aria-hidden='true']")
+      .forEach((arrow) => arrow.remove());
 
-  it("should show the sender, receiver and amount instead of the gas", () => {
-    const { container, rerender } = render(TransactionsList, baseProps);
-    const getTerms = () =>
-      Array.from(container.querySelectorAll("dt"), (dt) =>
-        dt.textContent?.trim().toLowerCase()
-      );
-
-    expect(getTerms()).toStrictEqual([
-      "id",
-      "relative time",
-      "from",
-      "to",
-      "amount",
-      "fee",
-      "status",
-      "type",
-    ]);
+    expect(parties.textContent?.replace(/\s+/g, " ").trim()).toBe(
+      `From ${short(String(transaction.from))} To ${short(String(transaction.to))}`
+    );
     expect(container.textContent).toContain("9,812.3789 DUSK");
     expect(
       Array.from(container.querySelectorAll("[title]"), (el) =>
         el.getAttribute("title")
       )
-    ).toStrictEqual(["9,812.378912731 DUSK", "0.000290766 DUSK"]);
+    ).toStrictEqual(["9,812.378912731 DUSK"]);
+    expect(container.querySelector("time")).toHaveAttribute(
+      "data-tooltip-text",
+      "Tue 16 Apr 2024, 06:39:09 UTC"
+    );
+    expect(
+      getByRole("link", { name: `Transaction ${short(transaction.txid)}` })
+    ).toHaveAttribute(
+      "href",
+      `/some-base-path/transactions/transaction?id=${transaction.txid}`
+    );
+    expect(container.textContent).not.toMatch(/gas|fee/i);
+  });
 
-    rerender({ ...baseProps, mode: "compact" });
+  it("should say a failure first, and mute what it didn't send", async () => {
+    const { container } = render(TransactionsList, {
+      ...baseProps,
+      data: { ...transaction, txerror: "Panic" },
+    });
 
-    return vi.waitFor(() => expect(getTerms()).not.toContain("fee"));
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-row__line")
+      ).toHaveTextContent(/^Failed · Transfer$/)
+    );
+    expect(container.querySelector(".row-amount")).toHaveClass(
+      "row-amount--muted"
+    );
   });
 
   it("should auto-refresh relative times when the related prop is set to true", async () => {

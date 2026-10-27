@@ -20,16 +20,33 @@ describe("DataCard", () => {
 
   afterEach(cleanup);
 
-  it("should draw the brackets around its title but leave them out of what screen readers say", () => {
+  it("should give its title as written, a page's heading by default", () => {
     const { getByRole } = render(DataCard, baseOptions);
-    const heading = getByRole("heading", { name: "Title" });
 
-    expect(heading).toHaveTextContent("[ Title ]");
-    expect(
-      Array.from(heading.querySelectorAll("[aria-hidden='true']"), (el) =>
-        el.textContent?.trim()
-      )
-    ).toStrictEqual(["[", "]"]);
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent(/^Title$/);
+  });
+
+  it("should head a section of a page one level down, with its link to the whole list", async () => {
+    const onClickMock = vi.fn();
+    const { getByRole, queryByRole } = render(DataCard, {
+      ...baseOptions,
+      props: {
+        ...baseProps,
+        headerButtonDetails: {
+          action: onClickMock,
+          disabled: false,
+          label: "All blocks",
+        },
+        variant: "section",
+      },
+    });
+
+    expect(queryByRole("heading", { level: 1 })).toBeNull();
+    expect(getByRole("heading", { level: 2 })).toHaveTextContent(/^Title$/);
+
+    await fireEvent.click(getByRole("button", { name: "All blocks" }));
+
+    expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
   it("should render the `DataCard` in the loading state", () => {

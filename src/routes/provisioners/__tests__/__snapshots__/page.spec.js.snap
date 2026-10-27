@@ -4,7 +4,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
 <section>
   <!---->
   <div
-    class="dusk-card data-card"
+    class="dusk-card data-card data-card--page"
   >
     <!---->
     <!---->
@@ -15,20 +15,10 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
       <h1
         class="data-card__header-title"
       >
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          [
-        </span>
-         Provisioners 
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          ]
-        </span>
+        Provisioners
+        
       </h1>
+      <!---->
        
       <!---->
     </header>
@@ -4532,7 +4522,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
 <section>
   <!---->
   <div
-    class="dusk-card data-card"
+    class="dusk-card data-card data-card--page"
   >
     <!---->
     <!---->
@@ -4543,20 +4533,10 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          [
-        </span>
-         Provisioners 
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          ]
-        </span>
+        Provisioners
+        
       </h1>
+      <!---->
        
       <!---->
     </header>
@@ -4599,7 +4579,7 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
 <section>
   <!---->
   <div
-    class="dusk-card data-card"
+    class="dusk-card data-card data-card--page"
   >
     <!---->
     <!---->
@@ -4610,20 +4590,10 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          [
-        </span>
-         Provisioners 
-        <span
-          aria-hidden="true"
-          class="data-card__bracket"
-        >
-          ]
-        </span>
+        Provisioners
+        
       </h1>
+      <!---->
        
       <!---->
     </header>

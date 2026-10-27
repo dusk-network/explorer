@@ -50,6 +50,22 @@ describe("PrimaryName", () => {
     ).toBeInTheDocument();
   });
 
+  it("should leave the short address out where the page shows it in full", async () => {
+    const { address } = props(4);
+
+    reader.verifyPrimary.mockResolvedValueOnce({
+      primary: { spelling: "tdi.dusk" },
+    });
+
+    const { container, findByRole } = render(PrimaryName, {
+      props: { address, href: `/accounts/?key=${address}`, showAddress: false },
+    });
+
+    await findByRole("link", { name: "tdi.dusk" });
+
+    expect(container.querySelector(".primary-name__address")).toBeNull();
+  });
+
   it("should show the name as text without a link to the account", async () => {
     reader.verifyPrimary.mockResolvedValueOnce({
       primary: { spelling: "tdi.dusk" },

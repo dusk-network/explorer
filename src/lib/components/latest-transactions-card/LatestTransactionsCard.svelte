@@ -59,11 +59,12 @@
   {loading}
   className={classes}
   title="Transactions"
+  variant="section"
   headerButtonDetails={isOnHomeScreen
     ? {
         action: () => goto("/transactions"),
         disabled: false,
-        label: "All Transactions",
+        label: "All transactions",
       }
     : undefined}
 >
@@ -72,7 +73,6 @@
       <TransactionsList
         autoRefreshTime={!isOnHomeScreen}
         data={txn}
-        mode={isOnHomeScreen ? "compact" : "full"}
         {displayTooltips}
         {names}
       />
@@ -87,9 +87,3 @@
     />
   {/if}
 </DataCard>
-
-<style>
-  :global(.latest-transactions-card__table .table__body .table__row) {
-    height: 3.4375rem;
-  }
-</style>

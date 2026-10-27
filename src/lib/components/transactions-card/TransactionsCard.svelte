@@ -62,7 +62,7 @@
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedTxns as txn (txn)}
-        <TransactionsList data={txn} mode="full" {names} />
+        <TransactionsList data={txn} {names} />
       {/each}
     </div>
   {:else}
@@ -78,7 +78,7 @@
       >{displayedTxns.length} of {txns?.length ?? 0}</span
     >
     {#if hasMore}
-      <Button on:click={loadMoreItems} text="Show More" variant="tertiary" />
+      <Button on:click={loadMoreItems} text="Show more" variant="secondary" />
     {/if}
   </svelte:fragment>
 </DataCard>

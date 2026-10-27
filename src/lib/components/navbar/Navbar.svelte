@@ -1,21 +1,28 @@
 <script>
   import { createEventDispatcher, onDestroy, tick } from "svelte";
-  import { mdiClose, mdiMenu } from "@mdi/js";
+  import {
+    mdiAccountGroupOutline,
+    mdiCircleMultipleOutline,
+    mdiCubeOutline,
+    mdiHomeOutline,
+    mdiSwapHorizontal,
+  } from "@mdi/js";
   import { afterNavigate } from "$app/navigation";
+  import { base } from "$app/paths";
+  import { page } from "$app/stores";
 
-  import { Badge, Button, NavList } from "$lib/dusk/components";
-  import { AppAnchor, AppImage, SearchNotification } from "$lib/components";
+  import { Icon, NavList } from "$lib/dusk/components";
+  import { duskIcon } from "$lib/dusk/icons";
+  import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
   import { getNetworkName, isConnected } from "$lib/network";
+  import { currentPage } from "$lib/navigation";
   import { appStore } from "$lib/stores";
 
   import "./Navbar.css";
 
   /** @type {number} */
   let offset;
-
-  /** @type {boolean} */
-  let hidden = true;
 
   /** @type {boolean} */
   let showSearchNotification = false;
@@ -26,46 +33,42 @@
   /** @type {SearchField} */
   let searchField;
 
-  /** @type {HTMLElement | undefined} */
-  let menu;
-
   /**
-   * Where the opened menu starts on a small screen: under a test network's
-   * strip, the logo, the search and any notice. It takes the rest of the
-   * screen and scrolls within it.
+   * Whether a text field has the focus: on a phone the pages bar then
+   * makes way for the keyboard.
    */
-  let menuTop = 0;
+  let typing = false;
 
-  async function measureMenu() {
-    await tick();
-
-    if (!hidden && menu) {
-      menuTop = Math.max(0, menu.getBoundingClientRect().top);
-    }
-  }
-
+  /** @type {NavListProp} */
   let navigation = [
+    { icon: mdiHomeOutline, link: "/", title: "Home" },
+    { icon: mdiCubeOutline, link: "/blocks", title: "Blocks" },
+    { icon: mdiSwapHorizontal, link: "/transactions", title: "Transactions" },
     {
-      link: "/",
-      title: "Chain Info",
-    },
-    {
-      link: "/blocks",
-      title: "Blocks",
-    },
-    {
-      link: "/transactions",
-      title: "Transactions",
-    },
-    {
+      icon: mdiAccountGroupOutline,
       link: "/provisioners",
       title: "Provisioners",
     },
   ];
 
   $: if (import.meta.env.VITE_FEATURE_TOKENS === "true") {
-    navigation.push({ link: "/tokens", title: "Tokens" });
+    navigation.push({
+      icon: mdiCircleMultipleOutline,
+      link: "/tokens",
+      title: "Tokens",
+    });
     navigation = navigation;
+  }
+
+  /** @param {FocusEvent} event */
+  function handleFocusIn(event) {
+    const target = /** @type {HTMLElement | null} */ (event.target);
+
+    typing = Boolean(
+      target?.matches?.(
+        "textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])"
+      )
+    );
   }
 
   const dispatch = createEventDispatcher();
@@ -110,7 +113,6 @@
     }
 
     updateOffset();
-    measureMenu();
   }
 
   $: if (!showSearchNotification) {
@@ -123,59 +125,51 @@
   onDestroy(() => notificationObserver?.disconnect());
 
   afterNavigate(() => {
-    hidden = true;
-    dispatch("toggleMenu", hidden);
     showSearchNotification = false;
     // A search still in flight was for the page left behind.
     searchField?.cancel();
   });
 
-  $: ({ darkMode, nodeInfo } = $appStore);
+  $: ({ nodeInfo } = $appStore);
+  $: connected = isConnected(nodeInfo);
+  $: networkName = connected ? getNetworkName(nodeInfo) : "unknown";
+  $: current = currentPage(
+    $page.url.pathname,
+    navigation.map(({ link }) => link),
+    base
+  );
 </script>
 
-<svelte:window on:resize={measureMenu} />
+<svelte:window
+  on:focusin={handleFocusIn}
+  on:focusout={() => {
+    typing = false;
+  }}
+/>
 
 <nav
   style={showSearchNotification
     ? `margin-bottom: ${offset}px`
     : "margin-bottom: 0"}
   class="dusk-navbar"
-  class:dusk-navbar--menu-hidden={hidden}
+  class:dusk-navbar--typing={typing}
 >
-  <AppAnchor href="/" className="dusk-navbar__logo">
-    <AppImage
-      src={darkMode ? "/dusk_logo_light.svg" : "/dusk_logo.svg"}
-      alt="Dusk Logo"
-      sizes="(max-width: 1024px) 86px, 129px"
-    />
-    <span class="dusk-navbar__app-label">Explorer</span>
-  </AppAnchor>
-  <Button
-    aria-controls="dusk-navbar-menu"
-    aria-label="Toggle Menu"
-    aria-expanded={!hidden}
-    className="dusk-navbar__toggle"
-    icon={{ path: hidden ? mdiMenu : mdiClose, size: "large" }}
-    on:click={() => {
-      hidden = !hidden;
-      dispatch("toggleMenu", hidden);
-      measureMenu();
-    }}
-  />
-  <div
-    bind:this={menu}
-    class="dusk-navbar__menu"
-    class:dusk-navbar__menu--hidden={hidden}
-    id="dusk-navbar-menu"
-    style:--menu-top={menuTop ? `${menuTop}px` : undefined}
+  <AppAnchor
+    aria-label="Dusk Explorer, home"
+    className="dusk-navbar__brand"
+    href="/"
   >
-    <Badge
-      className="dusk-navbar__menu--network"
-      text={isConnected(nodeInfo) ? getNetworkName(nodeInfo) : "unknown"}
-      variant={isConnected(nodeInfo) ? "success" : "warning"}
-    />
-    <NavList className="dusk-navbar__menu--links" {navigation} />
-  </div>
+    <Icon className="dusk-navbar__glyph" path={duskIcon} />
+    <span class="dusk-navbar__brand-name">Dusk Explorer</span>
+  </AppAnchor>
+
+  <NavList
+    aria-label="Explorer pages"
+    className="dusk-navbar__pages"
+    {current}
+    {navigation}
+  />
+
   <div class="dusk-navbar__search">
     <SearchField
       bind:this={searchField}
@@ -200,4 +194,14 @@
       />
     {/if}
   </div>
+
+  <!-- The network, and a dot that says whether its node answered. -->
+  <span class="dusk-navbar__network">
+    <span
+      aria-hidden="true"
+      class="dusk-navbar__network-dot"
+      class:dusk-navbar__network-dot--online={connected}
+    ></span>
+    {networkName.charAt(0).toUpperCase()}{networkName.slice(1)}
+  </span>
 </nav>

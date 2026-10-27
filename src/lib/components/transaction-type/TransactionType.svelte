@@ -19,6 +19,14 @@
    */
   export let showPrivacy = true;
 
+  /**
+   * Whether a call with no plain words for it is named by its contract. A
+   * row whose receiver already names the contract says "Contract call".
+   *
+   * @type {boolean}
+   */
+  export let nameContract = true;
+
   const isAccountsPage = $page.url.pathname.includes("accounts");
 
   /**
@@ -76,7 +84,10 @@
   // A call shows plain words, or the contract's name, beside its method.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
-        .then(({ label, name }) => label ?? name ?? "Contract call")
+        .then(
+          ({ label, name }) =>
+            label ?? (nameContract ? name : null) ?? "Contract call"
+        )
         .catch(() => "Contract call")
     : Promise.resolve(plainTypes.get(data.method) ?? data.method);
 </script>

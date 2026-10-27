@@ -1,6 +1,8 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { mdiChevronRight } from "@mdi/js";
+
   import { DataAlert } from "$lib/components";
   import { Button, Card, ProgressBar } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
@@ -25,23 +27,36 @@
   /** @type {string | Undefined} */
   export let className = undefined;
 
-  $: classes = makeClassName(["data-card", className]);
+  /**
+   * How the title reads: a page's heading, the heading of a section of the
+   * home page, with its link to the whole list beside it, or the small line
+   * above a detail page's summary.
+   *
+   * @type {"page" | "section" | "detail"}
+   */
+  export let variant = "page";
+
+  $: classes = makeClassName(["data-card", `data-card--${variant}`, className]);
   $: hasEmptyData = Array.isArray(data) && data.length === 0;
 </script>
 
 <Card className={classes}>
   <header slot="header" class="data-card__header">
-    <h1 class="data-card__header-title">
-      <span aria-hidden="true" class="data-card__bracket">[</span>
-      {title}
-      <span aria-hidden="true" class="data-card__bracket">]</span>
-    </h1>
+    <svelte:element
+      this={variant === "section" ? "h2" : "h1"}
+      class="data-card__header-title">{title}</svelte:element
+    >
     {#if headerButtonDetails}
       <Button
+        className="data-card__header-action"
+        disabled={headerButtonDetails.disabled}
+        icon={variant === "section"
+          ? { path: mdiChevronRight, position: "after", size: "small" }
+          : undefined}
         on:click={headerButtonDetails.action}
+        size="small"
         text={headerButtonDetails.label}
         variant={headerButtonDetails.variant || "tertiary"}
-        disabled={headerButtonDetails.disabled}
       />
     {/if}
   </header>

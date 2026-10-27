@@ -9,123 +9,184 @@ exports[`Main layout > should render the app's main layout 1`] = `
     <!---->
      
     <nav
-      class="dusk-navbar dusk-navbar--menu-hidden"
+      class="dusk-navbar"
       style="margin-bottom: 0px;"
     >
       <a
-        class="dusk-anchor dusk-anchor--on-surface dusk-navbar__logo"
+        aria-label="Dusk Explorer, home"
+        class="dusk-anchor dusk-anchor--on-surface dusk-navbar__brand"
         href="/some-base-path/"
       >
         <!---->
         <!---->
-        <img
-          alt="Dusk Logo"
-          sizes="(max-width: 1024px) 86px, 129px"
-          src="/some-base-path/dusk_logo.svg"
-        />
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default dusk-navbar__glyph"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12.335 0.005a12.186 12.186 0 0 0 -2.58 0.204C4.2 1.259 0 6.14 0 11.999 0 17.859 4.203 22.74 9.759 23.79c0.726 0.138 1.476 0.21 2.241 0.21 6.789 0 12.261 -5.64 11.991 -12.49C23.741 5.249 18.599 0.173 12.335 0.005Zm0.207 21.58c-0.204 0.012 -0.336 -0.222 -0.21 -0.384 1.974 -2.541 3.153 -5.733 3.153 -9.202 0 -3.468 -1.176 -6.663 -3.153 -9.202 -0.126 -0.162 0.003 -0.396 0.207 -0.384 5.052 0.282 9.06 4.465 9.06 9.586 0 5.121 -4.005 9.304 -9.057 9.586Z"
+          />
+        </svg>
+        
         <!---->
          
         <span
-          class="dusk-navbar__app-label"
+          class="dusk-navbar__brand-name"
         >
-          Explorer
+          Dusk Explorer
         </span>
         
         <!---->
       </a>
       <!---->
        
-      <button
-        aria-controls="dusk-navbar-menu"
-        aria-expanded="false"
-        aria-label="Toggle Menu"
-        class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-navbar__toggle"
-        type="button"
-      >
-        <!---->
-        <!---->
-        <svg
-          class="dusk-icon dusk-icon--size--large dusk-button__icon"
-          role="graphics-symbol"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-          />
-        </svg>
-        
-        <!---->
-         
-        <!---->
-        <!---->
-      </button>
       <!---->
-       
-      <div
-        class="dusk-navbar__menu dusk-navbar__menu--hidden"
-        id="dusk-navbar-menu"
+      <nav
+        aria-label="Explorer pages"
+        class="dusk-nav-list dusk-navbar__pages"
       >
-        <span
-          class="dusk-badge dusk-badge--variant-warning dusk-navbar__menu--network"
+        <a
+          aria-current="page"
+          class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link dusk-nav-list__link--current"
+          href="/some-base-path/"
         >
-          unknown
-        </span>
-        <!---->
-         
-        <!---->
-        <nav
-          class="dusk-nav-list dusk-navbar__menu--links"
-        >
-          <a
-            class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
-            href="/some-base-path/"
+          <!---->
+          <!---->
+          <!---->
+          <svg
+            aria-hidden="true"
+            class="dusk-icon dusk-icon--size--default dusk-nav-list__icon"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
           >
-            <!---->
-            Chain Info
-            
-            <!---->
-          </a>
-          <a
-            class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
-            href="/some-base-path/blocks"
-          >
-            <!---->
-            Blocks
-            
-            <!---->
-          </a>
-          <a
-            class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
-            href="/some-base-path/transactions"
-          >
-            <!---->
-            Transactions
-            
-            <!---->
-          </a>
-          <a
-            class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
-            href="/some-base-path/provisioners"
-          >
-            <!---->
-            Provisioners
-            
-            <!---->
-          </a>
-          <a
-            class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
-            href="/some-base-path/tokens"
-          >
-            <!---->
-            Tokens
-            
-            <!---->
-          </a>
+            <path
+              d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22"
+            />
+          </svg>
           
-        </nav>
+          <!---->
+          <span
+            class="dusk-nav-list__title"
+          >
+            Home
+          </span>
+          
+          <!---->
+        </a>
+        <a
+          class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
+          href="/some-base-path/blocks"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <svg
+            aria-hidden="true"
+            class="dusk-icon dusk-icon--size--default dusk-nav-list__icon"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+            />
+          </svg>
+          
+          <!---->
+          <span
+            class="dusk-nav-list__title"
+          >
+            Blocks
+          </span>
+          
+          <!---->
+        </a>
+        <a
+          class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
+          href="/some-base-path/transactions"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <svg
+            aria-hidden="true"
+            class="dusk-icon dusk-icon--size--default dusk-nav-list__icon"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,9L17,5V8H10V10H17V13M7,11L3,15L7,19V16H14V14H7V11Z"
+            />
+          </svg>
+          
+          <!---->
+          <span
+            class="dusk-nav-list__title"
+          >
+            Transactions
+          </span>
+          
+          <!---->
+        </a>
+        <a
+          class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
+          href="/some-base-path/provisioners"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <svg
+            aria-hidden="true"
+            class="dusk-icon dusk-icon--size--default dusk-nav-list__icon"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14C9.66,14 5,15.17 5,17.5V19H19V17.5C19,15.17 14.34,14 12,14M4.71,14.55C2.78,14.78 0,15.76 0,17.5V19H3V17.07C3,16.06 3.69,15.22 4.71,14.55M19.29,14.55C20.31,15.22 21,16.06 21,17.07V19H24V17.5C24,15.76 21.22,14.78 19.29,14.55M12,16C13.53,16 15.24,16.5 16.23,17H7.77C8.76,16.5 10.47,16 12,16Z"
+            />
+          </svg>
+          
+          <!---->
+          <span
+            class="dusk-nav-list__title"
+          >
+            Provisioners
+          </span>
+          
+          <!---->
+        </a>
+        <a
+          class="dusk-anchor dusk-anchor--off-surface dusk-nav-list__link"
+          href="/some-base-path/tokens"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <svg
+            aria-hidden="true"
+            class="dusk-icon dusk-icon--size--default dusk-nav-list__icon"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15,4A8,8 0 0,1 23,12A8,8 0 0,1 15,20A8,8 0 0,1 7,12A8,8 0 0,1 15,4M15,18A6,6 0 0,0 21,12A6,6 0 0,0 15,6A6,6 0 0,0 9,12A6,6 0 0,0 15,18M3,12C3,14.61 4.67,16.83 7,17.65V19.74C3.55,18.85 1,15.73 1,12C1,8.27 3.55,5.15 7,4.26V6.35C4.67,7.17 3,9.39 3,12Z"
+            />
+          </svg>
+          
+          <!---->
+          <span
+            class="dusk-nav-list__title"
+          >
+            Tokens
+          </span>
+          
+          <!---->
+        </a>
         
-        <!---->
-      </div>
+      </nav>
+      
+      <!---->
        
       <div
         class="dusk-navbar__search"
@@ -133,7 +194,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
         <form>
           <div
             class="textbox-button"
-            style="width: 300px;"
+            style="width: 380px;"
           >
             <!---->
             <input
@@ -176,6 +237,16 @@ exports[`Main layout > should render the app's main layout 1`] = `
          
         <!---->
       </div>
+       
+      <span
+        class="dusk-navbar__network"
+      >
+        <span
+          aria-hidden="true"
+          class="dusk-navbar__network-dot"
+        />
+         Unknown
+      </span>
     </nav>
     <!---->
   </header>
@@ -245,7 +316,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://dusk.network/privacy-policy"
         >
-          Privacy Policy
+          Privacy policy
           <!---->
         </a>
         <!---->
@@ -254,7 +325,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://dusk.network/terms-of-use"
         >
-          Terms of Use
+          Terms of use
           <!---->
         </a>
         <!---->
@@ -268,7 +339,7 @@ exports[`Main layout > should render the app's main layout 1`] = `
         <picture>
           <img
             alt="Dusk Logo"
-            sizes="(max-width:768px) 20px, 86px"
+            sizes="72px"
             src="/some-base-path/dusk_logo.svg"
           />
           <!---->

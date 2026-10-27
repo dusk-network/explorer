@@ -1,15 +1,10 @@
 .dusk-card {
-  background-color: var(--surface-color);
-  border-radius: var(--control-border-radius-size);
-  border: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 82%);
-  padding: 1.3rem 2rem;
+  background-color: var(--calm-s1);
+  border: 0 none;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
 }
 
 .dusk-card--on-surface {
-  background-color: color-mix(
-    in oklab,
-    var(--surface-color),
-    var(--on-background-color) 3%
-  );
+  background-color: var(--calm-s2);
 }

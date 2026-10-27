@@ -13,7 +13,7 @@ exports[`World Map > renders the WorldMap component even if nodes is empty array
       width="5"
     >
       <line
-        stroke="black"
+        stroke="currentColor"
         stroke-width="1"
         x1="2.5"
         x2="2.5"
@@ -746,7 +746,7 @@ exports[`World Map > renders the WorldMap component with nodes 1`] = `
       width="5"
     >
       <line
-        stroke="black"
+        stroke="currentColor"
         stroke-width="1"
         x1="2.5"
         x2="2.5"

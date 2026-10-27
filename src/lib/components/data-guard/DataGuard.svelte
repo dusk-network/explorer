@@ -6,5 +6,5 @@
 {#if data || data === 0}
   <slot />
 {:else}
-  <span>- - -</span>
+  <span class="data-guard__empty">—</span>
 {/if}
