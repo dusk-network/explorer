@@ -22,6 +22,21 @@ describe("TransactionType", () => {
     expect(getByText(label)).toHaveClass("transaction-type__privacy");
   });
 
+  it("should call a transaction that carries blobs a data blob", async () => {
+    const { container } = render(TransactionType, {
+      props: {
+        data: { ...transaction, blobHashes: ["ab".repeat(32)], method: "blob" },
+        showPrivacy: false,
+      },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-type__label")
+      ).toHaveTextContent(/^Data blob$/)
+    );
+  });
+
   it("should say what a shielded call hides, and what it shows", () => {
     const shielded = { ...transaction, txtype: "Phoenix" };
     const stake =

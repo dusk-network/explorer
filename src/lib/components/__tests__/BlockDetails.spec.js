@@ -123,10 +123,10 @@ describe("Block Details", () => {
       "Header",
     ]);
     expect(
-      getAllByRole("button", { name: "More information" }).map((help) =>
-        help.getAttribute("data-tooltip-text")
+      getAllByRole("button", { name: /^About / }).map((help) =>
+        help.getAttribute("aria-label")
       )
-    ).toHaveLength(2);
+    ).toStrictEqual(["About block reward", "About gas used"]);
   });
 
   it("should render the Block Details component with the payload visible", async () => {

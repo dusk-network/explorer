@@ -370,7 +370,7 @@ exports[`Block Details > should render the Block Details page and query the nece
             >
               <button
                 aria-describedby="list-item-help-2"
-                aria-label="More information"
+                aria-label="About block reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -442,7 +442,7 @@ exports[`Block Details > should render the Block Details page and query the nece
             >
               <button
                 aria-describedby="list-item-help-4"
-                aria-label="More information"
+                aria-label="About gas used"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1535,7 +1535,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             >
               <button
                 aria-describedby="list-item-help-9"
-                aria-label="More information"
+                aria-label="About block reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1607,7 +1607,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             >
               <button
                 aria-describedby="list-item-help-11"
-                aria-label="More information"
+                aria-label="About gas used"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"

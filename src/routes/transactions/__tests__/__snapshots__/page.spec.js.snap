@@ -104,7 +104,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   <span
                     class="transaction-type__label"
                   >
-                    Blob
+                    Data blob
                   </span>
                   
                   <!---->
@@ -366,7 +366,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   <span
                     class="transaction-type__label"
                   >
-                    Blob
+                    Data blob
                   </span>
                   
                   <!---->
@@ -2288,7 +2288,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           <span
                             class="transaction-type__label"
                           >
-                            Blob
+                            Data blob
                           </span>
                           
                           <!---->
@@ -2758,7 +2758,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           <span
                             class="transaction-type__label"
                           >
-                            Blob
+                            Data blob
                           </span>
                           
                           <!---->

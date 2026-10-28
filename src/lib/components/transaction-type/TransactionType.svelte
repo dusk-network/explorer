@@ -39,7 +39,7 @@
    * @type {Map<string, string>}
    */
   const plainTypes = new Map([
-    ["blob", "Blob"],
+    ["blob", "Data blob"],
     ["deploy", "Contract deployed"],
     ["transfer", "Transfer"],
   ]);

@@ -7,7 +7,7 @@
 <script>
   import { Icon } from "$lib/dusk/components";
   import { mdiInformationOutline } from "@mdi/js";
-  import { getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   import contexts from "$lib/contexts";
 
   import "./ListItem.css";
@@ -25,6 +25,27 @@
 
   const context = getContext("DUSK:list-item:context") || "";
   const helpId = `list-item-help-${++helpCount}`;
+
+  /** @type {HTMLDivElement} */
+  let layout;
+
+  /** @type {HTMLButtonElement | undefined} */
+  let help;
+
+  /** The help's name, from its row's term: "About gas price". */
+  let helpName = "More information";
+
+  onMount(() => {
+    const term = Array.from(layout.childNodes, (node) =>
+      node === help ? "" : node.textContent
+    )
+      .join("")
+      .trim();
+
+    if (term) {
+      helpName = `About ${term.toLowerCase()}`;
+    }
+  });
 </script>
 
 <dt
@@ -32,12 +53,13 @@
   class:details-list__term--table={context === contexts.LIST_ITEM.DETAIL_LIST}
   class:details-list__term--wide={wide}
 >
-  <div class="details-list__term-layout">
+  <div bind:this={layout} class="details-list__term-layout">
     {#if tooltipText}
       <!-- The help shows on hover, on focus and on a tap. -->
       <button
+        bind:this={help}
         aria-describedby={helpId}
-        aria-label="More information"
+        aria-label={helpName}
         class="detail-list__help"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"

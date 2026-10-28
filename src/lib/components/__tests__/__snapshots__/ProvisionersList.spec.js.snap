@@ -80,7 +80,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     >
       <button
         aria-describedby="list-item-help-2"
-        aria-label="More information"
+        aria-label="About stake"
         class="detail-list__help"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"
@@ -139,7 +139,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     >
       <button
         aria-describedby="list-item-help-3"
-        aria-label="More information"
+        aria-label="About reward"
         class="detail-list__help"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"
@@ -194,7 +194,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     >
       <button
         aria-describedby="list-item-help-4"
-        aria-label="More information"
+        aria-label="About slashes"
         class="detail-list__help"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"

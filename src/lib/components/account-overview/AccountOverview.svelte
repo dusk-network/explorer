@@ -1,5 +1,5 @@
 <script>
-  import { CopyButton } from "$lib/dusk/components";
+  import { Anchor, CopyButton } from "$lib/dusk/components";
   import { middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
@@ -9,7 +9,6 @@
     ListItem,
     OverviewPanelDetailsItem,
   } from "$lib/components";
-  import { PrimaryName } from "$lib/containers";
   import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
@@ -88,6 +87,14 @@
 
   // What the network's labels call the account, before any primary name.
   $: label = labelOf($appStore.nodeInfo.chain_id, accountAddress);
+
+  // The `.dusk` name the heading gives: the one searched for, or else, for
+  // an account the labels don't name, its primary name.
+  $: headingName = searchedNameShown.then(
+    (searched) =>
+      searched ??
+      (label ? null : getPrimaryName(accountAddress).catch(() => null))
+  );
 </script>
 
 <!--
@@ -102,21 +109,33 @@
       ? "Provisioner"
       : "Account"}<span aria-hidden="true" class="ledger-bracket">]</span>
   </p>
-  <h1 class="account-overview-panel__header">
-    {#await searchedNameShown}
-      <span class="account-overview-panel__address">{shortAddress}</span>
-    {:then searched}
-      {#if searched}
-        <DuskName name={searched} />
-      {:else if label}
-        {label}
-      {:else}
-        <PrimaryName address={accountAddress}>
+  <!-- The heading holds only the name or the address; its link sits beside it. -->
+  <div class="account-overview-panel__title">
+    <h1 class="account-overview-panel__header">
+      {#await headingName}
+        <span class="account-overview-panel__address">{shortAddress}</span>
+      {:then name}
+        {#if name}
+          {name.name}
+        {:else if label}
+          {label}
+        {:else}
           <span class="account-overview-panel__address">{shortAddress}</span>
-        </PrimaryName>
+        {/if}
+      {/await}
+    </h1>
+    {#await headingName then name}
+      {#if name}
+        <Anchor
+          aria-label="Open {name.name} on Dusk Domains"
+          className="primary-name__site"
+          data-tooltip-id="main-tooltip"
+          data-tooltip-text="Open on Dusk Domains"
+          href={name.url}>↗</Anchor
+        >
       {/if}
     {/await}
-  </h1>
+  </div>
   {#await primaryNameShown then primary}
     {#if primary}
       <p class="account-overview-panel__searched-name">

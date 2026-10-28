@@ -323,10 +323,15 @@ describe("Transaction Details", () => {
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should explain only the terms that need it, with help reachable from the keyboard", () => {
+  it("should explain only the terms that need it, with help reachable from the keyboard and named after its term", () => {
     const { getAllByRole } = render(TransactionDetails, baseProps);
-    const helps = getAllByRole("button", { name: "More information" });
+    const helps = getAllByRole("button", { name: /^About / });
 
+    expect(helps.map((help) => help.getAttribute("aria-label"))).toStrictEqual([
+      "About gas price",
+      "About transaction gas limit",
+      "About nonce",
+    ]);
     expect(
       helps.map((help) => help.getAttribute("data-tooltip-text"))
     ).toStrictEqual([
