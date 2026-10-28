@@ -13,6 +13,8 @@ and this project adheres to
 - Add .dusk name search and primary names on account and transaction pages
 - Add From / To and Amount to transaction lists
 - Name the contract a call went to, with plain words for common calls
+- Add an account's stake and stake rewards to its page
+- Add a search to the provisioners page
 
 ### Changed
 
@@ -23,6 +25,11 @@ and this project adheres to
 - Round dollar values to cents, give the gas price in LUX and separate thousands everywhere
 - Show the full time when hovering a list's relative time
 - Lead an account page with the searched name, then its primary name
+- Say "Public balance" and what an account page shows
+- Show search on phones without opening the menu, and say it takes .dusk names
+- Keep the search text after a miss, say why nothing was found and offer the .dusk name to try
+- Link provisioners to their account page, and keep their rows short on phones
+- Move "Show more" and the count to the bottom of lists
 
 ### Removed
 

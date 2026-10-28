@@ -21,9 +21,21 @@
   width: 1.75rem;
 }
 
+.search-notification__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
 .search-notification__content {
   display: flex;
   font-size: 1.125rem;
+}
+
+/* A .dusk name, shown as it is searched. */
+.search-notification__suggestion.dusk-button {
+  text-transform: none;
 }
 
 .search-notification__content-query {

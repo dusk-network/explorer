@@ -1,56 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Transactions Card > should disable the \`Show More\` button if the card is in the loading state 1`] = `
-<div
-  class="dusk-card data-card"
->
-  <!---->
-  <!---->
-  <header
-    class="data-card__header"
-    slot="header"
-  >
-    <h1
-      class="data-card__header-title"
-    >
-      Transactions — 0 Displayed Items
-    </h1>
-     
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      disabled=""
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
-    <!---->
-  </header>
-  
-  <!---->
-   
-  <!---->
-  <div
-    aria-label="Loading"
-    class="dusk-progress-bar data-card__progress-bar"
-    role="progressbar"
-  >
-    <div
-      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
-    />
-  </div>
-  
-  <!---->
-   
-  <!---->
-  
-</div>
-`;
-
 exports[`Transactions Card > should hide the \`Show More\` button if an error has occurred 1`] = `
 <div
   class="dusk-card data-card"
@@ -64,7 +13,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if an error ha
     <h1
       class="data-card__header-title"
     >
-      Transactions — 0 Displayed Items
+      Transactions
     </h1>
      
     <!---->
@@ -136,7 +85,7 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
     <h1
       class="data-card__header-title"
     >
-      Transactions — 10 Displayed Items
+      Transactions
     </h1>
      
     <!---->
@@ -2286,6 +2235,20 @@ exports[`Transactions Card > should hide the \`Show More\` button if there is no
     
     <!---->
   </div>
+   
+  <footer
+    class="data-card__footer"
+  >
+    <span
+      class="data-card__count"
+    >
+      10 of 10
+    </span>
+     
+    <!---->
+    <!---->
+  </footer>
+  <!---->
   
   <!---->
    
@@ -2307,26 +2270,54 @@ exports[`Transactions Card > should render the \`TransactionsCard\` component 1`
     <h1
       class="data-card__header-title"
     >
-      Transactions — 0 Displayed Items
+      Transactions
     </h1>
      
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
     <!---->
   </header>
   
   <!---->
    
   <!---->
+  
+  <!---->
+   
+  <!---->
+  
+</div>
+`;
+
+exports[`Transactions Card > should show no \`Show More\` button while the card is loading 1`] = `
+<div
+  class="dusk-card data-card"
+>
+  <!---->
+  <!---->
+  <header
+    class="data-card__header"
+    slot="header"
+  >
+    <h1
+      class="data-card__header-title"
+    >
+      Transactions
+    </h1>
+     
+    <!---->
+  </header>
+  
+  <!---->
+   
+  <!---->
+  <div
+    aria-label="Loading"
+    class="dusk-progress-bar data-card__progress-bar"
+    role="progressbar"
+  >
+    <div
+      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
+    />
+  </div>
   
   <!---->
    

@@ -688,6 +688,8 @@ exports[`Block Details > should render the Block Details page and query the nece
         </dl>
         <!---->
       </div>
+       
+      <!---->
       
       <!---->
        
@@ -1244,6 +1246,8 @@ exports[`Block Details > should render the Block Details page and query the nece
         
         <!---->
       </div>
+       
+      <!---->
       
       <!---->
        
@@ -1850,6 +1854,8 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         </dl>
         <!---->
       </div>
+       
+      <!---->
       
       <!---->
        
@@ -2670,6 +2676,8 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         
         <!---->
       </div>
+       
+      <!---->
       
       <!---->
        

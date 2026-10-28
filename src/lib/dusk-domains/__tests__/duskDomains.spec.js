@@ -107,7 +107,9 @@ describe("resolveDuskName", () => {
     const lookupFailed = "The name could not be looked up. Please try again.";
 
     await expect(resolveDuskName("bad_name.dusk")).rejects.toThrow(
-      "This is not a valid .dusk name."
+      new Error(
+        "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen."
+      )
     );
     expect(createReader).not.toHaveBeenCalled();
 

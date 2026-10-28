@@ -41,6 +41,22 @@
   padding-bottom: var(--card-padding);
 }
 
+.data-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+  padding: 0 var(--header-lateral-padding) var(--card-padding);
+}
+
+/* How many items of a list show, beside its "Show more" button. */
+.data-card__count {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 30%);
+  font-family: var(--mono-font-family);
+  font-size: 0.75rem;
+}
+
 .data-card__progress-bar.dusk-progress-bar {
   background-color: transparent;
   height: 0.125rem;

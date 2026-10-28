@@ -32,6 +32,32 @@
       });
   }
 
+  let errorFetchingStake = false;
+  /** @type {AccountStake | null | undefined} */
+  let stake = undefined;
+
+  /**
+   * One read of the stake contract per account shown.
+   *
+   * @param {string} accountKey
+   */
+  function fetchStake(accountKey) {
+    stake = undefined;
+    errorFetchingStake = false;
+    duskAPI
+      .getStake(accountKey)
+      .then((result) => {
+        if (accountKey === lastRequestedKey) {
+          stake = result;
+        }
+      })
+      .catch(() => {
+        if (accountKey === lastRequestedKey) {
+          errorFetchingStake = true;
+        }
+      });
+  }
+
   /** @type {string | null} */
   let lastRequestedKey = null;
 
@@ -41,6 +67,7 @@
     lastRequestedKey = key;
     getTransactions();
     fetchAccountStatus(key);
+    fetchStake(key);
   }
   $: ({ data, error, isLoading } = $dataStore);
   $: ({ isSmallScreen } = $appStore);
@@ -51,9 +78,11 @@
     <article>
       <AccountOverview
         {errorFetchingAccountStatus}
+        {errorFetchingStake}
         accountBalance={accountStatus?.balance}
         accountAddress={key}
         {searchedName}
+        {stake}
       />
     </article>
 

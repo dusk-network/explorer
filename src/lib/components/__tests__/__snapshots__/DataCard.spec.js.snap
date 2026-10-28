@@ -41,6 +41,8 @@ exports[`DataCard > should render the \`DataCard\` in the data state 1`] = `
     </span>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    
@@ -90,6 +92,8 @@ exports[`DataCard > should render the \`DataCard\` in the data state when loadin
     </span>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    

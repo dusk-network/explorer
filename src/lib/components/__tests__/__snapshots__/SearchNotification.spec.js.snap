@@ -13,7 +13,7 @@ exports[`Search Notification > renders the Search Notification component with a 
     <span
       class="search-notification__header-text"
     >
-      The search string you entered is: 
+      Nothing found for 
       <span
         class="search-notification__content-query"
       >
@@ -48,13 +48,19 @@ exports[`Search Notification > renders the Search Notification component with a 
   
   <!---->
    
-  <!---->
-  <span
-    class="search-notification__content"
+  <div
+    aria-live="polite"
+    class="search-notification__body"
   >
-    HTTP Request failed - failed
-  </span>
-  
+    <span
+      class="search-notification__content"
+    >
+      HTTP Request failed - failed
+    </span>
+    <!---->
+     
+    <!---->
+  </div>
   <!---->
    
   <!---->
@@ -75,7 +81,7 @@ exports[`Search Notification > renders the Search Notification component with th
     <span
       class="search-notification__header-text"
     >
-      The search string you entered is: 
+      Nothing found for 
       <span
         class="search-notification__content-query"
       >
@@ -110,8 +116,14 @@ exports[`Search Notification > renders the Search Notification component with th
   
   <!---->
    
-  <!---->
-  
+  <div
+    aria-live="polite"
+    class="search-notification__body"
+  >
+    <!---->
+     
+    <!---->
+  </div>
   <!---->
    
   <!---->

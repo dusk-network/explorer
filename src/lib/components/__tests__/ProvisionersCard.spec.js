@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { slice } from "lamb";
 
 import { hostProvisioners } from "$lib/mock-data";
@@ -27,17 +27,70 @@ describe("Provisioners Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should disable the `Show More` button is the card is in the loading state", () => {
+  it("should show no `Show More` button while the card is loading", () => {
     const loading = true;
 
-    const { container, getByRole } = render(ProvisionersCard, {
+    const { container, queryByRole } = render(ProvisionersCard, {
       ...baseOptions,
       props: { ...baseProps, loading },
     });
 
-    expect(getByRole("button", { name: "Show More" })).toBeDisabled();
+    expect(
+      queryByRole("button", { name: "Show More" })
+    ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
+  });
+
+  it("should give the count and the `Show More` button at the bottom of the list", async () => {
+    const { container, getByRole } = render(ProvisionersCard, {
+      ...baseOptions,
+      props: { ...baseProps, provisioners: hostProvisioners },
+    });
+    const footer = /** @type {HTMLElement} */ (
+      container.querySelector(".data-card__footer")
+    );
+    const shown = () => container.querySelectorAll("tbody tr").length;
+
+    expect(
+      container.querySelector(".data-card__header-title")
+    ).toHaveTextContent(/^Provisioners$/);
+    expect(shown()).toBe(15);
+    expect(footer.textContent).toMatch(/^\s*15 of \d+/);
+
+    await fireEvent.click(getByRole("button", { name: "Show More" }));
+
+    expect(shown()).toBe(30);
+  });
+
+  it("should find provisioners by staking or owner address", async () => {
+    const [first] = hostProvisioners;
+    const { container, getByRole } = render(ProvisionersCard, {
+      ...baseOptions,
+      props: { ...baseProps, provisioners: hostProvisioners },
+    });
+    const search = getByRole("searchbox", {
+      name: "Search provisioners by staking or owner address",
+    });
+    const rows = () =>
+      Array.from(container.querySelectorAll("tbody tr"), (row) =>
+        row.querySelector("a")?.getAttribute("href")
+      );
+
+    await fireEvent.input(search, {
+      target: { value: first.key.slice(10, 30).toUpperCase() },
+    });
+
+    expect(rows()).toStrictEqual([
+      `/some-base-path/accounts/?key=${first.key}`,
+    ]);
+
+    await fireEvent.input(search, { target: { value: "no such address" } });
+
+    expect(rows()).toStrictEqual([]);
+    expect(container.textContent).toContain(
+      "No provisioner has an address with “no such address”."
+    );
   });
 
   it("should hide the `Show More` button if there is no more data to display", async () => {

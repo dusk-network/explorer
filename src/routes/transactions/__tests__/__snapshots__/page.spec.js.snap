@@ -15,20 +15,9 @@ exports[`Transactions page > should render the Transactions page with the mobile
       <h1
         class="data-card__header-title"
       >
-        Transactions — 15 Displayed Items
+        Transactions
       </h1>
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -4007,6 +3996,31 @@ exports[`Transactions page > should render the Transactions page with the mobile
       
       <!---->
     </div>
+     
+    <footer
+      class="data-card__footer"
+    >
+      <span
+        class="data-card__count"
+      >
+        15 of 100
+      </span>
+       
+      <button
+        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+        type="button"
+      >
+        <span
+          class="dusk-button__text"
+        >
+          Show More
+        </span>
+        <!---->
+      </button>
+      <!---->
+      <!---->
+    </footer>
+    <!---->
     
     <!---->
      
@@ -4033,21 +4047,9 @@ exports[`Transactions page > should render the Transactions page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Transactions — 0 Displayed Items
+        Transactions
       </h1>
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-        disabled=""
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -4089,20 +4091,9 @@ exports[`Transactions page > should render the Transactions page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Transactions — 15 Displayed Items
+        Transactions
       </h1>
        
-      <button
-        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-        type="button"
-      >
-        <span
-          class="dusk-button__text"
-        >
-          Show More
-        </span>
-        <!---->
-      </button>
       <!---->
     </header>
     
@@ -7295,6 +7286,31 @@ exports[`Transactions page > should render the Transactions page, start polling 
       
       <!---->
     </div>
+     
+    <footer
+      class="data-card__footer"
+    >
+      <span
+        class="data-card__count"
+      >
+        15 of 100
+      </span>
+       
+      <button
+        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
+        type="button"
+      >
+        <span
+          class="dusk-button__text"
+        >
+          Show More
+        </span>
+        <!---->
+      </button>
+      <!---->
+      <!---->
+    </footer>
+    <!---->
     
     <!---->
      

@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, tick } from "svelte";
+  import { createEventDispatcher, onDestroy, tick } from "svelte";
   import { mdiClose, mdiMenu } from "@mdi/js";
   import { afterNavigate } from "$app/navigation";
 
@@ -21,6 +21,9 @@
 
   /** @type {*} */
   let notificationData;
+
+  /** @type {SearchField} */
+  let searchField;
 
   let navigation = [
     {
@@ -48,12 +51,53 @@
 
   const dispatch = createEventDispatcher();
 
+  /** @type {ResizeObserver | undefined} */
+  let notificationObserver;
+
+  const getNotification = () =>
+    document.getElementsByClassName(
+      "dusk-navbar__menu--search-notification"
+    )[0];
+
+  /**
+   * Room below the navbar for the search notification, where it floats
+   * over the page (wide screens).
+   */
+  function updateOffset() {
+    const notification = getNotification();
+
+    offset =
+      notification && getComputedStyle(notification).position === "absolute"
+        ? notification.clientHeight
+        : 0;
+  }
+
+  /**
+   * Makes that room, and keeps it right while the notification shows: its
+   * size can change, and so can the viewport, across the width where the
+   * notification starts floating.
+   */
   async function createEmptySpace() {
     await tick();
-    offset = document.getElementsByClassName(
-      "dusk-navbar__menu--search-notification"
-    )[0]?.clientHeight;
+
+    const notification = getNotification();
+
+    notificationObserver?.disconnect();
+
+    if (notification) {
+      notificationObserver = new ResizeObserver(updateOffset);
+      notificationObserver.observe(notification);
+      notificationObserver.observe(document.documentElement);
+    }
+
+    updateOffset();
   }
+
+  $: if (!showSearchNotification) {
+    notificationObserver?.disconnect();
+  }
+
+  onDestroy(() => notificationObserver?.disconnect());
 
   /**
    * @param {NodeInfo} nodeInfo
@@ -131,24 +175,29 @@
       variant={isConnected(nodeInfo) ? "success" : "warning"}
     />
     <NavList className="dusk-navbar__menu--links" {navigation} />
-    <div class="dusk-navbar__menu--search">
-      <SearchField
-        on:invalid={(e) => {
-          notificationData = e.detail;
-          showSearchNotification = true;
-          createEmptySpace();
-        }}
-      />
+  </div>
+  <div class="dusk-navbar__search">
+    <SearchField
+      bind:this={searchField}
+      on:invalid={(e) => {
+        notificationData = e.detail;
+        showSearchNotification = true;
+        createEmptySpace();
+      }}
+    />
 
-      {#if showSearchNotification}
-        <SearchNotification
-          data={notificationData}
-          on:close={() => {
-            showSearchNotification = false;
-          }}
-          className="dusk-navbar__menu--search-notification"
-        />
-      {/if}
-    </div>
+    {#if showSearchNotification}
+      <SearchNotification
+        data={notificationData}
+        on:close={() => {
+          showSearchNotification = false;
+        }}
+        on:suggest={(e) => {
+          showSearchNotification = false;
+          searchField.search(e.detail);
+        }}
+        className="dusk-navbar__menu--search-notification"
+      />
+    {/if}
   </div>
 </nav>

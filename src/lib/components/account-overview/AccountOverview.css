@@ -67,3 +67,14 @@
   min-height: 3.9375rem;
   align-items: center;
 }
+
+.account-overview-panel__note {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.account-overview-panel__stake {
+  font-family: var(--mono-font-family);
+}

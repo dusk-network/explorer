@@ -1,11 +1,9 @@
+import {
+  MULTICALL_CONTRACT,
+  STAKE_CONTRACT,
+  TRANSFER_CONTRACT,
+} from "$lib/constants";
 import { isDuskDomainsContract } from "$lib/dusk-domains";
-
-export const TRANSFER_CONTRACT =
-  "0100000000000000000000000000000000000000000000000000000000000000";
-export const STAKE_CONTRACT =
-  "0200000000000000000000000000000000000000000000000000000000000000";
-export const MULTICALL_CONTRACT =
-  "93de287b7d349d678a0038fe7772e8960e1a84a1b5da2d0b1f62f532616ce1d4";
 
 /** @type {Map<string, string>} */
 const contractNames = new Map([

@@ -587,6 +587,8 @@ exports[`Block Details > renders the Block Details component 1`] = `
     </dl>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    
@@ -1226,6 +1228,8 @@ exports[`Block Details > should render the Block Details component with the payl
     </dl>
     <!---->
   </div>
+   
+  <!---->
   
   <!---->
    

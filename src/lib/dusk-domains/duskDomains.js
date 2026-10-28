@@ -114,7 +114,11 @@ export async function resolveDuskName(query) {
   const validation = sdk.validateName(query);
 
   if (!validation.ok) {
-    throw new Error("This is not a valid .dusk name.");
+    throw new Error(
+      validation.issues.includes("label")
+        ? "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen."
+        : "This is not a valid .dusk name."
+    );
   }
 
   const { records, status, value } = await getReader(release)

@@ -64,12 +64,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  order: 2;
   width: 100%;
   /*
-    80px is the total height of the navbar on a small viewport.
-    It is needed so we know the exact height that needs to be set to the opened menu.
+    On a small viewport, the navbar's first row is 80px tall and the search
+    below it 4.25rem, the box plus the gap: the opened menu fills the rest.
   */
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 80px - 4.25rem);
   gap: 1.25rem;
   padding-top: 1rem;
 }
@@ -95,9 +96,10 @@
   height: auto;
 }
 
-.dusk-navbar__menu--search {
+/* On a small viewport, search is always there, under the logo. */
+.dusk-navbar__search {
   order: 1;
-  margin-top: 1.25rem;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -145,9 +147,14 @@
     order: 2;
   }
 
-  .dusk-navbar__menu--search {
-    order: 3;
-    margin-top: 0;
+  .dusk-navbar__menu {
+    order: 1;
+    flex: 1;
+  }
+
+  .dusk-navbar__search {
+    order: 2;
+    width: auto;
   }
 
   .dusk-navbar__menu--search-notification {

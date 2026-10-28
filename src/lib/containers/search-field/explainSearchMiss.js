@@ -1,0 +1,53 @@
+import * as base58 from "$lib/utils/encoders/base58";
+
+/** A name label: a–z, 0–9 and inner hyphens. */
+const NAME_LABEL = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
+
+/**
+ * Why a search found nothing, in words for the person searching, and a
+ * `.dusk` name to try when the query could be one. It reads nothing from
+ * the node.
+ *
+ * @param {string} query
+ * @returns {{ message: string, suggestion?: string }}
+ */
+function explainSearchMiss(query) {
+  const text = query.trim();
+  const isHex = /^[0-9a-f]+$/i.test(text);
+
+  if (/^\d+$/.test(text)) {
+    return { message: "There is no block at this height." };
+  }
+
+  if (isHex && text.length === 64) {
+    return { message: "No block or transaction has this ID." };
+  }
+
+  if (isHex && text.length >= 12) {
+    return {
+      message:
+        "This looks like the start of an ID. Search with the whole ID, 64 characters.",
+    };
+  }
+
+  if (base58.decode(text)?.length === 64) {
+    return {
+      message:
+        "This is a shielded address. Shielded balances and transfers are private, so the explorer can't show them.",
+    };
+  }
+
+  if (NAME_LABEL.test(text.toLowerCase())) {
+    return {
+      message: "No account, block or transaction matches this.",
+      suggestion: `${text.toLowerCase()}.dusk`,
+    };
+  }
+
+  return {
+    message:
+      "Search by account address, block height or hash, transaction ID or .dusk name.",
+  };
+}
+
+export default explainSearchMiss;

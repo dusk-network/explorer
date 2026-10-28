@@ -2402,6 +2402,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       
       <!---->
     </div>
+     
+    <!---->
     
     <!---->
      
@@ -3894,6 +3896,8 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       
       <!---->
     </div>
+     
+    <!---->
     
     <!---->
      

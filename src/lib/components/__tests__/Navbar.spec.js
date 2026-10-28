@@ -1,8 +1,17 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render } from "@testing-library/svelte";
+import { tick } from "svelte";
 import * as appNavigation from "$app/navigation";
 
+import { hostProvisioners } from "$lib/mock-data";
+import { resolveDuskName } from "$lib/dusk-domains";
+
 import { Navbar } from "..";
+
+vi.mock("$lib/dusk-domains", async (importOriginal) => ({
+  .../** @type {object} */ (await importOriginal()),
+  resolveDuskName: vi.fn(),
+}));
 
 /** @param {HTMLElement} container */
 const getNotificationElement = (container) =>
@@ -15,8 +24,7 @@ async function showSearchNotification(container) {
     form.querySelector("input[type='text']")
   );
 
-  searchInput.value = "foobar"; // invalid search
-
+  await fireEvent.input(searchInput, { target: { value: "foo_bar" } }); // invalid search
   await fireEvent.submit(form);
 }
 
@@ -105,5 +113,110 @@ describe("Navbar", () => {
     });
 
     expect(getNotificationElement(container)).toBeNull();
+  });
+
+  it("should make room for the search notification again once it floats, as when a tablet is turned", async () => {
+    /** @type {Array<{ callback: ResizeObserverCallback, targets: Element[] }>} */
+    const observers = [];
+
+    vi.stubGlobal(
+      "ResizeObserver",
+      class {
+        /** @param {ResizeObserverCallback} callback */
+        constructor(callback) {
+          this.callback = callback;
+          /** @type {Element[]} */
+          this.targets = [];
+          observers.push(this);
+        }
+
+        /** @param {Element} target */
+        observe(target) {
+          this.targets.push(target);
+        }
+
+        unobserve() {}
+
+        disconnect() {
+          this.targets = [];
+        }
+      }
+    );
+
+    const { container } = render(Navbar);
+    const nav = /** @type {HTMLElement} */ (container.querySelector("nav"));
+
+    // Narrow: the notification sits in the page's flow and needs no room.
+    await showSearchNotification(container);
+    await tick();
+
+    const notification = /** @type {HTMLElement} */ (
+      getNotificationElement(container)
+    );
+
+    expect(nav.style.marginBottom).toBe("0px");
+
+    // Wide: it floats over the page, so the navbar makes room below it.
+    const style = document.createElement("style");
+
+    style.textContent =
+      ".dusk-navbar__menu--search-notification { position: absolute; }";
+    document.head.append(style);
+    Object.defineProperty(notification, "clientHeight", { value: 120 });
+
+    for (const observer of observers) {
+      if (observer.targets.includes(notification)) {
+        observer.callback([], /** @type {any} */ (observer));
+      }
+    }
+
+    await tick();
+
+    expect(nav.style.marginBottom).toBe("120px");
+
+    style.remove();
+    vi.unstubAllGlobals();
+  });
+
+  it("should keep the search out of the menu, so phones show it without opening the menu", () => {
+    const { container } = render(Navbar);
+    const menu = /** @type {HTMLDivElement} */ (
+      container.querySelector("#dusk-navbar-menu")
+    );
+
+    expect(menu).toHaveClass("dusk-navbar__menu--hidden");
+    expect(menu.querySelector("form")).toBeNull();
+    expect(container.querySelector(".dusk-navbar__search form")).not.toBeNull();
+  });
+
+  it("should search the .dusk name the notification suggests", async () => {
+    const account = hostProvisioners[0].key;
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    vi.mocked(resolveDuskName).mockResolvedValueOnce(account);
+
+    const { container, getByRole } = render(Navbar);
+    const input = getByRole("textbox");
+
+    await fireEvent.input(input, { target: { value: "alice" } });
+    await fireEvent.submit(
+      /** @type {HTMLFormElement} */ (input.closest("form"))
+    );
+
+    const suggestion = await vi.waitFor(() =>
+      getByRole("button", { name: "Search alice.dusk" })
+    );
+
+    await fireEvent.click(suggestion);
+
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledWith(
+        `/some-base-path/accounts/?key=${account}&name=alice.dusk`
+      )
+    );
+    expect(resolveDuskName).toHaveBeenCalledWith("alice.dusk");
+    expect(getNotificationElement(container)).toBeNull();
+
+    gotoSpy.mockRestore();
   });
 });
