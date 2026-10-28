@@ -25,11 +25,17 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
   <div
     class="block-row__main"
   >
-    <span
-      class="block-row__height"
+    <a
+      aria-label="Block 495,868"
+      class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+      href="/some-base-path/blocks/block?id=bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f"
     >
+      <!---->
       495,868
-    </span>
+      
+      <!---->
+    </a>
+    <!---->
      
     <span
       class="row-line"
@@ -75,20 +81,5 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
       transactions
     </span>
   </div>
-   
-  <a
-    class="dusk-anchor dusk-anchor--on-surface block-row__link"
-    href="/some-base-path/blocks/block?id=bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f"
-  >
-    <!---->
-    <span
-      class="sr-only"
-    >
-      Block 495,868
-    </span>
-    
-    <!---->
-  </a>
-  <!---->
 </div>
 `;

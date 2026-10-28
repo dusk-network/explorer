@@ -22,7 +22,10 @@
   min-width: 0;
 }
 
+/* A block's height in Söhne Mono, in the chain's blue as a link to it. */
 .block__link {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 

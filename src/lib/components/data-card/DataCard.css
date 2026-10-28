@@ -27,14 +27,38 @@
   line-height: 1.2;
 }
 
-/* A section of the home page: a smaller heading, and "All …" beside it. */
+/*
+ * A section of a page, as [ BLOCKS ], with "All blocks" beside it on the
+ * same line; and the line above a detail page's summary, as
+ * [ TRANSACTION ], quieter. Both in the ledger's type.
+ */
 .data-card--section .data-card__header {
+  align-items: baseline;
   margin-bottom: 0.5rem;
 }
 
-.data-card--section .data-card__header-title {
-  font-size: 1.0625rem;
-  letter-spacing: 0;
+.data-card--section .data-card__header-title,
+.data-card--detail .data-card__header-title {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: var(--ledger-letter-spacing);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* "All blocks": a text link, in the chain's blue. */
+.data-card__header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  min-height: 2rem;
+  font-size: 0.84375rem;
+}
+
+.data-card__header-link .dusk-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
 .data-card__header .data-card__header-action.dusk-button {
@@ -64,9 +88,7 @@
 
 .data-card--detail .data-card__header-title {
   color: var(--calm-muted);
-  font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-size: 0.75rem;
 }
 
 .data-card__content {
@@ -99,7 +121,7 @@
 }
 
 @media (max-width: 47.99rem) {
-  .data-card__header-title {
+  .data-card--page .data-card__header-title {
     font-size: 1.5rem;
   }
 }

@@ -107,12 +107,6 @@ const nodePost = (endpoint) =>
  */
 let nodeInfoRequest = null;
 
-/** @type {() => Promise<number>} */
-const getLastHeight = () =>
-  gqlGet({
-    query: "query { block(height: -1) { header { height } } }",
-  }).then(getPath("block.header.height"));
-
 const duskAPI = {
   /**
    * @param {string} address
@@ -378,17 +372,30 @@ const duskAPI = {
   },
 
   /**
+   * The network's numbers. Without the last block there are none; the
+   * provisioners or the transaction count, when they can't be read, leave
+   * out only their own.
+   *
    * @returns {Promise<Stats>}
    */
   getStats() {
-    return Promise.all([
+    return Promise.allSettled([
       duskAPI.getProvisioners(),
-      getLastHeight(),
+      duskAPI.getChainTip(),
       duskAPI.getTxCount(),
-    ]).then(([provisioners, lastHeight, txCount]) => ({
-      ...calculateStats(provisioners, lastHeight),
-      txCount,
-    }));
+    ]).then(([provisioners, tip, txCount]) => {
+      if (tip.status === "rejected") {
+        throw tip.reason;
+      }
+
+      return {
+        ...(provisioners.status === "fulfilled"
+          ? calculateStats(provisioners.value, tip.value.height)
+          : { lastBlock: tip.value.height }),
+        lastBlockDate: tip.value.date,
+        txCount: txCount.status === "fulfilled" ? txCount.value : undefined,
+      };
+    });
   },
 
   /**

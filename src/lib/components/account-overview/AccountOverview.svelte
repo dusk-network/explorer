@@ -82,8 +82,11 @@
   Then what it holds, and for a provisioner, its stake.
 -->
 <section class="account-overview-panel">
+  <!-- As the line above a transaction's or a block's summary. -->
   <p class="account-overview-panel__kind">
-    {isProvisioner ? "Provisioner" : "Account"}
+    <span aria-hidden="true" class="ledger-bracket">[</span>{isProvisioner
+      ? "Provisioner"
+      : "Account"}<span aria-hidden="true" class="ledger-bracket">]</span>
   </p>
   <h1 class="account-overview-panel__header">
     {#await searchedNameShown}

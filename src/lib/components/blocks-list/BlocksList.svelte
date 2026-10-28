@@ -23,14 +23,19 @@
 
 <!--
   A block as a row of the web wallet's History on a phone: its height and
-  when, its reward and how many transactions it holds. The whole row opens
-  the block.
+  when, its reward and how many transactions it holds. The height is the
+  link to the block, and the whole row opens it.
 -->
 <div class="block-row">
   <span aria-hidden="true" class="row-icon"><Icon path={mdiCubeOutline} /></span
   >
   <div class="block-row__main">
-    <span class="block-row__height">{formatter(data.header.height)}</span>
+    <AppAnchor
+      aria-label="Block {formatter(data.header.height)}"
+      className="block-row__link chain-link"
+      href={`/blocks/block?id=${data.header.hash}`}
+      >{formatter(data.header.height)}</AppAnchor
+    >
     <span class="row-line">
       <RelativeTime
         autoRefresh={autoRefreshTime}
@@ -53,10 +58,4 @@
       {count === 1 ? "transaction" : "transactions"}</span
     >
   </div>
-  <AppAnchor
-    className="block-row__link"
-    href={`/blocks/block?id=${data.header.hash}`}
-    ><span class="sr-only">Block {formatter(data.header.height)}</span
-    ></AppAnchor
-  >
 </div>

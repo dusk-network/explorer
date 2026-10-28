@@ -3,7 +3,6 @@
 <script>
   import { BlocksList, BlocksTable, DataCard } from "$lib/components";
   import { makeClassName } from "$lib/dusk/string";
-  import { goto } from "$lib/navigation";
 
   /** @type {string | Undefined} */
   export let className = undefined;
@@ -31,11 +30,7 @@
   className={classes}
   title="Blocks"
   variant="section"
-  headerButtonDetails={{
-    action: () => goto("/blocks"),
-    disabled: false,
-    label: "All blocks",
-  }}
+  headerLink={{ href: "/blocks", label: "All blocks" }}
 >
   {#if isSmallScreen}
     {#each blocks as block (block)}

@@ -1,16 +1,44 @@
 /*
- * The web wallet's explainer cards for the four numbers that matter most,
- * each label muted above its number; the rest in one quiet card of smaller
- * labels and values.
+ * The network's face: the map in full contrast leads, the four numbers that
+ * matter most beside it as cards, two by two, each label above its number;
+ * the rest in one quiet card of smaller labels and values, under both.
  */
 .statistics-panel {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "face"
+    "cards"
+    "secondary";
   gap: 0.75rem;
   width: 100%;
 }
 
+.statistics-panel__face {
+  grid-area: face;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+}
+
+.statistics-panel__face .nodes-world-map {
+  max-height: 23.75rem;
+}
+
+/* What the rings are, under the map. */
+.statistics-panel__face-caption {
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+}
+
+.statistics-panel__secondary {
+  grid-area: secondary;
+}
+
 .statistics-panel__statistics {
+  grid-area: cards;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
@@ -33,14 +61,81 @@
   border-radius: 1rem;
 }
 
+/* The labels in the ledger's type. */
 .statistics-panel__statistics-item-title {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem 0.5rem;
   min-width: 0;
   color: var(--calm-muted);
-  font-size: 0.8125rem;
+  font-family: var(--mono-font-family);
+  font-size: var(--ledger-font-size);
+  letter-spacing: var(--ledger-letter-spacing);
   line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/*
+ * By the last block: a green dot and "Live" while new blocks come, each
+ * new one ringing out once; a grey dot and "Waiting for blocks" when none
+ * has come for a while.
+ */
+.statistics-panel__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-left: auto;
+  font-family: var(--sans-font-family);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.statistics-panel__live-dot {
+  position: relative;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background-color: var(--calm-online);
+  flex: 0 0 auto;
+}
+
+.statistics-panel__live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--calm-online);
+  opacity: 0;
+  animation: statistics-panel-live 1.6s ease-out 1;
+}
+
+.statistics-panel__live--waiting .statistics-panel__live-dot {
+  background-color: var(--calm-subtle);
+}
+
+.statistics-panel__live--waiting .statistics-panel__live-dot::after {
+  animation: none;
+}
+
+@keyframes statistics-panel-live {
+  from {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statistics-panel__live-dot::after {
+    animation: none;
+  }
 }
 
 .statistics-panel__statistics-item-title .dusk-icon {
@@ -83,9 +178,12 @@
   color: var(--calm-pending);
 }
 
-.approximate::before {
-  display: inline;
-  content: "~";
+/*
+ * A number rounded to show: "≈" before it, a space apart, in the unit's
+ * colour. Screen readers say "about".
+ */
+.statistics-panel__statistics-item-about {
+  color: var(--calm-muted);
 }
 
 /* The rest: one card, its labels and values small. */
@@ -116,6 +214,32 @@
   font-size: 0.8125rem;
 }
 
+/* Wide screens: the map, and the four numbers beside it two by two. */
+@media (min-width: 75rem) {
+  .statistics-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+    grid-template-areas:
+      "face cards"
+      "secondary secondary";
+    column-gap: 1.5rem;
+  }
+
+  .statistics-panel__statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Each number at its card's foot, its label at the head. */
+  .statistics-panel__statistics-item--primary {
+    justify-content: space-between;
+  }
+
+  .statistics-panel__statistics-item--primary
+    .statistics-panel__statistics-item-value-container {
+    font-size: 1.75rem;
+  }
+}
+
 /* Tablets: the rest in two rows. */
 @media (max-width: 63.99rem) {
   .statistics-panel__secondary {
@@ -125,12 +249,22 @@
 }
 
 /*
- * Phones: the four as small cards, two to a row, without icons; the rest
- * as a list of labels and values.
+ * Phones: a short band of the map, from edge to edge; the four as small
+ * cards, two to a row, without icons; the rest as a list of labels and
+ * values.
  */
 @media (max-width: 47.99rem) {
   .statistics-panel {
     gap: 0.5rem;
+  }
+
+  .statistics-panel__face {
+    margin: -0.25rem calc(-1 * var(--page-gutter)) 0.25rem;
+  }
+
+  .statistics-panel__face-caption {
+    padding: 0 var(--page-gutter);
+    font-size: 0.75rem;
   }
 
   .statistics-panel__statistics {
@@ -142,10 +276,6 @@
     gap: 0.25rem;
     padding: 0.625rem 0.875rem 0.75rem;
     border-radius: 0.875rem;
-  }
-
-  .statistics-panel__statistics-item-title {
-    font-size: 0.78125rem;
   }
 
   .statistics-panel__statistics-item-title .dusk-icon {

@@ -50,9 +50,21 @@ describe("AccountOverview", () => {
           ?.textContent
       ).toMatch(/^\s*Primary name:\s+duskdomains\.dusk/)
     );
-    expect(
+    const kind = /** @type {Element} */ (
       container.querySelector(".account-overview-panel__kind")
-    ).toHaveTextContent(/^Account$/);
+    );
+
+    // As a transaction's page: [ ACCOUNT ], its brackets drawn, not read.
+    expect(kind).toHaveTextContent(/^\[Account\]$/);
+    expect(
+      Array.from(kind.children, (bracket) => [
+        bracket.textContent,
+        bracket.getAttribute("aria-hidden"),
+      ])
+    ).toStrictEqual([
+      ["[", "true"],
+      ["]", "true"],
+    ]);
     expect(header.textContent).toMatch(/^\s*domains\.dusk/);
     expect(header.textContent).not.toContain("duskdomains.dusk");
     expect(

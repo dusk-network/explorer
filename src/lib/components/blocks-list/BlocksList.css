@@ -22,19 +22,26 @@
   font-size: 0.875rem;
 }
 
-.block-row__height {
-  font-size: 0.875rem;
+/* The height in Söhne Mono, in the chain's blue: the link to the block. */
+.block-row__link {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
 /* The whole row opens the block. */
-.block-row__link {
+.block-row__link::after {
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 0.5rem;
 }
 
 .block-row__link:focus-visible {
+  outline: none;
+}
+
+.block-row__link:focus-visible::after {
   outline: 2px solid var(--calm-focus);
   outline-offset: -2px;
 }

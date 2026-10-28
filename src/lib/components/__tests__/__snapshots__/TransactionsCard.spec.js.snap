@@ -13,9 +13,13 @@ exports[`Transactions Card > should hide the \`Show more\` button if an error ha
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Transactions
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -87,9 +91,13 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Transactions
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -285,7 +293,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
                 >
                   <!---->
@@ -517,7 +525,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
                 >
                   <!---->
@@ -749,7 +757,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
                 >
                   <!---->
@@ -981,7 +989,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
                 >
                   <!---->
@@ -1213,7 +1221,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
                 >
                   <!---->
@@ -1445,7 +1453,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
                 >
                   <!---->
@@ -1677,7 +1685,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
                 >
                   <!---->
@@ -1909,7 +1917,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
                 >
                   <!---->
@@ -2141,7 +2149,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
                 >
                   <!---->
@@ -2373,7 +2381,7 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
                 class="transaction__transaction-id-container"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface transaction__link"
+                  class="dusk-anchor dusk-anchor--on-surface transaction__link chain-link"
                   href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
                 >
                   <!---->
@@ -2552,9 +2560,13 @@ exports[`Transactions Card > should render the \`TransactionsCard\` component 1`
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Transactions
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -2584,9 +2596,13 @@ exports[`Transactions Card > should show no \`Show more\` button while the card 
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Transactions
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->

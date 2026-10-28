@@ -14,7 +14,12 @@
   cursor: help;
 }
 
-.transaction-details__summary-failed {
+/* The outcome in its colour: green when it went through, red when it failed. */
+.transaction-details__outcome--completed {
+  color: var(--calm-online-text);
+}
+
+.transaction-details__outcome--failed {
   color: var(--calm-danger);
 }
 
@@ -25,19 +30,10 @@
   min-width: 0;
 }
 
-.transaction-details__list-anchor,
-.transaction-details__list-anchor:visited {
-  text-decoration: none;
-}
-
-.transaction-details__list-anchor:hover .full-value__middle {
-  color: var(--calm-text);
-}
-
-.transaction-details__block-link,
-.transaction-details__block-link:visited {
-  text-decoration-line: underline;
-  text-decoration-color: var(--calm-line2);
+/* The block's height in Söhne Mono. */
+.transaction-details__block-link {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
 }
 
 .transaction-details__evm {
@@ -51,6 +47,26 @@
 
 .transaction-details__hidden {
   color: var(--calm-muted);
+}
+
+/* Public or shielded, and under it what that shows everyone. */
+.transaction-details__visibility {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+}
+
+.transaction-details__visibility-seen {
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+}
+
+/* Wide screens: at the start of the value's column, as every value. */
+@media (min-width: 64rem) {
+  .transaction-details__visibility {
+    align-items: flex-start;
+  }
 }
 
 .transaction-details__memo {

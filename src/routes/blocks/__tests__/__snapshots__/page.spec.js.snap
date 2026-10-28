@@ -15,9 +15,13 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Blocks
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -57,11 +61,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,454"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=3d43be31a8cb5d3f61b4e8391800a01033d650b11c4c874210dbaa3c118474a6"
             >
+              <!---->
               1,365,454
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -107,21 +117,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=3d43be31a8cb5d3f61b4e8391800a01033d650b11c4c874210dbaa3c118474a6"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,454
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -147,11 +142,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,453"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=2bc290511be774ec9c04e6c0ceb2469798242b997422c542a7d6b0b6f3368414"
             >
+              <!---->
               1,365,453
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -197,21 +198,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=2bc290511be774ec9c04e6c0ceb2469798242b997422c542a7d6b0b6f3368414"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,453
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -237,11 +223,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,452"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=02f38d2e2a986cf77a70e8fe4f333ef9c5e075987891f3f526c8a57590800178"
             >
+              <!---->
               1,365,452
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -287,21 +279,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=02f38d2e2a986cf77a70e8fe4f333ef9c5e075987891f3f526c8a57590800178"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,452
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -327,11 +304,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,451"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=c79e31ce8e6133ebfb0d85649a12167769ddc83420550faebc536e613d74d676"
             >
+              <!---->
               1,365,451
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -377,21 +360,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=c79e31ce8e6133ebfb0d85649a12167769ddc83420550faebc536e613d74d676"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,451
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -417,11 +385,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,450"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=22ffe1b159e1b33b06d566b3ce3119af6f4bec4d2a3f6916560fe3cb30fcc1ef"
             >
+              <!---->
               1,365,450
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -467,21 +441,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=22ffe1b159e1b33b06d566b3ce3119af6f4bec4d2a3f6916560fe3cb30fcc1ef"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,450
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -507,11 +466,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,449"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=79c2d3213df80f8113d1ca16c49b1818fb5c31d1437e0a447719491a9c1b5f85"
             >
+              <!---->
               1,365,449
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -557,21 +522,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=79c2d3213df80f8113d1ca16c49b1818fb5c31d1437e0a447719491a9c1b5f85"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,449
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -597,11 +547,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,448"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=fb3e82e43b141409156f935afc69ccb09a59a72a10258401b539123981db571c"
             >
+              <!---->
               1,365,448
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -647,21 +603,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=fb3e82e43b141409156f935afc69ccb09a59a72a10258401b539123981db571c"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,448
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -687,11 +628,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,447"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=4b402a917bf42561096a9224e6451b77b8cbdc50272013442eccb5fcc542ef12"
             >
+              <!---->
               1,365,447
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -737,21 +684,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=4b402a917bf42561096a9224e6451b77b8cbdc50272013442eccb5fcc542ef12"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,447
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -777,11 +709,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,446"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=38d069620a7cbad7cadb10ecc797b1344284b6324ac85f5e126226a08d47398a"
             >
+              <!---->
               1,365,446
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -827,21 +765,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=38d069620a7cbad7cadb10ecc797b1344284b6324ac85f5e126226a08d47398a"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,446
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -867,11 +790,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,445"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=14c7d9f5e44d599a167d82a449d73daf54e32bf002c6cd5893de5f904024922a"
             >
+              <!---->
               1,365,445
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -917,21 +846,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=14c7d9f5e44d599a167d82a449d73daf54e32bf002c6cd5893de5f904024922a"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,445
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -957,11 +871,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,444"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=e8e93e35a501d03e47b9693a32ab58ba1dc3ea1e59dd860de0c7085ff1548838"
             >
+              <!---->
               1,365,444
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -1007,21 +927,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=e8e93e35a501d03e47b9693a32ab58ba1dc3ea1e59dd860de0c7085ff1548838"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,444
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -1047,11 +952,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,443"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=32b85beacd508de90fc292914101edc47f96391896ccca8b37c90030a0c6cf5a"
             >
+              <!---->
               1,365,443
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -1097,21 +1008,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=32b85beacd508de90fc292914101edc47f96391896ccca8b37c90030a0c6cf5a"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,443
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -1137,11 +1033,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,442"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=0a4e8eb58f138cad89fbb5c281771a71c5efef3fa3d1ecfd66526b0214e9c02c"
             >
+              <!---->
               1,365,442
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -1187,21 +1089,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=0a4e8eb58f138cad89fbb5c281771a71c5efef3fa3d1ecfd66526b0214e9c02c"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,442
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -1227,11 +1114,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,441"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=261bf76439948b7c371f6b14f6b94b43b0c992b85f35abd615c41407aebac019"
             >
+              <!---->
               1,365,441
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -1277,21 +1170,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=261bf76439948b7c371f6b14f6b94b43b0c992b85f35abd615c41407aebac019"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,441
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         <div
           class="block-row"
@@ -1317,11 +1195,17 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
           <div
             class="block-row__main"
           >
-            <span
-              class="block-row__height"
+            <a
+              aria-label="Block 1,365,440"
+              class="dusk-anchor dusk-anchor--on-surface block-row__link chain-link"
+              href="/some-base-path/blocks/block?id=0606a98c2bf324976e64c85c90e12a8e38275b9a24da2ce807be0cca98bd3f2e"
             >
+              <!---->
               1,365,440
-            </span>
+              
+              <!---->
+            </a>
+            <!---->
              
             <span
               class="row-line"
@@ -1367,21 +1251,6 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
       transactions
             </span>
           </div>
-           
-          <a
-            class="dusk-anchor dusk-anchor--on-surface block-row__link"
-            href="/some-base-path/blocks/block?id=0606a98c2bf324976e64c85c90e12a8e38275b9a24da2ce807be0cca98bd3f2e"
-          >
-            <!---->
-            <span
-              class="sr-only"
-            >
-              Block 1,365,440
-            </span>
-            
-            <!---->
-          </a>
-          <!---->
         </div>
         
       </div>
@@ -1439,9 +1308,13 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Blocks
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -1485,9 +1358,13 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
       <h1
         class="data-card__header-title"
       >
+        <!---->
         Blocks
         
+        
       </h1>
+      <!---->
+       
       <!---->
        
       <!---->
@@ -1605,7 +1482,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=3d43be31a8cb5d3f61b4e8391800a01033d650b11c4c874210dbaa3c118474a6"
                     >
                       <!---->
@@ -1730,7 +1607,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=2bc290511be774ec9c04e6c0ceb2469798242b997422c542a7d6b0b6f3368414"
                     >
                       <!---->
@@ -1855,7 +1732,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=02f38d2e2a986cf77a70e8fe4f333ef9c5e075987891f3f526c8a57590800178"
                     >
                       <!---->
@@ -1980,7 +1857,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=c79e31ce8e6133ebfb0d85649a12167769ddc83420550faebc536e613d74d676"
                     >
                       <!---->
@@ -2105,7 +1982,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=22ffe1b159e1b33b06d566b3ce3119af6f4bec4d2a3f6916560fe3cb30fcc1ef"
                     >
                       <!---->
@@ -2230,7 +2107,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=79c2d3213df80f8113d1ca16c49b1818fb5c31d1437e0a447719491a9c1b5f85"
                     >
                       <!---->
@@ -2355,7 +2232,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=fb3e82e43b141409156f935afc69ccb09a59a72a10258401b539123981db571c"
                     >
                       <!---->
@@ -2480,7 +2357,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=4b402a917bf42561096a9224e6451b77b8cbdc50272013442eccb5fcc542ef12"
                     >
                       <!---->
@@ -2605,7 +2482,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=38d069620a7cbad7cadb10ecc797b1344284b6324ac85f5e126226a08d47398a"
                     >
                       <!---->
@@ -2730,7 +2607,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=14c7d9f5e44d599a167d82a449d73daf54e32bf002c6cd5893de5f904024922a"
                     >
                       <!---->
@@ -2855,7 +2732,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=e8e93e35a501d03e47b9693a32ab58ba1dc3ea1e59dd860de0c7085ff1548838"
                     >
                       <!---->
@@ -2980,7 +2857,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=32b85beacd508de90fc292914101edc47f96391896ccca8b37c90030a0c6cf5a"
                     >
                       <!---->
@@ -3105,7 +2982,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=0a4e8eb58f138cad89fbb5c281771a71c5efef3fa3d1ecfd66526b0214e9c02c"
                     >
                       <!---->
@@ -3230,7 +3107,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=261bf76439948b7c371f6b14f6b94b43b0c992b85f35abd615c41407aebac019"
                     >
                       <!---->
@@ -3355,7 +3232,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
                     class="block__who"
                   >
                     <a
-                      class="dusk-anchor dusk-anchor--on-surface block__link"
+                      class="dusk-anchor dusk-anchor--on-surface block__link chain-link"
                       href="/some-base-path/blocks/block?id=0606a98c2bf324976e64c85c90e12a8e38275b9a24da2ce807be0cca98bd3f2e"
                     >
                       <!---->

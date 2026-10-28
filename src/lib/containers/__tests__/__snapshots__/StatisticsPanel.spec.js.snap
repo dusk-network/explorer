@@ -4,6 +4,23 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
 <div
   class="statistics-panel"
 >
+  <figure
+    class="statistics-panel__face"
+  >
+    <svg
+      class="nodes-world-map"
+      data-places="21"
+    />
+    <!---->
+     
+    <figcaption
+      class="statistics-panel__face-caption"
+    >
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
+   
   <div
     class="statistics-panel__statistics"
   >
@@ -26,11 +43,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         DUSK price
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -74,11 +94,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Current stake
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -116,11 +139,20 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Last block
+        <span
+          class="statistics-panel__live"
+          role="status"
+        >
+          <!---->
+        </span>
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -158,11 +190,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Total transactions
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -199,6 +234,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -231,6 +268,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -265,6 +304,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -295,6 +336,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -325,6 +368,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -360,6 +405,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -387,6 +434,23 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
 <div
   class="statistics-panel"
 >
+  <figure
+    class="statistics-panel__face"
+  >
+    <svg
+      class="nodes-world-map"
+      data-places="21"
+    />
+    <!---->
+     
+    <figcaption
+      class="statistics-panel__face-caption"
+    >
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
+   
   <div
     class="statistics-panel__statistics"
   >
@@ -409,11 +473,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         DUSK price
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -457,13 +524,30 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Current stake
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <span
+          class="statistics-panel__statistics-item-about"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ≈
+          </span>
+          <span
+            class="sr-only"
+          >
+            about
+          </span>
+        </span>
+        <!---->
+         
         <div
-          class="statistics-panel__statistics-item-value approximate"
+          class="statistics-panel__statistics-item-value"
         >
           <!---->
           <!---->
@@ -504,11 +588,27 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Last block
+        <span
+          class="statistics-panel__live"
+          role="status"
+        >
+          <!---->
+          <span
+            aria-hidden="true"
+            class="statistics-panel__live-dot"
+          />
+          <!---->
+          Live
+          <!---->
+        </span>
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -549,11 +649,14 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         
         <!---->
         Total transactions
+        <!---->
       </span>
        
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <div
           class="statistics-panel__statistics-item-value"
         >
@@ -590,6 +693,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -622,6 +727,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -657,7 +764,23 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <span
-          class="statistics-panel__statistics-item-value approximate"
+          class="statistics-panel__statistics-item-about"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ≈
+          </span>
+          <span
+            class="sr-only"
+          >
+            about
+          </span>
+        </span>
+        <!---->
+         
+        <span
+          class="statistics-panel__statistics-item-value"
         >
           <!---->
           <!---->
@@ -691,6 +814,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -721,6 +846,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >
@@ -756,6 +883,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
+         
         <span
           class="statistics-panel__statistics-item-value"
         >

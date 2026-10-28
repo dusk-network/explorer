@@ -2,6 +2,7 @@
 @import url("./duskit-bridge.css");
 @import url("./app-components/rows.css");
 @import url("./app-components/details.css");
+@import url("./app-components/ledger.css");
 
 * {
   box-sizing: border-box;
@@ -89,6 +90,24 @@ svg {
 :focus-visible {
   outline: 2px solid var(--calm-focus);
   outline-offset: 2px;
+}
+
+/*
+ * A link to a block, a transaction or an account, and a text link such as
+ * "All blocks": in the chain's blue, which says it opens something. Only
+ * links are blue; an address or an ID inside one takes the blue whole.
+ */
+:is(
+  a.chain-link,
+  a.chain-link:visited,
+  a.chain-link:hover,
+  a.chain-link:active
+) {
+  color: var(--chain-blue);
+}
+
+.chain-link :is(.full-value, .full-value__end) {
+  color: inherit;
 }
 
 /* An amount's unit, muted, as the web wallet shows it. */

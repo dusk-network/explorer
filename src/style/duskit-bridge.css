@@ -19,11 +19,30 @@
   --calm-pending: #8a5a00;
   --calm-danger: #b42318;
   --calm-online: #1e8e4e;
+  /* The online green as words: darker on the light page, to read at 5.5:1. */
+  --calm-online-text: #18723d;
   --calm-pill: #141416;
   --calm-on-pill: #f6f5f2;
-  --calm-focus: #0b66d6;
-  --calm-focus-ring: rgb(11 102 214 / 0.3);
   --calm-scrim: rgb(20 20 22 / 0.4);
+
+  /*
+   * The chain's blue, the one accent: links to blocks, transactions and
+   * accounts, text links and the focus ring. The old explorer's cornflower
+   * (#71b1ff) in the dark theme, 8.5:1 on the page; the same hue darker in
+   * the light one, 5.5:1 on the page and 5:1 on a hovered row.
+   */
+  --chain-blue: #005ed1;
+  /* The map's rings breathe out to this lighter blue, and back. */
+  --chain-blue-glow: #5a9be6;
+  --calm-focus: var(--chain-blue);
+  --calm-focus-ring: rgb(0 94 209 / 0.3);
+
+  /*
+   * The ledger's type: small Söhne Mono capitals, a little apart, for
+   * section heads, column heads and the labels of numbers.
+   */
+  --ledger-font-size: 0.6875rem;
+  --ledger-letter-spacing: 0.08em;
 
   /* Violet is a test network, as on the bridge and in the wallets. */
   --calm-test: #5b4bc4;
@@ -160,9 +179,11 @@
   --calm-pending: #e8b96a;
   --calm-danger: #e37a7a;
   --calm-online: #3fb871;
+  --calm-online-text: var(--calm-online);
   --calm-pill: #f2f0eb;
   --calm-on-pill: #141416;
-  --calm-focus: #71b1ff;
+  --chain-blue: #71b1ff;
+  --chain-blue-glow: #b9d9ff;
   --calm-focus-ring: rgb(113 177 255 / 0.35);
   --calm-scrim: rgb(5 5 6 / 0.66);
   --calm-test: #b9aeff;

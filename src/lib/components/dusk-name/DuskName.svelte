@@ -30,7 +30,8 @@
 
 <span class="primary-name-group">
   {#if href}
-    <AppAnchor className="primary-name" {href}>{name.name}</AppAnchor>
+    <AppAnchor className="primary-name chain-link" {href}>{name.name}</AppAnchor
+    >
   {:else}
     <span class="primary-name">{name.name}</span>
   {/if}

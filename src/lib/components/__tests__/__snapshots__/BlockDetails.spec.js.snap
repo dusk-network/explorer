@@ -13,9 +13,25 @@ exports[`Block Details > renders the Block Details component 1`] = `
     <h1
       class="data-card__header-title"
     >
+      <!---->
+      <span
+        aria-hidden="true"
+        class="ledger-bracket"
+      >
+        [
+      </span>
       Block
+      <span
+        aria-hidden="true"
+        class="ledger-bracket"
+      >
+        ]
+      </span>
+      
       
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -513,9 +529,25 @@ exports[`Block Details > should render the Block Details component with the payl
     <h1
       class="data-card__header-title"
     >
+      <!---->
+      <span
+        aria-hidden="true"
+        class="ledger-bracket"
+      >
+        [
+      </span>
       Block
+      <span
+        aria-hidden="true"
+        class="ledger-bracket"
+      >
+        ]
+      </span>
+      
       
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->

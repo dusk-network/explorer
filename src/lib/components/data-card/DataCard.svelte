@@ -3,8 +3,8 @@
 <script>
   import { mdiChevronRight } from "@mdi/js";
 
-  import { DataAlert } from "$lib/components";
-  import { Button, Card, ProgressBar } from "$lib/dusk/components";
+  import { AppAnchor, DataAlert } from "$lib/components";
+  import { Button, Card, Icon, ProgressBar } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
 
   import "./DataCard.css";
@@ -23,6 +23,13 @@
 
   /** @type {{action:(e: MouseEvent) => void, disabled: boolean, label: String, variant?: ButtonVariant } | undefined}*/
   export let headerButtonDetails = undefined;
+
+  /**
+   * The link beside a section's head to the whole list, as "All blocks".
+   *
+   * @type {{ href: string, label: string } | undefined}
+   */
+  export let headerLink = undefined;
 
   /** @type {string | Undefined} */
   export let className = undefined;
@@ -45,17 +52,35 @@
 
 <Card className={classes}>
   <header slot="header" class="data-card__header">
+    <!--
+      A page's title as written. A section's head, or the line above a
+      detail page's summary, in the ledger's type between brackets that are
+      drawn, not read.
+    -->
     <svelte:element
       this={variant === "section" ? "h2" : "h1"}
-      class="data-card__header-title">{title}</svelte:element
+      class="data-card__header-title"
+      >{#if variant === "page"}{title}{:else}<span
+          aria-hidden="true"
+          class="ledger-bracket">[</span
+        >{title}<span aria-hidden="true" class="ledger-bracket">]</span
+        >{/if}</svelte:element
     >
+    {#if headerLink}
+      <AppAnchor
+        className="data-card__header-link chain-link"
+        href={headerLink.href}
+        >{headerLink.label}<Icon
+          aria-hidden="true"
+          path={mdiChevronRight}
+          size="small"
+        /></AppAnchor
+      >
+    {/if}
     {#if headerButtonDetails}
       <Button
         className="data-card__header-action"
         disabled={headerButtonDetails.disabled}
-        icon={variant === "section"
-          ? { path: mdiChevronRight, position: "after", size: "small" }
-          : undefined}
         on:click={headerButtonDetails.action}
         size="small"
         text={headerButtonDetails.label}

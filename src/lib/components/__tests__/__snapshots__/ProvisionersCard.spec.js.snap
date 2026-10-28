@@ -13,9 +13,13 @@ exports[`Provisioners Card > should hide the \`Show more\` button if an error ha
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Provisioners
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -87,9 +91,13 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Provisioners
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -303,7 +311,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
                 >
                   <!---->
@@ -476,7 +484,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
                 >
                   <!---->
@@ -649,7 +657,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
                 >
                   <!---->
@@ -824,7 +832,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
                 >
                   <!---->
@@ -999,7 +1007,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
                 >
                   <!---->
@@ -1172,7 +1180,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
                 >
                   <!---->
@@ -1345,7 +1353,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mHGvQ9XdjzuGyixBGrMeeC7EdX9QZNWV64FQWWwTMhFYmdskMbZkQMGiKC3DXqx8ALS4ipC3TJ9NckHPzD7AC1Tfc1GH3TrCxAZ8o93rPux7H5V95Q3hPxdxHiTfxTvgn7f"
                 >
                   <!---->
@@ -1523,7 +1531,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mUJHMDEBiTUVJU5U76Krb5wwMXK6R7CjBrTTGFFAZzgwnasxspJMbcUjedRsY8TbrRfxCuyhmvgb7Kv4chjvHNDsyWA6J8XTSCPH4y5PeqLyLvCCdgUnQ74FDFHNxRNhoAA"
                 >
                   <!---->
@@ -1701,7 +1709,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mLx5HUo5PhsobwgMJhzL9j8TY7TjC13EsxHL7cKLTmMJ9BqvnG2RttD2uMg1FEDprnSvmN7BwCkpr6wW9XSco2ASrUjou2neUXj4uq16NreXVk4jmfr3CEHqvBrRgEzoka8"
                 >
                   <!---->
@@ -1877,7 +1885,7 @@ exports[`Provisioners Card > should hide the \`Show more\` button if there is no
                 class="provisioners-table__staking-address-wrapper"
               >
                 <a
-                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address"
+                  class="dusk-anchor dusk-anchor--on-surface provisioners-table__address chain-link"
                   href="/some-base-path/accounts/?key=mWvq9EWD9b8gQw5uD4GnYaV8Wsn86youaZ1ghCjwTkTyghBnrMz1tGdwKRnjd3svKQE1fMxfdu6M64pEN9NCUhcbwrER4s3HKpYGEp4m7pfsBMoDjbYzTTUxooU7BY2oEDe"
                 >
                   <!---->
@@ -2071,9 +2079,13 @@ exports[`Provisioners Card > should render the \`ProvisionersCard\` component 1`
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Provisioners
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->
@@ -2103,9 +2115,13 @@ exports[`Provisioners Card > should show no \`Show more\` button while the card 
     <h1
       class="data-card__header-title"
     >
+      <!---->
       Provisioners
       
+      
     </h1>
+    <!---->
+     
     <!---->
      
     <!---->

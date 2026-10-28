@@ -20,18 +20,30 @@ const units = [
 /* eslint-enable sort-keys */
 
 /**
+ * The largest unit the difference holds one of, and how many of it, to the
+ * nearest. A count that rounds up to the next unit's worth is given in
+ * that unit: 59.6 seconds is "1 minute", not "60 seconds".
+ *
  * @private
  * @param {Number} diff
- * @returns {TimeUnit}
+ * @returns {[Number, TimeUnit]}
  */
-function getTimeUnit(diff) {
-  for (const unit of units) {
-    if (Math.abs(diff) >= unit.factor) {
-      return unit;
-    }
+function getCountAndUnit(diff) {
+  const index = units.findIndex((unit) => Math.abs(diff) >= unit.factor);
+  let unitIndex = index === -1 ? units.length - 1 : index;
+
+  while (
+    unitIndex > 0 &&
+    Math.round(Math.abs(diff) / units[unitIndex].factor) *
+      units[unitIndex].factor >=
+      units[unitIndex - 1].factor
+  ) {
+    unitIndex -= 1;
   }
 
-  return units[6];
+  const unit = units[unitIndex];
+
+  return [Math.round(diff / unit.factor), unit];
 }
 
 /**
@@ -45,10 +57,9 @@ function getRelativeTimeString(date, style) {
     numeric: "auto",
     style,
   });
-  const diff = date.getTime() - Date.now();
-  const unit = getTimeUnit(diff);
+  const [count, unit] = getCountAndUnit(date.getTime() - Date.now());
 
-  return rtf.format(Math.round(diff / unit.factor), unit.name);
+  return rtf.format(count, unit.name);
 }
 
 export default getRelativeTimeString;

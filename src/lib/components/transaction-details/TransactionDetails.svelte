@@ -22,7 +22,11 @@
     TransactionType,
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
-  import { describeTransaction, summarizeTransaction } from "$lib/chain-info";
+  import {
+    describeTransaction,
+    summarizeTransaction,
+    visibilityOf,
+  } from "$lib/chain-info";
   import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
   import { appStore } from "$lib/stores";
@@ -113,6 +117,7 @@
     ? summarizeTransaction(data)
     : { amount: null, from: null, to: null });
   $: memoText = data ? hexToText(data.memo) : null;
+  $: visibility = data ? visibilityOf(data) : null;
   $: chainId = $appStore.nodeInfo.chain_id;
   $: contractName = data?.contract
     ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
@@ -162,7 +167,8 @@
       <span class="transaction-details__summary-meta detail-summary__meta">
         <span
           class="transaction-details__outcome"
-          class:transaction-details__summary-failed={!!data.txerror}
+          class:transaction-details__outcome--completed={!data.txerror}
+          class:transaction-details__outcome--failed={!!data.txerror}
           data-tooltip-id={data.txerror ? "main-tooltip" : undefined}
           data-tooltip-text={data.txerror || undefined}
           data-tooltip-type="error"
@@ -177,16 +183,12 @@
   </div>
 
   <dl class="transaction-details__list detail-rows">
-    <!-- TRANSACTION ID -->
+    <!-- TRANSACTION ID: this page's own, to copy -->
     <ListItem wide>
       <svelte:fragment slot="term">ID</svelte:fragment>
       <svelte:fragment slot="definition">
         <span class="transaction-details__value">
-          <AppAnchor
-            className="transaction-details__list-anchor"
-            href="/transactions/transaction?id={data.txid}"
-            ><FullValue value={data.txid} /></AppAnchor
-          >
+          <FullValue value={data.txid} />
         </span>
         <CopyButton
           name="Transaction ID"
@@ -210,7 +212,7 @@
                 showAddress={false}
               />
               <AppAnchor
-                className="transaction-details__list-anchor"
+                className="transaction-details__list-anchor chain-link"
                 href="/accounts/?key={from.address}"
                 ><FullValue value={from.address} /></AppAnchor
               >
@@ -260,7 +262,7 @@
               showAddress={false}
             />
             <AppAnchor
-              className="transaction-details__list-anchor"
+              className="transaction-details__list-anchor chain-link"
               href="/accounts/?key={to.address}"
               ><FullValue value={to.address} /></AppAnchor
             >
@@ -348,9 +350,24 @@
     <ListItem>
       <svelte:fragment slot="term">Type</svelte:fragment>
       <svelte:fragment slot="definition">
-        <TransactionType {data} displayTooltips={true} />
+        <TransactionType {data} displayTooltips={true} showPrivacy={false} />
       </svelte:fragment>
     </ListItem>
+
+    <!-- VISIBILITY: public or shielded, and what that shows everyone -->
+    {#if visibility}
+      <ListItem>
+        <svelte:fragment slot="term">Visibility</svelte:fragment>
+        <span class="transaction-details__visibility" slot="definition"
+          ><span class="transaction-details__visibility-label"
+            >{visibility.label}</span
+          >
+          <span class="transaction-details__visibility-seen"
+            >{visibility.seen}</span
+          ></span
+        >
+      </ListItem>
+    {/if}
 
     <!-- MEMO, when there is one -->
     {#if data.memo}
@@ -379,7 +396,7 @@
       <svelte:fragment slot="term">Block height</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor
-          className="transaction-details__block-link"
+          className="transaction-details__block-link chain-link"
           href="/blocks/block?id={data.blockhash}"
           >{formatter(data.blockheight)}</AppAnchor
         ></svelte:fragment

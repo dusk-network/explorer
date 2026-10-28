@@ -20,6 +20,8 @@ and this project adheres to
 - Lead the transaction page with one sentence: who sent how much to whom, its status and time
 - Name the DuskEVM bridge and Sozu, and show the DuskEVM address a deposit pays
 - Find provisioners by .dusk name
+- Say by the last block whether new blocks come: Live, or Waiting for blocks
+- Say in a row of its own whether a transaction is public or shielded, and what that shows
 
 ### Changed
 
@@ -58,6 +60,15 @@ and this project adheres to
 - Show provisioners as rows, with the owner's address when it isn't the staking key
 - Move the blocks list's count and "Show more" to the bottom
 - Say "Page not found" with a way home, and say plainly when a list is empty or failed to load
+- Set section heads, column heads and the numbers' labels in small mono capitals, section heads between grey brackets
+- Show the DUSK wordmark and EXPLORER in the top bar
+- Show links to blocks, transactions and accounts, and text links, in blue, and block heights in mono
+- Lead the home page with the network's map, saying what its rings are, and the four main numbers beside it
+- Give a transaction's own ID as text to copy, not as a link to its own page
+- Show a transaction's status in green when it went through and in red when it failed
+- Mark rounded numbers with "≈" instead of "~"
+- Set detail pages' labels in a column on wide screens, each value and its Copy right after it
+- Pulse the map's rings softly, and keep them still when motion is reduced
 
 ### Removed
 
@@ -71,6 +82,9 @@ and this project adheres to
 - Fix float noise in stake amounts
 - Fix field help that only worked on hover, and brackets read out in card titles
 - Fix low contrast of short addresses beside names
+- Fix "60 seconds ago" and other times that should round up to the next unit
+- Fix receivers' names cut short in phone lists
+- Fix a public sender's address wrapping onto two lines on the transaction page
 
 ## [1.6.0] - 2026-03-25
 

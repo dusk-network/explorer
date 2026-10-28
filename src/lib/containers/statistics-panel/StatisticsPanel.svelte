@@ -19,7 +19,7 @@
   import { createCompactFormatter } from "$lib/dusk/value";
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
-  import { DataGuard, StaleDataNotice } from "$lib/components";
+  import { DataGuard, StaleDataNotice, WorldMap } from "$lib/components";
   import { duskAPI } from "$lib/services";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
   import { isMainnet } from "$lib/network";
@@ -42,15 +42,103 @@
     $appStore.statsFetchInterval
   );
 
+  /** No new block for this long, and the page says it waits for one. */
+  const WAITING_AFTER = 30_000;
+
+  /** A read this long after the one before it, or longer, follows a gap. */
+  const GAP_AFTER = $appStore.statsFetchInterval + 5_000;
+
+  /** The newest block the page has read, and when it came. */
+  let newest = { at: 0, height: -1 };
+
+  /** The time, to the second, to tell how long ago that was. */
+  let now = Date.now();
+
+  /** The last answer read, and when it came. */
+  let lastRead = { at: 0, data: /** @type {Stats | null} */ (null) };
+
+  /** Whether the reading stopped since then: a hidden tab or a failed read. */
+  let interrupted = false;
+
+  /** @type {ReturnType<typeof setInterval> | undefined} */
+  let clock;
+
+  /**
+   * When a new height's block came. Read on a regular poll, as the page
+   * watched, it came now, whatever the viewer's clock says. Read when the
+   * page opens, or after a gap, it came at its own time, no later than
+   * now: a chain that stopped meanwhile isn't live.
+   *
+   * @param {Stats | null} data
+   * @param {Error | null} error
+   */
+  function read(data, error) {
+    if (error) {
+      interrupted = true;
+
+      return;
+    }
+
+    if (!data || data === lastRead.data) {
+      return;
+    }
+
+    const arrived = Date.now();
+    const regular =
+      newest.height >= 0 && !interrupted && arrived - lastRead.at <= GAP_AFTER;
+    const made = data.lastBlockDate?.getTime() ?? arrived;
+
+    if (data.lastBlock !== newest.height) {
+      newest = {
+        at: regular ? arrived : Math.min(arrived, made),
+        height: data.lastBlock,
+      };
+    }
+
+    now = arrived;
+    lastRead = { at: arrived, data };
+    interrupted = false;
+  }
+
+  /** A hidden tab stops the reading: the next read follows a gap. */
+  function noteHidden() {
+    if (document.hidden) {
+      interrupted = true;
+    }
+  }
+
   onMount(() => {
     pollingStatsDataStore.start();
+    clock = setInterval(() => {
+      now = Date.now();
+    }, 1000);
+    document.addEventListener("visibilitychange", noteHidden);
   });
 
-  onDestroy(pollingStatsDataStore.stop);
+  onDestroy(() => {
+    pollingStatsDataStore.stop();
+    clearInterval(clock);
+    document.removeEventListener("visibilitychange", noteHidden);
+  });
 
   $: ({ data: marketData } = $marketDataStore);
-  $: ({ data: statsData } = $pollingStatsDataStore);
+  $: ({ data: statsData, error: statsError } = $pollingStatsDataStore);
   $: ({ data: nodesData } = $nodeLocationStore);
+  $: read(statsData, statsError);
+
+  /**
+   * Live while new blocks come, waiting once the newest read is over 30
+   * seconds old; nothing said while the last block can't be read, or
+   * hasn't been yet.
+   *
+   * @type {"live" | "waiting" | "unknown"}
+   */
+  $: chain =
+    statsError || newest.height < 0
+      ? "unknown"
+      : now - newest.at < WAITING_AFTER
+        ? "live"
+        : "waiting";
   // Test DUSK has no value: no price or market cap off mainnet.
   /**
    * @typedef {{
@@ -239,10 +327,18 @@
 </script>
 
 <!--
-  The four numbers that matter most as cards, their labels muted above them;
-  the rest in one quiet row of smaller labels and values.
+  The network's map first, and beside it the four numbers that matter most
+  as cards, their labels above them; the rest in one quiet row of smaller
+  labels and values.
 -->
 <div class="statistics-panel">
+  <figure class="statistics-panel__face">
+    <WorldMap nodes={nodesData ?? []} />
+    <figcaption class="statistics-panel__face-caption">
+      Rings show where provisioners run nodes. The bigger the ring, the more
+      nodes.
+    </figcaption>
+  </figure>
   <div class="statistics-panel__statistics">
     {#each primary as key (key)}
       {@const item = items[key]}
@@ -251,13 +347,33 @@
         {...item.attributes}
       >
         <span class="statistics-panel__statistics-item-title"
-          ><Icon path={item.icon} size="default" />{item.title}</span
+          ><Icon
+            path={item.icon}
+            size="default"
+          />{item.title}{#if key === "lastBlock"}
+            <!-- Live while new blocks come, and says so when none has for a while. -->
+            <span
+              class="statistics-panel__live"
+              class:statistics-panel__live--waiting={chain === "waiting"}
+              role="status"
+              >{#if chain !== "unknown"}{#key newest.height}<span
+                    aria-hidden="true"
+                    class="statistics-panel__live-dot"
+                  ></span>{/key}{chain === "live"
+                  ? "Live"
+                  : "Waiting for blocks"}{/if}</span
+            >
+          {/if}</span
         >
         <div class="statistics-panel__statistics-item-value-container">
-          <div
-            class="statistics-panel__statistics-item-value"
-            class:approximate={item.approximate}
-          >
+          {#if item.approximate}
+            <span class="statistics-panel__statistics-item-about"
+              ><span aria-hidden="true">≈</span><span class="sr-only"
+                >about</span
+              ></span
+            >
+          {/if}
+          <div class="statistics-panel__statistics-item-value">
             <DataGuard data={item.data}>
               {item.prefix}{#if item.compact}
                 {formatter(item.data)}
@@ -289,10 +405,14 @@
       >
         <dt class="statistics-panel__statistics-item-title">{item.title}</dt>
         <dd class="statistics-panel__statistics-item-value-container">
-          <span
-            class="statistics-panel__statistics-item-value"
-            class:approximate={item.approximate}
-          >
+          {#if item.approximate}
+            <span class="statistics-panel__statistics-item-about"
+              ><span aria-hidden="true">≈</span><span class="sr-only"
+                >about</span
+              ></span
+            >
+          {/if}
+          <span class="statistics-panel__statistics-item-value">
             <DataGuard data={item.data}>
               {item.prefix}{#if item.compact}
                 {formatter(item.data)}

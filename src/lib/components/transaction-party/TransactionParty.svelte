@@ -23,6 +23,14 @@
   export let chars = 6;
 
   /**
+   * What stands for the middle of a short address: three dots, or "…" in a
+   * phone's row, where room is short.
+   *
+   * @type {string}
+   */
+  export let ellipsis = "...";
+
+  /**
    * The account's verified primary name, shown instead of its address.
    *
    * @type {{ name: string, url: string } | null | undefined}
@@ -50,16 +58,20 @@
 
 {#if party?.kind === "account" && name}
   <AppAnchor
-    className="transaction-party transaction-party--named"
+    className="transaction-party transaction-party--named chain-link"
     data-tooltip-id="main-tooltip"
-    data-tooltip-text="{name.name} · {middleEllipsis(party.address, chars)}"
+    data-tooltip-text="{name.name} · {middleEllipsis(
+      party.address,
+      chars,
+      ellipsis
+    )}"
     href="/accounts/?key={party.address}">{name.name}</AppAnchor
   >
 {:else if party?.kind === "account"}
   <AppAnchor
-    className="transaction-party transaction-party--account"
+    className="transaction-party transaction-party--account chain-link"
     href="/accounts/?key={party.address}"
-    >{middleEllipsis(party.address, chars)}</AppAnchor
+    >{middleEllipsis(party.address, chars, ellipsis)}</AppAnchor
   >
 {:else if party?.kind === "contract"}
   {@const shortId = `Contract ${middleEllipsis(party.id, 4)}`}

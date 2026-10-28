@@ -28,7 +28,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     </span>
      
     <a
-      class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address"
+      class="dusk-anchor dusk-anchor--on-surface provisioners-list__staking-address chain-link"
       href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
     >
       <!---->

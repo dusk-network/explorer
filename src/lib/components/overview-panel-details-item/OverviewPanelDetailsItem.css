@@ -8,10 +8,15 @@
   border-radius: 1rem;
 }
 
+/* The label in the ledger's type. */
 .overview-panel__details-item-subtitle {
   margin: 0;
   color: var(--calm-muted);
-  font-size: 0.8125rem;
+  font-family: var(--mono-font-family);
+  font-size: var(--ledger-font-size);
+  letter-spacing: var(--ledger-letter-spacing);
+  line-height: 1.3;
+  text-transform: uppercase;
 }
 
 .overview-panel__details-item-title {

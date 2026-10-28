@@ -20,33 +20,60 @@ describe("DataCard", () => {
 
   afterEach(cleanup);
 
-  it("should give its title as written, a page's heading by default", () => {
+  it("should give its title as written, a page's heading by default, without brackets", () => {
     const { getByRole } = render(DataCard, baseOptions);
+    const heading = getByRole("heading", { level: 1 });
 
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent(/^Title$/);
+    expect(heading).toHaveTextContent(/^Title$/);
+    expect(heading.children).toHaveLength(0);
   });
 
-  it("should head a section of a page one level down, with its link to the whole list", async () => {
-    const onClickMock = vi.fn();
+  it("should head a section of a page one level down, between brackets that are drawn, not read", () => {
+    const { getByRole, queryByRole } = render(DataCard, {
+      ...baseOptions,
+      props: { ...baseProps, variant: "section" },
+    });
+    const heading = getByRole("heading", { level: 2, name: "Title" });
+
+    expect(queryByRole("heading", { level: 1 })).toBeNull();
+    expect(heading).toHaveTextContent(/^\[Title\]$/);
+    expect(
+      Array.from(heading.children, (bracket) => [
+        bracket.textContent,
+        bracket.getAttribute("aria-hidden"),
+      ])
+    ).toStrictEqual([
+      ["[", "true"],
+      ["]", "true"],
+    ]);
+  });
+
+  it("should head a detail page's summary as a section, its line being no page title", () => {
+    const { getByRole } = render(DataCard, {
+      ...baseOptions,
+      props: { ...baseProps, variant: "detail" },
+    });
+    const heading = getByRole("heading", { level: 1, name: "Title" });
+
+    expect(heading).toHaveTextContent(/^\[Title\]$/);
+    expect(heading.querySelectorAll("[aria-hidden='true']")).toHaveLength(2);
+  });
+
+  it("should link a section to the whole list, as a text link", () => {
     const { getByRole, queryByRole } = render(DataCard, {
       ...baseOptions,
       props: {
         ...baseProps,
-        headerButtonDetails: {
-          action: onClickMock,
-          disabled: false,
-          label: "All blocks",
-        },
+        headerButtonDetails: undefined,
+        headerLink: { href: "/blocks", label: "All blocks" },
         variant: "section",
       },
     });
+    const link = getByRole("link", { name: "All blocks" });
 
-    expect(queryByRole("heading", { level: 1 })).toBeNull();
-    expect(getByRole("heading", { level: 2 })).toHaveTextContent(/^Title$/);
-
-    await fireEvent.click(getByRole("button", { name: "All blocks" }));
-
-    expect(onClickMock).toHaveBeenCalledTimes(1);
+    expect(link).toHaveAttribute("href", "/some-base-path/blocks");
+    expect(link).toHaveClass("chain-link");
+    expect(queryByRole("button")).toBeNull();
   });
 
   it("should render the `DataCard` in the loading state", () => {

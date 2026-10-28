@@ -136,7 +136,7 @@
         <TableCell>
           <div class="transaction__transaction-id-container">
             <AppAnchor
-              className="transaction__link"
+              className="transaction__link chain-link"
               href={`/transactions/transaction?id=${transaction.txid}`}
               >{middleEllipsis(transaction.txid, ID_CHARS)}</AppAnchor
             >
