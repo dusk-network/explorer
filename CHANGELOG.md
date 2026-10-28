@@ -79,6 +79,7 @@ and this project adheres to
 - Give times on the viewer's own clock, 12 or 24 hours, in English words
 - Show amounts and fees under 0.01 DUSK with two significant digits
 - Shorten IDs with "…", and contract IDs to their first and last six characters
+- Call a transaction that carries blobs a "Data blob"
 
 ### Removed
 
@@ -98,6 +99,8 @@ and this project adheres to
 - Fix a search that found nothing keeping the previous page's address
 - Fix long names in lists cut off without an ellipsis
 - Fix a transaction's status and time splitting over two lines on phones
+- Fix help buttons all named "More information" for screen readers
+- Fix an account page's heading holding its ↗ link
 
 ## [1.6.0] - 2026-03-25
 

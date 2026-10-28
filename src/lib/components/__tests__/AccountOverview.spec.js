@@ -82,6 +82,24 @@ describe("AccountOverview", () => {
     vi.mocked(getPrimaryName).mockResolvedValue(null);
   });
 
+  it("should give the heading only the name, with its link to Dusk Domains beside it", async () => {
+    vi.mocked(getPrimaryName).mockResolvedValue({
+      name: "alice.dusk",
+      url: "https://dusk.domains/name/alice.dusk",
+    });
+
+    const { getByRole } = render(AccountOverview, baseProps);
+    const heading = getByRole("heading", { level: 1 });
+
+    await vi.waitFor(() => expect(heading).toHaveTextContent(/^alice\.dusk$/));
+    expect(heading.querySelector("a")).toBeNull();
+    expect(
+      getByRole("link", { name: "Open alice.dusk on Dusk Domains" })
+    ).toHaveAttribute("href", "https://dusk.domains/name/alice.dusk");
+
+    vi.mocked(getPrimaryName).mockResolvedValue(null);
+  });
+
   it("should show no searched name when there is none to show", async () => {
     const { container } = render(AccountOverview, baseProps);
 

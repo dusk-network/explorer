@@ -626,7 +626,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           >
             <button
               aria-describedby="list-item-help-10"
-              aria-label="More information"
+              aria-label="About gas price"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -677,7 +677,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           >
             <button
               aria-describedby="list-item-help-11"
-              aria-label="More information"
+              aria-label="About transaction gas limit"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -749,7 +749,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           >
             <button
               aria-describedby="list-item-help-13"
-              aria-label="More information"
+              aria-label="About nonce"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -1479,7 +1479,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           >
             <button
               aria-describedby="list-item-help-24"
-              aria-label="More information"
+              aria-label="About gas price"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -1530,7 +1530,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           >
             <button
               aria-describedby="list-item-help-25"
-              aria-label="More information"
+              aria-label="About transaction gas limit"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -1602,7 +1602,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           >
             <button
               aria-describedby="list-item-help-27"
-              aria-label="More information"
+              aria-label="About nonce"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -2343,7 +2343,7 @@ exports[`Transaction Details > should be able to render the details when they co
           >
             <button
               aria-describedby="list-item-help-420"
-              aria-label="More information"
+              aria-label="About gas price"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -2394,7 +2394,7 @@ exports[`Transaction Details > should be able to render the details when they co
           >
             <button
               aria-describedby="list-item-help-421"
-              aria-label="More information"
+              aria-label="About transaction gas limit"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
@@ -2466,7 +2466,7 @@ exports[`Transaction Details > should be able to render the details when they co
           >
             <button
               aria-describedby="list-item-help-423"
-              aria-label="More information"
+              aria-label="About nonce"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"

@@ -129,7 +129,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-2"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -188,7 +188,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-3"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -243,7 +243,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-4"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -368,7 +368,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-6"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -427,7 +427,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-7"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -482,7 +482,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-8"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -533,7 +533,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-9"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -660,7 +660,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-11"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -719,7 +719,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-12"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -774,7 +774,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-13"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -825,7 +825,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-14"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -952,7 +952,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-16"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1011,7 +1011,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-17"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1066,7 +1066,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-18"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1191,7 +1191,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-20"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1250,7 +1250,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-21"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1305,7 +1305,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-22"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1430,7 +1430,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-24"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1489,7 +1489,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-25"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1544,7 +1544,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-26"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1669,7 +1669,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-28"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1728,7 +1728,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-29"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1783,7 +1783,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-30"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1834,7 +1834,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-31"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -1961,7 +1961,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-33"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2020,7 +2020,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-34"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2075,7 +2075,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-35"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2126,7 +2126,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-36"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2253,7 +2253,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-38"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2312,7 +2312,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-39"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2367,7 +2367,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-40"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2492,7 +2492,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-42"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2551,7 +2551,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-43"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2606,7 +2606,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-44"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2731,7 +2731,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-46"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2790,7 +2790,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-47"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2845,7 +2845,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-48"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -2970,7 +2970,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-50"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3029,7 +3029,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-51"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3084,7 +3084,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-52"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3135,7 +3135,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-53"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3262,7 +3262,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-55"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3321,7 +3321,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-56"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3376,7 +3376,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-57"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3501,7 +3501,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-59"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3560,7 +3560,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-60"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3615,7 +3615,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-61"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3666,7 +3666,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-62"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3793,7 +3793,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-64"
-                aria-label="More information"
+                aria-label="About stake"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3852,7 +3852,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-65"
-                aria-label="More information"
+                aria-label="About reward"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3907,7 +3907,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-66"
-                aria-label="More information"
+                aria-label="About slashes"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
@@ -3958,7 +3958,7 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             >
               <button
                 aria-describedby="list-item-help-67"
-                aria-label="More information"
+                aria-label="About owner"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
