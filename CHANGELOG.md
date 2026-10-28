@@ -23,6 +23,7 @@ and this project adheres to
 - Say by the last block whether new blocks come: Live, or Waiting for blocks
 - Say in a row of its own whether a transaction is public or shielded, and what that shows
 - Link a deposit's DuskEVM address to the DuskEVM explorer
+- Say how much stDUSK an account holds from staking with Sozu
 
 ### Changed
 
@@ -71,6 +72,7 @@ and this project adheres to
 - Set detail pages' labels in a column on wide screens, each value and its Copy right after it
 - Pulse the map's rings softly, and keep them still when motion is reduced
 - Show only plain words for a transaction's type in lists, and its function under Technical details
+- Call an account's own stake its native stake
 
 ### Removed
 

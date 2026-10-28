@@ -32,6 +32,14 @@
   export let errorFetchingStake = false;
 
   /**
+   * The stDUSK the account holds, from staking with Sozu: shown only when
+   * there is some.
+   *
+   * @type {bigint | null}
+   */
+  export let stakedDusk = null;
+
+  /**
    * The last block, to tell when the stake takes part: `null` until it is
    * known, or when it couldn't be read.
    *
@@ -79,7 +87,8 @@
 
 <!--
   Whose page it is: its name, or its address short, then the address in full.
-  Then what it holds, and for a provisioner, its stake.
+  Then what it holds, with its stake with Sozu if any beside its own, and for
+  a provisioner, its stake.
 -->
 <section class="account-overview-panel">
   <!-- As the line above a transaction's or a block's summary. -->
@@ -132,7 +141,7 @@
       {/if}
     </OverviewPanelDetailsItem>
 
-    <OverviewPanelDetailsItem subtitle="Stake">
+    <OverviewPanelDetailsItem subtitle="Native stake">
       {#if errorFetchingStake}
         <p>N/A</p>
       {:else if stake !== undefined}
@@ -142,6 +151,16 @@
         />
       {:else}
         <p class="account-overview-panel__loading">Loading…</p>
+      {/if}
+      <!-- What the account also staked with Sozu, when it holds stDUSK. -->
+      {#if stakedDusk}
+        <p class="account-overview-panel__sozu">
+          Also staked with Sozu: <span
+            class="account-overview-panel__sozu-amount"
+            title="{formatDuskExact(stakedDusk)} stDUSK"
+            >{formatDusk(stakedDusk)} stDUSK</span
+          >
+        </p>
       {/if}
     </OverviewPanelDetailsItem>
 

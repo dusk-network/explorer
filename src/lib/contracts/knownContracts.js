@@ -21,18 +21,21 @@ export const DUSKEVM_BRIDGE_CONTRACTS = {
 };
 
 /**
- * Sozu's liquid staking: its hub, and the pool people stake with.
+ * Sozu's liquid staking: its hub, the pool people stake with, and the
+ * stDUSK token it gives them, as the hub names it.
  *
- * @type {Record<string, { hub: string, pool: string }>}
+ * @type {Record<string, { hub: string, pool: string, stDusk: string }>}
  */
 export const SOZU_CONTRACTS = {
   mainnet: {
     hub: "b32c917e76abc6fcf2edbee0fa70231d8e19c405b18421794a11badfc66d2f26",
     pool: "6fdfdc713a18fc6ca2ad20eb2b4a3305a935ef47d6a872d9a4df8bc9fd9d169e",
+    stDusk: "eb158fceeae76e59b28c1e6857eb50cf6a7a69532817fc455458096aab527980",
   },
   testnet: {
     hub: "bae85f8c24730a5a19fbe3d3bd58248ac8c302b62fe414a8c640d8c0ed286b9e",
     pool: "72883945ac1aa032a88543aacc9e358d1dfef07717094c05296ce675f23078f2",
+    stDusk: "fdbf49102e76cf58224003451c6cb9e3403c54ff1d9042f8bc46ec25c6a4337c",
   },
 };
 

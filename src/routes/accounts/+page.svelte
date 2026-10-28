@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { AccountOverview, TransactionsCard } from "$lib/components/";
+  import { getStakedDusk } from "$lib/contracts";
   import { duskAPI } from "$lib/services";
   import { appStore } from "$lib/stores";
   import { createDataStore } from "$lib/dusk/svelte-stores";
@@ -71,6 +72,32 @@
     );
   }
 
+  /** @type {bigint | null} */
+  let stakedDusk = null;
+
+  /** @type {string | null} */
+  let lastStakedDuskAsk = null;
+
+  /**
+   * The account's stDUSK from Sozu, in one Multicall for Dusk query, once
+   * the node has said which network it is on. A failed read shows nothing.
+   *
+   * @param {string} accountKey
+   * @param {number | null} chain The node's network
+   * @param {number} asked The generation that asks
+   */
+  function fetchStakedDusk(accountKey, chain, asked) {
+    stakedDusk = null;
+    getStakedDusk(accountKey, chain).then(
+      (result) => {
+        if (asked === generation) {
+          stakedDusk = result;
+        }
+      },
+      () => {}
+    );
+  }
+
   /** @type {{ date: Date, height: number } | null} */
   let tip = null;
 
@@ -110,6 +137,15 @@
     fetchAccountStatus(key, generation);
     fetchStake(key, generation);
   }
+  $: chainId = $appStore.nodeInfo.chain_id;
+  $: if (
+    key &&
+    chainId !== undefined &&
+    `${key}:${chainId}` !== lastStakedDuskAsk
+  ) {
+    lastStakedDuskAsk = `${key}:${chainId}`;
+    fetchStakedDusk(key, chainId, generation);
+  }
   $: ({ data, error, isLoading } = $dataStore);
   $: ({ isSmallScreen } = $appStore);
 </script>
@@ -124,6 +160,7 @@
         accountAddress={key}
         {searchedName}
         {stake}
+        {stakedDusk}
         {tip}
       />
     </article>

@@ -5,4 +5,5 @@ export {
   SOZU_CONTRACTS,
   duskEvmAddressUrl,
 } from "./knownContracts";
+export { getStakedDusk } from "./stakedDusk";
 export { default as transactionKind } from "./transactionKind";
