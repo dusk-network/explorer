@@ -12,7 +12,9 @@ describe("transformTransaction", () => {
     blockhash:
       "3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d",
     blockheight: 487166,
+    contract: undefined,
     date: new Date(tx.blockTimestamp * 1000),
+    deposit: 0,
     feepaid: 290766,
     from: "kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj",
     gaslimit: 500000000,
@@ -70,6 +72,7 @@ describe("transformTransaction", () => {
     };
     const expected = {
       ...expectedTx,
+      contract: data.tx.callData.contractId,
       method: "stake",
     };
 
@@ -101,7 +104,10 @@ describe("transformTransaction", () => {
       method: "deploy",
     };
 
-    expect(transformTransaction(dataA)).toStrictEqual(expected);
+    expect(transformTransaction(dataA)).toStrictEqual({
+      ...expected,
+      contract: dataA.tx.callData.contractId,
+    });
     expect(transformTransaction(dataB)).toStrictEqual(expected);
   });
 
@@ -125,10 +131,42 @@ describe("transformTransaction", () => {
     const expected = {
       ...expectedTx,
       blobHashes: data.tx.blobHashes,
+      contract: data.tx.callData.contractId,
       method: "blob",
     };
 
     expect(transformTransaction(data)).toStrictEqual(expected);
+  });
+
+  it("should keep the DUSK a call sends to its contract as the deposit", () => {
+    const payload = {
+      ...JSON.parse(tx.tx.json),
+      deposit: 547249940382,
+      receiver: null,
+      value: 0,
+    };
+    const data = {
+      ...tx,
+      tx: {
+        ...tx.tx,
+        callData: {
+          contractId:
+            "0200000000000000000000000000000000000000000000000000000000000000",
+          fnName: "stake",
+        },
+        json: JSON.stringify(payload),
+      },
+    };
+
+    expect(transformTransaction(data)).toStrictEqual({
+      ...expectedTx,
+      amount: 0,
+      contract: data.tx.callData.contractId,
+      deposit: 547249940382,
+      method: "stake",
+      payload,
+      to: null,
+    });
   });
 
   it("should set the success property to `false` if the an error is present and use the message in the `txerror` property", () => {

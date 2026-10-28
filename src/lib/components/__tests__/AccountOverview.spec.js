@@ -26,24 +26,44 @@ describe("AccountOverview", () => {
     vi.clearAllMocks();
   });
 
-  it("should show the searched name once it leads to the account", async () => {
-    vi.mocked(getSearchedName).mockResolvedValueOnce("domains.dusk");
+  it("should lead with the searched name, then the account's primary name", async () => {
+    vi.mocked(getSearchedName).mockResolvedValueOnce({
+      name: "domains.dusk",
+      url: "https://dusk.domains/name/domains.dusk",
+    });
+    vi.mocked(getPrimaryName).mockResolvedValue({
+      name: "duskdomains.dusk",
+      url: "https://dusk.domains/name/duskdomains.dusk",
+    });
 
-    const { container } = render(AccountOverview, {
+    const { container, getByRole } = render(AccountOverview, {
       ...baseProps,
       searchedName: "Domains.dusk",
     });
+    const header = /** @type {HTMLElement} */ (
+      container.querySelector(".account-overview-panel__header")
+    );
 
     await vi.waitFor(() =>
       expect(
         container.querySelector(".account-overview-panel__searched-name")
           ?.textContent
-      ).toContain("domains.dusk points to this account")
+      ).toMatch(/^\s*Primary name:\s+duskdomains\.dusk/)
     );
+    expect(header.textContent).toMatch(/^\s*Account:\s+domains\.dusk/);
+    expect(header.textContent).not.toContain("duskdomains.dusk");
+    expect(
+      getByRole("link", { name: "Open domains.dusk on Dusk Domains" })
+    ).toHaveAttribute("href", "https://dusk.domains/name/domains.dusk");
+    expect(
+      getByRole("link", { name: "Open duskdomains.dusk on Dusk Domains" })
+    ).toHaveAttribute("href", "https://dusk.domains/name/duskdomains.dusk");
     expect(getSearchedName).toHaveBeenCalledWith(
       "Domains.dusk",
       accountAddress
     );
+
+    vi.mocked(getPrimaryName).mockResolvedValue(null);
   });
 
   it("should show no searched name when there is none to show", async () => {

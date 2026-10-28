@@ -13,6 +13,11 @@ const marketDataSettleTime = vi.hoisted(() => {
   return 100;
 });
 
+vi.mock("$lib/dusk-domains", async (importOriginal) => ({
+  ...(await importOriginal()),
+  getPrimaryName: vi.fn().mockResolvedValue(null),
+}));
+
 vi.mock("$lib/services", async (importOriginal) => {
   /** @type {import("$lib/services")} */
   const original = await importOriginal();

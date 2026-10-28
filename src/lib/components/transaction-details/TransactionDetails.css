@@ -27,7 +27,8 @@
   right: -3.8125rem;
 }
 
-.transaction-details__list .details-list__term:nth-last-child(-n + 4) {
+.transaction-details__list
+  .details-list__term:has(.transaction-details__payload-switch) {
   align-items: start;
   margin-bottom: 0.625rem;
   /*
@@ -38,10 +39,18 @@
 }
 
 .transaction-details__memo {
-  padding: 0.625rem 0.875rem;
-  line-height: 1.3125rem;
-  width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.transaction-details__memo-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  color: color-mix(in oklab, var(--on-surface-color), transparent 30%);
+  font-size: 0.75rem;
 }
 
 .transaction-details__switch-wrapper {
@@ -51,8 +60,24 @@
   justify-content: space-between;
 }
 
-.transaction-details__list-anchor {
+/* IDs and addresses show in full on wide screens, wrapping if need be. */
+.transaction-details__list-anchor,
+.transaction-details__contract-id {
   font-family: var(--mono-font-family);
+  overflow-wrap: anywhere;
+}
+
+.transaction-details__contract {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+  min-width: 0;
+}
+
+.transaction-details__contract-id,
+.transaction-details__hidden {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
 }
 
 .transaction-details__blob-hashes {
@@ -80,6 +105,7 @@
 
 .transaction-details__blob-hash pre {
   white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
 @media (min-width: 640px) {
@@ -96,10 +122,6 @@
     margin-top: 1rem;
   }
 
-  .transaction-details__memo {
-    margin-top: 0rem;
-  }
-
   .transaction-details__payload-switch {
     position: relative;
     right: 0rem;
@@ -110,7 +132,8 @@
     width: auto;
   }
 
-  .transaction-details__list .details-list__term:nth-last-child(-n + 4) {
+  .transaction-details__list
+    .details-list__term:has(.transaction-details__payload-switch) {
     align-items: start;
     margin-bottom: 0rem;
     width: auto;

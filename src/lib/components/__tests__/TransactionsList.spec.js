@@ -48,6 +48,30 @@ describe("Transactions List", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it("should show the sender, receiver and amount instead of the gas", () => {
+    const { container, rerender } = render(TransactionsList, baseProps);
+    const getTerms = () =>
+      Array.from(container.querySelectorAll("dt"), (dt) =>
+        dt.textContent?.trim().toLowerCase()
+      );
+
+    expect(getTerms()).toStrictEqual([
+      "id",
+      "relative time",
+      "from",
+      "to",
+      "amount",
+      "fee",
+      "status",
+      "type",
+    ]);
+    expect(container.textContent).toContain("9,812.378912731 DUSK");
+
+    rerender({ ...baseProps, mode: "compact" });
+
+    return vi.waitFor(() => expect(getTerms()).not.toContain("fee"));
+  });
+
   it("should auto-refresh relative times when the related prop is set to true", async () => {
     const props = {
       ...baseProps,

@@ -50,6 +50,10 @@
   overflow-wrap: anywhere;
 }
 
+.account-overview-panel__searched-name .primary-name-group {
+  display: inline-flex;
+}
+
 .account-overview-panel__separator {
   border: none;
   border-top: 1px solid

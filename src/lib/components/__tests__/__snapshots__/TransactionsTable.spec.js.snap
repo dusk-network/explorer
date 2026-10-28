@@ -2,7 +2,7 @@
 
 exports[`Transactions Table > should pass additional class names to the rendered element 1`] = `
 <div
-  class="table-container transactions-table foo bar"
+  class="table-container transactions-table transactions-table--full foo bar"
 >
   <table
     class="table"
@@ -32,13 +32,26 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__header-cell align-left"
         >
           <!---->
-          Gas
+          From / To
           
           
         </th>
         
         <!---->
          
+        <!---->
+        <th
+          class="table__header-cell align-left"
+        >
+          <!---->
+          Amount (DUSK)
+          
+          
+        </th>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <th
           class="table__header-cell align-left"
@@ -61,6 +74,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
           
         </th>
         
+        <!---->
         <!---->
          
         <!---->
@@ -139,16 +153,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -160,26 +182,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -207,6 +271,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -216,16 +281,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -233,6 +288,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -299,16 +356,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -320,26 +385,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -367,6 +474,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -376,16 +484,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -393,6 +491,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -459,16 +559,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -480,26 +588,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -527,6 +677,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -536,16 +687,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -553,6 +694,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -619,16 +762,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -640,26 +791,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -687,6 +880,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -696,16 +890,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -713,6 +897,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -779,16 +965,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -800,26 +994,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -847,6 +1083,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -856,16 +1093,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -873,6 +1100,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -939,16 +1168,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -960,26 +1197,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -1007,6 +1286,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -1016,16 +1296,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1033,6 +1303,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1099,16 +1371,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -1120,26 +1400,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -1167,6 +1489,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -1176,16 +1499,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1193,6 +1506,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1259,16 +1574,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -1280,26 +1603,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -1327,6 +1692,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -1336,16 +1702,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1353,6 +1709,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1419,16 +1777,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -1440,26 +1806,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -1487,6 +1895,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -1496,16 +1905,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1513,6 +1912,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1579,16 +1980,24 @@ exports[`Transactions Table > should pass additional class names to the rendered
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -1600,26 +2009,68 @@ exports[`Transactions Table > should pass additional class names to the rendered
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -1647,6 +2098,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -1656,16 +2108,6 @@ exports[`Transactions Table > should pass additional class names to the rendered
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1673,6 +2115,8 @@ exports[`Transactions Table > should pass additional class names to the rendered
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1695,7 +2139,7 @@ exports[`Transactions Table > should pass additional class names to the rendered
 
 exports[`Transactions Table > should render the \`TransactionsTable\` component in "compact" mode 1`] = `
 <div
-  class="table-container transactions-table"
+  class="table-container transactions-table transactions-table--compact"
 >
   <table
     class="table"
@@ -1721,13 +2165,11 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         <!---->
          
         <!---->
-         
-        <!---->
         <th
           class="table__header-cell align-left"
         >
           <!---->
-          Fee (DUSK)
+          From / To
           
           
         </th>
@@ -1739,11 +2181,13 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__header-cell align-left"
         >
           <!---->
-          Status
+          Amount (DUSK)
           
           
         </th>
         
+        <!---->
+         
         <!---->
          
         <!---->
@@ -1784,83 +2228,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
             >
               <!---->
-              4a4593a447...3047514552
+              4a4593...514552
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008221117
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -1873,19 +2266,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -1893,6 +2344,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -1921,83 +2374,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
             >
               <!---->
-              47ae464b9c...3e5facba66
+              47ae46...acba66
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008221117
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2010,19 +2412,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2030,6 +2490,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2058,83 +2520,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
             >
               <!---->
-              225dae3745...176b36ea41
+              225dae...36ea41
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008220846
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2147,19 +2558,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2167,6 +2636,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2195,83 +2666,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
             >
               <!---->
-              03bae6e2e9...b3849de702
+              03bae6...9de702
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008221266
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2284,19 +2704,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2304,6 +2782,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2332,83 +2812,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
             >
               <!---->
-              ed17ab505a...03a2b96964
+              ed17ab...b96964
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008220422
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2421,19 +2850,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2441,6 +2928,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2469,83 +2958,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
             >
               <!---->
-              cbac233a76...1f4b53666c
+              cbac23...53666c
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008220926
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2558,19 +2996,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2578,6 +3074,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2606,83 +3104,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
             >
               <!---->
-              a9abf02f54...2314152b5d
+              a9abf0...152b5d
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008221243
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2695,19 +3142,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2715,6 +3220,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2743,83 +3250,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
             >
               <!---->
-              a717154264...0084798b6f
+              a71715...798b6f
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008220934
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2832,19 +3288,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2852,6 +3366,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -2880,83 +3396,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
             >
               <!---->
-              a171e5d05b...4776765465
+              a171e5...765465
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008220989
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -2969,19 +3434,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -2989,6 +3512,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3017,83 +3542,32 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
               href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
             >
               <!---->
-              8fff9d4eb4...393ee0ac57
+              8fff9d...e0ac57
               
               <!---->
             </a>
             <!---->
              
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
-          >
-            <!---->
-            in 3 months
-            
-            <!---->
-          </time>
-          <!---->
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
-          0.008221018
-          
-          
-        </td>
-        
-        <!---->
-         
-        <!---->
-        <td
-          class="table__data-cell align-left"
-        >
-          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status"
+            class="transaction__time"
           >
-            success
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
+            <!---->
+             
+            <!---->
           </span>
           
           
@@ -3106,19 +3580,77 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+           
+          <span
+            class="transaction__party"
+          >
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
+         
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -3126,6 +3658,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3148,7 +3682,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
 
 exports[`Transactions Table > should render the \`TransactionsTable\` component in "full" mode 1`] = `
 <div
-  class="table-container transactions-table"
+  class="table-container transactions-table transactions-table--full"
 >
   <table
     class="table"
@@ -3178,13 +3712,26 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__header-cell align-left"
         >
           <!---->
-          Gas
+          From / To
           
           
         </th>
         
         <!---->
          
+        <!---->
+        <th
+          class="table__header-cell align-left"
+        >
+          <!---->
+          Amount (DUSK)
+          
+          
+        </th>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <th
           class="table__header-cell align-left"
@@ -3207,6 +3754,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           
         </th>
         
+        <!---->
         <!---->
          
         <!---->
@@ -3285,16 +3833,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -3306,26 +3862,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -3353,6 +3951,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -3362,16 +3961,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -3379,6 +3968,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3445,16 +4036,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -3466,26 +4065,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -3513,6 +4154,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -3522,16 +4164,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -3539,6 +4171,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3605,16 +4239,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -3626,26 +4268,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           50,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -3673,6 +4357,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -3682,16 +4367,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -3699,6 +4374,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               blob
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3765,16 +4442,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:55:25.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:55:25 GMT"
+              datetime="2024-09-11T21:55:25.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -3786,26 +4471,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -3833,6 +4560,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -3842,16 +4570,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -3859,6 +4577,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -3925,16 +4645,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -3946,26 +4674,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -3993,6 +4763,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4002,16 +4773,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4019,6 +4780,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -4085,16 +4848,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -4106,26 +4877,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -4153,6 +4966,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4162,16 +4976,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4179,6 +4983,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -4245,16 +5051,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -4266,26 +5080,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -4313,6 +5169,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4322,16 +5179,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4339,6 +5186,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -4405,16 +5254,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -4426,26 +5283,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -4473,6 +5372,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4482,16 +5382,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4499,6 +5389,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -4565,16 +5457,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -4586,26 +5486,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -4633,6 +5575,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4642,16 +5585,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4659,6 +5592,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->
@@ -4725,16 +5660,24 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             <!---->
           </div>
            
-          <time
-            class="dusk-relative-time transaction__time"
-            datetime="2024-09-11T21:54:11.000Z"
+          <span
+            class="transaction__time"
           >
+            <time
+              class="dusk-relative-time"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Wed, 11 Sep 2024 21:54:11 GMT"
+              datetime="2024-09-11T21:54:11.000Z"
+            >
+              <!---->
+              in 3 months
+              
+              <!---->
+            </time>
             <!---->
-            in 3 months
-            
+             
             <!---->
-          </time>
-          <!---->
+          </span>
           
           
         </td>
@@ -4746,26 +5689,68 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           class="table__data-cell align-left"
         >
           <!---->
-          <b
-            class="transaction__fee-price-label"
+          <span
+            class="transaction__party"
           >
-            PRICE:
-          </b>
-           1
-          <br />
+            <span
+              class="sr-only"
+            >
+              From
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
            
-          <b
-            class="transaction__fee-limit-label"
+          <span
+            class="transaction__party"
           >
-            LIMIT:
-          </b>
-           500,000,000
+            <span
+              class="sr-only"
+            >
+              To
+            </span>
+             
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
+            <!---->
+          </span>
           
           
         </td>
         
         <!---->
          
+        <!---->
+        <td
+          class="table__data-cell align-left"
+        >
+          <!---->
+          <!---->
+          <span
+            class="transaction__muted"
+          >
+            0.00
+          </span>
+          
+          
+          
+        </td>
+        
+        <!---->
+         
+        <!---->
         <!---->
         <td
           class="table__data-cell align-left"
@@ -4793,6 +5778,7 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
         </td>
         
         <!---->
+        <!---->
          
         <!---->
         <td
@@ -4802,16 +5788,6 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
           <div
             class="transaction-type"
           >
-            <span
-              class="transaction-type__privacy"
-              data-tooltip-disabled="true"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Sender, receiver and amount are visible to everyone"
-              data-tooltip-type="info"
-            >
-              Public
-            </span>
             <!---->
              
             <span
@@ -4819,6 +5795,8 @@ exports[`Transactions Table > should render the \`TransactionsTable\` component 
             >
               transfer
             </span>
+            <!---->
+             
             <!---->
              
             <!---->

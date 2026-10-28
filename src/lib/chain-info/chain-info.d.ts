@@ -37,8 +37,12 @@ type SearchResult = {
 type Transaction = {
   amount: number | undefined;
   blobHashes: string[];
+  /** The contract a call went to. */
+  contract?: string;
+  /** The DUSK, in LUX, a call sent to its contract. */
+  deposit?: number;
   from: string | undefined;
-  to: string | undefined;
+  to: string | null | undefined;
   blockhash: string;
   blockheight: number;
   date: Date;

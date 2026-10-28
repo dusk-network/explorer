@@ -307,6 +307,26 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
+  it("should share one node info request between callers at the same time", async () => {
+    fetchSpy
+      .mockResolvedValueOnce(makeOKResponse(mockData.apiNodeInfo))
+      .mockResolvedValueOnce(makeOKResponse(mockData.apiNodeInfo));
+
+    const [first, second] = await Promise.all([
+      duskAPI.getNodeInfo(),
+      duskAPI.getNodeInfo(),
+    ]);
+
+    expect(first).toStrictEqual(mockData.apiNodeInfo);
+    expect(second).toBe(first);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    // A later call asks the node again.
+    await duskAPI.getNodeInfo();
+
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+  });
+
   it("should expose a method to retrieve the statistics", async () => {
     const lastBlockHeight = 1498332;
     const txCount = {

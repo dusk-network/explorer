@@ -10,12 +10,13 @@
   } from "$lib/components/table";
   import {
     AppAnchor,
+    TransactionParty,
     TransactionStatus,
     TransactionType,
   } from "$lib/components";
+  import { summarizeTransaction } from "$lib/chain-info";
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
-  import { luxToDusk } from "$lib/dusk/currency";
-  import { createValueFormatter } from "$lib/dusk/value";
+  import { createFeeFormatter, luxToDusk } from "$lib/dusk/currency";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import "./TransactionsTable.css";
 
@@ -28,63 +29,102 @@
   /** @type {boolean} */
   export let displayTooltips = false;
 
-  /** @type {"compact" | "full"} */
+  /**
+   * The compact table, on the home page, leaves out the fee and the status
+   * column: a failed transaction says so beside its time.
+   *
+   * @type {"compact" | "full"}
+   */
   export let mode;
 
-  const HASH_CHARS_LENGTH = 10;
+  const duskFormatter = createFeeFormatter("en");
 
-  const numberFormatter = createValueFormatter("en");
-
-  $: classes = makeClassName(["transactions-table", className]);
+  $: isFull = mode === "full";
+  $: hashChars = isFull ? 10 : 6;
+  $: classes = makeClassName([
+    "transactions-table",
+    `transactions-table--${mode}`,
+    className,
+  ]);
 </script>
 
 <Table className={classes}>
   <TableHead>
     <TableRow>
       <TableCell type="th">ID</TableCell>
-      {#if mode === "full"}
-        <TableCell type="th">Gas</TableCell>
+      <TableCell type="th">From / To</TableCell>
+      <TableCell type="th">Amount (DUSK)</TableCell>
+      {#if isFull}
+        <TableCell type="th">Fee (DUSK)</TableCell>
+        <TableCell type="th">Status</TableCell>
       {/if}
-      <TableCell type="th">Fee (DUSK)</TableCell>
-      <TableCell type="th">Status</TableCell>
       <TableCell type="th">Type</TableCell>
     </TableRow>
   </TableHead>
   <TableBody>
     {#each data as transaction (transaction)}
+      {@const { amount, from, to } = summarizeTransaction(transaction)}
       <TableRow>
         <TableCell>
           <div class="transaction__transaction-id-container">
             <AppAnchor
               className="transaction__link"
               href={`/transactions/transaction?id=${transaction.txid}`}
-              >{middleEllipsis(transaction.txid, HASH_CHARS_LENGTH)}</AppAnchor
+              >{middleEllipsis(transaction.txid, hashChars)}</AppAnchor
             >
-            <CopyButton
-              name="Transaction ID"
-              rawValue={transaction.txid}
-              variant="secondary"
-            />
+            {#if isFull}
+              <CopyButton
+                name="Transaction ID"
+                rawValue={transaction.txid}
+                variant="secondary"
+              />
+            {/if}
           </div>
-          <RelativeTime className="transaction__time" date={transaction.date} />
+          <span class="transaction__time">
+            <RelativeTime
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text={transaction.date.toUTCString()}
+              date={transaction.date}
+            />
+            {#if !isFull && transaction.txerror}
+              · <span class="transaction__failed">Failed</span>
+            {/if}
+          </span>
         </TableCell>
-        {#if mode === "full"}
+        <TableCell>
+          <span class="transaction__party">
+            <span class="sr-only">From</span>
+            <TransactionParty party={from} />
+          </span>
+          <span class="transaction__party">
+            <span class="sr-only">To</span>
+            <TransactionParty party={to} />
+          </span>
+        </TableCell>
+        <TableCell>
+          {#if amount.kind === "shielded"}
+            <span class="transaction__muted">Shielded</span>
+          {:else}
+            <span class:transaction__muted={amount.lux === 0}
+              >{duskFormatter(luxToDusk(amount.lux))}</span
+            >
+          {/if}
+        </TableCell>
+        {#if isFull}
+          <TableCell>{duskFormatter(luxToDusk(transaction.feepaid))}</TableCell>
           <TableCell>
-            <b class="transaction__fee-price-label">PRICE:</b>
-            {numberFormatter(transaction.gasprice)}<br />
-            <b class="transaction__fee-limit-label">LIMIT:</b>
-            {numberFormatter(transaction.gaslimit)}
+            <TransactionStatus
+              errorMessage={transaction.txerror}
+              showErrorTooltip={false}
+            />
           </TableCell>
         {/if}
-        <TableCell>{numberFormatter(luxToDusk(transaction.feepaid))}</TableCell>
         <TableCell>
-          <TransactionStatus
-            errorMessage={transaction.txerror}
-            showErrorTooltip={false}
+          <TransactionType
+            data={transaction}
+            {displayTooltips}
+            showPrivacy={false}
           />
-        </TableCell>
-        <TableCell>
-          <TransactionType data={transaction} {displayTooltips} />
         </TableCell>
       </TableRow>
     {/each}

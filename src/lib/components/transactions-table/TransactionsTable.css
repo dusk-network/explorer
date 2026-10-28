@@ -4,14 +4,29 @@
   gap: var(--default-gap);
 }
 
-.transaction__fee-price-label,
-.transaction__fee-limit-label {
-  font-weight: 500;
-}
-
 .transaction__time {
   display: block;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   margin-top: 0.2rem;
+}
+
+.transaction__failed {
+  color: var(--badge-error-color);
+}
+
+/* Sender above receiver, in one column. */
+.transaction__party {
+  display: block;
+  line-height: 1.6;
+}
+
+.transaction__muted {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
+}
+
+/* The home page's table sits in half the width. */
+.transactions-table--compact .table__header-cell,
+.transactions-table--compact .table__data-cell {
+  padding-inline: 0.625rem;
 }

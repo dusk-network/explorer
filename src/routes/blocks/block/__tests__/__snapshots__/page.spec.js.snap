@@ -728,7 +728,7 @@ exports[`Block Details > should render the Block Details page and query the nece
       >
         <!---->
         <div
-          class="table-container transactions-table latest-transactions-card__table"
+          class="table-container transactions-table transactions-table--full latest-transactions-card__table"
         >
           <table
             class="table"
@@ -758,13 +758,26 @@ exports[`Block Details > should render the Block Details page and query the nece
                   class="table__header-cell align-left"
                 >
                   <!---->
-                  Gas
+                  From / To
                   
                   
                 </th>
                 
                 <!---->
                  
+                <!---->
+                <th
+                  class="table__header-cell align-left"
+                >
+                  <!---->
+                  Amount (DUSK)
+                  
+                  
+                </th>
+                
+                <!---->
+                 
+                <!---->
                 <!---->
                 <th
                   class="table__header-cell align-left"
@@ -787,6 +800,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                   
                 </th>
                 
+                <!---->
                 <!---->
                  
                 <!---->
@@ -865,16 +879,24 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <!---->
                   </div>
                    
-                  <time
-                    class="dusk-relative-time transaction__time"
-                    datetime="2024-04-16T20:07:02.000Z"
+                  <span
+                    class="transaction__time"
                   >
+                    <time
+                      class="dusk-relative-time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue, 16 Apr 2024 20:07:02 GMT"
+                      datetime="2024-04-16T20:07:02.000Z"
+                    >
+                      <!---->
+                      last month
+                      
+                      <!---->
+                    </time>
                     <!---->
-                    last month
-                    
+                     
                     <!---->
-                  </time>
-                  <!---->
+                  </span>
                   
                   
                 </td>
@@ -886,26 +908,68 @@ exports[`Block Details > should render the Block Details page and query the nece
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  <b
-                    class="transaction__fee-price-label"
+                  <span
+                    class="transaction__party"
                   >
-                    PRICE:
-                  </b>
-                   1
-                  <br />
+                    <span
+                      class="sr-only"
+                    >
+                      From
+                    </span>
+                     
+                    <!---->
+                    <span
+                      class="transaction-party transaction-party--hidden"
+                    >
+                      - - -
+                    </span>
+                    
+                    <!---->
+                  </span>
                    
-                  <b
-                    class="transaction__fee-limit-label"
+                  <span
+                    class="transaction__party"
                   >
-                    LIMIT:
-                  </b>
-                   500,000,000
+                    <span
+                      class="sr-only"
+                    >
+                      To
+                    </span>
+                     
+                    <!---->
+                    <span
+                      class="transaction-party transaction-party--hidden"
+                    >
+                      - - -
+                    </span>
+                    
+                    <!---->
+                  </span>
                   
                   
                 </td>
                 
                 <!---->
                  
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
+                  <!---->
+                  <span
+                    class="transaction__muted"
+                  >
+                    0.00
+                  </span>
+                  
+                  
+                  
+                </td>
+                
+                <!---->
+                 
+                <!---->
                 <!---->
                 <td
                   class="table__data-cell align-left"
@@ -933,6 +997,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                 </td>
                 
                 <!---->
+                <!---->
                  
                 <!---->
                 <td
@@ -942,16 +1007,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                   <div
                     class="transaction-type"
                   >
-                    <span
-                      class="transaction-type__privacy"
-                      data-tooltip-disabled="false"
-                      data-tooltip-id="main-tooltip"
-                      data-tooltip-place="top"
-                      data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                      data-tooltip-type="info"
-                    >
-                      Public
-                    </span>
                     <!---->
                      
                     <span
@@ -961,6 +1016,10 @@ exports[`Block Details > should render the Block Details page and query the nece
                     </span>
                     <!---->
                      
+                    <!---->
+                     
+                    <!---->
+                    
                     <!---->
                   </div>
                   
@@ -1025,16 +1084,24 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <!---->
                   </div>
                    
-                  <time
-                    class="dusk-relative-time transaction__time"
-                    datetime="2024-04-16T20:07:02.000Z"
+                  <span
+                    class="transaction__time"
                   >
+                    <time
+                      class="dusk-relative-time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue, 16 Apr 2024 20:07:02 GMT"
+                      datetime="2024-04-16T20:07:02.000Z"
+                    >
+                      <!---->
+                      last month
+                      
+                      <!---->
+                    </time>
                     <!---->
-                    last month
-                    
+                     
                     <!---->
-                  </time>
-                  <!---->
+                  </span>
                   
                   
                 </td>
@@ -1046,26 +1113,68 @@ exports[`Block Details > should render the Block Details page and query the nece
                   class="table__data-cell align-left"
                 >
                   <!---->
-                  <b
-                    class="transaction__fee-price-label"
+                  <span
+                    class="transaction__party"
                   >
-                    PRICE:
-                  </b>
-                   1
-                  <br />
+                    <span
+                      class="sr-only"
+                    >
+                      From
+                    </span>
+                     
+                    <!---->
+                    <span
+                      class="transaction-party transaction-party--hidden"
+                    >
+                      Shielded
+                    </span>
+                    
+                    <!---->
+                  </span>
                    
-                  <b
-                    class="transaction__fee-limit-label"
+                  <span
+                    class="transaction__party"
                   >
-                    LIMIT:
-                  </b>
-                   500,000,000
+                    <span
+                      class="sr-only"
+                    >
+                      To
+                    </span>
+                     
+                    <!---->
+                    <span
+                      class="transaction-party transaction-party--hidden"
+                    >
+                      Shielded
+                    </span>
+                    
+                    <!---->
+                  </span>
                   
                   
                 </td>
                 
                 <!---->
                  
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
+                  <!---->
+                  <span
+                    class="transaction__muted"
+                  >
+                    Shielded
+                  </span>
+                  
+                  
+                  
+                </td>
+                
+                <!---->
+                 
+                <!---->
                 <!---->
                 <td
                   class="table__data-cell align-left"
@@ -1093,6 +1202,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                 </td>
                 
                 <!---->
+                <!---->
                  
                 <!---->
                 <td
@@ -1102,16 +1212,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                   <div
                     class="transaction-type"
                   >
-                    <span
-                      class="transaction-type__privacy"
-                      data-tooltip-disabled="false"
-                      data-tooltip-id="main-tooltip"
-                      data-tooltip-place="top"
-                      data-tooltip-text="Sender, receiver and amount are hidden"
-                      data-tooltip-type="info"
-                    >
-                      Shielded
-                    </span>
                     <!---->
                      
                     <span
@@ -1121,6 +1221,10 @@ exports[`Block Details > should render the Block Details page and query the nece
                     </span>
                     <!---->
                      
+                    <!---->
+                     
+                    <!---->
+                    
                     <!---->
                   </div>
                   
@@ -1900,6 +2004,8 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           >
             <time
               class="dusk-relative-time transaction-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue, 16 Apr 2024 20:07:02 GMT"
               datetime="2024-04-16T20:07:02.000Z"
               slot="definition"
             >
@@ -1916,7 +2022,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           </dd>
           <!---->
            
-          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
@@ -1928,7 +2033,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-icon dusk-icon--size--default detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The transaction gas price in lux"
+                data-tooltip-text="The sender of the transaction"
                 data-tooltip-type="info"
                 role="graphics-symbol"
                 viewBox="0 0 24 24"
@@ -1940,7 +2045,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               
               <!---->
                
-              Gas Price
+              From
               <!---->
             </div>
           </dt>
@@ -1948,7 +2053,13 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            1
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
             <!---->
           </dd>
           <!---->
@@ -1964,7 +2075,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-icon dusk-icon--size--default detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The transaction gas limit in lux"
+                data-tooltip-text="The receiver of the transaction, or the contract it called"
                 data-tooltip-type="info"
                 role="graphics-symbol"
                 viewBox="0 0 24 24"
@@ -1976,7 +2087,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               
               <!---->
                
-              Gas Limit
+              To
               <!---->
             </div>
           </dt>
@@ -1984,10 +2095,53 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            500,000,000
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              - - -
+            </span>
+            
             <!---->
           </dd>
           <!---->
+           
+          <dt
+            class="details-list__term details-list__term--table"
+          >
+            <div
+              class="details-list__term-layout"
+            >
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default detail-list__help"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-place="top"
+                data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
+                data-tooltip-type="info"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              Amount
+              <!---->
+            </div>
+          </dt>
+           
+          <dd
+            class="details-list__definition details-list__definition--table"
+          >
+            <!---->
+            0.00 DUSK
+            
+            <!---->
+          </dd>
           <!---->
            
           <dt
@@ -2102,16 +2256,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="transaction-type"
             >
-              <span
-                class="transaction-type__privacy"
-                data-tooltip-disabled="false"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="Sender, receiver and amount are visible to everyone"
-                data-tooltip-type="info"
-              >
-                Public
-              </span>
               <!---->
                
               <span
@@ -2121,6 +2265,10 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               </span>
               <!---->
                
+              <!---->
+               
+              <!---->
+              
               <!---->
             </div>
             
@@ -2244,6 +2392,8 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           >
             <time
               class="dusk-relative-time transaction-details__list-timestamp"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Tue, 16 Apr 2024 20:07:02 GMT"
               datetime="2024-04-16T20:07:02.000Z"
               slot="definition"
             >
@@ -2260,7 +2410,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           </dd>
           <!---->
            
-          <!---->
           <dt
             class="details-list__term details-list__term--table"
           >
@@ -2272,7 +2421,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-icon dusk-icon--size--default detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The transaction gas price in lux"
+                data-tooltip-text="The sender of the transaction"
                 data-tooltip-type="info"
                 role="graphics-symbol"
                 viewBox="0 0 24 24"
@@ -2284,7 +2433,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               
               <!---->
                
-              Gas Price
+              From
               <!---->
             </div>
           </dt>
@@ -2292,7 +2441,13 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            1
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              Shielded
+            </span>
+            
             <!---->
           </dd>
           <!---->
@@ -2308,7 +2463,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                 class="dusk-icon dusk-icon--size--default detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The transaction gas limit in lux"
+                data-tooltip-text="The receiver of the transaction, or the contract it called"
                 data-tooltip-type="info"
                 role="graphics-symbol"
                 viewBox="0 0 24 24"
@@ -2320,7 +2475,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               
               <!---->
                
-              Gas Limit
+              To
               <!---->
             </div>
           </dt>
@@ -2328,10 +2483,53 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            500,000,000
+            <!---->
+            <span
+              class="transaction-party transaction-party--hidden"
+            >
+              Shielded
+            </span>
+            
             <!---->
           </dd>
           <!---->
+           
+          <dt
+            class="details-list__term details-list__term--table"
+          >
+            <div
+              class="details-list__term-layout"
+            >
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default detail-list__help"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-place="top"
+                data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
+                data-tooltip-type="info"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              Amount
+              <!---->
+            </div>
+          </dt>
+           
+          <dd
+            class="details-list__definition details-list__definition--table"
+          >
+            <!---->
+            Shielded
+            
+            <!---->
+          </dd>
           <!---->
            
           <dt
@@ -2446,16 +2644,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="transaction-type"
             >
-              <span
-                class="transaction-type__privacy"
-                data-tooltip-disabled="false"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="Sender, receiver and amount are hidden"
-                data-tooltip-type="info"
-              >
-                Shielded
-              </span>
               <!---->
                
               <span
@@ -2465,6 +2653,10 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               </span>
               <!---->
                
+              <!---->
+               
+              <!---->
+              
               <!---->
             </div>
             

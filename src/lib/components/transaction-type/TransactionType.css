@@ -5,12 +5,13 @@
   gap: 0.3rem 0.5rem;
 }
 
-/* Table rows keep the type on one line. */
-.table__data-cell .transaction-type {
-  flex-wrap: nowrap;
+/* In tables, the plain words go under the method, as the time goes under the ID. */
+.table__data-cell .transaction-type__label {
+  flex-basis: 100%;
 }
 
-.transaction-type__privacy {
+.transaction-type__privacy,
+.transaction-type__label {
   color: color-mix(in oklab, var(--on-surface-color), transparent 30%);
   font-size: 0.75rem;
 }

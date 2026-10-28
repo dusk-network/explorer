@@ -115,7 +115,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
           >
             <!---->
-            4877687c2dbf154248d3ddee9...056f82a46819da041d4ac0e04
+            4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04
             
             <!---->
           </a>
@@ -166,7 +166,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The block height this transaction belongs to"
+              data-tooltip-text="The transaction status"
               data-tooltip-type="info"
               role="graphics-symbol"
               viewBox="0 0 24 24"
@@ -178,7 +178,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             
             <!---->
              
-            block height
+            status
             <!---->
           </div>
         </dt>
@@ -186,15 +186,263 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         <dd
           class="details-list__definition"
         >
-          <a
-            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-            href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
+          <span
+            class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
+          >
+            success
+          </span>
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
           >
             <!---->
-            487,166
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The sender of the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            from
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          >
+            <!---->
+            kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj
             
             <!---->
           </a>
+          
+          
+          
+          <!---->
+           
+          <div
+            class="dusk-copy-button"
+          >
+            <button
+              aria-label="Copy sender's address"
+              class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Copy to clipboard"
+              type="button"
+            >
+              <!---->
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </button>
+            <!---->
+          </div>
+          <!---->
+          
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The receiver of the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            to
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <!---->
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+          >
+            <!---->
+            mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj
+            
+            <!---->
+          </a>
+          
+          
+          
+          <!---->
+           
+          <div
+            class="dusk-copy-button"
+          >
+            <button
+              aria-label="Copy receiver's address"
+              class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text="Copy to clipboard"
+              type="button"
+            >
+              <!---->
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              <!---->
+              <!---->
+            </button>
+            <!---->
+          </div>
+          <!---->
+          <!---->
+        </dd>
+        <!---->
+         
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            amount
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <!---->
+          9,812.378912731 DUSK 
+          <!---->
+          
+          <!---->
+          
+          <!---->
+        </dd>
+        <!---->
+         
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The fee paid for the transaction"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            transaction fee
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          0.000290766 DUSK 
+          <!---->
+          
+          <!---->
           <!---->
         </dd>
         <!---->
@@ -259,214 +507,6 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The sender of the transaction"
-              data-tooltip-type="info"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            from
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <a
-            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-            href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
-          >
-            <!---->
-            kT5BamV2Xq6JpnoCq9ux7EmYR...HdCeKtzExREcXZsmmMRLwKbXj
-            
-            <!---->
-          </a>
-          
-          
-          <!---->
-           
-          <div
-            class="dusk-copy-button"
-          >
-            <button
-              aria-label="Copy sender's address"
-              class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-text="Copy to clipboard"
-              type="button"
-            >
-              <!---->
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </button>
-            <!---->
-          </div>
-          <!---->
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The receiver of the transaction"
-              data-tooltip-type="info"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            to
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          <a
-            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-            href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
-          >
-            <!---->
-            mHWZo9qYUhqp2SEmtWN7EuDKF...GQZwCaeCS8uA63ZPKnGpjiUnj
-            
-            <!---->
-          </a>
-          
-          
-          <!---->
-           
-          <div
-            class="dusk-copy-button"
-          >
-            <button
-              aria-label="Copy receiver's address"
-              class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-text="Copy to clipboard"
-              type="button"
-            >
-              <!---->
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <!---->
-              <!---->
-            </button>
-            <!---->
-          </div>
-          <!---->
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The transaction amount"
-              data-tooltip-type="info"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            amount
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          9,812.378912731 DUSK ($3,614.3897725045)
-          
-          
-          <!---->
-           
-          <!---->
-          
-          <!---->
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
               data-tooltip-text="The transaction type"
               data-tooltip-type="info"
               role="graphics-symbol"
@@ -510,6 +550,10 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <!---->
              
             <!---->
+             
+            <!---->
+            
+            <!---->
           </div>
           <!---->
         </dd>
@@ -526,7 +570,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The transaction status"
+              data-tooltip-text="Transaction reference and additional notes"
               data-tooltip-type="info"
               role="graphics-symbol"
               viewBox="0 0 24 24"
@@ -538,7 +582,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             
             <!---->
              
-            status
+            memo
             <!---->
           </div>
         </dt>
@@ -546,57 +590,17 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         <dd
           class="details-list__definition"
         >
+          <!---->
+          <!---->
           <span
-            class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
+            class="transaction-details__memo"
           >
-            success
+            some notes about the transaction
           </span>
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The fee paid for the transaction"
-              data-tooltip-type="info"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            transaction fee
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          0.000290766 DUSK ($0.0001071037)
-          
-          
-          <!---->
            
           <!---->
           
-          <!---->
+          
           <!---->
         </dd>
         <!---->
@@ -612,7 +616,51 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="dusk-icon dusk-icon--size--default detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The transaction gas price"
+              data-tooltip-text="The block height this transaction belongs to"
+              data-tooltip-type="info"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+              />
+            </svg>
+            
+            <!---->
+             
+            block height
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
+          >
+            <!---->
+            487,166
+            
+            <!---->
+          </a>
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
               data-tooltip-type="info"
               role="graphics-symbol"
               viewBox="0 0 24 24"
@@ -632,17 +680,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         <dd
           class="details-list__definition"
         >
-          <!---->
-          <!---->
-          <!---->
-          0.000000001 DUSK ($0.0000000004)
-          
-          
-          <!---->
-           
-          <!---->
-          
-          <!---->
+          1 LUX
           <!---->
         </dd>
         <!---->
@@ -678,7 +716,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         <dd
           class="details-list__definition"
         >
-          500000000
+          500,000,000
           <!---->
         </dd>
         <!---->
@@ -714,7 +752,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         <dd
           class="details-list__definition"
         >
-          290766
+          290,766
           <!---->
         </dd>
         <!---->
@@ -751,61 +789,6 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           156
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="Transaction reference and additional notes"
-              data-tooltip-type="info"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <div
-              class="transaction-details__switch-wrapper"
-            >
-              memo 
-              <div
-                aria-checked="false"
-                aria-disabled="false"
-                aria-label="Show memo as text"
-                class="dusk-switch transaction-details__payload-switch dusk-switch--on-surface"
-                role="switch"
-                tabindex="0"
-              />
-              <!---->
-            </div>
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          some notes about the transaction
-          
-          
-          
           <!---->
         </dd>
         <!---->
