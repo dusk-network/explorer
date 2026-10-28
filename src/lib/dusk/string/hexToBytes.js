@@ -4,7 +4,7 @@ import { isValidHex } from "./";
  * Transform a hexadecimal string to a Uint8Array of bytes
  *
  * @param {string} value
- * @returns {Uint8Array}
+ * @returns {Uint8Array<ArrayBuffer>}
  */
 const hexToBytes = (value) => {
   if (!isValidHex(value)) {

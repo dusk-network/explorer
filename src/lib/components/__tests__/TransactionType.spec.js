@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
 import { gqlTransaction } from "$lib/mock-data";
@@ -43,5 +43,45 @@ describe("TransactionType", () => {
     expect(privacy({ ...shielded, contract: stake, deposit: 0 })).toBe(
       "Sender and value are hidden. The contract called is public"
     );
+  });
+
+  it.each([
+    ["Sent", "out"],
+    ["Received", "in"],
+    ["Sent to itself", "self"],
+  ])(
+    "should say a transfer was %s, for the account whose page lists it",
+    (words, direction) => {
+      const { getByText } = render(TransactionType, {
+        props: {
+          data: transaction,
+          direction: /** @type {"in" | "out" | "self"} */ (direction),
+        },
+      });
+
+      expect(getByText(words)).toHaveClass("transaction-type__direction");
+    }
+  );
+
+  it("should keep a call's own words, its way shown by the row's sign", async () => {
+    const { container, queryByText } = render(TransactionType, {
+      props: {
+        data: {
+          ...transaction,
+          contract:
+            "0200000000000000000000000000000000000000000000000000000000000000",
+          method: "withdraw",
+          to: null,
+        },
+        direction: "out",
+      },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-type__label")
+      ).toHaveTextContent("Claim rewards")
+    );
+    expect(queryByText("Sent")).toBeNull();
   });
 });

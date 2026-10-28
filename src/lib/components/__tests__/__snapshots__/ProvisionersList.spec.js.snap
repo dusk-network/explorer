@@ -32,7 +32,7 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
       href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
     >
       <!---->
-      n3qToJ...6aNuj6
+      n3qToJ…6aNuj6
       
       <!---->
     </a>
@@ -78,6 +78,36 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <button
+        aria-describedby="list-item-help-2"
+        aria-label="More information"
+        class="detail-list__help"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-place="top"
+        data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
+        data-tooltip-type="info"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+          />
+        </svg>
+        
+        <!---->
+         
+        <span
+          hidden=""
+          id="list-item-help-2"
+        >
+          Active stake takes part in consensus. Inactive stake doesn't.
+        </span>
+      </button>
       <!---->
        
       Stake
@@ -107,6 +137,36 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <button
+        aria-describedby="list-item-help-3"
+        aria-label="More information"
+        class="detail-list__help"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-place="top"
+        data-tooltip-text="The rewards not yet claimed"
+        data-tooltip-type="info"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+          />
+        </svg>
+        
+        <!---->
+         
+        <span
+          hidden=""
+          id="list-item-help-3"
+        >
+          The rewards not yet claimed
+        </span>
+      </button>
       <!---->
        
       Reward
@@ -132,6 +192,36 @@ exports[`Provisioners List > renders the \`ProvisionersList\` component 1`] = `
     <div
       class="details-list__term-layout"
     >
+      <button
+        aria-describedby="list-item-help-4"
+        aria-label="More information"
+        class="detail-list__help"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-place="top"
+        data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
+        data-tooltip-type="info"
+        type="button"
+      >
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+          />
+        </svg>
+        
+        <!---->
+         
+        <span
+          hidden=""
+          id="list-item-help-4"
+        >
+          Soft slashes for missed duties, hard slashes for faults
+        </span>
+      </button>
       <!---->
        
       Slashes

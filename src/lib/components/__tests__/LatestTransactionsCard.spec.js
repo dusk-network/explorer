@@ -60,7 +60,7 @@ describe("LatestTransactionsCard", () => {
       );
       expect(names[0]).toHaveAttribute(
         "data-tooltip-text",
-        `tdi.dusk · ${sender.slice(0, 6)}...${sender.slice(-6)}`
+        `tdi.dusk · ${sender.slice(0, 6)}…${sender.slice(-6)}`
       );
     }
   );

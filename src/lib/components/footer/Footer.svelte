@@ -1,29 +1,26 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { networks } from "@dusk-network/networks";
+
   import { AppAnchor, AppImage } from "$lib/components";
   import { Anchor } from "$lib/dusk/components";
+  import { networkOf } from "$lib/network";
   import { appStore } from "$lib/stores";
   import "./Footer.css";
 
-  const hostedExplorers = [
-    {
-      label: "Mainnet",
-      url: "https://apps.dusk.network/explorer",
-    },
-    {
-      label: "Testnet",
-      url: "https://apps.testnet.dusk.network/explorer",
-    },
-    {
-      label: "Devnet",
-      url: "https://apps.devnet.dusk.network/explorer",
-    },
-  ];
-
   const currentYear = new Date().getFullYear();
 
-  $: ({ darkMode } = $appStore);
+  $: ({ darkMode, nodeInfo } = $appStore);
+  $: network = networkOf(nodeInfo.chain_id);
+
+  // The explorers of the other networks, and the terms of who runs this one.
+  $: otherExplorers = Object.values(networks).flatMap(({ apps, label }) =>
+    apps.explorer && apps.explorer !== network?.apps.explorer
+      ? [{ label, url: apps.explorer }]
+      : []
+  );
+  $: ({ privacyUrl, termsUrl } = (network ?? networks.mainnet).operator);
 </script>
 
 <div class="footer">
@@ -34,25 +31,19 @@
     </p>
   </div>
   <div class="footer__explorers-links-container">
-    {#each hostedExplorers as explorer (explorer.url)}
-      {#if !location.href.includes(explorer.url)}
-        <Anchor onSurface={false} href={explorer.url} className="footer__link"
-          >{explorer.label}</Anchor
-        >
-      {/if}
+    {#each otherExplorers as { label, url } (url)}
+      <Anchor onSurface={false} href={url} className="footer__link"
+        >{label}</Anchor
+      >
     {/each}
   </div>
 
   <div class="footer__misc-links-container">
-    <Anchor
-      onSurface={false}
-      href="https://dusk.network/privacy-policy"
-      className="footer__link">Privacy policy</Anchor
+    <Anchor onSurface={false} href={privacyUrl} className="footer__link"
+      >Privacy policy</Anchor
     >
-    <Anchor
-      onSurface={false}
-      href="https://dusk.network/terms-of-use"
-      className="footer__link">Terms of use</Anchor
+    <Anchor onSurface={false} href={termsUrl} className="footer__link"
+      >Terms of use</Anchor
     >
   </div>
 

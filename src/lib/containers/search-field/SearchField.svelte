@@ -1,17 +1,34 @@
 <script>
   import { mdiMagnify } from "@mdi/js";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import { page } from "$app/stores";
 
-  import { TextboxAndButton } from "$lib/components";
+  import { Button, Textbox } from "$lib/dusk/components";
   import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
   import { goto, searchQueryOf } from "$lib/navigation";
   import { duskAPI } from "$lib/services";
 
   import explainSearchMiss from "./explainSearchMiss";
+  import "./SearchField.css";
 
   /** @type {String}*/
   let value = "";
+
+  /** @type {Textbox} */
+  let field;
+
+  /** The field's width: fixed from 1280 px, the row's below. */
+  let width = "380px";
+
+  onMount(() => {
+    const observer = new ResizeObserver(([entry]) => {
+      width = entry.target.clientWidth < 1280 ? "100%" : "380px";
+    });
+
+    observer.observe(document.documentElement);
+
+    return () => observer.disconnect();
+  });
 
   /**
    * The searches made so far: only the latest one's answer counts, so a
@@ -67,6 +84,11 @@
   /** Drops the answers of the searches in flight, as after leaving the page. */
   export function cancel() {
     searches += 1;
+  }
+
+  /** Puts the cursor in the search box. */
+  export function focus() {
+    field.focus();
   }
 
   function submitHandler() {
@@ -126,17 +148,21 @@
 </script>
 
 <form on:submit|preventDefault={submitHandler}>
-  <TextboxAndButton
-    bind:value
-    buttonLabel="Search"
-    expandedFieldWidth={380}
-    fieldWidth={380}
-    label="Search by address, block, transaction or .dusk name"
-    placeholder="Address, hash or .dusk name"
-    icon={{
-      path: mdiMagnify,
-      position: "after",
-      size: "default",
-    }}
-  />
+  <div class="textbox-button" style="width: {width};">
+    <Textbox
+      aria-label="Search by address, block, transaction or .dusk name"
+      className="textbox-button__input"
+      bind:this={field}
+      bind:value
+      required
+      placeholder="Address, hash or .dusk name"
+    />
+    <Button
+      aria-label="Search"
+      type="submit"
+      icon={{ path: mdiMagnify, position: "after", size: "default" }}
+      size="default"
+      variant="primary"
+    />
+  </div>
 </form>

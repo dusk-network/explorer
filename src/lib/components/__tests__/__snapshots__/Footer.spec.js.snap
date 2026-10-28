@@ -19,7 +19,6 @@ exports[`Footer > renders the Footer component 1`] = `
   <div
     class="footer__explorers-links-container"
   >
-    <!---->
     <a
       class="dusk-anchor dusk-anchor--off-surface footer__link"
       href="https://apps.dusk.network/explorer"
@@ -27,8 +26,6 @@ exports[`Footer > renders the Footer component 1`] = `
       Mainnet
       <!---->
     </a>
-    
-    <!---->
     <a
       class="dusk-anchor dusk-anchor--off-surface footer__link"
       href="https://apps.testnet.dusk.network/explorer"
@@ -36,8 +33,6 @@ exports[`Footer > renders the Footer component 1`] = `
       Testnet
       <!---->
     </a>
-    
-    <!---->
     <a
       class="dusk-anchor dusk-anchor--off-surface footer__link"
       href="https://apps.devnet.dusk.network/explorer"
@@ -45,7 +40,6 @@ exports[`Footer > renders the Footer component 1`] = `
       Devnet
       <!---->
     </a>
-    
     
   </div>
    

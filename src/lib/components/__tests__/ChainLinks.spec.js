@@ -2,7 +2,7 @@ import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 import { mapWith, slice } from "lamb";
 
-import { STAKE_CONTRACT } from "$lib/constants";
+import { STAKE_CONTRACT } from "$lib/network";
 import {
   enrichedProvisioners,
   gqlBlocks,

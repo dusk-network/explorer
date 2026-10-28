@@ -50,6 +50,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -61,13 +62,15 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
         <!---->
         
+        <!---->
         <!---->
       </div>
     </div>
@@ -101,6 +104,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -112,11 +116,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -152,6 +158,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -163,11 +170,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -197,6 +206,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -208,11 +218,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -235,6 +247,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -246,13 +259,15 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
         <!---->
         
+        <!---->
         <!---->
       </dd>
     </div>
@@ -269,6 +284,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -280,11 +296,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -305,6 +323,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -316,11 +335,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -337,6 +358,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -348,11 +370,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
             —
           </span>
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -369,6 +393,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -380,8 +405,9 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-unit"
@@ -390,6 +416,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         </span>
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -406,6 +433,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -417,11 +445,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -480,6 +510,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -491,13 +522,15 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
         <!---->
         
+        <!---->
         <!---->
       </div>
     </div>
@@ -530,6 +563,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <div
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
         <span
           class="statistics-panel__statistics-item-about"
         >
@@ -556,8 +590,9 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </div>
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-unit"
@@ -566,6 +601,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         </span>
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -608,6 +644,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -619,11 +656,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -656,6 +695,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <div
           class="statistics-panel__statistics-item-value"
@@ -667,11 +707,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </div>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </div>
     </div>
@@ -694,6 +736,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -705,13 +748,15 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
         <!---->
         
+        <!---->
         <!---->
       </dd>
     </div>
@@ -728,6 +773,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -739,11 +785,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -763,6 +811,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
       <dd
         class="statistics-panel__statistics-item-value-container"
       >
+        <!---->
         <span
           class="statistics-panel__statistics-item-about"
         >
@@ -789,8 +838,9 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-unit"
@@ -799,6 +849,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         </span>
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -815,6 +866,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -826,11 +878,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -847,6 +901,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -858,8 +913,9 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-unit"
@@ -868,6 +924,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         </span>
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>
@@ -884,6 +941,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item-value-container"
       >
         <!---->
+        <!---->
          
         <span
           class="statistics-panel__statistics-item-value"
@@ -895,11 +953,13 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
           <!---->
           
           
-          <!---->
+          
         </span>
+        <!---->
          
         <!---->
          
+        <!---->
         <!---->
       </dd>
     </div>

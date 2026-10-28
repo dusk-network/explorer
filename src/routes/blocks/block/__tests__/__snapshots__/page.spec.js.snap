@@ -213,7 +213,7 @@ exports[`Block Details > should render the Block Details page and query the nece
             <span
               class="block-details__summary-meta detail-summary__meta"
             >
-              Tue 16 Apr 2024, 20:07:02 UTC 
+              Tue 16 Apr 2024, 8:07:02 PM UTC 
               <span
                 aria-hidden="true"
               >
@@ -892,7 +892,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                       href="/some-base-path/transactions/transaction?id=3a3f6f90a1012ae751b4448bcb8e98def0ba2b18170239bd69fcf8e2e37f0602"
                     >
                       <!---->
-                      3a3f6f...7f0602
+                      3a3f6f…7f0602
                       
                       <!---->
                     </a>
@@ -947,7 +947,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                      data-tooltip-text="Tue 16 Apr 2024, 8:07:02 PM UTC"
                       datetime="2024-04-16T20:07:02.000Z"
                     >
                       <!---->
@@ -974,7 +974,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <span
                       title="0.000290866 DUSK"
                     >
-                      0.0003
+                      0.00029
                     </span>
                      
                     <span
@@ -1152,7 +1152,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                       href="/some-base-path/transactions/transaction?id=07bfabea1d94c16f2dc3697fa642f6cecea6e81bf76b9644efbb6e2723b76d00"
                     >
                       <!---->
-                      07bfab...b76d00
+                      07bfab…b76d00
                       
                       <!---->
                     </a>
@@ -1207,7 +1207,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                      data-tooltip-text="Tue 16 Apr 2024, 8:07:02 PM UTC"
                       datetime="2024-04-16T20:07:02.000Z"
                     >
                       <!---->
@@ -1234,7 +1234,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     <span
                       title="0.000289852 DUSK"
                     >
-                      0.0003
+                      0.00029
                     </span>
                      
                     <span
@@ -1378,7 +1378,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <span
               class="block-details__summary-meta detail-summary__meta"
             >
-              Tue 16 Apr 2024, 20:07:02 UTC 
+              Tue 16 Apr 2024, 8:07:02 PM UTC 
               <span
                 aria-hidden="true"
               >
@@ -1972,7 +1972,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                data-tooltip-text="Tue 16 Apr 2024, 8:07:02 PM UTC"
                 datetime="2024-04-16T20:07:02.000Z"
               >
                 <!---->
@@ -1996,7 +1996,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <span
               class="sr-only"
             >
-              Transaction 3a3f6f...7f0602
+              Transaction 3a3f6f…7f0602
             </span>
             
             <!---->
@@ -2121,7 +2121,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                data-tooltip-text="Tue 16 Apr 2024, 8:07:02 PM UTC"
                 datetime="2024-04-16T20:07:02.000Z"
               >
                 <!---->
@@ -2145,7 +2145,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <span
               class="sr-only"
             >
-              Transaction 07bfab...b76d00
+              Transaction 07bfab…b76d00
             </span>
             
             <!---->

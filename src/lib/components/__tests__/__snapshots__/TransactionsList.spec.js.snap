@@ -133,7 +133,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
       <time
         class="dusk-relative-time"
         data-tooltip-id="main-tooltip"
-        data-tooltip-text="Tue 16 Apr 2024, 06:39:09 UTC"
+        data-tooltip-text="Tue 16 Apr 2024, 6:39:09 AM UTC"
         datetime="2024-04-16T06:39:09.000Z"
       >
         <!---->
@@ -153,7 +153,7 @@ exports[`Transactions List > should render the \`TransactionsList\` component 1`
     <span
       class="sr-only"
     >
-      Transaction 487768...ac0e04
+      Transaction 487768…ac0e04
     </span>
     
     <!---->

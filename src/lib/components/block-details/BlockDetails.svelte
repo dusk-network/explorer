@@ -12,11 +12,7 @@
   import { formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
   import { createValueFormatter } from "$lib/dusk/value";
-  import { makeClassName } from "$lib/dusk/string";
   import "./BlockDetails.css";
-
-  /** @type {string | Undefined} */
-  export let className = undefined;
 
   /** @type {Block} */
   export let data;
@@ -35,7 +31,6 @@
   /** @type {Boolean} */
   let isPayloadToggled = false;
 
-  $: classes = makeClassName(["block-details", "detail-page", className]);
   $: count = data ? data.transactions.data.length : 0;
   $: ({ gasLimit, gasUsed } = data
     ? data.transactions.stats
@@ -47,7 +42,7 @@
   {data}
   {error}
   {loading}
-  className={classes}
+  className="block-details detail-page"
   title="Block"
   variant="detail"
 >
@@ -88,7 +83,6 @@
   </div>
 
   <dl class="block-details__list detail-rows">
-    <!-- BLOCK HASH -->
     <ListItem wide>
       <svelte:fragment slot="term">Hash</svelte:fragment>
       <svelte:fragment slot="definition">
@@ -102,7 +96,6 @@
       </svelte:fragment>
     </ListItem>
 
-    <!-- BLOCK REWARD -->
     <ListItem
       tooltipText="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
     >
@@ -112,7 +105,6 @@
       >
     </ListItem>
 
-    <!-- BLOCK FEES PAID -->
     <ListItem>
       <svelte:fragment slot="term">Block fees paid</svelte:fragment>
       <svelte:fragment slot="definition"
@@ -135,7 +127,6 @@
       </svelte:fragment>
     </ListItem>
 
-    <!-- AVERAGE GAS PRICE -->
     <ListItem>
       <svelte:fragment slot="term">Average gas price</svelte:fragment>
       <svelte:fragment slot="definition"
@@ -150,7 +141,6 @@
       >Technical details</summary
     >
     <dl class="block-details__list detail-rows">
-      <!-- STATE ROOT HASH -->
       <ListItem wide>
         <svelte:fragment slot="term">State root hash</svelte:fragment>
         <svelte:fragment slot="definition">
@@ -164,7 +154,6 @@
         </svelte:fragment>
       </ListItem>
 
-      <!-- HEADER -->
       <ListItem wide>
         <svelte:fragment slot="term">
           <span class="block-details__switch-wrapper detail-switch">

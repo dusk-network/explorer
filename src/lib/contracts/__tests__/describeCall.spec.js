@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { networks } from "@dusk-network/networks";
 
-import { STAKE_CONTRACT, TRANSFER_CONTRACT } from "$lib/constants";
+import { STAKE_CONTRACT, TRANSFER_CONTRACT } from "$lib/network";
 
 import { describeCall } from "..";
 
@@ -88,14 +89,54 @@ describe("describeCall", () => {
 
     await expect(describeCall(mainnetPool, "sozu_stake", 1)).resolves.toEqual({
       label: "Liquid stake",
-      name: "Sozu liquid staking",
+      name: "Sozu pool",
     });
     await expect(
       describeCall(mainnetPool, "stake_activate", 1)
-    ).resolves.toEqual({ label: null, name: "Sozu liquid staking" });
+    ).resolves.toEqual({ label: null, name: "Sozu pool" });
     await expect(describeCall(mainnetPool, "sozu_stake", 2)).resolves.toEqual({
       label: null,
       name: null,
     });
+  });
+
+  it("should name testnet's DuskEVM router and metadata registry, and Sozu's relayer", async () => {
+    await expect(
+      describeCall(
+        "2e4b8b46390c860282b765641fa94037812601bf777164d7b7f801a262206046",
+        "submit",
+        2
+      )
+    ).resolves.toEqual({ label: null, name: "DuskEVM transaction router" });
+    await expect(
+      describeCall(
+        "179f68303f0eb935660d52a52c2f104709d8b3b1d6f6525689d4d599695840c9",
+        "registerBlobTxMeta",
+        2
+      )
+    ).resolves.toEqual({ label: null, name: "DuskEVM transaction metadata" });
+    await expect(
+      describeCall(
+        "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37",
+        "",
+        2
+      )
+    ).resolves.toEqual({ label: null, name: "Sozu relayer" });
+  });
+
+  it("should name every contract by its network's label in @dusk-network/networks", async () => {
+    for (const network of Object.values(networks)) {
+      const contracts = Object.entries(network.display.labels).filter(([id]) =>
+        /^[0-9a-f]{64}$/.test(id)
+      );
+
+      expect(contracts.length).toBeGreaterThan(1);
+
+      for (const [id, label] of contracts) {
+        await expect(
+          describeCall(id, "", network.chainId)
+        ).resolves.toMatchObject({ name: label });
+      }
+    }
   });
 });

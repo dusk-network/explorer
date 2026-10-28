@@ -1,4 +1,44 @@
 /* What is the transaction page's own; the rest is the detail pages' look. */
+
+/*
+ * "Completed · date" stays on one line: only a date too long for the
+ * screen wraps, inside itself, the status level with its first line.
+ */
+.transaction-details__summary-meta.detail-summary__meta {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.transaction-details__summary-meta > * {
+  flex: none;
+}
+
+.transaction-details__summary-meta > .transaction-details__time {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/*
+ * Phones: that line takes the summary's whole width, under the icon too,
+ * so the date fits beside the status.
+ */
+@media (max-width: 47.99rem) {
+  .transaction-details__summary.detail-summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 0.5rem;
+  }
+
+  .transaction-details__summary-lines.detail-summary__lines {
+    display: contents;
+  }
+
+  .transaction-details__summary-meta.detail-summary__meta {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
+  }
+}
+
 .transaction-details__outcome {
   display: inline-flex;
   align-items: center;
@@ -53,7 +93,9 @@
   overflow-wrap: anywhere;
 }
 
-.transaction-details__contract-name {
+/* A contract's name, and an account's when the network's labels name it. */
+.transaction-details__contract-name,
+.transaction-details__label {
   font-weight: 500;
 }
 

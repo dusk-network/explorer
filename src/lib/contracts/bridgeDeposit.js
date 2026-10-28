@@ -4,7 +4,9 @@
 // exactly and whose DUSK sent is the amount they name. Anything else stays
 // undecoded. It reads nothing from the node.
 
-import { DUSKEVM_BRIDGE_CONTRACTS, networkKeyOf } from "./knownContracts";
+import { formatEvmAddress } from "@dusk-network/networks/format";
+
+import { duskEvmBridgeOf, networkOf } from "$lib/network";
 
 const DEPOSIT_FUNCTION = "depositETHToWithValue";
 
@@ -18,21 +20,6 @@ function fromBase64(base64) {
   } catch {
     return null;
   }
-}
-
-/**
- * @param {Uint8Array} bytes
- * @param {number} at
- * @param {number} length
- */
-function uintLe(bytes, at, length) {
-  let value = 0n;
-
-  for (let i = length - 1; i >= 0; i--) {
-    value = (value << 8n) | BigInt(bytes[at + i]);
-  }
-
-  return value;
 }
 
 /**
@@ -59,7 +46,7 @@ function decodeDeposit(args) {
   }
 
   return {
-    amount: uintLe(args, root, 8),
+    amount: view.getBigUint64(root, true),
     to: args.subarray(root + 8, root + 28),
   };
 }
@@ -70,11 +57,10 @@ function decodeDeposit(args) {
  *
  * @param {Transaction} tx
  * @param {number | null | undefined} chainId The node's network
- * @returns {Promise<string | null>}
+ * @returns {string | null}
  */
-export async function bridgeDepositRecipient(tx, chainId) {
-  const network = networkKeyOf(chainId);
-  const bridge = network ? DUSKEVM_BRIDGE_CONTRACTS[network] : undefined;
+export function bridgeDepositRecipient(tx, chainId) {
+  const bridge = duskEvmBridgeOf(networkOf(chainId));
   /** @type {{ call?: { fn_args?: unknown } }} */
   const payload = /** @type {any} */ (tx.payload) ?? {};
   const fnArgs = payload.call?.fn_args;
@@ -96,11 +82,9 @@ export async function bridgeDepositRecipient(tx, chainId) {
     return null;
   }
 
-  const { checksumEthereumAddress } =
-    await import("@duskdomains/sdk/chain-addresses");
   const hex = Array.from(deposit.to, (byte) =>
     byte.toString(16).padStart(2, "0")
   ).join("");
 
-  return checksumEthereumAddress(`0x${hex}`);
+  return formatEvmAddress(`0x${hex}`);
 }

@@ -4,7 +4,7 @@
   import { formatDateTime } from "$lib/dusk/date";
   import { marketDataStore } from "$lib/stores";
 
-  $: tooltipText = `Stale Data \nLast Update: ${$marketDataStore.lastUpdate ? formatDateTime($marketDataStore.lastUpdate) : ""}`;
+  $: tooltipText = `Stale Data \nLast Update: ${$marketDataStore.lastUpdate ? formatDateTime($marketDataStore.lastUpdate, { seconds: false }) : ""}`;
   $: isStaleData = $marketDataStore.lastUpdate && marketDataStore.isDataStale();
 </script>
 

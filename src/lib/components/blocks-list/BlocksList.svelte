@@ -10,9 +10,6 @@
   import { formatDateTime } from "$lib/dusk/date";
   import "./BlocksList.css";
 
-  /** @type {boolean} */
-  export let autoRefreshTime = false;
-
   /** @type {Block} */
   export let data;
 
@@ -38,7 +35,6 @@
     >
     <span class="row-line">
       <RelativeTime
-        autoRefresh={autoRefreshTime}
         className="block-row__time"
         data-tooltip-id="main-tooltip"
         data-tooltip-text={formatDateTime(data.header.date)}

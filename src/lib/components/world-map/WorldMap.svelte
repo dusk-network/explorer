@@ -9,13 +9,6 @@
   /** @type {NodeLocation[] | null}*/
   export let nodes;
 
-  /**
-   * The land's lines: by default the map's colour, the text's.
-   *
-   * @type {string}
-   */
-  export let stroke = "currentColor";
-
   /** @type {import("d3-geo").GeoProjection}*/
   const projection = geoNaturalEarth1().scale(195).center([0, 8]);
 
@@ -45,7 +38,14 @@
       width="7"
       height="10"
     >
-      <line x1="3.5" y1="0" x2="3.5" y2="10" {stroke} stroke-width="1.4" />
+      <line
+        x1="3.5"
+        y1="0"
+        x2="3.5"
+        y2="10"
+        stroke="currentColor"
+        stroke-width="1.4"
+      />
     </pattern>
   </defs>
   {#each dataset.features as data, index (index)}

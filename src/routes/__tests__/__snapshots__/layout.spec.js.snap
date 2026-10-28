@@ -236,7 +236,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
             </button>
             <!---->
           </div>
-          <!---->
         </form>
         <!---->
          
@@ -284,7 +283,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
       <div
         class="footer__explorers-links-container"
       >
-        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.dusk.network/explorer"
@@ -292,8 +290,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
           Mainnet
           <!---->
         </a>
-        
-        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.testnet.dusk.network/explorer"
@@ -301,8 +297,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
           Testnet
           <!---->
         </a>
-        
-        <!---->
         <a
           class="dusk-anchor dusk-anchor--off-surface footer__link"
           href="https://apps.devnet.dusk.network/explorer"
@@ -310,7 +304,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
           Devnet
           <!---->
         </a>
-        
         
       </div>
        

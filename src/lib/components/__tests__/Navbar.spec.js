@@ -1,4 +1,12 @@
-import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  describe,
+  expect,
+  it,
+  onTestFinished,
+  vi,
+} from "vitest";
 import { act, cleanup, fireEvent, render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import * as appNavigation from "$app/navigation";
@@ -159,6 +167,35 @@ describe("Navbar", () => {
     await fireEvent.focusOut(getByRole("textbox"));
 
     expect(nav).not.toHaveClass("dusk-navbar--typing");
+  });
+
+  it("should put the cursor in the search on '/', unless a field is typed in", async () => {
+    const { getByRole } = render(Navbar);
+    const search = getByRole("textbox");
+    const field = document.body.appendChild(document.createElement("input"));
+
+    onTestFinished(() => field.remove());
+
+    // With a modifier, "/" is someone else's shortcut.
+    expect(
+      await fireEvent.keyDown(document.body, { ctrlKey: true, key: "/" })
+    ).toBe(true);
+    expect(search).not.toHaveFocus();
+
+    // "/" isn't typed in the search it opens.
+    expect(await fireEvent.keyDown(document.body, { key: "/" })).toBe(false);
+    expect(search).toHaveFocus();
+
+    field.focus();
+
+    expect(await fireEvent.keyDown(field, { key: "/" })).toBe(true);
+    expect(field).toHaveFocus();
+
+    // In the search itself, "/" is a character like any other.
+    search.focus();
+
+    expect(await fireEvent.keyDown(search, { key: "/" })).toBe(true);
+    expect(search).toHaveFocus();
   });
 
   it("should hide the search notification when its close button is clicked", async () => {

@@ -1,14 +1,16 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { AppAnchor } from "$lib/components";
   import {
-    bridgeDepositRecipient,
-    describeCall,
-    duskEvmAddressUrl,
-  } from "$lib/contracts";
+    formatContractId,
+    formatEvmAddress,
+  } from "@dusk-network/networks/format";
+
+  import { AppAnchor } from "$lib/components";
+  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { Anchor } from "$lib/dusk/components";
   import { middleEllipsis } from "$lib/dusk/string";
+  import { duskEvmAddressUrl, labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./TransactionParty.css";
@@ -28,14 +30,6 @@
   export let chars = 6;
 
   /**
-   * What stands for the middle of a short address: three dots, or "…" in a
-   * phone's row, where room is short.
-   *
-   * @type {string}
-   */
-  export let ellipsis = "...";
-
-  /**
    * The account's verified primary name, shown instead of its address.
    *
    * @type {{ name: string, url: string } | null | undefined}
@@ -52,61 +46,58 @@
   export let transaction = undefined;
 
   $: chainId = $appStore.nodeInfo.chain_id;
+
+  // An account the network's labels name goes by that name, before any
+  // primary name.
+  $: shownName =
+    party?.kind === "account"
+      ? (labelOf(chainId, party.address) ?? name?.name)
+      : undefined;
   $: contractName =
     party?.kind === "contract"
       ? describeCall(party.id, "", chainId).then((call) => call.name)
       : Promise.resolve(null);
   $: duskEvmRecipient =
     party?.kind === "contract" && transaction
-      ? bridgeDepositRecipient(transaction, chainId).catch(() => null)
-      : Promise.resolve(null);
+      ? bridgeDepositRecipient(transaction, chainId)
+      : null;
 </script>
 
-{#if party?.kind === "account" && name}
+{#if party?.kind === "account" && shownName}
   <AppAnchor
     className="transaction-party transaction-party--named chain-link"
     data-tooltip-id="main-tooltip"
-    data-tooltip-text="{name.name} · {middleEllipsis(
-      party.address,
-      chars,
-      ellipsis
-    )}"
-    href="/accounts/?key={party.address}">{name.name}</AppAnchor
+    data-tooltip-text="{shownName} · {middleEllipsis(party.address, chars)}"
+    href="/accounts/?key={party.address}">{shownName}</AppAnchor
   >
 {:else if party?.kind === "account"}
   <AppAnchor
     className="transaction-party transaction-party--account chain-link"
     href="/accounts/?key={party.address}"
-    >{middleEllipsis(party.address, chars, ellipsis)}</AppAnchor
+    >{middleEllipsis(party.address, chars)}</AppAnchor
+  >
+{:else if party?.kind === "contract" && duskEvmRecipient}
+  {@const href = duskEvmAddressUrl(duskEvmRecipient, chainId)}
+  {@const short = formatEvmAddress(duskEvmRecipient, { short: true })}
+  <span
+    class="transaction-party transaction-party--evm"
+    data-tooltip-id="main-tooltip"
+    data-tooltip-text="{duskEvmRecipient} on DuskEVM"
+    >{#if href}<Anchor
+        aria-label="{duskEvmRecipient} on the DuskEVM explorer"
+        className="transaction-party__evm-address chain-link"
+        {href}>{short}</Anchor
+      >{:else}<span class="transaction-party__evm-address">{short}</span>{/if}
+    <span>on DuskEVM</span></span
   >
 {:else if party?.kind === "contract"}
-  {@const shortId = `Contract ${middleEllipsis(party.id, 4)}`}
-  {#await duskEvmRecipient then evm}
-    {#if evm}
-      {@const href = duskEvmAddressUrl(evm, chainId)}
-      <span
-        class="transaction-party transaction-party--evm"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-text="{evm} on DuskEVM"
-        >{#if href}<Anchor
-            aria-label="{evm} on the DuskEVM explorer"
-            className="transaction-party__evm-address chain-link"
-            {href}>{evm.slice(0, 6)}...{evm.slice(-4)}</Anchor
-          >{:else}<span class="transaction-party__evm-address"
-            >{evm.slice(0, 6)}...{evm.slice(-4)}</span
-          >{/if}
-        <span>on DuskEVM</span></span
-      >
-    {:else}
-      <span
-        class="transaction-party transaction-party--contract"
-        data-tooltip-id="main-tooltip"
-        data-tooltip-text="Contract {party.id}"
-        >{#await contractName}{shortId}{:then known}{known ??
-            shortId}{/await}</span
-      >
-    {/if}
-  {/await}
+  {@const shortId = `Contract ${formatContractId(party.id, { short: true })}`}
+  <span
+    class="transaction-party transaction-party--contract"
+    data-tooltip-id="main-tooltip"
+    data-tooltip-text="Contract {party.id}"
+    >{#await contractName}{shortId}{:then known}{known ?? shortId}{/await}</span
+  >
 {:else if party?.kind === "shielded"}
   <span class="transaction-party transaction-party--hidden">Shielded</span>
 {:else}

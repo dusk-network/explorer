@@ -19,7 +19,7 @@
   } from "$lib/dusk/icons";
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
-  import { getNetworkName, isConnected } from "$lib/network";
+  import { isConnected, networkLabel } from "$lib/network";
   import {
     currentPage,
     goto,
@@ -33,11 +33,12 @@
   /** @type {number} */
   let offset;
 
-  /** @type {boolean} */
-  let showSearchNotification = false;
-
-  /** @type {*} */
-  let notificationData;
+  /**
+   * The search that found nothing, whose notice shows until it is closed.
+   *
+   * @type {{ query: string, res: Error, suggestion?: string } | null}
+   */
+  let notificationData = null;
 
   /** @type {SearchField} */
   let searchField;
@@ -49,7 +50,7 @@
   let typing = false;
 
   /** @type {NavListProp} */
-  let navigation = [
+  const navigation = [
     { icon: mdiHomeOutline, link: "/", title: "Home" },
     { icon: mdiCubeOutline, link: "/blocks", title: "Blocks" },
     { icon: mdiSwapHorizontal, link: "/transactions", title: "Transactions" },
@@ -58,26 +59,53 @@
       link: "/provisioners",
       title: "Provisioners",
     },
+    ...(import.meta.env.VITE_FEATURE_TOKENS === "true"
+      ? [{ icon: mdiCircleMultipleOutline, link: "/tokens", title: "Tokens" }]
+      : []),
   ];
 
-  $: if (import.meta.env.VITE_FEATURE_TOKENS === "true") {
-    navigation.push({
-      icon: mdiCircleMultipleOutline,
-      link: "/tokens",
-      title: "Tokens",
-    });
-    navigation = navigation;
-  }
+  /**
+   * Whether an element takes typed text.
+   *
+   * @param {EventTarget | null} target
+   */
+  const isField = (target) => {
+    const element = /** @type {HTMLElement | null} */ (target);
 
-  /** @param {FocusEvent} event */
-  function handleFocusIn(event) {
-    const target = /** @type {HTMLElement | null} */ (event.target);
-
-    typing = Boolean(
-      target?.matches?.(
+    return Boolean(
+      element?.isContentEditable ||
+      element?.matches?.(
         "textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])"
       )
     );
+  };
+
+  /** @param {FocusEvent} event */
+  function handleFocusIn(event) {
+    typing = isField(event.target);
+  }
+
+  /**
+   * "/" puts the cursor in the search, unless something is typed in a
+   * field: then it is the character typed.
+   *
+   * @param {KeyboardEvent} event
+   */
+  function handleKeydown(event) {
+    if (
+      event.key !== "/" ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.isComposing ||
+      event.defaultPrevented ||
+      isField(event.target)
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    searchField?.focus();
   }
 
   const dispatch = createEventDispatcher();
@@ -124,12 +152,12 @@
     updateOffset();
   }
 
-  $: if (!showSearchNotification) {
+  $: if (!notificationData) {
     notificationObserver?.disconnect();
   }
 
   // A search that found nothing replaces the page below until it is closed.
-  $: dispatch("searchMiss", showSearchNotification);
+  $: dispatch("searchMiss", !!notificationData);
 
   onDestroy(() => notificationObserver?.disconnect());
 
@@ -153,7 +181,6 @@
     const shown = searchQueryOf($page.url);
 
     notificationData = miss;
-    showSearchNotification = true;
     createEmptySpace();
 
     if (shown !== miss.query) {
@@ -187,7 +214,7 @@
       return;
     }
 
-    showSearchNotification = false;
+    notificationData = null;
 
     if (opening !== null) {
       opening = null;
@@ -206,13 +233,10 @@
     opening = null;
 
     if (query === null) {
-      showSearchNotification = false;
+      notificationData = null;
       // A search still in flight was for the page left behind.
       searchField?.cancel();
-    } else if (
-      query &&
-      !(showSearchNotification && notificationData?.query === query)
-    ) {
+    } else if (query && notificationData?.query !== query) {
       // The search page, reloaded or reached through the history.
       searchField?.search(query);
     }
@@ -220,7 +244,7 @@
 
   $: ({ nodeInfo } = $appStore);
   $: connected = isConnected(nodeInfo);
-  $: networkName = connected ? getNetworkName(nodeInfo) : "unknown";
+  $: networkName = networkLabel(nodeInfo);
   $: current = currentPage(
     $page.url.pathname,
     navigation.map(({ link }) => link),
@@ -233,12 +257,11 @@
   on:focusout={() => {
     typing = false;
   }}
+  on:keydown={handleKeydown}
 />
 
 <nav
-  style={showSearchNotification
-    ? `margin-bottom: ${offset}px`
-    : "margin-bottom: 0"}
+  style={notificationData ? `margin-bottom: ${offset}px` : "margin-bottom: 0"}
   class="dusk-navbar"
   class:dusk-navbar--typing={typing}
 >
@@ -273,12 +296,12 @@
       on:invalid={(e) => showMiss(e.detail)}
     />
 
-    {#if showSearchNotification}
+    {#if notificationData}
       <SearchNotification
         data={notificationData}
         on:close={closeMiss}
         on:suggest={(e) => {
-          showSearchNotification = false;
+          notificationData = null;
           searchField.search(e.detail);
         }}
         className="dusk-navbar__menu--search-notification"
@@ -293,6 +316,6 @@
       class="dusk-navbar__network-dot"
       class:dusk-navbar__network-dot--online={connected}
     ></span>
-    {networkName.charAt(0).toUpperCase()}{networkName.slice(1)}
+    {networkName}
   </span>
 </nav>

@@ -16,13 +16,9 @@
   overflow-wrap: anywhere;
 }
 
-.primary-name__site,
-.primary-name__address {
-  color: var(--calm-muted);
-}
-
 .primary-name__site {
   position: relative;
+  color: var(--calm-muted);
   font-size: 0.8rem;
   text-decoration: none;
 }
@@ -50,11 +46,4 @@
     width: 2.75rem;
     height: 2.75rem;
   }
-}
-
-.primary-name__address {
-  font-family: var(--mono-font-family);
-  font-size: 0.78rem;
-  letter-spacing: normal;
-  white-space: nowrap;
 }

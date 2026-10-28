@@ -9,13 +9,13 @@ describe("middleEllipsis", () => {
   });
 
   it("should return text with ellipsis in the middle for longer texts", () => {
-    expect(middleEllipsis("HelloWorld", 3)).toEqual("Hel...rld");
-    expect(middleEllipsis("abcdef", 2)).toEqual("ab...ef");
+    expect(middleEllipsis("HelloWorld", 3)).toEqual("Hel…rld");
+    expect(middleEllipsis("abcdef", 2)).toEqual("ab…ef");
   });
 
   it("should handle edge cases gracefully", () => {
     expect(middleEllipsis("", 2)).toEqual("");
-    expect(middleEllipsis("A", 0)).toEqual("...");
-    expect(middleEllipsis("HelloWorld", 0)).toEqual("...");
+    expect(middleEllipsis("A", 0)).toEqual("…");
+    expect(middleEllipsis("HelloWorld", 0)).toEqual("…");
   });
 });

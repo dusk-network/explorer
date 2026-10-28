@@ -24,6 +24,8 @@ and this project adheres to
 - Say in a row of its own whether a transaction is public or shielded, and what that shows
 - Link a deposit's DuskEVM address to the DuskEVM explorer
 - Say how much stDUSK an account holds from staking with Sozu
+- Add the "/" key to go to the search
+- Name DuskEVM's contracts, each of Sozu's contracts and the bridge accounts
 
 ### Changed
 
@@ -74,6 +76,9 @@ and this project adheres to
 - Show only plain words for a transaction's type in lists, and its function under Technical details
 - Call an account's own stake its native stake
 - Say where the map's node locations come from and how precise they are
+- Give times on the viewer's own clock, 12 or 24 hours, in English words
+- Show amounts and fees under 0.01 DUSK with two significant digits
+- Shorten IDs with "…", and contract IDs to their first and last six characters
 
 ### Removed
 
@@ -91,6 +96,8 @@ and this project adheres to
 - Fix receivers' names cut short in phone lists
 - Fix a public sender's address wrapping onto two lines on the transaction page
 - Fix a search that found nothing keeping the previous page's address
+- Fix long names in lists cut off without an ellipsis
+- Fix a transaction's status and time splitting over two lines on phones
 
 ## [1.6.0] - 2026-03-25
 

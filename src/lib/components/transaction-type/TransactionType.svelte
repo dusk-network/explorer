@@ -1,11 +1,18 @@
 <script>
-  import { directionOf, visibilityOf } from "$lib/chain-info";
+  import { visibilityOf } from "$lib/chain-info";
   import { describeCall } from "$lib/contracts";
   import { appStore } from "$lib/stores";
   import "./TransactionType.css";
-  import { page } from "$app/stores";
 
   export let data;
+
+  /**
+   * Which way the transaction went for the account whose page lists it: a
+   * transfer then says so, as the web wallet's History does.
+   *
+   * @type {"in" | "out" | "self" | undefined}
+   */
+  export let direction = undefined;
 
   /** @type {boolean} */
   export let displayTooltips = false;
@@ -26,8 +33,6 @@
    */
   export let nameContract = true;
 
-  const isAccountsPage = $page.url.pathname.includes("accounts");
-
   /**
    * Plain words for a transaction that calls no contract.
    *
@@ -39,12 +44,7 @@
     ["transfer", "Transfer"],
   ]);
 
-  /**
-   * On an account's page, a transfer says which way it went for the
-   * account, as the web wallet's History does.
-   *
-   * @type {Record<"in" | "out" | "self", string>}
-   */
+  /** @type {Record<"in" | "out" | "self", string>} */
   const directionWords = {
     in: "Received",
     out: "Sent",
@@ -52,10 +52,8 @@
   };
 
   $: visibility = visibilityOf(data);
-  $: direction =
-    isAccountsPage && !data.contract && data.method === "transfer"
-      ? directionOf(data, $page.url.searchParams.get("key"))
-      : undefined;
+  $: transferDirection =
+    !data.contract && data.method === "transfer" ? direction : undefined;
 
   // A call shows plain words, or the contract's name. Its function's name
   // is for the transaction page's technical details.
@@ -70,7 +68,7 @@
 </script>
 
 <div class="transaction-type">
-  {#if showPrivacy && !isAccountsPage}
+  {#if showPrivacy}
     <span
       class="transaction-type__privacy"
       data-tooltip-disabled={!displayTooltips}
@@ -81,9 +79,9 @@
     >
   {/if}
   <span class="transaction-type__call">
-    {#if direction}
+    {#if transferDirection}
       <span class="transaction-type__label transaction-type__direction"
-        >{directionWords[direction]}</span
+        >{directionWords[transferDirection]}</span
       >
     {:else}
       {#await callLabel then label}

@@ -1,87 +1,31 @@
-import {
-  MULTICALL_CONTRACT,
-  STAKE_CONTRACT,
-  TRANSFER_CONTRACT,
-} from "$lib/constants";
 import { isDuskDomainsContract } from "$lib/dusk-domains";
-
 import {
-  DUSKEVM_BRIDGE_CONTRACTS,
-  SOZU_CONTRACTS,
-  networkKeyOf,
-} from "./knownContracts";
+  STAKE_CONTRACT,
+  duskEvmBridgeOf,
+  labelOf,
+  networkOf,
+} from "$lib/network";
 
-/**
- * @typedef {{ labels?: Map<string, string>, name: string }} KnownContract
- */
+/** Plain words for the common calls whose function name says less. */
+const stakeCalls = new Map([["withdraw", "Claim rewards"]]);
 
-/**
- * The protocol's contracts, the same on every network.
- *
- * @type {Map<string, KnownContract>}
- */
-const protocolContracts = new Map([
-  [MULTICALL_CONTRACT, { name: "Multicall" }],
-  [
-    STAKE_CONTRACT,
-    // Plain words for the common calls whose method name says less.
-    {
-      labels: new Map([["withdraw", "Claim rewards"]]),
-      name: "Stake contract",
-    },
-  ],
-  [TRANSFER_CONTRACT, { name: "Transfer contract" }],
+const duskEvmBridgeCalls = new Map([
+  ["depositETHToWithValue", "Deposit to DuskEVM"],
 ]);
 
-/** @type {KnownContract} */
-const duskEvmBridge = {
-  labels: new Map([["depositETHToWithValue", "Deposit to DuskEVM"]]),
-  name: "DuskEVM bridge",
-};
+const duskEvmPortalCalls = new Map([
+  ["finalizeWithdrawalTransaction", "Claim withdrawal"],
+  ["finalizeWithdrawalTransactionExternalProof", "Claim withdrawal"],
+  ["proveWithdrawalTransaction", "Prove withdrawal"],
+]);
 
-/** @type {KnownContract} */
-const duskEvmPortal = {
-  labels: new Map([
-    ["finalizeWithdrawalTransaction", "Claim withdrawal"],
-    ["finalizeWithdrawalTransactionExternalProof", "Claim withdrawal"],
-    ["proveWithdrawalTransaction", "Prove withdrawal"],
-  ]),
-  name: "DuskEVM bridge portal",
-};
-
-/** @type {KnownContract} */
-const sozu = {
-  labels: new Map([
-    ["sozu_stake", "Liquid stake"],
-    ["sozu_unstake", "Liquid unstake"],
-  ]),
-  name: "Sozu liquid staking",
-};
-
-/**
- * Contracts others deployed, on the network they are on.
- *
- * @type {Record<string, Map<string, KnownContract>>}
- */
-const networkContracts = Object.fromEntries(
-  ["mainnet", "testnet"].map((network) => {
-    /** @type {Map<string, KnownContract>} */
-    const known = new Map();
-    const bridge = DUSKEVM_BRIDGE_CONTRACTS[network];
-    const pool = SOZU_CONTRACTS[network];
-
-    if (bridge) {
-      known.set(bridge.bridge, duskEvmBridge).set(bridge.portal, duskEvmPortal);
-    }
-
-    known.set(pool.hub, sozu).set(pool.pool, sozu);
-
-    return [network, known];
-  })
-);
+const sozuPoolCalls = new Map([
+  ["sozu_stake", "Liquid stake"],
+  ["sozu_unstake", "Liquid unstake"],
+]);
 
 /** @type {Map<string, string>} */
-const duskDomainsLabels = new Map([
+const duskDomainsCalls = new Map([
   ["clear_primary", "Primary name cleared"],
   ["create_subname", "Subname created"],
   ["issue_reserved", "Reserved name issued"],
@@ -92,10 +36,37 @@ const duskDomainsLabels = new Map([
 ]);
 
 /**
+ * The plain words for the calls to a contract, on the node's network.
+ *
+ * @param {string} contractId
+ * @param {number | null | undefined} chainId
+ * @returns {Map<string, string> | undefined}
+ */
+function callsTo(contractId, chainId) {
+  const network = networkOf(chainId);
+  const bridge = duskEvmBridgeOf(network);
+
+  switch (contractId) {
+    case STAKE_CONTRACT:
+      return stakeCalls;
+    case bridge?.bridge:
+      return duskEvmBridgeCalls;
+    case bridge?.portal:
+      return duskEvmPortalCalls;
+    case network?.sozu?.fallbacks.pool:
+      return sozuPoolCalls;
+    default:
+      return undefined;
+  }
+}
+
+/**
  * The name of a known contract, and plain words for a common call to it.
- * Either is `null` when there is none. Contracts others deployed, Dusk
- * Domains' among them, are known on their own network only, once the node
- * has said which it is on. It reads nothing from the node.
+ * Either is `null` when there is none. The names are the labels of the
+ * node's network in `@dusk-network/networks`, and Dusk Domains' contracts
+ * are known by its release; contracts others deployed are known on their
+ * own network only, once the node has said which it is on. It reads
+ * nothing from the node.
  *
  * @param {string} contractId
  * @param {string} method
@@ -103,17 +74,17 @@ const duskDomainsLabels = new Map([
  * @returns {Promise<{ label: string | null, name: string | null }>}
  */
 async function describeCall(contractId, method, chainId = undefined) {
-  const network = networkKeyOf(chainId);
-  const known =
-    protocolContracts.get(contractId) ??
-    (network ? networkContracts[network].get(contractId) : undefined);
+  const name = labelOf(chainId, contractId);
 
-  if (known) {
-    return { label: known.labels?.get(method) ?? null, name: known.name };
+  if (name) {
+    return {
+      label: callsTo(contractId, chainId)?.get(method) ?? null,
+      name,
+    };
   }
 
   return (await isDuskDomainsContract(contractId, chainId).catch(() => false))
-    ? { label: duskDomainsLabels.get(method) ?? null, name: "Dusk Domains" }
+    ? { label: duskDomainsCalls.get(method) ?? null, name: "Dusk Domains" }
     : { label: null, name: null };
 }
 

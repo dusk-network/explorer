@@ -32,44 +32,29 @@
   /** @type {string} */
   let query = "";
 
-  /**
-   * @typedef {HostProvisioner & {
-   *   rank: number;
-   *   ownerType: string;
-   *   ownerAddress: string;
-   *   hasSeparateOwner: boolean;
-   * }} EnrichedProvisioner
-   */
-
   /** @param {HostProvisioner} p */
   const hasActiveStake = (p) =>
     p.amount !== 0 || p.locked_amt !== 0 || p.eligibility !== 0;
 
   /**
-   * Reduce callback, filters inactive + enriches owner fields.
-   * @param {EnrichedProvisioner[]} acc
+   * A provisioner with its owner, ranked later.
+   *
    * @param {HostProvisioner} p
-   * @returns {EnrichedProvisioner[]}
+   * @returns {EnrichedProvisioner}
    */
-  const toEnrichedProvisioner = (acc, p) => {
-    if (!hasActiveStake(p)) return acc;
-
+  const withOwner = (p) => {
     const [ownerType, ownerAddress] = Object.entries(p.owner ?? {})[0] ?? [
       "",
       "",
     ];
 
-    const hasSeparateOwner = Boolean(ownerAddress) && ownerAddress !== p.key;
-
-    acc.push({
+    return {
       ...p,
-      hasSeparateOwner,
+      hasSeparateOwner: Boolean(ownerAddress) && ownerAddress !== p.key,
       ownerAddress,
       ownerType,
       rank: 0,
-    });
-
-    return acc;
+    };
   };
 
   /**
@@ -85,15 +70,10 @@
   /** @type {EnrichedProvisioner[]} */
   $: enrichedProvisioners = Array.isArray(provisioners)
     ? provisioners
-        .reduce(
-          toEnrichedProvisioner,
-          /** @type {EnrichedProvisioner[]} */ ([])
-        )
+        .filter(hasActiveStake)
+        .map(withOwner)
         .toSorted((a, b) => Number(b.amount ?? 0) - Number(a.amount ?? 0))
-        .map((p, index) => ({
-          ...p,
-          rank: index + 1,
-        }))
+        .map((p, index) => ({ ...p, rank: index + 1 }))
     : [];
 
   /**
@@ -182,7 +162,7 @@
   {:else if isSmallScreen}
     <div class="data-card__list">
       {#each displayedProvisioners as provisioner (provisioner)}
-        <ProvisionersList data={provisioner} displayTooltips={true} />
+        <ProvisionersList data={provisioner} />
       {/each}
     </div>
   {:else}

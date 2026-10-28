@@ -1,8 +1,9 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { act, cleanup, render } from "@testing-library/svelte";
 import { slice } from "lamb";
 
-import { enrichedProvisioners } from "$lib/mock-data";
+import { apiNodeInfo, enrichedProvisioners } from "$lib/mock-data";
+import { appStore } from "$lib/stores";
 
 import { ProvisionersList } from "..";
 
@@ -20,11 +21,19 @@ describe("Provisioners List", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  /** @param {HTMLElement} container */
+  /**
+   * The terms of the list, in order, without their help.
+   *
+   * @param {HTMLElement} container
+   */
   const getTerms = (container) =>
-    Array.from(container.querySelectorAll("dt"), (dt) =>
-      dt.textContent?.trim().toLowerCase()
-    );
+    Array.from(container.querySelectorAll("dt"), (dt) => {
+      const term = /** @type {Element} */ (dt.cloneNode(true));
+
+      term.querySelector(".detail-list__help")?.remove();
+
+      return term.textContent?.trim().toLowerCase();
+    });
 
   it("should keep a provisioner to a few rows, linking to its stake and rewards", () => {
     const { container, getByRole } = render(ProvisionersList, baseProps);
@@ -54,5 +63,34 @@ describe("Provisioners List", () => {
     });
 
     expect(getTerms(container)).toContain("owner");
+  });
+
+  it("should name an owner its network's labels name, and give any other contract's ID short", async () => {
+    const ownedBy = (/** @type {string} */ ownerAddress) =>
+      render(ProvisionersList, {
+        data: {
+          ...provisioners,
+          hasSeparateOwner: true,
+          ownerAddress,
+          ownerType: "Contract",
+        },
+      }).container.querySelector("dd:last-of-type");
+
+    // On testnet, where the stake of Sozu's relayer is.
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
+
+    expect(
+      ownedBy(
+        "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37"
+      )
+    ).toHaveTextContent(/^Sozu relayer$/);
+    expect(ownedBy("ab".repeat(32))).toHaveTextContent(
+      /^Contract ababab…ababab$/
+    );
+
+    await act(() =>
+      // eslint-disable-next-line camelcase
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+    );
   });
 });

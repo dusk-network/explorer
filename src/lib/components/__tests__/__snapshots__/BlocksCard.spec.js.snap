@@ -231,7 +231,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:54 PM UTC"
                       datetime="2024-05-28T14:26:54.000Z"
                     >
                       <!---->
@@ -356,7 +356,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:51 PM UTC"
                       datetime="2024-05-28T14:26:51.000Z"
                     >
                       <!---->
@@ -481,7 +481,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:47 PM UTC"
                       datetime="2024-05-28T14:26:47.000Z"
                     >
                       <!---->
@@ -606,7 +606,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:45 PM UTC"
                       datetime="2024-05-28T14:26:45.000Z"
                     >
                       <!---->
@@ -731,7 +731,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:42 PM UTC"
                       datetime="2024-05-28T14:26:42.000Z"
                     >
                       <!---->
@@ -856,7 +856,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:39 PM UTC"
                       datetime="2024-05-28T14:26:39.000Z"
                     >
                       <!---->
@@ -981,7 +981,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:35 PM UTC"
                       datetime="2024-05-28T14:26:35.000Z"
                     >
                       <!---->
@@ -1106,7 +1106,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:32 PM UTC"
                       datetime="2024-05-28T14:26:32.000Z"
                     >
                       <!---->
@@ -1231,7 +1231,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:29 PM UTC"
                       datetime="2024-05-28T14:26:29.000Z"
                     >
                       <!---->
@@ -1356,7 +1356,7 @@ exports[`Blocks Card > should hide the \`Show more\` button if there is no more 
                     <time
                       class="dusk-relative-time block__time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
+                      data-tooltip-text="Tue 28 May 2024, 2:26:24 PM UTC"
                       datetime="2024-05-28T14:26:24.000Z"
                     >
                       <!---->

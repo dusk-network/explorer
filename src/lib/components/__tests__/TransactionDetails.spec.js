@@ -160,7 +160,7 @@ describe("Transaction Details", () => {
 
     await vi.waitFor(() =>
       expect(summary()).toBe(
-        "alice.dusk sent 9,812.378912731 DUSK to mHWZo9...pjiUnj Completed · Tue 16 Apr 2024, 06:39:09 UTC"
+        "alice.dusk sent 9,812.378912731 DUSK to mHWZo9…pjiUnj Completed · Tue 16 Apr 2024, 6:39:09 AM UTC"
       )
     );
 
@@ -175,6 +175,19 @@ describe("Transaction Details", () => {
     expect(
       failed.container.querySelector(".transaction-details__outcome--failed")
     ).toHaveTextContent("Failed");
+  });
+
+  it("should keep the sentence's shortened IDs whole, as a line may break after their '…'", () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(
+      Array.from(
+        container.querySelectorAll(
+          ".transaction-details__summary-text .detail-summary__id"
+        ),
+        (id) => id.textContent
+      )
+    ).toStrictEqual(["kT5Bam…LwKbXj", "mHWZo9…pjiUnj"]);
   });
 
   it("should give the status in its colour: green when it went through, red when it failed", () => {
@@ -202,9 +215,22 @@ describe("Transaction Details", () => {
 
     expect(
       container.querySelector(".transaction-details__summary-meta")
-    ).toHaveTextContent(/^Completed · Tue 16 Apr 2024, 06:39:09 UTC$/);
+    ).toHaveTextContent(/^Completed · Tue 16 Apr 2024, 6:39:09 AM UTC$/);
     expect(getTerms(container)).not.toContain("status");
     expect(getTerms(container)).not.toContain("timestamp");
+  });
+
+  it("should give the status, its dot and the time as the parts of one line, the time in a part of its own", () => {
+    const { container } = render(TransactionDetails, baseProps);
+    const meta = /** @type {HTMLElement} */ (
+      container.querySelector(".transaction-details__summary-meta")
+    );
+
+    // The line's parts keep together; only the time may wrap, inside itself.
+    expect(
+      Array.from(meta.children, (part) => part.textContent?.trim())
+    ).toStrictEqual(["Completed", "·", "Tue 16 Apr 2024, 6:39:09 AM UTC"]);
+    expect(meta.lastElementChild).toHaveClass("transaction-details__time");
   });
 
   it("should leave out a memo or a payload that isn't there", () => {
@@ -275,7 +301,7 @@ describe("Transaction Details", () => {
       expect(
         container.querySelector(".transaction-details__summary-text")
       ).toHaveTextContent(
-        /^kT5Bam\.\.\.LwKbXj sent 0\.5 DUSK to 0x5A3d\.\.\.8a01 on DuskEVM$/
+        /^kT5Bam…LwKbXj sent 0\.5 DUSK to 0x5A3d…8a01 on DuskEVM$/
       );
     });
 
@@ -526,6 +552,37 @@ describe("Transaction Details", () => {
     ).toHaveAttribute("href", "https://dusk.domains/name/alice.dusk");
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
+  });
+
+  it("should name an account its network's labels name, before any primary name", async () => {
+    const bscBridge =
+      "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";
+
+    vi.mocked(getPrimaryName).mockResolvedValue({
+      name: "bob.dusk",
+      url: "https://dusk.domains/name/bob.dusk",
+    });
+    // On mainnet, whose file labels the BSC bridge's account.
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 });
+
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, to: bscBridge },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-details__summary-text")
+      ).toHaveTextContent(
+        /^bob\.dusk sent 9,812\.378912731 DUSK to BSC bridge$/
+      )
+    );
+    expect(getDefinition(container, "to")).toBe(`BSC bridge ${bscBridge}`);
+
+    vi.mocked(getPrimaryName).mockResolvedValue(null);
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
   it("should be able to render the details when they contain blob hashes", () => {

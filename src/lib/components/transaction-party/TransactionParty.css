@@ -37,10 +37,13 @@
   color: var(--calm-muted);
 }
 
-/* A long name keeps to an address's width; the tooltip has it in full. */
+/*
+ * A long name keeps to an address's width, and to the room its row leaves
+ * it, cut with an ellipsis; the tooltip has it in full.
+ */
 .transaction-party--named {
   display: inline-block;
-  max-width: 17ch;
+  max-width: min(17ch, 100%);
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: bottom;

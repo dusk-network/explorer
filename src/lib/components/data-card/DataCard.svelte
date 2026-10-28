@@ -1,9 +1,10 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { mdiChevronRight } from "@mdi/js";
+  import { mdiAlertCircleOutline, mdiChevronRight } from "@mdi/js";
+  import { createEventDispatcher } from "svelte";
 
-  import { AppAnchor, DataAlert } from "$lib/components";
+  import { AppAnchor } from "$lib/components";
   import { Button, Card, Icon, ProgressBar } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
 
@@ -45,6 +46,8 @@
    * @type {"page" | "section" | "detail"}
    */
   export let variant = "page";
+
+  const dispatch = createEventDispatcher();
 
   $: classes = makeClassName(["data-card", `data-card--${variant}`, className]);
   $: hasEmptyData = Array.isArray(data) && data.length === 0;
@@ -91,7 +94,27 @@
   {#if loading && !data}
     <ProgressBar ariaLabel="Loading" className="data-card__progress-bar" />
   {:else if error || hasEmptyData}
-    <DataAlert on:retry {emptyText} {error} />
+    <!-- A load that failed, and how to try again; or that there is nothing yet. -->
+    <div class="alert" class:alert--error={!!error}>
+      {#if error}
+        <p class="alert__title">
+          <Icon path={mdiAlertCircleOutline} />Couldn't load this.
+        </p>
+        {#if error.message}
+          <p class="alert__error-message">{error.message}</p>
+        {/if}
+        <Button
+          on:click={() => {
+            dispatch("retry");
+          }}
+          size="small"
+          text="Try again"
+          variant="secondary"
+        />
+      {:else}
+        <p class="alert__title">{emptyText}</p>
+      {/if}
+    </div>
   {:else if data}
     <div class="data-card__content">
       <slot />

@@ -1,23 +1,15 @@
 /**
- * DUSK as the explorer shows it, the wallets' one number format: lists and
- * summaries show at most four decimals, the rest cut and trailing zeros
- * trimmed; details and hover texts show every decimal. Counted in LUX, as
- * integers, so no amount picks up float noise.
+ * DUSK as the explorer shows it, as `@dusk-network/networks/format` writes
+ * it for every Dusk app: lists and summaries show at most four decimals,
+ * but two significant digits under 0.01 DUSK, the rest cut and trailing
+ * zeros trimmed; fees paid round to the nearest; details and hover texts
+ * show every decimal. The numbers are written in English, as the
+ * explorer's others are.
  *
  * Every function takes LUX, as a number, a bigint or a string of digits.
  */
 
-/** Decimals an amount shows in lists and summaries. */
-export const DUSK_DISPLAY_DECIMALS = 4;
-
-const LUX_DECIMALS = 9;
-const LUX_PER_DUSK = 10n ** BigInt(LUX_DECIMALS);
-const STEP = 10n ** BigInt(LUX_DECIMALS - DUSK_DISPLAY_DECIMALS);
-const STEPS_PER_DUSK = LUX_PER_DUSK / STEP;
-
-const wholeFormatter = new Intl.NumberFormat("en", {
-  maximumFractionDigits: 0,
-});
+import { formatDusk as format } from "@dusk-network/networks/format";
 
 /** @param {bigint | number | string | null | undefined} value */
 function toLux(value) {
@@ -31,28 +23,11 @@ function toLux(value) {
 }
 
 /**
- * @param {boolean} negative
- * @param {bigint} whole
- * @param {string} fraction
+ * @param {bigint | number | string | null | undefined} value LUX
+ * @param {"down" | "nearest"} round
  */
-const written = (negative, whole, fraction) =>
-  `${negative ? "-" : ""}${wholeFormatter.format(whole)}${fraction ? `.${fraction}` : ""}`;
-
-/**
- * Units of an amount as whole DUSK and its decimals, trailing zeros
- * trimmed.
- *
- * @param {boolean} negative
- * @param {bigint} units
- * @param {bigint} perDusk Units in one DUSK
- * @param {number} decimals
- */
-const fromUnits = (negative, units, perDusk, decimals) =>
-  written(
-    negative,
-    units / perDusk,
-    (units % perDusk).toString().padStart(decimals, "0").replace(/0+$/, "")
-  );
+const short = (value, round) =>
+  format(toLux(value), { locale: "en", round }).text;
 
 /**
  * An amount exactly: every decimal it has, thousands grouped.
@@ -60,47 +35,21 @@ const fromUnits = (negative, units, perDusk, decimals) =>
  * @param {bigint | number | string | null | undefined} value LUX
  * @returns {string}
  */
-export function formatDuskExact(value) {
-  const lux = toLux(value);
-
-  return fromUnits(lux < 0n, lux < 0n ? -lux : lux, LUX_PER_DUSK, 9);
-}
+export const formatDuskExact = (value) =>
+  format(toLux(value), { locale: "en", mode: "exact" }).text;
 
 /**
- * An amount in a list or a summary: at most four decimals, the rest cut,
- * trailing zeros trimmed, thousands grouped. One that would show as zero
- * shows in full.
+ * An amount in a list or a summary, cut: never more than there is.
  *
  * @param {bigint | number | string | null | undefined} value LUX
  * @returns {string}
  */
-export function formatDusk(value) {
-  const lux = toLux(value);
-  const abs = lux < 0n ? -lux : lux;
-  const units = abs / STEP;
-
-  return units === 0n && abs !== 0n
-    ? formatDuskExact(lux)
-    : fromUnits(lux < 0n, units, STEPS_PER_DUSK, DUSK_DISPLAY_DECIMALS);
-}
+export const formatDusk = (value) => short(value, "down");
 
 /**
- * A fee paid, in a list: four decimals at most, rounded to the nearest,
- * half up. A fee too small for four decimals shows in full.
+ * A fee paid, in a list: rounded to the nearest, as the wallets show it.
  *
  * @param {bigint | number | string | null | undefined} value LUX
  * @returns {string}
  */
-export function formatFee(value) {
-  const lux = toLux(value);
-
-  if (lux <= 0n) {
-    return "0";
-  }
-
-  const units = (lux + STEP / 2n) / STEP;
-
-  return units === 0n
-    ? formatDuskExact(lux)
-    : fromUnits(false, units, STEPS_PER_DUSK, DUSK_DISPLAY_DECIMALS);
-}
+export const formatFee = (value) => short(value, "nearest");

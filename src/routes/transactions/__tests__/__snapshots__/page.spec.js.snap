@@ -141,7 +141,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                 datetime="2024-09-11T21:55:25.000Z"
               >
                 <!---->
@@ -161,7 +161,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 4a4593...514552
+              Transaction 4a4593…514552
             </span>
             
             <!---->
@@ -272,7 +272,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                 datetime="2024-09-11T21:55:25.000Z"
               >
                 <!---->
@@ -292,7 +292,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 47ae46...acba66
+              Transaction 47ae46…acba66
             </span>
             
             <!---->
@@ -403,7 +403,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                 datetime="2024-09-11T21:55:25.000Z"
               >
                 <!---->
@@ -423,7 +423,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 225dae...36ea41
+              Transaction 225dae…36ea41
             </span>
             
             <!---->
@@ -534,7 +534,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                 datetime="2024-09-11T21:55:25.000Z"
               >
                 <!---->
@@ -554,7 +554,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 03bae6...9de702
+              Transaction 03bae6…9de702
             </span>
             
             <!---->
@@ -665,7 +665,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -685,7 +685,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction ed17ab...b96964
+              Transaction ed17ab…b96964
             </span>
             
             <!---->
@@ -796,7 +796,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -816,7 +816,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction cbac23...53666c
+              Transaction cbac23…53666c
             </span>
             
             <!---->
@@ -927,7 +927,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -947,7 +947,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction a9abf0...152b5d
+              Transaction a9abf0…152b5d
             </span>
             
             <!---->
@@ -1058,7 +1058,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1078,7 +1078,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction a71715...798b6f
+              Transaction a71715…798b6f
             </span>
             
             <!---->
@@ -1189,7 +1189,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1209,7 +1209,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction a171e5...765465
+              Transaction a171e5…765465
             </span>
             
             <!---->
@@ -1320,7 +1320,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1340,7 +1340,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 8fff9d...e0ac57
+              Transaction 8fff9d…e0ac57
             </span>
             
             <!---->
@@ -1451,7 +1451,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1471,7 +1471,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 88c5c5...175e04
+              Transaction 88c5c5…175e04
             </span>
             
             <!---->
@@ -1582,7 +1582,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1602,7 +1602,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 65d9ef...833c2b
+              Transaction 65d9ef…833c2b
             </span>
             
             <!---->
@@ -1713,7 +1713,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1733,7 +1733,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 5d043c...8fe112
+              Transaction 5d043c…8fe112
             </span>
             
             <!---->
@@ -1844,7 +1844,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1864,7 +1864,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 5c5aab...158660
+              Transaction 5c5aab…158660
             </span>
             
             <!---->
@@ -1975,7 +1975,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
               <time
                 class="dusk-relative-time"
                 data-tooltip-id="main-tooltip"
-                data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                 datetime="2024-09-11T21:54:11.000Z"
               >
                 <!---->
@@ -1995,7 +1995,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
             <span
               class="sr-only"
             >
-              Transaction 530853...0ca62c
+              Transaction 530853…0ca62c
             </span>
             
             <!---->
@@ -2317,7 +2317,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
                   >
                     <!---->
-                    4a4593...514552
+                    4a4593…514552
                     
                     <!---->
                   </a>
@@ -2372,7 +2372,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                     datetime="2024-09-11T21:55:25.000Z"
                   >
                     <!---->
@@ -2552,7 +2552,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
                   >
                     <!---->
-                    47ae46...acba66
+                    47ae46…acba66
                     
                     <!---->
                   </a>
@@ -2607,7 +2607,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                     datetime="2024-09-11T21:55:25.000Z"
                   >
                     <!---->
@@ -2787,7 +2787,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
                   >
                     <!---->
-                    225dae...36ea41
+                    225dae…36ea41
                     
                     <!---->
                   </a>
@@ -2842,7 +2842,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                     datetime="2024-09-11T21:55:25.000Z"
                   >
                     <!---->
@@ -3022,7 +3022,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
                   >
                     <!---->
-                    03bae6...9de702
+                    03bae6…9de702
                     
                     <!---->
                   </a>
@@ -3077,7 +3077,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                     datetime="2024-09-11T21:55:25.000Z"
                   >
                     <!---->
@@ -3257,7 +3257,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=ed17ab505ab991e83194183b47b0ea8cd933e096c773767153414603a2b96964"
                   >
                     <!---->
-                    ed17ab...b96964
+                    ed17ab…b96964
                     
                     <!---->
                   </a>
@@ -3312,7 +3312,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -3492,7 +3492,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
                   >
                     <!---->
-                    cbac23...53666c
+                    cbac23…53666c
                     
                     <!---->
                   </a>
@@ -3547,7 +3547,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -3727,7 +3727,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
                   >
                     <!---->
-                    a9abf0...152b5d
+                    a9abf0…152b5d
                     
                     <!---->
                   </a>
@@ -3782,7 +3782,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -3962,7 +3962,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
                   >
                     <!---->
-                    a71715...798b6f
+                    a71715…798b6f
                     
                     <!---->
                   </a>
@@ -4017,7 +4017,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -4197,7 +4197,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
                   >
                     <!---->
-                    a171e5...765465
+                    a171e5…765465
                     
                     <!---->
                   </a>
@@ -4252,7 +4252,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -4432,7 +4432,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
                   >
                     <!---->
-                    8fff9d...e0ac57
+                    8fff9d…e0ac57
                     
                     <!---->
                   </a>
@@ -4487,7 +4487,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -4667,7 +4667,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=88c5c5ebedb181bed0927f41b55835b3801d505774efca243ae084caa9175e04"
                   >
                     <!---->
-                    88c5c5...175e04
+                    88c5c5…175e04
                     
                     <!---->
                   </a>
@@ -4722,7 +4722,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -4902,7 +4902,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=65d9ef520afbe16722f3de439695d31ab3ae807d81ef8e3ebd0fe1f805833c2b"
                   >
                     <!---->
-                    65d9ef...833c2b
+                    65d9ef…833c2b
                     
                     <!---->
                   </a>
@@ -4957,7 +4957,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -5137,7 +5137,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=5d043c4a9c829891dd40c2c482c0e2b579bbe3e0ab7b2e240e47ab231d8fe112"
                   >
                     <!---->
-                    5d043c...8fe112
+                    5d043c…8fe112
                     
                     <!---->
                   </a>
@@ -5192,7 +5192,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -5372,7 +5372,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=5c5aab71b215e835841aaf173bbfdca9372dd29018ee753d3ffd9eaa88158660"
                   >
                     <!---->
-                    5c5aab...158660
+                    5c5aab…158660
                     
                     <!---->
                   </a>
@@ -5427,7 +5427,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->
@@ -5607,7 +5607,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                     href="/some-base-path/transactions/transaction?id=53085322f4c84b6a9d17c36996b51a8a05d2207752c733dd454e23f6ee0ca62c"
                   >
                     <!---->
-                    530853...0ca62c
+                    530853…0ca62c
                     
                     <!---->
                   </a>
@@ -5662,7 +5662,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
                   <time
                     class="dusk-relative-time"
                     data-tooltip-id="main-tooltip"
-                    data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                    data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                     datetime="2024-09-11T21:54:11.000Z"
                   >
                     <!---->

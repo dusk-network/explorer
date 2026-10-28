@@ -29,11 +29,11 @@ describe("describeTransaction", () => {
 
     expect(
       describeTransaction(deposit, {
-        duskEvm: "0x5A3d...8a01",
+        duskEvm: "0x5A3d…8a01",
         from: "alice.dusk",
         to: "DuskEVM bridge",
       })
-    ).toBe("alice.dusk sent 0.5 DUSK to 0x5A3d...8a01 on DuskEVM");
+    ).toBe("alice.dusk sent 0.5 DUSK to 0x5A3d…8a01 on DuskEVM");
     expect(
       describeTransaction(deposit, { from: "alice.dusk", to: "DuskEVM bridge" })
     ).toBe("alice.dusk sent 0.5 DUSK to DuskEVM bridge");

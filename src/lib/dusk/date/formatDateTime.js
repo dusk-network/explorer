@@ -1,34 +1,18 @@
+import { formatTime } from "@dusk-network/networks/format";
+
 /**
- * A date and time in the viewer's time zone, with the zone's short name, as
- * the bridge writes it: "Mon 26 Oct 2026, 11:30:49 CET", or without the
- * seconds for a time that is only estimated.
+ * A date and time as `@dusk-network/networks/format` writes them for every
+ * Dusk app: in English words, on the viewer's clock, in their time zone
+ * with its short name, "Mon 26 Oct 2026, 11:30:49 AM CET". The explorer
+ * keeps the seconds of a block's or a transaction's own time, and leaves
+ * them out of an estimate.
  *
  * @param {Date} date
- * @param {{ seconds?: boolean, timeZone?: string }} [options] `timeZone`
- *   is a zone other than the viewer's
+ * @param {{ seconds?: boolean, locale?: string, timeZone?: string }} [options]
+ *   `locale` and `timeZone` are other than the viewer's
  * @returns {string}
  */
-function formatDateTime(date, { seconds = true, timeZone } = {}) {
-  const parts = Object.fromEntries(
-    new Intl.DateTimeFormat("en-GB", {
-      day: "numeric",
-      hour: "2-digit",
-      hourCycle: "h23",
-      minute: "2-digit",
-      month: "short",
-      ...(seconds ? { second: "2-digit" } : {}),
-      timeZone,
-      timeZoneName: "short",
-      weekday: "short",
-      year: "numeric",
-    })
-      .formatToParts(date)
-      .map((part) => [part.type, part.value])
-  );
-
-  const time = `${parts.hour}:${parts.minute}${seconds ? `:${parts.second}` : ""}`;
-
-  return `${parts.weekday} ${parts.day} ${parts.month} ${parts.year}, ${time} ${parts.timeZoneName}`;
-}
+const formatDateTime = (date, { seconds = true, locale, timeZone } = {}) =>
+  formatTime(date, { date: "full", locale, seconds, timeZone });
 
 export default formatDateTime;

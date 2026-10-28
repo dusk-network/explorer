@@ -5,7 +5,7 @@
   import { makeClassName } from "$lib/dusk/string";
   import "./SearchNotification.css";
 
-  /** @type {{query: string, res: Array<[]> | Error, suggestion?: string}} */
+  /** @type {{ query: string, res: Error, suggestion?: string }} */
   export let data;
 
   /** @type {string | Undefined} */
@@ -36,11 +36,9 @@
     />
   </header>
   <div aria-live="polite" class="search-notification__body">
-    {#if data.res instanceof Error}
-      <span class="search-notification__content">
-        {data.res.message}
-      </span>
-    {/if}
+    <span class="search-notification__content">
+      {data.res.message}
+    </span>
     {#if data.suggestion}
       <Button
         className="search-notification__suggestion"
