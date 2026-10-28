@@ -66,6 +66,13 @@ describe("Navbar", () => {
     cleanup();
     afterNavigateSpy.mockClear();
     pageStore.at("http://localhost/");
+
+    // A test that failed leaves its spies behind: the next starts without.
+    for (const spied of [appNavigation.goto, history.back, duskAPI.search]) {
+      if (vi.isMockFunction(spied)) {
+        vi.mocked(spied).mockRestore();
+      }
+    }
   });
 
   afterAll(() => {
@@ -335,6 +342,72 @@ describe("Navbar", () => {
     expect(searchSpy).toHaveBeenCalledExactlyOnceWith("foobar");
 
     searchSpy.mockRestore();
+  });
+
+  it("should open the .dusk name the search page's notice suggests in that page's place", async () => {
+    const account = hostProvisioners[0].key;
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    vi.mocked(resolveDuskName).mockResolvedValueOnce(account);
+    pageStore.at(searchPage("alice"), { searchedInApp: true });
+
+    const { getByRole } = render(Navbar);
+
+    // The search page, opened: it searches again and offers alice.dusk.
+    await act(() =>
+      afterNavigateCallback(
+        /** @type {any} */ ({ to: { url: new URL(searchPage("alice")) } })
+      )
+    );
+    await fireEvent.click(
+      await vi.waitFor(() => getByRole("button", { name: "Search alice.dusk" }))
+    );
+
+    // Back then skips the search that found nothing.
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
+        `/some-base-path/accounts/?key=${account}&name=alice.dusk`,
+        { replaceState: true }
+      )
+    );
+
+    gotoSpy.mockRestore();
+  });
+
+  it("should keep a notice closed that is closed before the search page's address comes", async () => {
+    const from = "http://localhost/some-base-path/accounts/?key=abc";
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    pageStore.at(from);
+
+    const { container } = render(Navbar);
+
+    // The search page's navigation starts, and is still on its way.
+    await showSearchNotification(container);
+    expect(gotoSpy).toHaveBeenCalledOnce();
+
+    await fireEvent.click(
+      /** @type {HTMLButtonElement} */ (
+        container.querySelector(".search-notification__header-action")
+      )
+    );
+
+    expect(getNotificationElement(container)).toBeNull();
+    // Staying on the page, in its place, cancels the search page's.
+    expect(gotoSpy).toHaveBeenLastCalledWith(from, {
+      keepFocus: true,
+      noScroll: true,
+      replaceState: true,
+      state: {},
+    });
+
+    await act(() =>
+      afterNavigateCallback(/** @type {any} */ ({ to: { url: new URL(from) } }))
+    );
+
+    expect(getNotificationElement(container)).toBeNull();
+
+    gotoSpy.mockRestore();
   });
 
   it("should close a search page's notice by going back to the page searched from, or home when there is none", async () => {

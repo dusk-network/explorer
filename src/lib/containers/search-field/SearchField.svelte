@@ -1,10 +1,11 @@
 <script>
   import { mdiMagnify } from "@mdi/js";
   import { createEventDispatcher } from "svelte";
+  import { page } from "$app/stores";
 
   import { TextboxAndButton } from "$lib/components";
   import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
-  import { goto } from "$lib/navigation";
+  import { goto, searchQueryOf } from "$lib/navigation";
   import { duskAPI } from "$lib/services";
 
   import explainSearchMiss from "./explainSearchMiss";
@@ -39,28 +40,28 @@
   }
 
   /**
-   * Whether the found page takes the place of the page searched from: the
-   * search page, when a search is made again from its address.
+   * Opens what a search found. Found from the page of a search that found
+   * nothing, typed, suggested or made again, it takes that page's place in
+   * the history: Back then skips the search that found nothing.
+   *
+   * @param {string} path
    */
-  let replacing = false;
-
-  /** @param {string} path */
   function open(path) {
     value = "";
 
-    return replacing ? goto(path, { replaceState: true }) : goto(path);
+    return searchQueryOf($page.url) === null
+      ? goto(path)
+      : goto(path, { replaceState: true });
   }
 
   /**
    * Searches for the given text, as if typed in the box.
    *
    * @param {string} query
-   * @param {{ replace?: boolean }} [options] `replace`: the found page
-   *   takes the place of this one in the history
    */
-  export function search(query, { replace = false } = {}) {
+  export function search(query) {
     value = query;
-    submitHandler(replace);
+    submitHandler();
   }
 
   /** Drops the answers of the searches in flight, as after leaving the page. */
@@ -68,11 +69,9 @@
     searches += 1;
   }
 
-  function submitHandler(replace = false) {
+  function submitHandler() {
     const query = value.trim();
     const current = ++searches;
-
-    replacing = replace;
 
     /**
      * Runs an answer's step only if no search came after it.
@@ -126,7 +125,7 @@
   }
 </script>
 
-<form on:submit|preventDefault={() => submitHandler()}>
+<form on:submit|preventDefault={submitHandler}>
   <TextboxAndButton
     bind:value
     buttonLabel="Search"
