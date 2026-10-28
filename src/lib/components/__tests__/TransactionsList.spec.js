@@ -96,14 +96,16 @@ describe("Transactions List", () => {
       data: { ...call, amount: 1_000_000_000, to: transaction.to },
     }).container;
 
+    // Plain words only: the function's name is for the transaction page.
     await vi.waitFor(() => {
       expect(
         toContract.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Contract call · stake$/);
+      ).toHaveTextContent(/^Contract call$/);
       expect(
         toAccount.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Stake contract · stake$/);
+      ).toHaveTextContent(/^Stake contract$/);
     });
+    expect(toContract.querySelector("code")).toBeNull();
     expect(
       toAccount.querySelector(".transaction-row__parties")
     ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);

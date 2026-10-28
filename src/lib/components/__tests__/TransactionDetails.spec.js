@@ -236,7 +236,7 @@ describe("Transaction Details", () => {
 
     appStore.setNodeInfo(apiNodeInfo);
 
-    const { container } = render(TransactionDetails, {
+    const { container, getByRole } = render(TransactionDetails, {
       ...baseProps,
       data: {
         ...baseProps.data,
@@ -260,13 +260,14 @@ describe("Transaction Details", () => {
 
     await vi.waitFor(() => {
       expect(getDefinition(container, "to")).toBe(
-        "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM"
+        "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01↗ on DuskEVM"
       );
       expect(getDefinition(container, "contract")).toBe(
         `DuskEVM bridge ${bridge}`
       );
-      expect(getDefinition(container, "type")).toBe(
-        "Deposit to DuskEVM · depositETHToWithValue"
+      expect(getDefinition(container, "type")).toBe("Deposit to DuskEVM");
+      expect(getDefinition(container, "function")).toBe(
+        "depositETHToWithValue"
       );
       expect(getDefinition(container, "visibility")).toBe(
         "Public Sender, receiver and amount are visible to everyone"
@@ -277,6 +278,20 @@ describe("Transaction Details", () => {
         /^kT5Bam\.\.\.LwKbXj sent 0\.5 DUSK to 0x5A3d\.\.\.8a01 on DuskEVM$/
       );
     });
+
+    // The address opens on the testnet's DuskEVM explorer, its arrow
+    // left unread.
+    const address = "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01";
+
+    expect(
+      getByRole("link", { name: `${address} on the DuskEVM explorer` })
+    ).toHaveAttribute(
+      "href",
+      `https://explorer.testnet.evm.dusk.network/address/${address}`
+    );
+    expect(
+      container.querySelector(".transaction-details__evm-site")
+    ).toHaveAttribute("aria-hidden", "true");
 
     // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
@@ -420,9 +435,20 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `Stake contract ${stake}`
       );
-      expect(getDefinition(container, "type")).toBe("Claim rewards · withdraw");
+      // Plain words for the type; the function's name is a technical detail.
+      expect(getDefinition(container, "type")).toBe("Claim rewards");
     });
     expect(getTerms(container)).not.toContain("to");
+    expect(
+      container.querySelector(".transaction-details__technical dl dt")
+    ).toHaveTextContent("Function");
+    expect(getDefinition(container, "function")).toBe("withdraw");
+  });
+
+  it("should give no function for a transaction that calls no contract", () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(getTerms(container)).not.toContain("function");
   });
 
   it("should show the DUSK a call sends to its contract as the amount", () => {

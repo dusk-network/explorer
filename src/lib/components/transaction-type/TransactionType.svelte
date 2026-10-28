@@ -57,7 +57,8 @@
       ? directionOf(data, $page.url.searchParams.get("key"))
       : undefined;
 
-  // A call shows plain words, or the contract's name, beside its method.
+  // A call shows plain words, or the contract's name. Its function's name
+  // is for the transaction page's technical details.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
         .then(
@@ -88,10 +89,6 @@
       {#await callLabel then label}
         <span class="transaction-type__label">{label}</span>
       {/await}
-    {/if}
-    {#if data.contract}
-      <span aria-hidden="true" class="transaction-type__separator">·</span>
-      <code class="transaction-type__method">{data.method}</code>
     {/if}
   </span>
 </div>

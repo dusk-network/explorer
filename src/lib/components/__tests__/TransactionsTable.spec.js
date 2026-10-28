@@ -145,7 +145,7 @@ describe("Transactions Table", () => {
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw"
+          "Failed · Claim rewards"
         );
       });
       expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
@@ -178,15 +178,12 @@ describe("Transactions Table", () => {
         expect(readOut(toContract, ".transaction__parties")).toMatch(
           / To Stake contract$/
         );
-        expect(textOf(toContract, ".transaction__line")).toBe(
-          "Contract call · stake"
-        );
+        // Plain words only: the function's name is for the transaction page.
+        expect(textOf(toContract, ".transaction__line")).toBe("Contract call");
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
           ` To ${transfer.to?.slice(0, 6)}...${transfer.to?.slice(-6)}`
         );
-        expect(textOf(toAccount, ".transaction__line")).toBe(
-          "Stake contract · stake"
-        );
+        expect(textOf(toAccount, ".transaction__line")).toBe("Stake contract");
       });
     });
 
@@ -237,16 +234,23 @@ describe("Transactions Table", () => {
       // The address and "on DuskEVM" each wrap whole.
       expect(
         Array.from(
-          container.querySelectorAll(".transaction-party--evm > span"),
+          container.querySelectorAll(".transaction-party--evm > *"),
           (part) => part.textContent
         )
       ).toStrictEqual(["0x5A3d...8a01", "on DuskEVM"]);
+      // The address opens on the testnet's DuskEVM explorer.
+      expect(
+        container.querySelector(".transaction-party--evm > a")
+      ).toHaveAttribute(
+        "href",
+        "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01"
+      );
 
       // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
     });
 
-    it("should fit the home page: no fee or time column, the time under the amount, failures first", () => {
+    it("should fit the home page: no fee or time column, the time under the amount, failures first", async () => {
       const { container } = render(TransactionsTable, {
         props: { data: [transfer, call], mode: "compact" },
       });
@@ -258,7 +262,11 @@ describe("Transactions Table", () => {
         "Amount",
       ]);
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
-      expect(textOf(rows[1], ".transaction__line")).toMatch(/^Failed · /);
+      await vi.waitFor(() =>
+        expect(textOf(rows[1], ".transaction__line")).toBe(
+          "Failed · Claim rewards"
+        )
+      );
       expect(
         rows[0].querySelectorAll("td")[2].querySelector("time")
       ).toHaveAttribute("data-tooltip-text", "Tue 16 Apr 2024, 06:39:09 UTC");

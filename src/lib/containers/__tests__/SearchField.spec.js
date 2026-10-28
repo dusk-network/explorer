@@ -12,6 +12,24 @@ import { SearchField } from "..";
 
 vi.mock("@duskdomains/sdk/lens-reader", () => ({ createLensReader: vi.fn() }));
 
+const { pageStore } = vi.hoisted(() => ({
+  /** @type {{ at: (url: string) => void }} */
+  pageStore: { at: () => {} },
+}));
+
+// The page the search box is on.
+vi.mock("$app/stores", async (importOriginal) => {
+  const { writable } = await import("svelte/store");
+  const page = writable({ state: {}, url: new URL("http://localhost/") });
+
+  pageStore.at = (url) => page.set({ state: {}, url: new URL(url) });
+
+  return {
+    .../** @type {object} */ (await importOriginal()),
+    page: { subscribe: page.subscribe },
+  };
+});
+
 describe("SearchField", () => {
   const account = hostProvisioners[0].key;
   const reader = { resolve: vi.fn() };
@@ -51,6 +69,7 @@ describe("SearchField", () => {
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    pageStore.at("http://localhost/");
   });
 
   it("should open the account a .dusk name resolves to", async () => {
@@ -176,6 +195,46 @@ describe("SearchField", () => {
         `/some-base-path/accounts/?key=${account}&name=alice.dusk`
       )
     );
+  });
+
+  it("should open what a search on the search page finds in that page's place, and a page of its own from any other", async () => {
+    /**
+     * Types a search that finds the account, on the page at `url`, and
+     * gives how the found page opened.
+     *
+     * @param {string} url
+     */
+    const findFrom = async (url) => {
+      pageStore.at(url);
+      searchSpy.mockResolvedValueOnce({ id: account, type: "account" });
+
+      const { getByRole, unmount } = render(SearchField);
+      const input = getByRole("textbox");
+
+      await fireEvent.input(input, { target: { value: account } });
+      await fireEvent.submit(
+        /** @type {HTMLFormElement} */ (input.closest("form"))
+      );
+      await vi.waitFor(() => expect(gotoSpy).toHaveBeenCalledOnce());
+
+      const opened = gotoSpy.mock.lastCall;
+
+      gotoSpy.mockClear();
+      unmount();
+
+      return opened;
+    };
+
+    // A correction on the page of a search that found nothing: Back skips it.
+    expect(
+      await findFrom("http://localhost/some-base-path/search/?q=bad_name")
+    ).toStrictEqual([
+      `/some-base-path/accounts/?key=${account}`,
+      { replaceState: true },
+    ]);
+    expect(
+      await findFrom("http://localhost/some-base-path/blocks/")
+    ).toStrictEqual([`/some-base-path/accounts/?key=${account}`]);
   });
 
   it("should label the search field and say it takes .dusk names", () => {

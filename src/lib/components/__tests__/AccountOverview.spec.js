@@ -93,4 +93,49 @@ describe("AccountOverview", () => {
       container.querySelector(".account-overview-panel__searched-name")
     ).toBeNull();
   });
+
+  /** @param {HTMLElement} container */
+  const cardsOf = (container) =>
+    Array.from(
+      container.querySelectorAll(".overview-panel__details-item"),
+      (card) => card.textContent?.replace(/\s+/g, " ").trim()
+    );
+
+  it("should call the stake the native stake, so that none doesn't read as nothing staked", () => {
+    const { container } = render(AccountOverview, {
+      ...baseProps,
+      stake: null,
+    });
+
+    expect(cardsOf(container)).toStrictEqual([
+      "Public balance 1 DUSK",
+      "Native stake 0 DUSK",
+      "Stake rewards 0 DUSK",
+    ]);
+  });
+
+  it("should say what the account also staked with Sozu, in stDUSK, only when it holds some", async () => {
+    const { container, rerender } = render(AccountOverview, {
+      ...baseProps,
+      stake: null,
+      stakedDusk: 162_189_471n,
+    });
+    const sozu = () => container.querySelector(".account-overview-panel__sozu");
+
+    expect(sozu()).toHaveTextContent(/^Also staked with Sozu: 0\.1621 stDUSK$/);
+    // Every decimal on hover.
+    expect(
+      container.querySelector(".account-overview-panel__sozu-amount")
+    ).toHaveAttribute("title", "0.162189471 stDUSK");
+    // In the native stake's card, under its amount.
+    expect(
+      sozu()?.closest(".overview-panel__details-item")?.textContent
+    ).toMatch(/^\s*Native stake\s+0 DUSK\s+Also staked with Sozu/);
+
+    for (const stakedDusk of [0n, null]) {
+      await rerender({ stakedDusk });
+
+      expect(sozu()).toBeNull();
+    }
+  });
 });

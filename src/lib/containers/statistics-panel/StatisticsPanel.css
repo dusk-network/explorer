@@ -27,10 +27,11 @@
   max-height: 23.75rem;
 }
 
-/* What the rings are, under the map. */
+/* Where the rings' places come from, under the map: no word left alone. */
 .statistics-panel__face-caption {
   color: var(--calm-muted);
   font-size: 0.8125rem;
+  text-wrap: pretty;
 }
 
 .statistics-panel__secondary {

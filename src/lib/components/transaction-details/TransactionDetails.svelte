@@ -3,7 +3,7 @@
 <script>
   import { mdiAlertCircleOutline, mdiCheck } from "@mdi/js";
 
-  import { CopyButton, Icon, Switch } from "$lib/dusk/components";
+  import { Anchor, CopyButton, Icon, Switch } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
     createFiatFormatter,
@@ -27,7 +27,11 @@
     summarizeTransaction,
     visibilityOf,
   } from "$lib/chain-info";
-  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
+  import {
+    bridgeDepositRecipient,
+    describeCall,
+    duskEvmAddressUrl,
+  } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
   import { appStore } from "$lib/stores";
 
@@ -230,16 +234,27 @@
       </ListItem>
     {/if}
 
-    <!-- TO -->
+    <!-- TO: a deposit's DuskEVM address opens on DuskEVM's own explorer -->
     {#await duskEvmRecipient then duskEvm}
       {#if duskEvm}
+        {@const href = duskEvmAddressUrl(duskEvm, chainId)}
         <ListItem wide>
           <svelte:fragment slot="term">To</svelte:fragment>
           <svelte:fragment slot="definition">
             <span class="transaction-details__value transaction-details__evm"
-              ><span class="transaction-details__evm-address"
-                ><FullValue ends={6} value={duskEvm} /></span
-              > on DuskEVM</span
+              >{#if href}<Anchor
+                  aria-label="{duskEvm} on the DuskEVM explorer"
+                  className="transaction-details__evm-address chain-link"
+                  data-tooltip-id="main-tooltip"
+                  data-tooltip-text="Open on the DuskEVM explorer"
+                  {href}
+                  ><FullValue ends={6} value={duskEvm} /><span
+                    aria-hidden="true"
+                    class="transaction-details__evm-site">↗</span
+                  ></Anchor
+                >{:else}<span class="transaction-details__evm-address"
+                  ><FullValue ends={6} value={duskEvm} /></span
+                >{/if} on DuskEVM</span
             >
             <CopyButton
               name="DuskEVM address"
@@ -411,6 +426,16 @@
       >Technical details</summary
     >
     <dl class="transaction-details__list detail-rows">
+      <!-- FUNCTION: the name of the contract's function the call ran -->
+      {#if data.contract}
+        <ListItem wide>
+          <svelte:fragment slot="term">Function</svelte:fragment>
+          <code class="transaction-details__function" slot="definition"
+            >{data.method}</code
+          >
+        </ListItem>
+      {/if}
+
       <!-- GAS PRICE -->
       <ListItem
         tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"

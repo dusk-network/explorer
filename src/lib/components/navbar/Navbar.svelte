@@ -20,7 +20,12 @@
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
   import { getNetworkName, isConnected } from "$lib/network";
-  import { currentPage } from "$lib/navigation";
+  import {
+    currentPage,
+    goto,
+    searchPagePath,
+    searchQueryOf,
+  } from "$lib/navigation";
   import { appStore } from "$lib/stores";
 
   import "./Navbar.css";
@@ -128,10 +133,89 @@
 
   onDestroy(() => notificationObserver?.disconnect());
 
-  afterNavigate(() => {
+  /**
+   * The query of the search page a search that found nothing is opening,
+   * until that navigation lands.
+   *
+   * @type {string | null}
+   */
+  let opening = null;
+
+  /**
+   * A search that found nothing: its notice, and the search page's address
+   * in place of the page searched from, so that a reload or a shared link
+   * searches again. From one search to the next, the page searched from
+   * stays the one before.
+   *
+   * @param {{ query: string, res: Error, suggestion?: string }} miss
+   */
+  function showMiss(miss) {
+    const shown = searchQueryOf($page.url);
+
+    notificationData = miss;
+    showSearchNotification = true;
+    createEmptySpace();
+
+    if (shown !== miss.query) {
+      opening = miss.query;
+      // A later navigation cancels it, as closing the notice first does.
+      goto(searchPagePath(miss.query), {
+        keepFocus: true,
+        noScroll: true,
+        replaceState: shown !== null,
+        state: {
+          searchedInApp: shown === null || !!$page.state?.searchedInApp,
+        },
+      }).catch(() => {});
+    }
+  }
+
+  /**
+   * Closes a search's notice: back to the page searched from, or to the
+   * home page when the search page was the first one opened. Closed before
+   * the search page's address comes, it stays on the page, in its place,
+   * which cancels the search page's navigation.
+   */
+  function closeMiss() {
+    if (searchQueryOf($page.url) !== null) {
+      if ($page.state?.searchedInApp) {
+        history.back();
+      } else {
+        goto("/", { replaceState: true });
+      }
+
+      return;
+    }
+
     showSearchNotification = false;
-    // A search still in flight was for the page left behind.
-    searchField?.cancel();
+
+    if (opening !== null) {
+      opening = null;
+      goto($page.url.href, {
+        keepFocus: true,
+        noScroll: true,
+        replaceState: true,
+        state: $page.state,
+      }).catch(() => {});
+    }
+  }
+
+  afterNavigate(({ to }) => {
+    const query = searchQueryOf(to?.url);
+
+    opening = null;
+
+    if (query === null) {
+      showSearchNotification = false;
+      // A search still in flight was for the page left behind.
+      searchField?.cancel();
+    } else if (
+      query &&
+      !(showSearchNotification && notificationData?.query === query)
+    ) {
+      // The search page, reloaded or reached through the history.
+      searchField?.search(query);
+    }
   });
 
   $: ({ nodeInfo } = $appStore);
@@ -186,19 +270,13 @@
   <div class="dusk-navbar__search">
     <SearchField
       bind:this={searchField}
-      on:invalid={(e) => {
-        notificationData = e.detail;
-        showSearchNotification = true;
-        createEmptySpace();
-      }}
+      on:invalid={(e) => showMiss(e.detail)}
     />
 
     {#if showSearchNotification}
       <SearchNotification
         data={notificationData}
-        on:close={() => {
-          showSearchNotification = false;
-        }}
+        on:close={closeMiss}
         on:suggest={(e) => {
           showSearchNotification = false;
           searchField.search(e.detail);

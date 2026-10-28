@@ -1,7 +1,10 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
 
+import { getStakedDusk } from "$lib/contracts";
+import { apiNodeInfo } from "$lib/mock-data";
 import { duskAPI } from "$lib/services";
+import { appStore } from "$lib/stores";
 
 import AccountPage from "../+page.svelte";
 
@@ -26,6 +29,11 @@ vi.mock("$app/stores", async (importOriginal) => {
     page: { subscribe: page.subscribe },
   };
 });
+
+vi.mock("$lib/contracts", async (importOriginal) => ({
+  .../** @type {object} */ (await importOriginal()),
+  getStakedDusk: vi.fn().mockResolvedValue(null),
+}));
 
 vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   .../** @type {object} */ (await importOriginal()),
@@ -91,6 +99,7 @@ describe("Account page", () => {
 
   afterAll(() => {
     vi.doUnmock("$app/stores");
+    vi.doUnmock("$lib/contracts");
     vi.doUnmock("$lib/dusk-domains");
     vi.doUnmock("$lib/services");
   });
@@ -143,7 +152,7 @@ describe("Account page", () => {
         )
       ).toStrictEqual([
         "Public balance 1,484.92 DUSK",
-        "Stake N/A",
+        "Native stake N/A",
         "Stake rewards N/A",
       ])
     );
@@ -162,6 +171,47 @@ describe("Account page", () => {
     expect(
       await findByText(/Since about Sun 25 Oct 2026, 10:00 UTC/)
     ).toHaveAttribute("title", "Block 123,120");
+  });
+
+  it("should say what the account also staked with Sozu, from one read made once the node says its network", async () => {
+    vi.mocked(getStakedDusk).mockResolvedValue(162_189_471n);
+
+    const { container } = render(AccountPage);
+
+    // No network yet: nothing to read it from.
+    await vi.waitFor(() =>
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+    );
+    expect(getStakedDusk).not.toHaveBeenCalled();
+
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".account-overview-panel__sozu")
+      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK")
+    );
+    expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
+
+    vi.mocked(getStakedDusk).mockResolvedValue(null);
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
+
+  it("should leave out the Sozu line when the stDUSK can't be read", async () => {
+    vi.mocked(getStakedDusk).mockRejectedValueOnce(new Error("offline"));
+    appStore.setNodeInfo(apiNodeInfo);
+
+    const { container } = render(AccountPage);
+
+    await vi.waitFor(() => expect(getStakedDusk).toHaveBeenCalledOnce());
+    await vi.waitFor(() =>
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+    );
+    expect(container.querySelector(".account-overview-panel__sozu")).toBeNull();
+
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
   it("should call an account without a stake an account, and read no block for it", async () => {

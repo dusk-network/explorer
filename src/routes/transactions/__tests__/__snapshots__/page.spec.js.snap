@@ -108,8 +108,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -240,8 +238,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -374,8 +370,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -506,8 +500,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -640,8 +632,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -772,8 +762,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -906,8 +894,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -1038,8 +1024,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -1172,8 +1156,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -1304,8 +1286,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -1438,8 +1418,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -1570,8 +1548,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -1704,8 +1680,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -1837,8 +1811,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -1969,8 +1941,6 @@ exports[`Transactions page > should render the Transactions page with the mobile
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
@@ -2322,8 +2292,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -2558,8 +2526,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -2796,8 +2762,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -3032,8 +2996,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -3270,8 +3232,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -3506,8 +3466,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -3744,8 +3702,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -3980,8 +3936,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -4218,8 +4172,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -4454,8 +4406,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -4692,8 +4642,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -4928,8 +4876,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>
@@ -5166,8 +5112,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -5403,8 +5347,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                           </span>
                           
                           <!---->
-                           
-                          <!---->
                         </span>
                       </div>
                       <!---->
@@ -5639,8 +5581,6 @@ exports[`Transactions page > should render the Transactions page, start polling 
                             Transfer
                           </span>
                           
-                          <!---->
-                           
                           <!---->
                         </span>
                       </div>

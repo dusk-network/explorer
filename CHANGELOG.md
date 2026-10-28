@@ -22,6 +22,8 @@ and this project adheres to
 - Find provisioners by .dusk name
 - Say by the last block whether new blocks come: Live, or Waiting for blocks
 - Say in a row of its own whether a transaction is public or shielded, and what that shows
+- Link a deposit's DuskEVM address to the DuskEVM explorer
+- Say how much stDUSK an account holds from staking with Sozu
 
 ### Changed
 
@@ -69,6 +71,9 @@ and this project adheres to
 - Mark rounded numbers with "≈" instead of "~"
 - Set detail pages' labels in a column on wide screens, each value and its Copy right after it
 - Pulse the map's rings softly, and keep them still when motion is reduced
+- Show only plain words for a transaction's type in lists, and its function under Technical details
+- Call an account's own stake its native stake
+- Say where the map's node locations come from and how precise they are
 
 ### Removed
 
@@ -85,6 +90,7 @@ and this project adheres to
 - Fix "60 seconds ago" and other times that should round up to the next unit
 - Fix receivers' names cut short in phone lists
 - Fix a public sender's address wrapping onto two lines on the transaction page
+- Fix a search that found nothing keeping the previous page's address
 
 ## [1.6.0] - 2026-03-25
 

@@ -1,10 +1,11 @@
 <script>
   import { mdiMagnify } from "@mdi/js";
   import { createEventDispatcher } from "svelte";
+  import { page } from "$app/stores";
 
   import { TextboxAndButton } from "$lib/components";
   import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
-  import { goto } from "$lib/navigation";
+  import { goto, searchQueryOf } from "$lib/navigation";
   import { duskAPI } from "$lib/services";
 
   import explainSearchMiss from "./explainSearchMiss";
@@ -38,11 +39,19 @@
     notFound(query, new Error(message), suggestion);
   }
 
-  /** @param {string} path */
+  /**
+   * Opens what a search found. Found from the page of a search that found
+   * nothing, typed, suggested or made again, it takes that page's place in
+   * the history: Back then skips the search that found nothing.
+   *
+   * @param {string} path
+   */
   function open(path) {
     value = "";
 
-    return goto(path);
+    return searchQueryOf($page.url) === null
+      ? goto(path)
+      : goto(path, { replaceState: true });
   }
 
   /**

@@ -41,6 +41,18 @@
   color: var(--calm-muted);
 }
 
+/* After the address, a quiet arrow says it opens another site. */
+.transaction-details__evm-site {
+  margin-left: 0.25rem;
+  color: var(--calm-muted);
+  font-size: 0.8rem;
+}
+
+.transaction-details__function {
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
 .transaction-details__contract-name {
   font-weight: 500;
 }

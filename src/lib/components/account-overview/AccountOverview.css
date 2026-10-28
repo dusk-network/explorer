@@ -91,6 +91,20 @@
   color: var(--calm-subtle);
 }
 
+/* In the native stake's card: the stDUSK the account holds from Sozu. */
+.account-overview-panel .account-overview-panel__sozu {
+  margin-top: 0.375rem;
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.account-overview-panel__sozu-amount {
+  color: var(--calm-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .account-overview-panel .account-overview-panel__stake {
   max-width: 48rem;
   margin-top: 1.5rem;
@@ -115,5 +129,14 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
     margin-top: 1.25rem;
+  }
+
+  /* A card's label on one line, its amount at the right over the Sozu line. */
+  .account-overview-panel .overview-panel__details-item-subtitle {
+    white-space: nowrap;
+  }
+
+  .account-overview-panel .account-overview-panel__balance {
+    margin-left: auto;
   }
 }

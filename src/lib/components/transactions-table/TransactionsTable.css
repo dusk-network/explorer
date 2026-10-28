@@ -53,7 +53,7 @@
   font-weight: 400;
 }
 
-/* The type and its method read as one line, cut at its end if need be. */
+/* The type reads as one line, cut at its end if need be. */
 .transaction__line .transaction-type,
 .transaction__line .transaction-type__call {
   display: inline;
