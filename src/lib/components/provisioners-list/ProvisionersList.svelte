@@ -1,10 +1,14 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { formatContractId } from "@dusk-network/networks/format";
+
   import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
-  import { middleEllipsis } from "$lib/dusk/string";
+  import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import { AppAnchor, DetailList, ListItem } from "$lib/components";
+  import { labelOf } from "$lib/network";
+  import { appStore } from "$lib/stores";
 
   import "./ProvisionersList.css";
 
@@ -25,6 +29,8 @@
 
   /** Lists show an address as its first and last six characters. */
   const ADDRESS_CHARS = 6;
+
+  $: ownerLabel = labelOf($appStore.nodeInfo.chain_id, data.ownerAddress);
 </script>
 
 <DetailList className="provisioners-list">
@@ -98,13 +104,18 @@
       <svelte:fragment slot="definition">
         {#if data.ownerType === "Account"}
           <AppAnchor
-            className="provisioners-list__staking-address chain-link"
+            className={makeClassName([
+              !ownerLabel && "provisioners-list__staking-address",
+              "chain-link",
+            ])}
             href="/accounts/?key={data.ownerAddress}"
-            >{middleEllipsis(data.ownerAddress, ADDRESS_CHARS)}</AppAnchor
+            >{ownerLabel ??
+              middleEllipsis(data.ownerAddress, ADDRESS_CHARS)}</AppAnchor
           >
         {:else}
-          <span class="provisioners-list__staking-address"
-            >Contract {middleEllipsis(data.ownerAddress, 4)}</span
+          <span class:provisioners-list__staking-address={!ownerLabel}
+            >{ownerLabel ??
+              `Contract ${formatContractId(data.ownerAddress, { short: true })}`}</span
           >
         {/if}
       </svelte:fragment>

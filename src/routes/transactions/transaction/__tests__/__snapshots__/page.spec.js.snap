@@ -139,7 +139,31 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           <span
             class="transaction-details__summary-text detail-summary__text"
           >
-            kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+            <!---->
+            <!---->
+            
+            
+            <!---->
+            <span
+              class="detail-summary__id"
+            >
+              kT5Bam…LwKbXj
+            </span>
+            
+            <!---->
+             sent 9,812.378912731 DUSK to 
+            
+            <!---->
+            <span
+              class="detail-summary__id"
+            >
+              mHWZo9…pjiUnj
+            </span>
+            
+            <!---->
+            
+            
+            
             <!---->
           </span>
            
@@ -174,7 +198,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             <span
               class="transaction-details__time"
             >
-              Tue 16 Apr 2024, 06:39:09 UTC
+              Tue 16 Apr 2024, 6:39:09 AM UTC
             </span>
           </span>
         </p>
@@ -357,8 +381,6 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
         </dd>
         <!---->
          
-        <!---->
-        
         <!---->
          
         <dt

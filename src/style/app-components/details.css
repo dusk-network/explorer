@@ -48,6 +48,10 @@
   overflow-wrap: anywhere;
 }
 
+.detail-summary__id {
+  white-space: nowrap;
+}
+
 .detail-summary__meta {
   display: flex;
   flex-wrap: wrap;

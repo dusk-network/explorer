@@ -13,6 +13,8 @@
   import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
+  import { labelOf } from "$lib/network";
+  import { appStore } from "$lib/stores";
 
   import "./AccountOverview.css";
 
@@ -83,6 +85,9 @@
 
   // As lists show addresses: the first and last six characters.
   $: shortAddress = middleEllipsis(accountAddress, 6);
+
+  // What the network's labels call the account, before any primary name.
+  $: label = labelOf($appStore.nodeInfo.chain_id, accountAddress);
 </script>
 
 <!--
@@ -103,6 +108,8 @@
     {:then searched}
       {#if searched}
         <DuskName name={searched} />
+      {:else if label}
+        {label}
       {:else}
         <PrimaryName address={accountAddress} showAddress={false}>
           <span class="account-overview-panel__address">{shortAddress}</span>

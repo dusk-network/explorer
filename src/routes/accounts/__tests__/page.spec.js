@@ -127,7 +127,7 @@ describe("Account page", () => {
       expect(stakeRowsOf(container)).toStrictEqual([
         ["Active stake", "1,000 DUSK"],
         ["Inactive stake", "0 DUSK"],
-        ["Eligibility", "From about Mon 26 Oct 2026, 10:20 UTC"],
+        ["Eligibility", "From about Mon 26 Oct 2026, 10:20 AM UTC"],
         ["Slashes", "1 soft, 0 hard"],
       ])
     );
@@ -169,7 +169,7 @@ describe("Account page", () => {
     const { findByText } = render(AccountPage);
 
     expect(
-      await findByText(/Since about Sun 25 Oct 2026, 10:00 UTC/)
+      await findByText(/Since about Sun 25 Oct 2026, 10:00 AM UTC/)
     ).toHaveAttribute("title", "Block 123,120");
   });
 

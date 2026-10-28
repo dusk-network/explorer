@@ -2,6 +2,10 @@
 
 <script>
   import { mdiAlertCircleOutline, mdiCheck } from "@mdi/js";
+  import {
+    formatContractId,
+    formatEvmAddress,
+  } from "@dusk-network/networks/format";
 
   import { Anchor, CopyButton, Icon, Switch } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
@@ -27,12 +31,9 @@
     summarizeTransaction,
     visibilityOf,
   } from "$lib/chain-info";
-  import {
-    bridgeDepositRecipient,
-    describeCall,
-    duskEvmAddressUrl,
-  } from "$lib/contracts";
+  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
+  import { duskEvmAddressUrl, labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./TransactionDetails.css";
@@ -85,10 +86,13 @@
     party?.kind === "account"
       ? middleEllipsis(party.address, 6)
       : party?.kind === "contract"
-        ? `contract ${middleEllipsis(party.id, 4)}`
+        ? `contract ${formatContractId(party.id, { short: true })}`
         : null;
 
   /**
+   * An account by the name the network's labels give it, else by its
+   * primary name; a contract by its name.
+   *
    * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
    * @param {number | null | undefined} chainId
    * @returns {Promise<string | null>}
@@ -97,9 +101,12 @@
     const short = shortNameOf(party);
 
     if (party?.kind === "account") {
-      return getPrimaryName(party.address).then(
-        (found) => found?.name ?? short,
-        () => short
+      return (
+        labelOf(chainId, party.address) ??
+        getPrimaryName(party.address).then(
+          (found) => found?.name ?? short,
+          () => short
+        )
       );
     }
 
@@ -128,9 +135,10 @@
     : Promise.resolve(null);
 
   // Who a deposit to DuskEVM pays, from its call data.
-  $: duskEvmRecipient = data
-    ? bridgeDepositRecipient(data, chainId).catch(() => null)
-    : Promise.resolve(null);
+  $: duskEvmRecipient = data ? bridgeDepositRecipient(data, chainId) : null;
+  $: fromLabel =
+    from?.kind === "account" ? labelOf(chainId, from.address) : null;
+  $: toLabel = to?.kind === "account" ? labelOf(chainId, to.address) : null;
   $: shortLead = data
     ? describeTransaction(data, {
         from: shortNameOf(from),
@@ -138,19 +146,25 @@
       })
     : "";
   $: lead = data
-    ? Promise.all([
-        nameOf(from, chainId),
-        nameOf(to, chainId),
-        duskEvmRecipient,
-      ]).then(([fromName, toName, duskEvm]) =>
-        describeTransaction(data, {
-          duskEvm: duskEvm && `${duskEvm.slice(0, 6)}...${duskEvm.slice(-4)}`,
-          from: fromName,
-          to: toName,
-        })
+    ? Promise.all([nameOf(from, chainId), nameOf(to, chainId)]).then(
+        ([fromName, toName]) =>
+          describeTransaction(data, {
+            duskEvm:
+              duskEvmRecipient &&
+              formatEvmAddress(duskEvmRecipient, { short: true }),
+            from: fromName,
+            to: toName,
+          })
       )
     : Promise.resolve("");
 </script>
+
+<!-- A sentence's shortened IDs stay whole: a line may break after "…". -->
+{#snippet withWholeIds(/** @type {string} */ sentence)}
+  {#each sentence.split(/(\S*…\S*)/) as part, index (index)}{#if index % 2}<span
+        class="detail-summary__id">{part}</span
+      >{:else}{part}{/if}{/each}
+{/snippet}
 
 <DataCard
   on:retry
@@ -166,7 +180,9 @@
     <TransactionIcon transaction={data} />
     <p class="transaction-details__summary-lines detail-summary__lines">
       <span class="transaction-details__summary-text detail-summary__text"
-        >{#await lead}{shortLead}{:then sentence}{sentence}{/await}</span
+        >{#await lead}{@render withWholeIds(
+            shortLead
+          )}{:then sentence}{@render withWholeIds(sentence)}{/await}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">
         <span
@@ -212,11 +228,15 @@
         <svelte:fragment slot="definition">
           {#if from.kind === "account"}
             <span class="transaction-details__value">
-              <PrimaryName
-                address={from.address}
-                href="/accounts/?key={from.address}"
-                showAddress={false}
-              />
+              {#if fromLabel}
+                <span class="transaction-details__label">{fromLabel}</span>
+              {:else}
+                <PrimaryName
+                  address={from.address}
+                  href="/accounts/?key={from.address}"
+                  showAddress={false}
+                />
+              {/if}
               <AppAnchor
                 className="transaction-details__list-anchor chain-link"
                 href="/accounts/?key={from.address}"
@@ -237,47 +257,49 @@
     {/if}
 
     <!-- TO: a deposit's DuskEVM address opens on DuskEVM's own explorer -->
-    {#await duskEvmRecipient then duskEvm}
-      {#if duskEvm}
-        {@const href = duskEvmAddressUrl(duskEvm, chainId)}
-        <ListItem wide>
-          <svelte:fragment slot="term">To</svelte:fragment>
-          <svelte:fragment slot="definition">
-            <span class="transaction-details__value transaction-details__evm"
-              >{#if href}<Anchor
-                  aria-label="{duskEvm} on the DuskEVM explorer"
-                  className="transaction-details__evm-address chain-link"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Open on the DuskEVM explorer"
-                  {href}
-                  ><FullValue ends={6} value={duskEvm} /><span
-                    aria-hidden="true"
-                    class="transaction-details__evm-site">↗</span
-                  ></Anchor
-                >{:else}<span class="transaction-details__evm-address"
-                  ><FullValue ends={6} value={duskEvm} /></span
-                >{/if} on DuskEVM</span
-            >
-            <CopyButton
-              name="DuskEVM address"
-              rawValue={duskEvm}
-              text="Copy"
-              variant="secondary"
-            />
-          </svelte:fragment>
-        </ListItem>
-      {/if}
-    {/await}
+    {#if duskEvmRecipient}
+      {@const href = duskEvmAddressUrl(duskEvmRecipient, chainId)}
+      <ListItem wide>
+        <svelte:fragment slot="term">To</svelte:fragment>
+        <svelte:fragment slot="definition">
+          <span class="transaction-details__value transaction-details__evm"
+            >{#if href}<Anchor
+                aria-label="{duskEvmRecipient} on the DuskEVM explorer"
+                className="transaction-details__evm-address chain-link"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Open on the DuskEVM explorer"
+                {href}
+                ><FullValue ends={6} value={duskEvmRecipient} /><span
+                  aria-hidden="true"
+                  class="transaction-details__evm-site">↗</span
+                ></Anchor
+              >{:else}<span class="transaction-details__evm-address"
+                ><FullValue ends={6} value={duskEvmRecipient} /></span
+              >{/if} on DuskEVM</span
+          >
+          <CopyButton
+            name="DuskEVM address"
+            rawValue={duskEvmRecipient}
+            text="Copy"
+            variant="secondary"
+          />
+        </svelte:fragment>
+      </ListItem>
+    {/if}
     {#if to?.kind === "account"}
       <ListItem wide>
         <svelte:fragment slot="term">To</svelte:fragment>
         <svelte:fragment slot="definition">
           <span class="transaction-details__value">
-            <PrimaryName
-              address={to.address}
-              href="/accounts/?key={to.address}"
-              showAddress={false}
-            />
+            {#if toLabel}
+              <span class="transaction-details__label">{toLabel}</span>
+            {:else}
+              <PrimaryName
+                address={to.address}
+                href="/accounts/?key={to.address}"
+                showAddress={false}
+              />
+            {/if}
             <AppAnchor
               className="transaction-details__list-anchor chain-link"
               href="/accounts/?key={to.address}"

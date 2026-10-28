@@ -1,9 +1,10 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { act, cleanup, render } from "@testing-library/svelte";
 
-import { STAKE_CONTRACT } from "$lib/constants";
-import { gqlTransaction } from "$lib/mock-data";
+import { STAKE_CONTRACT } from "$lib/network";
+import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
+import { appStore } from "$lib/stores";
 
 import { TransactionsList } from "..";
 
@@ -24,11 +25,11 @@ describe("Transactions List", () => {
   };
 
   /** @param {string} value */
-  const short = (value) => `${value.slice(0, 6)}...${value.slice(-6)}`;
+  const short = (value) => `${value.slice(0, 6)}…${value.slice(-6)}`;
 
   /**
    * An address as a phone's row gives it: its first and last four
-   * characters, as wide as six and three dots.
+   * characters.
    *
    * @param {string} value
    */
@@ -70,7 +71,7 @@ describe("Transactions List", () => {
     ).toStrictEqual(["9,812.378912731 DUSK"]);
     expect(container.querySelector("time")).toHaveAttribute(
       "data-tooltip-text",
-      "Tue 16 Apr 2024, 06:39:09 UTC"
+      "Tue 16 Apr 2024, 6:39:09 AM UTC"
     );
     expect(
       getByRole("link", { name: `Transaction ${short(transaction.txid)}` })
@@ -131,6 +132,42 @@ describe("Transactions List", () => {
     );
     await vi.waitFor(() =>
       expect(receiver).toHaveTextContent(/^To Stake contract$/)
+    );
+  });
+
+  it("should name an account or a contract its network's labels name, and give another contract's ID short", async () => {
+    const sepoliaBridge =
+      "25z9o6qCaVk1ReyHjmB4pyXcE3D1vRu4FVV1rR8ChYcosdTSktkANLDHq9GD6B4985Q1S2KrDZYBRrohWAjrNmACFUb3UMSRyYctJRzh3d28R1ZNC1ZyKm1HwXL4FF5Etftt";
+    const router =
+      "2e4b8b46390c860282b765641fa94037812601bf777164d7b7f801a262206046";
+    const rows = [
+      { ...transaction, to: sepoliaBridge },
+      { ...transaction, amount: 0, contract: router, method: "submit" },
+    ].map(
+      (data) =>
+        /** @type {Element} */ (
+          render(TransactionsList, { data }).container.querySelectorAll(
+            ".transaction-row__party"
+          )[1]
+        )
+    );
+
+    await vi.waitFor(() => {
+      expect(rows[0]).toHaveTextContent(`To ${shortAddress(sepoliaBridge)}`);
+      expect(rows[1]).toHaveTextContent(/^To Contract 2e4b8b…206046$/);
+    });
+
+    // On testnet, whose file labels both.
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
+
+    await vi.waitFor(() => {
+      expect(rows[0]).toHaveTextContent(/^To Sepolia bridge$/);
+      expect(rows[1]).toHaveTextContent(/^To DuskEVM transaction router$/);
+    });
+
+    await act(() =>
+      // eslint-disable-next-line camelcase
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });
 

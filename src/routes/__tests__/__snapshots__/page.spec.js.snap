@@ -3264,7 +3264,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:22 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:22 AM UTC"
                           datetime="2024-05-29T07:22:22.000Z"
                         >
                           <!---->
@@ -3373,7 +3373,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:19 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:19 AM UTC"
                           datetime="2024-05-29T07:22:19.000Z"
                         >
                           <!---->
@@ -3482,7 +3482,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:16 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:16 AM UTC"
                           datetime="2024-05-29T07:22:16.000Z"
                         >
                           <!---->
@@ -3591,7 +3591,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:13 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:13 AM UTC"
                           datetime="2024-05-29T07:22:13.000Z"
                         >
                           <!---->
@@ -3700,7 +3700,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:10 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:10 AM UTC"
                           datetime="2024-05-29T07:22:10.000Z"
                         >
                           <!---->
@@ -3809,7 +3809,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:22:02 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:22:02 AM UTC"
                           datetime="2024-05-29T07:22:02.000Z"
                         >
                           <!---->
@@ -3918,7 +3918,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:49 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:49 AM UTC"
                           datetime="2024-05-29T07:21:49.000Z"
                         >
                           <!---->
@@ -4027,7 +4027,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:45 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:45 AM UTC"
                           datetime="2024-05-29T07:21:45.000Z"
                         >
                           <!---->
@@ -4136,7 +4136,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:42 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:42 AM UTC"
                           datetime="2024-05-29T07:21:42.000Z"
                         >
                           <!---->
@@ -4245,7 +4245,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:38 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:38 AM UTC"
                           datetime="2024-05-29T07:21:38.000Z"
                         >
                           <!---->
@@ -4354,7 +4354,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:35 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:35 AM UTC"
                           datetime="2024-05-29T07:21:35.000Z"
                         >
                           <!---->
@@ -4463,7 +4463,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:32 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:32 AM UTC"
                           datetime="2024-05-29T07:21:32.000Z"
                         >
                           <!---->
@@ -4572,7 +4572,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:28 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:28 AM UTC"
                           datetime="2024-05-29T07:21:28.000Z"
                         >
                           <!---->
@@ -4681,7 +4681,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:25 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:25 AM UTC"
                           datetime="2024-05-29T07:21:25.000Z"
                         >
                           <!---->
@@ -4790,7 +4790,7 @@ exports[`home page > should render the home page, start polling for the latest c
                         <time
                           class="dusk-relative-time block__time"
                           data-tooltip-id="main-tooltip"
-                          data-tooltip-text="Wed 29 May 2024, 07:21:21 UTC"
+                          data-tooltip-text="Wed 29 May 2024, 7:21:21 AM UTC"
                           datetime="2024-05-29T07:21:21.000Z"
                         >
                           <!---->
@@ -5102,7 +5102,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=4a4593a447ae768a20a28c534afd815f1f72965a7442eff71e62833047514552"
                     >
                       <!---->
-                      4a4593...514552
+                      4a4593…514552
                       
                       <!---->
                     </a>
@@ -5148,7 +5148,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -5271,7 +5271,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=47ae464b9cf13bbf6e7307ecd0cc1a978094d7571bc6698c9bc5fe3e5facba66"
                     >
                       <!---->
-                      47ae46...acba66
+                      47ae46…acba66
                       
                       <!---->
                     </a>
@@ -5317,7 +5317,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -5440,7 +5440,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=225dae3745d75fa7bbae7e0294cb9626ff01bb4de697c0be31a3fc176b36ea41"
                     >
                       <!---->
-                      225dae...36ea41
+                      225dae…36ea41
                       
                       <!---->
                     </a>
@@ -5486,7 +5486,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -5609,7 +5609,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=03bae6e2e96709ebf41da7ca72353efca792723355332f467c0f32b3849de702"
                     >
                       <!---->
-                      03bae6...9de702
+                      03bae6…9de702
                       
                       <!---->
                     </a>
@@ -5655,7 +5655,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:55:25 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:55:25 PM UTC"
                       datetime="2024-09-11T21:55:25.000Z"
                     >
                       <!---->
@@ -5778,7 +5778,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=070280c69500df7d1b40942981a3b599ccf9f71ba62f96d63e322994efca2a0e"
                     >
                       <!---->
-                      070280...ca2a0e
+                      070280…ca2a0e
                       
                       <!---->
                     </a>
@@ -5824,7 +5824,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -5947,7 +5947,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=534f753d5a420fddc21c84d76ff26b87cc48ea75b450c082759d155153259c00"
                     >
                       <!---->
-                      534f75...259c00
+                      534f75…259c00
                       
                       <!---->
                     </a>
@@ -5993,7 +5993,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 29 May 2024, 05:42:08 UTC"
+                      data-tooltip-text="Wed 29 May 2024, 5:42:08 AM UTC"
                       datetime="2024-05-29T05:42:08.000Z"
                     >
                       <!---->
@@ -6116,7 +6116,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=c6f13af20c23b8bc55d22a416a191e3a6ba47128b4d7dc3ac6fce5fc68ebb102"
                     >
                       <!---->
-                      c6f13a...ebb102
+                      c6f13a…ebb102
                       
                       <!---->
                     </a>
@@ -6162,7 +6162,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 29 May 2024, 05:41:58 UTC"
+                      data-tooltip-text="Wed 29 May 2024, 5:41:58 AM UTC"
                       datetime="2024-05-29T05:41:58.000Z"
                     >
                       <!---->
@@ -6285,7 +6285,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=31c7dce26a5a6ef1392f53630b8e2714981f10eaeea2685c5a37dbbf7bcb4c04"
                     >
                       <!---->
-                      31c7dc...cb4c04
+                      31c7dc…cb4c04
                       
                       <!---->
                     </a>
@@ -6331,7 +6331,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 29 May 2024, 05:40:57 UTC"
+                      data-tooltip-text="Wed 29 May 2024, 5:40:57 AM UTC"
                       datetime="2024-05-29T05:40:57.000Z"
                     >
                       <!---->
@@ -6454,7 +6454,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=cbac233a76cde9fdd129277e7368a2fdd99a5f390c2472e7f316151f4b53666c"
                     >
                       <!---->
-                      cbac23...53666c
+                      cbac23…53666c
                       
                       <!---->
                     </a>
@@ -6500,7 +6500,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -6623,7 +6623,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=a9abf02f549d21a89390eb18f5e91eeff95c21a4c6740dc30e113f2314152b5d"
                     >
                       <!---->
-                      a9abf0...152b5d
+                      a9abf0…152b5d
                       
                       <!---->
                     </a>
@@ -6669,7 +6669,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -6792,7 +6792,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=a7171542640d6b918928927ee814c147ec2c07c5f7990fe82796520084798b6f"
                     >
                       <!---->
-                      a71715...798b6f
+                      a71715…798b6f
                       
                       <!---->
                     </a>
@@ -6838,7 +6838,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -6961,7 +6961,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=a171e5d05bd1e6478a4bcc7db4afd9d2e6430e5c3f94d49ffb71934776765465"
                     >
                       <!---->
-                      a171e5...765465
+                      a171e5…765465
                       
                       <!---->
                     </a>
@@ -7007,7 +7007,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -7130,7 +7130,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=8fff9d4eb4818bfd66cfaf41b01842f4fd75b0c50605e40fa8b1b1393ee0ac57"
                     >
                       <!---->
-                      8fff9d...e0ac57
+                      8fff9d…e0ac57
                       
                       <!---->
                     </a>
@@ -7176,7 +7176,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -7299,7 +7299,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=88c5c5ebedb181bed0927f41b55835b3801d505774efca243ae084caa9175e04"
                     >
                       <!---->
-                      88c5c5...175e04
+                      88c5c5…175e04
                       
                       <!---->
                     </a>
@@ -7345,7 +7345,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->
@@ -7468,7 +7468,7 @@ exports[`home page > should render the home page, start polling for the latest c
                       href="/some-base-path/transactions/transaction?id=65d9ef520afbe16722f3de439695d31ab3ae807d81ef8e3ebd0fe1f805833c2b"
                     >
                       <!---->
-                      65d9ef...833c2b
+                      65d9ef…833c2b
                       
                       <!---->
                     </a>
@@ -7514,7 +7514,7 @@ exports[`home page > should render the home page, start polling for the latest c
                     <time
                       class="dusk-relative-time"
                       data-tooltip-id="main-tooltip"
-                      data-tooltip-text="Wed 11 Sept 2024, 21:54:11 UTC"
+                      data-tooltip-text="Wed 11 Sept 2024, 9:54:11 PM UTC"
                       datetime="2024-09-11T21:54:11.000Z"
                     >
                       <!---->

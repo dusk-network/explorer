@@ -1,10 +1,4 @@
-import { STAKE_CONTRACT } from "$lib/constants";
-
-import {
-  DUSKEVM_BRIDGE_CONTRACTS,
-  SOZU_CONTRACTS,
-  networkKeyOf,
-} from "./knownContracts";
+import { STAKE_CONTRACT, duskEvmBridgeOf, networkOf } from "$lib/network";
 
 /**
  * @typedef {"bridge" | "call" | "shielded" | "staking" | "transfer"} TransactionKind
@@ -16,12 +10,13 @@ import {
  * deployed count on their own network only.
  *
  * @param {string} contract
- * @param {"mainnet" | "testnet" | null} network
+ * @param {number | null | undefined} chainId
  * @returns {TransactionKind}
  */
-function callKind(contract, network) {
-  const bridge = network ? DUSKEVM_BRIDGE_CONTRACTS[network] : undefined;
-  const sozu = network ? SOZU_CONTRACTS[network] : undefined;
+function callKind(contract, chainId) {
+  const network = networkOf(chainId);
+  const bridge = duskEvmBridgeOf(network);
+  const sozu = network?.sozu;
 
   if (bridge && [bridge.bridge, bridge.portal].includes(contract)) {
     return "bridge";
@@ -29,7 +24,7 @@ function callKind(contract, network) {
 
   if (
     contract === STAKE_CONTRACT ||
-    (sozu && [sozu.hub, sozu.pool].includes(contract))
+    (sozu && [sozu.hub, sozu.fallbacks.pool].includes(contract))
   ) {
     return "staking";
   }
@@ -48,7 +43,7 @@ function callKind(contract, network) {
  */
 function transactionKind(tx, chainId = undefined) {
   if (tx.contract) {
-    return callKind(tx.contract, networkKeyOf(chainId));
+    return callKind(tx.contract, chainId);
   }
 
   if (tx.method !== "transfer") {

@@ -1,9 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { act, cleanup, render } from "@testing-library/svelte";
 import { tick } from "svelte";
 
-import { hostProvisioners } from "$lib/mock-data";
+import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
 import { getPrimaryName, getSearchedName } from "$lib/dusk-domains";
+import { appStore } from "$lib/stores";
 
 import { AccountOverview } from "..";
 
@@ -92,6 +93,36 @@ describe("AccountOverview", () => {
     expect(
       container.querySelector(".account-overview-panel__searched-name")
     ).toBeNull();
+  });
+
+  it("should lead with the name its network's labels give an account, before any primary name", async () => {
+    const bscBridge =
+      "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";
+
+    vi.mocked(getPrimaryName).mockResolvedValue({
+      name: "bridge.dusk",
+      url: "https://dusk.domains/name/bridge.dusk",
+    });
+
+    // On mainnet, whose file labels the BSC bridge's account.
+    // eslint-disable-next-line camelcase
+    await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
+
+    const { container } = render(AccountOverview, {
+      ...baseProps,
+      accountAddress: bscBridge,
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".account-overview-panel__header")
+      ).toHaveTextContent(/^BSC bridge$/)
+    );
+
+    await act(() =>
+      // eslint-disable-next-line camelcase
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+    );
   });
 
   /** @param {HTMLElement} container */

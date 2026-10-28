@@ -93,7 +93,9 @@
   overflow-wrap: anywhere;
 }
 
-.transaction-details__contract-name {
+/* A contract's name, and an account's when the network's labels name it. */
+.transaction-details__contract-name,
+.transaction-details__label {
   font-weight: 500;
 }
 

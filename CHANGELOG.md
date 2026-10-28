@@ -25,6 +25,7 @@ and this project adheres to
 - Link a deposit's DuskEVM address to the DuskEVM explorer
 - Say how much stDUSK an account holds from staking with Sozu
 - Add the "/" key to go to the search
+- Name DuskEVM's contracts, each of Sozu's contracts and the bridge accounts
 
 ### Changed
 
@@ -75,6 +76,9 @@ and this project adheres to
 - Show only plain words for a transaction's type in lists, and its function under Technical details
 - Call an account's own stake its native stake
 - Say where the map's node locations come from and how precise they are
+- Give times on the viewer's own clock, 12 or 24 hours, in English words
+- Show amounts and fees under 0.01 DUSK with two significant digits
+- Shorten IDs with "…", and contract IDs to their first and last six characters
 
 ### Removed
 

@@ -26,32 +26,28 @@ describe("bridgeDepositRecipient", () => {
     })
   );
 
-  it("should read the DuskEVM address a deposit pays, with its checksum", async () => {
-    await expect(bridgeDepositRecipient(deposit, 2)).resolves.toBe(
+  it("should read the DuskEVM address a deposit pays, with its checksum", () => {
+    expect(bridgeDepositRecipient(deposit, 2)).toBe(
       "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01"
     );
   });
 
-  it("should read nothing off the bridge's network, or from another call", async () => {
-    await expect(bridgeDepositRecipient(deposit, 1)).resolves.toBeNull();
-    await expect(
-      bridgeDepositRecipient(deposit, undefined)
-    ).resolves.toBeNull();
-    await expect(
+  it("should read nothing off the bridge's network, or from another call", () => {
+    expect(bridgeDepositRecipient(deposit, 1)).toBeNull();
+    expect(bridgeDepositRecipient(deposit, undefined)).toBeNull();
+    expect(
       bridgeDepositRecipient({ ...deposit, method: "deposit" }, 2)
-    ).resolves.toBeNull();
-    await expect(
+    ).toBeNull();
+    expect(
       bridgeDepositRecipient({ ...deposit, contract: "00".repeat(32) }, 2)
-    ).resolves.toBeNull();
+    ).toBeNull();
   });
 
-  it("should read nothing when the DUSK sent isn't the amount the call names, or the arguments aren't the bridge's", async () => {
-    await expect(
+  it("should read nothing when the DUSK sent isn't the amount the call names, or the arguments aren't the bridge's", () => {
+    expect(
       bridgeDepositRecipient({ ...deposit, deposit: 400_000_000 }, 2)
-    ).resolves.toBeNull();
-    await expect(
-      bridgeDepositRecipient({ ...deposit, amount: 1 }, 2)
-    ).resolves.toBeNull();
+    ).toBeNull();
+    expect(bridgeDepositRecipient({ ...deposit, amount: 1 }, 2)).toBeNull();
 
     /** @param {string} args */
     const withArgs = (args) => ({
@@ -68,29 +64,29 @@ describe("bridgeDepositRecipient", () => {
 
     outOfBounds[36] = 1;
 
-    await expect(
+    expect(
       bridgeDepositRecipient(
         /** @type {Transaction} */ (
           /** @type {unknown} */ (withArgs(toBase64(bytes.subarray(1))))
         ),
         2
       )
-    ).resolves.toBeNull();
-    await expect(
+    ).toBeNull();
+    expect(
       bridgeDepositRecipient(
         /** @type {Transaction} */ (
           /** @type {unknown} */ (withArgs(toBase64(outOfBounds)))
         ),
         2
       )
-    ).resolves.toBeNull();
-    await expect(
+    ).toBeNull();
+    expect(
       bridgeDepositRecipient(
         /** @type {Transaction} */ (
           /** @type {unknown} */ (withArgs("not base64!"))
         ),
         2
       )
-    ).resolves.toBeNull();
+    ).toBeNull();
   });
 });

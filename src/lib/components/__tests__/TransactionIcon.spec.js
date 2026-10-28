@@ -9,7 +9,7 @@ import {
   mdiSync,
 } from "@mdi/js";
 
-import { STAKE_CONTRACT } from "$lib/constants";
+import { STAKE_CONTRACT } from "$lib/network";
 import { gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 

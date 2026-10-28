@@ -76,7 +76,7 @@ exports[`Block Details > renders the Block Details component 1`] = `
         <span
           class="block-details__summary-meta detail-summary__meta"
         >
-          Tue 16 Apr 2024, 20:07:02 UTC 
+          Tue 16 Apr 2024, 8:07:02 PM UTC 
           <span
             aria-hidden="true"
           >
@@ -592,7 +592,7 @@ exports[`Block Details > should render the Block Details component with the payl
         <span
           class="block-details__summary-meta detail-summary__meta"
         >
-          Tue 16 Apr 2024, 20:07:02 UTC 
+          Tue 16 Apr 2024, 8:07:02 PM UTC 
           <span
             aria-hidden="true"
           >

@@ -193,7 +193,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=n3qToJrMkYCnUkJkFG2a7fEVn2Krj6arVUfuQbZNRk4gcDPQ9jESngvKQGZ4XToGAhS4qFsGzJtiZzDJ5E9TyYA5SZcCJGYfi5cZWBJkzmAmwiScS256TCMZZjmEq6aNuj6"
             >
               <!---->
-              n3qToJ...6aNuj6
+              n3qToJ…6aNuj6
               
               <!---->
             </a>
@@ -366,7 +366,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=s9mQHPDuKiUwomr7k6S3mmeqd8rwpXENtvmCY7f9ndukC4VQH385ePgzHdiw6vWoJX7ee1oZEFSYXXZtVr4326XmZrkTbranxdYz89Vrd1HMfX2f3uis4hi33XxiM4ksRbH"
             >
               <!---->
-              s9mQHP...4ksRbH
+              s9mQHP…4ksRbH
               
               <!---->
             </a>
@@ -416,11 +416,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <!---->
           <!---->
           <span
-            class="provisioners-table__address provisioners-table__owner"
+            class="provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
             data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Contract 0200...0000
+            Stake contract
           </span>
           
           
@@ -544,7 +544,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=sX4JooVNAFov3Xx9cfZHtRemijsggdRKrywC14jfGyZn5k2wupNvyY9ZLu7YTuh3CpuyKsftbmzYPzdgptG6Rq9UayDXeaPwFHanmXpUqGdTyEvw5Cb3UqGEqfCFZMqQhtz"
             >
               <!---->
-              sX4Joo...MqQhtz
+              sX4Joo…MqQhtz
               
               <!---->
             </a>
@@ -594,11 +594,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <!---->
           <!---->
           <span
-            class="provisioners-table__address provisioners-table__owner"
+            class="provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
             data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Contract 0200...0000
+            Stake contract
           </span>
           
           
@@ -722,7 +722,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=scRkV9xaMCNTsjEx2mwDABavD5exRSNAyCnTZT9hYi2HGKPRAYhqzff5BmdsXgqaYRxgSxkyiDUBFiyHGhuHxMC2R5ztdmG8QUe6jBXsyFMJoGx6H9faXfyA2XwXrJMpbfo"
             >
               <!---->
-              scRkV9...JMpbfo
+              scRkV9…JMpbfo
               
               <!---->
             </a>
@@ -898,7 +898,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
             >
               <!---->
-              m6dy2g...FWtnpf
+              m6dy2g…FWtnpf
               
               <!---->
             </a>
@@ -1071,7 +1071,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
             >
               <!---->
-              m9dVuR...3pFQyz
+              m9dVuR…3pFQyz
               
               <!---->
             </a>
@@ -1244,7 +1244,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
             >
               <!---->
-              mTgXDq...ybAsfU
+              mTgXDq…ybAsfU
               
               <!---->
             </a>
@@ -1294,11 +1294,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <!---->
           <!---->
           <span
-            class="provisioners-table__address provisioners-table__owner"
+            class="provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
             data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Contract 0200...0000
+            Stake contract
           </span>
           
           
@@ -1419,7 +1419,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
             >
               <!---->
-              mUUpjn...cywzaW
+              mUUpjn…cywzaW
               
               <!---->
             </a>
@@ -1469,11 +1469,11 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
           <!---->
           <!---->
           <span
-            class="provisioners-table__address provisioners-table__owner"
+            class="provisioners-table__owner"
             data-tooltip-id="provisioners-tooltip"
             data-tooltip-text="Owner: 0200000000000000000000000000000000000000000000000000000000000000"
           >
-            Contract 0200...0000
+            Stake contract
           </span>
           
           
@@ -1594,7 +1594,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
             >
               <!---->
-              mXKJ97...K2o7x4
+              mXKJ97…K2o7x4
               
               <!---->
             </a>
@@ -1767,7 +1767,7 @@ exports[`Provisioners Table > should render the \`ProvisionersTable\` component 
               href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
             >
               <!---->
-              mdXsA3...PimZ2J
+              mdXsA3…PimZ2J
               
               <!---->
             </a>

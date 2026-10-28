@@ -19,7 +19,7 @@
   } from "$lib/dusk/icons";
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
-  import { getNetworkName, isConnected } from "$lib/network";
+  import { isConnected, networkLabel } from "$lib/network";
   import {
     currentPage,
     goto,
@@ -253,7 +253,7 @@
 
   $: ({ nodeInfo } = $appStore);
   $: connected = isConnected(nodeInfo);
-  $: networkName = connected ? getNetworkName(nodeInfo) : "unknown";
+  $: networkName = networkLabel(nodeInfo);
   $: current = currentPage(
     $page.url.pathname,
     navigation.map(({ link }) => link),
@@ -327,6 +327,6 @@
       class="dusk-navbar__network-dot"
       class:dusk-navbar__network-dot--online={connected}
     ></span>
-    {networkName.charAt(0).toUpperCase()}{networkName.slice(1)}
+    {networkName}
   </span>
 </nav>

@@ -13,7 +13,7 @@ import {
 import { unixTsToDate } from "$lib/dusk/date";
 import { failureToRejection } from "$lib/dusk/http";
 import { makeNodeUrl } from "$lib/url";
-import { STAKE_CONTRACT } from "$lib/constants";
+import { STAKE_CONTRACT } from "$lib/network";
 
 import {
   addCountAndUnique,

@@ -71,7 +71,31 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <span
           class="transaction-details__summary-text detail-summary__text"
         >
-          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
+          <!---->
+          
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            kT5Bam…LwKbXj
+          </span>
+          
+          <!---->
+           sent 9,812.378912731 DUSK to 
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            mHWZo9…pjiUnj
+          </span>
+          
+          <!---->
+          
+          
+          
           <!---->
         </span>
          
@@ -106,7 +130,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           <span
             class="transaction-details__time"
           >
-            Tue 16 Apr 2024, 06:39:09 UTC
+            Tue 16 Apr 2024, 6:39:09 AM UTC
           </span>
         </span>
       </p>
@@ -891,7 +915,31 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <span
           class="transaction-details__summary-text detail-summary__text"
         >
-          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
+          <!---->
+          
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            kT5Bam…LwKbXj
+          </span>
+          
+          <!---->
+           sent 9,812.378912731 DUSK to 
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            mHWZo9…pjiUnj
+          </span>
+          
+          <!---->
+          
+          
+          
           <!---->
         </span>
          
@@ -926,7 +974,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <span
             class="transaction-details__time"
           >
-            Tue 16 Apr 2024, 06:39:09 UTC
+            Tue 16 Apr 2024, 6:39:09 AM UTC
           </span>
         </span>
       </p>
@@ -1109,8 +1157,6 @@ exports[`Transaction Details > renders the Transaction Details component with th
       </dd>
       <!---->
        
-      <!---->
-      
       <!---->
        
       <dt
@@ -1742,7 +1788,31 @@ exports[`Transaction Details > should be able to render the details when they co
         <span
           class="transaction-details__summary-text detail-summary__text"
         >
-          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
+          <!---->
+          
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            kT5Bam…LwKbXj
+          </span>
+          
+          <!---->
+           sent 9,812.378912731 DUSK to 
+          
+          <!---->
+          <span
+            class="detail-summary__id"
+          >
+            mHWZo9…pjiUnj
+          </span>
+          
+          <!---->
+          
+          
+          
           <!---->
         </span>
          
@@ -1777,7 +1847,7 @@ exports[`Transaction Details > should be able to render the details when they co
           <span
             class="transaction-details__time"
           >
-            Tue 16 Apr 2024, 06:39:09 UTC
+            Tue 16 Apr 2024, 6:39:09 AM UTC
           </span>
         </span>
       </p>
@@ -2272,7 +2342,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-392"
+              aria-describedby="list-item-help-420"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2296,7 +2366,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-392"
+                id="list-item-help-420"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
@@ -2323,7 +2393,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-393"
+              aria-describedby="list-item-help-421"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2347,7 +2417,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-393"
+                id="list-item-help-421"
               >
                 The most gas the transaction could use. Only the gas spent is paid for
               </span>
@@ -2395,7 +2465,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-395"
+              aria-describedby="list-item-help-423"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2419,7 +2489,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-395"
+                id="list-item-help-423"
               >
                 The number of transactions sent from this address
               </span>

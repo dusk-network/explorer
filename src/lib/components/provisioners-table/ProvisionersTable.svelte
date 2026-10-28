@@ -1,6 +1,8 @@
 <svelte:options immutable={true} />
 
 <script>
+  import { formatContractId } from "@dusk-network/networks/format";
+
   import {
     Table,
     TableBody,
@@ -13,6 +15,8 @@
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
+  import { labelOf } from "$lib/network";
+  import { appStore } from "$lib/stores";
 
   import "./ProvisionersTable.css";
 
@@ -97,6 +101,7 @@
     return direction === "asc" ? result : -result;
   }
 
+  $: chainId = $appStore.nodeInfo.chain_id;
   $: classes = makeClassName(["provisioners-table", className]);
 
   $: sortArrow = sort.direction === "asc" ? "↑" : "↓";
@@ -226,13 +231,16 @@
 
         <TableCell>
           {#if provisioner.hasSeparateOwner}
+            {@const ownerLabel = labelOf(chainId, provisioner.ownerAddress)}
             <span
-              class="provisioners-table__address provisioners-table__owner"
+              class="provisioners-table__owner"
+              class:provisioners-table__address={!ownerLabel}
               data-tooltip-id="provisioners-tooltip"
               data-tooltip-text="Owner: {provisioner.ownerAddress}"
-              >{provisioner.ownerType === "Account"
-                ? middleEllipsis(provisioner.ownerAddress, HASH_CHARS_LENGTH)
-                : `Contract ${middleEllipsis(provisioner.ownerAddress, 4)}`}</span
+              >{ownerLabel ??
+                (provisioner.ownerType === "Account"
+                  ? middleEllipsis(provisioner.ownerAddress, HASH_CHARS_LENGTH)
+                  : `Contract ${formatContractId(provisioner.ownerAddress, { short: true })}`)}</span
             >
           {:else}
             <span class="provisioners-table__muted">—</span>

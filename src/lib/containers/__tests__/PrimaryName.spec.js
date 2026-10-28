@@ -46,7 +46,7 @@ describe("PrimaryName", () => {
       getByRole("link", { name: "Open tdi.dusk on Dusk Domains" })
     ).toHaveAttribute("href", "https://testnet.dusk.domains/name/tdi.dusk");
     expect(
-      getByText(`${address.slice(0, 6)}...${address.slice(-6)}`)
+      getByText(`${address.slice(0, 6)}…${address.slice(-6)}`)
     ).toBeInTheDocument();
   });
 
