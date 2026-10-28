@@ -251,6 +251,7 @@
         <div class="transaction-details__switch-wrapper">
           memo
           <Switch
+            aria-label="Show memo as text"
             className="transaction-details__payload-switch"
             onSurface={true}
             bind:value={isMemoDecoded}
@@ -276,6 +277,7 @@
         <div class="transaction-details__switch-wrapper">
           payload
           <Switch
+            aria-label="Show payload"
             className="transaction-details__payload-switch"
             onSurface={true}
             bind:value={isPayloadToggled}

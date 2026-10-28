@@ -1,3 +1,4 @@
+/* Show IDs as they are, as on the transaction page. */
 .transaction-details__list-link {
-  text-transform: uppercase;
+  font-family: var(--mono-font-family);
 }

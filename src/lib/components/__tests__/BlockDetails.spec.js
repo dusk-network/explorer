@@ -79,6 +79,22 @@ describe("Block Details", () => {
     );
   });
 
+  it("should name the block navigation links and the header switch", () => {
+    const { getByRole } = render(BlockDetails, baseProps);
+
+    expect(getByRole("link", { name: "Previous block" })).toHaveAttribute(
+      "href",
+      `/some-base-path/blocks/block?id=${baseProps.data.header.prevblockhash}`
+    );
+    expect(getByRole("link", { name: "Next block" })).toHaveAttribute(
+      "href",
+      `/some-base-path/blocks/block?id=${baseProps.data.header.nextblockhash}`
+    );
+    expect(
+      getByRole("switch", { name: "Show block header" })
+    ).toBeInTheDocument();
+  });
+
   it("should render the Block Details component with the payload visible", async () => {
     const { container, getByRole } = render(BlockDetails, baseProps);
 

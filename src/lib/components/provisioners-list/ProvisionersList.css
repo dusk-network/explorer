@@ -2,6 +2,7 @@
   cursor: help;
 }
 
+/* Addresses are case-sensitive: show them as they are. */
 .provisioners-list__staking-address {
-  text-transform: uppercase;
+  font-family: var(--mono-font-family);
 }

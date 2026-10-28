@@ -55,6 +55,15 @@ describe("Transaction Details", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it("should name the memo and payload switches", () => {
+    const { getByRole } = render(TransactionDetails, baseProps);
+
+    expect(
+      getByRole("switch", { name: "Show memo as text" })
+    ).toBeInTheDocument();
+    expect(getByRole("switch", { name: "Show payload" })).toBeInTheDocument();
+  });
+
   it("should show the sender's and receiver's primary names", async () => {
     vi.mocked(getPrimaryName).mockImplementation(async (address) => {
       const name = address === baseProps.data.from ? "alice.dusk" : "bob.dusk";

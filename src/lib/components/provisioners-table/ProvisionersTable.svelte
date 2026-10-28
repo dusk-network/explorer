@@ -211,7 +211,7 @@
           <div class="provisioners-table__staking-address-wrapper">
             {middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}
             <CopyButton
-              name="Provisioner's staking address"
+              name="Staking address"
               rawValue={consensusAddress}
               variant="secondary"
             />

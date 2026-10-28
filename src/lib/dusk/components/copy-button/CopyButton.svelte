@@ -9,7 +9,13 @@
   /** @type {string | undefined} */
   export let className = undefined;
 
-  /** @type {string} */
+  /**
+   * What the button copies, in sentence case (e.g. "Transaction ID"):
+   * the button is named "Copy transaction ID" and the toast says
+   * "Transaction ID copied".
+   *
+   * @type {string}
+   */
   export let name;
 
   /** @type {string} */
@@ -39,11 +45,12 @@
   }
 
   $: classes = makeClassName(["dusk-copy-button", className]);
+  $: label = `Copy ${name.charAt(0).toLowerCase()}${name.slice(1)}`;
 </script>
 
 <div class={classes} {...$$restProps}>
   <Button
-    aria-label="Copy Address"
+    aria-label={label}
     className={classes}
     data-tooltip-id="main-tooltip"
     data-tooltip-text="Copy to clipboard"

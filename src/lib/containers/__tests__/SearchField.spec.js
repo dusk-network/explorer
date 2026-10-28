@@ -79,6 +79,15 @@ describe("SearchField", () => {
     expect(gotoSpy).not.toHaveBeenCalled();
   });
 
+  it("should name the search button", () => {
+    const { getByRole } = render(SearchField);
+
+    expect(getByRole("button", { name: "Search" })).toHaveAttribute(
+      "type",
+      "submit"
+    );
+  });
+
   it("should search any other input as before", async () => {
     await search(account);
 

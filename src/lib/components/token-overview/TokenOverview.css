@@ -46,8 +46,10 @@
   letter-spacing: 0.08em;
 }
 
+/* Addresses are case-sensitive: never uppercase them. */
 .token-overview-panel__token-address {
   font-weight: 500;
+  text-transform: none;
 }
 
 .token-overview-panel__separator {

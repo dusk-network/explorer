@@ -47,7 +47,7 @@ describe("Search Notification", () => {
       props: baseProps,
     });
 
-    const button = getByRole("button");
+    const button = getByRole("button", { name: "Close" });
     await fireEvent.click(button);
     expect(eventHandler).toHaveBeenCalledOnce();
   });
