@@ -867,8 +867,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                             </span>
                             
                             <!---->
-                             
-                            <!---->
                           </span>
                         </div>
                         <!---->
@@ -1128,8 +1126,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                               Transfer
                             </span>
                             
-                            <!---->
-                             
                             <!---->
                           </span>
                         </div>
@@ -1943,8 +1939,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                   </span>
                   
                   <!---->
-                   
-                  <!---->
                 </span>
               </div>
               <!---->
@@ -2104,8 +2098,6 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                     Transfer
                   </span>
                   
-                  <!---->
-                   
                   <!---->
                 </span>
               </div>
