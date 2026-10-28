@@ -9,7 +9,7 @@
     TableRow,
   } from "$lib/components/table";
   import { AppAnchor } from "$lib/components";
-  import { Badge, CopyButton } from "$lib/dusk/components";
+  import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
@@ -31,7 +31,8 @@
   /** @type {EnrichedProvisioner[]} */
   export let data;
 
-  const HASH_CHARS_LENGTH = 10;
+  /** Lists show an address as its first and last six characters. */
+  const HASH_CHARS_LENGTH = 6;
 
   const numberFormatter = createValueFormatter("en");
 
@@ -129,7 +130,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.STAKING_ADDRESS)}
         >
-          <span>Staking Address</span>
+          <span>Staking address</span>
           {#if sort.column === SortColumn.STAKING_ADDRESS}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -144,7 +145,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.OWNER)}
         >
-          <span>Owner Key</span>
+          <span>Owner</span>
           {#if sort.column === SortColumn.OWNER}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -174,7 +175,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.REWARD)}
         >
-          <span>Accumulated Reward</span>
+          <span>Rewards</span>
           {#if sort.column === SortColumn.REWARD}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -203,67 +204,82 @@
   <TableBody>
     {#each sortedData as provisioner (provisioner.key)}
       {@const consensusAddress = provisioner.key}
+      {@const slashCount =
+        (provisioner.faults ?? 0) + (provisioner.hard_faults ?? 0)}
 
       <TableRow>
-        <TableCell>{provisioner.rank}</TableCell>
+        <TableCell
+          ><span class="provisioners-table__rank">{provisioner.rank}</span
+          ></TableCell
+        >
 
         <TableCell>
           <div class="provisioners-table__staking-address-wrapper">
-            <AppAnchor href="/accounts/?key={consensusAddress}"
+            <AppAnchor
+              className="provisioners-table__address"
+              href="/accounts/?key={consensusAddress}"
               >{middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}</AppAnchor
             >
-            <CopyButton
-              name="Staking address"
-              rawValue={consensusAddress}
-              variant="secondary"
-            />
+            <CopyButton name="Staking address" rawValue={consensusAddress} />
           </div>
         </TableCell>
 
         <TableCell>
-          <Badge
-            data-tooltip-id="provisioners-tooltip"
-            data-tooltip-text={provisioner.hasSeparateOwner
-              ? `Owner: ${middleEllipsis(
-                  provisioner.ownerAddress,
-                  HASH_CHARS_LENGTH
-                )}
-Consensus: ${middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}`
-              : `Consensus: ${middleEllipsis(
-                  consensusAddress,
-                  HASH_CHARS_LENGTH
-                )}`}
-            text={provisioner.hasSeparateOwner ? "Yes" : "No"}
-          />
+          {#if provisioner.hasSeparateOwner}
+            <span
+              class="provisioners-table__address provisioners-table__owner"
+              data-tooltip-id="provisioners-tooltip"
+              data-tooltip-text="Owner: {provisioner.ownerAddress}"
+              >{provisioner.ownerType === "Account"
+                ? middleEllipsis(provisioner.ownerAddress, HASH_CHARS_LENGTH)
+                : `Contract ${middleEllipsis(provisioner.ownerAddress, 4)}`}</span
+            >
+          {:else}
+            <span class="provisioners-table__muted">—</span>
+          {/if}
         </TableCell>
 
-        <TableCell>
-          <b class="provisioners-table__stake-data-label">Active:</b>
-          <span title="{formatDuskExact(provisioner.amount)} DUSK"
-            >{formatDusk(provisioner.amount)}</span
+        <TableCell align="right">
+          <span class="row-amount"
+            ><span title="{formatDuskExact(provisioner.amount)} DUSK"
+              >{formatDusk(provisioner.amount)}</span
+            >
+            <span class="row-unit">DUSK</span></span
           >
-          <br />
-          <b class="provisioners-table__stake-data-label">Inactive:</b>
-          <span title="{formatDuskExact(provisioner.locked_amt)} DUSK"
-            >{formatDusk(provisioner.locked_amt)}</span
-          >
-          <br />
-          <b class="provisioners-table__stake-data-label">Maturity At:</b>
-          #{numberFormatter(provisioner.eligibility)}
+          <span class="row-line provisioners-table__stake-line">
+            {#if provisioner.locked_amt}
+              <span title="{formatDuskExact(provisioner.locked_amt)} DUSK"
+                >{formatDusk(provisioner.locked_amt)} inactive</span
+              >
+            {/if}
+            {#if provisioner.locked_amt && provisioner.eligibility}
+              <span aria-hidden="true">·</span>
+            {/if}
+            {#if provisioner.eligibility}
+              <span
+                >eligible from block {numberFormatter(
+                  provisioner.eligibility
+                )}</span
+              >
+            {/if}
+          </span>
         </TableCell>
 
-        <TableCell>
-          <span title="{formatDuskExact(provisioner.reward)} DUSK"
-            >{formatDusk(provisioner.reward)}</span
+        <TableCell align="right">
+          <span class="row-amount"
+            ><span title="{formatDuskExact(provisioner.reward)} DUSK"
+              >{formatDusk(provisioner.reward)}</span
+            >
+            <span class="row-unit">DUSK</span></span
           >
         </TableCell>
 
-        <TableCell>
-          <b class="provisioners-table__slash-data-label">Soft:</b>
-          {numberFormatter(provisioner.faults)}
-          <br />
-          <b class="provisioners-table__slash-data-label">Hard:</b>
-          {numberFormatter(provisioner.hard_faults)}
+        <TableCell align="right">
+          <span class:provisioners-table__muted={!slashCount}
+            >{numberFormatter(provisioner.faults)} soft, {numberFormatter(
+              provisioner.hard_faults
+            )} hard</span
+          >
         </TableCell>
       </TableRow>
     {/each}

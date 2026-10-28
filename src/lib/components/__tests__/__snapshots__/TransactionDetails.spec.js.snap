@@ -2,7 +2,7 @@
 
 exports[`Transaction Details > renders the Transaction Details component 1`] = `
 <div
-  class="dusk-card data-card transaction-details"
+  class="dusk-card data-card data-card--detail transaction-details detail-page"
 >
   <!---->
   <!---->
@@ -13,20 +13,10 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Transaction Details 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Transaction
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -37,50 +27,44 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
   <div
     class="data-card__content"
   >
-    <p
-      class="transaction-details__summary"
+    <div
+      class="transaction-details__summary detail-summary"
     >
       <span
-        class="transaction-details__summary-text"
+        aria-hidden="true"
+        class="row-icon"
       >
-        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+          />
+        </svg>
+        
         <!---->
       </span>
+      <!---->
        
-      <span
-        class="transaction-details__summary-meta"
+      <p
+        class="transaction-details__summary-lines detail-summary__lines"
       >
-        <span>
-          Completed
+        <span
+          class="transaction-details__summary-text detail-summary__text"
+        >
+          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
         </span>
          
         <span
-          aria-hidden="true"
+          class="transaction-details__summary-meta detail-summary__meta"
         >
-          ·
-        </span>
-         Tue 16 Apr 2024, 06:39:09 UTC
-      </span>
-    </p>
-     
-    <dl
-      class="transaction-details__list"
-    >
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-1"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The ID of the transaction"
-            data-tooltip-type="info"
-            type="button"
+          <span
+            class="transaction-details__outcome"
+            data-tooltip-type="error"
           >
             <!---->
             <svg
@@ -89,19 +73,33 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
               viewBox="0 0 24 24"
             >
               <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
               />
             </svg>
             
             <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-1"
-            >
-              The ID of the transaction
-            </span>
-          </button>
+            Completed
+          </span>
+           
+          <span
+            aria-hidden="true"
+          >
+            ·
+          </span>
+           Tue 16 Apr 2024, 06:39:09 UTC
+        </span>
+      </p>
+    </div>
+     
+    <dl
+      class="transaction-details__list detail-rows"
+    >
+      <dt
+        class="details-list__term details-list__term--wide"
+      >
+        <div
+          class="details-list__term-layout"
+        >
           <!---->
            
           ID
@@ -110,28 +108,47 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+        <span
+          class="transaction-details__value"
         >
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                487768
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                7c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                ac0e04
+              </b>
+            </span>
+            
+            <!---->
+          </a>
           <!---->
-          4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04
-          
-          <!---->
-        </a>
-        <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy transaction ID"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -148,6 +165,11 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -159,131 +181,67 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-2"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction status"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-2"
-            >
-              The transaction status
-            </span>
-          </button>
           <!---->
            
-          status
+          From
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
+        <!---->
         <span
-          class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
-        >
-          completed
-        </span>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-3"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The sender of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-3"
-            >
-              The sender of the transaction
-            </span>
-          </button>
-          <!---->
-           
-          from
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          class="transaction-details__value"
         >
           <!---->
-          kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj
+          <!---->
+          
           
           <!---->
-        </a>
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                kT5Bam
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                V2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMR
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                LwKbXj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy sender's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -300,6 +258,11 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -314,75 +277,66 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-4"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The receiver of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-4"
-            >
-              The receiver of the transaction
-            </span>
-          </button>
           <!---->
            
-          to
+          To
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+        <span
+          class="transaction-details__value"
         >
           <!---->
-          mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj
+          <!---->
+          
           
           <!---->
-        </a>
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                mHWZo9
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnG
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                pjiUnj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy receiver's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -399,6 +353,11 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -417,39 +376,9 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-5"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-5"
-            >
-              The DUSK sent to the receiver, or to the contract it called
-            </span>
-          </button>
           <!---->
            
-          amount
+          Amount
           <!---->
         </div>
       </dt>
@@ -475,39 +404,9 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-6"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The fee paid for the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-6"
-            >
-              The fee paid for the transaction
-            </span>
-          </button>
           <!---->
            
-          transaction fee
+          Transaction fee
           <!---->
         </div>
       </dt>
@@ -529,103 +428,9 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-7"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The date and time the transaction was created"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-7"
-            >
-              The date and time the transaction was created
-            </span>
-          </button>
           <!---->
            
-          timestamp
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <time
-          class="dusk-relative-time transaction-details__list-timestamp"
-          datetime="2024-04-16T06:39:09.000Z"
-          slot="definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          Tue 16 Apr 2024, 06:39:09 UTC (last month)
-          
-          
-          
-          <!---->
-        </time>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-8"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction type"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-8"
-            >
-              The transaction type
-            </span>
-          </button>
-          <!---->
-           
-          type
+          Type
           <!---->
         </div>
       </dt>
@@ -652,11 +457,11 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="transaction-type__call"
           >
             <!---->
+            
+            <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>
@@ -668,39 +473,9 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-9"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Transaction reference and additional notes"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-9"
-            >
-              Transaction reference and additional notes
-            </span>
-          </button>
           <!---->
            
-          memo
+          Memo
           <!---->
         </div>
       </dt>
@@ -708,8 +483,6 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
       <dd
         class="details-list__definition"
       >
-        <!---->
-        <!---->
         <span
           class="transaction-details__memo"
         >
@@ -736,8 +509,6 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
           <!---->
         </span>
         <!---->
-        
-        
         <!---->
       </dd>
       <!---->
@@ -748,39 +519,9 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-10"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The block height this transaction belongs to"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-10"
-            >
-              The block height this transaction belongs to
-            </span>
-          </button>
           <!---->
            
-          block height
+          Block height
           <!---->
         </div>
       </dt>
@@ -789,7 +530,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         class="details-list__definition"
       >
         <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+          class="dusk-anchor dusk-anchor--on-surface transaction-details__block-link"
           href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
         >
           <!---->
@@ -803,16 +544,16 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
     </dl>
      
     <details
-      class="transaction-details__technical"
+      class="transaction-details__technical detail-technical"
     >
       <summary
-        class="transaction-details__technical-summary"
+        class="transaction-details__technical-summary detail-technical__summary"
       >
         Technical details
       </summary>
        
       <dl
-        class="transaction-details__list"
+        class="transaction-details__list detail-rows"
       >
         <dt
           class="details-list__term"
@@ -821,7 +562,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-11"
+              aria-describedby="list-item-help-9"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -845,14 +586,14 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                
               <span
                 hidden=""
-                id="list-item-help-11"
+                id="list-item-help-9"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
             </button>
             <!---->
              
-            gas price
+            Gas price
             <!---->
           </div>
         </dt>
@@ -872,12 +613,84 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
             class="details-list__term-layout"
           >
             <button
+              aria-describedby="list-item-help-10"
+              aria-label="More information"
+              class="detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The most gas the transaction could use. Only the gas spent is paid for"
+              data-tooltip-type="info"
+              type="button"
+            >
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              <span
+                hidden=""
+                id="list-item-help-10"
+              >
+                The most gas the transaction could use. Only the gas spent is paid for
+              </span>
+            </button>
+            <!---->
+             
+            Transaction gas limit
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          500,000,000
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <!---->
+             
+            Gas spent
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          290,766
+          <!---->
+        </dd>
+        <!---->
+         
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <button
               aria-describedby="list-item-help-12"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The transaction gas limit"
+              data-tooltip-text="The number of transactions sent from this address"
               data-tooltip-type="info"
               type="button"
             >
@@ -898,114 +711,12 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                 hidden=""
                 id="list-item-help-12"
               >
-                The transaction gas limit
-              </span>
-            </button>
-            <!---->
-             
-            transaction gas limit
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          500,000,000
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <button
-              aria-describedby="list-item-help-13"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The amount of gas spent generating the transaction"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-13"
-              >
-                The amount of gas spent generating the transaction
-              </span>
-            </button>
-            <!---->
-             
-            gas spent
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          290,766
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <button
-              aria-describedby="list-item-help-14"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The number of transactions sent from this address"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-14"
-              >
                 The number of transactions sent from this address
               </span>
             </button>
             <!---->
              
-            nonce
+            Nonce
             <!---->
           </div>
         </dt>
@@ -1019,47 +730,17 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         <!---->
          
         <dt
-          class="details-list__term"
+          class="details-list__term details-list__term--wide"
         >
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-15"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The transaction payload"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-15"
-              >
-                The transaction payload
-              </span>
-            </button>
             <!---->
              
-            <div
-              class="transaction-details__switch-wrapper"
+            <span
+              class="transaction-details__switch-wrapper detail-switch"
             >
-              payload 
+              Payload 
               <div
                 aria-checked="false"
                 aria-disabled="false"
@@ -1069,18 +750,20 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
                 tabindex="0"
               />
               <!---->
-            </div>
+            </span>
             <!---->
           </div>
         </dt>
          
         <dd
-          class="details-list__definition"
+          class="details-list__definition details-list__definition--wide"
         >
           <!---->
           
           <!---->
         </dd>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -1100,7 +783,7 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
 
 exports[`Transaction Details > renders the Transaction Details component with the payload visible 1`] = `
 <div
-  class="dusk-card data-card transaction-details"
+  class="dusk-card data-card data-card--detail transaction-details detail-page"
 >
   <!---->
   <!---->
@@ -1111,20 +794,10 @@ exports[`Transaction Details > renders the Transaction Details component with th
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Transaction Details 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Transaction
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -1135,50 +808,44 @@ exports[`Transaction Details > renders the Transaction Details component with th
   <div
     class="data-card__content"
   >
-    <p
-      class="transaction-details__summary"
+    <div
+      class="transaction-details__summary detail-summary"
     >
       <span
-        class="transaction-details__summary-text"
+        aria-hidden="true"
+        class="row-icon"
       >
-        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+          />
+        </svg>
+        
         <!---->
       </span>
+      <!---->
        
-      <span
-        class="transaction-details__summary-meta"
+      <p
+        class="transaction-details__summary-lines detail-summary__lines"
       >
-        <span>
-          Completed
+        <span
+          class="transaction-details__summary-text detail-summary__text"
+        >
+          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
         </span>
          
         <span
-          aria-hidden="true"
+          class="transaction-details__summary-meta detail-summary__meta"
         >
-          ·
-        </span>
-         Tue 16 Apr 2024, 06:39:09 UTC
-      </span>
-    </p>
-     
-    <dl
-      class="transaction-details__list"
-    >
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-16"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The ID of the transaction"
-            data-tooltip-type="info"
-            type="button"
+          <span
+            class="transaction-details__outcome"
+            data-tooltip-type="error"
           >
             <!---->
             <svg
@@ -1187,19 +854,33 @@ exports[`Transaction Details > renders the Transaction Details component with th
               viewBox="0 0 24 24"
             >
               <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
               />
             </svg>
             
             <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-16"
-            >
-              The ID of the transaction
-            </span>
-          </button>
+            Completed
+          </span>
+           
+          <span
+            aria-hidden="true"
+          >
+            ·
+          </span>
+           Tue 16 Apr 2024, 06:39:09 UTC
+        </span>
+      </p>
+    </div>
+     
+    <dl
+      class="transaction-details__list detail-rows"
+    >
+      <dt
+        class="details-list__term details-list__term--wide"
+      >
+        <div
+          class="details-list__term-layout"
+        >
           <!---->
            
           ID
@@ -1208,28 +889,47 @@ exports[`Transaction Details > renders the Transaction Details component with th
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+        <span
+          class="transaction-details__value"
         >
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                487768
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                7c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                ac0e04
+              </b>
+            </span>
+            
+            <!---->
+          </a>
           <!---->
-          4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04
-          
-          <!---->
-        </a>
-        <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy transaction ID"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -1246,6 +946,11 @@ exports[`Transaction Details > renders the Transaction Details component with th
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -1257,133 +962,69 @@ exports[`Transaction Details > renders the Transaction Details component with th
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-17"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction status"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-17"
-            >
-              The transaction status
-            </span>
-          </button>
           <!---->
            
-          status
+          From
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
+        <!---->
         <span
-          class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
-        >
-          completed
-        </span>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-18"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The sender of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-18"
-            >
-              The sender of the transaction
-            </span>
-          </button>
-          <!---->
-           
-          from
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          class="transaction-details__value"
         >
           <!---->
-          kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj
+          <!---->
+          <!---->
+          
+          
           
           <!---->
-        </a>
-        
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                kT5Bam
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                V2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMR
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                LwKbXj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy sender's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -1400,6 +1041,11 @@ exports[`Transaction Details > renders the Transaction Details component with th
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -1416,77 +1062,68 @@ exports[`Transaction Details > renders the Transaction Details component with th
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-19"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The receiver of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-19"
-            >
-              The receiver of the transaction
-            </span>
-          </button>
           <!---->
            
-          to
+          To
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+        <span
+          class="transaction-details__value"
         >
           <!---->
-          mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj
+          <!---->
+          <!---->
+          
+          
           
           <!---->
-        </a>
-        
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                mHWZo9
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnG
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                pjiUnj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy receiver's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -1503,6 +1140,11 @@ exports[`Transaction Details > renders the Transaction Details component with th
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -1521,39 +1163,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-20"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-20"
-            >
-              The DUSK sent to the receiver, or to the contract it called
-            </span>
-          </button>
           <!---->
            
-          amount
+          Amount
           <!---->
         </div>
       </dt>
@@ -1579,39 +1191,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-21"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The fee paid for the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-21"
-            >
-              The fee paid for the transaction
-            </span>
-          </button>
           <!---->
            
-          transaction fee
+          Transaction fee
           <!---->
         </div>
       </dt>
@@ -1633,103 +1215,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-22"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The date and time the transaction was created"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-22"
-            >
-              The date and time the transaction was created
-            </span>
-          </button>
           <!---->
            
-          timestamp
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <time
-          class="dusk-relative-time transaction-details__list-timestamp"
-          datetime="2024-04-16T06:39:09.000Z"
-          slot="definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          Tue 16 Apr 2024, 06:39:09 UTC (last month)
-          
-          
-          
-          <!---->
-        </time>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-23"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction type"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-23"
-            >
-              The transaction type
-            </span>
-          </button>
-          <!---->
-           
-          type
+          Type
           <!---->
         </div>
       </dt>
@@ -1755,17 +1243,17 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <span
             class="transaction-type__call"
           >
+            <!---->
             <span
               class="transaction-type__label"
             >
               Transfer
             </span>
+            
             <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>
@@ -1777,39 +1265,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-24"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Transaction reference and additional notes"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-24"
-            >
-              Transaction reference and additional notes
-            </span>
-          </button>
           <!---->
            
-          memo
+          Memo
           <!---->
         </div>
       </dt>
@@ -1817,8 +1275,6 @@ exports[`Transaction Details > renders the Transaction Details component with th
       <dd
         class="details-list__definition"
       >
-        <!---->
-        <!---->
         <span
           class="transaction-details__memo"
         >
@@ -1845,8 +1301,6 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <!---->
         </span>
         <!---->
-        
-        
         <!---->
       </dd>
       <!---->
@@ -1857,39 +1311,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-25"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The block height this transaction belongs to"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-25"
-            >
-              The block height this transaction belongs to
-            </span>
-          </button>
           <!---->
            
-          block height
+          Block height
           <!---->
         </div>
       </dt>
@@ -1898,7 +1322,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+          class="dusk-anchor dusk-anchor--on-surface transaction-details__block-link"
           href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
         >
           <!---->
@@ -1912,16 +1336,16 @@ exports[`Transaction Details > renders the Transaction Details component with th
     </dl>
      
     <details
-      class="transaction-details__technical"
+      class="transaction-details__technical detail-technical"
     >
       <summary
-        class="transaction-details__technical-summary"
+        class="transaction-details__technical-summary detail-technical__summary"
       >
         Technical details
       </summary>
        
       <dl
-        class="transaction-details__list"
+        class="transaction-details__list detail-rows"
       >
         <dt
           class="details-list__term"
@@ -1930,7 +1354,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-26"
+              aria-describedby="list-item-help-22"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -1954,14 +1378,14 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-26"
+                id="list-item-help-22"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
             </button>
             <!---->
              
-            gas price
+            Gas price
             <!---->
           </div>
         </dt>
@@ -1981,12 +1405,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-27"
+              aria-describedby="list-item-help-23"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The transaction gas limit"
+              data-tooltip-text="The most gas the transaction could use. Only the gas spent is paid for"
               data-tooltip-type="info"
               type="button"
             >
@@ -2005,14 +1429,14 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-27"
+                id="list-item-help-23"
               >
-                The transaction gas limit
+                The most gas the transaction could use. Only the gas spent is paid for
               </span>
             </button>
             <!---->
              
-            transaction gas limit
+            Transaction gas limit
             <!---->
           </div>
         </dt>
@@ -2031,39 +1455,9 @@ exports[`Transaction Details > renders the Transaction Details component with th
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-28"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The amount of gas spent generating the transaction"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-28"
-              >
-                The amount of gas spent generating the transaction
-              </span>
-            </button>
             <!---->
              
-            gas spent
+            Gas spent
             <!---->
           </div>
         </dt>
@@ -2083,7 +1477,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-29"
+              aria-describedby="list-item-help-25"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2107,14 +1501,14 @@ exports[`Transaction Details > renders the Transaction Details component with th
                
               <span
                 hidden=""
-                id="list-item-help-29"
+                id="list-item-help-25"
               >
                 The number of transactions sent from this address
               </span>
             </button>
             <!---->
              
-            nonce
+            Nonce
             <!---->
           </div>
         </dt>
@@ -2128,47 +1522,17 @@ exports[`Transaction Details > renders the Transaction Details component with th
         <!---->
          
         <dt
-          class="details-list__term"
+          class="details-list__term details-list__term--wide"
         >
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-30"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The transaction payload"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-30"
-              >
-                The transaction payload
-              </span>
-            </button>
             <!---->
              
-            <div
-              class="transaction-details__switch-wrapper"
+            <span
+              class="transaction-details__switch-wrapper detail-switch"
             >
-              payload 
+              Payload 
               <div
                 aria-checked="true"
                 aria-disabled="false"
@@ -2178,24 +1542,19 @@ exports[`Transaction Details > renders the Transaction Details component with th
                 tabindex="0"
               />
               <!---->
-            </div>
+            </span>
             <!---->
           </div>
         </dt>
          
         <dd
-          class="details-list__definition"
+          class="details-list__definition details-list__definition--wide"
         >
           <!---->
-          <!---->
-          <div
-            class="dusk-card transaction-details__payload dusk-card--on-surface"
+          <pre
+            class="transaction-details__payload detail-payload"
           >
-            <!---->
-            <!---->
-             
-            <pre>
-              {
+            {
   "type": "moonlight",
   "sender": "kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj",
   "receiver": "mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj",
@@ -2211,16 +1570,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
   "is_deploy": false,
   "memo": null
 }
-            </pre>
-            <!---->
-             
-            <!---->
-            
-          </div>
-          
+          </pre>
           
           <!---->
         </dd>
+        <!---->
+         
         <!---->
          
         <!---->
@@ -2240,7 +1595,7 @@ exports[`Transaction Details > renders the Transaction Details component with th
 
 exports[`Transaction Details > should be able to render the details when they contain blob hashes 1`] = `
 <div
-  class="dusk-card data-card transaction-details"
+  class="dusk-card data-card data-card--detail transaction-details detail-page"
 >
   <!---->
   <!---->
@@ -2251,20 +1606,10 @@ exports[`Transaction Details > should be able to render the details when they co
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Transaction Details 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Transaction
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -2275,50 +1620,44 @@ exports[`Transaction Details > should be able to render the details when they co
   <div
     class="data-card__content"
   >
-    <p
-      class="transaction-details__summary"
+    <div
+      class="transaction-details__summary detail-summary"
     >
       <span
-        class="transaction-details__summary-text"
+        aria-hidden="true"
+        class="row-icon"
       >
-        kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+          />
+        </svg>
+        
         <!---->
       </span>
+      <!---->
        
-      <span
-        class="transaction-details__summary-meta"
+      <p
+        class="transaction-details__summary-lines detail-summary__lines"
       >
-        <span>
-          Completed
+        <span
+          class="transaction-details__summary-text detail-summary__text"
+        >
+          kT5Bam...LwKbXj sent 9,812.378912731 DUSK to mHWZo9...pjiUnj
+          <!---->
         </span>
          
         <span
-          aria-hidden="true"
+          class="transaction-details__summary-meta detail-summary__meta"
         >
-          ·
-        </span>
-         Tue 16 Apr 2024, 06:39:09 UTC
-      </span>
-    </p>
-     
-    <dl
-      class="transaction-details__list"
-    >
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-286"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The ID of the transaction"
-            data-tooltip-type="info"
-            type="button"
+          <span
+            class="transaction-details__outcome"
+            data-tooltip-type="error"
           >
             <!---->
             <svg
@@ -2327,19 +1666,33 @@ exports[`Transaction Details > should be able to render the details when they co
               viewBox="0 0 24 24"
             >
               <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
               />
             </svg>
             
             <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-286"
-            >
-              The ID of the transaction
-            </span>
-          </button>
+            Completed
+          </span>
+           
+          <span
+            aria-hidden="true"
+          >
+            ·
+          </span>
+           Tue 16 Apr 2024, 06:39:09 UTC
+        </span>
+      </p>
+    </div>
+     
+    <dl
+      class="transaction-details__list detail-rows"
+    >
+      <dt
+        class="details-list__term details-list__term--wide"
+      >
+        <div
+          class="details-list__term-layout"
+        >
           <!---->
            
           ID
@@ -2348,28 +1701,47 @@ exports[`Transaction Details > should be able to render the details when they co
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+        <span
+          class="transaction-details__value"
         >
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/transactions/transaction?id=4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                487768
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                7c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                ac0e04
+              </b>
+            </span>
+            
+            <!---->
+          </a>
           <!---->
-          4877687c2dbf154248d3ddee9ba0d81e3431f39056f82a46819da041d4ac0e04
-          
-          <!---->
-        </a>
-        <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy transaction ID"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -2386,6 +1758,11 @@ exports[`Transaction Details > should be able to render the details when they co
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -2397,131 +1774,67 @@ exports[`Transaction Details > should be able to render the details when they co
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-287"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction status"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-287"
-            >
-              The transaction status
-            </span>
-          </button>
           <!---->
            
-          status
+          From
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
+        <!---->
         <span
-          class="dusk-badge dusk-badge--variant-success transaction-status transaction-details__status explorer-badge"
-        >
-          completed
-        </span>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-288"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The sender of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-288"
-            >
-              The sender of the transaction
-            </span>
-          </button>
-          <!---->
-           
-          from
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          class="transaction-details__value"
         >
           <!---->
-          kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj
+          <!---->
+          
           
           <!---->
-        </a>
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                kT5Bam
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                V2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMR
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                LwKbXj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy sender's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -2538,6 +1851,11 @@ exports[`Transaction Details > should be able to render the details when they co
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -2552,75 +1870,66 @@ exports[`Transaction Details > should be able to render the details when they co
       <!---->
        
       <dt
-        class="details-list__term"
+        class="details-list__term details-list__term--wide"
       >
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-289"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The receiver of the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-289"
-            >
-              The receiver of the transaction
-            </span>
-          </button>
           <!---->
            
-          to
+          To
           <!---->
         </div>
       </dt>
        
       <dd
-        class="details-list__definition"
+        class="details-list__definition details-list__definition--wide"
       >
-        <!---->
-        <!---->
-        <!---->
-        <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
-          href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+        <span
+          class="transaction-details__value"
         >
           <!---->
-          mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj
+          <!---->
+          
           
           <!---->
-        </a>
-        
-        
-        <!---->
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+            href="/some-base-path/accounts/?key=mHWZo9qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnGpjiUnj"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                mHWZo9
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                qYUhqp2SEmtWN7EuDKFwVrjgdEyzpHdfLB6R9scRAq5EkUQyLB9fBfCGt1wjxfEpFxHq9MBPVVPY3Lk3JKnQLWZzj7UYAR4mGmeGQZwCaeCS8uA63ZPKnG
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                pjiUnj
+              </b>
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </span>
          
         <div
           class="dusk-copy-button"
         >
           <button
             aria-label="Copy receiver's address"
-            class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-text="Copy to clipboard"
+            class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
             type="button"
           >
             <!---->
@@ -2637,6 +1946,11 @@ exports[`Transaction Details > should be able to render the details when they co
             
             <!---->
              
+            <span
+              class="dusk-button__text"
+            >
+              Copy
+            </span>
             <!---->
             <!---->
           </button>
@@ -2655,39 +1969,9 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-290"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-290"
-            >
-              The DUSK sent to the receiver, or to the contract it called
-            </span>
-          </button>
           <!---->
            
-          amount
+          Amount
           <!---->
         </div>
       </dt>
@@ -2713,39 +1997,9 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-291"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The fee paid for the transaction"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-291"
-            >
-              The fee paid for the transaction
-            </span>
-          </button>
           <!---->
            
-          transaction fee
+          Transaction fee
           <!---->
         </div>
       </dt>
@@ -2767,103 +2021,9 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-292"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The date and time the transaction was created"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-292"
-            >
-              The date and time the transaction was created
-            </span>
-          </button>
           <!---->
            
-          timestamp
-          <!---->
-        </div>
-      </dt>
-       
-      <dd
-        class="details-list__definition"
-      >
-        <time
-          class="dusk-relative-time transaction-details__list-timestamp"
-          datetime="2024-04-16T06:39:09.000Z"
-          slot="definition"
-        >
-          <!---->
-          <!---->
-          <!---->
-          Tue 16 Apr 2024, 06:39:09 UTC (last month)
-          
-          
-          
-          <!---->
-        </time>
-        <!---->
-      </dd>
-      <!---->
-       
-      <dt
-        class="details-list__term"
-      >
-        <div
-          class="details-list__term-layout"
-        >
-          <button
-            aria-describedby="list-item-help-293"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The transaction type"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-293"
-            >
-              The transaction type
-            </span>
-          </button>
-          <!---->
-           
-          type
+          Type
           <!---->
         </div>
       </dt>
@@ -2890,11 +2050,11 @@ exports[`Transaction Details > should be able to render the details when they co
             class="transaction-type__call"
           >
             <!---->
+            
+            <!---->
              
             <!---->
           </span>
-           
-          <!---->
         </div>
         <!---->
       </dd>
@@ -2906,39 +2066,9 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-294"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="Transaction reference and additional notes"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-294"
-            >
-              Transaction reference and additional notes
-            </span>
-          </button>
           <!---->
            
-          memo
+          Memo
           <!---->
         </div>
       </dt>
@@ -2946,8 +2076,6 @@ exports[`Transaction Details > should be able to render the details when they co
       <dd
         class="details-list__definition"
       >
-        <!---->
-        <!---->
         <span
           class="transaction-details__memo"
         >
@@ -2974,8 +2102,6 @@ exports[`Transaction Details > should be able to render the details when they co
           <!---->
         </span>
         <!---->
-        
-        
         <!---->
       </dd>
       <!---->
@@ -2986,39 +2112,9 @@ exports[`Transaction Details > should be able to render the details when they co
         <div
           class="details-list__term-layout"
         >
-          <button
-            aria-describedby="list-item-help-295"
-            aria-label="More information"
-            class="detail-list__help"
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-text="The block height this transaction belongs to"
-            data-tooltip-type="info"
-            type="button"
-          >
-            <!---->
-            <svg
-              class="dusk-icon dusk-icon--size--default"
-              role="graphics-symbol"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-              />
-            </svg>
-            
-            <!---->
-             
-            <span
-              hidden=""
-              id="list-item-help-295"
-            >
-              The block height this transaction belongs to
-            </span>
-          </button>
           <!---->
            
-          block height
+          Block height
           <!---->
         </div>
       </dt>
@@ -3027,7 +2123,7 @@ exports[`Transaction Details > should be able to render the details when they co
         class="details-list__definition"
       >
         <a
-          class="dusk-anchor dusk-anchor--on-surface transaction-details__list-anchor"
+          class="dusk-anchor dusk-anchor--on-surface transaction-details__block-link"
           href="/some-base-path/blocks/block?id=3c6e4018cfa86723e50644e33d3990bc27fc794f6b49fbf6290e4d308e07bd2d"
         >
           <!---->
@@ -3041,17 +2137,68 @@ exports[`Transaction Details > should be able to render the details when they co
     </dl>
      
     <details
-      class="transaction-details__technical"
+      class="transaction-details__technical detail-technical"
     >
       <summary
-        class="transaction-details__technical-summary"
+        class="transaction-details__technical-summary detail-technical__summary"
       >
         Technical details
       </summary>
        
       <dl
-        class="transaction-details__list"
+        class="transaction-details__list detail-rows"
       >
+        <dt
+          class="details-list__term"
+        >
+          <div
+            class="details-list__term-layout"
+          >
+            <button
+              aria-describedby="list-item-help-295"
+              aria-label="More information"
+              class="detail-list__help"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+              data-tooltip-type="info"
+              type="button"
+            >
+              <!---->
+              <svg
+                class="dusk-icon dusk-icon--size--default"
+                role="graphics-symbol"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                />
+              </svg>
+              
+              <!---->
+               
+              <span
+                hidden=""
+                id="list-item-help-295"
+              >
+                The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
+              </span>
+            </button>
+            <!---->
+             
+            Gas price
+            <!---->
+          </div>
+        </dt>
+         
+        <dd
+          class="details-list__definition"
+        >
+          1 LUX
+          <!---->
+        </dd>
+        <!---->
+         
         <dt
           class="details-list__term"
         >
@@ -3064,7 +2211,7 @@ exports[`Transaction Details > should be able to render the details when they co
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
               data-tooltip-place="top"
-              data-tooltip-text="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
+              data-tooltip-text="The most gas the transaction could use. Only the gas spent is paid for"
               data-tooltip-type="info"
               type="button"
             >
@@ -3085,63 +2232,12 @@ exports[`Transaction Details > should be able to render the details when they co
                 hidden=""
                 id="list-item-help-296"
               >
-                The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
+                The most gas the transaction could use. Only the gas spent is paid for
               </span>
             </button>
             <!---->
              
-            gas price
-            <!---->
-          </div>
-        </dt>
-         
-        <dd
-          class="details-list__definition"
-        >
-          1 LUX
-          <!---->
-        </dd>
-        <!---->
-         
-        <dt
-          class="details-list__term"
-        >
-          <div
-            class="details-list__term-layout"
-          >
-            <button
-              aria-describedby="list-item-help-297"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The transaction gas limit"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-297"
-              >
-                The transaction gas limit
-              </span>
-            </button>
-            <!---->
-             
-            transaction gas limit
+            Transaction gas limit
             <!---->
           </div>
         </dt>
@@ -3160,39 +2256,9 @@ exports[`Transaction Details > should be able to render the details when they co
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-298"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The amount of gas spent generating the transaction"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-298"
-              >
-                The amount of gas spent generating the transaction
-              </span>
-            </button>
             <!---->
              
-            gas spent
+            Gas spent
             <!---->
           </div>
         </dt>
@@ -3212,7 +2278,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-299"
+              aria-describedby="list-item-help-298"
               aria-label="More information"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -3236,14 +2302,14 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-299"
+                id="list-item-help-298"
               >
                 The number of transactions sent from this address
               </span>
             </button>
             <!---->
              
-            nonce
+            Nonce
             <!---->
           </div>
         </dt>
@@ -3257,47 +2323,17 @@ exports[`Transaction Details > should be able to render the details when they co
         <!---->
          
         <dt
-          class="details-list__term"
+          class="details-list__term details-list__term--wide"
         >
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-300"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The transaction payload"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-300"
-              >
-                The transaction payload
-              </span>
-            </button>
             <!---->
              
-            <div
-              class="transaction-details__switch-wrapper"
+            <span
+              class="transaction-details__switch-wrapper detail-switch"
             >
-              payload 
+              Payload 
               <div
                 aria-checked="false"
                 aria-disabled="false"
@@ -3307,13 +2343,13 @@ exports[`Transaction Details > should be able to render the details when they co
                 tabindex="0"
               />
               <!---->
-            </div>
+            </span>
             <!---->
           </div>
         </dt>
          
         <dd
-          class="details-list__definition"
+          class="details-list__definition details-list__definition--wide"
         >
           <!---->
           
@@ -3322,41 +2358,11 @@ exports[`Transaction Details > should be able to render the details when they co
         <!---->
          
         <dt
-          class="details-list__term"
+          class="details-list__term details-list__term--wide"
         >
           <div
             class="details-list__term-layout"
           >
-            <button
-              aria-describedby="list-item-help-301"
-              aria-label="More information"
-              class="detail-list__help"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-place="top"
-              data-tooltip-text="The list of blob hashes"
-              data-tooltip-type="info"
-              type="button"
-            >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
-              <!---->
-               
-              <span
-                hidden=""
-                id="list-item-help-301"
-              >
-                The list of blob hashes
-              </span>
-            </button>
             <!---->
              
             Blob hashes
@@ -3365,7 +2371,7 @@ exports[`Transaction Details > should be able to render the details when they co
         </dt>
          
         <dd
-          class="details-list__definition"
+          class="details-list__definition details-list__definition--wide"
         >
           <ul
             class="transaction-details__blob-hashes"
@@ -3373,18 +2379,33 @@ exports[`Transaction Details > should be able to render the details when they co
             <li
               class="transaction-details__blob-hash"
             >
-              <pre>
-                0261047715f0e937f3ab3d6bdfb1bf1894995f89f64ed19a26a1d59bb2d7b629
-              </pre>
+              <span
+                class="full-value"
+              >
+                <b
+                  class="full-value__end"
+                >
+                  026104
+                </b>
+                <span
+                  class="full-value__middle"
+                >
+                  7715f0e937f3ab3d6bdfb1bf1894995f89f64ed19a26a1d59bb2
+                </span>
+                <b
+                  class="full-value__end full-value__tail"
+                >
+                  d7b629
+                </b>
+              </span>
+              <!---->
                
               <div
                 class="dusk-copy-button"
               >
                 <button
                   aria-label="Copy blob hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                   type="button"
                 >
                   <!---->
@@ -3401,6 +2422,11 @@ exports[`Transaction Details > should be able to render the details when they co
                   
                   <!---->
                    
+                  <span
+                    class="dusk-button__text"
+                  >
+                    Copy
+                  </span>
                   <!---->
                   <!---->
                 </button>
@@ -3411,18 +2437,33 @@ exports[`Transaction Details > should be able to render the details when they co
             <li
               class="transaction-details__blob-hash"
             >
-              <pre>
-                b3d5296139ba0f44912b87a19b47ea7f229131182405d9f082c5fbbeed8c121b
-              </pre>
+              <span
+                class="full-value"
+              >
+                <b
+                  class="full-value__end"
+                >
+                  b3d529
+                </b>
+                <span
+                  class="full-value__middle"
+                >
+                  6139ba0f44912b87a19b47ea7f229131182405d9f082c5fbbeed
+                </span>
+                <b
+                  class="full-value__end full-value__tail"
+                >
+                  8c121b
+                </b>
+              </span>
+              <!---->
                
               <div
                 class="dusk-copy-button"
               >
                 <button
                   aria-label="Copy blob hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                   type="button"
                 >
                   <!---->
@@ -3439,6 +2480,11 @@ exports[`Transaction Details > should be able to render the details when they co
                   
                   <!---->
                    
+                  <span
+                    class="dusk-button__text"
+                  >
+                    Copy
+                  </span>
                   <!---->
                   <!---->
                 </button>
@@ -3449,18 +2495,33 @@ exports[`Transaction Details > should be able to render the details when they co
             <li
               class="transaction-details__blob-hash"
             >
-              <pre>
-                8f6bce4e1f233d6de022e3ac1ab3a262695991460e9f78eca288fd623083142f
-              </pre>
+              <span
+                class="full-value"
+              >
+                <b
+                  class="full-value__end"
+                >
+                  8f6bce
+                </b>
+                <span
+                  class="full-value__middle"
+                >
+                  4e1f233d6de022e3ac1ab3a262695991460e9f78eca288fd6230
+                </span>
+                <b
+                  class="full-value__end full-value__tail"
+                >
+                  83142f
+                </b>
+              </span>
+              <!---->
                
               <div
                 class="dusk-copy-button"
               >
                 <button
                   aria-label="Copy blob hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                   type="button"
                 >
                   <!---->
@@ -3477,6 +2538,11 @@ exports[`Transaction Details > should be able to render the details when they co
                   
                   <!---->
                    
+                  <span
+                    class="dusk-button__text"
+                  >
+                    Copy
+                  </span>
                   <!---->
                   <!---->
                 </button>
@@ -3488,6 +2554,8 @@ exports[`Transaction Details > should be able to render the details when they co
           </ul>
           <!---->
         </dd>
+        <!---->
+         
         <!---->
       </dl>
     </details>

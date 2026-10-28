@@ -37,7 +37,7 @@ describe("Provisioners Card", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should show no `Show More` button while the card is loading", () => {
+  it("should show no `Show more` button while the card is loading", () => {
     const loading = true;
 
     const { container, queryByRole } = render(ProvisionersCard, {
@@ -46,13 +46,13 @@ describe("Provisioners Card", () => {
     });
 
     expect(
-      queryByRole("button", { name: "Show More" })
+      queryByRole("button", { name: "Show more" })
     ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should give the count and the `Show More` button at the bottom of the list", async () => {
+  it("should give the count and the `Show more` button at the bottom of the list", async () => {
     const { container, getByRole } = render(ProvisionersCard, {
       ...baseOptions,
       props: { ...baseProps, provisioners: hostProvisioners },
@@ -66,7 +66,7 @@ describe("Provisioners Card", () => {
     expect(shown()).toBe(15);
     expect(footer.textContent).toMatch(/^\s*15 of \d+/);
 
-    await fireEvent.click(getByRole("button", { name: "Show More" }));
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
 
     expect(shown()).toBe(30);
   });
@@ -99,6 +99,8 @@ describe("Provisioners Card", () => {
     expect(container.textContent).toContain(
       "No provisioner has an address with “no such address”."
     );
+    // Nothing found has no count to give.
+    expect(container.querySelector(".data-card__count")).toBeNull();
   });
 
   it("should find a provisioner by a .dusk name, with one lookup", async () => {
@@ -141,7 +143,7 @@ describe("Provisioners Card", () => {
     ).toBeInTheDocument();
   });
 
-  it("should hide the `Show More` button if there is no more data to display", async () => {
+  it("should hide the `Show more` button if there is no more data to display", async () => {
     const loading = false;
     const provisioners = data;
 
@@ -151,13 +153,13 @@ describe("Provisioners Card", () => {
     });
 
     expect(
-      queryByRole("button", { name: "Show More" })
+      queryByRole("button", { name: "Show more" })
     ).not.toBeInTheDocument();
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should hide the `Show More` button if an error has occurred", async () => {
+  it("should hide the `Show more` button if an error has occurred", async () => {
     const props = { ...baseProps, error: new Error("error") };
 
     const { container } = render(ProvisionersCard, {

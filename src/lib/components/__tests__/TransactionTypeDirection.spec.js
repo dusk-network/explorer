@@ -33,15 +33,34 @@ describe("TransactionType on an account page", () => {
   });
 
   it.each([
-    ["out", transfer],
-    ["in", { ...transfer, from: transfer.to, to: transfer.from }],
+    ["Sent", transfer],
+    ["Received", { ...transfer, from: transfer.to, to: transfer.from }],
     // The node leaves the receiver out when it is the sender.
-    ["self", { ...transfer, to: null }],
-  ])("should mark a transfer %s", (direction, data) => {
+    ["Sent to itself", { ...transfer, to: null }],
+  ])("should say a transfer was %s", (words, data) => {
     const { getByText } = render(TransactionType, { props: { data } });
 
-    expect(getByText(direction)).toHaveClass(
-      "transaction-type__direction-badge"
+    expect(getByText(words)).toHaveClass("transaction-type__direction");
+  });
+
+  it("should keep a call's own words, its way shown by the row's sign", async () => {
+    const { container, queryByText } = render(TransactionType, {
+      props: {
+        data: {
+          ...transfer,
+          contract:
+            "0200000000000000000000000000000000000000000000000000000000000000",
+          method: "withdraw",
+          to: null,
+        },
+      },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-type__label")
+      ).toHaveTextContent("Claim rewards")
     );
+    expect(queryByText("Sent")).toBeNull();
   });
 });

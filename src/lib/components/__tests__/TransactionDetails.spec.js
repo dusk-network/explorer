@@ -39,16 +39,23 @@ const getTerms = (container) =>
   Array.from(container.querySelectorAll("dt"), termOf);
 
 /**
- * The definition beside a term.
+ * The definition beside a term, without the word on its Copy button.
  *
  * @param {HTMLElement} container
  * @param {string} term
  */
-const getDefinition = (container, term) =>
-  Array.from(container.querySelectorAll("dt"))
-    .find((dt) => termOf(dt) === term)
-    ?.nextElementSibling?.textContent?.replace(/\s+/g, " ")
-    .trim();
+const getDefinition = (container, term) => {
+  const definition = Array.from(container.querySelectorAll("dt")).find(
+    (dt) => termOf(dt) === term
+  )?.nextElementSibling;
+  const value = /** @type {Element | undefined} */ (
+    definition?.cloneNode(true)
+  );
+
+  value?.querySelectorAll(".dusk-copy-button").forEach((copy) => copy.remove());
+
+  return value?.textContent?.replace(/\s+/g, " ").trim();
+};
 
 describe("Transaction Details", () => {
   vi.useFakeTimers();
@@ -101,14 +108,13 @@ describe("Transaction Details", () => {
   it("should lead with the status, the parties and the amount, and end with the technical details", () => {
     const { container } = render(TransactionDetails, baseProps);
 
+    // The status and the time are in the line under the sentence.
     expect(getTerms(container)).toStrictEqual([
       "id",
-      "status",
       "from",
       "to",
       "amount",
       "transaction fee",
-      "timestamp",
       "type",
       "memo",
       "block height",
@@ -170,12 +176,37 @@ describe("Transaction Details", () => {
     ).toHaveTextContent("Failed");
   });
 
-  it("should give the time in the viewer's zone, and how long ago", () => {
+  it("should give the status and the time in the viewer's zone once, under the sentence", () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(getDefinition(container, "timestamp")).toMatch(
-      /^Tue 16 Apr 2024, 06:39:09 UTC \(last month\)$/
-    );
+    expect(
+      container.querySelector(".transaction-details__summary-meta")
+    ).toHaveTextContent(/^Completed · Tue 16 Apr 2024, 06:39:09 UTC$/);
+    expect(getTerms(container)).not.toContain("status");
+    expect(getTerms(container)).not.toContain("timestamp");
+  });
+
+  it("should leave out a memo or a payload that isn't there", () => {
+    const { container, queryByRole } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, memo: "", payload: "" },
+    });
+
+    expect(getTerms(container)).not.toContain("memo");
+    expect(getTerms(container)).not.toContain("payload");
+    expect(queryByRole("switch", { name: "Show payload" })).toBeNull();
+  });
+
+  it('should give a failure\'s error on hover of "Failed", and in the technical details', () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, txerror: "Panic" },
+    });
+
+    expect(
+      container.querySelector(".transaction-details__summary-failed")
+    ).toHaveAttribute("data-tooltip-text", "Panic");
+    expect(getDefinition(container, "error")).toBe("Panic");
   });
 
   it("should name the DuskEVM bridge on testnet, and say which DuskEVM address a deposit pays", async () => {
@@ -227,15 +258,20 @@ describe("Transaction Details", () => {
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should make each field's help reachable from the keyboard, with its text as the description", () => {
+  it("should explain only the terms that need it, with help reachable from the keyboard", () => {
     const { getAllByRole } = render(TransactionDetails, baseProps);
-    const [help] = getAllByRole("button", { name: "More information" });
+    const helps = getAllByRole("button", { name: "More information" });
 
-    expect(help.tagName).toBe("BUTTON");
-    expect(help).toHaveAccessibleDescription("The ID of the transaction");
-    expect(help).toHaveAttribute(
-      "data-tooltip-text",
-      "The ID of the transaction"
+    expect(
+      helps.map((help) => help.getAttribute("data-tooltip-text"))
+    ).toStrictEqual([
+      "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
+      "The most gas the transaction could use. Only the gas spent is paid for",
+      "The number of transactions sent from this address",
+    ]);
+    expect(helps[0].tagName).toBe("BUTTON");
+    expect(helps[0]).toHaveAccessibleDescription(
+      "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
     );
   });
 
@@ -279,6 +315,26 @@ describe("Transaction Details", () => {
     expect(
       getByRole("link", { name: /** @type {string} */ (transaction.from) })
     ).toBeInTheDocument();
+  });
+
+  it("should give the ID and the addresses in full, their ends set apart, each with a Copy", () => {
+    const { getByRole } = render(TransactionDetails, baseProps);
+    const id = getByRole("link", { name: transaction.txid });
+
+    expect(
+      Array.from(id.querySelectorAll(".full-value__end"), (end) =>
+        end.textContent?.trim()
+      )
+    ).toStrictEqual([transaction.txid.slice(0, 6), transaction.txid.slice(-6)]);
+    expect(
+      getByRole("button", { name: "Copy transaction ID" })
+    ).toHaveTextContent(/^Copy$/);
+    expect(
+      getByRole("button", { name: "Copy sender's address" })
+    ).toHaveTextContent(/^Copy$/);
+    expect(
+      getByRole("button", { name: "Copy receiver's address" })
+    ).toHaveTextContent(/^Copy$/);
   });
 
   it("should show the memo as text, with hex as an option", async () => {
@@ -413,5 +469,23 @@ describe("Transaction Details", () => {
     const { container } = render(TransactionDetails, props);
 
     expect(container.firstElementChild).toMatchSnapshot();
+  });
+
+  it("should add the dollars once the price comes, on a page opened before it", async () => {
+    const { container, rerender } = render(TransactionDetails, {
+      ...baseProps,
+      market: null,
+    });
+
+    expect(getDefinition(container, "amount")).toBe("9,812.378912731 DUSK");
+
+    await rerender({ market: baseProps.market });
+
+    expect(getDefinition(container, "amount")).toBe(
+      "9,812.378912731 DUSK ($3,614.39)"
+    );
+    expect(getDefinition(container, "transaction fee")).toBe(
+      "0.000290766 DUSK (< $0.01)"
+    );
   });
 });

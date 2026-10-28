@@ -30,10 +30,11 @@
   {loading}
   className={classes}
   title="Blocks"
+  variant="section"
   headerButtonDetails={{
     action: () => goto("/blocks"),
     disabled: false,
-    label: "All Blocks",
+    label: "All blocks",
   }}
 >
   {#if isSmallScreen}
@@ -41,12 +42,10 @@
       <BlocksList data={block} />
     {/each}
   {:else}
-    <BlocksTable data={blocks} className="latest-blocks-card__table" />
+    <BlocksTable
+      data={blocks}
+      className="latest-blocks-card__table"
+      showGas={false}
+    />
   {/if}
 </DataCard>
-
-<style>
-  :global(.latest-blocks-card__table .table__body .table__row) {
-    height: 3.4375rem;
-  }
-</style>

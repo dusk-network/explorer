@@ -2,26 +2,35 @@
   width: 100%;
   height: var(--progress-bar-height);
   background-color: var(--progress-bg-color);
-  border-radius: var(--control-border-radius-size);
+  border-radius: 999px;
   overflow-x: hidden;
 }
 
 .dusk-progress-bar__filler {
   height: 100%;
   background-color: var(--progress-filler-color);
+  border-radius: 999px;
   position: relative;
 }
 
 .dusk-progress-bar__filler--undetermined {
-  width: 100%;
-  animation: progressBarAnimation 2s infinite;
+  width: 20%;
+  animation: progressBarAnimation 1.6s ease-in-out infinite;
 }
 
 @keyframes progressBarAnimation {
   0% {
-    left: -100%;
+    left: -20%;
   }
   100% {
     left: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dusk-progress-bar__filler--undetermined {
+    animation: none;
+    width: 100%;
+    opacity: 0.4;
   }
 }

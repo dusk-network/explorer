@@ -24,6 +24,20 @@
   /** @type {boolean} */
   export let isSmallScreen;
 
+  /**
+   * The account whose page lists the transactions, if any.
+   *
+   * @type {string | undefined}
+   */
+  export let account = undefined;
+
+  /**
+   * A page of its own, or a section of an account's page.
+   *
+   * @type {"page" | "section"}
+   */
+  export let variant = "page";
+
   const ITEMS_TO_DISPLAY = get(appStore).chainInfoEntries;
 
   let itemsToDisplay = ITEMS_TO_DISPLAY;
@@ -58,15 +72,24 @@
   };
 </script>
 
-<DataCard on:retry data={txns} {error} {loading} title="Transactions">
+<DataCard
+  on:retry
+  data={txns}
+  emptyText="No transactions yet."
+  {error}
+  {loading}
+  title="Transactions"
+  {variant}
+>
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedTxns as txn (txn)}
-        <TransactionsList data={txn} mode="full" {names} />
+        <TransactionsList {account} data={txn} {names} />
       {/each}
     </div>
   {:else}
     <TransactionsTable
+      {account}
       data={displayedTxns}
       displayTooltips={true}
       mode="full"
@@ -78,7 +101,7 @@
       >{displayedTxns.length} of {txns?.length ?? 0}</span
     >
     {#if hasMore}
-      <Button on:click={loadMoreItems} text="Show More" variant="tertiary" />
+      <Button on:click={loadMoreItems} text="Show more" variant="secondary" />
     {/if}
   </svelte:fragment>
 </DataCard>

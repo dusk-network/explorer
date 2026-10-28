@@ -1,24 +1,18 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { mdiArrowLeft, mdiArrowRight } from "@mdi/js";
-  import { AppAnchorButton, DataCard, ListItem } from "$lib/components";
+  import { mdiArrowLeft, mdiArrowRight, mdiCubeOutline } from "@mdi/js";
   import {
-    Card,
-    CopyButton,
-    ProgressBar,
-    RelativeTime,
-    Switch,
-  } from "$lib/dusk/components";
+    AppAnchorButton,
+    DataCard,
+    FullValue,
+    ListItem,
+  } from "$lib/components";
+  import { CopyButton, Icon, ProgressBar, Switch } from "$lib/dusk/components";
   import { formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
   import { createValueFormatter } from "$lib/dusk/value";
-  import {
-    calculateAdaptiveCharCount,
-    makeClassName,
-    middleEllipsis,
-  } from "$lib/dusk/string";
-  import { onMount } from "svelte";
+  import { makeClassName } from "$lib/dusk/string";
   import "./BlockDetails.css";
 
   /** @type {string | Undefined} */
@@ -38,25 +32,14 @@
 
   const formatter = createValueFormatter("en");
 
-  /** @type {Number} */
-  let screenWidth = window.innerWidth;
-
   /** @type {Boolean} */
   let isPayloadToggled = false;
 
-  $: classes = makeClassName(["block-details", className]);
-
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-
-      screenWidth = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(document.body);
-
-    return () => resizeObserver.disconnect();
-  });
+  $: classes = makeClassName(["block-details", "detail-page", className]);
+  $: count = data ? data.transactions.data.length : 0;
+  $: ({ gasLimit, gasUsed } = data
+    ? data.transactions.stats
+    : { gasLimit: 0, gasUsed: 0 });
 </script>
 
 <DataCard
@@ -65,107 +48,87 @@
   {error}
   {loading}
   className={classes}
-  title="Block Details"
+  title="Block"
+  variant="detail"
 >
-  <dl class="block-details__list">
-    <!-- HEIGHT -->
-    <ListItem
-      tooltipText="The height of the block indicates the length of the block chain and is increased with each additional block"
+  <!-- The block's height, when it came and what it holds; the blocks beside it. -->
+  <div class="block-details__summary detail-summary">
+    <span aria-hidden="true" class="row-icon"
+      ><Icon path={mdiCubeOutline} /></span
     >
-      <svelte:fragment slot="term">height</svelte:fragment>
+    <p class="block-details__summary-lines detail-summary__lines">
+      <span class="block-details__summary-text detail-summary__text"
+        >Block {formatter(data.header.height)}</span
+      >
+      <span class="block-details__summary-meta detail-summary__meta">
+        {formatDateTime(data.header.date)}
+        <span aria-hidden="true">·</span>
+        {formatter(count)}
+        {count === 1 ? "transaction" : "transactions"}
+      </span>
+    </p>
+    <nav aria-label="Blocks beside it" class="block-details__nav">
+      <AppAnchorButton
+        aria-label="Previous block"
+        className="block-details__list-anchor"
+        href="/blocks/block?id={data.header.prevblockhash}"
+        icon={{ path: mdiArrowLeft }}
+        disabled={!data.header.prevblockhash || data.header.height === 0}
+        variant="secondary"
+      />
+      <AppAnchorButton
+        aria-label="Next block"
+        className="block-details__list-anchor"
+        href="/blocks/block?id={data.header.nextblockhash}"
+        icon={{ path: mdiArrowRight }}
+        disabled={!data.header.nextblockhash}
+        variant="secondary"
+      />
+    </nav>
+  </div>
+
+  <dl class="block-details__list detail-rows">
+    <!-- BLOCK HASH -->
+    <ListItem wide>
+      <svelte:fragment slot="term">Hash</svelte:fragment>
       <svelte:fragment slot="definition">
-        <AppAnchorButton
-          aria-label="Previous block"
-          className="block-details__list-anchor"
-          href="/blocks/block?id={data.header.prevblockhash}"
-          icon={{ path: mdiArrowLeft }}
-          disabled={!data.header.prevblockhash || data.header.height === 0}
-        />
-        {formatter(data.header.height)}
-        <AppAnchorButton
-          aria-label="Next block"
-          className="block-details__list-anchor"
-          href="/blocks/block?id={data.header.nextblockhash}"
-          icon={{ path: mdiArrowRight }}
-          disabled={!data.header.nextblockhash}
+        <FullValue value={data.header.hash} />
+        <CopyButton
+          name="Block hash"
+          rawValue={data.header.hash}
+          text="Copy"
+          variant="secondary"
         />
       </svelte:fragment>
-    </ListItem>
-
-    <!-- BLOCK HASH -->
-    <ListItem tooltipText="The hash for the header of the block">
-      <svelte:fragment slot="term">hash</svelte:fragment>
-      <span class="block-details__hash" slot="definition"
-        >{middleEllipsis(
-          data.header.hash,
-          calculateAdaptiveCharCount(screenWidth, 320, 1920, 14, 66)
-        )}
-        <CopyButton rawValue={data.header.hash} name="Block hash" />
-      </span>
-    </ListItem>
-
-    <!-- TIMESTAMP -->
-    <ListItem tooltipText="The date and time the block was created">
-      <svelte:fragment slot="term">timestamp</svelte:fragment>
-      <RelativeTime
-        autoRefresh={true}
-        className="block-details__list-timestamp"
-        date={data.header.date}
-        slot="definition"
-        ><svelte:fragment let:relativeTime
-          >{`${formatDateTime(data.header.date)} (${relativeTime})`}</svelte:fragment
-        ></RelativeTime
-      >
-    </ListItem>
-
-    <!-- TRANSACTIONS -->
-    <ListItem tooltipText="The number of transactions included in the block">
-      <svelte:fragment slot="term">transactions</svelte:fragment>
-      <svelte:fragment slot="definition"
-        >{formatter(data.transactions.data.length)}</svelte:fragment
-      >
-    </ListItem>
-
-    <!-- BLOCK FEES PAID -->
-    <ListItem
-      tooltipText="The total fees paid for the transactions in the block"
-    >
-      <svelte:fragment slot="term">block fees paid</svelte:fragment>
-      <svelte:fragment slot="definition"
-        >{formatDuskExact(data.header.feespaid)} DUSK</svelte:fragment
-      >
     </ListItem>
 
     <!-- BLOCK REWARD -->
     <ListItem
       tooltipText="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
     >
-      <svelte:fragment slot="term">block reward</svelte:fragment>
+      <svelte:fragment slot="term">Block reward</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatDuskExact(data.header.reward)} DUSK</svelte:fragment
       >
     </ListItem>
 
-    <!-- BLOCK GAS LIMIT -->
-    <ListItem tooltipText="The block gas limit">
-      <svelte:fragment slot="term">block gas limit</svelte:fragment>
+    <!-- BLOCK FEES PAID -->
+    <ListItem>
+      <svelte:fragment slot="term">Block fees paid</svelte:fragment>
       <svelte:fragment slot="definition"
-        >{formatter(data.transactions.stats.gasLimit)}</svelte:fragment
+        >{formatDuskExact(data.header.feespaid)} DUSK</svelte:fragment
       >
     </ListItem>
 
-    <!-- GAS USED -->
-    <ListItem tooltipText="The amount of gas used generating the block">
-      <svelte:fragment slot="term">gas used</svelte:fragment>
+    <!-- GAS USED, OF THE BLOCK'S LIMIT -->
+    <ListItem
+      tooltipText="The gas the block's transactions used, of the most a block can hold"
+    >
+      <svelte:fragment slot="term">Gas used</svelte:fragment>
       <svelte:fragment slot="definition">
-        {formatter(data.transactions.stats.gasUsed)}
-
+        {formatter(gasUsed)} of {formatter(gasLimit)}
         <ProgressBar
-          currentPercentage={data.transactions.stats.gasLimit === 0
-            ? 0
-            : (data.transactions.stats.gasUsed /
-                data.transactions.stats.gasLimit) *
-              100}
+          currentPercentage={gasLimit === 0 ? 0 : (gasUsed / gasLimit) * 100}
           className="block-details__gas-used"
           ariaLabel="Gas Used"
         />
@@ -173,51 +136,56 @@
     </ListItem>
 
     <!-- AVERAGE GAS PRICE -->
-    <ListItem
-      tooltipText="The average gas price for the transactions within the block"
-    >
-      <svelte:fragment slot="term">average gas price</svelte:fragment>
+    <ListItem>
+      <svelte:fragment slot="term">Average gas price</svelte:fragment>
       <svelte:fragment slot="definition"
-        >{formatter(data.transactions.stats.averageGasPrice)}</svelte:fragment
+        >{formatter(data.transactions.stats.averageGasPrice)} LUX</svelte:fragment
       >
     </ListItem>
-
-    <!-- STATE ROOT HASH -->
-    <ListItem tooltipText="The state root hash">
-      <svelte:fragment slot="term">state root hash</svelte:fragment>
-      <span class="block-details__hash" slot="definition"
-        >{middleEllipsis(
-          data.header.statehash,
-          calculateAdaptiveCharCount(screenWidth, 320, 1920, 14, 66)
-        )}
-        <CopyButton rawValue={data.header.statehash} name="State root hash" />
-      </span>
-    </ListItem>
-
-    <!-- HEADER -->
-    <ListItem tooltipText="The block header information">
-      <svelte:fragment slot="term">
-        <div class="block-details__switch-wrapper">
-          header
-
-          <Switch
-            aria-label="Show block header"
-            className="block-details__payload-switch"
-            onSurface={true}
-            bind:value={isPayloadToggled}
-          />
-        </div>
-      </svelte:fragment>
-
-      <svelte:fragment slot="definition">
-        {#if isPayloadToggled}
-          <Card onSurface={true} className="block-details__payload">
-            <pre>{payload
-                ? JSON.stringify(JSON.parse(payload), null, 2)
-                : "---"}</pre>
-          </Card>
-        {/if}
-      </svelte:fragment>
-    </ListItem>
   </dl>
+
+  <!-- The state root and the raw header, for those who want them. -->
+  <details class="block-details__technical detail-technical">
+    <summary class="block-details__technical-summary detail-technical__summary"
+      >Technical details</summary
+    >
+    <dl class="block-details__list detail-rows">
+      <!-- STATE ROOT HASH -->
+      <ListItem wide>
+        <svelte:fragment slot="term">State root hash</svelte:fragment>
+        <svelte:fragment slot="definition">
+          <FullValue value={data.header.statehash} />
+          <CopyButton
+            name="State root hash"
+            rawValue={data.header.statehash}
+            text="Copy"
+            variant="secondary"
+          />
+        </svelte:fragment>
+      </ListItem>
+
+      <!-- HEADER -->
+      <ListItem wide>
+        <svelte:fragment slot="term">
+          <span class="block-details__switch-wrapper detail-switch">
+            Header
+            <Switch
+              aria-label="Show block header"
+              className="block-details__payload-switch"
+              onSurface={true}
+              bind:value={isPayloadToggled}
+            />
+          </span>
+        </svelte:fragment>
+
+        <svelte:fragment slot="definition">
+          {#if isPayloadToggled}
+            <pre class="block-details__payload detail-payload">{payload
+                ? JSON.stringify(JSON.parse(payload), null, 2)
+                : "—"}</pre>
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+    </dl>
+  </details>
 </DataCard>

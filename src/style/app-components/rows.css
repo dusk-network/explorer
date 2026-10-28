@@ -1,0 +1,55 @@
+/*
+ * The pieces of a list's row, as in the web wallet's History: an icon on a
+ * round tile, a line in the muted text under the main one, and amounts with
+ * their unit muted.
+ */
+.row-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--calm-s2);
+  color: var(--calm-text);
+  flex: 0 0 auto;
+}
+
+.row-icon .dusk-icon {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+
+.row-line {
+  overflow: hidden;
+  color: var(--calm-muted);
+  font-size: 0.78125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A failed transaction says so first, in red; its amount is muted. */
+.row-failed {
+  color: var(--calm-danger);
+}
+
+.row-amount {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.row-amount--muted {
+  color: var(--calm-subtle);
+  font-weight: 400;
+}
+
+.row-unit {
+  color: var(--calm-muted);
+  font-weight: 400;
+}
+
+/* In a row, a DuskEVM receiver stays on its line, cut at its end if need be. */
+.transaction__parties .transaction-party--evm,
+.transaction-row__parties .transaction-party--evm {
+  white-space: nowrap;
+}

@@ -15,6 +15,14 @@
   /** @type {string} */
   export let tooltipText = "";
 
+  /**
+   * A long value, as an address or a hash: it goes under its label, across
+   * the list, instead of beside it.
+   *
+   * @type {boolean}
+   */
+  export let wide = false;
+
   const context = getContext("DUSK:list-item:context") || "";
   const helpId = `list-item-help-${++helpCount}`;
 </script>
@@ -22,6 +30,7 @@
 <dt
   class="details-list__term"
   class:details-list__term--table={context === contexts.LIST_ITEM.DETAIL_LIST}
+  class:details-list__term--wide={wide}
 >
   <div class="details-list__term-layout">
     {#if tooltipText}
@@ -47,6 +56,7 @@
   class="details-list__definition"
   class:details-list__definition--table={context ===
     contexts.LIST_ITEM.DETAIL_LIST}
+  class:details-list__definition--wide={wide}
 >
   <slot name="definition" />
 </dd>

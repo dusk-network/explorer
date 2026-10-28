@@ -28,11 +28,11 @@
               "data-tooltip-type": "error",
             }
           : null),
-        text: "failed",
+        text: "Failed",
         variant: "error",
       }
     : {
-        text: "completed",
+        text: "Completed",
         variant: "success",
       };
 </script>

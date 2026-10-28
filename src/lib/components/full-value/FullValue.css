@@ -1,0 +1,24 @@
+.full-value {
+  color: var(--calm-muted);
+  font-family: var(--mono-font-family);
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+  font-size: 0.8125rem;
+  font-variant-ligatures: none;
+  line-height: 1.6;
+}
+
+.full-value__end {
+  color: var(--calm-text);
+  font-weight: 500;
+}
+
+.full-value__middle {
+  word-break: break-all;
+}
+
+/* The ending compared against an invoice stays on one line. */
+.full-value__tail {
+  white-space: nowrap;
+}

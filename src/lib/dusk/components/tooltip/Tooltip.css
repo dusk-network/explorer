@@ -2,7 +2,7 @@
   position: fixed;
   display: inline-block;
   width: max-content;
-  max-width: 40%;
+  max-width: min(40%, 22rem);
   white-space: break-spaces;
   z-index: 9999;
 
@@ -10,9 +10,13 @@
   --half-tip-size: calc(var(--tip-size) / 2);
   --tip-main-axis-offset: -0.0625em;
 
-  border-radius: var(--control-border-radius-size);
-  line-height: 1.5;
-  padding: var(--control-padding);
+  border-radius: 0.5rem;
+  background-color: var(--calm-s2);
+  box-shadow: 0 0 0 1px var(--calm-line2);
+  color: var(--calm-text);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  padding: 0.375rem 0.625rem;
   transition: opacity 0.2s ease-in-out 0s;
   opacity: 1;
 }
@@ -22,24 +26,13 @@
   opacity: 0;
 }
 
+/* One neutral tooltip: only the words of a warning or an error take colour. */
 .dusk-tooltip.dusk-tooltip-error {
-  background-color: var(--error-color);
-  color: var(--on-error-color);
-}
-
-.dusk-tooltip.dusk-tooltip-info {
-  background-color: var(--info-color);
-  color: var(--on-info-color);
-}
-
-.dusk-tooltip.dusk-tooltip-success {
-  background-color: var(--success-color);
-  color: var(--on-success-color);
+  color: var(--calm-danger);
 }
 
 .dusk-tooltip.dusk-tooltip-warning {
-  background-color: var(--warning-color);
-  color: var(--on-warning-color);
+  color: var(--calm-pending);
 }
 
 .dusk-tooltip::after {

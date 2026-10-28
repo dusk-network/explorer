@@ -1,8 +1,9 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { onMount } from "svelte";
-  import { Card, CopyButton, RelativeTime, Switch } from "$lib/dusk/components";
+  import { mdiAlertCircleOutline, mdiCheck } from "@mdi/js";
+
+  import { CopyButton, Icon, Switch } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
     createFiatFormatter,
@@ -10,23 +11,17 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import {
-    calculateAdaptiveCharCount,
-    hexToText,
-    makeClassName,
-    middleEllipsis,
-  } from "$lib/dusk/string";
+  import { hexToText, makeClassName, middleEllipsis } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
-    DataGuard,
+    FullValue,
     ListItem,
     StaleDataNotice,
-    TransactionStatus,
+    TransactionIcon,
     TransactionType,
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
-  import { addressCharPropertiesDefaults } from "$lib/constants";
   import { describeTransaction, summarizeTransaction } from "$lib/chain-info";
   import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
@@ -52,49 +47,24 @@
   const formatter = createValueFormatter("en");
   const fiatFormatter = createFiatFormatter("en", "usd");
 
-  const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
-    addressCharPropertiesDefaults;
-
-  /** From this width up, IDs and addresses show in full. */
-  const FULL_VALUES_MIN_WIDTH = 1024;
-
-  /** @type {number} */
-  let screenWidth = window.innerWidth;
-
   /** @type {boolean} */
   let isPayloadToggled = false;
 
   /** @type {boolean} */
   let isMemoHex = false;
 
-  /** @param {string} value */
-  const shorten = (value) =>
-    screenWidth >= FULL_VALUES_MIN_WIDTH
-      ? value
-      : middleEllipsis(
-          value,
-          calculateAdaptiveCharCount(
-            screenWidth,
-            minScreenWidth,
-            maxScreenWidth,
-            minCharCount,
-            maxCharCount
-          )
-        );
-
   /**
    * An amount in DUSK, every decimal of it, with its value in dollars when
-   * the price is known: on mainnet only.
+   * the price is known: on mainnet only. The price is an argument, so that
+   * an amount shown before the price came gets its dollars when it comes.
    *
    * @param {number} lux
+   * @param {number | undefined} price A DUSK's price in dollars
    */
-  const toDuskAndUsd = (lux) => {
-    const price = market?.currentPrice.usd;
-
-    return price === undefined
+  const toDuskAndUsd = (lux, price) =>
+    price === undefined
       ? `${formatDuskExact(lux)} DUSK`
       : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
-  };
 
   /**
    * A party as the leading sentence names it, at first by its short
@@ -135,19 +105,8 @@
     return short;
   };
 
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-
-      screenWidth = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(document.body);
-
-    return () => resizeObserver.disconnect();
-  });
-
-  $: classes = makeClassName(["transaction-details", className]);
+  $: classes = makeClassName(["transaction-details", "detail-page", className]);
+  $: usdPrice = market?.currentPrice.usd;
 
   // The card shows the details only once there is data.
   $: ({ amount, from, to } = data
@@ -190,65 +149,78 @@
   {error}
   {loading}
   className={classes}
-  title="Transaction Details"
+  title="Transaction"
+  variant="detail"
 >
   <!-- Who sent how much to whom, whether it went through, and when. -->
-  <p class="transaction-details__summary">
-    <span class="transaction-details__summary-text"
-      >{#await lead}{shortLead}{:then sentence}{sentence}{/await}</span
-    >
-    <span class="transaction-details__summary-meta">
-      <span class:transaction-details__summary-failed={!!data.txerror}
-        >{data.txerror ? "Failed" : "Completed"}</span
+  <div class="transaction-details__summary detail-summary">
+    <TransactionIcon transaction={data} />
+    <p class="transaction-details__summary-lines detail-summary__lines">
+      <span class="transaction-details__summary-text detail-summary__text"
+        >{#await lead}{shortLead}{:then sentence}{sentence}{/await}</span
       >
-      <span aria-hidden="true">·</span>
-      {formatDateTime(data.date)}
-    </span>
-  </p>
+      <span class="transaction-details__summary-meta detail-summary__meta">
+        <span
+          class="transaction-details__outcome"
+          class:transaction-details__summary-failed={!!data.txerror}
+          data-tooltip-id={data.txerror ? "main-tooltip" : undefined}
+          data-tooltip-text={data.txerror || undefined}
+          data-tooltip-type="error"
+          ><Icon
+            path={data.txerror ? mdiAlertCircleOutline : mdiCheck}
+          />{data.txerror ? "Failed" : "Completed"}</span
+        >
+        <span aria-hidden="true">·</span>
+        {formatDateTime(data.date)}
+      </span>
+    </p>
+  </div>
 
-  <dl class="transaction-details__list">
+  <dl class="transaction-details__list detail-rows">
     <!-- TRANSACTION ID -->
-    <ListItem tooltipText="The ID of the transaction">
+    <ListItem wide>
       <svelte:fragment slot="term">ID</svelte:fragment>
       <svelte:fragment slot="definition">
-        <AppAnchor
-          className="transaction-details__list-anchor"
-          href="/transactions/transaction?id={data.txid}"
-          >{shorten(data.txid)}</AppAnchor
-        >
-        <CopyButton rawValue={data.txid} name="Transaction ID" />
+        <span class="transaction-details__value">
+          <AppAnchor
+            className="transaction-details__list-anchor"
+            href="/transactions/transaction?id={data.txid}"
+            ><FullValue value={data.txid} /></AppAnchor
+          >
+        </span>
+        <CopyButton
+          name="Transaction ID"
+          rawValue={data.txid}
+          text="Copy"
+          variant="secondary"
+        />
       </svelte:fragment>
-    </ListItem>
-
-    <!-- STATUS -->
-    <ListItem tooltipText="The transaction status">
-      <svelte:fragment slot="term">status</svelte:fragment>
-      <svelte:fragment slot="definition"
-        ><TransactionStatus
-          className="transaction-details__status explorer-badge"
-          errorMessage={data.txerror}
-          showErrorTooltip={true}
-        /></svelte:fragment
-      >
     </ListItem>
 
     <!-- FROM -->
     {#if from}
-      <ListItem tooltipText="The sender of the transaction">
-        <svelte:fragment slot="term">from</svelte:fragment>
+      <ListItem wide={from.kind === "account"}>
+        <svelte:fragment slot="term">From</svelte:fragment>
         <svelte:fragment slot="definition">
           {#if from.kind === "account"}
-            <PrimaryName
-              address={from.address}
-              href="/accounts/?key={from.address}"
-            >
+            <span class="transaction-details__value">
+              <PrimaryName
+                address={from.address}
+                href="/accounts/?key={from.address}"
+                showAddress={false}
+              />
               <AppAnchor
                 className="transaction-details__list-anchor"
                 href="/accounts/?key={from.address}"
-                >{shorten(from.address)}</AppAnchor
+                ><FullValue value={from.address} /></AppAnchor
               >
-            </PrimaryName>
-            <CopyButton rawValue={from.address} name="Sender's address" />
+            </span>
+            <CopyButton
+              name="Sender's address"
+              rawValue={from.address}
+              text="Copy"
+              variant="secondary"
+            />
           {:else}
             <span class="transaction-details__hidden">Shielded</span>
           {/if}
@@ -259,36 +231,51 @@
     <!-- TO -->
     {#await duskEvmRecipient then duskEvm}
       {#if duskEvm}
-        <ListItem tooltipText="The DuskEVM account the deposit goes to">
-          <svelte:fragment slot="term">to</svelte:fragment>
+        <ListItem wide>
+          <svelte:fragment slot="term">To</svelte:fragment>
           <svelte:fragment slot="definition">
-            <span class="transaction-details__evm"
+            <span class="transaction-details__value transaction-details__evm"
               ><span class="transaction-details__evm-address"
-                >{shorten(duskEvm)}</span
+                ><FullValue ends={6} value={duskEvm} /></span
               > on DuskEVM</span
             >
-            <CopyButton rawValue={duskEvm} name="DuskEVM address" />
+            <CopyButton
+              name="DuskEVM address"
+              rawValue={duskEvm}
+              text="Copy"
+              variant="secondary"
+            />
           </svelte:fragment>
         </ListItem>
       {/if}
     {/await}
     {#if to?.kind === "account"}
-      <ListItem tooltipText="The receiver of the transaction">
-        <svelte:fragment slot="term">to</svelte:fragment>
+      <ListItem wide>
+        <svelte:fragment slot="term">To</svelte:fragment>
         <svelte:fragment slot="definition">
-          <PrimaryName address={to.address} href="/accounts/?key={to.address}">
+          <span class="transaction-details__value">
+            <PrimaryName
+              address={to.address}
+              href="/accounts/?key={to.address}"
+              showAddress={false}
+            />
             <AppAnchor
               className="transaction-details__list-anchor"
               href="/accounts/?key={to.address}"
-              >{shorten(to.address)}</AppAnchor
+              ><FullValue value={to.address} /></AppAnchor
             >
-          </PrimaryName>
-          <CopyButton rawValue={to.address} name="Receiver's address" />
+          </span>
+          <CopyButton
+            name="Receiver's address"
+            rawValue={to.address}
+            text="Copy"
+            variant="secondary"
+          />
         </svelte:fragment>
       </ListItem>
     {:else if to?.kind === "shielded"}
-      <ListItem tooltipText="The receiver of the transaction">
-        <svelte:fragment slot="term">to</svelte:fragment>
+      <ListItem>
+        <svelte:fragment slot="term">To</svelte:fragment>
         <span class="transaction-details__hidden" slot="definition"
           >Shielded</span
         >
@@ -297,34 +284,39 @@
 
     <!-- CONTRACT -->
     {#if data.contract}
-      <ListItem tooltipText="The contract the transaction called">
-        <svelte:fragment slot="term">contract</svelte:fragment>
+      <ListItem wide>
+        <svelte:fragment slot="term">Contract</svelte:fragment>
         <svelte:fragment slot="definition">
-          <span class="transaction-details__contract">
+          <span
+            class="transaction-details__value transaction-details__contract"
+          >
             {#await contractName then name}
               {#if name}
                 <span class="transaction-details__contract-name">{name}</span>
               {/if}
             {/await}
             <span class="transaction-details__contract-id"
-              >{shorten(data.contract)}</span
+              ><FullValue value={data.contract} /></span
             >
           </span>
-          <CopyButton rawValue={data.contract} name="Contract ID" />
+          <CopyButton
+            name="Contract ID"
+            rawValue={data.contract}
+            text="Copy"
+            variant="secondary"
+          />
         </svelte:fragment>
       </ListItem>
     {/if}
 
     <!-- AMOUNT -->
-    <ListItem
-      tooltipText="The DUSK sent to the receiver, or to the contract it called"
-    >
-      <svelte:fragment slot="term">amount</svelte:fragment>
+    <ListItem>
+      <svelte:fragment slot="term">Amount</svelte:fragment>
       <svelte:fragment slot="definition">
         {#if amount?.kind === "shielded"}
           <span class="transaction-details__hidden">Shielded</span>
         {:else if amount}
-          {toDuskAndUsd(amount.lux)}
+          {toDuskAndUsd(amount.lux, usdPrice)}
           <StaleDataNotice />
         {/if}
       </svelte:fragment>
@@ -332,51 +324,39 @@
 
     <!-- DEPOSIT, when a transfer also sends DUSK to a contract -->
     {#if amount?.kind === "value" && amount.lux && data.deposit}
-      <ListItem tooltipText="The DUSK sent to the contract it called">
-        <svelte:fragment slot="term">deposit</svelte:fragment>
+      <ListItem
+        tooltipText="The DUSK the transfer also sent to the contract it called"
+      >
+        <svelte:fragment slot="term">Deposit</svelte:fragment>
         <svelte:fragment slot="definition">
-          {toDuskAndUsd(data.deposit)}
+          {toDuskAndUsd(data.deposit, usdPrice)}
           <StaleDataNotice />
         </svelte:fragment>
       </ListItem>
     {/if}
 
     <!-- TRANSACTION FEE -->
-    <ListItem tooltipText="The fee paid for the transaction">
-      <svelte:fragment slot="term">transaction fee</svelte:fragment>
+    <ListItem>
+      <svelte:fragment slot="term">Transaction fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {toDuskAndUsd(data.feepaid)}
+        {toDuskAndUsd(data.feepaid, usdPrice)}
         <StaleDataNotice />
       </svelte:fragment>
     </ListItem>
 
-    <!-- TIMESTAMP -->
-    <ListItem tooltipText="The date and time the transaction was created">
-      <svelte:fragment slot="term">timestamp</svelte:fragment>
-      <RelativeTime
-        autoRefresh={true}
-        className="transaction-details__list-timestamp"
-        date={data.date}
-        slot="definition"
-        ><svelte:fragment let:relativeTime
-          >{`${formatDateTime(data.date)} (${relativeTime})`}</svelte:fragment
-        ></RelativeTime
-      >
-    </ListItem>
-
     <!-- TYPE -->
-    <ListItem tooltipText="The transaction type">
-      <svelte:fragment slot="term">type</svelte:fragment>
+    <ListItem>
+      <svelte:fragment slot="term">Type</svelte:fragment>
       <svelte:fragment slot="definition">
         <TransactionType {data} displayTooltips={true} />
       </svelte:fragment>
     </ListItem>
 
-    <!-- MEMO -->
-    <ListItem tooltipText="Transaction reference and additional notes">
-      <svelte:fragment slot="term">memo</svelte:fragment>
-      <svelte:fragment slot="definition">
-        <DataGuard data={data.memo}>
+    <!-- MEMO, when there is one -->
+    {#if data.memo}
+      <ListItem>
+        <svelte:fragment slot="term">Memo</svelte:fragment>
+        <svelte:fragment slot="definition">
           <span class="transaction-details__memo"
             >{memoText === null || isMemoHex ? data.memo : memoText}</span
           >
@@ -390,16 +370,16 @@
               />
             </span>
           {/if}
-        </DataGuard>
-      </svelte:fragment>
-    </ListItem>
+        </svelte:fragment>
+      </ListItem>
+    {/if}
 
     <!-- BLOCK HEIGHT -->
-    <ListItem tooltipText="The block height this transaction belongs to">
-      <svelte:fragment slot="term">block height</svelte:fragment>
+    <ListItem>
+      <svelte:fragment slot="term">Block height</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor
-          className="transaction-details__list-anchor"
+          className="transaction-details__block-link"
           href="/blocks/block?id={data.blockhash}"
           >{formatter(data.blockheight)}</AppAnchor
         ></svelte:fragment
@@ -408,34 +388,35 @@
   </dl>
 
   <!-- Gas, the nonce and the payload, for those who want them. -->
-  <details class="transaction-details__technical">
-    <summary class="transaction-details__technical-summary"
+  <details class="transaction-details__technical detail-technical">
+    <summary
+      class="transaction-details__technical-summary detail-technical__summary"
       >Technical details</summary
     >
-    <dl class="transaction-details__list">
+    <dl class="transaction-details__list detail-rows">
       <!-- GAS PRICE -->
       <ListItem
         tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
       >
-        <svelte:fragment slot="term">gas price</svelte:fragment>
+        <svelte:fragment slot="term">Gas price</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gasprice)} LUX</svelte:fragment
         >
       </ListItem>
 
       <!-- GAS LIMIT -->
-      <ListItem tooltipText="The transaction gas limit">
-        <svelte:fragment slot="term">transaction gas limit</svelte:fragment>
+      <ListItem
+        tooltipText="The most gas the transaction could use. Only the gas spent is paid for"
+      >
+        <svelte:fragment slot="term">Transaction gas limit</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gaslimit)}</svelte:fragment
         >
       </ListItem>
 
       <!-- GAS SPENT -->
-      <ListItem
-        tooltipText="The amount of gas spent generating the transaction"
-      >
-        <svelte:fragment slot="term">gas spent</svelte:fragment>
+      <ListItem>
+        <svelte:fragment slot="term">Gas spent</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gasspent)}</svelte:fragment
         >
@@ -446,50 +427,68 @@
         <ListItem
           tooltipText="The number of transactions sent from this address"
         >
-          <svelte:fragment slot="term">nonce</svelte:fragment>
+          <svelte:fragment slot="term">Nonce</svelte:fragment>
           <svelte:fragment slot="definition">{data.nonce}</svelte:fragment>
         </ListItem>
       {/if}
 
-      <!-- PAYLOAD -->
-      <ListItem tooltipText="The transaction payload">
-        <svelte:fragment slot="term">
-          <div class="transaction-details__switch-wrapper">
-            payload
-            <Switch
-              aria-label="Show payload"
-              className="transaction-details__payload-switch"
-              onSurface={true}
-              bind:value={isPayloadToggled}
-            />
-          </div>
-        </svelte:fragment>
+      <!-- PAYLOAD, when there is one -->
+      {#if data.payload}
+        <ListItem wide>
+          <svelte:fragment slot="term">
+            <span class="transaction-details__switch-wrapper detail-switch">
+              Payload
+              <Switch
+                aria-label="Show payload"
+                className="transaction-details__payload-switch"
+                onSurface={true}
+                bind:value={isPayloadToggled}
+              />
+            </span>
+          </svelte:fragment>
 
-        <svelte:fragment slot="definition">
-          {#if isPayloadToggled}
-            <Card onSurface={true} className="transaction-details__payload">
-              <pre>{data.payload
-                  ? JSON.stringify(data.payload, null, 2)
-                  : "---"}</pre>
-            </Card>
-          {/if}
-        </svelte:fragment>
-      </ListItem>
+          <svelte:fragment slot="definition">
+            {#if isPayloadToggled}
+              <pre
+                class="transaction-details__payload detail-payload">{JSON.stringify(
+                  data.payload,
+                  null,
+                  2
+                )}</pre>
+            {/if}
+          </svelte:fragment>
+        </ListItem>
+      {/if}
 
       {#if data.blobHashes.length}
         <!-- BLOB HASHES -->
-        <ListItem tooltipText="The list of blob hashes">
+        <ListItem wide>
           <svelte:fragment slot="term">Blob hashes</svelte:fragment>
           <svelte:fragment slot="definition">
             <ul class="transaction-details__blob-hashes">
               {#each data.blobHashes as blobHash (blobHash)}
                 <li class="transaction-details__blob-hash">
-                  <pre>{shorten(blobHash)}</pre>
-                  <CopyButton rawValue={blobHash} name="Blob hash" />
+                  <FullValue value={blobHash} />
+                  <CopyButton
+                    name="Blob hash"
+                    rawValue={blobHash}
+                    text="Copy"
+                    variant="secondary"
+                  />
                 </li>
               {/each}
             </ul>
           </svelte:fragment>
+        </ListItem>
+      {/if}
+
+      {#if data.txerror}
+        <!-- ERROR -->
+        <ListItem wide>
+          <svelte:fragment slot="term">Error</svelte:fragment>
+          <code class="transaction-details__error" slot="definition"
+            >{data.txerror}</code
+          >
         </ListItem>
       {/if}
     </dl>

@@ -23,5 +23,6 @@
   data-tooltip-type="info"
   data-tooltip-text="{formatDuskExact(lux)} DUSK"
 >
-  {whole}{#if decimals}.<span class="decimal-shadow">{decimals}</span>{/if} DUSK
+  {whole}{#if decimals}.<span class="decimal-shadow">{decimals}</span>{/if}
+  <span class="dusk-amount__unit">DUSK</span>
 </p>

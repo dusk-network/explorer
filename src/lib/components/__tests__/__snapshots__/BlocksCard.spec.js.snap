@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Blocks Card > should disable the \`Show More\` button is the card is in the loading state 1`] = `
+exports[`Blocks Card > should hide the \`Show more\` button if an error has occurred 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -13,83 +13,10 @@ exports[`Blocks Card > should disable the \`Show More\` button is the card is in
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Blocks — 0 Displayed Items 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Blocks
+      
     </h1>
-     
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      disabled=""
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
     <!---->
-  </header>
-  
-  <!---->
-   
-  <!---->
-  <div
-    aria-label="Loading"
-    class="dusk-progress-bar data-card__progress-bar"
-    role="progressbar"
-  >
-    <div
-      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
-    />
-  </div>
-  
-  <!---->
-   
-  <!---->
-  
-</div>
-`;
-
-exports[`Blocks Card > should hide the \`Show More\` button if an error has occurred 1`] = `
-<div
-  class="dusk-card data-card"
->
-  <!---->
-  <!---->
-  <header
-    class="data-card__header"
-    slot="header"
-  >
-    <h1
-      class="data-card__header-title"
-    >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Blocks — 0 Displayed Items 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
-    </h1>
      
     <!---->
   </header>
@@ -98,45 +25,45 @@ exports[`Blocks Card > should hide the \`Show More\` button if an error has occu
    
   <!---->
   <div
-    class="alert"
+    class="alert alert--error"
   >
-    <!---->
-    <svg
-      class="dusk-icon dusk-icon--size--large"
-      role="graphics-symbol"
-      viewBox="0 0 24 24"
+    <p
+      class="alert__title"
     >
-      <path
-        d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"
-      />
-    </svg>
-    
-    <!---->
-     
-    <header>
-      <p>
-        There was an error fetching the data.
-      </p>
-       
-      <p
-        class="alert__error-message"
-      >
-        error
-      </p>
       <!---->
-    </header>
+      <svg
+        class="dusk-icon dusk-icon--size--default"
+        role="graphics-symbol"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z"
+        />
+      </svg>
+      
+      <!---->
+      Couldn't load this.
+    </p>
+     
+    <p
+      class="alert__error-message"
+    >
+      error
+    </p>
+    <!---->
      
     <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
+      class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small"
       type="button"
     >
       <span
         class="dusk-button__text"
       >
-        Retry
+        Try again
       </span>
       <!---->
     </button>
+    <!---->
     <!---->
   </div>
   
@@ -147,9 +74,9 @@ exports[`Blocks Card > should hide the \`Show More\` button if an error has occu
 </div>
 `;
 
-exports[`Blocks Card > should hide the \`Show More\` button if there is no more data to display 1`] = `
+exports[`Blocks Card > should hide the \`Show more\` button if there is no more data to display 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -160,20 +87,10 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Blocks — 10 Displayed Items 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Blocks
+      
     </h1>
+    <!---->
      
     <!---->
   </header>
@@ -213,10 +130,10 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <th
-              class="table__header-cell align-left"
+              class="table__header-cell align-right"
             >
               <!---->
-              Gas
+              Transactions
               
               
             </th>
@@ -225,10 +142,10 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <th
-              class="table__header-cell align-left"
+              class="table__header-cell align-right"
             >
               <!---->
-              Txn(s)
+              Gas used
               
               
             </th>
@@ -237,10 +154,10 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <th
-              class="table__header-cell align-left"
+              class="table__header-cell align-right"
             >
               <!---->
-              Rewards (Dusk)
+              Reward
               
               
             </th>
@@ -265,30 +182,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=3d43be31a8cb5d3f61b4e8391800a01033d650b11c4c874210dbaa3c118474a6"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,454
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
-                datetime="2024-05-28T14:26:54.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=3d43be31a8cb5d3f61b4e8391800a01033d650b11c4c874210dbaa3c118474a6"
+                  >
+                    <!---->
+                    1,365,454
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
+                      datetime="2024-05-28T14:26:54.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -297,32 +243,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -334,13 +255,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -358,30 +307,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=2bc290511be774ec9c04e6c0ceb2469798242b997422c542a7d6b0b6f3368414"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,453
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
-                datetime="2024-05-28T14:26:51.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=2bc290511be774ec9c04e6c0ceb2469798242b997422c542a7d6b0b6f3368414"
+                  >
+                    <!---->
+                    1,365,453
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
+                      datetime="2024-05-28T14:26:51.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -390,32 +368,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -427,13 +380,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -451,30 +432,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=02f38d2e2a986cf77a70e8fe4f333ef9c5e075987891f3f526c8a57590800178"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,452
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
-                datetime="2024-05-28T14:26:47.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=02f38d2e2a986cf77a70e8fe4f333ef9c5e075987891f3f526c8a57590800178"
+                  >
+                    <!---->
+                    1,365,452
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
+                      datetime="2024-05-28T14:26:47.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -483,32 +493,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -520,13 +505,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -544,30 +557,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=c79e31ce8e6133ebfb0d85649a12167769ddc83420550faebc536e613d74d676"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,451
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
-                datetime="2024-05-28T14:26:45.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=c79e31ce8e6133ebfb0d85649a12167769ddc83420550faebc536e613d74d676"
+                  >
+                    <!---->
+                    1,365,451
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
+                      datetime="2024-05-28T14:26:45.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -576,32 +618,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -613,13 +630,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -637,30 +682,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=22ffe1b159e1b33b06d566b3ce3119af6f4bec4d2a3f6916560fe3cb30fcc1ef"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,450
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
-                datetime="2024-05-28T14:26:42.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=22ffe1b159e1b33b06d566b3ce3119af6f4bec4d2a3f6916560fe3cb30fcc1ef"
+                  >
+                    <!---->
+                    1,365,450
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
+                      datetime="2024-05-28T14:26:42.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -669,32 +743,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -706,13 +755,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -730,30 +807,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=79c2d3213df80f8113d1ca16c49b1818fb5c31d1437e0a447719491a9c1b5f85"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,449
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
-                datetime="2024-05-28T14:26:39.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=79c2d3213df80f8113d1ca16c49b1818fb5c31d1437e0a447719491a9c1b5f85"
+                  >
+                    <!---->
+                    1,365,449
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
+                      datetime="2024-05-28T14:26:39.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -762,32 +868,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -799,13 +880,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -823,30 +932,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=fb3e82e43b141409156f935afc69ccb09a59a72a10258401b539123981db571c"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,448
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
-                datetime="2024-05-28T14:26:35.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=fb3e82e43b141409156f935afc69ccb09a59a72a10258401b539123981db571c"
+                  >
+                    <!---->
+                    1,365,448
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
+                      datetime="2024-05-28T14:26:35.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -855,32 +993,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -892,13 +1005,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -916,30 +1057,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=4b402a917bf42561096a9224e6451b77b8cbdc50272013442eccb5fcc542ef12"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,447
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
-                datetime="2024-05-28T14:26:32.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=4b402a917bf42561096a9224e6451b77b8cbdc50272013442eccb5fcc542ef12"
+                  >
+                    <!---->
+                    1,365,447
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
+                      datetime="2024-05-28T14:26:32.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -948,32 +1118,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -985,13 +1130,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -1009,30 +1182,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=38d069620a7cbad7cadb10ecc797b1344284b6324ac85f5e126226a08d47398a"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,446
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
-                datetime="2024-05-28T14:26:29.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=38d069620a7cbad7cadb10ecc797b1344284b6324ac85f5e126226a08d47398a"
+                  >
+                    <!---->
+                    1,365,446
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
+                      datetime="2024-05-28T14:26:29.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -1041,32 +1243,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -1078,13 +1255,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -1102,30 +1307,59 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              <!---->
-              <a
-                class="dusk-anchor dusk-anchor--on-surface block__link"
-                href="/some-base-path/blocks/block?id=14c7d9f5e44d599a167d82a449d73daf54e32bf002c6cd5893de5f904024922a"
+              <div
+                class="block__main"
               >
-                <!---->
-                1,365,445
-                
-                <!---->
-              </a>
-              <!---->
-               
-              <time
-                class="dusk-relative-time block__time"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
-                datetime="2024-05-28T14:26:24.000Z"
-              >
-                <!---->
-                yesterday
-                
-                <!---->
-              </time>
-              <!---->
+                <span
+                  aria-hidden="true"
+                  class="row-icon"
+                >
+                  <!---->
+                  <svg
+                    class="dusk-icon dusk-icon--size--default"
+                    role="graphics-symbol"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+                    />
+                  </svg>
+                  
+                  <!---->
+                </span>
+                 
+                <div
+                  class="block__who"
+                >
+                  <a
+                    class="dusk-anchor dusk-anchor--on-surface block__link"
+                    href="/some-base-path/blocks/block?id=14c7d9f5e44d599a167d82a449d73daf54e32bf002c6cd5893de5f904024922a"
+                  >
+                    <!---->
+                    1,365,445
+                    
+                    <!---->
+                  </a>
+                  <!---->
+                   
+                  <span
+                    class="row-line"
+                  >
+                    <time
+                      class="dusk-relative-time block__time"
+                      data-tooltip-id="main-tooltip"
+                      data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
+                      datetime="2024-05-28T14:26:24.000Z"
+                    >
+                      <!---->
+                      yesterday
+                      
+                      <!---->
+                    </time>
+                    <!---->
+                  </span>
+                </div>
+              </div>
               
               
             </td>
@@ -1134,32 +1368,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
-            >
-              <!---->
-              <b
-                class="block__fee-avg-label"
-              >
-                AVG PRICE:
-              </b>
-               0
-              <br />
-               
-              <b
-                class="block__fee-total-label"
-              >
-                USED:
-              </b>
-               0
-              
-              
-            </td>
-            
-            <!---->
-             
-            <!---->
-            <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               0
@@ -1171,13 +1380,41 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
              
             <!---->
             <td
-              class="table__data-cell align-left"
+              class="table__data-cell align-right"
             >
               <!---->
               <span
-                title="16 DUSK"
+                class="block__gas"
               >
-                16
+                0
+              </span>
+               
+              <!---->
+              
+              
+            </td>
+            
+            <!---->
+             
+            <!---->
+            <td
+              class="table__data-cell align-right"
+            >
+              <!---->
+              <span
+                class="row-amount"
+              >
+                <span
+                  title="16 DUSK"
+                >
+                  16
+                </span>
+                 
+                <span
+                  class="row-unit"
+                >
+                  DUSK
+                </span>
               </span>
               
               
@@ -1197,6 +1434,18 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
     <!---->
   </div>
    
+  <footer
+    class="data-card__footer"
+  >
+    <span
+      class="data-card__count"
+    >
+      10 of 10
+    </span>
+     
+    <!---->
+    <!---->
+  </footer>
   <!---->
   
   <!---->
@@ -1208,7 +1457,7 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
 
 exports[`Blocks Card > should render the \`BlocksCard\` component 1`] = `
 <div
-  class="dusk-card data-card"
+  class="dusk-card data-card data-card--page"
 >
   <!---->
   <!---->
@@ -1219,38 +1468,58 @@ exports[`Blocks Card > should render the \`BlocksCard\` component 1`] = `
     <h1
       class="data-card__header-title"
     >
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        [
-      </span>
-       Blocks — 0 Displayed Items 
-      <span
-        aria-hidden="true"
-        class="data-card__bracket"
-      >
-        ]
-      </span>
+      Blocks
+      
     </h1>
+    <!---->
      
-    <button
-      class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default"
-      type="button"
-    >
-      <span
-        class="dusk-button__text"
-      >
-        Show More
-      </span>
-      <!---->
-    </button>
     <!---->
   </header>
   
   <!---->
    
   <!---->
+  
+  <!---->
+   
+  <!---->
+  
+</div>
+`;
+
+exports[`Blocks Card > should show no \`Show more\` button while the card is loading 1`] = `
+<div
+  class="dusk-card data-card data-card--page"
+>
+  <!---->
+  <!---->
+  <header
+    class="data-card__header"
+    slot="header"
+  >
+    <h1
+      class="data-card__header-title"
+    >
+      Blocks
+      
+    </h1>
+    <!---->
+     
+    <!---->
+  </header>
+  
+  <!---->
+   
+  <!---->
+  <div
+    aria-label="Loading"
+    class="dusk-progress-bar data-card__progress-bar"
+    role="progressbar"
+  >
+    <div
+      class="dusk-progress-bar__filler dusk-progress-bar__filler--undetermined"
+    />
+  </div>
   
   <!---->
    

@@ -85,5 +85,5 @@
 {:else if party?.kind === "shielded"}
   <span class="transaction-party transaction-party--hidden">Shielded</span>
 {:else}
-  <span class="transaction-party transaction-party--hidden">- - -</span>
+  <span class="transaction-party transaction-party--hidden">—</span>
 {/if}

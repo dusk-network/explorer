@@ -1,18 +1,19 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { CopyButton, RelativeTime } from "$lib/dusk/components";
+  import { RelativeTime } from "$lib/dusk/components";
   import { middleEllipsis } from "$lib/dusk/string";
-  import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { summarizeTransaction } from "$lib/chain-info";
+  import {
+    amountSign,
+    directionOf,
+    summarizeTransaction,
+  } from "$lib/chain-info";
   import {
     AppAnchor,
-    DataGuard,
-    DetailList,
-    ListItem,
+    TransactionIcon,
     TransactionParty,
-    TransactionStatus,
     TransactionType,
   } from "$lib/components";
 
@@ -27,15 +28,20 @@
   /** @type {Boolean} */
   export let displayTooltips = false;
 
-  /** @type {"compact" | "full"} */
-  export let mode;
-
   /**
    * The verified primary names of the listed accounts, looked up together.
    *
    * @type {Map<string, { name: string, url: string } | null>}
    */
   export let names = new Map();
+
+  /**
+   * The account whose page lists the transactions: each then says which
+   * way it went for it, by its icon and its amount's sign.
+   *
+   * @type {string | undefined}
+   */
+  export let account = undefined;
 
   /**
    * @param {Map<string, { name: string, url: string } | null>} found
@@ -48,118 +54,76 @@
   const ID_CHARS = 6;
 
   $: ({ amount, from, to } = summarizeTransaction(data));
+  $: failed = !!data.txerror;
+  $: direction = directionOf(data, account);
 </script>
 
-<DetailList>
-  <!-- TRANSACTION ID -->
-  <ListItem tooltipText={displayTooltips ? "The ID of the transaction" : ""}>
-    <svelte:fragment slot="term">ID</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <AppAnchor
-        className="transaction-details__list-link"
-        href={`/transactions/transaction?id=${data.txid}`}
-        >{middleEllipsis(data.txid, ID_CHARS)}</AppAnchor
-      >
-      <CopyButton
-        name="Transaction ID"
-        rawValue={data.txid}
-        variant="secondary"
-      />
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- TIMESTAMP -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "Time elapsed since the transaction was created"
-      : ""}
-  >
-    <svelte:fragment slot="term">relative time</svelte:fragment>
-    <RelativeTime
-      autoRefresh={autoRefreshTime}
-      data-tooltip-id="main-tooltip"
-      data-tooltip-text={formatDateTime(data.date)}
-      date={data.date}
-      className="transaction-details__list-timestamp"
-      slot="definition"
-    />
-  </ListItem>
-
-  <!-- FROM -->
-  <ListItem
-    tooltipText={displayTooltips ? "The sender of the transaction" : ""}
-  >
-    <svelte:fragment slot="term">From</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <TransactionParty name={nameOf(names, from)} party={from} />
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- TO -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The receiver of the transaction, or the contract it called"
-      : ""}
-  >
-    <svelte:fragment slot="term">To</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <TransactionParty
-        name={nameOf(names, to)}
-        party={to}
-        transaction={data}
-      />
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- AMOUNT -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The DUSK sent to the receiver, or to the contract it called"
-      : ""}
-  >
-    <svelte:fragment slot="term">Amount</svelte:fragment>
-    <svelte:fragment slot="definition">
-      {#if amount.kind === "shielded"}
-        Shielded
-      {:else}
-        <span title="{formatDuskExact(amount.lux)} DUSK"
-          >{formatDusk(amount.lux)} DUSK</span
-        >
+<!--
+  A row of the web wallet's History on a phone: who sent to whom and what it
+  did, the amount and when. The whole row opens the transaction; the names
+  open their accounts.
+-->
+<div class="transaction-row">
+  <TransactionIcon {direction} transaction={data} />
+  <div class="transaction-row__main">
+    <span class="transaction-row__parties">
+      <span class="transaction-row__party">
+        <span class="sr-only">From</span>
+        <TransactionParty name={nameOf(names, from)} party={from} />
+      </span>
+      {#if to}
+        <span aria-hidden="true" class="transaction-row__arrow">→</span>
+        <span class="transaction-row__party">
+          <span class="sr-only">To</span>
+          <TransactionParty
+            name={nameOf(names, to)}
+            party={to}
+            transaction={data}
+          />
+        </span>
       {/if}
-    </svelte:fragment>
-  </ListItem>
-
-  {#if mode === "full"}
-    <!-- TX FEE -->
-    <ListItem tooltipText={displayTooltips ? "The transaction fee amount" : ""}>
-      <svelte:fragment slot="term">Fee</svelte:fragment>
-      <svelte:fragment slot="definition">
-        <span title="{formatDuskExact(data.feepaid)} DUSK"
-          >{formatFee(data.feepaid)} DUSK</span
+    </span>
+    <span class="row-line transaction-row__line"
+      >{#if failed}<span class="row-failed transaction-row__failed">Failed</span
         >
-      </svelte:fragment>
-    </ListItem>
-  {/if}
-
-  <!-- STATUS -->
-  <ListItem tooltipText={displayTooltips ? "The transaction status" : ""}>
-    <svelte:fragment slot="term">Status</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <TransactionStatus
-        className="explorer-badge"
-        errorMessage={data.txerror}
-        showErrorTooltip={autoRefreshTime}
-      />
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- TYPE -->
-  <ListItem tooltipText={displayTooltips ? "The transaction type" : ""}>
-    <svelte:fragment slot="term">Type</svelte:fragment>
-    <svelte:fragment slot="definition"
-      ><DataGuard data={data.method && data.txtype}>
-        <TransactionType {data} {displayTooltips} showPrivacy={false} />
-      </DataGuard></svelte:fragment
+        <span aria-hidden="true">·</span>
+      {/if}
+      <TransactionType
+        {data}
+        {displayTooltips}
+        nameContract={to?.kind !== "contract"}
+        showPrivacy={false}
+      /></span
     >
-  </ListItem>
-</DetailList>
+  </div>
+  <div class="transaction-row__end">
+    {#if amount.kind === "shielded"}
+      <span class="row-amount row-amount--muted">Shielded</span>
+    {:else}
+      <span
+        class="row-amount"
+        class:row-amount--muted={failed || amount.lux === 0}
+        >{amountSign(direction, amount.lux, failed)}<span
+          title="{formatDuskExact(amount.lux)} DUSK"
+          >{formatDusk(amount.lux)}</span
+        >
+        <span class="row-unit">DUSK</span></span
+      >
+    {/if}
+    <span class="row-line transaction-row__time">
+      <RelativeTime
+        autoRefresh={autoRefreshTime}
+        data-tooltip-id="main-tooltip"
+        data-tooltip-text={formatDateTime(data.date)}
+        date={data.date}
+      />
+    </span>
+  </div>
+  <AppAnchor
+    className="transaction-row__link"
+    href={`/transactions/transaction?id=${data.txid}`}
+    ><span class="sr-only"
+      >Transaction {middleEllipsis(data.txid, ID_CHARS)}</span
+    ></AppAnchor
+  >
+</div>

@@ -5,26 +5,34 @@ exports[`Error page > should be able to render the error page even without an er
   <section
     class="error-message svelte-1j96wlh"
   >
+    <p
+      class="error-message__status svelte-1j96wlh"
+    >
+      Error 200
+    </p>
+     
+    <h1
+      class="error-message__title svelte-1j96wlh"
+    >
+      Something went wrong
+    </h1>
+     
     <!---->
-    <div
-      class="dusk-card error-message__card"
+     
+    <a
+      aria-disabled="false"
+      class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default error-message__home"
+      href="/some-base-path/"
     >
       <!---->
-      <!---->
-       
-      <p
-        class="error-message__card-content"
+      <span
+        class="dusk-anchor-button__text"
       >
-        Error 200
-        <br />
-         
-      </p>
-      <!---->
-       
-      <!---->
+        Home
+      </span>
       
-    </div>
-    
+      <!---->
+    </a>
     <!---->
   </section>
   
@@ -36,26 +44,39 @@ exports[`Error page > should render the error page 1`] = `
   <section
     class="error-message svelte-1j96wlh"
   >
+    <p
+      class="error-message__status svelte-1j96wlh"
+    >
+      Error 500
+    </p>
+     
+    <h1
+      class="error-message__title svelte-1j96wlh"
+    >
+      Something went wrong
+    </h1>
+     
+    <p
+      class="error-message__detail svelte-1j96wlh"
+    >
+      some error message
+    </p>
     <!---->
-    <div
-      class="dusk-card error-message__card"
+     
+    <a
+      aria-disabled="false"
+      class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default error-message__home"
+      href="/some-base-path/"
     >
       <!---->
-      <!---->
-       
-      <p
-        class="error-message__card-content"
+      <span
+        class="dusk-anchor-button__text"
       >
-        Error 500
-        <br />
-         some error message
-      </p>
-      <!---->
-       
-      <!---->
+        Home
+      </span>
       
-    </div>
-    
+      <!---->
+    </a>
     <!---->
   </section>
   

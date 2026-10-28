@@ -1,20 +1,42 @@
 .overview-panel__details-item {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  min-width: max-content;
-}
-
-.overview-panel__details-item-title {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 0.3125rem;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 1.125rem 1.25rem 1.25rem;
+  border: 1px solid var(--calm-line2);
+  border-radius: 1rem;
 }
 
 .overview-panel__details-item-subtitle {
-  color: color-mix(in oklab, var(--on-background-color), transparent 22%);
-  font-family: var(--mono-font-family);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  margin: 0;
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+}
+
+.overview-panel__details-item-title {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.overview-panel__details-item-title p {
+  margin: 0;
+}
+
+@media (max-width: 47.99rem) {
+  .overview-panel__details-item {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.875rem;
+    border-radius: 0.875rem;
+  }
+
+  .overview-panel__details-item-title {
+    font-size: 1.125rem;
+    text-align: right;
+  }
 }

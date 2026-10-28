@@ -1,49 +1,72 @@
+/*
+ * The web wallet's search field: a filled, rounded field with the
+ * magnifier before the words. The magnifier is the button that searches.
+ */
 .textbox-button {
   display: flex;
   align-items: center;
-  background-color: var(--surface-color);
-  padding: var(--control-padding);
-  border-color: color-mix(
-    in oklab,
-    var(--on-background-color),
-    transparent 82%
-  );
-  border-radius: var(--control-border-radius-size);
-  border-style: solid;
-  border-width: var(--control-border-size);
+  gap: 0.125rem;
+  height: 2.375rem;
+  padding: 0 0.75rem 0 0.25rem;
+  border-radius: 0.625rem;
+  background-color: var(--calm-s1);
 }
 
-.dark .textbox-button,
-.dark .dusk-textbox.textbox-button__input {
-  background-color: #101014;
+.textbox-button:focus-within {
+  box-shadow:
+    0 0 0 1px var(--calm-focus),
+    0 0 0 3px var(--calm-focus-ring);
 }
 
 .dusk-textbox.textbox-button__input {
+  flex: 1;
   width: 100%;
+  min-width: 0;
+  height: 100%;
   padding: 0;
-  border: none;
+  border: 0 none;
   border-radius: 0;
-}
-
-.dark .dusk-textbox.textbox-button__input {
-  color: var(--light-grey);
+  background-color: transparent;
+  color: var(--calm-text);
+  font-size: 0.875rem;
 }
 
 .dusk-textbox.textbox-button__input:read-write:enabled:focus {
   outline: 0 none;
-  border: none;
+  border: 0 none;
   box-shadow: none;
 }
 
-.textbox-button:focus-within {
-  border-color: var(--secondary-color-variant-dark);
-  box-shadow: 0 0 0 3px
-    color-mix(in oklab, var(--secondary-color), transparent 72%);
-  outline: 0 none;
+.textbox-button > .dusk-button.dusk-icon-button {
+  order: -1;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--calm-subtle);
 }
 
-@media (min-width: 1024px) {
+.textbox-button > .dusk-button.dusk-icon-button .dusk-icon {
+  width: 1.0625rem;
+  height: 1.0625rem;
+}
+
+.textbox-button > .dusk-button.dusk-icon-button:enabled:hover {
+  background-color: var(--calm-s2);
+  color: var(--calm-text);
+  opacity: 1;
+  scale: 1;
+}
+
+/* Phones: a 44px field, and text big enough not to zoom the page. */
+@media (max-width: 47.99rem) {
   .textbox-button {
-    transition: width 0.5s ease-in-out;
+    height: 2.75rem;
+  }
+
+  .dusk-textbox.textbox-button__input {
+    font-size: 1rem;
   }
 }

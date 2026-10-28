@@ -1,11 +1,9 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { onMount } from "svelte";
-
   import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
-  import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
+  import { middleEllipsis } from "$lib/dusk/string";
   import { AppAnchor, DetailList, ListItem } from "$lib/components";
 
   import "./ProvisionersList.css";
@@ -25,50 +23,22 @@
   /** @type {Boolean} */
   export let displayTooltips = false;
 
-  /** @type {number} */
-  let screenWidth = window.innerWidth;
-
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-
-      screenWidth = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(document.body);
-
-    return () => resizeObserver.disconnect();
-  });
-
-  $: adaptiveCharCount = calculateAdaptiveCharCount(
-    screenWidth,
-    320,
-    1024,
-    4,
-    25
-  );
-  $: provisionerKey = middleEllipsis(data.key, adaptiveCharCount);
+  /** Lists show an address as its first and last six characters. */
+  const ADDRESS_CHARS = 6;
 </script>
 
 <DetailList className="provisioners-list">
   <!-- RANK AND STAKING ADDRESS -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "Rank by stake, and the staking address. Open it for its stake and rewards."
-      : ""}
-  >
+  <ListItem>
     <svelte:fragment slot="term">Provisioner</svelte:fragment>
     <svelte:fragment slot="definition">
       <span class="provisioners-list__rank">#{data.rank}</span>
       <AppAnchor
         className="provisioners-list__staking-address"
-        href="/accounts/?key={data.key}">{provisionerKey}</AppAnchor
+        href="/accounts/?key={data.key}"
+        >{middleEllipsis(data.key, ADDRESS_CHARS)}</AppAnchor
       >
-      <CopyButton
-        name="Staking address"
-        rawValue={data.key}
-        variant="secondary"
-      />
+      <CopyButton name="Staking address" rawValue={data.key} />
     </svelte:fragment>
   </ListItem>
 
@@ -130,7 +100,7 @@
           <AppAnchor
             className="provisioners-list__staking-address"
             href="/accounts/?key={data.ownerAddress}"
-            >{middleEllipsis(data.ownerAddress, adaptiveCharCount)}</AppAnchor
+            >{middleEllipsis(data.ownerAddress, ADDRESS_CHARS)}</AppAnchor
           >
         {:else}
           <span class="provisioners-list__staking-address"

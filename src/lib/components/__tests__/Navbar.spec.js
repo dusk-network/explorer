@@ -3,8 +3,9 @@ import { act, cleanup, fireEvent, render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import * as appNavigation from "$app/navigation";
 
-import { hostProvisioners } from "$lib/mock-data";
+import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
 import { resolveDuskName } from "$lib/dusk-domains";
+import { appStore } from "$lib/stores";
 
 import { Navbar } from "..";
 
@@ -53,31 +54,65 @@ describe("Navbar", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  it("should hide the mobile menu after a navigation event", async () => {
+  it("should mark the page shown among the pages", () => {
+    const { getByRole } = render(Navbar);
+    const pages = getByRole("navigation", { name: "Explorer pages" });
+
+    // The tests' page is the home page.
+    expect(getByRole("link", { name: "Home" })).toHaveAttribute(
+      "aria-current",
+      "page"
+    );
+    expect(
+      Array.from(pages.querySelectorAll("a"), (link) => [
+        link.textContent?.trim(),
+        link.getAttribute("aria-current"),
+      ])
+    ).toStrictEqual([
+      ["Home", "page"],
+      ["Blocks", null],
+      ["Transactions", null],
+      ["Provisioners", null],
+      ["Tokens", null],
+    ]);
+  });
+
+  it("should give the network and whether its node answered", async () => {
     const { container } = render(Navbar);
-
-    const btnMenuToggle = /** @type {HTMLButtonElement} */ (
-      container.querySelector(".dusk-navbar__toggle")
+    const network = /** @type {HTMLElement} */ (
+      container.querySelector(".dusk-navbar__network")
     );
-    const menu = /** @type {HTMLDivElement} */ (
-      container.querySelector(".dusk-navbar__menu")
+    const dot = /** @type {HTMLElement} */ (
+      network.querySelector(".dusk-navbar__network-dot")
     );
 
-    expect(menu).toHaveClass("dusk-navbar__menu--hidden");
-    expect(btnMenuToggle).toHaveAttribute("aria-expanded", "false");
+    expect(network).toHaveTextContent(/^Unknown$/);
+    expect(dot).not.toHaveClass("dusk-navbar__network-dot--online");
 
-    await fireEvent.click(btnMenuToggle);
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
 
-    expect(menu).not.toHaveClass("dusk-navbar__menu--hidden");
-    expect(btnMenuToggle).toHaveAttribute("aria-expanded", "true");
+    expect(network).toHaveTextContent(/^Testnet$/);
+    expect(dot).toHaveClass("dusk-navbar__network-dot--online");
 
-    await act(() => {
-      // @ts-expect-error we don't care for navigation details
-      afterNavigateCallback();
-    });
+    await act(() =>
+      // eslint-disable-next-line camelcase
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+    );
+  });
 
-    expect(menu).toHaveClass("dusk-navbar__menu--hidden");
-    expect(btnMenuToggle).toHaveAttribute("aria-expanded", "false");
+  it("should move the phone's pages bar out of the keyboard's way while a field is typed in", async () => {
+    const { container, getByRole } = render(Navbar);
+    const nav = /** @type {HTMLElement} */ (container.querySelector("nav"));
+
+    expect(nav).not.toHaveClass("dusk-navbar--typing");
+
+    await fireEvent.focusIn(getByRole("textbox"));
+
+    expect(nav).toHaveClass("dusk-navbar--typing");
+
+    await fireEvent.focusOut(getByRole("textbox"));
+
+    expect(nav).not.toHaveClass("dusk-navbar--typing");
   });
 
   it("should hide the search notification when its close button is clicked", async () => {
@@ -178,42 +213,13 @@ describe("Navbar", () => {
     vi.unstubAllGlobals();
   });
 
-  it("should give the opened menu the screen below where it starts, as under a test network's strip, and let it scroll", async () => {
+  it("should keep the search at the top, out of the pages, with no menu to open for it", () => {
     const { container, getByRole } = render(Navbar);
-    const menu = /** @type {HTMLElement} */ (
-      container.querySelector(".dusk-navbar__menu")
-    );
-    let top = 196;
-    const rect = vi
-      .spyOn(menu, "getBoundingClientRect")
-      .mockImplementation(() => /** @type {DOMRect} */ ({ top }));
+    const pages = getByRole("navigation", { name: "Explorer pages" });
 
-    await fireEvent.click(getByRole("button", { name: "Toggle Menu" }));
-
-    await vi.waitFor(() =>
-      expect(menu.style.getPropertyValue("--menu-top")).toBe("196px")
-    );
-
-    // A notice under the search pushes the menu down.
-    top = 330;
-    await showSearchNotification(container);
-
-    await vi.waitFor(() =>
-      expect(menu.style.getPropertyValue("--menu-top")).toBe("330px")
-    );
-
-    rect.mockRestore();
-  });
-
-  it("should keep the search out of the menu, so phones show it without opening the menu", () => {
-    const { container } = render(Navbar);
-    const menu = /** @type {HTMLDivElement} */ (
-      container.querySelector("#dusk-navbar-menu")
-    );
-
-    expect(menu).toHaveClass("dusk-navbar__menu--hidden");
-    expect(menu.querySelector("form")).toBeNull();
+    expect(pages.querySelector("form")).toBeNull();
     expect(container.querySelector(".dusk-navbar__search form")).not.toBeNull();
+    expect(container.querySelector("[aria-expanded]")).toBeNull();
   });
 
   it("should search the .dusk name the notification suggests", async () => {

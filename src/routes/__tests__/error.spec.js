@@ -40,4 +40,25 @@ describe("Error page", () => {
     expect(container).toMatchSnapshot();
     pageStoreSpy.mockRestore();
   });
+
+  it("should say a page wasn't found plainly, and lead home", () => {
+    const pageStoreSpy = vi.spyOn(appStores, "page", "get").mockReturnValue(
+      readable({
+        ...storeWithoutError,
+        error: new Error("Not Found"),
+        status: 404,
+      })
+    );
+    const { getByRole, queryByText } = render(ErrorPage, baseOptions);
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent(
+      /^Page not found$/
+    );
+    expect(queryByText("Not Found")).toBeNull();
+    expect(getByRole("link", { name: "Home" })).toHaveAttribute(
+      "href",
+      "/some-base-path/"
+    );
+    pageStoreSpy.mockRestore();
+  });
 });

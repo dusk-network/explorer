@@ -1,32 +1,92 @@
+/* The rows of the web wallet's History: who, what, when and how much. */
+.transactions-table .table__data-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* The transaction's words take the room left, and are cut to fit it. */
+.transactions-table .table__data-cell:first-child {
+  width: 100%;
+  max-width: 0;
+}
+
+.transaction__main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  min-height: 2.375rem;
+}
+
+.transaction__who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.transaction__parties {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* The sender keeps its width; the receiver is cut to fit, with an ellipsis. */
+.transaction__party,
+.transaction__arrow {
+  flex: 0 0 auto;
+}
+
+.transaction__party:last-child:not(:first-child) {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction__arrow {
+  color: var(--calm-subtle);
+  font-weight: 400;
+}
+
+/* The type and its method read as one line, cut at its end if need be. */
+.transaction__line .transaction-type,
+.transaction__line .transaction-type__call {
+  display: inline;
+}
+
+.transaction__failed[data-tooltip-id] {
+  cursor: help;
+}
+
 .transaction__transaction-id-container {
   display: flex;
   align-items: center;
-  gap: var(--default-gap);
+  gap: 0.125rem;
 }
 
-.transaction__time {
+.transaction__link {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.transaction__time,
+.transaction__fee {
+  color: var(--calm-muted);
+  white-space: nowrap;
+}
+
+.transaction__fee .row-unit {
+  color: var(--calm-subtle);
+}
+
+/* On the home page, the time goes under the amount. */
+.transactions-table--compact .row-amount,
+.transactions-table--compact .transaction__time {
   display: block;
-  font-size: 0.75rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.2rem;
-}
-
-.transaction__failed {
-  color: var(--badge-error-color);
-}
-
-/* Sender above receiver, in one column. */
-.transaction__party {
-  display: block;
-  line-height: 1.6;
-}
-
-.transaction__muted {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
-}
-
-/* The home page's table sits in half the width. */
-.transactions-table--compact .table__header-cell,
-.transactions-table--compact .table__data-cell {
-  padding-inline: 0.625rem;
 }

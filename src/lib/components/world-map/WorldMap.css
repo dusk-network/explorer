@@ -1,50 +1,33 @@
+/* The land in a quiet neutral, and each node location as a dot. */
 .nodes-world-map {
+  display: block;
   aspect-ratio: 2;
   width: 100%;
   height: auto;
   max-height: 805px;
+  color: var(--calm-s3);
 }
 
 .nodes-world-map__location {
-  color: var(--secondary-color-variant-dark);
+  color: var(--calm-text);
   cursor: default;
   outline: none;
-  transition: color 0.2s ease;
-}
-
-.dark .nodes-world-map__location {
-  color: var(--secondary-color);
 }
 
 .nodes-world-map__location-ring {
-  fill: color-mix(in oklab, currentColor, transparent 82%);
-  stroke: color-mix(in oklab, currentColor, transparent 38%);
-  stroke-width: 1.25px;
+  fill: color-mix(in oklab, currentColor, transparent 85%);
+  stroke: color-mix(in oklab, currentColor, transparent 55%);
+  stroke-width: 1px;
 }
 
 .nodes-world-map__location-core {
   fill: currentColor;
-  stroke: color-mix(in oklab, var(--surface-color), transparent 8%);
+  stroke: var(--calm-s0);
   stroke-width: 1.5px;
-}
-
-.nodes-world-map__location:hover,
-.nodes-world-map__location:focus-visible {
-  color: var(--secondary-color);
-}
-
-.dark .nodes-world-map__location:hover,
-.dark .nodes-world-map__location:focus-visible {
-  color: var(--secondary-color-variant-light);
 }
 
 .nodes-world-map__location:hover .nodes-world-map__location-ring,
 .nodes-world-map__location:focus-visible .nodes-world-map__location-ring {
-  fill: color-mix(in oklab, currentColor, transparent 74%);
+  fill: color-mix(in oklab, currentColor, transparent 75%);
   stroke: currentColor;
-}
-
-.nodes-world-map__location:hover .nodes-world-map__location-core,
-.nodes-world-map__location:focus-visible .nodes-world-map__location-core {
-  stroke: var(--surface-color);
 }

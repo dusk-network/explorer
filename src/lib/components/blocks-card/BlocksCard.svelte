@@ -3,6 +3,7 @@
 <script>
   import { get } from "svelte/store";
   import { BlocksList, BlocksTable, DataCard } from "$lib/components";
+  import { Button } from "$lib/dusk/components";
   import { appStore } from "$lib/stores";
 
   /** @type {Block[] | null}*/
@@ -25,8 +26,7 @@
   let displayedBlocks;
 
   $: displayedBlocks = blocks ? blocks.slice(0, itemsToDisplay) : [];
-  $: isLoadMoreDisabled =
-    (blocks && itemsToDisplay >= blocks.length) || (loading && blocks === null);
+  $: hasMore = Boolean(blocks && itemsToDisplay < blocks.length);
 
   const loadMoreItems = () => {
     if (blocks && itemsToDisplay < blocks.length) {
@@ -35,20 +35,7 @@
   };
 </script>
 
-<DataCard
-  on:retry
-  data={blocks}
-  {error}
-  {loading}
-  title="Blocks — {displayedBlocks.length} Displayed Items"
-  headerButtonDetails={error || (!loading && isLoadMoreDisabled)
-    ? undefined
-    : {
-        action: () => loadMoreItems(),
-        disabled: isLoadMoreDisabled,
-        label: "Show More",
-      }}
->
+<DataCard on:retry data={blocks} {error} {loading} title="Blocks">
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedBlocks as block (block)}
@@ -58,4 +45,12 @@
   {:else}
     <BlocksTable data={displayedBlocks} className="data-card__table" />
   {/if}
+  <svelte:fragment slot="footer">
+    <span class="data-card__count"
+      >{displayedBlocks.length} of {blocks?.length ?? 0}</span
+    >
+    {#if hasMore}
+      <Button on:click={loadMoreItems} text="Show more" variant="secondary" />
+    {/if}
+  </svelte:fragment>
 </DataCard>

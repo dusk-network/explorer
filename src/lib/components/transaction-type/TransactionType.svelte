@@ -1,6 +1,5 @@
 <script>
-  import { Badge } from "$lib/dusk/components";
-  import { summarizeTransaction } from "$lib/chain-info";
+  import { directionOf } from "$lib/chain-info";
   import { describeCall } from "$lib/contracts";
   import { appStore } from "$lib/stores";
   import "./TransactionType.css";
@@ -19,6 +18,14 @@
    */
   export let showPrivacy = true;
 
+  /**
+   * Whether a call with no plain words for it is named by its contract. A
+   * row whose receiver already is the contract says "Contract call".
+   *
+   * @type {boolean}
+   */
+  export let nameContract = true;
+
   const isAccountsPage = $page.url.pathname.includes("accounts");
 
   /**
@@ -33,28 +40,22 @@
   ]);
 
   /**
-   * @param {Transaction} transaction
-   * @returns {"in" | "out" | "self" | undefined}
+   * On an account's page, a transfer says which way it went for the
+   * account, as the web wallet's History does.
+   *
+   * @type {Record<"in" | "out" | "self", string>}
    */
-  const getTransactionDirection = (transaction) => {
-    const key = $page.url.searchParams.get("key");
-    const { from, to } = summarizeTransaction(transaction);
-    const sender = from?.kind === "account" ? from.address : undefined;
-    const receiver = to?.kind === "account" ? to.address : undefined;
-
-    if (key === sender && key === receiver) {
-      return "self";
-    }
-    if (key === sender) {
-      return "out";
-    }
-    if (key === receiver) {
-      return "in";
-    }
-    return undefined;
+  const directionWords = {
+    in: "Received",
+    out: "Sent",
+    self: "Sent to itself",
   };
 
   $: isPublic = data.txtype.toLowerCase() === "moonlight";
+  $: direction =
+    isAccountsPage && !data.contract && data.method === "transfer"
+      ? directionOf(data, $page.url.searchParams.get("key"))
+      : undefined;
 
   /**
    * What a transaction shows everyone. A shielded call hides its sender and
@@ -76,7 +77,10 @@
   // A call shows plain words, or the contract's name, beside its method.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
-        .then(({ label, name }) => label ?? name ?? "Contract call")
+        .then(
+          ({ label, name }) =>
+            label ?? (nameContract ? name : null) ?? "Contract call"
+        )
         .catch(() => "Contract call")
     : Promise.resolve(plainTypes.get(data.method) ?? data.method);
 </script>
@@ -93,24 +97,18 @@
     >
   {/if}
   <span class="transaction-type__call">
-    {#await callLabel then label}
-      <span class="transaction-type__label">{label}</span>
-    {/await}
+    {#if direction}
+      <span class="transaction-type__label transaction-type__direction"
+        >{directionWords[direction]}</span
+      >
+    {:else}
+      {#await callLabel then label}
+        <span class="transaction-type__label">{label}</span>
+      {/await}
+    {/if}
     {#if data.contract}
       <span aria-hidden="true" class="transaction-type__separator">·</span>
       <code class="transaction-type__method">{data.method}</code>
     {/if}
   </span>
-  {#if isAccountsPage}
-    <Badge
-      className="transaction-type__direction-badge"
-      text={getTransactionDirection(data) ?? "N/A"}
-    />
-  {/if}
 </div>
-
-<style lang="postcss">
-  :global(.transaction-type__direction-badge) {
-    min-width: 5.625em;
-  }
-</style>

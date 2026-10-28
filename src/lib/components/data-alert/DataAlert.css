@@ -1,41 +1,39 @@
+/* Said plainly in the muted text, as the web wallet's empty lists are. */
 .alert {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 2.5rem);
-  min-height: 13rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 0 auto 1.25rem;
-  border: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 86%);
-  border-radius: var(--control-border-radius-size);
-  background-color: color-mix(
-    in oklab,
-    var(--surface-color),
-    var(--on-background-color) 2%
-  );
-  color: color-mix(in oklab, var(--on-background-color), transparent 18%);
-  font-family: var(--mono-font-family);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-align: center;
-  text-transform: uppercase;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--calm-line);
+  color: var(--calm-muted);
+  font-size: 0.875rem;
 }
 
-.alert .dusk-icon {
-  color: var(--secondary-color);
+.alert p {
+  margin: 0;
+}
+
+.alert__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert__title .dusk-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--calm-danger);
 }
 
 .alert__error-message {
   max-width: 44rem;
-  color: color-mix(
-    in oklab,
-    var(--badge-error-color),
-    var(--on-background-color) 12%
-  );
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-  text-align: center;
-  text-transform: none;
+  color: var(--calm-subtle);
+  font-family: var(--mono-font-family);
+  font-size: 0.78125rem;
+  overflow-wrap: anywhere;
+}
+
+.alert .dusk-button {
+  margin-top: 0.25rem;
 }

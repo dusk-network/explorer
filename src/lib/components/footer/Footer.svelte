@@ -47,12 +47,12 @@
     <Anchor
       onSurface={false}
       href="https://dusk.network/privacy-policy"
-      className="footer__link">Privacy Policy</Anchor
+      className="footer__link">Privacy policy</Anchor
     >
     <Anchor
       onSurface={false}
       href="https://dusk.network/terms-of-use"
-      className="footer__link">Terms of Use</Anchor
+      className="footer__link">Terms of use</Anchor
     >
   </div>
 
@@ -61,7 +61,7 @@
       <AppImage
         src={darkMode ? "/dusk_logo_light.svg" : "/dusk_logo.svg"}
         alt="Dusk Logo"
-        sizes="(max-width:768px) 20px, 86px"
+        sizes="72px"
       />
     </picture>
   </AppAnchor>

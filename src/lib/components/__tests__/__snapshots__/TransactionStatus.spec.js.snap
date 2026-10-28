@@ -7,7 +7,7 @@ exports[`TransactionStatus > should add tooltip info if it receives an error mes
   data-tooltip-text="Transaction failed"
   data-tooltip-type="error"
 >
-  failed
+  Failed
 </span>
 `;
 
@@ -15,7 +15,7 @@ exports[`TransactionStatus > should pass additional class names to the rendered 
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status foo bar"
 >
-  completed
+  Completed
 </span>
 `;
 
@@ -23,7 +23,7 @@ exports[`TransactionStatus > should render the status as error if it receives an
 <span
   class="dusk-badge dusk-badge--variant-error transaction-status"
 >
-  failed
+  Failed
 </span>
 `;
 
@@ -31,7 +31,7 @@ exports[`TransactionStatus > should render the transaction status 1`] = `
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status"
 >
-  completed
+  Completed
 </span>
 `;
 
@@ -39,6 +39,6 @@ exports[`TransactionStatus > shouldn't add tooltip info if there's no error mess
 <span
   class="dusk-badge dusk-badge--variant-success transaction-status"
 >
-  completed
+  Completed
 </span>
 `;

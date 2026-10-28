@@ -38,7 +38,7 @@
 
 <DetailList>
   <!-- TOKEN NAME -->
-  <ListItem tooltipText={displayTooltips ? "The name of the token." : ""}>
+  <ListItem>
     <svelte:fragment slot="term">Token</svelte:fragment>
     <svelte:fragment slot="definition">
       <AppAnchor href={`/tokens/token?name=${data.token}`}
@@ -72,11 +72,7 @@
   </ListItem>
 
   <!-- TICKER SYMBOL -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The ticker symbol used to identify the token."
-      : ""}
-  >
+  <ListItem>
     <svelte:fragment slot="term">Ticker</svelte:fragment>
     <svelte:fragment slot="definition">
       {data.ticker}
@@ -84,11 +80,7 @@
   </ListItem>
 
   <!-- CONTRACT ID -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The unique contract address of the token on the blockchain."
-      : ""}
-  >
+  <ListItem>
     <svelte:fragment slot="term">Contract ID</svelte:fragment>
     <svelte:fragment slot="definition">
       {tokensContractID}
@@ -96,11 +88,7 @@
   </ListItem>
 
   <!-- PRICE -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The current price of the token in USD."
-      : ""}
-  >
+  <ListItem>
     <svelte:fragment slot="term">Price</svelte:fragment>
     <svelte:fragment slot="definition">
       {data.price}

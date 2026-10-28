@@ -9,7 +9,7 @@ exports[`Block Details > should render the Block Details page and query the nece
   >
     <!---->
     <div
-      class="dusk-card data-card block-details"
+      class="dusk-card data-card data-card--detail block-details detail-page"
     >
       <!---->
       <!---->
@@ -20,20 +20,10 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h1
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Block Details 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
+          Block
+          
         </h1>
+        <!---->
          
         <!---->
       </header>
@@ -65,7 +55,7 @@ exports[`Block Details > should render the Block Details page and query the nece
   >
     <!---->
     <div
-      class="dusk-card data-card latest-transactions-card"
+      class="dusk-card data-card data-card--section latest-transactions-card"
     >
       <!---->
       <!---->
@@ -73,23 +63,13 @@ exports[`Block Details > should render the Block Details page and query the nece
         class="data-card__header"
         slot="header"
       >
-        <h1
+        <h2
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Transactions 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
-        </h1>
+          Transactions
+          
+        </h2>
+        <!---->
          
         <!---->
       </header>
@@ -127,7 +107,7 @@ exports[`Block Details > should render the Block Details page and query the nece
   >
     <!---->
     <div
-      class="dusk-card data-card block-details"
+      class="dusk-card data-card data-card--detail block-details detail-page"
     >
       <!---->
       <!---->
@@ -138,20 +118,10 @@ exports[`Block Details > should render the Block Details page and query the nece
         <h1
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Block Details 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
+          Block
+          
         </h1>
+        <!---->
          
         <!---->
       </header>
@@ -162,60 +132,58 @@ exports[`Block Details > should render the Block Details page and query the nece
       <div
         class="data-card__content"
       >
-        <dl
-          class="block-details__list"
+        <div
+          class="block-details__summary detail-summary"
         >
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-1"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The height of the block indicates the length of the block chain and is increased with each additional block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-1"
-                >
-                  The height of the block indicates the length of the block chain and is increased with each additional block
-                </span>
-              </button>
-              <!---->
-               
-              height
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
+          <span
+            aria-hidden="true"
+            class="row-icon"
           >
             <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+              />
+            </svg>
+            
+            <!---->
+          </span>
+           
+          <p
+            class="block-details__summary-lines detail-summary__lines"
+          >
+            <span
+              class="block-details__summary-text detail-summary__text"
+            >
+              Block 495,868
+            </span>
+             
+            <span
+              class="block-details__summary-meta detail-summary__meta"
+            >
+              Tue 16 Apr 2024, 20:07:02 UTC 
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               2
+        transactions
+            </span>
+          </p>
+           
+          <nav
+            aria-label="Blocks beside it"
+            class="block-details__nav"
+          >
             <a
               aria-disabled="false"
               aria-label="Previous block"
-              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
             >
               <!---->
@@ -238,11 +206,11 @@ exports[`Block Details > should render the Block Details page and query the nece
               <!---->
             </a>
             <!---->
-             495,868 
+             
             <a
               aria-disabled="false"
               aria-label="Next block"
-              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
             >
               <!---->
@@ -265,6 +233,83 @@ exports[`Block Details > should render the Block Details page and query the nece
               <!---->
             </a>
             <!---->
+          </nav>
+        </div>
+         
+        <dl
+          class="block-details__list detail-rows"
+        >
+          <dt
+            class="details-list__term details-list__term--wide"
+          >
+            <div
+              class="details-list__term-layout"
+            >
+              <!---->
+               
+              Hash
+              <!---->
+            </div>
+          </dt>
+           
+          <dd
+            class="details-list__definition details-list__definition--wide"
+          >
+            <!---->
+            <span
+              class="full-value"
+            >
+              <b
+                class="full-value__end"
+              >
+                bd5c99
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd159
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                77719f
+              </b>
+            </span>
+            <!---->
+             
+            <div
+              class="dusk-copy-button"
+            >
+              <button
+                aria-label="Copy block hash"
+                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
+                type="button"
+              >
+                <!---->
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  class="dusk-button__text"
+                >
+                  Copy
+                </span>
+                <!---->
+                <!---->
+              </button>
+              <!---->
+            </div>
+            <!---->
             <!---->
           </dd>
           <!---->
@@ -277,258 +322,6 @@ exports[`Block Details > should render the Block Details page and query the nece
             >
               <button
                 aria-describedby="list-item-help-2"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The hash for the header of the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-2"
-                >
-                  The hash for the header of the block
-                </span>
-              </button>
-              <!---->
-               
-              hash
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            <span
-              class="block-details__hash"
-              slot="definition"
-            >
-              bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f 
-              <div
-                class="dusk-copy-button"
-              >
-                <button
-                  aria-label="Copy block hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
-                  type="button"
-                >
-                  <!---->
-                  <!---->
-                  <svg
-                    class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                    role="graphics-symbol"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                    />
-                  </svg>
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </button>
-                <!---->
-              </div>
-              <!---->
-            </span>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-3"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The date and time the block was created"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-3"
-                >
-                  The date and time the block was created
-                </span>
-              </button>
-              <!---->
-               
-              timestamp
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            <time
-              class="dusk-relative-time block-details__list-timestamp"
-              datetime="2024-04-16T20:07:02.000Z"
-              slot="definition"
-            >
-              <!---->
-              <!---->
-              <!---->
-              Tue 16 Apr 2024, 20:07:02 UTC (last month)
-              
-              
-              
-              <!---->
-            </time>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-4"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The number of transactions included in the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-4"
-                >
-                  The number of transactions included in the block
-                </span>
-              </button>
-              <!---->
-               
-              transactions
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            2
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-5"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The total fees paid for the transactions in the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-5"
-                >
-                  The total fees paid for the transactions in the block
-                </span>
-              </button>
-              <!---->
-               
-              block fees paid
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            0.000580718 DUSK
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-6"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -552,14 +345,14 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <span
                   hidden=""
-                  id="list-item-help-6"
+                  id="list-item-help-2"
                 >
                   The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block
                 </span>
               </button>
               <!---->
                
-              block reward
+              Block reward
               <!---->
             </div>
           </dt>
@@ -578,39 +371,9 @@ exports[`Block Details > should render the Block Details page and query the nece
             <div
               class="details-list__term-layout"
             >
-              <button
-                aria-describedby="list-item-help-7"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The block gas limit"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-7"
-                >
-                  The block gas limit
-                </span>
-              </button>
               <!---->
                
-              block gas limit
+              Block fees paid
               <!---->
             </div>
           </dt>
@@ -618,7 +381,7 @@ exports[`Block Details > should render the Block Details page and query the nece
           <dd
             class="details-list__definition"
           >
-            5,000,000,000
+            0.000580718 DUSK
             <!---->
           </dd>
           <!---->
@@ -630,12 +393,12 @@ exports[`Block Details > should render the Block Details page and query the nece
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-8"
+                aria-describedby="list-item-help-4"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The amount of gas used generating the block"
+                data-tooltip-text="The gas the block's transactions used, of the most a block can hold"
                 data-tooltip-type="info"
                 type="button"
               >
@@ -654,14 +417,14 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <span
                   hidden=""
-                  id="list-item-help-8"
+                  id="list-item-help-4"
                 >
-                  The amount of gas used generating the block
+                  The gas the block's transactions used, of the most a block can hold
                 </span>
               </button>
               <!---->
                
-              gas used
+              Gas used
               <!---->
             </div>
           </dt>
@@ -669,7 +432,7 @@ exports[`Block Details > should render the Block Details page and query the nece
           <dd
             class="details-list__definition"
           >
-            580,718 
+            580,718 of 5,000,000,000 
             <div
               aria-label="Gas Used"
               class="dusk-progress-bar block-details__gas-used"
@@ -691,39 +454,9 @@ exports[`Block Details > should render the Block Details page and query the nece
             <div
               class="details-list__term-layout"
             >
-              <button
-                aria-describedby="list-item-help-9"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The average gas price for the transactions within the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-9"
-                >
-                  The average gas price for the transactions within the block
-                </span>
-              </button>
               <!---->
                
-              average gas price
+              Average gas price
               <!---->
             </div>
           </dt>
@@ -731,70 +464,68 @@ exports[`Block Details > should render the Block Details page and query the nece
           <dd
             class="details-list__definition"
           >
-            1
+            1 LUX
             <!---->
           </dd>
           <!---->
-           
-          <dt
-            class="details-list__term"
+        </dl>
+         
+        <details
+          class="block-details__technical detail-technical"
+        >
+          <summary
+            class="block-details__technical-summary detail-technical__summary"
           >
-            <div
-              class="details-list__term-layout"
+            Technical details
+          </summary>
+           
+          <dl
+            class="block-details__list detail-rows"
+          >
+            <dt
+              class="details-list__term details-list__term--wide"
             >
-              <button
-                aria-describedby="list-item-help-10"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The state root hash"
-                data-tooltip-type="info"
-                type="button"
+              <div
+                class="details-list__term-layout"
               >
                 <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
                  
-                <span
-                  hidden=""
-                  id="list-item-help-10"
+                State root hash
+                <!---->
+              </div>
+            </dt>
+             
+            <dd
+              class="details-list__definition details-list__definition--wide"
+            >
+              <!---->
+              <span
+                class="full-value"
+              >
+                <b
+                  class="full-value__end"
                 >
-                  The state root hash
+                  20bb0a
+                </b>
+                <span
+                  class="full-value__middle"
+                >
+                  677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8
                 </span>
-              </button>
+                <b
+                  class="full-value__end full-value__tail"
+                >
+                  543acb
+                </b>
+              </span>
               <!---->
                
-              state root hash
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            <span
-              class="block-details__hash"
-              slot="definition"
-            >
-              20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb 
               <div
                 class="dusk-copy-button"
               >
                 <button
                   aria-label="Copy state root hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                   type="button"
                 >
                   <!---->
@@ -811,82 +542,57 @@ exports[`Block Details > should render the Block Details page and query the nece
                   
                   <!---->
                    
+                  <span
+                    class="dusk-button__text"
+                  >
+                    Copy
+                  </span>
                   <!---->
                   <!---->
                 </button>
                 <!---->
               </div>
               <!---->
-            </span>
+              <!---->
+            </dd>
             <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
+             
+            <dt
+              class="details-list__term details-list__term--wide"
             >
-              <button
-                aria-describedby="list-item-help-11"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The block header information"
-                data-tooltip-type="info"
-                type="button"
+              <div
+                class="details-list__term-layout"
               >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
                 <!---->
                  
                 <span
-                  hidden=""
-                  id="list-item-help-11"
+                  class="block-details__switch-wrapper detail-switch"
                 >
-                  The block header information
+                  Header 
+                  <div
+                    aria-checked="false"
+                    aria-disabled="false"
+                    aria-label="Show block header"
+                    class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
+                    role="switch"
+                    tabindex="0"
+                  />
+                  <!---->
                 </span>
-              </button>
-              <!---->
-               
-              <div
-                class="block-details__switch-wrapper"
-              >
-                header 
-                <div
-                  aria-checked="false"
-                  aria-disabled="false"
-                  aria-label="Show block header"
-                  class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
-                  role="switch"
-                  tabindex="0"
-                />
                 <!---->
               </div>
+            </dt>
+             
+            <dd
+              class="details-list__definition details-list__definition--wide"
+            >
               <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
+              
+              <!---->
+            </dd>
             <!---->
-            
-            <!---->
-          </dd>
-          <!---->
-        </dl>
+          </dl>
+        </details>
         <!---->
       </div>
        
@@ -906,7 +612,7 @@ exports[`Block Details > should render the Block Details page and query the nece
   >
     <!---->
     <div
-      class="dusk-card data-card latest-transactions-card"
+      class="dusk-card data-card data-card--section latest-transactions-card"
     >
       <!---->
       <!---->
@@ -914,23 +620,13 @@ exports[`Block Details > should render the Block Details page and query the nece
         class="data-card__header"
         slot="header"
       >
-        <h1
+        <h2
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Transactions 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
-        </h1>
+          Transactions
+          
+        </h2>
+        <!---->
          
         <!---->
       </header>
@@ -961,6 +657,18 @@ exports[`Block Details > should render the Block Details page and query the nece
                   class="table__header-cell align-left"
                 >
                   <!---->
+                  Transaction
+                  
+                  
+                </th>
+                
+                <!---->
+                 
+                <!---->
+                <th
+                  class="table__header-cell align-left"
+                >
+                  <!---->
                   ID
                   
                   
@@ -969,11 +677,12 @@ exports[`Block Details > should render the Block Details page and query the nece
                 <!---->
                  
                 <!---->
+                <!---->
                 <th
                   class="table__header-cell align-left"
                 >
                   <!---->
-                  From / To
+                  Time
                   
                   
                 </th>
@@ -982,35 +691,10 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <!---->
                 <th
-                  class="table__header-cell align-left"
+                  class="table__header-cell align-right"
                 >
                   <!---->
-                  Amount (DUSK)
-                  
-                  
-                </th>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-                <th
-                  class="table__header-cell align-left"
-                >
-                  <!---->
-                  Fee (DUSK)
-                  
-                  
-                </th>
-                
-                <!---->
-                 
-                <!---->
-                <th
-                  class="table__header-cell align-left"
-                >
-                  <!---->
-                  Status
+                  Fee
                   
                   
                 </th>
@@ -1020,10 +704,10 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <!---->
                 <th
-                  class="table__header-cell align-left"
+                  class="table__header-cell align-right"
                 >
                   <!---->
-                  Type
+                  Amount
                   
                   
                 </th>
@@ -1049,6 +733,96 @@ exports[`Block Details > should render the Block Details page and query the nece
                 >
                   <!---->
                   <div
+                    class="transaction__main"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="row-icon"
+                    >
+                      <!---->
+                      <svg
+                        class="dusk-icon dusk-icon--size--default"
+                        role="graphics-symbol"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+                        />
+                      </svg>
+                      
+                      <!---->
+                    </span>
+                    <!---->
+                     
+                    <div
+                      class="transaction__who"
+                    >
+                      <span
+                        class="transaction__parties"
+                      >
+                        <span
+                          class="transaction__party"
+                        >
+                          <span
+                            class="sr-only"
+                          >
+                            From
+                          </span>
+                           
+                          <!---->
+                          <span
+                            class="transaction-party transaction-party--hidden"
+                          >
+                            —
+                          </span>
+                          
+                          <!---->
+                        </span>
+                         
+                        <!---->
+                      </span>
+                       
+                      <span
+                        class="row-line transaction__line"
+                      >
+                        <!---->
+                         
+                        <div
+                          class="transaction-type"
+                        >
+                          <!---->
+                           
+                          <span
+                            class="transaction-type__call"
+                          >
+                            <!---->
+                            <span
+                              class="transaction-type__label"
+                            >
+                              Transfer
+                            </span>
+                            
+                            <!---->
+                             
+                            <!---->
+                          </span>
+                        </div>
+                        <!---->
+                      </span>
+                    </div>
+                  </div>
+                  
+                  
+                </td>
+                
+                <!---->
+                 
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
+                  <div
                     class="transaction__transaction-id-container"
                   >
                     <a
@@ -1067,7 +841,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     >
                       <button
                         aria-label="Copy transaction ID"
-                        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                         data-tooltip-id="main-tooltip"
                         data-tooltip-text="Copy to clipboard"
                         type="button"
@@ -1093,7 +867,18 @@ exports[`Block Details > should render the Block Details page and query the nece
                     </div>
                     <!---->
                   </div>
-                   
+                  
+                  
+                </td>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
                   <span
                     class="transaction__time"
                   >
@@ -1109,8 +894,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                       <!---->
                     </time>
                     <!---->
-                     
-                    <!---->
                   </span>
                   
                   
@@ -1120,130 +903,56 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <!---->
                 <td
-                  class="table__data-cell align-left"
+                  class="table__data-cell align-right"
                 >
                   <!---->
                   <span
-                    class="transaction__party"
+                    class="transaction__fee"
                   >
                     <span
-                      class="sr-only"
+                      title="0.000290866 DUSK"
                     >
-                      From
+                      0.0003
                     </span>
                      
-                    <!---->
                     <span
-                      class="transaction-party transaction-party--hidden"
+                      class="row-unit"
                     >
-                      - - -
+                      DUSK
                     </span>
-                    
-                    <!---->
                   </span>
+                  
+                  
+                </td>
+                
+                <!---->
+                <!---->
+                 
+                <!---->
+                <td
+                  class="table__data-cell align-right"
+                >
+                  <!---->
+                  <!---->
+                  <span
+                    class="row-amount row-amount--muted"
+                  >
+                    
+                    <span
+                      title="0 DUSK"
+                    >
+                      0
+                    </span>
+                     
+                    <span
+                      class="row-unit"
+                    >
+                      DUSK
+                    </span>
+                  </span>
+                  <!---->
                    
-                  <span
-                    class="transaction__party"
-                  >
-                    <span
-                      class="sr-only"
-                    >
-                      To
-                    </span>
-                     
-                    <!---->
-                    <span
-                      class="transaction-party transaction-party--hidden"
-                    >
-                      - - -
-                    </span>
-                    
-                    <!---->
-                  </span>
-                  
-                  
-                </td>
-                
-                <!---->
-                 
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
                   <!---->
-                  <!---->
-                  <span
-                    class="transaction__muted"
-                    title="0 DUSK"
-                  >
-                    0
-                  </span>
-                  
-                  
-                  
-                </td>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
-                  <!---->
-                  <span
-                    title="0.000290866 DUSK"
-                  >
-                    0.0003
-                  </span>
-                  
-                  
-                </td>
-                
-                <!---->
-                 
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
-                  <!---->
-                  <span
-                    class="dusk-badge dusk-badge--variant-success transaction-status"
-                  >
-                    completed
-                  </span>
-                  
-                  
-                </td>
-                
-                <!---->
-                <!---->
-                 
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
-                  <!---->
-                  <div
-                    class="transaction-type"
-                  >
-                    <!---->
-                     
-                    <span
-                      class="transaction-type__call"
-                    >
-                      <span
-                        class="transaction-type__label"
-                      >
-                        Transfer
-                      </span>
-                      <!---->
-                       
-                      <!---->
-                    </span>
-                     
-                    <!---->
-                  </div>
                   
                   
                 </td>
@@ -1255,6 +964,121 @@ exports[`Block Details > should render the Block Details page and query the nece
                 class="table__row"
               >
                 <!---->
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
+                  <div
+                    class="transaction__main"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="row-icon"
+                    >
+                      <!---->
+                      <svg
+                        class="dusk-icon dusk-icon--size--default"
+                        role="graphics-symbol"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M2,5.27L3.28,4L20,20.72L18.73,22L15.65,18.92C14.5,19.3 13.28,19.5 12,19.5C7,19.5 2.73,16.39 1,12C1.69,10.24 2.79,8.69 4.19,7.46L2,5.27M12,9A3,3 0 0,1 15,12C15,12.35 14.94,12.69 14.83,13L11,9.17C11.31,9.06 11.65,9 12,9M12,4.5C17,4.5 21.27,7.61 23,12C22.18,14.08 20.79,15.88 19,17.19L17.58,15.76C18.94,14.82 20.06,13.54 20.82,12C19.17,8.64 15.76,6.5 12,6.5C10.91,6.5 9.84,6.68 8.84,7L7.3,5.47C8.74,4.85 10.33,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C12.69,17.5 13.37,17.43 14,17.29L11.72,15C10.29,14.85 9.15,13.71 9,12.28L5.6,8.87C4.61,9.72 3.78,10.78 3.18,12Z"
+                        />
+                      </svg>
+                      
+                      <!---->
+                    </span>
+                    <!---->
+                     
+                    <div
+                      class="transaction__who"
+                    >
+                      <span
+                        class="transaction__parties"
+                      >
+                        <span
+                          class="transaction__party"
+                        >
+                          <span
+                            class="sr-only"
+                          >
+                            From
+                          </span>
+                           
+                          <!---->
+                          <span
+                            class="transaction-party transaction-party--hidden"
+                          >
+                            Shielded
+                          </span>
+                          
+                          <!---->
+                        </span>
+                         
+                        <span
+                          aria-hidden="true"
+                          class="transaction__arrow"
+                        >
+                          →
+                        </span>
+                         
+                        <span
+                          class="transaction__party"
+                        >
+                          <span
+                            class="sr-only"
+                          >
+                            To
+                          </span>
+                           
+                          <!---->
+                          <span
+                            class="transaction-party transaction-party--hidden"
+                          >
+                            Shielded
+                          </span>
+                          
+                          <!---->
+                        </span>
+                        <!---->
+                      </span>
+                       
+                      <span
+                        class="row-line transaction__line"
+                      >
+                        <!---->
+                         
+                        <div
+                          class="transaction-type"
+                        >
+                          <!---->
+                           
+                          <span
+                            class="transaction-type__call"
+                          >
+                            <!---->
+                            <span
+                              class="transaction-type__label"
+                            >
+                              Transfer
+                            </span>
+                            
+                            <!---->
+                             
+                            <!---->
+                          </span>
+                        </div>
+                        <!---->
+                      </span>
+                    </div>
+                  </div>
+                  
+                  
+                </td>
+                
+                <!---->
+                 
                 <!---->
                 <td
                   class="table__data-cell align-left"
@@ -1279,7 +1103,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     >
                       <button
                         aria-label="Copy transaction ID"
-                        class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
+                        class="dusk-button dusk-button--type--button dusk-button--variant--tertiary dusk-button--size--default dusk-icon-button dusk-copy-button"
                         data-tooltip-id="main-tooltip"
                         data-tooltip-text="Copy to clipboard"
                         type="button"
@@ -1305,7 +1129,18 @@ exports[`Block Details > should render the Block Details page and query the nece
                     </div>
                     <!---->
                   </div>
-                   
+                  
+                  
+                </td>
+                
+                <!---->
+                 
+                <!---->
+                <!---->
+                <td
+                  class="table__data-cell align-left"
+                >
+                  <!---->
                   <span
                     class="transaction__time"
                   >
@@ -1321,8 +1156,6 @@ exports[`Block Details > should render the Block Details page and query the nece
                       <!---->
                     </time>
                     <!---->
-                     
-                    <!---->
                   </span>
                   
                   
@@ -1332,129 +1165,45 @@ exports[`Block Details > should render the Block Details page and query the nece
                  
                 <!---->
                 <td
-                  class="table__data-cell align-left"
+                  class="table__data-cell align-right"
                 >
                   <!---->
                   <span
-                    class="transaction__party"
+                    class="transaction__fee"
                   >
                     <span
-                      class="sr-only"
+                      title="0.000289852 DUSK"
                     >
-                      From
+                      0.0003
                     </span>
                      
-                    <!---->
                     <span
-                      class="transaction-party transaction-party--hidden"
+                      class="row-unit"
                     >
-                      Shielded
+                      DUSK
                     </span>
-                    
-                    <!---->
-                  </span>
-                   
-                  <span
-                    class="transaction__party"
-                  >
-                    <span
-                      class="sr-only"
-                    >
-                      To
-                    </span>
-                     
-                    <!---->
-                    <span
-                      class="transaction-party transaction-party--hidden"
-                    >
-                      Shielded
-                    </span>
-                    
-                    <!---->
                   </span>
                   
                   
                 </td>
                 
                 <!---->
+                <!---->
                  
                 <!---->
                 <td
-                  class="table__data-cell align-left"
+                  class="table__data-cell align-right"
                 >
                   <!---->
                   <!---->
                   <span
-                    class="transaction__muted"
+                    class="row-amount row-amount--muted"
                   >
                     Shielded
                   </span>
-                  
-                  
-                  
-                </td>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
                   <!---->
-                  <span
-                    title="0.000289852 DUSK"
-                  >
-                    0.0003
-                  </span>
-                  
-                  
-                </td>
-                
-                <!---->
-                 
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
+                   
                   <!---->
-                  <span
-                    class="dusk-badge dusk-badge--variant-success transaction-status"
-                  >
-                    completed
-                  </span>
-                  
-                  
-                </td>
-                
-                <!---->
-                <!---->
-                 
-                <!---->
-                <td
-                  class="table__data-cell align-left"
-                >
-                  <!---->
-                  <div
-                    class="transaction-type"
-                  >
-                    <!---->
-                     
-                    <span
-                      class="transaction-type__call"
-                    >
-                      <span
-                        class="transaction-type__label"
-                      >
-                        Transfer
-                      </span>
-                      <!---->
-                       
-                      <!---->
-                    </span>
-                     
-                    <!---->
-                  </div>
                   
                   
                 </td>
@@ -1495,7 +1244,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
   >
     <!---->
     <div
-      class="dusk-card data-card block-details"
+      class="dusk-card data-card data-card--detail block-details detail-page"
     >
       <!---->
       <!---->
@@ -1506,20 +1255,10 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         <h1
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Block Details 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
+          Block
+          
         </h1>
+        <!---->
          
         <!---->
       </header>
@@ -1530,60 +1269,58 @@ exports[`Block Details > should render the Transaction section of the Block Deta
       <div
         class="data-card__content"
       >
-        <dl
-          class="block-details__list"
+        <div
+          class="block-details__summary detail-summary"
         >
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-12"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The height of the block indicates the length of the block chain and is increased with each additional block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-12"
-                >
-                  The height of the block indicates the length of the block chain and is increased with each additional block
-                </span>
-              </button>
-              <!---->
-               
-              height
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
+          <span
+            aria-hidden="true"
+            class="row-icon"
           >
             <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V9.21L13,12.58V19.29L19,15.91Z"
+              />
+            </svg>
+            
+            <!---->
+          </span>
+           
+          <p
+            class="block-details__summary-lines detail-summary__lines"
+          >
+            <span
+              class="block-details__summary-text detail-summary__text"
+            >
+              Block 495,868
+            </span>
+             
+            <span
+              class="block-details__summary-meta detail-summary__meta"
+            >
+              Tue 16 Apr 2024, 20:07:02 UTC 
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               2
+        transactions
+            </span>
+          </p>
+           
+          <nav
+            aria-label="Blocks beside it"
+            class="block-details__nav"
+          >
             <a
               aria-disabled="false"
               aria-label="Previous block"
-              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=07b74b35c2c7cf8f41426cd0870bafa1a2c7adee3fdd876643548096186fc4cb"
             >
               <!---->
@@ -1606,11 +1343,11 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               <!---->
             </a>
             <!---->
-             495,868 
+             
             <a
               aria-disabled="false"
               aria-label="Next block"
-              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--primary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
+              class="dusk-anchor dusk-anchor--on-surface dusk-anchor-button dusk-anchor-button--variant--secondary dusk-anchor-button--size--default dusk-icon-button block-details__list-anchor"
               href="/some-base-path/blocks/block?id=6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204"
             >
               <!---->
@@ -1633,156 +1370,83 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               <!---->
             </a>
             <!---->
-            <!---->
-          </dd>
-          <!---->
-           
+          </nav>
+        </div>
+         
+        <dl
+          class="block-details__list detail-rows"
+        >
           <dt
-            class="details-list__term"
+            class="details-list__term details-list__term--wide"
           >
             <div
               class="details-list__term-layout"
             >
-              <button
-                aria-describedby="list-item-help-13"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The hash for the header of the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-13"
-                >
-                  The hash for the header of the block
-                </span>
-              </button>
               <!---->
                
-              hash
+              Hash
               <!---->
             </div>
           </dt>
            
           <dd
-            class="details-list__definition"
+            class="details-list__definition details-list__definition--wide"
           >
+            <!---->
             <span
-              class="block-details__hash"
-              slot="definition"
+              class="full-value"
             >
-              bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f 
-              <div
-                class="dusk-copy-button"
+              <b
+                class="full-value__end"
               >
-                <button
-                  aria-label="Copy block hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
-                  type="button"
-                >
-                  <!---->
-                  <!---->
-                  <svg
-                    class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                    role="graphics-symbol"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                    />
-                  </svg>
-                  
-                  <!---->
-                   
-                  <!---->
-                  <!---->
-                </button>
-                <!---->
-              </div>
-              <!---->
+                bd5c99
+              </b>
+              <span
+                class="full-value__middle"
+              >
+                bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd159
+              </span>
+              <b
+                class="full-value__end full-value__tail"
+              >
+                77719f
+              </b>
             </span>
             <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
+             
             <div
-              class="details-list__term-layout"
+              class="dusk-copy-button"
             >
               <button
-                aria-describedby="list-item-help-14"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The date and time the block was created"
-                data-tooltip-type="info"
+                aria-label="Copy block hash"
+                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                 type="button"
               >
                 <!---->
+                <!---->
                 <svg
-                  class="dusk-icon dusk-icon--size--default"
+                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
                   role="graphics-symbol"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
                   />
                 </svg>
                 
                 <!---->
                  
                 <span
-                  hidden=""
-                  id="list-item-help-14"
+                  class="dusk-button__text"
                 >
-                  The date and time the block was created
+                  Copy
                 </span>
+                <!---->
+                <!---->
               </button>
               <!---->
-               
-              timestamp
-              <!---->
             </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            <time
-              class="dusk-relative-time block-details__list-timestamp"
-              datetime="2024-04-16T20:07:02.000Z"
-              slot="definition"
-            >
-              <!---->
-              <!---->
-              <!---->
-              Tue 16 Apr 2024, 20:07:02 UTC (last month)
-              
-              
-              
-              <!---->
-            </time>
+            <!---->
             <!---->
           </dd>
           <!---->
@@ -1794,109 +1458,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-15"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The number of transactions included in the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-15"
-                >
-                  The number of transactions included in the block
-                </span>
-              </button>
-              <!---->
-               
-              transactions
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            2
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-16"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The total fees paid for the transactions in the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-16"
-                >
-                  The total fees paid for the transactions in the block
-                </span>
-              </button>
-              <!---->
-               
-              block fees paid
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            0.000580718 DUSK
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-17"
+                aria-describedby="list-item-help-9"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -1920,14 +1482,14 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                  
                 <span
                   hidden=""
-                  id="list-item-help-17"
+                  id="list-item-help-9"
                 >
                   The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block
                 </span>
               </button>
               <!---->
                
-              block reward
+              Block reward
               <!---->
             </div>
           </dt>
@@ -1946,39 +1508,9 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="details-list__term-layout"
             >
-              <button
-                aria-describedby="list-item-help-18"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The block gas limit"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-18"
-                >
-                  The block gas limit
-                </span>
-              </button>
               <!---->
                
-              block gas limit
+              Block fees paid
               <!---->
             </div>
           </dt>
@@ -1986,7 +1518,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition"
           >
-            5,000,000,000
+            0.000580718 DUSK
             <!---->
           </dd>
           <!---->
@@ -1998,12 +1530,12 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-19"
+                aria-describedby="list-item-help-11"
                 aria-label="More information"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
-                data-tooltip-text="The amount of gas used generating the block"
+                data-tooltip-text="The gas the block's transactions used, of the most a block can hold"
                 data-tooltip-type="info"
                 type="button"
               >
@@ -2022,14 +1554,14 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                  
                 <span
                   hidden=""
-                  id="list-item-help-19"
+                  id="list-item-help-11"
                 >
-                  The amount of gas used generating the block
+                  The gas the block's transactions used, of the most a block can hold
                 </span>
               </button>
               <!---->
                
-              gas used
+              Gas used
               <!---->
             </div>
           </dt>
@@ -2037,7 +1569,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition"
           >
-            580,718 
+            580,718 of 5,000,000,000 
             <div
               aria-label="Gas Used"
               class="dusk-progress-bar block-details__gas-used"
@@ -2059,39 +1591,9 @@ exports[`Block Details > should render the Transaction section of the Block Deta
             <div
               class="details-list__term-layout"
             >
-              <button
-                aria-describedby="list-item-help-20"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The average gas price for the transactions within the block"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-20"
-                >
-                  The average gas price for the transactions within the block
-                </span>
-              </button>
               <!---->
                
-              average gas price
+              Average gas price
               <!---->
             </div>
           </dt>
@@ -2099,70 +1601,68 @@ exports[`Block Details > should render the Transaction section of the Block Deta
           <dd
             class="details-list__definition"
           >
-            1
+            1 LUX
             <!---->
           </dd>
           <!---->
-           
-          <dt
-            class="details-list__term"
+        </dl>
+         
+        <details
+          class="block-details__technical detail-technical"
+        >
+          <summary
+            class="block-details__technical-summary detail-technical__summary"
           >
-            <div
-              class="details-list__term-layout"
+            Technical details
+          </summary>
+           
+          <dl
+            class="block-details__list detail-rows"
+          >
+            <dt
+              class="details-list__term details-list__term--wide"
             >
-              <button
-                aria-describedby="list-item-help-21"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The state root hash"
-                data-tooltip-type="info"
-                type="button"
+              <div
+                class="details-list__term-layout"
               >
                 <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
                  
-                <span
-                  hidden=""
-                  id="list-item-help-21"
+                State root hash
+                <!---->
+              </div>
+            </dt>
+             
+            <dd
+              class="details-list__definition details-list__definition--wide"
+            >
+              <!---->
+              <span
+                class="full-value"
+              >
+                <b
+                  class="full-value__end"
                 >
-                  The state root hash
+                  20bb0a
+                </b>
+                <span
+                  class="full-value__middle"
+                >
+                  677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8
                 </span>
-              </button>
+                <b
+                  class="full-value__end full-value__tail"
+                >
+                  543acb
+                </b>
+              </span>
               <!---->
                
-              state root hash
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            <span
-              class="block-details__hash"
-              slot="definition"
-            >
-              20bb0a677b93f084afadfd34bec3ac3feee33a020b81d9549afa2268e8543acb 
               <div
                 class="dusk-copy-button"
               >
                 <button
                   aria-label="Copy state root hash"
-                  class="dusk-button dusk-button--type--button dusk-button--variant--primary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-text="Copy to clipboard"
+                  class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--small dusk-icon-button--labeled dusk-copy-button"
                   type="button"
                 >
                   <!---->
@@ -2179,82 +1679,57 @@ exports[`Block Details > should render the Transaction section of the Block Deta
                   
                   <!---->
                    
+                  <span
+                    class="dusk-button__text"
+                  >
+                    Copy
+                  </span>
                   <!---->
                   <!---->
                 </button>
                 <!---->
               </div>
               <!---->
-            </span>
+              <!---->
+            </dd>
             <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
+             
+            <dt
+              class="details-list__term details-list__term--wide"
             >
-              <button
-                aria-describedby="list-item-help-22"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The block header information"
-                data-tooltip-type="info"
-                type="button"
+              <div
+                class="details-list__term-layout"
               >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
                 <!---->
                  
                 <span
-                  hidden=""
-                  id="list-item-help-22"
+                  class="block-details__switch-wrapper detail-switch"
                 >
-                  The block header information
+                  Header 
+                  <div
+                    aria-checked="false"
+                    aria-disabled="false"
+                    aria-label="Show block header"
+                    class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
+                    role="switch"
+                    tabindex="0"
+                  />
+                  <!---->
                 </span>
-              </button>
-              <!---->
-               
-              <div
-                class="block-details__switch-wrapper"
-              >
-                header 
-                <div
-                  aria-checked="false"
-                  aria-disabled="false"
-                  aria-label="Show block header"
-                  class="dusk-switch block-details__payload-switch dusk-switch--on-surface"
-                  role="switch"
-                  tabindex="0"
-                />
                 <!---->
               </div>
+            </dt>
+             
+            <dd
+              class="details-list__definition details-list__definition--wide"
+            >
               <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
+              
+              <!---->
+            </dd>
             <!---->
-            
-            <!---->
-          </dd>
-          <!---->
-        </dl>
+          </dl>
+        </details>
         <!---->
       </div>
        
@@ -2274,7 +1749,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
   >
     <!---->
     <div
-      class="dusk-card data-card latest-transactions-card"
+      class="dusk-card data-card data-card--section latest-transactions-card"
     >
       <!---->
       <!---->
@@ -2282,23 +1757,13 @@ exports[`Block Details > should render the Transaction section of the Block Deta
         class="data-card__header"
         slot="header"
       >
-        <h1
+        <h2
           class="data-card__header-title"
         >
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            [
-          </span>
-           Transactions 
-          <span
-            aria-hidden="true"
-            class="data-card__bracket"
-          >
-            ]
-          </span>
-        </h1>
+          Transactions
+          
+        </h2>
+        <!---->
          
         <!---->
       </header>
@@ -2311,1038 +1776,294 @@ exports[`Block Details > should render the Transaction section of the Block Deta
       >
         <!---->
         <!---->
-        <dl
-          class="detail-list"
+        <div
+          class="transaction-row"
         >
-          <!---->
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-23"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The ID of the transaction"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-23"
-                >
-                  The ID of the transaction
-                </span>
-              </button>
-              <!---->
-               
-              ID
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
+          <span
+            aria-hidden="true"
+            class="row-icon"
           >
             <!---->
-            <a
-              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
-              href="/some-base-path/transactions/transaction?id=3a3f6f90a1012ae751b4448bcb8e98def0ba2b18170239bd69fcf8e2e37f0602"
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
             >
-              <!---->
-              3a3f6f...7f0602
-              
-              <!---->
-            </a>
-            <!---->
-             
-            <div
-              class="dusk-copy-button"
-            >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
-              <!---->
-            </div>
-            <!---->
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-24"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="Time elapsed since the transaction was created"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-24"
-                >
-                  Time elapsed since the transaction was created
-                </span>
-              </button>
-              <!---->
-               
-              relative time
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <time
-              class="dusk-relative-time transaction-details__list-timestamp"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
-              datetime="2024-04-16T20:07:02.000Z"
-              slot="definition"
-            >
-              <!---->
-              <!---->
-              <!---->
-              last month
-              
-              
-              
-              <!---->
-            </time>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-25"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The sender of the transaction"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-25"
-                >
-                  The sender of the transaction
-                </span>
-              </button>
-              <!---->
-               
-              From
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <span
-              class="transaction-party transaction-party--hidden"
-            >
-              - - -
-            </span>
+              <path
+                d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z"
+              />
+            </svg>
             
             <!---->
-          </dd>
+          </span>
           <!---->
            
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-26"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The receiver of the transaction, or the contract it called"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-26"
-                >
-                  The receiver of the transaction, or the contract it called
-                </span>
-              </button>
-              <!---->
-               
-              To
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <span
-              class="transaction-party transaction-party--hidden"
-            >
-              - - -
-            </span>
-            
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-27"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-27"
-                >
-                  The DUSK sent to the receiver, or to the contract it called
-                </span>
-              </button>
-              <!---->
-               
-              Amount
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <span
-              title="0 DUSK"
-            >
-              0 DUSK
-            </span>
-            
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-28"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction fee amount"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-28"
-                >
-                  The transaction fee amount
-                </span>
-              </button>
-              <!---->
-               
-              Fee
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
+          <div
+            class="transaction-row__main"
           >
             <span
-              title="0.000290866 DUSK"
+              class="transaction-row__parties"
             >
-              0.0003 DUSK
-            </span>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-29"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction status"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-29"
-                >
-                  The transaction status
-                </span>
-              </button>
-              <!---->
-               
-              Status
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <span
-              class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
-            >
-              completed
-            </span>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-30"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction type"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-30"
-                >
-                  The transaction type
-                </span>
-              </button>
-              <!---->
-               
-              Type
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <!---->
-            <div
-              class="transaction-type"
-            >
-              <!---->
-               
               <span
-                class="transaction-type__call"
+                class="transaction-row__party"
               >
                 <span
-                  class="transaction-type__label"
+                  class="sr-only"
                 >
-                  Transfer
+                  From
                 </span>
-                <!---->
                  
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  —
+                </span>
+                
                 <!---->
               </span>
                
               <!---->
-            </div>
-            
-            
-            <!---->
-          </dd>
-          <!---->
-          <!---->
-        </dl>
-        <dl
-          class="detail-list"
-        >
-          <!---->
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-31"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The ID of the transaction"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-31"
-                >
-                  The ID of the transaction
-                </span>
-              </button>
-              <!---->
-               
-              ID
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <a
-              class="dusk-anchor dusk-anchor--on-surface transaction-details__list-link"
-              href="/some-base-path/transactions/transaction?id=07bfabea1d94c16f2dc3697fa642f6cecea6e81bf76b9644efbb6e2723b76d00"
-            >
-              <!---->
-              07bfab...b76d00
-              
-              <!---->
-            </a>
-            <!---->
+            </span>
              
-            <div
-              class="dusk-copy-button"
+            <span
+              class="row-line transaction-row__line"
             >
-              <button
-                aria-label="Copy transaction ID"
-                class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default dusk-icon-button dusk-copy-button"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Copy to clipboard"
-                type="button"
-              >
-                <!---->
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default dusk-button__icon"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <!---->
-                <!---->
-              </button>
               <!---->
-            </div>
-            <!---->
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-32"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="Time elapsed since the transaction was created"
-                data-tooltip-type="info"
-                type="button"
+               
+              <div
+                class="transaction-type"
               >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
                 <!---->
                  
                 <span
-                  hidden=""
-                  id="list-item-help-32"
+                  class="transaction-type__call"
                 >
-                  Time elapsed since the transaction was created
+                  <!---->
+                  <span
+                    class="transaction-type__label"
+                  >
+                    Transfer
+                  </span>
+                  
+                  <!---->
+                   
+                  <!---->
                 </span>
-              </button>
+              </div>
               <!---->
-               
-              relative time
-              <!---->
-            </div>
-          </dt>
+            </span>
+          </div>
            
-          <dd
-            class="details-list__definition details-list__definition--table"
+          <div
+            class="transaction-row__end"
           >
-            <time
-              class="dusk-relative-time transaction-details__list-timestamp"
-              data-tooltip-id="main-tooltip"
-              data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
-              datetime="2024-04-16T20:07:02.000Z"
-              slot="definition"
+            <span
+              class="row-amount row-amount--muted"
             >
-              <!---->
-              <!---->
-              <!---->
-              last month
               
-              
-              
-              <!---->
-            </time>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-33"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The sender of the transaction"
-                data-tooltip-type="info"
-                type="button"
+              <span
+                title="0 DUSK"
               >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-33"
-                >
-                  The sender of the transaction
-                </span>
-              </button>
-              <!---->
-               
-              From
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <span
-              class="transaction-party transaction-party--hidden"
-            >
-              Shielded
-            </span>
-            
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-34"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The receiver of the transaction, or the contract it called"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-34"
-                >
-                  The receiver of the transaction, or the contract it called
-                </span>
-              </button>
-              <!---->
-               
-              To
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <span
-              class="transaction-party transaction-party--hidden"
-            >
-              Shielded
-            </span>
-            
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-35"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The DUSK sent to the receiver, or to the contract it called"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-35"
-                >
-                  The DUSK sent to the receiver, or to the contract it called
-                </span>
-              </button>
-              <!---->
-               
-              Amount
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            Shielded
-            
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-36"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction fee amount"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-36"
-                >
-                  The transaction fee amount
-                </span>
-              </button>
-              <!---->
-               
-              Fee
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <span
-              title="0.000289852 DUSK"
-            >
-              0.0003 DUSK
-            </span>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-37"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction status"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-37"
-                >
-                  The transaction status
-                </span>
-              </button>
-              <!---->
-               
-              Status
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <span
-              class="dusk-badge dusk-badge--variant-success transaction-status explorer-badge"
-            >
-              completed
-            </span>
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term details-list__term--table"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-38"
-                aria-label="More information"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The transaction type"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-38"
-                >
-                  The transaction type
-                </span>
-              </button>
-              <!---->
-               
-              Type
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition details-list__definition--table"
-          >
-            <!---->
-            <!---->
-            <div
-              class="transaction-type"
-            >
-              <!---->
+                0
+              </span>
                
               <span
-                class="transaction-type__call"
+                class="row-unit"
+              >
+                DUSK
+              </span>
+            </span>
+            <!---->
+             
+            <span
+              class="row-line transaction-row__time"
+            >
+              <time
+                class="dusk-relative-time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                datetime="2024-04-16T20:07:02.000Z"
+              >
+                <!---->
+                <!---->
+                <!---->
+                last month
+                
+                
+                
+                <!---->
+              </time>
+              <!---->
+            </span>
+          </div>
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-row__link"
+            href="/some-base-path/transactions/transaction?id=3a3f6f90a1012ae751b4448bcb8e98def0ba2b18170239bd69fcf8e2e37f0602"
+          >
+            <!---->
+            <span
+              class="sr-only"
+            >
+              Transaction 3a3f6f...7f0602
+            </span>
+            
+            <!---->
+          </a>
+          <!---->
+        </div>
+        <div
+          class="transaction-row"
+        >
+          <span
+            aria-hidden="true"
+            class="row-icon"
+          >
+            <!---->
+            <svg
+              class="dusk-icon dusk-icon--size--default"
+              role="graphics-symbol"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M2,5.27L3.28,4L20,20.72L18.73,22L15.65,18.92C14.5,19.3 13.28,19.5 12,19.5C7,19.5 2.73,16.39 1,12C1.69,10.24 2.79,8.69 4.19,7.46L2,5.27M12,9A3,3 0 0,1 15,12C15,12.35 14.94,12.69 14.83,13L11,9.17C11.31,9.06 11.65,9 12,9M12,4.5C17,4.5 21.27,7.61 23,12C22.18,14.08 20.79,15.88 19,17.19L17.58,15.76C18.94,14.82 20.06,13.54 20.82,12C19.17,8.64 15.76,6.5 12,6.5C10.91,6.5 9.84,6.68 8.84,7L7.3,5.47C8.74,4.85 10.33,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C12.69,17.5 13.37,17.43 14,17.29L11.72,15C10.29,14.85 9.15,13.71 9,12.28L5.6,8.87C4.61,9.72 3.78,10.78 3.18,12Z"
+              />
+            </svg>
+            
+            <!---->
+          </span>
+          <!---->
+           
+          <div
+            class="transaction-row__main"
+          >
+            <span
+              class="transaction-row__parties"
+            >
+              <span
+                class="transaction-row__party"
               >
                 <span
-                  class="transaction-type__label"
+                  class="sr-only"
                 >
-                  Transfer
+                  From
                 </span>
-                <!---->
                  
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  Shielded
+                </span>
+                
                 <!---->
               </span>
                
+              <span
+                aria-hidden="true"
+                class="transaction-row__arrow"
+              >
+                →
+              </span>
+               
+              <span
+                class="transaction-row__party"
+              >
+                <span
+                  class="sr-only"
+                >
+                  To
+                </span>
+                 
+                <!---->
+                <span
+                  class="transaction-party transaction-party--hidden"
+                >
+                  Shielded
+                </span>
+                
+                <!---->
+              </span>
               <!---->
-            </div>
-            
+            </span>
+             
+            <span
+              class="row-line transaction-row__line"
+            >
+              <!---->
+               
+              <div
+                class="transaction-type"
+              >
+                <!---->
+                 
+                <span
+                  class="transaction-type__call"
+                >
+                  <!---->
+                  <span
+                    class="transaction-type__label"
+                  >
+                    Transfer
+                  </span>
+                  
+                  <!---->
+                   
+                  <!---->
+                </span>
+              </div>
+              <!---->
+            </span>
+          </div>
+           
+          <div
+            class="transaction-row__end"
+          >
+            <span
+              class="row-amount row-amount--muted"
+            >
+              Shielded
+            </span>
+            <!---->
+             
+            <span
+              class="row-line transaction-row__time"
+            >
+              <time
+                class="dusk-relative-time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 16 Apr 2024, 20:07:02 UTC"
+                datetime="2024-04-16T20:07:02.000Z"
+              >
+                <!---->
+                <!---->
+                <!---->
+                last month
+                
+                
+                
+                <!---->
+              </time>
+              <!---->
+            </span>
+          </div>
+           
+          <a
+            class="dusk-anchor dusk-anchor--on-surface transaction-row__link"
+            href="/some-base-path/transactions/transaction?id=07bfabea1d94c16f2dc3697fa642f6cecea6e81bf76b9644efbb6e2723b76d00"
+          >
+            <!---->
+            <span
+              class="sr-only"
+            >
+              Transaction 07bfab...b76d00
+            </span>
             
             <!---->
-          </dd>
+          </a>
           <!---->
-          <!---->
-        </dl>
+        </div>
         
         
         <!---->

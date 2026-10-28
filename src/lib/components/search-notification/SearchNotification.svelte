@@ -45,6 +45,7 @@
       <Button
         className="search-notification__suggestion"
         on:click={() => dispatch("suggest", data.suggestion)}
+        size="small"
         text="Search {data.suggestion}"
         variant="secondary"
       />

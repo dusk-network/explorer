@@ -1,8 +1,10 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { AppAnchor, DetailList, ListItem } from "$lib/components";
-  import { ProgressBar, RelativeTime } from "$lib/dusk/components";
+  import { mdiCubeOutline } from "@mdi/js";
+
+  import { AppAnchor } from "$lib/components";
+  import { Icon, RelativeTime } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
@@ -14,101 +16,47 @@
   /** @type {Block} */
   export let data;
 
-  /** @type {Boolean} */
-  export let displayTooltips = false;
-
   const formatter = createValueFormatter("en");
+
+  $: count = data.transactions.data.length;
 </script>
 
-<DetailList>
-  <!-- HEIGHT -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The height of the block indicates the length of the block chain and is increased with each additional block"
-      : ""}
+<!--
+  A block as a row of the web wallet's History on a phone: its height and
+  when, its reward and how many transactions it holds. The whole row opens
+  the block.
+-->
+<div class="block-row">
+  <span aria-hidden="true" class="row-icon"><Icon path={mdiCubeOutline} /></span
   >
-    <svelte:fragment slot="term">block</svelte:fragment>
-    <svelte:fragment slot="definition"
-      ><AppAnchor
-        className="block-details__list-link"
-        href={`/blocks/block?id=${data.header.hash}`}
-        >{formatter(data.header.height)}</AppAnchor
-      ></svelte:fragment
-    >
-  </ListItem>
-
-  <!-- TIMESTAMP -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "Time elapsed since the block was created"
-      : ""}
-  >
-    <svelte:fragment slot="term">relative time</svelte:fragment>
-    <RelativeTime
-      autoRefresh={autoRefreshTime}
-      className="block-details__list-timestamp"
-      data-tooltip-id="main-tooltip"
-      data-tooltip-text={formatDateTime(data.header.date)}
-      date={data.header.date}
-      slot="definition"
-    />
-  </ListItem>
-
-  <!-- AVERAGE GAS PRICE -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The average gas price for the transactions within the block"
-      : ""}
-  >
-    <svelte:fragment slot="term">average gas price</svelte:fragment>
-    <svelte:fragment slot="definition">
-      {formatter(data.transactions.stats.averageGasPrice)}
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- GAS USED -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The amount of gas used generating the block"
-      : ""}
-  >
-    <svelte:fragment slot="term">gas used</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <ProgressBar
-        currentPercentage={data.transactions.stats.gasLimit === 0
-          ? 0
-          : (data.transactions.stats.gasUsed /
-              data.transactions.stats.gasLimit) *
-            100}
-        className="blocks-list__gas-used"
-        ariaLabel="Gas Used"
+  <div class="block-row__main">
+    <span class="block-row__height">{formatter(data.header.height)}</span>
+    <span class="row-line">
+      <RelativeTime
+        autoRefresh={autoRefreshTime}
+        className="block-row__time"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-text={formatDateTime(data.header.date)}
+        date={data.header.date}
       />
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- TRANSACTIONS -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The number of transactions included in the block"
-      : ""}
-  >
-    <svelte:fragment slot="term">txn(s)</svelte:fragment>
-    <svelte:fragment slot="definition">
-      {formatter(data.transactions.data.length)}
-    </svelte:fragment>
-  </ListItem>
-
-  <!-- BLOCK REWARD -->
-  <ListItem
-    tooltipText={displayTooltips
-      ? "The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
-      : ""}
-  >
-    <svelte:fragment slot="term">rewards</svelte:fragment>
-    <svelte:fragment slot="definition">
-      <span title="{formatDuskExact(data.header.reward)} DUSK"
-        >{formatDusk(data.header.reward)} DUSK</span
+    </span>
+  </div>
+  <div class="block-row__end">
+    <span class="row-amount"
+      ><span title="{formatDuskExact(data.header.reward)} DUSK"
+        >{formatDusk(data.header.reward)}</span
       >
-    </svelte:fragment>
-  </ListItem>
-</DetailList>
+      <span class="row-unit">DUSK</span></span
+    >
+    <span class="row-line"
+      >{formatter(count)}
+      {count === 1 ? "transaction" : "transactions"}</span
+    >
+  </div>
+  <AppAnchor
+    className="block-row__link"
+    href={`/blocks/block?id=${data.header.hash}`}
+    ><span class="sr-only">Block {formatter(data.header.height)}</span
+    ></AppAnchor
+  >
+</div>

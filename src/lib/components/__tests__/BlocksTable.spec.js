@@ -33,4 +33,58 @@ describe("Blocks Table", () => {
 
     expect(container.firstElementChild).toMatchSnapshot();
   });
+
+  /** @param {HTMLElement} container */
+  const getHeaders = (container) =>
+    Array.from(container.querySelectorAll("th"), (th) =>
+      th.textContent?.trim()
+    );
+
+  it("should give gas on the blocks page, and leave it out on the home page", async () => {
+    const { container, rerender } = render(BlocksTable, baseOptions);
+
+    expect(getHeaders(container)).toStrictEqual([
+      "Block",
+      "Transactions",
+      "Gas used",
+      "Reward",
+    ]);
+
+    await rerender({ ...baseProps, showGas: false });
+
+    expect(getHeaders(container)).toStrictEqual([
+      "Block",
+      "Transactions",
+      "Reward",
+    ]);
+  });
+
+  it("should give a block's average gas price only when it has one", () => {
+    const [block] = data;
+    const { container } = render(BlocksTable, {
+      props: {
+        data: [
+          {
+            ...block,
+            transactions: {
+              ...block.transactions,
+              stats: { ...block.transactions.stats, averageGasPrice: 1 },
+            },
+          },
+          {
+            ...block,
+            header: { ...block.header, hash: "other" },
+            transactions: {
+              ...block.transactions,
+              stats: { ...block.transactions.stats, averageGasPrice: 0 },
+            },
+          },
+        ],
+      },
+    });
+    const rows = container.querySelectorAll("tbody tr");
+
+    expect(rows[0].querySelector(".block__gas-price")).not.toBeNull();
+    expect(rows[1].querySelector(".block__gas-price")).toBeNull();
+  });
 });

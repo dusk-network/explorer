@@ -1,11 +1,21 @@
+/* Names in the text's face; addresses and IDs in Söhne Mono, a size down. */
 .transaction-party {
-  font-family: var(--mono-font-family);
   white-space: nowrap;
 }
 
-/* "0x" stays as typed, not as a multiplication sign; "on DuskEVM" may wrap, whole. */
+.transaction-party--account,
+.transaction-party--evm > span:first-child {
+  font-family: var(--mono-font-family);
+  font-size: 0.92em;
+  font-weight: 400;
+  /* "0x" stays as typed, not as a multiplication sign. */
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+}
+
+/* "on DuskEVM" may wrap, whole. */
 .transaction-party--evm {
-  font-feature-settings: "calt" 0;
   white-space: normal;
   line-break: auto;
 }
@@ -20,7 +30,7 @@
 }
 
 .transaction-party--hidden {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 40%);
+  color: var(--calm-muted);
 }
 
 /* A long name keeps to an address's width; the tooltip has it in full. */

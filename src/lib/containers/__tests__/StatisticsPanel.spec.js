@@ -33,6 +33,20 @@ vi.mock("$lib/services", async (importOriginal) => {
   };
 });
 
+/**
+ * The titles of the leading cards, or of the smaller ones after them.
+ *
+ * @param {HTMLElement} container
+ * @param {"primary" | "secondary"} which
+ */
+const titlesOf = (container, which) =>
+  Array.from(
+    container.querySelectorAll(
+      `.statistics-panel__statistics-item--${which} .statistics-panel__statistics-item-title`
+    ),
+    (title) => title.textContent?.trim()
+  );
+
 describe("StatisticsPanel", () => {
   const { statsFetchInterval } = get(appStore);
 
@@ -91,16 +105,32 @@ describe("StatisticsPanel", () => {
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    expect(queryByText("Dusk Price")).toBeNull();
-    expect(queryByText("Total Market Cap")).toBeNull();
-    expect(getByText("Current Stake")).toBeInTheDocument();
+    expect(queryByText("DUSK price")).toBeNull();
+    expect(queryByText("Market cap")).toBeNull();
+    expect(getByText("Current stake")).toBeInTheDocument();
     expect(
       container.querySelectorAll(".statistics-panel__statistics-item")
     ).toHaveLength(8);
+    // Four numbers lead as cards; the rest follow, smaller.
+    expect(titlesOf(container, "primary")).toStrictEqual([
+      "Current stake",
+      "Last block",
+      "Total transactions",
+      "Active provisioners",
+    ]);
+    expect(titlesOf(container, "secondary")).toStrictEqual([
+      "Pending stake",
+      "Pending provisioners",
+      "Largest node cluster",
+      "Largest cluster location",
+    ]);
 
     await act(() => setChain(1));
 
-    expect(getByText("Dusk Price")).toBeInTheDocument();
-    expect(getByText("Total Market Cap")).toBeInTheDocument();
+    expect(getByText("DUSK price")).toBeInTheDocument();
+    expect(getByText("Market cap")).toBeInTheDocument();
+    // On mainnet the price leads, and the market cap follows.
+    expect(titlesOf(container, "primary")[0]).toBe("DUSK price");
+    expect(titlesOf(container, "secondary")[0]).toBe("Market cap");
   });
 });

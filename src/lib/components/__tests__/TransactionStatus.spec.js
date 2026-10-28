@@ -23,12 +23,12 @@ describe("TransactionStatus", () => {
   it("should say Completed or Failed, as the wallets do", () => {
     const { container, rerender } = render(TransactionStatus, baseOptions);
 
-    expect(container.firstElementChild).toHaveTextContent(/^completed$/);
+    expect(container.firstElementChild).toHaveTextContent(/^Completed$/);
 
     rerender({ errorMessage: "Panic" });
 
     return vi.waitFor(() =>
-      expect(container.firstElementChild).toHaveTextContent(/^failed$/)
+      expect(container.firstElementChild).toHaveTextContent(/^Failed$/)
     );
   });
 

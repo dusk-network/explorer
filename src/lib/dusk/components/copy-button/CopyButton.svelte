@@ -6,6 +6,8 @@
   import { toast } from "$lib/dusk/components/toast/store";
   import { makeClassName } from "$lib/dusk/string";
 
+  import "./CopyButton.css";
+
   /** @type {string | undefined} */
   export let className = undefined;
 
@@ -25,7 +27,15 @@
   export let disabled = false;
 
   /** @type {ButtonVariant} */
-  export let variant = "primary";
+  export let variant = "tertiary";
+
+  /**
+   * A word to show beside the icon, as the details' "Copy". Without it the
+   * button is the icon alone, with a tooltip.
+   *
+   * @type {string | undefined}
+   */
+  export let text = undefined;
 
   function copyToClipboard() {
     navigator.clipboard
@@ -52,10 +62,12 @@
   <Button
     aria-label={label}
     className={classes}
-    data-tooltip-id="main-tooltip"
-    data-tooltip-text="Copy to clipboard"
+    data-tooltip-id={text ? undefined : "main-tooltip"}
+    data-tooltip-text={text ? undefined : "Copy to clipboard"}
     icon={{ path: mdiContentCopy }}
     on:click={copyToClipboard}
+    size={text ? "small" : "default"}
+    {text}
     {variant}
     {disabled}
   />

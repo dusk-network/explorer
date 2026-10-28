@@ -1,45 +1,66 @@
 @import "@duskit/css/main.css";
 @import url("./duskit-bridge.css");
+@import url("./app-components/rows.css");
+@import url("./app-components/details.css");
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  /* The page's side margin, which a full-width strip reaches across. */
-  --page-gutter: clamp(1rem, 3vw, 3rem);
-}
-
-body {
-  padding: 0 var(--page-gutter);
+  /* The page's side margin, as on the web wallet's pages. */
+  --page-gutter: 3rem;
+  --page-max-width: 100rem;
+  --top-bar-height: 3.75rem;
+  --tab-bar-height: 4.5rem;
 }
 
 html,
 body {
   width: 100%;
-  height: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
+  min-height: 100%;
+  margin: 0;
 }
 
 html {
-  background-color: var(--background-color);
-  color: var(--on-background-color);
+  background-color: var(--calm-s0);
+  color: var(--calm-text);
   font-family: var(--main-font-family);
   font-size: var(--main-font-size);
+  font-synthesis: none;
+  /* Numbers line up in columns. */
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding: 0;
+  background-color: var(--calm-s0);
 }
 
 #app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #app-container > main {
   flex: 1;
-  padding: 1.25rem 0 2rem;
-  overflow: hidden;
+  width: 100%;
+  max-width: var(--page-max-width);
+  min-width: 0;
+  margin: 0 auto;
+  padding: 2.25rem var(--page-gutter) 3rem;
+}
+
+#app-container > footer {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
 }
 
 button,
@@ -49,20 +70,60 @@ textarea {
   letter-spacing: 0;
 }
 
+/* Addresses, hashes and code, with "0x" as typed. */
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--mono-font-family);
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+  font-variant-ligatures: none;
+}
+
 svg {
   fill: currentColor;
 }
 
-.explorer-badge {
-  min-width: 100px;
+:focus-visible {
+  outline: 2px solid var(--calm-focus);
+  outline-offset: 2px;
 }
 
-@media (max-width: 768px) {
+/* An amount's unit, muted, as the web wallet shows it. */
+.dusk-amount__unit {
+  color: var(--calm-muted);
+  font-size: 0.6em;
+}
+
+@media (max-width: 63.99rem) {
   :root {
-    --page-gutter: 1.25rem;
+    --page-gutter: 1.5rem;
+  }
+
+  #app-container > main {
+    padding-top: 1.75rem;
   }
 }
 
-.decimal-shadow {
-  opacity: 0.5;
+/* Phones: the pages bar sits at the bottom of the screen. */
+@media (max-width: 47.99rem) {
+  :root {
+    --page-gutter: 1rem;
+  }
+
+  #app-container {
+    padding-bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom));
+  }
+
+  #app-container > main {
+    padding-top: 1.25rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* A value not known, or not there. */
+.data-guard__empty {
+  color: var(--calm-subtle);
 }

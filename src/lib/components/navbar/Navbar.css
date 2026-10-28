@@ -1,185 +1,223 @@
+/*
+ * The web wallet's top bar: the name, the pages, the search and the
+ * network. Narrower screens put the search on a row of its own under the
+ * bar, and phones move the pages to a bar at the bottom of the screen.
+ */
 .dusk-navbar {
-  overscroll-behavior: contain;
-  height: 100%;
-  z-index: 999;
-  margin: 0 auto;
-  padding: 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: var(--top-bar-height) auto;
+  grid-template-areas:
+    "brand pages network"
+    "search search search";
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  column-gap: 0.5rem;
+  padding: 0 var(--page-gutter);
+  background-color: var(--calm-s0);
 }
 
-.dusk-navbar--menu-hidden {
-  background-color: var(--background-color);
-  position: sticky;
-  height: auto;
-  min-height: 0;
+/* The bar's line, under its first row, across the whole width. */
+.dusk-navbar::before {
+  content: "";
+  grid-area: 1 / 1 / 2 / -1;
+  align-self: stretch;
+  margin: 0 calc(-1 * var(--page-gutter));
+  border-bottom: 1px solid var(--calm-line);
+  pointer-events: none;
 }
 
-.dusk-navbar__logo {
+.dusk-navbar__brand,
+.dusk-navbar__brand:visited,
+.dusk-navbar__brand:hover {
+  grid-area: brand;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--on-background-color);
-  text-decoration: none;
-}
-
-.dusk-navbar__logo img {
-  width: 5.375rem;
-  height: 1.25rem;
-}
-
-.dusk-navbar__app-label {
-  border-left: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 72%);
-  font-family: var(--mono-font-family);
-  font-size: 0.75rem;
+  gap: 0.625rem;
+  min-height: 44px;
+  margin-right: 1.375rem;
+  color: var(--calm-text);
+  font-size: 0.96875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  line-height: 1;
-  padding-left: 0.75rem;
-  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.dusk-navbar__toggle {
-  background-color: var(--surface-color);
-  border: 1px solid
-    color-mix(in oklab, var(--on-background-color), transparent 78%);
+.dusk-navbar__brand:focus-visible {
+  outline: 2px solid var(--calm-focus);
+  outline-offset: 2px;
   border-radius: 0.5rem;
-  color: var(--on-background-color);
+}
+
+.dusk-navbar .dusk-navbar__glyph {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.dusk-navbar__pages {
+  grid-area: pages;
+  align-self: stretch;
+  min-width: 0;
+}
+
+.dusk-navbar__search {
+  grid-area: search;
+  min-width: 0;
+  padding-top: 0.875rem;
+}
+
+.dusk-navbar__network {
+  grid-area: network;
   display: inline-flex;
   align-items: center;
-  font-size: 1rem;
-  padding: 0.45rem;
+  gap: 0.5rem;
+  height: 2.375rem;
+  padding: 0 0.875rem;
+  border-radius: 999px;
+  background-color: var(--calm-s1);
+  color: var(--calm-text);
+  font-size: 0.875rem;
+  white-space: nowrap;
 }
 
-.dusk-navbar__toggle:focus {
-  outline: none;
-  box-shadow: none;
+.dusk-navbar__network-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background-color: var(--calm-pending);
+  flex: 0 0 auto;
 }
 
-.dusk-navbar__menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  order: 2;
-  width: 100%;
-  /*
-    On a small viewport, the opened menu fills the screen below where it
-    starts (--menu-top, measured: under a test network's strip, the logo,
-    the search and any notice), and scrolls if it needs more. Until it is
-    measured: the logo's 80px row and the search's 4.25rem.
-  */
-  height: calc(100dvh - var(--menu-top, calc(80px + 4.25rem)));
-  overflow-y: auto;
-  gap: 1.25rem;
-  padding-top: 1rem;
+.dusk-navbar__network-dot--online {
+  background-color: var(--calm-online);
 }
 
-.dusk-navbar__menu--hidden {
-  display: none;
+/* Under the search, in the page's flow. */
+.dusk-navbar .dusk-navbar__menu--search-notification {
+  margin: 1rem 0 1.5rem;
 }
 
-.dusk-navbar__menu--network {
-  text-transform: uppercase;
-  font-weight: 500;
-  font-family: var(--mono-font-family);
-  letter-spacing: 0.12em;
-  order: 3;
-}
-
-.dusk-navbar__menu--links {
-  width: 100%;
-  order: 2;
-}
-
-.dusk-nav-list.dusk-navbar__menu--links {
-  height: auto;
-}
-
-/* On a small viewport, search is always there, under the logo. */
-.dusk-navbar__search {
-  order: 1;
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
+/* Wide screens: one row, the search between the pages and the network. */
+@media (min-width: 75rem) {
   .dusk-navbar {
-    padding: 0;
-    min-height: 4.75rem;
-    position: relative;
-    background-color: transparent;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    column-gap: 1.5rem;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "brand pages search network"
+      "notice notice notice notice";
+    padding: 0 1.25rem 0 1.5rem;
   }
 
-  .dusk-navbar__logo img {
-    width: 6.75rem;
-    height: auto;
-  }
-
-  .dusk-navbar--menu-hidden {
-    position: relative;
-  }
-
-  .dusk-navbar__toggle {
-    display: none;
-  }
-
-  .dusk-navbar__menu {
-    height: 100%;
-    overflow-y: visible;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    row-gap: 2rem;
-    padding-top: 0;
-  }
-
-  .dusk-navbar__menu--hidden {
-    display: flex;
-  }
-
-  .dusk-navbar__menu--network {
-    order: 1;
-  }
-
-  .dusk-navbar__menu--links {
-    order: 2;
-  }
-
-  .dusk-navbar__menu {
-    order: 1;
-    flex: 1;
+  .dusk-navbar::before {
+    margin: 0 -1.25rem 0 -1.5rem;
   }
 
   .dusk-navbar__search {
-    order: 2;
-    width: auto;
+    display: contents;
   }
 
-  .dusk-navbar__menu--search-notification {
-    position: absolute;
-    left: 0;
-    top: 4.75rem;
+  .dusk-navbar__search > form {
+    grid-area: search;
+    width: min(23.75rem, 30vw);
+  }
+
+  /* Where the page would start, at a reading width. */
+  .dusk-navbar .dusk-navbar__menu--search-notification {
+    grid-area: notice;
+    justify-self: start;
+    width: min(40rem, 100%);
+    margin: 2.25rem 0 3rem calc(var(--page-gutter) - 1.5rem);
   }
 }
 
-@media (min-width: 1280px) {
+/* Phones: the name and the network on top, the pages at the bottom. */
+@media (max-width: 47.99rem) {
   .dusk-navbar {
-    column-gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand network"
+      "search search";
+  }
+
+  .dusk-navbar__brand,
+  .dusk-navbar__brand:visited,
+  .dusk-navbar__brand:hover {
+    margin-right: 0;
+  }
+
+  .dusk-navbar__search {
+    padding-top: 0.75rem;
+  }
+
+  .dusk-navbar__pages.dusk-nav-list {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    height: calc(var(--tab-bar-height) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid var(--calm-line);
+    background-color: var(--calm-panel);
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__link,
+  .dusk-navbar__pages .dusk-nav-list__link:visited {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    min-height: 44px;
+    padding: 0 0.25rem;
+    color: var(--calm-subtle);
+    font-size: 0.75rem;
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__link--current,
+  .dusk-navbar__pages .dusk-nav-list__link--current:visited {
+    color: var(--calm-text);
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__link--current::after {
+    content: none;
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__icon {
+    display: block;
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* The keyboard needs the room while a field is being typed in. */
+  .dusk-navbar--typing .dusk-navbar__pages.dusk-nav-list {
+    display: none;
   }
 }
 
-/*
-  Workaround for Bug 1851397
-  https: //bugzilla.mozilla.org/show_bug.cgi?id=1851397
-*/
-@-moz-document url-prefix() {
-  .dusk-navbar__menu--network {
-    letter-spacing: 0 !important;
+/* Between phones and wide screens: the pages a little closer together. */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .dusk-navbar__brand,
+  .dusk-navbar__brand:visited,
+  .dusk-navbar__brand:hover {
+    margin-right: 0.5rem;
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__link,
+  .dusk-navbar__pages .dusk-nav-list__link:visited {
+    padding: 0 0.625rem;
+  }
+
+  .dusk-navbar__pages .dusk-nav-list__link--current::after {
+    left: 0.625rem;
+    right: 0.625rem;
   }
 }

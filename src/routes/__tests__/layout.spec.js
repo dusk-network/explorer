@@ -91,21 +91,6 @@ describe("Main layout", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should change the overflow of document's body when the navbar toggle menu button is clicked", async () => {
-    const { container } = renderWithSimpleContent(MainLayout, baseOptions);
-    const navbarToggleButton = /** @type {HTMLButtonElement} */ (
-      container.querySelector(".dusk-navbar__toggle")
-    );
-
-    await fireEvent.click(navbarToggleButton);
-
-    expect(document.body.style.overflow).toBe("hidden");
-
-    await fireEvent.click(navbarToggleButton);
-
-    expect(document.body.style.overflow).toBe("auto");
-  });
-
   it('should add and remove the "dark" class name to the `html` element when the `darkMode` value changes in the settings store', async () => {
     const isDarkMode = () => get(appStore).darkMode;
     const hasDarkClass = () =>

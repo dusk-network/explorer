@@ -61,6 +61,26 @@ vi.mock("$lib/services", async (importOriginal) => {
   };
 });
 
+/**
+ * A provisioner's stake rows, each its label (without its help) and value.
+ *
+ * @param {HTMLElement} container
+ */
+const stakeRowsOf = (container) =>
+  Array.from(
+    container.querySelectorAll(".account-overview-panel__stake dt"),
+    (dt) => {
+      const term = /** @type {Element} */ (dt.cloneNode(true));
+
+      term.querySelector(".detail-list__help")?.remove();
+
+      return [
+        term.textContent?.trim(),
+        dt.nextElementSibling?.textContent?.replace(/\s+/g, " ").trim(),
+      ];
+    }
+  );
+
 describe("Account page", () => {
   afterEach(() => {
     cleanup();
@@ -94,23 +114,18 @@ describe("Account page", () => {
     // The stake's block, 120 blocks after the last one, comes in about
     // 20 minutes.
     await vi.waitFor(() =>
-      expect(
-        container
-          .querySelector(".account-overview-panel__stake")
-          ?.textContent?.replace(/\s+/g, " ")
-          .trim()
-      ).toBe(
-        "Active 1,000 DUSK · Inactive 0 DUSK · Eligible from about Mon 26 Oct 2026, 10:20 UTC · Slashes: 1 soft, 0 hard"
-      )
+      expect(stakeRowsOf(container)).toStrictEqual([
+        ["Active stake", "1,000 DUSK"],
+        ["Inactive stake", "0 DUSK"],
+        ["Eligibility", "From about Mon 26 Oct 2026, 10:20 UTC"],
+        ["Slashes", "1 soft, 0 hard"],
+      ])
     );
-    expect(getByText(/Eligible from about/)).toHaveAttribute(
-      "title",
-      "Block 123,120"
-    );
+    expect(getByText(/From about/)).toHaveAttribute("title", "Block 123,120");
     expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
     expect(
-      container.querySelector(".account-overview-panel__header")
-    ).toHaveTextContent(/^Provisioner:/);
+      container.querySelector(".account-overview-panel__kind")
+    ).toHaveTextContent(/^Provisioner$/);
     expect(container.textContent).toContain("Shielded funds aren't shown.");
   });
 
@@ -126,9 +141,9 @@ describe("Account page", () => {
           (item) => item.textContent?.replace(/\s+/g, " ").trim()
         )
       ).toStrictEqual([
-        "1,484.92 DUSK Public balance",
-        "N/A Stake",
-        "N/A Stake rewards",
+        "Public balance 1,484.92 DUSK",
+        "Stake N/A",
+        "Stake rewards N/A",
       ])
     );
     expect(duskAPI.getStake).toHaveBeenCalledTimes(1);
@@ -143,7 +158,7 @@ describe("Account page", () => {
     const { findByText } = render(AccountPage);
 
     expect(
-      await findByText(/Eligible since about Sun 25 Oct 2026, 10:00 UTC/)
+      await findByText(/Since about Sun 25 Oct 2026, 10:00 UTC/)
     ).toHaveAttribute("title", "Block 123,120");
   });
 
@@ -157,8 +172,8 @@ describe("Account page", () => {
     );
 
     expect(
-      container.querySelector(".account-overview-panel__header")
-    ).toHaveTextContent(/^Account:/);
+      container.querySelector(".account-overview-panel__kind")
+    ).toHaveTextContent(/^Account$/);
     expect(
       container.querySelector(".account-overview-panel__stake")
     ).toBeNull();

@@ -1,12 +1,12 @@
 <script>
-  import { onMount } from "svelte";
   import { CopyButton } from "$lib/dusk/components";
-  import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
+  import { middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
-  import { addressCharPropertiesDefaults } from "$lib/constants";
   import {
     DuskAmount,
     DuskName,
+    FullValue,
+    ListItem,
     OverviewPanelDetailsItem,
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
@@ -55,9 +55,6 @@
     searched ? getPrimaryName(accountAddress).catch(() => null) : null
   );
 
-  /** @type {number} */
-  let screenWidth = window.innerWidth;
-
   /** Blocks come every 10 seconds, on mainnet and testnet alike. */
   const BLOCK_MS = 10_000;
 
@@ -73,59 +70,34 @@
   const estimateDate = (height, last) =>
     new Date(last.date.getTime() + (height - last.height) * BLOCK_MS);
 
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-
-      screenWidth = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(document.body);
-
-    return () => resizeObserver.disconnect();
-  });
-
-  const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
-    addressCharPropertiesDefaults;
-
   // An account with a stake is a provisioner.
   $: isProvisioner = !!(stake && (stake.active || stake.inactive));
 
-  $: shortAddress = middleEllipsis(
-    accountAddress,
-    calculateAdaptiveCharCount(
-      screenWidth,
-      minScreenWidth,
-      maxScreenWidth,
-      minCharCount,
-      maxCharCount
-    )
-  );
+  // As lists show addresses: the first and last six characters.
+  $: shortAddress = middleEllipsis(accountAddress, 6);
 </script>
 
+<!--
+  Whose page it is: its name, or its address short, then the address in full.
+  Then what it holds, and for a provisioner, its stake.
+-->
 <section class="account-overview-panel">
-  <div class="account-overview-panel__address-wrapper">
-    <p class="account-overview-panel__header">
-      {isProvisioner ? "Provisioner" : "Account"}:
-      {#await searchedNameShown}
-        <b class="account-overview-panel__address">{shortAddress}</b>
-      {:then searched}
-        {#if searched}
-          <DuskName address={accountAddress} name={searched} />
-        {:else}
-          <PrimaryName address={accountAddress}>
-            <b class="account-overview-panel__address">{shortAddress}</b>
-          </PrimaryName>
-        {/if}
-      {/await}
-    </p>
-
-    <CopyButton
-      name="Account address"
-      rawValue={accountAddress}
-      variant="secondary"
-    />
-  </div>
+  <p class="account-overview-panel__kind">
+    {isProvisioner ? "Provisioner" : "Account"}
+  </p>
+  <h1 class="account-overview-panel__header">
+    {#await searchedNameShown}
+      <span class="account-overview-panel__address">{shortAddress}</span>
+    {:then searched}
+      {#if searched}
+        <DuskName name={searched} />
+      {:else}
+        <PrimaryName address={accountAddress} showAddress={false}>
+          <span class="account-overview-panel__address">{shortAddress}</span>
+        </PrimaryName>
+      {/if}
+    {/await}
+  </h1>
   {#await primaryNameShown then primary}
     {#if primary}
       <p class="account-overview-panel__searched-name">
@@ -133,8 +105,16 @@
       </p>
     {/if}
   {/await}
+  <div class="account-overview-panel__address-row">
+    <FullValue value={accountAddress} />
+    <CopyButton
+      name="Account address"
+      rawValue={accountAddress}
+      text="Copy"
+      variant="secondary"
+    />
+  </div>
 
-  <hr class="account-overview-panel__separator" />
   <div class="account-overview-panel__details">
     <OverviewPanelDetailsItem subtitle="Public balance">
       {#if errorFetchingAccountStatus}
@@ -145,7 +125,7 @@
           lux={accountBalance}
         />
       {:else}
-        <p>Loading...</p>
+        <p class="account-overview-panel__loading">Loading…</p>
       {/if}
     </OverviewPanelDetailsItem>
 
@@ -158,7 +138,7 @@
           lux={(stake?.active ?? 0n) + (stake?.inactive ?? 0n)}
         />
       {:else}
-        <p>Loading...</p>
+        <p class="account-overview-panel__loading">Loading…</p>
       {/if}
     </OverviewPanelDetailsItem>
 
@@ -171,59 +151,54 @@
           lux={stake?.reward ?? 0n}
         />
       {:else}
-        <p>Loading...</p>
+        <p class="account-overview-panel__loading">Loading…</p>
       {/if}
     </OverviewPanelDetailsItem>
   </div>
 
   {#if stake && isProvisioner}
-    <p class="account-overview-panel__note account-overview-panel__stake">
-      Active <span title="{formatDuskExact(stake.active)} DUSK"
-        >{formatDusk(stake.active)} DUSK</span
-      >
-      · Inactive
-      <span title="{formatDuskExact(stake.inactive)} DUSK"
-        >{formatDusk(stake.inactive)} DUSK</span
-      >
-      ·
-      {#if tip}
-        <span title="Block {formatter(stake.eligibility)}"
-          >{stake.eligibility > tip.height
-            ? "Eligible from about"
-            : "Eligible since about"}
-          {formatDateTime(estimateDate(stake.eligibility, tip), {
-            seconds: false,
-          })}</span
+    <dl class="account-overview-panel__stake detail-rows">
+      <ListItem>
+        <svelte:fragment slot="term">Active stake</svelte:fragment>
+        <span title="{formatDuskExact(stake.active)} DUSK" slot="definition"
+          >{formatDusk(stake.active)} DUSK</span
         >
-      {:else}
-        Eligible from block {formatter(stake.eligibility)}
-      {/if}
-      · Slashes: {stake.faults} soft, {stake.hardFaults} hard
-    </p>
+      </ListItem>
+      <ListItem>
+        <svelte:fragment slot="term">Inactive stake</svelte:fragment>
+        <span title="{formatDuskExact(stake.inactive)} DUSK" slot="definition"
+          >{formatDusk(stake.inactive)} DUSK</span
+        >
+      </ListItem>
+      <ListItem
+        tooltipText="When the stake takes part in consensus and starts to earn rewards"
+      >
+        <svelte:fragment slot="term">Eligibility</svelte:fragment>
+        <svelte:fragment slot="definition">
+          {#if tip}
+            <span title="Block {formatter(stake.eligibility)}"
+              >{stake.eligibility > tip.height ? "From about" : "Since about"}
+              {formatDateTime(estimateDate(stake.eligibility, tip), {
+                seconds: false,
+              })}</span
+            >
+          {:else}
+            From block {formatter(stake.eligibility)}
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+      <ListItem
+        tooltipText="Soft slashes for missed duties, hard slashes for faults"
+      >
+        <svelte:fragment slot="term">Slashes</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{stake.faults} soft, {stake.hardFaults} hard</svelte:fragment
+        >
+      </ListItem>
+    </dl>
   {/if}
 
   <p class="account-overview-panel__note">
-    Everything on this page is public: names, public balance, stake and
-    transactions. Shielded funds aren't shown.
+    Everything here is public. Shielded funds aren't shown.
   </p>
 </section>
-
-<style lang="postcss">
-  .account-overview-panel__address-wrapper {
-    display: flex;
-    align-items: center;
-    gap: var(--small-gap);
-  }
-
-  :global {
-    .account-overview-panel__details {
-      letter-spacing: 8%;
-      line-height: 120%;
-    }
-
-    .account-overview-panel__balance {
-      max-width: fit-content;
-      cursor: help;
-    }
-  }
-</style>

@@ -50,7 +50,10 @@ describe("AccountOverview", () => {
           ?.textContent
       ).toMatch(/^\s*Primary name:\s+duskdomains\.dusk/)
     );
-    expect(header.textContent).toMatch(/^\s*Account:\s+domains\.dusk/);
+    expect(
+      container.querySelector(".account-overview-panel__kind")
+    ).toHaveTextContent(/^Account$/);
+    expect(header.textContent).toMatch(/^\s*domains\.dusk/);
     expect(header.textContent).not.toContain("duskdomains.dusk");
     expect(
       getByRole("link", { name: "Open domains.dusk on Dusk Domains" })

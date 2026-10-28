@@ -11,17 +11,6 @@
     appStore.setNodeInfo(await duskAPI.getNodeInfo());
   });
 
-  /**
-   * @param {Boolean} bool
-   */
-  const toggleScroll = (bool) => {
-    if (bool) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
-  };
-
   appStore.subscribe(({ darkMode }) => {
     document.documentElement.classList.toggle("dark", darkMode);
   });
@@ -41,7 +30,6 @@
     on:searchMiss={(e) => {
       hasSearchMissed = e.detail;
     }}
-    on:toggleMenu={(e) => toggleScroll(e.detail)}
   />
 </header>
 <main hidden={hasSearchMissed} id="explorer">

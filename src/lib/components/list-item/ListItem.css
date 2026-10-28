@@ -1,109 +1,93 @@
+/*
+ * A label and its value, as in the web wallet's details: the label muted on
+ * the left, the value on the right, each row on a hairline. A wide value,
+ * as an address, goes under its label.
+ */
 .details-list__term {
   display: flex;
-  align-items: center;
-  padding: 0.25rem;
-  margin-bottom: 0.625rem;
-  background-color: var(--background-color-alt);
-  border-radius: var(--control-border-radius-size);
-  text-transform: uppercase;
-  position: relative;
+  align-items: flex-start;
+  min-width: 0;
+  margin: 0;
+  padding: 0.75rem 1.5rem 0.75rem 0;
+  border-top: 1px solid var(--calm-line);
+  color: var(--calm-muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .details-list__term-layout {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  width: 100%;
+  gap: 0.375rem;
+  min-width: 0;
 }
 
-.details-list__term:first-child,
-.details-list__term:last-of-type {
-  padding: 0.25rem;
-}
-
+/* The help comes after the label, quiet until it is wanted. */
 .detail-list__help {
+  order: 1;
   display: inline-flex;
   flex-shrink: 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
   background: none;
-  color: inherit;
+  color: var(--calm-subtle);
   cursor: help;
 }
 
+.detail-list__help .dusk-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.detail-list__help:hover {
+  color: var(--calm-text);
+}
+
 .detail-list__help:focus-visible {
-  outline: 2px solid var(--secondary-color);
+  outline: 2px solid var(--calm-focus);
   outline-offset: 2px;
+}
+
+/* With a mouse, the help shows on its row's hover, and on focus. */
+@media (hover: hover) {
+  .detail-list__help {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .details-list__term:hover .detail-list__help,
+  .details-list__term:has(+ .details-list__definition:hover) .detail-list__help,
+  .detail-list__help:focus-visible {
+    opacity: 1;
+  }
 }
 
 .details-list__definition {
   display: flex;
-  gap: 0.625rem;
+  flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 1.25rem;
-  line-break: anywhere;
+  justify-content: flex-end;
+  gap: 0.375rem 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--calm-line);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
-.details-list__definition:last-of-type {
-  margin-bottom: 0;
+.details-list__term--wide {
+  grid-column: 1 / -1;
+  padding-bottom: 0.25rem;
 }
 
-.details-list__term.details-list__term--table {
-  padding: 0.625rem 1.125rem;
-  margin-bottom: 0rem;
-  border-radius: 0;
-}
-
-.details-list__term:first-child.details-list__term--table {
-  border-top-left-radius: 0;
-  border-top-right-radius: var(--control-border-radius-size);
-  padding: 1rem 1.125rem 0.625rem;
-}
-
-.details-list__term:last-of-type.details-list__term--table {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: var(--control-border-radius-size);
-  padding: 0.625rem 1.125rem 1rem;
-}
-
-.details-list__term:last-of-type.details-list__term--table {
-  width: 100%;
-}
-
-.details-list__term.details-list__term--table,
-.details-list__definition.details-list__definition--table {
-  margin-bottom: 0rem;
-}
-
-@media (min-width: 640px) {
-  .details-list__term {
-    padding: 0.9375rem 1.125rem;
-    border-radius: 0;
-  }
-
-  .details-list__term:first-child {
-    border-top-left-radius: var(--control-border-radius-size);
-    border-top-right-radius: var(--control-border-radius-size);
-    padding: 1rem 1.125rem 0.9375rem;
-  }
-
-  .details-list__term:last-of-type {
-    border-bottom-left-radius: var(--control-border-radius-size);
-    border-bottom-right-radius: var(--control-border-radius-size);
-    padding: 0.9375rem 1.125rem 1rem;
-  }
-
-  .details-list__term:last-of-type {
-    width: 100%;
-  }
-
-  .details-list__term,
-  .details-list__definition {
-    margin-bottom: 0rem;
-  }
-
-  .details-list__definition:last-of-type {
-    padding-top: 0rem;
-  }
+.details-list__definition--wide {
+  grid-column: 1 / -1;
+  justify-content: flex-start;
+  padding-top: 0;
+  border-top: 0 none;
+  text-align: left;
 }
