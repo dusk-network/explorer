@@ -46,6 +46,7 @@ vi.mock("$lib/services", async (importOriginal) => {
         .mockResolvedValue({ balance: 1_484_920_000_000, nonce: 15 }),
       getChainTip: vi.fn().mockResolvedValue({
         date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
+        hash: "",
         height: 123_000,
       }),
       getMoonlightAccountTransactions: vi.fn().mockResolvedValue([]),
@@ -152,6 +153,7 @@ describe("Account page", () => {
   it("should say since when a stake has taken part, and give the block on hover", async () => {
     vi.mocked(duskAPI.getChainTip).mockResolvedValueOnce({
       date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
+      hash: "",
       height: 123_120 + 8640,
     });
 

@@ -1,12 +1,12 @@
 <script>
   import { TransactionsCard } from "$lib/components";
-  import { duskAPI } from "$lib/services";
+  import { duskAPI, followTransactions } from "$lib/services";
   import { appStore } from "$lib/stores";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
   import { onDestroy, onMount } from "svelte";
 
   const pollingDataStore = createPollingDataStore(
-    duskAPI.getTransactions,
+    followTransactions(duskAPI),
     $appStore.fetchInterval
   );
 

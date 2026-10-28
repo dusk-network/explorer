@@ -8,12 +8,12 @@
   } from "$lib/components";
   import { StatisticsPanel } from "$lib/containers";
   import { Card } from "$lib/dusk/components";
-  import { duskAPI } from "$lib/services";
+  import { duskAPI, followChainInfo } from "$lib/services";
   import { appStore, nodeLocationStore } from "$lib/stores";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
 
   const pollingDataStore = createPollingDataStore(
-    duskAPI.getLatestChainInfo,
+    followChainInfo(duskAPI),
     $appStore.fetchInterval
   );
 

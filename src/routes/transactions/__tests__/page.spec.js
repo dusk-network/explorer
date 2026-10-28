@@ -15,18 +15,31 @@ describe("Transactions page", () => {
   vi.setSystemTime(new Date(2024, 4, 30));
 
   const { fetchInterval, transactionsListEntries } = get(appStore);
+  const tip = { date: new Date(), hash: "tip-hash", height: 7000 };
+  const getChainTipSpy = vi
+    .spyOn(duskAPI, "getChainTip")
+    .mockResolvedValue(tip);
   const getTransactionSpy = vi
     .spyOn(duskAPI, "getTransactions")
     .mockResolvedValue(gqlTransactions.transactions.map(transformTransaction));
 
+  // The node has no block after the last one.
+  const getTransactionsAfterSpy = vi
+    .spyOn(duskAPI, "getTransactionsAfter")
+    .mockResolvedValue({ anchor: tip.hash, blocks: [], transactions: [] });
+
   afterEach(() => {
     cleanup();
+    getChainTipSpy.mockClear();
     getTransactionSpy.mockClear();
+    getTransactionsAfterSpy.mockClear();
   });
 
   afterAll(() => {
     vi.useRealTimers();
+    getChainTipSpy.mockRestore();
     getTransactionSpy.mockRestore();
+    getTransactionsAfterSpy.mockRestore();
   });
 
   it("should render the Transactions page, start polling for blocks and stop the polling when unmounted", async () => {
@@ -34,38 +47,40 @@ describe("Transactions page", () => {
 
     // snapshost in loading state
     expect(container.firstElementChild).toMatchSnapshot();
+    expect(getChainTipSpy).toHaveBeenCalledTimes(1);
+
+    await vi.advanceTimersByTimeAsync(1);
+
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getTransactionSpy).toHaveBeenNthCalledWith(
       1,
       transactionsListEntries
     );
 
-    await vi.advanceTimersByTimeAsync(1);
-
     // snapshot with received data from GraphQL
     expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(fetchInterval - 1);
 
-    expect(getTransactionSpy).toHaveBeenCalledTimes(2);
-    expect(getTransactionSpy).toHaveBeenNthCalledWith(
-      2,
-      transactionsListEntries
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(1);
+    expect(getTransactionsAfterSpy).toHaveBeenNthCalledWith(
+      1,
+      tip.height,
+      tip.height + 199
     );
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(getTransactionSpy).toHaveBeenCalledTimes(3);
-    expect(getTransactionSpy).toHaveBeenNthCalledWith(
-      3,
-      transactionsListEntries
-    );
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(2);
+    expect(getTransactionSpy).toHaveBeenCalledTimes(1);
+    expect(getChainTipSpy).toHaveBeenCalledTimes(1);
 
     unmount();
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(getTransactionSpy).toHaveBeenCalledTimes(3);
+    expect(getTransactionsAfterSpy).toHaveBeenCalledTimes(2);
+    expect(getTransactionSpy).toHaveBeenCalledTimes(1);
   });
 
   it("should render the Transactions page with the mobile layout", async () => {
@@ -75,13 +90,13 @@ describe("Transactions page", () => {
 
     expect(get(appStore).isSmallScreen).toBe(true);
 
+    await vi.advanceTimersByTimeAsync(1);
+
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getTransactionSpy).toHaveBeenNthCalledWith(
       1,
       transactionsListEntries
     );
-
-    await vi.advanceTimersByTimeAsync(1);
 
     expect(container.firstElementChild).toMatchSnapshot();
   });

@@ -6,6 +6,7 @@ import { resolveAfter } from "$lib/dusk/promise";
 import { duskAPI } from "$lib/services";
 
 import { appStore } from "$lib/stores";
+import * as mockData from "$lib/mock-data";
 
 import HomePage from "../+page.svelte";
 
@@ -29,6 +30,12 @@ vi.mock("$lib/services", async (importOriginal) => {
     ...original,
     duskAPI: {
       ...original.duskAPI,
+
+      // The node has no block after the newest one.
+      getBlocksAfter: vi.fn().mockResolvedValue({
+        anchor: gqlLatestChainInfo.blocks[0].header.hash,
+        blocks: [],
+      }),
       getLatestChainInfo: vi.fn().mockResolvedValue({
         blocks: gqlLatestChainInfo.blocks.map(transformBlock),
         transactions: gqlLatestChainInfo.transactions.map(transformTransaction),
@@ -42,6 +49,7 @@ vi.mock("$lib/services", async (importOriginal) => {
 
 describe("home page", () => {
   const { chainInfoEntries, fetchInterval } = get(appStore);
+  const newest = mockData.gqlLatestChainInfo.blocks[0].header.height;
 
   afterEach(() => {
     cleanup();
@@ -71,24 +79,24 @@ describe("home page", () => {
 
     await vi.advanceTimersByTimeAsync(fetchInterval - marketDataSettleTime);
 
-    expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(2);
-    expect(duskAPI.getLatestChainInfo).toHaveBeenNthCalledWith(
-      2,
-      chainInfoEntries
+    // Then only the blocks after the newest one.
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(1);
+    expect(duskAPI.getBlocksAfter).toHaveBeenNthCalledWith(
+      1,
+      newest,
+      newest + chainInfoEntries
     );
 
     await vi.advanceTimersByTimeAsync(fetchInterval);
 
-    expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(3);
-    expect(duskAPI.getLatestChainInfo).toHaveBeenNthCalledWith(
-      3,
-      chainInfoEntries
-    );
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(2);
+    expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
 
     unmount();
 
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
-    expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(3);
+    expect(duskAPI.getBlocksAfter).toHaveBeenCalledTimes(2);
+    expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
   }, 15000);
 });

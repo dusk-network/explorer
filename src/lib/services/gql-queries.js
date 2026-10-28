@@ -88,6 +88,24 @@ export const getBlocksQueryInfo = (amount) => ({
   variables: { amount },
 });
 
+/**
+ * The hash of the block at height `from`, and the blocks after it up to
+ * height `to`, oldest first: the ones the node has.
+ *
+ * @param {number} from
+ * @param {number} to
+ */
+export const getBlocksAfterQueryInfo = (from, to) => ({
+  query: `
+    ${blockFragment}
+    query($at: Float!, $from: Int!, $to: Int!) {
+      anchor: block(height: $at) { header { hash } },
+      blocks(range: [$from, $to]) {...BlockInfo}
+    }
+  `,
+  variables: { at: from, from: from + 1, to },
+});
+
 /** @param {number} amount */
 export const getLatestChainQueryInfo = (amount) => ({
   query: `
@@ -104,6 +122,28 @@ export const getLatestChainQueryInfo = (amount) => ({
 export const getMempoolTx = (id) => ({
   query: "query($id: String!) { mempoolTx(hash: $id) { isDeploy } }",
   variables: { id },
+});
+
+/**
+ * The hash of the block at height `from`, and the transactions of the
+ * blocks after it up to height `to`, with each block's height, hash and
+ * previous block's hash, oldest first.
+ *
+ * @param {number} from
+ * @param {number} to
+ */
+export const getTransactionsAfterQueryInfo = (from, to) => ({
+  query: `
+    ${transactionFragment}
+    query($at: Float!, $from: Int!, $to: Int!) {
+      anchor: block(height: $at) { header { hash } },
+      blocks(range: [$from, $to]) {
+        header { hash, height, prevBlockHash },
+        transactions {...TransactionInfo}
+      }
+    }
+  `,
+  variables: { at: from, from: from + 1, to },
 });
 
 /** @param {number} amount */
