@@ -21,11 +21,19 @@ describe("Provisioners List", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
-  /** @param {HTMLElement} container */
+  /**
+   * The terms of the list, in order, without their help.
+   *
+   * @param {HTMLElement} container
+   */
   const getTerms = (container) =>
-    Array.from(container.querySelectorAll("dt"), (dt) =>
-      dt.textContent?.trim().toLowerCase()
-    );
+    Array.from(container.querySelectorAll("dt"), (dt) => {
+      const term = /** @type {Element} */ (dt.cloneNode(true));
+
+      term.querySelector(".detail-list__help")?.remove();
+
+      return term.textContent?.trim().toLowerCase();
+    });
 
   it("should keep a provisioner to a few rows, linking to its stake and rewards", () => {
     const { container, getByRole } = render(ProvisionersList, baseProps);

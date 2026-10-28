@@ -101,6 +101,7 @@
       {/if}
       <TransactionType
         {data}
+        {direction}
         {displayTooltips}
         nameContract={to?.kind !== "contract"}
         showPrivacy={false}

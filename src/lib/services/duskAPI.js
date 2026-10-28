@@ -20,7 +20,6 @@ import {
   calculateStats,
   transformBlock,
   transformSearchResult,
-  transformStake,
   transformTransaction,
 } from "$lib/chain-info";
 
@@ -352,7 +351,9 @@ const duskAPI = {
 
   /**
    * The stake of an account's key, or `null` if it has none: one query to
-   * the stake contract, which the node answers in JSON.
+   * the stake contract, which the node answers in JSON. Amounts are in LUX,
+   * as exact integers: a stake can pass what a JavaScript number holds
+   * exactly.
    *
    * @param {string} address
    * @returns {Promise<AccountStake | null>}
@@ -368,7 +369,27 @@ const duskAPI = {
     })
       .then(failureToRejection)
       .then((res) => res.json())
-      .then(transformStake);
+      .then(
+        /**
+         * @param {{
+         *   amount: { eligibility: string, locked: string, value: string } | null,
+         *   faults: number,
+         *   hard_faults: number,
+         *   reward: string,
+         * } | null} data
+         */
+        (data) =>
+          data
+            ? {
+                active: BigInt(data.amount?.value ?? 0),
+                eligibility: Number(data.amount?.eligibility ?? 0),
+                faults: data.faults,
+                hardFaults: data.hard_faults,
+                inactive: BigInt(data.amount?.locked ?? 0),
+                reward: BigInt(data.reward),
+              }
+            : null
+      );
   },
 
   /**

@@ -33,11 +33,12 @@
   /** @type {number} */
   let offset;
 
-  /** @type {boolean} */
-  let showSearchNotification = false;
-
-  /** @type {*} */
-  let notificationData;
+  /**
+   * The search that found nothing, whose notice shows until it is closed.
+   *
+   * @type {{ query: string, res: Error, suggestion?: string } | null}
+   */
+  let notificationData = null;
 
   /** @type {SearchField} */
   let searchField;
@@ -49,7 +50,7 @@
   let typing = false;
 
   /** @type {NavListProp} */
-  let navigation = [
+  const navigation = [
     { icon: mdiHomeOutline, link: "/", title: "Home" },
     { icon: mdiCubeOutline, link: "/blocks", title: "Blocks" },
     { icon: mdiSwapHorizontal, link: "/transactions", title: "Transactions" },
@@ -58,16 +59,10 @@
       link: "/provisioners",
       title: "Provisioners",
     },
+    ...(import.meta.env.VITE_FEATURE_TOKENS === "true"
+      ? [{ icon: mdiCircleMultipleOutline, link: "/tokens", title: "Tokens" }]
+      : []),
   ];
-
-  $: if (import.meta.env.VITE_FEATURE_TOKENS === "true") {
-    navigation.push({
-      icon: mdiCircleMultipleOutline,
-      link: "/tokens",
-      title: "Tokens",
-    });
-    navigation = navigation;
-  }
 
   /**
    * Whether an element takes typed text.
@@ -157,12 +152,12 @@
     updateOffset();
   }
 
-  $: if (!showSearchNotification) {
+  $: if (!notificationData) {
     notificationObserver?.disconnect();
   }
 
   // A search that found nothing replaces the page below until it is closed.
-  $: dispatch("searchMiss", showSearchNotification);
+  $: dispatch("searchMiss", !!notificationData);
 
   onDestroy(() => notificationObserver?.disconnect());
 
@@ -186,7 +181,6 @@
     const shown = searchQueryOf($page.url);
 
     notificationData = miss;
-    showSearchNotification = true;
     createEmptySpace();
 
     if (shown !== miss.query) {
@@ -220,7 +214,7 @@
       return;
     }
 
-    showSearchNotification = false;
+    notificationData = null;
 
     if (opening !== null) {
       opening = null;
@@ -239,13 +233,10 @@
     opening = null;
 
     if (query === null) {
-      showSearchNotification = false;
+      notificationData = null;
       // A search still in flight was for the page left behind.
       searchField?.cancel();
-    } else if (
-      query &&
-      !(showSearchNotification && notificationData?.query === query)
-    ) {
+    } else if (query && notificationData?.query !== query) {
       // The search page, reloaded or reached through the history.
       searchField?.search(query);
     }
@@ -270,9 +261,7 @@
 />
 
 <nav
-  style={showSearchNotification
-    ? `margin-bottom: ${offset}px`
-    : "margin-bottom: 0"}
+  style={notificationData ? `margin-bottom: ${offset}px` : "margin-bottom: 0"}
   class="dusk-navbar"
   class:dusk-navbar--typing={typing}
 >
@@ -307,12 +296,12 @@
       on:invalid={(e) => showMiss(e.detail)}
     />
 
-    {#if showSearchNotification}
+    {#if notificationData}
       <SearchNotification
         data={notificationData}
         on:close={closeMiss}
         on:suggest={(e) => {
-          showSearchNotification = false;
+          notificationData = null;
           searchField.search(e.detail);
         }}
         className="dusk-navbar__menu--search-notification"

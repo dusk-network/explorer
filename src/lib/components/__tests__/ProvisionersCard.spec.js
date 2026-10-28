@@ -6,6 +6,8 @@ import { hostProvisioners } from "$lib/mock-data";
 import { resolveDuskName } from "$lib/dusk-domains";
 import { ProvisionersCard } from "..";
 
+import { itShowsItsListAPageAtATime } from "./pagedCard";
+
 vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   .../** @type {object} */ (await importOriginal()),
   resolveDuskName: vi.fn(),
@@ -31,44 +33,16 @@ describe("Provisioners Card", () => {
     vi.doUnmock("$lib/dusk-domains");
   });
 
-  it("should render the `ProvisionersCard` component", () => {
-    const { container } = render(ProvisionersCard, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should show no `Show more` button while the card is loading", () => {
-    const loading = true;
-
-    const { container, queryByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...baseProps, loading },
-    });
-
-    expect(
-      queryByRole("button", { name: "Show more" })
-    ).not.toBeInTheDocument();
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should give the count and the `Show more` button at the bottom of the list", async () => {
-    const { container, getByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...baseProps, provisioners: hostProvisioners },
-    });
-    const footer = /** @type {HTMLElement} */ (
-      container.querySelector(".data-card__footer")
-    );
-    const shown = () => container.querySelectorAll("tbody tr").length;
-
-    expect(getByRole("heading", { name: "Provisioners" })).toBeInTheDocument();
-    expect(shown()).toBe(15);
-    expect(footer.textContent).toMatch(/^\s*15 of \d+/);
-
-    await fireEvent.click(getByRole("button", { name: "Show more" }));
-
-    expect(shown()).toBe(30);
+  itShowsItsListAPageAtATime({
+    Card: ProvisionersCard,
+    few: data,
+    list: "provisioners",
+    many: hostProvisioners,
+    name: "ProvisionersCard",
+    props: baseProps,
+    title: "Provisioners",
+    // Of the 216, the 214 with a stake.
+    total: 214,
   });
 
   it("should find provisioners by staking or owner address", async () => {
@@ -141,32 +115,5 @@ describe("Provisioners Card", () => {
     expect(
       await findByText("This name is not registered.")
     ).toBeInTheDocument();
-  });
-
-  it("should hide the `Show more` button if there is no more data to display", async () => {
-    const loading = false;
-    const provisioners = data;
-
-    const { container, queryByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...baseProps, loading, provisioners },
-    });
-
-    expect(
-      queryByRole("button", { name: "Show more" })
-    ).not.toBeInTheDocument();
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should hide the `Show more` button if an error has occurred", async () => {
-    const props = { ...baseProps, error: new Error("error") };
-
-    const { container } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...props, error: new Error("error") },
-    });
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

@@ -106,6 +106,38 @@ describe("DataCard", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it("should say what an empty list means, as its card tells it", () => {
+    const { container } = render(DataCard, {
+      ...baseOptions,
+      props: {
+        ...baseProps,
+        data: [],
+        emptyText: "No transactions in this block.",
+      },
+    });
+
+    expect(container.querySelector(".alert")).toHaveTextContent(
+      /^No transactions in this block\.$/
+    );
+  });
+
+  it("should say a load failed, give its error, and offer to try again", async () => {
+    const retry = vi.fn();
+    const { container, getByRole } = render(DataCard, {
+      ...baseOptions,
+      events: { retry },
+      props: { ...baseProps, error: new Error("Request timed out") },
+    });
+
+    expect(container.querySelector(".alert")).toHaveTextContent(
+      /^Couldn't load this\.\s*Request timed out\s*Try again$/
+    );
+
+    await fireEvent.click(getByRole("button", { name: "Try again" }));
+
+    expect(retry).toHaveBeenCalledOnce();
+  });
+
   it("should render the `DataCard` in the data state", () => {
     const data = new Array(2);
     const renderWithSlots = renderWithSimpleContent(DataCard, {

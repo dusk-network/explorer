@@ -11,6 +11,8 @@
 // row turn batching off for 5 minutes), and a rate limit is every read's
 // answer. Ported from the Dusk wallet extension's multicallFetch.js.
 
+import { hexToBytes } from "$lib/dusk/string";
+
 import {
   ARGBUF_LEN,
   MAX_CALLS,
@@ -83,10 +85,6 @@ function nextTask(task) {
 
   setTimeout(task, 0);
 }
-
-/** @param {string} hex */
-const hexToBytes = (hex) =>
-  Uint8Array.from(hex.match(/../g) ?? [], (b) => parseInt(b, 16));
 
 /**
  * @param {BodyInit | null | undefined} body

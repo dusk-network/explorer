@@ -15,7 +15,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { hexToText, makeClassName, middleEllipsis } from "$lib/dusk/string";
+  import { hexToText, middleEllipsis } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
@@ -37,9 +37,6 @@
   import { appStore } from "$lib/stores";
 
   import "./TransactionDetails.css";
-
-  /** @type {string | Undefined} */
-  export let className = undefined;
 
   /** @type {Transaction} */
   export let data;
@@ -120,7 +117,6 @@
     return short;
   };
 
-  $: classes = makeClassName(["transaction-details", "detail-page", className]);
   $: usdPrice = market?.currentPrice.usd;
 
   // The card shows the details only once there is data.
@@ -171,7 +167,7 @@
   {data}
   {error}
   {loading}
-  className={classes}
+  className="transaction-details detail-page"
   title="Transaction"
   variant="detail"
 >
@@ -221,7 +217,6 @@
       </svelte:fragment>
     </ListItem>
 
-    <!-- FROM -->
     {#if from}
       <ListItem wide={from.kind === "account"}>
         <svelte:fragment slot="term">From</svelte:fragment>
@@ -234,7 +229,6 @@
                 <PrimaryName
                   address={from.address}
                   href="/accounts/?key={from.address}"
-                  showAddress={false}
                 />
               {/if}
               <AppAnchor
@@ -297,7 +291,6 @@
               <PrimaryName
                 address={to.address}
                 href="/accounts/?key={to.address}"
-                showAddress={false}
               />
             {/if}
             <AppAnchor
@@ -323,7 +316,6 @@
       </ListItem>
     {/if}
 
-    <!-- CONTRACT -->
     {#if data.contract}
       <ListItem wide>
         <svelte:fragment slot="term">Contract</svelte:fragment>
@@ -350,7 +342,6 @@
       </ListItem>
     {/if}
 
-    <!-- AMOUNT -->
     <ListItem>
       <svelte:fragment slot="term">Amount</svelte:fragment>
       <svelte:fragment slot="definition">
@@ -376,7 +367,6 @@
       </ListItem>
     {/if}
 
-    <!-- TRANSACTION FEE -->
     <ListItem>
       <svelte:fragment slot="term">Transaction fee</svelte:fragment>
       <svelte:fragment slot="definition">
@@ -385,7 +375,6 @@
       </svelte:fragment>
     </ListItem>
 
-    <!-- TYPE -->
     <ListItem>
       <svelte:fragment slot="term">Type</svelte:fragment>
       <svelte:fragment slot="definition">
@@ -408,7 +397,6 @@
       </ListItem>
     {/if}
 
-    <!-- MEMO, when there is one -->
     {#if data.memo}
       <ListItem>
         <svelte:fragment slot="term">Memo</svelte:fragment>
@@ -430,7 +418,6 @@
       </ListItem>
     {/if}
 
-    <!-- BLOCK HEIGHT -->
     <ListItem>
       <svelte:fragment slot="term">Block height</svelte:fragment>
       <svelte:fragment slot="definition">
@@ -460,7 +447,6 @@
         </ListItem>
       {/if}
 
-      <!-- GAS PRICE -->
       <ListItem
         tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
       >
@@ -470,7 +456,6 @@
         >
       </ListItem>
 
-      <!-- GAS LIMIT -->
       <ListItem
         tooltipText="The most gas the transaction could use. Only the gas spent is paid for"
       >
@@ -480,7 +465,6 @@
         >
       </ListItem>
 
-      <!-- GAS SPENT -->
       <ListItem>
         <svelte:fragment slot="term">Gas spent</svelte:fragment>
         <svelte:fragment slot="definition"
@@ -488,7 +472,6 @@
         >
       </ListItem>
 
-      <!-- NONCE -->
       {#if data.txtype.toLowerCase() === "moonlight" && data.nonce}
         <ListItem
           tooltipText="The number of transactions sent from this address"
@@ -498,7 +481,6 @@
         </ListItem>
       {/if}
 
-      <!-- PAYLOAD, when there is one -->
       {#if data.payload}
         <ListItem wide>
           <svelte:fragment slot="term">
@@ -527,7 +509,6 @@
       {/if}
 
       {#if data.blobHashes.length}
-        <!-- BLOB HASHES -->
         <ListItem wide>
           <svelte:fragment slot="term">Blob hashes</svelte:fragment>
           <svelte:fragment slot="definition">
@@ -549,7 +530,6 @@
       {/if}
 
       {#if data.txerror}
-        <!-- ERROR -->
         <ListItem wide>
           <svelte:fragment slot="term">Error</svelte:fragment>
           <code class="transaction-details__error" slot="definition"

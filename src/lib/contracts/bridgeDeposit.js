@@ -23,21 +23,6 @@ function fromBase64(base64) {
 }
 
 /**
- * @param {Uint8Array} bytes
- * @param {number} at
- * @param {number} length
- */
-function uintLe(bytes, at, length) {
-  let value = 0n;
-
-  for (let i = length - 1; i >= 0; i--) {
-    value = (value << 8n) | BigInt(bytes[at + i]);
-  }
-
-  return value;
-}
-
-/**
  * A deposit's amount and DuskEVM address, or `null` when the arguments
  * aren't the bridge's: the root at the end, aligned, and the extra data
  * before it.
@@ -61,7 +46,7 @@ function decodeDeposit(args) {
   }
 
   return {
-    amount: uintLe(args, root, 8),
+    amount: view.getBigUint64(root, true),
     to: args.subarray(root + 8, root + 28),
   };
 }

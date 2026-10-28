@@ -7,7 +7,7 @@ describe("Search Notification", () => {
   const baseProps = {
     data: {
       query: "some query text",
-      res: [],
+      res: new Error("HTTP Request failed - failed"),
     },
   };
   const baseOptions = {
@@ -22,21 +22,8 @@ describe("Search Notification", () => {
     eventHandler.mockClear();
   });
 
-  it("renders the Search Notification component with the query string", () => {
-    const { container } = render(SearchNotification, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("renders the Search Notification component with a Error message", () => {
-    const props = {
-      ...baseProps,
-      data: {
-        query: "some query text",
-        res: new Error("HTTP Request failed - failed"),
-      },
-    };
-    const { container } = render(SearchNotification, { ...baseOptions, props });
+    const { container } = render(SearchNotification, baseOptions);
 
     expect(container.firstElementChild).toMatchSnapshot();
   });

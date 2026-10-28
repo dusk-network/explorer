@@ -23,15 +23,6 @@
   /** @type {string | undefined} */
   export let className = undefined;
 
-  /**
-   * @typedef {HostProvisioner & {
-   *   rank: number;
-   *   ownerType: string;
-   *   ownerAddress: string;
-   *   hasSeparateOwner: boolean;
-   * }} EnrichedProvisioner
-   */
-
   /** @type {EnrichedProvisioner[]} */
   export let data;
 

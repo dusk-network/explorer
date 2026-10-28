@@ -160,17 +160,6 @@ function newestTransactions(fresh, held, limit) {
 }
 
 /**
- * The transactions of the blocks above `height`, newest first.
- *
- * @param {Block[]} blocks Newest first
- * @param {number} height
- */
-const transactionsAbove = (blocks, height) =>
-  blocks
-    .filter((block) => block.header.height > height)
-    .flatMap((block) => block.transactions.data);
-
-/**
  * The last `amount` blocks.
  *
  * @param {BlocksReader} api
@@ -262,7 +251,7 @@ export function followChainInfo(api) {
         ? {
             blocks: [...fresh, ...held.blocks],
             transactions: newestTransactions(
-              transactionsAbove(fresh, -1),
+              fresh.flatMap((block) => block.transactions.data),
               held.transactions,
               amount
             ),

@@ -125,3 +125,43 @@
     font-size: 1.5rem;
   }
 }
+
+/* Said plainly in the muted text, as the web wallet's empty lists are. */
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--calm-line);
+  color: var(--calm-muted);
+  font-size: 0.875rem;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert__title .dusk-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--calm-danger);
+}
+
+.alert__error-message {
+  max-width: 44rem;
+  color: var(--calm-subtle);
+  font-family: var(--mono-font-family);
+  font-size: 0.78125rem;
+  overflow-wrap: anywhere;
+}
+
+.alert .dusk-button {
+  margin-top: 0.25rem;
+}

@@ -5,9 +5,7 @@
     mdiAccountGroupOutline,
     mdiCubeOutline,
     mdiCurrencyUsd,
-    mdiMapMarker,
     mdiSwapVertical,
-    mdiTransitConnectionVariant,
   } from "@mdi/js";
   import { onDestroy, onMount } from "svelte";
 
@@ -145,7 +143,6 @@
       : now - newest.at < WAITING_AFTER
         ? "live"
         : "waiting";
-  // Test DUSK has no value: no price or market cap off mainnet.
   /**
    * @typedef {{
    *   approximate: boolean,
@@ -160,146 +157,101 @@
    * }} Statistic
    */
 
+  /**
+   * A number, compact unless it says otherwise. Only the four that lead
+   * have an icon.
+   *
+   * @param {string} title
+   * @param {any} data
+   * @param {Partial<Statistic>} [rest]
+   * @returns {Statistic}
+   */
+  const statistic = (title, data, rest = {}) => ({
+    approximate: false,
+    attributes: null,
+    canBeStale: false,
+    compact: true,
+    data,
+    icon: "",
+    prefix: "",
+    title,
+    unit: "",
+    ...rest,
+  });
+
+  /**
+   * A stake, rounded to the DUSK, with the exact amount on hover.
+   *
+   * @param {string} title
+   * @param {number | undefined} lux
+   */
+  const stakeStatistic = (title, lux) =>
+    statistic(title, lux ? luxToDusk(lux) : undefined, {
+      approximate: !!lux,
+      attributes: {
+        "data-tooltip-id": "main-tooltip",
+        "data-tooltip-place": "top",
+        "data-tooltip-text": lux ? `${formatDuskExact(lux)} DUSK` : "--- DUSK",
+        "data-tooltip-type": "info",
+      },
+      icon: duskIcon,
+      unit: "DUSK",
+    });
+
   /** @type {Record<string, Statistic>} */
   $: items = {
-    activeProvisioners: {
-      approximate: false,
-      attributes: null,
-      canBeStale: false,
-      compact: true,
-      data: statsData?.activeProvisioners,
-      icon: mdiAccountGroupOutline,
-      prefix: "",
-      title: "Active provisioners",
-      unit: "",
-    },
-    clusterLocation: {
-      approximate: false,
-      attributes: null,
-      canBeStale: false,
-      compact: null,
-      data: nodesData?.length
+    activeProvisioners: statistic(
+      "Active provisioners",
+      statsData?.activeProvisioners,
+      { icon: mdiAccountGroupOutline }
+    ),
+    clusterLocation: statistic(
+      "Largest cluster location",
+      nodesData?.length
         ? `${nodesData[0].city}, ${nodesData[0].countryCode}`
         : null,
-      icon: mdiMapMarker,
-      prefix: "",
-      title: "Largest cluster location",
-      unit: "",
-    },
-    currentStake: {
-      approximate: !!statsData?.activeStake,
-      attributes: {
-        "data-tooltip-id": "main-tooltip",
-        "data-tooltip-place": "top",
-        "data-tooltip-text": statsData?.activeStake
-          ? `${formatDuskExact(statsData.activeStake)} DUSK`
-          : "--- DUSK",
-        "data-tooltip-type": "info",
-      },
-      canBeStale: false,
-      compact: true,
-      data: statsData?.activeStake
-        ? luxToDusk(statsData?.activeStake)
-        : undefined,
-      icon: duskIcon,
-      prefix: "",
-      title: "Current stake",
-      unit: "DUSK",
-    },
-    largestCluster: {
-      approximate: false,
-      attributes: null,
-      canBeStale: false,
-      compact: true,
-      data: nodesData?.length ? nodesData[0].count : null,
-      icon: mdiTransitConnectionVariant,
-      prefix: "",
-      title: "Largest node cluster",
-      unit: "nodes",
-    },
-    lastBlock: {
-      approximate: false,
-      attributes: null,
-      canBeStale: false,
+      { compact: null }
+    ),
+    currentStake: stakeStatistic("Current stake", statsData?.activeStake),
+    largestCluster: statistic(
+      "Largest node cluster",
+      nodesData?.length ? nodesData[0].count : null,
+      { unit: "nodes" }
+    ),
+    lastBlock: statistic("Last block", statsData?.lastBlock, {
       compact: false,
-      data: statsData?.lastBlock,
       icon: mdiCubeOutline,
-      prefix: "",
-      title: "Last block",
-      unit: "",
-    },
-    marketCap: {
-      approximate: false,
-      attributes: null,
+    }),
+    marketCap: statistic("Market cap", marketData?.marketCap.usd, {
       canBeStale: true,
-      compact: true,
-      data: marketData?.marketCap.usd,
+      prefix: "$",
+    }),
+    pendingProvisioners: statistic(
+      "Pending provisioners",
+      statsData?.waitingProvisioners
+    ),
+    pendingStake: stakeStatistic("Pending stake", statsData?.waitingStake),
+    price: statistic("DUSK price", marketData?.currentPrice.usd, {
+      canBeStale: true,
       icon: mdiCurrencyUsd,
       prefix: "$",
-      title: "Market cap",
-      unit: "",
-    },
-    pendingProvisioners: {
-      approximate: false,
-      attributes: null,
-      canBeStale: false,
-      compact: true,
-      data: statsData?.waitingProvisioners,
-      icon: mdiAccountGroupOutline,
-      prefix: "",
-      title: "Pending provisioners",
-      unit: "",
-    },
-    pendingStake: {
-      approximate: !!statsData?.waitingStake,
-      attributes: {
-        "data-tooltip-id": "main-tooltip",
-        "data-tooltip-place": "top",
-        "data-tooltip-text": statsData?.waitingStake
-          ? `${formatDuskExact(statsData.waitingStake)} DUSK`
-          : "--- DUSK",
-        "data-tooltip-type": "info",
-      },
-      canBeStale: false,
-      compact: true,
-      data: statsData?.waitingStake
-        ? luxToDusk(statsData?.waitingStake)
-        : undefined,
-      icon: duskIcon,
-      prefix: "",
-      title: "Pending stake",
-      unit: "DUSK",
-    },
-    price: {
-      approximate: false,
-      attributes: null,
-      canBeStale: true,
-      compact: true,
-      data: marketData?.currentPrice.usd,
-      icon: mdiCurrencyUsd,
-      prefix: "$",
-      title: "DUSK price",
-      unit: "",
-    },
-    totalTransactions: {
-      approximate: false,
-      attributes: statsData?.txCount
-        ? {
-            "data-tooltip-id": "main-tooltip",
-            "data-tooltip-place": "top",
-            "data-tooltip-text": `Public: ${formatter(
-              statsData.txCount.public
-            )}, Shielded: ${formatter(statsData.txCount.shielded)}`,
-          }
-        : null,
-      canBeStale: false,
-      compact: true,
-      data: statsData?.txCount?.total,
-      icon: mdiSwapVertical,
-      prefix: "",
-      title: "Total transactions",
-      unit: "",
-    },
+    }),
+    totalTransactions: statistic(
+      "Total transactions",
+      statsData?.txCount?.total,
+      {
+        attributes: statsData?.txCount
+          ? {
+              "data-tooltip-id": "main-tooltip",
+              "data-tooltip-place": "top",
+              "data-tooltip-text": `Public: ${formatter(
+                statsData.txCount.public
+              )}, Shielded: ${formatter(statsData.txCount.shielded)}`,
+            }
+          : null,
+        icon: mdiSwapVertical,
+      }
+    ),
   };
 
   // Test DUSK has no value: no price or market cap off mainnet. Four
@@ -331,6 +283,35 @@
         ],
       ];
 </script>
+
+<!-- A number's value: "≈" when rounded, its unit, and whether it is stale. -->
+{#snippet valueOf(
+  /** @type {Statistic} */ item,
+  /** @type {"div" | "span"} */ tag
+)}
+  {#if item.approximate}
+    <span class="statistics-panel__statistics-item-about"
+      ><span aria-hidden="true">≈</span><span class="sr-only">about</span></span
+    >
+  {/if}
+  <svelte:element this={tag} class="statistics-panel__statistics-item-value">
+    <DataGuard data={item.data}>
+      {item.prefix}{#if item.compact}
+        {formatter(item.data)}
+      {:else if item.compact === null}
+        {item.data}
+      {:else}
+        {valueFormatter(item.data)}
+      {/if}
+    </DataGuard>
+  </svelte:element>
+  {#if item.unit && (item.data || item.data === 0)}
+    <span class="statistics-panel__statistics-item-unit">{item.unit}</span>
+  {/if}
+  {#if item.canBeStale}
+    <StaleDataNotice />
+  {/if}
+{/snippet}
 
 <!--
   The network's map first, and beside it the four numbers that matter most
@@ -372,32 +353,7 @@
           {/if}</span
         >
         <div class="statistics-panel__statistics-item-value-container">
-          {#if item.approximate}
-            <span class="statistics-panel__statistics-item-about"
-              ><span aria-hidden="true">≈</span><span class="sr-only"
-                >about</span
-              ></span
-            >
-          {/if}
-          <div class="statistics-panel__statistics-item-value">
-            <DataGuard data={item.data}>
-              {item.prefix}{#if item.compact}
-                {formatter(item.data)}
-              {:else if item.compact === null}
-                {item.data}
-              {:else}
-                {valueFormatter(item.data)}
-              {/if}
-            </DataGuard>
-          </div>
-          {#if item.unit && (item.data || item.data === 0)}
-            <span class="statistics-panel__statistics-item-unit"
-              >{item.unit}</span
-            >
-          {/if}
-          {#if item.canBeStale}
-            <StaleDataNotice />
-          {/if}
+          {@render valueOf(item, "div")}
         </div>
       </div>
     {/each}
@@ -411,32 +367,7 @@
       >
         <dt class="statistics-panel__statistics-item-title">{item.title}</dt>
         <dd class="statistics-panel__statistics-item-value-container">
-          {#if item.approximate}
-            <span class="statistics-panel__statistics-item-about"
-              ><span aria-hidden="true">≈</span><span class="sr-only"
-                >about</span
-              ></span
-            >
-          {/if}
-          <span class="statistics-panel__statistics-item-value">
-            <DataGuard data={item.data}>
-              {item.prefix}{#if item.compact}
-                {formatter(item.data)}
-              {:else if item.compact === null}
-                {item.data}
-              {:else}
-                {valueFormatter(item.data)}
-              {/if}
-            </DataGuard>
-          </span>
-          {#if item.unit && (item.data || item.data === 0)}
-            <span class="statistics-panel__statistics-item-unit"
-              >{item.unit}</span
-            >
-          {/if}
-          {#if item.canBeStale}
-            <StaleDataNotice />
-          {/if}
+          {@render valueOf(item, "span")}
         </dd>
       </div>
     {/each}

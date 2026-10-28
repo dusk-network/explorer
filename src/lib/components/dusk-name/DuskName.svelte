@@ -1,7 +1,6 @@
 <script>
   import { AppAnchor } from "$lib/components";
   import { Anchor } from "$lib/dusk/components";
-  import { middleEllipsis } from "$lib/dusk/string";
 
   import "./DuskName.css";
 
@@ -11,13 +10,6 @@
    * @type {{ name: string, url: string }}
    */
   export let name;
-
-  /**
-   * The account the name points to, shown short after the name.
-   *
-   * @type {string | undefined}
-   */
-  export let address = undefined;
 
   /**
    * The account's page in the explorer, to link the name to.
@@ -42,7 +34,4 @@
     data-tooltip-text="Open on Dusk Domains"
     href={name.url}>↗</Anchor
   >
-  {#if address}
-    <span class="primary-name__address">{middleEllipsis(address, 6)}</span>
-  {/if}
 </span>

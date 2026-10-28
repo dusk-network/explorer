@@ -236,7 +236,6 @@ exports[`Main layout > should render the app's main layout 1`] = `
             </button>
             <!---->
           </div>
-          <!---->
         </form>
         <!---->
          

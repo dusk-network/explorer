@@ -229,7 +229,6 @@ exports[`Navbar > renders the Navbar component 1`] = `
         </button>
         <!---->
       </div>
-      <!---->
     </form>
     <!---->
      

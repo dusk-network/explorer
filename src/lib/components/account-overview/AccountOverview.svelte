@@ -111,7 +111,7 @@
       {:else if label}
         {label}
       {:else}
-        <PrimaryName address={accountAddress} showAddress={false}>
+        <PrimaryName address={accountAddress}>
           <span class="account-overview-panel__address">{shortAddress}</span>
         </PrimaryName>
       {/if}
