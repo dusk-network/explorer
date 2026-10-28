@@ -38,21 +38,29 @@
     notFound(query, new Error(message), suggestion);
   }
 
+  /**
+   * Whether the found page takes the place of the page searched from: the
+   * search page, when a search is made again from its address.
+   */
+  let replacing = false;
+
   /** @param {string} path */
   function open(path) {
     value = "";
 
-    return goto(path);
+    return replacing ? goto(path, { replaceState: true }) : goto(path);
   }
 
   /**
    * Searches for the given text, as if typed in the box.
    *
    * @param {string} query
+   * @param {{ replace?: boolean }} [options] `replace`: the found page
+   *   takes the place of this one in the history
    */
-  export function search(query) {
+  export function search(query, { replace = false } = {}) {
     value = query;
-    submitHandler();
+    submitHandler(replace);
   }
 
   /** Drops the answers of the searches in flight, as after leaving the page. */
@@ -60,9 +68,11 @@
     searches += 1;
   }
 
-  function submitHandler() {
+  function submitHandler(replace = false) {
     const query = value.trim();
     const current = ++searches;
+
+    replacing = replace;
 
     /**
      * Runs an answer's step only if no search came after it.
@@ -116,7 +126,7 @@
   }
 </script>
 
-<form on:submit|preventDefault={submitHandler}>
+<form on:submit|preventDefault={() => submitHandler()}>
   <TextboxAndButton
     bind:value
     buttonLabel="Search"

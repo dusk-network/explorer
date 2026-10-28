@@ -20,7 +20,7 @@
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
   import { getNetworkName, isConnected } from "$lib/network";
-  import { currentPage } from "$lib/navigation";
+  import { currentPage, goto } from "$lib/navigation";
   import { appStore } from "$lib/stores";
 
   import "./Navbar.css";
@@ -128,10 +128,76 @@
 
   onDestroy(() => notificationObserver?.disconnect());
 
-  afterNavigate(() => {
-    showSearchNotification = false;
-    // A search still in flight was for the page left behind.
-    searchField?.cancel();
+  /** The page of a search that found nothing, its query in `q`. */
+  const SEARCH_PATH = "/search/";
+
+  /**
+   * The search a page's address holds: the search page's query, or `null`
+   * on any other page.
+   *
+   * @param {URL | null | undefined} url
+   * @returns {string | null}
+   */
+  const searchOf = (url) =>
+    url?.pathname === `${base}${SEARCH_PATH}`
+      ? (url.searchParams.get("q") ?? "").trim()
+      : null;
+
+  /**
+   * A search that found nothing: its notice, and the search page's address
+   * in place of the page searched from, so that a reload or a shared link
+   * searches again. From one search to the next, the page searched from
+   * stays the one before.
+   *
+   * @param {{ query: string, res: Error, suggestion?: string }} miss
+   */
+  function showMiss(miss) {
+    const shown = searchOf($page.url);
+
+    notificationData = miss;
+    showSearchNotification = true;
+    createEmptySpace();
+
+    if (shown !== miss.query) {
+      goto(`${SEARCH_PATH}?q=${encodeURIComponent(miss.query)}`, {
+        keepFocus: true,
+        noScroll: true,
+        replaceState: shown !== null,
+        state: {
+          searchedInApp: shown === null || !!$page.state?.searchedInApp,
+        },
+      });
+    }
+  }
+
+  /**
+   * Closes a search's notice: back to the page searched from, or to the
+   * home page when the search page was the first one opened.
+   */
+  function closeMiss() {
+    if (searchOf($page.url) === null) {
+      showSearchNotification = false;
+    } else if ($page.state?.searchedInApp) {
+      history.back();
+    } else {
+      goto("/", { replaceState: true });
+    }
+  }
+
+  afterNavigate(({ to }) => {
+    const query = searchOf(to?.url);
+
+    if (query === null) {
+      showSearchNotification = false;
+      // A search still in flight was for the page left behind.
+      searchField?.cancel();
+    } else if (
+      query &&
+      !(showSearchNotification && notificationData?.query === query)
+    ) {
+      // The search page, reloaded or reached through the history.
+      searchField?.search(query, { replace: true });
+    }
   });
 
   $: ({ nodeInfo } = $appStore);
@@ -186,19 +252,13 @@
   <div class="dusk-navbar__search">
     <SearchField
       bind:this={searchField}
-      on:invalid={(e) => {
-        notificationData = e.detail;
-        showSearchNotification = true;
-        createEmptySpace();
-      }}
+      on:invalid={(e) => showMiss(e.detail)}
     />
 
     {#if showSearchNotification}
       <SearchNotification
         data={notificationData}
-        on:close={() => {
-          showSearchNotification = false;
-        }}
+        on:close={closeMiss}
         on:suggest={(e) => {
           showSearchNotification = false;
           searchField.search(e.detail);

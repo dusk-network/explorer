@@ -5,14 +5,37 @@ import * as appNavigation from "$app/navigation";
 
 import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
 import { resolveDuskName } from "$lib/dusk-domains";
+import { duskAPI } from "$lib/services";
 import { appStore } from "$lib/stores";
 
 import { Navbar } from "..";
+
+const { pageStore } = vi.hoisted(() => ({
+  /** @type {{ at: (url: string, state?: App.PageState) => void }} */
+  pageStore: { at: () => {} },
+}));
+
+// The page the navbar is on: its address, and its state in the history.
+vi.mock("$app/stores", async (importOriginal) => {
+  const { writable } = await import("svelte/store");
+  const page = writable({ state: {}, url: new URL("http://localhost/") });
+
+  pageStore.at = (url, state = {}) => page.set({ state, url: new URL(url) });
+
+  return {
+    .../** @type {object} */ (await importOriginal()),
+    page: { subscribe: page.subscribe },
+  };
+});
 
 vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   .../** @type {object} */ (await importOriginal()),
   resolveDuskName: vi.fn(),
 }));
+
+/** The search page's address for a query, as the browser has it. */
+const searchPage = (/** @type {string} */ query) =>
+  `http://localhost/some-base-path/search/?q=${encodeURIComponent(query)}`;
 
 /** @param {HTMLElement} container */
 const getNotificationElement = (container) =>
@@ -42,6 +65,7 @@ describe("Navbar", () => {
   afterEach(() => {
     cleanup();
     afterNavigateSpy.mockClear();
+    pageStore.at("http://localhost/");
   });
 
   afterAll(() => {
@@ -158,11 +182,200 @@ describe("Navbar", () => {
     expect(getNotificationElement(container)).toBeInTheDocument();
 
     await act(() => {
-      // @ts-expect-error we don't care for navigation details
-      afterNavigateCallback();
+      afterNavigateCallback(
+        /** @type {any} */ ({
+          to: { url: new URL("http://localhost/some-base-path/blocks/") },
+        })
+      );
     });
 
     expect(getNotificationElement(container)).toBeNull();
+  });
+
+  it("should give a search that found nothing the search page's address, in place of the page searched from", async () => {
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    pageStore.at("http://localhost/some-base-path/accounts/?key=abc");
+
+    const { container } = render(Navbar);
+
+    await showSearchNotification(container);
+
+    expect(getNotificationElement(container)).toHaveTextContent(
+      "Nothing found for foo_bar"
+    );
+    // A new entry: Back, or closing the notice, returns to the account.
+    expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
+      "/some-base-path/search/?q=foo_bar",
+      {
+        keepFocus: true,
+        noScroll: true,
+        replaceState: false,
+        state: { searchedInApp: true },
+      }
+    );
+
+    gotoSpy.mockRestore();
+  });
+
+  it("should replace the search page's address with the next search's, keeping the page searched from before it", async () => {
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    /** @param {App.PageState} state */
+    const searchAgainOn = async (state) => {
+      pageStore.at(searchPage("foo_bar"), state);
+
+      const { container, unmount } = render(Navbar);
+      const form = /** @type {HTMLFormElement} */ (
+        container.querySelector("form")
+      );
+
+      await fireEvent.input(
+        /** @type {HTMLInputElement} */ (form.querySelector("input")),
+        { target: { value: "bar_baz" } }
+      );
+      await fireEvent.submit(form);
+      unmount();
+
+      return gotoSpy.mock.lastCall;
+    };
+
+    for (const searchedInApp of [true, false]) {
+      expect(
+        await searchAgainOn(searchedInApp ? { searchedInApp } : {})
+      ).toStrictEqual([
+        "/some-base-path/search/?q=bar_baz",
+        {
+          keepFocus: true,
+          noScroll: true,
+          replaceState: true,
+          state: { searchedInApp },
+        },
+      ]);
+    }
+
+    gotoSpy.mockRestore();
+  });
+
+  it("should search again when the search page is opened by its address, as on a reload", async () => {
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    pageStore.at(searchPage("foo_bar"));
+
+    const { container, getByRole } = render(Navbar);
+
+    await act(() =>
+      afterNavigateCallback(
+        /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } })
+      )
+    );
+
+    expect(getNotificationElement(container)).toHaveTextContent(
+      "Nothing found for foo_bar"
+    );
+    expect(getByRole("textbox")).toHaveValue("foo_bar");
+    // Its address already says it.
+    expect(gotoSpy).not.toHaveBeenCalled();
+
+    gotoSpy.mockRestore();
+  });
+
+  it("should open what a search page's search finds now, in the search page's place", async () => {
+    const account = hostProvisioners[0].key;
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+    const searchSpy = vi
+      .spyOn(duskAPI, "search")
+      .mockResolvedValueOnce({ id: account, type: "account" });
+
+    pageStore.at(searchPage(account));
+    render(Navbar);
+
+    await act(() =>
+      afterNavigateCallback(
+        /** @type {any} */ ({ to: { url: new URL(searchPage(account)) } })
+      )
+    );
+
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
+        `/some-base-path/accounts/?key=${account}`,
+        { replaceState: true }
+      )
+    );
+
+    searchSpy.mockRestore();
+    gotoSpy.mockRestore();
+  });
+
+  it("should not search again for the search page a search that found nothing just opened", async () => {
+    const searchSpy = vi.spyOn(duskAPI, "search").mockResolvedValue(null);
+    const { container, getByRole } = render(Navbar);
+    const input = getByRole("textbox");
+
+    await fireEvent.input(input, { target: { value: "foobar" } });
+    await fireEvent.submit(
+      /** @type {HTMLFormElement} */ (input.closest("form"))
+    );
+    await vi.waitFor(() =>
+      expect(getNotificationElement(container)).toHaveTextContent(
+        "Nothing found for foobar"
+      )
+    );
+
+    pageStore.at(searchPage("foobar"), { searchedInApp: true });
+    await act(() =>
+      afterNavigateCallback(
+        /** @type {any} */ ({ to: { url: new URL(searchPage("foobar")) } })
+      )
+    );
+
+    expect(getNotificationElement(container)).toHaveTextContent(
+      "Nothing found for foobar"
+    );
+    expect(searchSpy).toHaveBeenCalledExactlyOnceWith("foobar");
+
+    searchSpy.mockRestore();
+  });
+
+  it("should close a search page's notice by going back to the page searched from, or home when there is none", async () => {
+    const back = vi.spyOn(history, "back").mockImplementation(() => {});
+    const gotoSpy = vi.spyOn(appNavigation, "goto");
+
+    /** @param {App.PageState} state */
+    const closeOn = async (state) => {
+      pageStore.at(searchPage("foo_bar"), state);
+
+      const { container, unmount } = render(Navbar);
+
+      await act(() =>
+        afterNavigateCallback(
+          /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } })
+        )
+      );
+      await fireEvent.click(
+        /** @type {HTMLButtonElement} */ (
+          container.querySelector(".search-notification__header-action")
+        )
+      );
+      unmount();
+    };
+
+    // Opened from another page: back to it.
+    await closeOn({ searchedInApp: true });
+
+    expect(back).toHaveBeenCalledOnce();
+    expect(gotoSpy).not.toHaveBeenCalled();
+
+    // Opened first, as from a shared link: home, in its place.
+    await closeOn({});
+
+    expect(back).toHaveBeenCalledOnce();
+    expect(gotoSpy).toHaveBeenCalledExactlyOnceWith("/some-base-path/", {
+      replaceState: true,
+    });
+
+    back.mockRestore();
+    gotoSpy.mockRestore();
   });
 
   it("should make room for the search notification again once it floats, as when a tablet is turned", async () => {

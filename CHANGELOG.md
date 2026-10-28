@@ -73,6 +73,7 @@ and this project adheres to
 - Pulse the map's rings softly, and keep them still when motion is reduced
 - Show only plain words for a transaction's type in lists, and its function under Technical details
 - Call an account's own stake its native stake
+- Say where the map's node locations come from and how precise they are
 
 ### Removed
 
@@ -89,6 +90,7 @@ and this project adheres to
 - Fix "60 seconds ago" and other times that should round up to the next unit
 - Fix receivers' names cut short in phone lists
 - Fix a public sender's address wrapping onto two lines on the transaction page
+- Fix a search that found nothing keeping the previous page's address
 
 ## [1.6.0] - 2026-03-25
 

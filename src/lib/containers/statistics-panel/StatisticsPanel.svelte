@@ -126,6 +126,12 @@
   $: ({ data: nodesData } = $nodeLocationStore);
   $: read(statsData, statsError);
 
+  // The node locates the nodes it knows of, each by its public IP address,
+  // to the city; the map groups them by city.
+  $: located = nodesData?.reduce((sum, { count }) => sum + count, 0) ?? 0;
+  $: locatedNodes =
+    located === 1 ? "1 node" : located ? `${located} nodes` : "the nodes";
+
   /**
    * Live while new blocks come, waiting once the newest read is over 30
    * seconds old; nothing said while the last block can't be read, or
@@ -335,8 +341,8 @@
   <figure class="statistics-panel__face">
     <WorldMap nodes={nodesData ?? []} />
     <figcaption class="statistics-panel__face-caption">
-      Rings show where provisioners run nodes. The bigger the ring, the more
-      nodes.
+      Approximate locations of {locatedNodes} the explorer's node knows of, from their
+      public IP addresses, rounded to the city. The bigger the ring, the more nodes.
     </figcaption>
   </figure>
   <div class="statistics-panel__statistics">

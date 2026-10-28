@@ -178,6 +178,30 @@ describe("SearchField", () => {
     );
   });
 
+  it("should open what it finds in the page's place in the history when asked to", async () => {
+    searchSpy.mockResolvedValueOnce({ id: account, type: "account" });
+
+    const { component } = render(SearchField);
+
+    component.search(account, { replace: true });
+
+    await vi.waitFor(() =>
+      expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
+        `/some-base-path/accounts/?key=${account}`,
+        { replaceState: true }
+      )
+    );
+
+    // The next search, typed, opens a page of its own.
+    searchSpy.mockResolvedValueOnce({ id: account, type: "account" });
+    component.search(account);
+
+    await vi.waitFor(() => expect(gotoSpy).toHaveBeenCalledTimes(2));
+    expect(gotoSpy).toHaveBeenLastCalledWith(
+      `/some-base-path/accounts/?key=${account}`
+    );
+  });
+
   it("should label the search field and say it takes .dusk names", () => {
     const { getByRole } = render(SearchField);
 

@@ -16,8 +16,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
     <figcaption
       class="statistics-panel__face-caption"
     >
-      Rings show where provisioners run nodes. The bigger the ring, the more
-      nodes.
+      Approximate locations of 88 nodes the explorer's node knows of, from their
+      public IP addresses, rounded to the city. The bigger the ring, the more nodes.
     </figcaption>
   </figure>
    
@@ -446,8 +446,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
     <figcaption
       class="statistics-panel__face-caption"
     >
-      Rings show where provisioners run nodes. The bigger the ring, the more
-      nodes.
+      Approximate locations of 88 nodes the explorer's node knows of, from their
+      public IP addresses, rounded to the city. The bigger the ring, the more nodes.
     </figcaption>
   </figure>
    

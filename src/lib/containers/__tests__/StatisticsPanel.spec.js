@@ -174,7 +174,7 @@ describe("StatisticsPanel", () => {
     expect(titlesOf(container, "secondary")[0]).toBe("Market cap");
   });
 
-  it("should lead with the network's map, and say what its rings are", async () => {
+  it("should lead with the network's map, and say where its places come from and how precise they are", async () => {
     const { container } = render(StatisticsPanel);
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
@@ -186,8 +186,9 @@ describe("StatisticsPanel", () => {
       "data-places",
       String(mockData.nodeLocationsCount.length)
     );
+    // 88 nodes in 21 cities.
     expect(face?.querySelector("figcaption")).toHaveTextContent(
-      "Rings show where provisioners run nodes. The bigger the ring, the more nodes."
+      "Approximate locations of 88 nodes the explorer's node knows of, from their public IP addresses, rounded to the city. The bigger the ring, the more nodes."
     );
     // First in the panel, before the numbers.
     expect(container.firstElementChild?.firstElementChild).toBe(face);
