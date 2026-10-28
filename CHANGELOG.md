@@ -101,6 +101,7 @@ and this project adheres to
 - Fix a transaction's status and time splitting over two lines on phones
 - Fix help buttons all named "More information" for screen readers
 - Fix an account page's heading holding its ↗ link
+- Fix an unnamed contract's ID cut twice in phone lists
 
 ## [1.6.0] - 2026-03-25
 

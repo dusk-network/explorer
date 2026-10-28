@@ -135,7 +135,7 @@ describe("Transactions List", () => {
     );
   });
 
-  it("should name an account or a contract its network's labels name, and give another contract's ID short", async () => {
+  it("should name an account or a contract its network's labels name, and give another contract as its ID alone, as an address", async () => {
     const sepoliaBridge =
       "25z9o6qCaVk1ReyHjmB4pyXcE3D1vRu4FVV1rR8ChYcosdTSktkANLDHq9GD6B4985Q1S2KrDZYBRrohWAjrNmACFUb3UMSRyYctJRzh3d28R1ZNC1ZyKm1HwXL4FF5Etftt";
     const router =
@@ -154,8 +154,22 @@ describe("Transactions List", () => {
 
     await vi.waitFor(() => {
       expect(rows[0]).toHaveTextContent(`To ${shortAddress(sepoliaBridge)}`);
-      expect(rows[1]).toHaveTextContent(/^To Contract 2e4b8b…206046$/);
+      expect(rows[1]).toHaveTextContent(/^To 2e4b…6046$/);
     });
+    expect(
+      rows[1].querySelector(".transaction-party__contract-id")
+    ).not.toBeNull();
+    // The words are for the tooltip and the type line.
+    expect(
+      rows[1].querySelector(".transaction-party--contract")
+    ).toHaveAttribute("data-tooltip-text", `Contract ${router}`);
+    await vi.waitFor(() =>
+      expect(
+        rows[1]
+          .closest(".transaction-row")
+          ?.querySelector(".transaction-row__line")
+      ).toHaveTextContent(/^Contract call$/)
+    );
 
     // On testnet, whose file labels both.
     await act(() => appStore.setNodeInfo(apiNodeInfo));

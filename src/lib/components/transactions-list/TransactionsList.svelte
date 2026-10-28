@@ -54,8 +54,8 @@
   const ID_CHARS = 6;
 
   /**
-   * A phone's row shows an address as its first and last four characters:
-   * the receiver's name keeps its room.
+   * A phone's row shows an address, or a contract's ID, as its first and
+   * last four characters: the receiver's name keeps its room.
    */
   const ADDRESS_CHARS = 4;
 
@@ -77,6 +77,7 @@
         <span class="sr-only">From</span>
         <TransactionParty
           chars={ADDRESS_CHARS}
+          contractWord={false}
           name={nameOf(names, from)}
           party={from}
         />
@@ -87,6 +88,7 @@
           <span class="sr-only">To</span>
           <TransactionParty
             chars={ADDRESS_CHARS}
+            contractWord={false}
             name={nameOf(names, to)}
             party={to}
             transaction={data}

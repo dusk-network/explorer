@@ -188,9 +188,15 @@ describe("Transactions Table", () => {
       });
     });
 
-    it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", () => {
+    it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", async () => {
       const { container } = render(TransactionsTable, {
-        props: { data: [transfer], mode: "full" },
+        props: {
+          data: [
+            transfer,
+            { ...call, contract: "ab".repeat(32), method: "submit", to: null },
+          ],
+          mode: "full",
+        },
       });
 
       // The tests run in UTC.
@@ -200,6 +206,14 @@ describe("Transactions Table", () => {
       );
       expect(container.querySelector(".transaction__link")).toHaveTextContent(
         `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`
+      );
+      await vi.waitFor(() =>
+        expect(
+          readOut(
+            container.querySelectorAll("tbody tr")[1],
+            ".transaction__parties"
+          )
+        ).toMatch(/ To Contract ababab…ababab$/)
       );
     });
 

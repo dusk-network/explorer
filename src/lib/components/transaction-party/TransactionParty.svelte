@@ -23,7 +23,8 @@
   export let party;
 
   /**
-   * How many characters of an address to show on each side of the ellipsis.
+   * How many characters of an address or a contract's ID to show on each
+   * side of the ellipsis.
    *
    * @type {number}
    */
@@ -35,6 +36,15 @@
    * @type {{ name: string, url: string } | null | undefined}
    */
   export let name = undefined;
+
+  /**
+   * Whether a contract with no name says "Contract" before its ID. A phone's
+   * row shows the ID alone, as an address, its type line saying it is a
+   * contract call.
+   *
+   * @type {boolean}
+   */
+  export let contractWord = true;
 
   /**
    * The transaction, to show who a deposit to DuskEVM pays instead of the
@@ -62,6 +72,13 @@
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
 </script>
+
+<!-- A contract with no name: its ID short, after "Contract" or alone. -->
+{#snippet unnamed(/** @type {string} */ id)}
+  {#if contractWord}Contract {id}{:else}<span
+      class="transaction-party__contract-id">{id}</span
+    >{/if}
+{/snippet}
 
 {#if party?.kind === "account" && shownName}
   <AppAnchor
@@ -91,12 +108,16 @@
     <span>on DuskEVM</span></span
   >
 {:else if party?.kind === "contract"}
-  {@const shortId = `Contract ${formatContractId(party.id, { short: true })}`}
+  {@const id = middleEllipsis(formatContractId(party.id), chars)}
   <span
     class="transaction-party transaction-party--contract"
     data-tooltip-id="main-tooltip"
     data-tooltip-text="Contract {party.id}"
-    >{#await contractName}{shortId}{:then known}{known ?? shortId}{/await}</span
+    >{#await contractName}{@render unnamed(
+        id
+      )}{:then known}{#if known}{known}{:else}{@render unnamed(
+          id
+        )}{/if}{/await}</span
   >
 {:else if party?.kind === "shielded"}
   <span class="transaction-party transaction-party--hidden">Shielded</span>
