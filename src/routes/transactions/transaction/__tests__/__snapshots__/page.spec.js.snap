@@ -170,7 +170,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             >
               ·
             </span>
-             Tue 16 Apr 2024, 06:39:09 UTC
+             
+            <span
+              class="transaction-details__time"
+            >
+              Tue 16 Apr 2024, 06:39:09 UTC
+            </span>
           </span>
         </p>
       </div>

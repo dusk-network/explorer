@@ -207,6 +207,19 @@ describe("Transaction Details", () => {
     expect(getTerms(container)).not.toContain("timestamp");
   });
 
+  it("should give the status, its dot and the time as the parts of one line, the time in a part of its own", () => {
+    const { container } = render(TransactionDetails, baseProps);
+    const meta = /** @type {HTMLElement} */ (
+      container.querySelector(".transaction-details__summary-meta")
+    );
+
+    // The line's parts keep together; only the time may wrap, inside itself.
+    expect(
+      Array.from(meta.children, (part) => part.textContent?.trim())
+    ).toStrictEqual(["Completed", "·", "Tue 16 Apr 2024, 06:39:09 UTC"]);
+    expect(meta.lastElementChild).toHaveClass("transaction-details__time");
+  });
+
   it("should leave out a memo or a payload that isn't there", () => {
     const { container, queryByRole } = render(TransactionDetails, {
       ...baseProps,

@@ -69,15 +69,48 @@
     navigation = navigation;
   }
 
-  /** @param {FocusEvent} event */
-  function handleFocusIn(event) {
-    const target = /** @type {HTMLElement | null} */ (event.target);
+  /**
+   * Whether an element takes typed text.
+   *
+   * @param {EventTarget | null} target
+   */
+  const isField = (target) => {
+    const element = /** @type {HTMLElement | null} */ (target);
 
-    typing = Boolean(
-      target?.matches?.(
+    return Boolean(
+      element?.isContentEditable ||
+      element?.matches?.(
         "textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])"
       )
     );
+  };
+
+  /** @param {FocusEvent} event */
+  function handleFocusIn(event) {
+    typing = isField(event.target);
+  }
+
+  /**
+   * "/" puts the cursor in the search, unless something is typed in a
+   * field: then it is the character typed.
+   *
+   * @param {KeyboardEvent} event
+   */
+  function handleKeydown(event) {
+    if (
+      event.key !== "/" ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.isComposing ||
+      event.defaultPrevented ||
+      isField(event.target)
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    searchField?.focus();
   }
 
   const dispatch = createEventDispatcher();
@@ -233,6 +266,7 @@
   on:focusout={() => {
     typing = false;
   }}
+  on:keydown={handleKeydown}
 />
 
 <nav

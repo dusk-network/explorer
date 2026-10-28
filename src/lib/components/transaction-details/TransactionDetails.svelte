@@ -181,7 +181,9 @@
           />{data.txerror ? "Failed" : "Completed"}</span
         >
         <span aria-hidden="true">·</span>
-        {formatDateTime(data.date)}
+        <span class="transaction-details__time"
+          >{formatDateTime(data.date)}</span
+        >
       </span>
     </p>
   </div>

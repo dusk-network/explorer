@@ -13,6 +13,9 @@
   /** @type {String}*/
   let value = "";
 
+  /** @type {TextboxAndButton} */
+  let field;
+
   /**
    * The searches made so far: only the latest one's answer counts, so a
    * slow miss can't stand in for a newer search's page.
@@ -67,6 +70,11 @@
   /** Drops the answers of the searches in flight, as after leaving the page. */
   export function cancel() {
     searches += 1;
+  }
+
+  /** Puts the cursor in the search box. */
+  export function focus() {
+    field.focus();
   }
 
   function submitHandler() {
@@ -127,6 +135,7 @@
 
 <form on:submit|preventDefault={submitHandler}>
   <TextboxAndButton
+    bind:this={field}
     bind:value
     buttonLabel="Search"
     expandedFieldWidth={380}
