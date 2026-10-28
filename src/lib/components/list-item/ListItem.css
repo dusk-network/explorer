@@ -22,8 +22,19 @@
 }
 
 .detail-list__help {
-  cursor: help;
+  display: inline-flex;
   flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: help;
+}
+
+.detail-list__help:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
 }
 
 .details-list__definition {

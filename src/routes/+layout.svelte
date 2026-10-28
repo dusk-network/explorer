@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   import { Toast, Tooltip } from "$lib/dusk/components";
-  import { Footer, Navbar } from "$lib/components";
+  import { Footer, Navbar, TestnetStrip } from "$lib/components";
   import { appStore } from "$lib/stores";
   import { duskAPI } from "$lib/services";
   import "../style/main.css";
@@ -27,12 +27,24 @@
   });
 
   const { hasTouchSupport } = $appStore;
+
+  /**
+   * Whether the last search found nothing: its notice stands in for the
+   * page, so the previous result can't pass for its answer.
+   */
+  let hasSearchMissed = false;
 </script>
 
 <header>
-  <Navbar on:toggleMenu={(e) => toggleScroll(e.detail)} />
+  <TestnetStrip />
+  <Navbar
+    on:searchMiss={(e) => {
+      hasSearchMissed = e.detail;
+    }}
+    on:toggleMenu={(e) => toggleScroll(e.detail)}
+  />
 </header>
-<main id="explorer">
+<main hidden={hasSearchMissed} id="explorer">
   <slot />
 </main>
 <footer>

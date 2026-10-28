@@ -4,8 +4,7 @@
   import { onMount } from "svelte";
 
   import { CopyButton } from "$lib/dusk/components";
-  import { luxToDusk } from "$lib/dusk/currency";
-  import { createValueFormatter } from "$lib/dusk/value";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
   import { AppAnchor, DetailList, ListItem } from "$lib/components";
 
@@ -28,8 +27,6 @@
 
   /** @type {number} */
   let screenWidth = window.innerWidth;
-
-  const duskFormatter = createValueFormatter("en", 2, 2);
 
   onMount(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -84,10 +81,14 @@
     <svelte:fragment slot="term">Stake</svelte:fragment>
     <svelte:fragment slot="definition">
       <span>
-        {duskFormatter(luxToDusk(data.amount))} DUSK
+        <span title="{formatDuskExact(data.amount)} DUSK"
+          >{formatDusk(data.amount)} DUSK</span
+        >
         {#if data.locked_amt}
-          <span class="provisioners-list__muted"
-            >+ {duskFormatter(luxToDusk(data.locked_amt))} inactive</span
+          <span
+            class="provisioners-list__muted"
+            title="{formatDuskExact(data.locked_amt)} DUSK"
+            >+ {formatDusk(data.locked_amt)} inactive</span
           >
         {/if}
       </span>
@@ -98,7 +99,9 @@
   <ListItem tooltipText={displayTooltips ? "The rewards not yet claimed" : ""}>
     <svelte:fragment slot="term">Reward</svelte:fragment>
     <svelte:fragment slot="definition">
-      {duskFormatter(luxToDusk(data.reward))} DUSK
+      <span title="{formatDuskExact(data.reward)} DUSK"
+        >{formatDusk(data.reward)} DUSK</span
+      >
     </svelte:fragment>
   </ListItem>
 

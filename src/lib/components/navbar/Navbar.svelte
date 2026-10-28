@@ -6,6 +6,7 @@
   import { Badge, Button, NavList } from "$lib/dusk/components";
   import { AppAnchor, AppImage, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
+  import { getNetworkName, isConnected } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./Navbar.css";
@@ -24,6 +25,24 @@
 
   /** @type {SearchField} */
   let searchField;
+
+  /** @type {HTMLElement | undefined} */
+  let menu;
+
+  /**
+   * Where the opened menu starts on a small screen: under a test network's
+   * strip, the logo, the search and any notice. It takes the rest of the
+   * screen and scrolls within it.
+   */
+  let menuTop = 0;
+
+  async function measureMenu() {
+    await tick();
+
+    if (!hidden && menu) {
+      menuTop = Math.max(0, menu.getBoundingClientRect().top);
+    }
+  }
 
   let navigation = [
     {
@@ -91,52 +110,30 @@
     }
 
     updateOffset();
+    measureMenu();
   }
 
   $: if (!showSearchNotification) {
     notificationObserver?.disconnect();
   }
 
+  // A search that found nothing replaces the page below until it is closed.
+  $: dispatch("searchMiss", showSearchNotification);
+
   onDestroy(() => notificationObserver?.disconnect());
-
-  /**
-   * @param {NodeInfo} nodeInfo
-   */
-  const isConnected = (nodeInfo) => {
-    const chainId = nodeInfo.chain_id;
-    return Number.isInteger(chainId) || chainId === null || false;
-  };
-
-  /**
-   * @param {NodeInfo} nodeInfo
-   */
-  const getNetworkName = (nodeInfo) => {
-    switch (nodeInfo.chain_id) {
-      case 1:
-        return "mainnet";
-
-      case 2:
-        return "testnet";
-
-      case 3:
-        return "devnet";
-
-      case 41:
-        return "mainnet dry-run #2";
-
-      default:
-        return "localnet";
-    }
-  };
 
   afterNavigate(() => {
     hidden = true;
     dispatch("toggleMenu", hidden);
     showSearchNotification = false;
+    // A search still in flight was for the page left behind.
+    searchField?.cancel();
   });
 
   $: ({ darkMode, nodeInfo } = $appStore);
 </script>
+
+<svelte:window on:resize={measureMenu} />
 
 <nav
   style={showSearchNotification
@@ -162,12 +159,15 @@
     on:click={() => {
       hidden = !hidden;
       dispatch("toggleMenu", hidden);
+      measureMenu();
     }}
   />
   <div
+    bind:this={menu}
     class="dusk-navbar__menu"
     class:dusk-navbar__menu--hidden={hidden}
     id="dusk-navbar-menu"
+    style:--menu-top={menuTop ? `${menuTop}px` : undefined}
   >
     <Badge
       className="dusk-navbar__menu--network"

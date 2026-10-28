@@ -10,7 +10,7 @@
   } from "$lib/components/table";
   import { AppAnchor } from "$lib/components";
   import { Badge, CopyButton } from "$lib/dusk/components";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
 
@@ -34,7 +34,6 @@
   const HASH_CHARS_LENGTH = 10;
 
   const numberFormatter = createValueFormatter("en");
-  const fixedNumberFormatter = createValueFormatter("en", 2, 2);
 
   /** @typedef {"asc" | "desc"} SortDirection */
 
@@ -240,30 +239,23 @@ Consensus: ${middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}`
 
         <TableCell>
           <b class="provisioners-table__stake-data-label">Active:</b>
-          {numberFormatter(luxToDusk(provisioner.amount))}
+          <span title="{formatDuskExact(provisioner.amount)} DUSK"
+            >{formatDusk(provisioner.amount)}</span
+          >
           <br />
           <b class="provisioners-table__stake-data-label">Inactive:</b>
-          {numberFormatter(luxToDusk(provisioner.locked_amt))}
+          <span title="{formatDuskExact(provisioner.locked_amt)} DUSK"
+            >{formatDusk(provisioner.locked_amt)}</span
+          >
           <br />
           <b class="provisioners-table__stake-data-label">Maturity At:</b>
           #{numberFormatter(provisioner.eligibility)}
         </TableCell>
 
-        {@const parts = fixedNumberFormatter(
-          luxToDusk(provisioner.reward)
-        ).split(".")}
-
         <TableCell>
-          <span
-            data-tooltip-id="main-tooltip"
-            data-tooltip-place="top"
-            data-tooltip-type="info"
-            data-tooltip-text={`${numberFormatter(
-              luxToDusk(provisioner.reward)
-            )} DUSK`}
+          <span title="{formatDuskExact(provisioner.reward)} DUSK"
+            >{formatDusk(provisioner.reward)}</span
           >
-            {parts[0]}.<span class="decimal-shadow">{parts[1]}</span>
-          </span>
         </TableCell>
 
         <TableCell>

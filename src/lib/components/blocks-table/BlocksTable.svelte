@@ -10,7 +10,8 @@
     TableHead,
     TableRow,
   } from "$lib/components/table";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import { makeClassName } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
 
@@ -45,7 +46,12 @@
             href={`/blocks/block?id=${block.header.hash}`}
             >{numberFormatter(block.header.height)}</AppAnchor
           >
-          <RelativeTime className="block__time" date={block.header.date} />
+          <RelativeTime
+            className="block__time"
+            data-tooltip-id="main-tooltip"
+            data-tooltip-text={formatDateTime(block.header.date)}
+            date={block.header.date}
+          />
         </TableCell>
         <TableCell>
           <b class="block__fee-avg-label">AVG PRICE:</b>
@@ -54,7 +60,11 @@
           {numberFormatter(block.transactions.stats.gasUsed)}
         </TableCell>
         <TableCell>{numberFormatter(block.transactions.data.length)}</TableCell>
-        <TableCell>{numberFormatter(luxToDusk(block.header.reward))}</TableCell>
+        <TableCell
+          ><span title="{formatDuskExact(block.header.reward)} DUSK"
+            >{formatDusk(block.header.reward)}</span
+          ></TableCell
+        >
       </TableRow>
     {/each}
   </TableBody>

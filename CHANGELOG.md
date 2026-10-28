@@ -16,6 +16,10 @@ and this project adheres to
 - Add an account's stake and stake rewards to its page
 - Add a search to the provisioners page
 - Show primary .dusk names in the From / To of transaction lists
+- Say at the top of a test network that test DUSK has no value
+- Lead the transaction page with one sentence: who sent how much to whom, its status and time
+- Name the DuskEVM bridge and Sozu, and show the DuskEVM address a deposit pays
+- Find provisioners by .dusk name
 
 ### Changed
 
@@ -31,6 +35,14 @@ and this project adheres to
 - Keep the search text after a miss, say why nothing was found and offer the .dusk name to try
 - Link provisioners to their account page, and keep their rows short on phones
 - Move "Show more" and the count to the bottom of lists
+- Show no DUSK price, market cap or dollar values off mainnet
+- Fold gas, nonce and payload under "Technical details" on the transaction page
+- Show transaction types in plain words, with the full method name beside them
+- Show DUSK with at most four decimals in lists, and in full on detail pages and on hover
+- Show times in the viewer's time zone with its name, and IDs in lists as their first and last six characters
+- Say "Completed" or "Failed" for a transaction's status
+- Call an account with a stake a provisioner, with an estimated date for its eligibility
+- Show a failed search in place of the previous page, and say when a searched ID is shortened
 
 ### Removed
 
@@ -41,6 +53,9 @@ and this project adheres to
 - Fix staking addresses and transaction IDs shown in capitals on phones
 - Fix unnamed switches, copy buttons, search button and block arrows for screen readers
 - Fix type badges running into the card edge and the small Dusk Domains link on phones
+- Fix float noise in stake amounts
+- Fix field help that only worked on hover, and brackets read out in card titles
+- Fix low contrast of short addresses beside names
 
 ## [1.6.0] - 2026-03-25
 

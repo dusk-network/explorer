@@ -20,6 +20,18 @@ describe("DataCard", () => {
 
   afterEach(cleanup);
 
+  it("should draw the brackets around its title but leave them out of what screen readers say", () => {
+    const { getByRole } = render(DataCard, baseOptions);
+    const heading = getByRole("heading", { name: "Title" });
+
+    expect(heading).toHaveTextContent("[ Title ]");
+    expect(
+      Array.from(heading.querySelectorAll("[aria-hidden='true']"), (el) =>
+        el.textContent?.trim()
+      )
+    ).toStrictEqual(["[", "]"]);
+  });
+
   it("should render the `DataCard` in the loading state", () => {
     const loading = true;
     const { container } = render(DataCard, {

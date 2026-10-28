@@ -20,6 +20,19 @@ describe("explainSearchMiss", () => {
     );
   });
 
+  it("should say a shortened ID, as a wallet shows it, is shortened", () => {
+    for (const query of [
+      "dc3f73…1c204a",
+      "dc3f73...1c204a",
+      "DC3F73..1C204A",
+    ]) {
+      expect(explainSearchMiss(query)).toStrictEqual({
+        message:
+          "This is a shortened ID. Copy the whole ID, 64 characters, and search again.",
+      });
+    }
+  });
+
   it("should say a shielded address can't be looked up", () => {
     const shielded = base58.encode(new Uint8Array(64).fill(7));
 

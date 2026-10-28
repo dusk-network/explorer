@@ -27,13 +27,8 @@
   text-transform: uppercase;
 }
 
-.data-card__header-title::before {
-  content: "[ ";
-  color: var(--secondary-color);
-}
-
-.data-card__header-title::after {
-  content: " ]";
+/* Drawn, not read: screen readers say the title alone. */
+.data-card__bracket {
   color: var(--secondary-color);
 }
 

@@ -378,20 +378,29 @@ describe("getSearchedName", () => {
 });
 
 describe("isDuskDomainsContract", () => {
-  it("should know the contracts of the pinned releases, and only those", async () => {
+  it("should know the contracts of the network's pinned release, and only those", async () => {
     const { isDuskDomainsContract } = await import("..");
-    const ids = Object.values(releases).flatMap((release) => [
-      release.lens.contractId,
-      ...release.contracts.map(({ contractId }) => contractId),
-    ]);
 
-    for (const id of ids) {
-      await expect(isDuskDomainsContract(id)).resolves.toBe(true);
+    for (const release of Object.values(releases)) {
+      const chainId = Number(release.chainId.replace("dusk:", ""));
+      const ids = [
+        release.lens.contractId,
+        ...release.contracts.map(({ contractId }) => contractId),
+      ];
+
+      for (const id of ids) {
+        await expect(isDuskDomainsContract(id, chainId)).resolves.toBe(true);
+        // Another network's, a devnet's, or before the network is known.
+        for (const other of [3 - chainId, 3, undefined]) {
+          await expect(isDuskDomainsContract(id, other)).resolves.toBe(false);
+        }
+      }
     }
 
     await expect(
       isDuskDomainsContract(
-        "0200000000000000000000000000000000000000000000000000000000000000"
+        "0200000000000000000000000000000000000000000000000000000000000000",
+        1
       )
     ).resolves.toBe(false);
   });

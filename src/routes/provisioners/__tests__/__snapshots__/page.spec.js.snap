@@ -15,7 +15,19 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
       <h1
         class="data-card__header-title"
       >
-        Provisioners
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Provisioners 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->
@@ -32,9 +44,9 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
       >
         <!---->
         <input
-          aria-label="Search provisioners by staking or owner address"
+          aria-label="Search provisioners by staking or owner address, or .dusk name"
           class="dusk-textbox dusk-textbox-search"
-          placeholder="Staking or owner address"
+          placeholder="Staking or owner address, or .dusk name"
           type="search"
         />
         
@@ -54,21 +66,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-1"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-1"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -136,21 +163,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-2"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-2"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -162,7 +204,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              1,000,000.00 DUSK 
+              <span
+                title="1,000,000 DUSK"
+              >
+                1,000,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -175,21 +222,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-3"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-3"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -200,7 +262,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            12,178.76 DUSK
+            <span
+              title="12,178.759788262 DUSK"
+            >
+              12,178.7597 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -211,21 +277,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-4"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-4"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -254,21 +335,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-5"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-5"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -336,21 +432,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-6"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-6"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -362,7 +473,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              510,000.00 DUSK 
+              <span
+                title="510,000 DUSK"
+              >
+                510,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -375,21 +491,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-7"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-7"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -400,7 +531,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            780.15 DUSK
+            <span
+              title="780.152437445 DUSK"
+            >
+              780.1524 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -411,21 +546,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-8"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-8"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -447,21 +597,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-9"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-9"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -494,21 +659,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-10"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-10"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -576,21 +756,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-11"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-11"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -602,7 +797,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              505,000.00 DUSK 
+              <span
+                title="505,000 DUSK"
+              >
+                505,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -615,21 +815,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-12"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-12"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -640,7 +855,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            2,063.43 DUSK
+            <span
+              title="2,063.426446466 DUSK"
+            >
+              2,063.4264 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -651,21 +870,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-13"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-13"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -687,21 +921,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-14"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-14"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -734,21 +983,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-15"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-15"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -816,21 +1080,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-16"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-16"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -842,7 +1121,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              504,000.00 DUSK 
+              <span
+                title="504,000 DUSK"
+              >
+                504,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -855,21 +1139,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-17"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-17"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -880,7 +1179,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            5,190.55 DUSK
+            <span
+              title="5,190.546947071 DUSK"
+            >
+              5,190.5469 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -891,21 +1194,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-18"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-18"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -934,21 +1252,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-19"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-19"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -1016,21 +1349,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-20"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-20"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -1042,7 +1390,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -1055,21 +1408,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-21"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-21"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -1080,7 +1448,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,121.26 DUSK
+            <span
+              title="7,121.257296087 DUSK"
+            >
+              7,121.2572 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1091,21 +1463,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-22"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-22"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -1134,21 +1521,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-23"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-23"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -1216,21 +1618,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-24"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-24"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -1242,7 +1659,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -1255,21 +1677,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-25"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-25"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -1280,7 +1717,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            6,923.84 DUSK
+            <span
+              title="6,923.840604194 DUSK"
+            >
+              6,923.8406 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1291,21 +1732,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-26"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-26"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -1334,21 +1790,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-27"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-27"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -1416,21 +1887,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-28"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-28"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -1442,7 +1928,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -1455,21 +1946,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-29"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-29"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -1480,7 +1986,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,518.76 DUSK
+            <span
+              title="7,518.756679536 DUSK"
+            >
+              7,518.7566 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1491,21 +2001,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-30"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-30"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -1527,21 +2052,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-31"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-31"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -1574,21 +2114,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-32"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-32"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -1656,21 +2211,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-33"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-33"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -1682,7 +2252,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -1695,21 +2270,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-34"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-34"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -1720,7 +2310,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,653.54 DUSK
+            <span
+              title="7,653.541671166 DUSK"
+            >
+              7,653.5416 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1731,21 +2325,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-35"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-35"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -1767,21 +2376,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-36"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-36"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -1814,21 +2438,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-37"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-37"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -1896,21 +2535,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-38"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-38"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -1922,7 +2576,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -1935,21 +2594,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-39"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-39"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -1960,7 +2634,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,512.06 DUSK
+            <span
+              title="7,512.060104659 DUSK"
+            >
+              7,512.0601 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -1971,21 +2649,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-40"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-40"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -2014,21 +2707,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-41"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-41"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -2096,21 +2804,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-42"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-42"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -2122,7 +2845,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -2135,21 +2863,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-43"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-43"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -2160,7 +2903,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,973.12 DUSK
+            <span
+              title="7,973.118109253 DUSK"
+            >
+              7,973.1181 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2171,21 +2918,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-44"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-44"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -2214,21 +2976,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-45"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-45"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -2296,21 +3073,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-46"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-46"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -2322,7 +3114,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -2335,21 +3132,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-47"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-47"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -2360,7 +3172,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,091.40 DUSK
+            <span
+              title="7,091.398997002 DUSK"
+            >
+              7,091.3989 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2371,21 +3187,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-48"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-48"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -2414,21 +3245,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-49"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-49"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -2496,21 +3342,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-50"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-50"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -2522,7 +3383,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -2535,21 +3401,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-51"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-51"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -2560,7 +3441,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,373.19 DUSK
+            <span
+              title="7,373.189839389 DUSK"
+            >
+              7,373.1898 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2571,21 +3456,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-52"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-52"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -2607,21 +3507,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-53"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-53"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -2654,21 +3569,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-54"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-54"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -2736,21 +3666,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-55"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-55"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -2762,7 +3707,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -2775,21 +3725,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-56"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-56"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -2800,7 +3765,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,127.32 DUSK
+            <span
+              title="7,127.318018509 DUSK"
+            >
+              7,127.318 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -2811,21 +3780,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-57"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-57"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -2854,21 +3838,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-58"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-58"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -2936,21 +3935,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-59"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-59"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -2962,7 +3976,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -2975,21 +3994,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-60"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-60"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -3000,7 +4034,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            6,731.43 DUSK
+            <span
+              title="6,731.43057271 DUSK"
+            >
+              6,731.4305 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -3011,21 +4049,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-61"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-61"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -3047,21 +4100,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-62"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-62"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -3094,21 +4162,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-63"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Rank by stake, and the staking address. Open it for its stake and rewards."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-63"
+                >
+                  Rank by stake, and the staking address. Open it for its stake and rewards.
+                </span>
+              </button>
               <!---->
                
               Provisioner
@@ -3176,21 +4259,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-64"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Active stake takes part in consensus. Inactive stake doesn't."
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-64"
+                >
+                  Active stake takes part in consensus. Inactive stake doesn't.
+                </span>
+              </button>
               <!---->
                
               Stake
@@ -3202,7 +4300,12 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             class="details-list__definition details-list__definition--table"
           >
             <span>
-              500,000.00 DUSK 
+              <span
+                title="500,000 DUSK"
+              >
+                500,000 DUSK
+              </span>
+               
               <!---->
             </span>
             <!---->
@@ -3215,21 +4318,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-65"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The rewards not yet claimed"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-65"
+                >
+                  The rewards not yet claimed
+                </span>
+              </button>
               <!---->
                
               Reward
@@ -3240,7 +4358,11 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
           <dd
             class="details-list__definition details-list__definition--table"
           >
-            7,428.02 DUSK
+            <span
+              title="7,428.022676833 DUSK"
+            >
+              7,428.0226 DUSK
+            </span>
             <!---->
           </dd>
           <!---->
@@ -3251,21 +4373,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-66"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="Soft slashes for missed duties, hard slashes for faults"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-66"
+                >
+                  Soft slashes for missed duties, hard slashes for faults
+                </span>
+              </button>
               <!---->
                
               Slashes
@@ -3287,21 +4424,36 @@ exports[`Provisioners page > should render the Provisioners page with the mobile
             <div
               class="details-list__term-layout"
             >
-              <!---->
-              <svg
-                class="dusk-icon dusk-icon--size--default detail-list__help"
+              <button
+                aria-describedby="list-item-help-67"
+                aria-label="More information"
+                class="detail-list__help"
                 data-tooltip-id="main-tooltip"
                 data-tooltip-place="top"
                 data-tooltip-text="The key that owns the stake, when it isn't the staking key"
                 data-tooltip-type="info"
-                role="graphics-symbol"
-                viewBox="0 0 24 24"
+                type="button"
               >
-                <path
-                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                />
-              </svg>
-              
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-67"
+                >
+                  The key that owns the stake, when it isn't the staking key
+                </span>
+              </button>
               <!---->
                
               Owner
@@ -3391,7 +4543,19 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Provisioners
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Provisioners 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->
@@ -3446,7 +4610,19 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       <h1
         class="data-card__header-title"
       >
-        Provisioners
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          [
+        </span>
+         Provisioners 
+        <span
+          aria-hidden="true"
+          class="data-card__bracket"
+        >
+          ]
+        </span>
       </h1>
        
       <!---->
@@ -3463,9 +4639,9 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
       >
         <!---->
         <input
-          aria-label="Search provisioners by staking or owner address"
+          aria-label="Search provisioners by staking or owner address, or .dusk name"
           class="dusk-textbox dusk-textbox-search"
-          placeholder="Staking or owner address"
+          placeholder="Staking or owner address, or .dusk name"
           type="search"
         />
         
@@ -3731,7 +4907,13 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                 >
                   Active:
                 </b>
-                 1,000,000 
+                 
+                <span
+                  title="1,000,000 DUSK"
+                >
+                  1,000,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -3739,7 +4921,13 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -3760,17 +4948,9 @@ exports[`Provisioners page > should render the Provisioners page, start polling 
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="12,178.759788262 DUSK"
-                  data-tooltip-type="info"
+                  title="12,178.759788262 DUSK"
                 >
-                  12,178.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    76
-                  </span>
+                  12,178.7597
                 </span>
                 
                 
@@ -3905,7 +5085,13 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
                 >
                   Active:
                 </b>
-                 510,000 
+                 
+                <span
+                  title="510,000 DUSK"
+                >
+                  510,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -3913,7 +5099,13 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -3934,17 +5126,9 @@ Consensus: s9mQHPDuKi...XxiM4ksRbH"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="780.152437445 DUSK"
-                  data-tooltip-type="info"
+                  title="780.152437445 DUSK"
                 >
-                  780.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    15
-                  </span>
+                  780.1524
                 </span>
                 
                 
@@ -4079,7 +5263,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Active:
                 </b>
-                 505,000 
+                 
+                <span
+                  title="505,000 DUSK"
+                >
+                  505,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4087,7 +5277,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4108,17 +5304,9 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="2,063.426446466 DUSK"
-                  data-tooltip-type="info"
+                  title="2,063.426446466 DUSK"
                 >
-                  2,063.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    43
-                  </span>
+                  2,063.4264
                 </span>
                 
                 
@@ -4252,7 +5440,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Active:
                 </b>
-                 504,000 
+                 
+                <span
+                  title="504,000 DUSK"
+                >
+                  504,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4260,7 +5454,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4281,17 +5481,9 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="5,190.546947071 DUSK"
-                  data-tooltip-type="info"
+                  title="5,190.546947071 DUSK"
                 >
-                  5,190.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    55
-                  </span>
+                  5,190.5469
                 </span>
                 
                 
@@ -4425,7 +5617,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4433,7 +5631,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4454,17 +5658,9 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,121.257296087 DUSK"
-                  data-tooltip-type="info"
+                  title="7,121.257296087 DUSK"
                 >
-                  7,121.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    26
-                  </span>
+                  7,121.2572
                 </span>
                 
                 
@@ -4598,7 +5794,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4606,7 +5808,13 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4627,17 +5835,9 @@ Consensus: sX4JooVNAF...fCFZMqQhtz"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="6,923.840604194 DUSK"
-                  data-tooltip-type="info"
+                  title="6,923.840604194 DUSK"
                 >
-                  6,923.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    84
-                  </span>
+                  6,923.8406
                 </span>
                 
                 
@@ -4772,7 +5972,13 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4780,7 +5986,13 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4801,17 +6013,9 @@ Consensus: mTgXDqkyVa...gAseybAsfU"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,518.756679536 DUSK"
-                  data-tooltip-type="info"
+                  title="7,518.756679536 DUSK"
                 >
-                  7,518.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    76
-                  </span>
+                  7,518.7566
                 </span>
                 
                 
@@ -4946,7 +6150,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4954,7 +6164,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -4975,17 +6191,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,653.541671166 DUSK"
-                  data-tooltip-type="info"
+                  title="7,653.541671166 DUSK"
                 >
-                  7,653.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    54
-                  </span>
+                  7,653.5416
                 </span>
                 
                 
@@ -5119,7 +6327,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5127,7 +6341,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5148,17 +6368,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,512.060104659 DUSK"
-                  data-tooltip-type="info"
+                  title="7,512.060104659 DUSK"
                 >
-                  7,512.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    06
-                  </span>
+                  7,512.0601
                 </span>
                 
                 
@@ -5292,7 +6504,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5300,7 +6518,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5321,17 +6545,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,973.118109253 DUSK"
-                  data-tooltip-type="info"
+                  title="7,973.118109253 DUSK"
                 >
-                  7,973.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    12
-                  </span>
+                  7,973.1181
                 </span>
                 
                 
@@ -5465,7 +6681,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5473,7 +6695,13 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5494,17 +6722,9 @@ Consensus: mUUpjnXow2...SfzQcywzaW"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,091.398997002 DUSK"
-                  data-tooltip-type="info"
+                  title="7,091.398997002 DUSK"
                 >
-                  7,091.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    40
-                  </span>
+                  7,091.3989
                 </span>
                 
                 
@@ -5639,7 +6859,13 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5647,7 +6873,13 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5668,17 +6900,9 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,373.189839389 DUSK"
-                  data-tooltip-type="info"
+                  title="7,373.189839389 DUSK"
                 >
-                  7,373.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    19
-                  </span>
+                  7,373.1898
                 </span>
                 
                 
@@ -5812,7 +7036,13 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5820,7 +7050,13 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5841,17 +7077,9 @@ Consensus: mgmcqkk1VF...xddxLvEDVP"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,127.318018509 DUSK"
-                  data-tooltip-type="info"
+                  title="7,127.318018509 DUSK"
                 >
-                  7,127.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    32
-                  </span>
+                  7,127.318
                 </span>
                 
                 
@@ -5986,7 +7214,13 @@ Consensus: nV71a9Hec6...A4pNWv4roh"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -5994,7 +7228,13 @@ Consensus: nV71a9Hec6...A4pNWv4roh"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -6015,17 +7255,9 @@ Consensus: nV71a9Hec6...A4pNWv4roh"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="6,731.43057271 DUSK"
-                  data-tooltip-type="info"
+                  title="6,731.43057271 DUSK"
                 >
-                  6,731.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    43
-                  </span>
+                  6,731.4305
                 </span>
                 
                 
@@ -6160,7 +7392,13 @@ Consensus: nXqyaSYaTa...QpLqoCPDeD"
                 >
                   Active:
                 </b>
-                 500,000 
+                 
+                <span
+                  title="500,000 DUSK"
+                >
+                  500,000
+                </span>
+                 
                 <br />
                  
                 <b
@@ -6168,7 +7406,13 @@ Consensus: nXqyaSYaTa...QpLqoCPDeD"
                 >
                   Inactive:
                 </b>
-                 0 
+                 
+                <span
+                  title="0 DUSK"
+                >
+                  0
+                </span>
+                 
                 <br />
                  
                 <b
@@ -6189,17 +7433,9 @@ Consensus: nXqyaSYaTa...QpLqoCPDeD"
               >
                 <!---->
                 <span
-                  data-tooltip-id="main-tooltip"
-                  data-tooltip-place="top"
-                  data-tooltip-text="7,428.022676833 DUSK"
-                  data-tooltip-type="info"
+                  title="7,428.022676833 DUSK"
                 >
-                  7,428.
-                  <span
-                    class="decimal-shadow"
-                  >
-                    02
-                  </span>
+                  7,428.0226
                 </span>
                 
                 

@@ -172,19 +172,25 @@ const readLens = (release, read) =>
     );
 
 /**
- * Whether a contract belongs to Dusk Domains on mainnet or testnet, by the
- * contract IDs of the pinned releases. It reads nothing from the node.
+ * Whether a contract belongs to Dusk Domains on the node's network, by the
+ * contract IDs of that network's pinned release: none off mainnet and
+ * testnet, or before the node has said which it is on. It reads nothing
+ * from the node.
  *
  * @param {string} contractId
+ * @param {number | null | undefined} chainId The node's network
  * @returns {Promise<boolean>}
  */
-export async function isDuskDomainsContract(contractId) {
+export async function isDuskDomainsContract(contractId, chainId) {
   const { default: releases } = await import("./dusk-domains-releases.json");
+  const release = Object.values(releases).find(
+    (candidate) => candidate.chainId === `dusk:${chainId}`
+  );
 
-  return Object.values(releases).some(
-    (release) =>
-      release.lens.contractId === contractId ||
-      release.contracts.some((contract) => contract.contractId === contractId)
+  return (
+    !!release &&
+    (release.lens.contractId === contractId ||
+      release.contracts.some((contract) => contract.contractId === contractId))
   );
 }
 

@@ -178,6 +178,33 @@ describe("Navbar", () => {
     vi.unstubAllGlobals();
   });
 
+  it("should give the opened menu the screen below where it starts, as under a test network's strip, and let it scroll", async () => {
+    const { container, getByRole } = render(Navbar);
+    const menu = /** @type {HTMLElement} */ (
+      container.querySelector(".dusk-navbar__menu")
+    );
+    let top = 196;
+    const rect = vi
+      .spyOn(menu, "getBoundingClientRect")
+      .mockImplementation(() => /** @type {DOMRect} */ ({ top }));
+
+    await fireEvent.click(getByRole("button", { name: "Toggle Menu" }));
+
+    await vi.waitFor(() =>
+      expect(menu.style.getPropertyValue("--menu-top")).toBe("196px")
+    );
+
+    // A notice under the search pushes the menu down.
+    top = 330;
+    await showSearchNotification(container);
+
+    await vi.waitFor(() =>
+      expect(menu.style.getPropertyValue("--menu-top")).toBe("330px")
+    );
+
+    rect.mockRestore();
+  });
+
   it("should keep the search out of the menu, so phones show it without opening the menu", () => {
     const { container } = render(Navbar);
     const menu = /** @type {HTMLDivElement} */ (

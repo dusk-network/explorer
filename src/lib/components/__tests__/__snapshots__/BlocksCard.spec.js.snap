@@ -13,7 +13,19 @@ exports[`Blocks Card > should disable the \`Show More\` button is the card is in
     <h1
       class="data-card__header-title"
     >
-      Blocks — 0 Displayed Items
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Blocks — 0 Displayed Items 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button
@@ -64,7 +76,19 @@ exports[`Blocks Card > should hide the \`Show More\` button if an error has occu
     <h1
       class="data-card__header-title"
     >
-      Blocks — 0 Displayed Items
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Blocks — 0 Displayed Items 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -136,7 +160,19 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
     <h1
       class="data-card__header-title"
     >
-      Blocks — 10 Displayed Items
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Blocks — 10 Displayed Items 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <!---->
@@ -243,6 +279,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:54 UTC"
                 datetime="2024-05-28T14:26:54.000Z"
               >
                 <!---->
@@ -299,7 +337,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -330,6 +372,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:51 UTC"
                 datetime="2024-05-28T14:26:51.000Z"
               >
                 <!---->
@@ -386,7 +430,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -417,6 +465,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:47 UTC"
                 datetime="2024-05-28T14:26:47.000Z"
               >
                 <!---->
@@ -473,7 +523,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -504,6 +558,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:45 UTC"
                 datetime="2024-05-28T14:26:45.000Z"
               >
                 <!---->
@@ -560,7 +616,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -591,6 +651,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:42 UTC"
                 datetime="2024-05-28T14:26:42.000Z"
               >
                 <!---->
@@ -647,7 +709,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -678,6 +744,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:39 UTC"
                 datetime="2024-05-28T14:26:39.000Z"
               >
                 <!---->
@@ -734,7 +802,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -765,6 +837,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:35 UTC"
                 datetime="2024-05-28T14:26:35.000Z"
               >
                 <!---->
@@ -821,7 +895,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -852,6 +930,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:32 UTC"
                 datetime="2024-05-28T14:26:32.000Z"
               >
                 <!---->
@@ -908,7 +988,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -939,6 +1023,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:29 UTC"
                 datetime="2024-05-28T14:26:29.000Z"
               >
                 <!---->
@@ -995,7 +1081,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -1026,6 +1116,8 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
                
               <time
                 class="dusk-relative-time block__time"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-text="Tue 28 May 2024, 14:26:24 UTC"
                 datetime="2024-05-28T14:26:24.000Z"
               >
                 <!---->
@@ -1082,7 +1174,11 @@ exports[`Blocks Card > should hide the \`Show More\` button if there is no more 
               class="table__data-cell align-left"
             >
               <!---->
-              16
+              <span
+                title="16 DUSK"
+              >
+                16
+              </span>
               
               
             </td>
@@ -1123,7 +1219,19 @@ exports[`Blocks Card > should render the \`BlocksCard\` component 1`] = `
     <h1
       class="data-card__header-title"
     >
-      Blocks — 0 Displayed Items
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        [
+      </span>
+       Blocks — 0 Displayed Items 
+      <span
+        aria-hidden="true"
+        class="data-card__bracket"
+      >
+        ]
+      </span>
     </h1>
      
     <button

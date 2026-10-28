@@ -23,6 +23,7 @@ export { default as ProvisionersList } from "./provisioners-list/ProvisionersLis
 export { default as ProvisionersTable } from "./provisioners-table/ProvisionersTable.svelte";
 export { default as SearchNotification } from "./search-notification/SearchNotification.svelte";
 export { default as StaleDataNotice } from "./stale-data-notice/StaleDataNotice.svelte";
+export { default as TestnetStrip } from "./testnet-strip/TestnetStrip.svelte";
 export { default as TextboxAndButton } from "./textbox-and-button/TextboxAndButton.svelte";
 export { default as TransactionParty } from "./transaction-party/TransactionParty.svelte";
 export { default as TransactionsCard } from "./transactions-card/TransactionsCard.svelte";

@@ -327,6 +327,24 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
+  it("should read the last block's height and time in one query", async () => {
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        block: { header: { height: 4692520, timestamp: 1793032599 } },
+      })
+    );
+
+    await expect(duskAPI.getChainTip()).resolves.toStrictEqual({
+      date: new Date(1793032599 * 1000),
+      height: 4692520,
+    });
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
+    expect(fetchSpy.mock.calls[0][1]?.body).toBe(
+      "query { block(height: -1) { header { height timestamp } } }"
+    );
+  });
+
   it("should read an account's stake from the stake contract in one JSON query", async () => {
     const address = mockData.hostProvisioners[0].key;
 
@@ -345,12 +363,12 @@ describe("duskAPI", () => {
     );
 
     await expect(duskAPI.getStake(address)).resolves.toStrictEqual({
-      active: 362880000000,
+      active: 362880000000n,
       eligibility: 123120,
       faults: 10,
       hardFaults: 0,
-      inactive: 999637120000000,
-      reward: 31027186,
+      inactive: 999637120000000n,
+      reward: 31027186n,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
 
@@ -366,6 +384,30 @@ describe("duskAPI", () => {
       body: JSON.stringify(address),
       headers: { "Content-Type": "application/json" },
       method: "POST",
+    });
+  });
+
+  it("should keep stake amounts exact, past what a number holds", async () => {
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        amount: {
+          eligibility: "3086640",
+          locked: "1048434300000001",
+          value: "13102790940789549",
+        },
+        faults: 0,
+        // eslint-disable-next-line camelcase
+        hard_faults: 0,
+        reward: "9007199254740993",
+      })
+    );
+
+    await expect(
+      duskAPI.getStake(mockData.hostProvisioners[0].key)
+    ).resolves.toMatchObject({
+      active: 13102790940789549n,
+      inactive: 1048434300000001n,
+      reward: 9007199254740993n,
     });
   });
 

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
 import { TransactionStatus } from "..";
@@ -18,6 +18,18 @@ describe("TransactionStatus", () => {
     const { container } = render(TransactionStatus, baseOptions);
 
     expect(container.firstElementChild).toMatchSnapshot();
+  });
+
+  it("should say Completed or Failed, as the wallets do", () => {
+    const { container, rerender } = render(TransactionStatus, baseOptions);
+
+    expect(container.firstElementChild).toHaveTextContent(/^completed$/);
+
+    rerender({ errorMessage: "Panic" });
+
+    return vi.waitFor(() =>
+      expect(container.firstElementChild).toHaveTextContent(/^failed$/)
+    );
   });
 
   it("should pass additional class names to the rendered `Badge` component", () => {

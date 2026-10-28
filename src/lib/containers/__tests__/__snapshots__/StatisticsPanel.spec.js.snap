@@ -548,7 +548,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"
-        data-tooltip-text="58226174.026663415 DUSK"
+        data-tooltip-text="58,226,174.026663408 DUSK"
         data-tooltip-type="info"
       >
         <div
@@ -593,7 +593,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
         class="statistics-panel__statistics-item"
         data-tooltip-id="main-tooltip"
         data-tooltip-place="top"
-        data-tooltip-text="2573278.3297094363 DUSK"
+        data-tooltip-text="2,573,278.329709436 DUSK"
         data-tooltip-type="info"
       >
         <div

@@ -1,10 +1,10 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { onMount } from "svelte";
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
-  import { calculateAdaptiveCharCount, middleEllipsis } from "$lib/dusk/string";
-  import { createFeeFormatter, luxToDusk } from "$lib/dusk/currency";
+  import { middleEllipsis } from "$lib/dusk/string";
+  import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import { summarizeTransaction } from "$lib/chain-info";
   import {
     AppAnchor,
@@ -15,7 +15,6 @@
     TransactionStatus,
     TransactionType,
   } from "$lib/components";
-  import { addressCharPropertiesDefaults } from "$lib/constants";
 
   import "./TransactionsList.css";
 
@@ -45,25 +44,8 @@
   const nameOf = (found, party) =>
     party?.kind === "account" ? found.get(party.address) : undefined;
 
-  /** @type {number} */
-  let screenWidth = window.innerWidth;
-
-  const duskFormatter = createFeeFormatter("en");
-
-  const { minScreenWidth, maxScreenWidth, minCharCount, maxCharCount } =
-    addressCharPropertiesDefaults;
-
-  onMount(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries[0];
-
-      screenWidth = entry.contentRect.width;
-    });
-
-    resizeObserver.observe(document.body);
-
-    return () => resizeObserver.disconnect();
-  });
+  /** Lists show an ID as its first and last six characters. */
+  const ID_CHARS = 6;
 
   $: ({ amount, from, to } = summarizeTransaction(data));
 </script>
@@ -76,16 +58,7 @@
       <AppAnchor
         className="transaction-details__list-link"
         href={`/transactions/transaction?id=${data.txid}`}
-        >{middleEllipsis(
-          data.txid,
-          calculateAdaptiveCharCount(
-            screenWidth,
-            minScreenWidth,
-            maxScreenWidth,
-            minCharCount,
-            maxCharCount
-          )
-        )}</AppAnchor
+        >{middleEllipsis(data.txid, ID_CHARS)}</AppAnchor
       >
       <CopyButton
         name="Transaction ID"
@@ -105,7 +78,7 @@
     <RelativeTime
       autoRefresh={autoRefreshTime}
       data-tooltip-id="main-tooltip"
-      data-tooltip-text={data.date.toUTCString()}
+      data-tooltip-text={formatDateTime(data.date)}
       date={data.date}
       className="transaction-details__list-timestamp"
       slot="definition"
@@ -130,7 +103,11 @@
   >
     <svelte:fragment slot="term">To</svelte:fragment>
     <svelte:fragment slot="definition">
-      <TransactionParty name={nameOf(names, to)} party={to} />
+      <TransactionParty
+        name={nameOf(names, to)}
+        party={to}
+        transaction={data}
+      />
     </svelte:fragment>
   </ListItem>
 
@@ -145,7 +122,9 @@
       {#if amount.kind === "shielded"}
         Shielded
       {:else}
-        {duskFormatter(luxToDusk(amount.lux))} DUSK
+        <span title="{formatDuskExact(amount.lux)} DUSK"
+          >{formatDusk(amount.lux)} DUSK</span
+        >
       {/if}
     </svelte:fragment>
   </ListItem>
@@ -155,7 +134,9 @@
     <ListItem tooltipText={displayTooltips ? "The transaction fee amount" : ""}>
       <svelte:fragment slot="term">Fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {duskFormatter(luxToDusk(data.feepaid))} DUSK
+        <span title="{formatDuskExact(data.feepaid)} DUSK"
+          >{formatFee(data.feepaid)} DUSK</span
+        >
       </svelte:fragment>
     </ListItem>
   {/if}

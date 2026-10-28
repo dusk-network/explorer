@@ -6,7 +6,7 @@ exports[`StaleDataNotice > renders the Stale Data notice if data is stale 1`] = 
   data-tooltip-id="main-tooltip"
   data-tooltip-place="top"
   data-tooltip-text="Stale Data 
-Last Update: Mon, 20 May 2024 00:00:00 GMT"
+Last Update: Mon 20 May 2024, 00:00:00 UTC"
   data-tooltip-type="warning"
   role="graphics-symbol"
   viewBox="0 0 24 24"

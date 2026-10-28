@@ -70,9 +70,10 @@ describe("Transactions Card", () => {
       container.querySelector(".data-card__footer")
     );
 
+    // The brackets are drawn, not read.
     expect(
-      container.querySelector(".data-card__header-title")
-    ).toHaveTextContent(/^Transactions$/);
+      getByRole("heading", { level: 1, name: "Transactions" })
+    ).toBeInTheDocument();
     expect(footer).toHaveTextContent("15 of 20");
     expect(
       footer.compareDocumentPosition(

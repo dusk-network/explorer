@@ -11,13 +11,18 @@
   } from "@mdi/js";
   import { onDestroy, onMount } from "svelte";
 
-  import { createCurrencyFormatter, luxToDusk } from "$lib/dusk/currency";
+  import {
+    createCurrencyFormatter,
+    formatDuskExact,
+    luxToDusk,
+  } from "$lib/dusk/currency";
   import { createCompactFormatter } from "$lib/dusk/value";
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
   import { DataGuard, StaleDataNotice } from "$lib/components";
   import { duskAPI } from "$lib/services";
   import { createPollingDataStore } from "$lib/dusk/svelte-stores";
+  import { isMainnet } from "$lib/network";
   import { appStore, marketDataStore, nodeLocationStore } from "$lib/stores";
 
   import "./StatisticsPanel.css";
@@ -46,36 +51,41 @@
   $: ({ data: marketData } = $marketDataStore);
   $: ({ data: statsData } = $pollingStatsDataStore);
   $: ({ data: nodesData } = $nodeLocationStore);
+  // Test DUSK has no value: no price or market cap off mainnet.
+  $: marketStatistics = isMainnet($appStore.nodeInfo)
+    ? [
+        [
+          {
+            approximate: false,
+            attributes: null,
+            canBeStale: true,
+            compact: true,
+            data: marketData?.currentPrice.usd,
+            icon: mdiCurrencyUsd,
+            title: "Dusk Price",
+          },
+          {
+            approximate: false,
+            attributes: null,
+            canBeStale: true,
+            compact: true,
+            data: marketData?.marketCap.usd,
+            icon: mdiCurrencyUsd,
+            title: "Total Market Cap",
+          },
+        ],
+      ]
+    : [];
   $: statistics = [
-    [
-      {
-        approximate: false,
-        attributes: null,
-        canBeStale: true,
-        compact: true,
-        data: marketData?.currentPrice.usd,
-        icon: mdiCurrencyUsd,
-        title: "Dusk Price",
-      },
-      {
-        approximate: false,
-        attributes: null,
-        canBeStale: true,
-        compact: true,
-        data: marketData?.marketCap.usd,
-        icon: mdiCurrencyUsd,
-        title: "Total Market Cap",
-      },
-    ],
-
+    ...marketStatistics,
     [
       {
         approximate: !!statsData?.activeStake,
         attributes: {
           "data-tooltip-id": "main-tooltip",
           "data-tooltip-place": "top",
-          "data-tooltip-text": luxToDusk(statsData?.activeStake)
-            ? `${luxToDusk(statsData?.activeStake)} DUSK`
+          "data-tooltip-text": statsData?.activeStake
+            ? `${formatDuskExact(statsData.activeStake)} DUSK`
             : "--- DUSK",
           "data-tooltip-type": "info",
         },
@@ -92,8 +102,8 @@
         attributes: {
           "data-tooltip-id": "main-tooltip",
           "data-tooltip-place": "top",
-          "data-tooltip-text": luxToDusk(statsData?.waitingStake)
-            ? `${luxToDusk(statsData?.waitingStake)} DUSK`
+          "data-tooltip-text": statsData?.waitingStake
+            ? `${formatDuskExact(statsData.waitingStake)} DUSK`
             : "--- DUSK",
           "data-tooltip-type": "info",
         },

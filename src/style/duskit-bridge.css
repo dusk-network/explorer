@@ -125,6 +125,11 @@
   --banner-info-color: var(--info-color-variant-dark);
   --banner-warning-color: var(--warning-color-variant-dark);
   --banner-error-color: var(--error-color-variant-dark);
+
+  /* Violet is a test network, as on the bridge and in the wallets. */
+  --test-network-color: #5b4bc4;
+  --test-network-bg-color: #eeebfb;
+  --test-network-line-color: rgb(91 75 196 / 0.25);
 }
 
 :root.dark {
@@ -142,6 +147,10 @@
   --on-surface-color: var(--light-grey);
 
   --anchor-color-on-surface: var(--accent-dark-900);
+
+  --test-network-color: #b9aeff;
+  --test-network-bg-color: #1b1830;
+  --test-network-line-color: rgb(185 174 255 / 0.28);
 
   --non-button-control-bg-color: #101014;
   --non-button-control-text-color: var(--light-grey);

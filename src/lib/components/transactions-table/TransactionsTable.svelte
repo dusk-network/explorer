@@ -16,7 +16,8 @@
   } from "$lib/components";
   import { summarizeTransaction } from "$lib/chain-info";
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
-  import { createFeeFormatter, luxToDusk } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import { makeClassName, middleEllipsis } from "$lib/dusk/string";
   import "./TransactionsTable.css";
 
@@ -51,10 +52,10 @@
   const nameOf = (found, party) =>
     party?.kind === "account" ? found.get(party.address) : undefined;
 
-  const duskFormatter = createFeeFormatter("en");
+  /** Lists show an ID as its first and last six characters. */
+  const ID_CHARS = 6;
 
   $: isFull = mode === "full";
-  $: hashChars = isFull ? 10 : 6;
   $: classes = makeClassName([
     "transactions-table",
     `transactions-table--${mode}`,
@@ -84,7 +85,7 @@
             <AppAnchor
               className="transaction__link"
               href={`/transactions/transaction?id=${transaction.txid}`}
-              >{middleEllipsis(transaction.txid, hashChars)}</AppAnchor
+              >{middleEllipsis(transaction.txid, ID_CHARS)}</AppAnchor
             >
             {#if isFull}
               <CopyButton
@@ -97,7 +98,7 @@
           <span class="transaction__time">
             <RelativeTime
               data-tooltip-id="main-tooltip"
-              data-tooltip-text={transaction.date.toUTCString()}
+              data-tooltip-text={formatDateTime(transaction.date)}
               date={transaction.date}
             />
             {#if !isFull && transaction.txerror}
@@ -112,20 +113,30 @@
           </span>
           <span class="transaction__party">
             <span class="sr-only">To</span>
-            <TransactionParty name={nameOf(names, to)} party={to} />
+            <TransactionParty
+              name={nameOf(names, to)}
+              party={to}
+              {transaction}
+            />
           </span>
         </TableCell>
         <TableCell>
           {#if amount.kind === "shielded"}
             <span class="transaction__muted">Shielded</span>
           {:else}
-            <span class:transaction__muted={amount.lux === 0}
-              >{duskFormatter(luxToDusk(amount.lux))}</span
+            <span
+              class:transaction__muted={amount.lux === 0}
+              title="{formatDuskExact(amount.lux)} DUSK"
+              >{formatDusk(amount.lux)}</span
             >
           {/if}
         </TableCell>
         {#if isFull}
-          <TableCell>{duskFormatter(luxToDusk(transaction.feepaid))}</TableCell>
+          <TableCell
+            ><span title="{formatDuskExact(transaction.feepaid)} DUSK"
+              >{formatFee(transaction.feepaid)}</span
+            ></TableCell
+          >
           <TableCell>
             <TransactionStatus
               errorMessage={transaction.txerror}

@@ -3,7 +3,19 @@
   white-space: nowrap;
 }
 
-.transaction-party--contract[data-tooltip-id] {
+/* "0x" stays as typed, not as a multiplication sign; "on DuskEVM" may wrap, whole. */
+.transaction-party--evm {
+  font-feature-settings: "calt" 0;
+  white-space: normal;
+  line-break: auto;
+}
+
+.transaction-party--evm > span {
+  white-space: nowrap;
+}
+
+.transaction-party--contract[data-tooltip-id],
+.transaction-party--evm {
   cursor: help;
 }
 

@@ -32,7 +32,7 @@
         variant: "error",
       }
     : {
-        text: "success",
+        text: "completed",
         variant: "success",
       };
 </script>

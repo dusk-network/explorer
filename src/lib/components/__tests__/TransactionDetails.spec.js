@@ -2,9 +2,10 @@ import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { base } from "$app/paths";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 
-import { apiMarketData, gqlTransaction } from "$lib/mock-data";
+import { apiMarketData, apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { getPrimaryName } from "$lib/dusk-domains";
+import { appStore } from "$lib/stores";
 
 import { TransactionDetails } from "..";
 
@@ -17,14 +18,25 @@ vi.mock("$lib/dusk-domains", async (importOriginal) => ({
 const toHex = (text) => Buffer.from(text, "utf8").toString("hex");
 
 /**
+ * A term as it reads, without its help.
+ *
+ * @param {Element} dt
+ */
+const termOf = (dt) => {
+  const term = /** @type {Element} */ (dt.cloneNode(true));
+
+  term.querySelector(".detail-list__help")?.remove();
+
+  return term.textContent?.trim().toLowerCase();
+};
+
+/**
  * The terms of the details list, in order.
  *
  * @param {HTMLElement} container
  */
 const getTerms = (container) =>
-  Array.from(container.querySelectorAll("dt"), (dt) =>
-    dt.textContent?.trim().toLowerCase()
-  );
+  Array.from(container.querySelectorAll("dt"), termOf);
 
 /**
  * The definition beside a term.
@@ -34,7 +46,7 @@ const getTerms = (container) =>
  */
 const getDefinition = (container, term) =>
   Array.from(container.querySelectorAll("dt"))
-    .find((dt) => dt.textContent?.trim().toLowerCase() === term)
+    .find((dt) => termOf(dt) === term)
     ?.nextElementSibling?.textContent?.replace(/\s+/g, " ")
     .trim();
 
@@ -106,6 +118,125 @@ describe("Transaction Details", () => {
       "nonce",
       "payload",
     ]);
+
+    // Gas, the nonce and the payload are folded under "Technical details".
+    const technical = /** @type {HTMLDetailsElement} */ (
+      container.querySelector("details")
+    );
+
+    expect(technical.open).toBe(false);
+    expect(technical.querySelector("summary")).toHaveTextContent(
+      "Technical details"
+    );
+    expect(Array.from(technical.querySelectorAll("dt"), termOf)).toStrictEqual([
+      "gas price",
+      "transaction gas limit",
+      "gas spent",
+      "nonce",
+      "payload",
+    ]);
+  });
+
+  it("should lead with one sentence: who sent how much to whom, the status, and the time in the viewer's zone", async () => {
+    vi.mocked(getPrimaryName).mockImplementation(async (address) =>
+      address === baseProps.data.from
+        ? { name: "alice.dusk", url: "https://dusk.domains/name/alice.dusk" }
+        : null
+    );
+
+    const { container } = render(TransactionDetails, baseProps);
+    const summary = () =>
+      container
+        .querySelector(".transaction-details__summary")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim();
+
+    await vi.waitFor(() =>
+      expect(summary()).toBe(
+        "alice.dusk sent 9,812.378912731 DUSK to mHWZo9...pjiUnj Completed · Tue 16 Apr 2024, 06:39:09 UTC"
+      )
+    );
+
+    cleanup();
+    vi.mocked(getPrimaryName).mockResolvedValue(null);
+
+    const failed = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, txerror: "Panic" },
+    });
+
+    expect(
+      failed.container.querySelector(".transaction-details__summary-failed")
+    ).toHaveTextContent("Failed");
+  });
+
+  it("should give the time in the viewer's zone, and how long ago", () => {
+    const { container } = render(TransactionDetails, baseProps);
+
+    expect(getDefinition(container, "timestamp")).toMatch(
+      /^Tue 16 Apr 2024, 06:39:09 UTC \(last month\)$/
+    );
+  });
+
+  it("should name the DuskEVM bridge on testnet, and say which DuskEVM address a deposit pays", async () => {
+    const bridge =
+      "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
+
+    appStore.setNodeInfo(apiNodeInfo);
+
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        amount: 0,
+        contract: bridge,
+        deposit: 500_000_000,
+        method: "depositETHToWithValue",
+        payload: /** @type {any} */ ({
+          call: {
+            contract: bridge,
+            // eslint-disable-next-line camelcase
+            fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
+            // eslint-disable-next-line camelcase
+            fn_name: "depositETHToWithValue",
+          },
+        }),
+        to: null,
+      },
+      market: null,
+    });
+
+    await vi.waitFor(() => {
+      expect(getDefinition(container, "to")).toBe(
+        "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM"
+      );
+      expect(getDefinition(container, "contract")).toBe(
+        `DuskEVM bridge ${bridge}`
+      );
+      expect(getDefinition(container, "type")).toBe(
+        "Public Deposit to DuskEVM · depositETHToWithValue"
+      );
+      expect(
+        container.querySelector(".transaction-details__summary-text")
+      ).toHaveTextContent(
+        /^kT5Bam\.\.\.LwKbXj sent 0\.5 DUSK to 0x5A3d\.\.\.8a01 on DuskEVM$/
+      );
+    });
+
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
+
+  it("should make each field's help reachable from the keyboard, with its text as the description", () => {
+    const { getAllByRole } = render(TransactionDetails, baseProps);
+    const [help] = getAllByRole("button", { name: "More information" });
+
+    expect(help.tagName).toBe("BUTTON");
+    expect(help).toHaveAccessibleDescription("The ID of the transaction");
+    expect(help).toHaveAttribute(
+      "data-tooltip-text",
+      "The ID of the transaction"
+    );
   });
 
   it("should show amounts in DUSK, with dollars rounded to cents", () => {
@@ -199,7 +330,7 @@ describe("Transaction Details", () => {
         `Stake contract ${stake}`
       );
       expect(getDefinition(container, "type")).toBe(
-        "Public withdraw Claim rewards"
+        "Public Claim rewards · withdraw"
       );
     });
     expect(getTerms(container)).not.toContain("to");
@@ -220,7 +351,7 @@ describe("Transaction Details", () => {
       market: null,
     });
 
-    expect(getDefinition(container, "amount")).toBe("1,000.00 DUSK");
+    expect(getDefinition(container, "amount")).toBe("1,000 DUSK");
   });
 
   it("should say what a shielded transaction hides", () => {

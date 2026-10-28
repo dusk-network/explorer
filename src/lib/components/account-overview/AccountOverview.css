@@ -43,7 +43,8 @@
 
 .account-overview-panel__searched-name {
   margin: -0.5rem 0 0;
-  color: color-mix(in oklab, var(--on-surface-color), transparent 45%);
+  /* 4.5:1 or more on the light and the dark card. */
+  color: color-mix(in oklab, var(--on-surface-color), transparent 35%);
   font-family: var(--mono-font-family);
   font-size: 0.78rem;
   text-transform: none;

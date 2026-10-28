@@ -5,14 +5,41 @@
   gap: 0.3rem 0.5rem;
 }
 
-/* In tables, the plain words go under the method, as the time goes under the ID. */
-.table__data-cell .transaction-type__label {
-  flex-basis: 100%;
+/* Plain words, and the method name beside them: wrapped, never cut. */
+.transaction-type__call {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.375rem;
+  min-width: 0;
 }
 
-.transaction-type__privacy,
 .transaction-type__label {
-  color: color-mix(in oklab, var(--on-surface-color), transparent 30%);
+  font-size: 0.8125rem;
+}
+
+.transaction-type__method {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 25%);
+  font-family: var(--mono-font-family);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.transaction-type__separator {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 50%);
+}
+
+/* In tables, the method goes under the plain words, as the time goes under the ID. */
+.table__data-cell .transaction-type__call {
+  flex-direction: column;
+}
+
+.table__data-cell .transaction-type__separator {
+  display: none;
+}
+
+.transaction-type__privacy {
+  color: color-mix(in oklab, var(--on-surface-color), transparent 25%);
   font-size: 0.75rem;
 }
 

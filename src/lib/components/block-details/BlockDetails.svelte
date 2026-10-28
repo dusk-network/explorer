@@ -10,7 +10,8 @@
     RelativeTime,
     Switch,
   } from "$lib/dusk/components";
-  import { luxToDusk } from "$lib/dusk/currency";
+  import { formatDuskExact } from "$lib/dusk/currency";
+  import { formatDateTime } from "$lib/dusk/date";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
     calculateAdaptiveCharCount,
@@ -112,7 +113,7 @@
         date={data.header.date}
         slot="definition"
         ><svelte:fragment let:relativeTime
-          >{`${data.header.date.toUTCString()} (${relativeTime})`}</svelte:fragment
+          >{`${formatDateTime(data.header.date)} (${relativeTime})`}</svelte:fragment
         ></RelativeTime
       >
     </ListItem>
@@ -131,7 +132,7 @@
     >
       <svelte:fragment slot="term">block fees paid</svelte:fragment>
       <svelte:fragment slot="definition"
-        >{formatter(luxToDusk(data.header.feespaid))} DUSK</svelte:fragment
+        >{formatDuskExact(data.header.feespaid)} DUSK</svelte:fragment
       >
     </ListItem>
 
@@ -141,7 +142,7 @@
     >
       <svelte:fragment slot="term">block reward</svelte:fragment>
       <svelte:fragment slot="definition"
-        >{formatter(luxToDusk(data.header.reward))} DUSK</svelte:fragment
+        >{formatDuskExact(data.header.reward)} DUSK</svelte:fragment
       >
     </ListItem>
 

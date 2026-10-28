@@ -5,8 +5,13 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* The page's side margin, which a full-width strip reaches across. */
+  --page-gutter: clamp(1rem, 3vw, 3rem);
+}
+
 body {
-  padding: 0 clamp(1rem, 3vw, 3rem);
+  padding: 0 var(--page-gutter);
 }
 
 html,
@@ -53,8 +58,8 @@ svg {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding: 0 1.25rem;
+  :root {
+    --page-gutter: 1.25rem;
   }
 }
 
