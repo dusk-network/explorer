@@ -7,7 +7,9 @@
     TransactionsList,
     TransactionsTable,
   } from "$lib/components";
+  import { accountsOf } from "$lib/chain-info";
   import { Button } from "$lib/dusk/components";
+  import { getPrimaryNames } from "$lib/dusk-domains";
   import { appStore } from "$lib/stores";
 
   /** @type {Transaction[] | null}*/
@@ -31,6 +33,23 @@
 
   $: displayedTxns = txns ? txns.slice(0, itemsToDisplay) : [];
   $: hasMore = Boolean(txns && itemsToDisplay < txns.length);
+  $: lookUpNames(displayedTxns);
+
+  /**
+   * The verified primary names of the accounts the list shows: one lookup
+   * for all of them, which Multicall for Dusk carries in one query, and
+   * none for an account already looked up this session.
+   *
+   * @type {Map<string, { name: string, url: string } | null>}
+   */
+  let names = new Map();
+
+  /** @param {Transaction[]} shown */
+  function lookUpNames(shown) {
+    getPrimaryNames(accountsOf(shown)).then((found) => {
+      names = new Map([...names, ...found]);
+    });
+  }
 
   const loadMoreItems = () => {
     if (txns && itemsToDisplay < txns.length) {
@@ -43,7 +62,7 @@
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedTxns as txn (txn)}
-        <TransactionsList data={txn} mode="full" />
+        <TransactionsList data={txn} mode="full" {names} />
       {/each}
     </div>
   {:else}
@@ -51,6 +70,7 @@
       data={displayedTxns}
       displayTooltips={true}
       mode="full"
+      {names}
     />
   {/if}
   <svelte:fragment slot="footer">

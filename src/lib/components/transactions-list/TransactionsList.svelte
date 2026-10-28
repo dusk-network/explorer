@@ -31,6 +31,20 @@
   /** @type {"compact" | "full"} */
   export let mode;
 
+  /**
+   * The verified primary names of the listed accounts, looked up together.
+   *
+   * @type {Map<string, { name: string, url: string } | null>}
+   */
+  export let names = new Map();
+
+  /**
+   * @param {Map<string, { name: string, url: string } | null>} found
+   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
+   */
+  const nameOf = (found, party) =>
+    party?.kind === "account" ? found.get(party.address) : undefined;
+
   /** @type {number} */
   let screenWidth = window.innerWidth;
 
@@ -104,7 +118,7 @@
   >
     <svelte:fragment slot="term">From</svelte:fragment>
     <svelte:fragment slot="definition">
-      <TransactionParty party={from} />
+      <TransactionParty name={nameOf(names, from)} party={from} />
     </svelte:fragment>
   </ListItem>
 
@@ -116,7 +130,7 @@
   >
     <svelte:fragment slot="term">To</svelte:fragment>
     <svelte:fragment slot="definition">
-      <TransactionParty party={to} />
+      <TransactionParty name={nameOf(names, to)} party={to} />
     </svelte:fragment>
   </ListItem>
 

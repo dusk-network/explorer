@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { gqlTransaction } from "$lib/mock-data";
 
-import { summarizeTransaction, transformTransaction } from "..";
+import { accountsOf, summarizeTransaction, transformTransaction } from "..";
 
 describe("summarizeTransaction", () => {
   const transfer = transformTransaction(gqlTransaction.tx);
@@ -115,5 +115,26 @@ describe("summarizeTransaction", () => {
       from: { address: transfer.from, kind: "account" },
       to: { address: transfer.from, kind: "account" },
     });
+  });
+});
+
+describe("accountsOf", () => {
+  const transfer = transformTransaction(gqlTransaction.tx);
+  const stake =
+    "0200000000000000000000000000000000000000000000000000000000000000";
+
+  it("should give each account a From or To shows, once", () => {
+    const back = { ...transfer, from: transfer.to ?? "", to: transfer.from };
+
+    expect(accountsOf([transfer, back])).toStrictEqual([
+      transfer.from,
+      transfer.to,
+    ]);
+  });
+
+  it("should leave out a receiver the summary replaces with the contract", () => {
+    const call = { ...transfer, amount: 0, contract: stake, deposit: 7 };
+
+    expect(accountsOf([call])).toStrictEqual([transfer.from]);
   });
 });

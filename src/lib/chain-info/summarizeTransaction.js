@@ -81,3 +81,22 @@ function summarizeTransaction(tx) {
 }
 
 export default summarizeTransaction;
+
+/**
+ * The public accounts that sent or received the given transactions, each
+ * once, as their From and To show them.
+ *
+ * @param {Transaction[]} transactions
+ * @returns {string[]}
+ */
+export const accountsOf = (transactions) => [
+  ...new Set(
+    transactions.flatMap((tx) => {
+      const { from, to } = summarizeTransaction(tx);
+
+      return [from, to].flatMap((party) =>
+        party?.kind === "account" ? [party.address] : []
+      );
+    })
+  ),
+];
