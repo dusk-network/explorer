@@ -1,18 +1,27 @@
 // The DuskEVM transaction that delivered a deposit to DuskEVM, found as the
-// Dusk wallets find it when DuskEVM's adapter can't say: DuskEVM's explorer
+// Dusk wallets look when DuskEVM's adapter can't say: DuskEVM's explorer
 // (its Blockscout API, in @dusk-network/networks) lists the recipient's
-// incoming calls, and the L2 bridge's first payment of the deposit's amount
-// from the deposit's block on is the one. It asks once, for the first page
-// of those calls: a page that doesn't reach back to the deposit could miss
-// its payment and hold another deposit's, so none is found then.
+// incoming calls, the L2 bridge's payments among them. It asks once, for the
+// first page of those calls.
+//
+// The explorer sees this deposit alone, so it links a payment only when it
+// is surely this deposit's: the only one of its amount within two minutes of
+// its block, once those two minutes are over. Two or more could be another
+// deposit's, and so could one alone before the time is up, when this
+// deposit's own may yet come. None is linked then, nor when the page doesn't
+// reach back that far.
 
 import { networkOf } from "$lib/network";
 
 /** DUSK has 9 decimals on Dusk and 18 on DuskEVM. */
 const WEI_PER_LUX = 1_000_000_000n;
 
-/** Dusk's clock and DuskEVM's can differ a little, as the wallets allow. */
-const CLOCK_SLACK_MS = 120_000;
+/**
+ * How long either side of a deposit's block its payment is looked for:
+ * DuskEVM pays a deposit within a minute, and its clock and Dusk's can
+ * differ a little, as the wallets allow.
+ */
+const WINDOW_MS = 120_000;
 
 const EVM_TX_HASH = /^0x[0-9a-f]{64}$/i;
 
@@ -61,44 +70,44 @@ const reachesBack = ({ calls, more }, since) =>
   !more || calls.some((call) => timeOf(call?.timestamp) < since);
 
 /**
- * The L2 bridge's first payment of an amount among the calls, from `since`
- * on.
+ * The L2 bridge's payments of an amount among the calls, between two times,
+ * those that failed too.
  *
  * @param {any[]} calls
- * @param {{ bridge: string, since: number, wei: string }} payment
- * @returns {any}
+ * @param {{ bridge: string, from: number, to: number, wei: string }} payment
+ * @returns {any[]}
  */
-const firstPayment = (calls, { bridge, since, wei }) =>
-  calls
-    .filter(
-      (call) =>
-        call?.success !== false &&
-        String(call?.from?.hash ?? "").toLowerCase() === bridge &&
-        String(call?.value ?? "") === wei &&
-        EVM_TX_HASH.test(String(call?.transaction_hash ?? "")) &&
-        timeOf(call?.timestamp) >= since
-    )
-    .sort((a, b) => timeOf(a.timestamp) - timeOf(b.timestamp))[0];
+const paymentsIn = (calls, { bridge, from, to, wei }) =>
+  calls.filter(
+    (call) =>
+      String(call?.from?.hash ?? "").toLowerCase() === bridge &&
+      String(call?.value ?? "") === wei &&
+      EVM_TX_HASH.test(String(call?.transaction_hash ?? "")) &&
+      timeOf(call?.timestamp) >= from &&
+      timeOf(call?.timestamp) <= to
+  );
 
 /**
  * The hash of the DuskEVM transaction that paid a deposit to DuskEVM, or
- * `null` when DuskEVM's explorer doesn't show it yet, or can't say.
+ * `null` when DuskEVM's explorer doesn't show it, or not surely.
  *
  * @param {Transaction} tx A deposit to DuskEVM that went through
  * @param {string} recipient The DuskEVM address it pays
  * @param {number | null | undefined} chainId The node's network
- * @param {{ fetch?: typeof fetch }} [options]
+ * @param {{ fetch?: typeof fetch, now?: number }} [options] `now` is the
+ *   viewer's clock, in milliseconds
  * @returns {Promise<string | null>}
  */
 export async function findDepositArrival(
   tx,
   recipient,
   chainId,
-  { fetch: fetchFn = globalThis.fetch } = {}
+  { fetch: fetchFn = globalThis.fetch, now = Date.now() } = {}
 ) {
   const duskEvm = networkOf(chainId)?.duskEvm;
+  const at = tx.date.getTime();
 
-  if (!duskEvm || tx.txerror || !tx.deposit) {
+  if (!duskEvm || tx.txerror || !tx.deposit || now < at + WINDOW_MS) {
     return null;
   }
 
@@ -107,15 +116,17 @@ export async function findDepositArrival(
     recipient,
     fetchFn
   );
-  const since = tx.date.getTime() - CLOCK_SLACK_MS;
-  const paid =
-    page && reachesBack(page, since)
-      ? firstPayment(page.calls, {
+  const payments =
+    page && reachesBack(page, at - WINDOW_MS)
+      ? paymentsIn(page.calls, {
           bridge: duskEvm.predeploys.l2StandardBridge.toLowerCase(),
-          since,
+          from: at - WINDOW_MS,
+          to: at + WINDOW_MS,
           wei: String(BigInt(Math.trunc(tx.deposit)) * WEI_PER_LUX),
         })
-      : null;
+      : [];
 
-  return paid ? String(paid.transaction_hash).toLowerCase() : null;
+  return payments.length === 1 && payments[0].success !== false
+    ? String(payments[0].transaction_hash).toLowerCase()
+    : null;
 }

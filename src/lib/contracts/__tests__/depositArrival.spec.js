@@ -52,7 +52,7 @@ describe("findDepositArrival", () => {
   /** @param {number} n */
   const hash = (n) => `0x${String(n).repeat(64)}`;
 
-  it("should find the L2 bridge's first payment of the deposit's amount from its block on, with one request", async () => {
+  it("should find the L2 bridge's payment of the deposit's amount after its block, with one request", async () => {
     const fetch = explorer(
       [
         // Another deposit's, later.
@@ -64,7 +64,6 @@ describe("findDepositArrival", () => {
         call(hash(3), "2024-04-16T06:39:35.000000Z", {
           value: "100000000000000000",
         }),
-        call(hash(4), "2024-04-16T06:39:30.000000Z", { success: false }),
         // From before the deposit.
         call(hash(5), "2024-04-16T06:30:00.000000Z"),
       ],
@@ -102,6 +101,45 @@ describe("findDepositArrival", () => {
         fetch: vi.fn(async () => new Response("", { status: 502 })),
       })
     ).resolves.toBeNull();
+  });
+
+  it("should link none when another payment of the deposit's amount near its block could be its own", async () => {
+    // D1 paid the same address the same amount 2½ minutes before this
+    // deposit, D2: DuskEVM paid D1 (p1) within two minutes of D2's block.
+    const d1 = { ...deposit, date: new Date("2024-04-16T06:36:39Z") };
+    const p1 = call(hash(1), "2024-04-16T06:37:15.000000Z");
+    const p2 = call(arrival, "2024-04-16T06:39:45.000000Z");
+
+    await expect(
+      findDepositArrival(deposit, recipient, 2, { fetch: explorer([p2, p1]) })
+    ).resolves.toBeNull();
+    // Near D1's block, p1 is alone.
+    await expect(
+      findDepositArrival(d1, recipient, 2, { fetch: explorer([p2, p1]) })
+    ).resolves.toBe(hash(1));
+
+    // A payment of the amount that failed could be this deposit's too.
+    await expect(
+      findDepositArrival(deposit, recipient, 2, {
+        fetch: explorer([
+          p2,
+          call(hash(4), "2024-04-16T06:39:30.000000Z", { success: false }),
+        ]),
+      })
+    ).resolves.toBeNull();
+  });
+
+  it("should ask nothing until two minutes after the deposit's block: its own payment may yet come", async () => {
+    // An earlier deposit's payment, while this one's is on its way.
+    const fetch = explorer([call(hash(1), "2024-04-16T06:39:20.000000Z")]);
+
+    await expect(
+      findDepositArrival(deposit, recipient, 2, {
+        fetch,
+        now: deposit.date.getTime() + 60_000,
+      })
+    ).resolves.toBeNull();
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it("should ask nothing for a deposit that failed, or on a network with no DuskEVM", async () => {
