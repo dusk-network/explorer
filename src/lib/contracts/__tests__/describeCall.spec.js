@@ -37,6 +37,14 @@ describe("describeCall", () => {
       label: null,
       name: "Dusk Domains",
     });
+
+    // Records replaced whole are a records change too.
+    for (const method of ["mutate_records", "replace_records"]) {
+      await expect(describeCall(duskDomainsStore, method, 1)).resolves.toEqual({
+        label: "Records changed",
+        name: "Dusk Domains",
+      });
+    }
   });
 
   it("should name Dusk Domains contracts on their own network only", async () => {

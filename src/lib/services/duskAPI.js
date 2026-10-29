@@ -1,3 +1,4 @@
+import { decodeBase58 } from "@dusk-network/networks/account";
 import {
   fromPairs,
   getKey,
@@ -38,7 +39,6 @@ import {
   searchByHashQueryInfo,
   transactionFragment,
 } from "./gql-queries";
-import * as base58 from "../utils/encoders/base58";
 
 /** @type {(blocks: GQLBlock[]) => Block[]} */
 const transformBlocks = mapWith(transformBlock);
@@ -515,7 +515,7 @@ const duskAPI = {
 
     // Case 3: Handle potential base58-encoded addresses
     else {
-      const bytes = base58.decode(query);
+      const bytes = decodeBase58(query);
       // If decoded length is 96 bytes, it's likely an address
       if (bytes?.length === 96) {
         searchPromise = Promise.resolve({ account: { id: query } });

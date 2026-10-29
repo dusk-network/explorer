@@ -38,6 +38,7 @@ and this project adheres to
 - Show the full time when hovering a list's relative time
 - Lead an account page with the searched name, then its primary name
 - Say "Public balance" and what an account page shows
+- Say a .dusk name has no public address, not no Moonlight address
 - Show search on phones without opening the menu, and say it takes .dusk names
 - Keep the search text after a miss, say why nothing was found and offer the .dusk name to try
 - Link provisioners to their account page, and keep their rows short on phones
@@ -106,6 +107,9 @@ and this project adheres to
 - Fix help buttons all named "More information" for screen readers
 - Fix an account page's heading holding its ↗ link
 - Fix an unnamed contract's ID cut twice in phone lists
+- Fix "Records changed" missing for Dusk Domains calls that replace a name's records
+- Fix the .dusk name offered after a search miss: one for a subname, none for 0x input
+- Fix a .dusk name whose address isn't a valid key opening an account page
 
 ## [1.6.0] - 2026-03-25
 

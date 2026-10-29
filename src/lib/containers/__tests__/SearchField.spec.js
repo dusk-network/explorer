@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import * as appNavigation from "$app/navigation";
-import { decodeBase58 } from "@duskdomains/sdk";
+import { decodeBase58 } from "@dusk-network/networks/account";
 import { createLensReader } from "@duskdomains/sdk/lens-reader";
 
 import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
@@ -33,6 +33,18 @@ vi.mock("$app/stores", async (importOriginal) => {
 describe("SearchField", () => {
   const account = hostProvisioners[0].key;
   const reader = { resolve: vi.fn() };
+  // The lens's answer for a name whose `moonlight_address` is the account.
+  const resolvesToAccount = {
+    records: [
+      {
+        key: "moonlight_address",
+        value: Array.from(decodeBase58(account) ?? []),
+      },
+      null,
+    ],
+    status: "Active",
+    value: { Local: {} },
+  };
   const gotoSpy = vi.spyOn(appNavigation, "goto");
   const searchSpy = vi.spyOn(duskAPI, "search").mockResolvedValue(null);
 
@@ -73,11 +85,7 @@ describe("SearchField", () => {
   });
 
   it("should open the account a .dusk name resolves to", async () => {
-    reader.resolve.mockResolvedValueOnce({
-      records: [{ value: Array.from(decodeBase58(account) ?? []) }],
-      status: "Active",
-      value: { Local: {} },
-    });
+    reader.resolve.mockResolvedValueOnce(resolvesToAccount);
 
     await search("TDI.dusk");
 
@@ -86,15 +94,16 @@ describe("SearchField", () => {
         `/some-base-path/accounts/?key=${account}&name=tdi.dusk`
       )
     );
-    expect(reader.resolve).toHaveBeenCalledWith("tdi.dusk", [
-      "moonlight_address",
-    ]);
+    expect(reader.resolve).toHaveBeenCalledWith(
+      "tdi.dusk",
+      expect.arrayContaining(["moonlight_address"])
+    );
     expect(searchSpy).not.toHaveBeenCalled();
   });
 
   it("should show the search notification when a name has no account", async () => {
     reader.resolve.mockResolvedValueOnce({
-      records: [null],
+      records: [null, null],
       status: "Absent",
       value: "Absent",
     });
@@ -180,11 +189,7 @@ describe("SearchField", () => {
   });
 
   it("should search for the text it is given, as if typed", async () => {
-    reader.resolve.mockResolvedValueOnce({
-      records: [{ value: Array.from(decodeBase58(account) ?? []) }],
-      status: "Active",
-      value: { Local: {} },
-    });
+    reader.resolve.mockResolvedValueOnce(resolvesToAccount);
 
     const { component } = render(SearchField);
 

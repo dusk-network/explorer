@@ -1,8 +1,7 @@
+export { isDuskName } from "@duskdomains/sdk/names";
 export {
   getPrimaryName,
   getPrimaryNames,
   getSearchedName,
-  isDuskDomainsContract,
-  isDuskName,
   resolveDuskName,
 } from "./duskDomains";

@@ -1,7 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { aggregateReply } from "$lib/dusk-domains/__tests__/aggregateReply";
-
 import recorded from "./stdusk-testnet.json";
 
 const AGGREGATE =
@@ -17,22 +15,15 @@ const fromHex = (hex) =>
 const toHex = (body) =>
   Buffer.from(/** @type {Uint8Array} */ (body)).toString("hex");
 
-/** @param {bigint} lux */
-const u64 = (lux) => {
-  const bytes = new Uint8Array(8);
-
-  new DataView(bytes.buffer).setBigUint64(0, lux, true);
-
-  return bytes;
-};
-
 /**
- * The hub's answer for "staked-dusk": the token's ID, or none.
+ * Testnet's answer with another of the same size in its place: the hub's
+ * "staked-dusk" token, or the account's balance.
  *
- * @param {string | null} id
+ * @param {string} recordedHex
+ * @param {string} hex
  */
-const named = (id) =>
-  id ? Uint8Array.of(1, ...fromHex(id)) : new Uint8Array(33);
+const replyWith = (recordedHex, hex) =>
+  new Response(fromHex(recorded.reply.replace(recordedHex, hex)));
 
 describe("getStakedDusk", () => {
   /** @type {typeof import("../stakedDusk").getStakedDusk} */
@@ -69,18 +60,19 @@ describe("getStakedDusk", () => {
   });
 
   it("should give nothing when the hub names another token, or none", async () => {
-    for (const id of ["ab".repeat(32), null]) {
-      fetchSpy.mockResolvedValueOnce(
-        new Response(aggregateReply([{ Ok: named(id) }, { Ok: u64(5n) }]))
-      );
+    // Another token's ID, and none: the hub answers an Option.
+    for (const [token, named] of [
+      [TESTNET_STDUSK, "ab".repeat(32)],
+      [`01${TESTNET_STDUSK}`, "00".repeat(33)],
+    ]) {
+      fetchSpy.mockResolvedValueOnce(replyWith(token, named));
 
       await expect(getStakedDusk(recorded.account, 2)).resolves.toBeNull();
     }
 
+    // The hub's token, with a balance of 5.
     fetchSpy.mockResolvedValueOnce(
-      new Response(
-        aggregateReply([{ Ok: named(TESTNET_STDUSK) }, { Ok: u64(5n) }])
-      )
+      replyWith("9fd0aa0900000000", "0500000000000000")
     );
 
     await expect(getStakedDusk(recorded.account, 2)).resolves.toBe(5n);

@@ -1,17 +1,15 @@
-// Who a deposit to DuskEVM pays, read from the call's arguments as the
-// bridge encodes them, the way the Dusk wallet reads them (bridgeCalls.js):
-// only a call to the bridge on its own network, whose arguments decode
-// exactly and whose DUSK sent is the amount they name. Anything else stays
-// undecoded. It reads nothing from the node.
+// Who a deposit to DuskEVM pays, read from the call's arguments as
+// `@dusk-network/networks/duskevm` reads a bridge call: only a call to the
+// bridge on its own network, whose arguments decode exactly and whose DUSK
+// sent is the amount they name. Anything else stays undecoded. It reads
+// nothing from the node.
 
-import { formatEvmAddress } from "@dusk-network/networks/format";
+import {
+  bridgeEnvelopeOk,
+  decodeBridgeCall,
+} from "@dusk-network/networks/duskevm";
 
-import { duskEvmBridgeOf, networkOf } from "$lib/network";
-
-const DEPOSIT_FUNCTION = "depositETHToWithValue";
-
-/** The arguments' root, at their end: u64 amount, [u8; 20] to, u32 min gas, Vec<u8> extra data. */
-const DEPOSIT_ROOT = 40;
+import { networkOf } from "$lib/network";
 
 /** @param {string} base64 */
 function fromBase64(base64) {
@@ -23,35 +21,6 @@ function fromBase64(base64) {
 }
 
 /**
- * A deposit's amount and DuskEVM address, or `null` when the arguments
- * aren't the bridge's: the root at the end, aligned, and the extra data
- * before it.
- *
- * @param {Uint8Array} args
- * @returns {{ amount: bigint, to: Uint8Array } | null}
- */
-function decodeDeposit(args) {
-  const root = args.length - DEPOSIT_ROOT;
-
-  if (root < 0 || root % 8 !== 0) {
-    return null;
-  }
-
-  const view = new DataView(args.buffer, args.byteOffset, args.byteLength);
-  const extraStart = root + 32 + view.getInt32(root + 32, true);
-  const extraLength = view.getUint32(root + 36, true);
-
-  if (extraStart < 0 || extraStart + extraLength > root) {
-    return null;
-  }
-
-  return {
-    amount: view.getBigUint64(root, true),
-    to: args.subarray(root + 8, root + 28),
-  };
-}
-
-/**
  * The DuskEVM address a deposit to DuskEVM pays, with its checksum, or
  * `null` when the transaction isn't one the bridge's encoding vouches for.
  *
@@ -60,31 +29,21 @@ function decodeDeposit(args) {
  * @returns {string | null}
  */
 export function bridgeDepositRecipient(tx, chainId) {
-  const bridge = duskEvmBridgeOf(networkOf(chainId));
+  const network = networkOf(chainId);
   /** @type {{ call?: { fn_args?: unknown } }} */
   const payload = /** @type {any} */ (tx.payload) ?? {};
   const fnArgs = payload.call?.fn_args;
+  const call =
+    network && typeof fnArgs === "string"
+      ? decodeBridgeCall(network, {
+          args: fromBase64(fnArgs),
+          contractId: tx.contract,
+          fnName: tx.method,
+        })
+      : null;
 
-  if (
-    !bridge ||
-    tx.contract !== bridge.bridge ||
-    tx.method !== DEPOSIT_FUNCTION ||
-    tx.amount ||
-    typeof fnArgs !== "string"
-  ) {
-    return null;
-  }
-
-  const args = fromBase64(fnArgs);
-  const deposit = args ? decodeDeposit(args) : null;
-
-  if (!deposit || deposit.amount !== BigInt(Math.trunc(tx.deposit ?? 0))) {
-    return null;
-  }
-
-  const hex = Array.from(deposit.to, (byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-
-  return formatEvmAddress(`0x${hex}`);
+  return call?.kind === "deposit" &&
+    bridgeEnvelopeOk(call, { amount: tx.amount, deposit: tx.deposit })
+    ? call.recipient
+    : null;
 }

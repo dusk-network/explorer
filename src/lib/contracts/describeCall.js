@@ -1,10 +1,6 @@
-import { isDuskDomainsContract } from "$lib/dusk-domains";
-import {
-  STAKE_CONTRACT,
-  duskEvmBridgeOf,
-  labelOf,
-  networkOf,
-} from "$lib/network";
+import { duskEvmContracts } from "@dusk-network/networks/duskevm";
+
+import { STAKE_CONTRACT, labelOf, networkOf } from "$lib/network";
 
 /** Plain words for the common calls whose function name says less. */
 const stakeCalls = new Map([["withdraw", "Claim rewards"]]);
@@ -24,15 +20,20 @@ const sozuPoolCalls = new Map([
   ["sozu_unstake", "Liquid unstake"],
 ]);
 
-/** @type {Map<string, string>} */
+/**
+ * Plain words for what a call to Dusk Domains does, as
+ * `@duskdomains/sdk/call-facts` reads it.
+ *
+ * @type {Map<string, string>}
+ */
 const duskDomainsCalls = new Map([
-  ["clear_primary", "Primary name cleared"],
-  ["create_subname", "Subname created"],
-  ["issue_reserved", "Reserved name issued"],
-  ["mutate_records", "Records changed"],
-  ["register", "Name registered"],
-  ["renew", "Name renewed"],
-  ["set_primary", "Primary name set"],
+  ["issue", "Reserved name issued"],
+  ["primary-cleared", "Primary name cleared"],
+  ["primary-set", "Primary name set"],
+  ["records", "Records changed"],
+  ["registration", "Name registered"],
+  ["renewal", "Name renewed"],
+  ["subname", "Subname created"],
 ]);
 
 /**
@@ -44,7 +45,7 @@ const duskDomainsCalls = new Map([
  */
 function callsTo(contractId, chainId) {
   const network = networkOf(chainId);
-  const bridge = duskEvmBridgeOf(network);
+  const bridge = network && duskEvmContracts(network);
 
   switch (contractId) {
     case STAKE_CONTRACT:
@@ -83,8 +84,16 @@ async function describeCall(contractId, method, chainId = undefined) {
     };
   }
 
-  return (await isDuskDomainsContract(contractId, chainId).catch(() => false))
-    ? { label: duskDomainsCalls.get(method) ?? null, name: "Dusk Domains" }
+  const call =
+    typeof chainId === "number"
+      ? await import("@duskdomains/sdk/call-facts").then(
+          ({ nameCall }) => nameCall({ contractId, fnName: method }, chainId),
+          () => null
+        )
+      : null;
+
+  return call
+    ? { label: duskDomainsCalls.get(call.kind) ?? null, name: "Dusk Domains" }
     : { label: null, name: null };
 }
 

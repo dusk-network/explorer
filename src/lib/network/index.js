@@ -2,7 +2,6 @@ export {
   STAKE_CONTRACT,
   TRANSFER_CONTRACT,
   duskEvmAddressUrl,
-  duskEvmBridgeOf,
   duskEvmTransactionUrl,
   isConnected,
   isMainnet,
