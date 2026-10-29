@@ -10,12 +10,19 @@
    */
   export let value;
 
-  /** How many characters at each end to set apart, to compare at a glance. */
-  export let ends = 6;
+  /**
+   * Whether it is an EVM address or hash, whose short form every Dusk app
+   * gives as 0x and four characters, and the last four.
+   *
+   * @type {boolean}
+   */
+  export let evm = false;
 
+  // The ends set apart, to compare at a glance: those its short form keeps.
+  $: [first, last] = evm ? [6, 4] : [6, 6];
   $: [head, middle, tail] =
-    value.length > ends * 2
-      ? [value.slice(0, ends), value.slice(ends, -ends), value.slice(-ends)]
+    value.length > first + last
+      ? [value.slice(0, first), value.slice(first, -last), value.slice(-last)]
       : ["", value, ""];
 </script>
 

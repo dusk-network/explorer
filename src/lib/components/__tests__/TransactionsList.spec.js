@@ -201,6 +201,21 @@ describe("Transactions List", () => {
     );
   });
 
+  it("should give a named account's address in its tooltip as every Dusk app shortens it: the row is narrow, the tooltip isn't", () => {
+    const sender = String(transaction.from);
+    const { getByRole } = render(TransactionsList, {
+      ...baseProps,
+      names: new Map([
+        [sender, { name: "alice.dusk", url: "https://dusk.domains/alice" }],
+      ]),
+    });
+
+    expect(getByRole("link", { name: "alice.dusk" })).toHaveAttribute(
+      "data-tooltip-text",
+      `alice.dusk · ${short(sender)}`
+    );
+  });
+
   it("should auto-refresh relative times when the related prop is set to true", async () => {
     const props = {
       ...baseProps,

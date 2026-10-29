@@ -9,7 +9,7 @@
   import { AppAnchor } from "$lib/components";
   import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { Anchor } from "$lib/dusk/components";
-  import { middleEllipsis } from "$lib/dusk/string";
+  import { middleEllipsis, shortId } from "$lib/dusk/string";
   import { duskEvmAddressUrl, labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
@@ -23,12 +23,13 @@
   export let party;
 
   /**
-   * How many characters of an address or a contract's ID to show on each
-   * side of the ellipsis.
+   * Whether the row is a phone's, too narrow for the six characters at each
+   * end that every Dusk app keeps of an address or a contract's ID: it
+   * keeps four.
    *
-   * @type {number}
+   * @type {boolean}
    */
-  export let chars = 6;
+  export let narrow = false;
 
   /**
    * The account's verified primary name, shown instead of its address.
@@ -71,6 +72,18 @@
     party?.kind === "contract" && transaction
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
+  $: shortAddress =
+    party?.kind === "account"
+      ? narrow
+        ? middleEllipsis(party.address, 4)
+        : shortId(party.address)
+      : "";
+  $: shortContractId =
+    party?.kind === "contract"
+      ? narrow
+        ? middleEllipsis(formatContractId(party.id), 4)
+        : formatContractId(party.id, { short: true })
+      : "";
 </script>
 
 <!-- A contract with no name: its ID short, after "Contract" or alone. -->
@@ -84,14 +97,13 @@
   <AppAnchor
     className="transaction-party transaction-party--named chain-link"
     data-tooltip-id="main-tooltip"
-    data-tooltip-text="{shownName} · {middleEllipsis(party.address, chars)}"
+    data-tooltip-text="{shownName} · {shortId(party.address)}"
     href="/accounts/?key={party.address}">{shownName}</AppAnchor
   >
 {:else if party?.kind === "account"}
   <AppAnchor
     className="transaction-party transaction-party--account chain-link"
-    href="/accounts/?key={party.address}"
-    >{middleEllipsis(party.address, chars)}</AppAnchor
+    href="/accounts/?key={party.address}">{shortAddress}</AppAnchor
   >
 {:else if party?.kind === "contract" && duskEvmRecipient}
   {@const href = duskEvmAddressUrl(duskEvmRecipient, chainId)}
@@ -108,15 +120,14 @@
     <span>on DuskEVM</span></span
   >
 {:else if party?.kind === "contract"}
-  {@const id = middleEllipsis(formatContractId(party.id), chars)}
   <span
     class="transaction-party transaction-party--contract"
     data-tooltip-id="main-tooltip"
     data-tooltip-text="Contract {party.id}"
     >{#await contractName}{@render unnamed(
-        id
+        shortContractId
       )}{:then known}{#if known}{known}{:else}{@render unnamed(
-          id
+          shortContractId
         )}{/if}{/await}</span
   >
 {:else if party?.kind === "shielded"}

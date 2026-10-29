@@ -13,7 +13,7 @@
   import { AppAnchor } from "$lib/components";
   import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
-  import { makeClassName, middleEllipsis } from "$lib/dusk/string";
+  import { makeClassName, shortId } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
   import { labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
@@ -25,9 +25,6 @@
 
   /** @type {EnrichedProvisioner[]} */
   export let data;
-
-  /** Lists show an address as its first and last six characters. */
-  const HASH_CHARS_LENGTH = 6;
 
   const numberFormatter = createValueFormatter("en");
 
@@ -214,7 +211,7 @@
             <AppAnchor
               className="provisioners-table__address chain-link"
               href="/accounts/?key={consensusAddress}"
-              >{middleEllipsis(consensusAddress, HASH_CHARS_LENGTH)}</AppAnchor
+              >{shortId(consensusAddress)}</AppAnchor
             >
             <CopyButton name="Staking address" rawValue={consensusAddress} />
           </div>
@@ -230,7 +227,7 @@
               data-tooltip-text="Owner: {provisioner.ownerAddress}"
               >{ownerLabel ??
                 (provisioner.ownerType === "Account"
-                  ? middleEllipsis(provisioner.ownerAddress, HASH_CHARS_LENGTH)
+                  ? shortId(provisioner.ownerAddress)
                   : `Contract ${formatContractId(provisioner.ownerAddress, { short: true })}`)}</span
             >
           {:else}

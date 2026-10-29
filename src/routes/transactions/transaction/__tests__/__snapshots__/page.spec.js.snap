@@ -515,7 +515,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           >
             <!---->
              
-            Transaction fee
+            Fee paid
             <!---->
           </div>
         </dt>
@@ -684,6 +684,57 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
             >
               <button
                 aria-describedby="list-item-help-10"
+                aria-label="About gas used"
+                class="detail-list__help"
+                data-tooltip-id="main-tooltip"
+                data-tooltip-place="top"
+                data-tooltip-text="The gas the transaction used, of the most it could use. Only the gas used is paid for"
+                data-tooltip-type="info"
+                type="button"
+              >
+                <!---->
+                <svg
+                  class="dusk-icon dusk-icon--size--default"
+                  role="graphics-symbol"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
+                  />
+                </svg>
+                
+                <!---->
+                 
+                <span
+                  hidden=""
+                  id="list-item-help-10"
+                >
+                  The gas the transaction used, of the most it could use. Only the gas used is paid for
+                </span>
+              </button>
+              <!---->
+               
+              Gas used
+              <!---->
+            </div>
+          </dt>
+           
+          <dd
+            class="details-list__definition"
+          >
+            290,766 of 500,000,000
+            <!---->
+          </dd>
+          <!---->
+           
+          <dt
+            class="details-list__term"
+          >
+            <div
+              class="details-list__term-layout"
+            >
+              <button
+                aria-describedby="list-item-help-11"
                 aria-label="About gas price"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -707,7 +758,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                  
                 <span
                   hidden=""
-                  id="list-item-help-10"
+                  id="list-item-help-11"
                 >
                   The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
                 </span>
@@ -734,79 +785,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               class="details-list__term-layout"
             >
               <button
-                aria-describedby="list-item-help-11"
-                aria-label="About transaction gas limit"
-                class="detail-list__help"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-place="top"
-                data-tooltip-text="The most gas the transaction could use. Only the gas spent is paid for"
-                data-tooltip-type="info"
-                type="button"
-              >
-                <!---->
-                <svg
-                  class="dusk-icon dusk-icon--size--default"
-                  role="graphics-symbol"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"
-                  />
-                </svg>
-                
-                <!---->
-                 
-                <span
-                  hidden=""
-                  id="list-item-help-11"
-                >
-                  The most gas the transaction could use. Only the gas spent is paid for
-                </span>
-              </button>
-              <!---->
-               
-              Transaction gas limit
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            500,000,000
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <!---->
-               
-              Gas spent
-              <!---->
-            </div>
-          </dt>
-           
-          <dd
-            class="details-list__definition"
-          >
-            290,766
-            <!---->
-          </dd>
-          <!---->
-           
-          <dt
-            class="details-list__term"
-          >
-            <div
-              class="details-list__term-layout"
-            >
-              <button
-                aria-describedby="list-item-help-13"
+                aria-describedby="list-item-help-12"
                 aria-label="About nonce"
                 class="detail-list__help"
                 data-tooltip-id="main-tooltip"
@@ -830,7 +809,7 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
                  
                 <span
                   hidden=""
-                  id="list-item-help-13"
+                  id="list-item-help-12"
                 >
                   The number of transactions sent from this address
                 </span>

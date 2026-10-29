@@ -6,3 +6,4 @@ export { default as hexToText } from "./hexToText";
 export { default as isValidHex } from "./isValidHex";
 export { default as makeClassName } from "./makeClassName";
 export { default as middleEllipsis } from "./middleEllipsis";
+export { default as shortId } from "./shortId";

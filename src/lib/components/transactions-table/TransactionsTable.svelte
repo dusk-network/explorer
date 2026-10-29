@@ -22,7 +22,7 @@
   import { CopyButton, RelativeTime } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { makeClassName, middleEllipsis } from "$lib/dusk/string";
+  import { makeClassName, shortId } from "$lib/dusk/string";
   import "./TransactionsTable.css";
 
   /** @type {string | Undefined} */
@@ -63,9 +63,6 @@
    */
   const nameOf = (found, party) =>
     party?.kind === "account" ? found.get(party.address) : undefined;
-
-  /** Lists show an ID as its first and last six characters. */
-  const ID_CHARS = 6;
 
   $: isFull = mode === "full";
   $: classes = makeClassName([
@@ -139,7 +136,7 @@
             <AppAnchor
               className="transaction__link chain-link"
               href={`/transactions/transaction?id=${transaction.txid}`}
-              >{middleEllipsis(transaction.txid, ID_CHARS)}</AppAnchor
+              >{shortId(transaction.txid)}</AppAnchor
             >
             {#if isFull}
               <CopyButton name="Transaction ID" rawValue={transaction.txid} />

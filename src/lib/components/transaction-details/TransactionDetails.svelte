@@ -15,7 +15,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { hexToText, middleEllipsis } from "$lib/dusk/string";
+  import { hexToText, shortId } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
@@ -81,7 +81,7 @@
    */
   const shortNameOf = (party) =>
     party?.kind === "account"
-      ? middleEllipsis(party.address, 6)
+      ? shortId(party.address)
       : party?.kind === "contract"
         ? `contract ${formatContractId(party.id, { short: true })}`
         : null;
@@ -263,12 +263,12 @@
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text="Open on the DuskEVM explorer"
                 {href}
-                ><FullValue ends={6} value={duskEvmRecipient} /><span
+                ><FullValue evm value={duskEvmRecipient} /><span
                   aria-hidden="true"
                   class="transaction-details__evm-site">↗</span
                 ></Anchor
               >{:else}<span class="transaction-details__evm-address"
-                ><FullValue ends={6} value={duskEvmRecipient} /></span
+                ><FullValue evm value={duskEvmRecipient} /></span
               >{/if} on DuskEVM</span
           >
           <CopyButton
@@ -368,7 +368,7 @@
     {/if}
 
     <ListItem>
-      <svelte:fragment slot="term">Transaction fee</svelte:fragment>
+      <svelte:fragment slot="term">Fee paid</svelte:fragment>
       <svelte:fragment slot="definition">
         {toDuskAndUsd(data.feepaid, usdPrice)}
         <StaleDataNotice />
@@ -437,15 +437,27 @@
       >Technical details</summary
     >
     <dl class="transaction-details__list detail-rows">
-      <!-- FUNCTION: the name of the contract's function the call ran -->
+      <!-- METHOD: the name of the contract's function the call ran -->
       {#if data.contract}
         <ListItem wide>
-          <svelte:fragment slot="term">Function</svelte:fragment>
+          <svelte:fragment slot="term">Method</svelte:fragment>
           <code class="transaction-details__function" slot="definition"
             >{data.method}</code
           >
         </ListItem>
       {/if}
+
+      <!-- GAS USED, OF THE TRANSACTION'S LIMIT -->
+      <ListItem
+        tooltipText="The gas the transaction used, of the most it could use. Only the gas used is paid for"
+      >
+        <svelte:fragment slot="term">Gas used</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{formatter(data.gasspent)} of {formatter(
+            data.gaslimit
+          )}</svelte:fragment
+        >
+      </ListItem>
 
       <ListItem
         tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
@@ -453,22 +465,6 @@
         <svelte:fragment slot="term">Gas price</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gasprice)} LUX</svelte:fragment
-        >
-      </ListItem>
-
-      <ListItem
-        tooltipText="The most gas the transaction could use. Only the gas spent is paid for"
-      >
-        <svelte:fragment slot="term">Transaction gas limit</svelte:fragment>
-        <svelte:fragment slot="definition"
-          >{formatter(data.gaslimit)}</svelte:fragment
-        >
-      </ListItem>
-
-      <ListItem>
-        <svelte:fragment slot="term">Gas spent</svelte:fragment>
-        <svelte:fragment slot="definition"
-          >{formatter(data.gasspent)}</svelte:fragment
         >
       </ListItem>
 

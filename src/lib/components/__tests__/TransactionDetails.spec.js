@@ -57,6 +57,20 @@ const getDefinition = (container, term) => {
   return value?.textContent?.replace(/\s+/g, " ").trim();
 };
 
+/**
+ * The ends a full value beside a term sets apart.
+ *
+ * @param {HTMLElement} container
+ * @param {string} term
+ */
+const getEnds = (container, term) =>
+  Array.from(
+    Array.from(container.querySelectorAll("dt"))
+      .find((dt) => termOf(dt) === term)
+      ?.nextElementSibling?.querySelectorAll(".full-value__end") ?? [],
+    (end) => end.textContent
+  );
+
 describe("Transaction Details", () => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date(2024, 4, 20));
@@ -114,14 +128,13 @@ describe("Transaction Details", () => {
       "from",
       "to",
       "amount",
-      "transaction fee",
+      "fee paid",
       "type",
       "visibility",
       "memo",
       "block height",
+      "gas used",
       "gas price",
-      "transaction gas limit",
-      "gas spent",
       "nonce",
       "payload",
     ]);
@@ -136,9 +149,8 @@ describe("Transaction Details", () => {
       "Technical details"
     );
     expect(Array.from(technical.querySelectorAll("dt"), termOf)).toStrictEqual([
+      "gas used",
       "gas price",
-      "transaction gas limit",
-      "gas spent",
       "nonce",
       "payload",
     ]);
@@ -292,9 +304,7 @@ describe("Transaction Details", () => {
         `DuskEVM bridge ${bridge}`
       );
       expect(getDefinition(container, "type")).toBe("Deposit to DuskEVM");
-      expect(getDefinition(container, "function")).toBe(
-        "depositETHToWithValue"
-      );
+      expect(getDefinition(container, "method")).toBe("depositETHToWithValue");
       expect(getDefinition(container, "visibility")).toBe(
         "Public Sender, receiver and amount are visible to everyone"
       );
@@ -318,6 +328,8 @@ describe("Transaction Details", () => {
     expect(
       container.querySelector(".transaction-details__evm-site")
     ).toHaveAttribute("aria-hidden", "true");
+    // Its ends set apart as every Dusk app shortens it: 0x and four, and four.
+    expect(getEnds(container, "to")).toStrictEqual(["0x5A3d", "8a01"]);
 
     // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
@@ -328,19 +340,19 @@ describe("Transaction Details", () => {
     const helps = getAllByRole("button", { name: /^About / });
 
     expect(helps.map((help) => help.getAttribute("aria-label"))).toStrictEqual([
+      "About gas used",
       "About gas price",
-      "About transaction gas limit",
       "About nonce",
     ]);
     expect(
       helps.map((help) => help.getAttribute("data-tooltip-text"))
     ).toStrictEqual([
+      "The gas the transaction used, of the most it could use. Only the gas used is paid for",
       "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
-      "The most gas the transaction could use. Only the gas spent is paid for",
       "The number of transactions sent from this address",
     ]);
-    expect(helps[0].tagName).toBe("BUTTON");
-    expect(helps[0]).toHaveAccessibleDescription(
+    expect(helps[1].tagName).toBe("BUTTON");
+    expect(helps[1]).toHaveAccessibleDescription(
       "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
     );
   });
@@ -351,7 +363,7 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)"
     );
-    expect(getDefinition(container, "transaction fee")).toBe(
+    expect(getDefinition(container, "fee paid")).toBe(
       "0.000290766 DUSK (< $0.01)"
     );
   });
@@ -363,19 +375,14 @@ describe("Transaction Details", () => {
     });
 
     expect(getDefinition(container, "amount")).toBe("9,812.378912731 DUSK");
-    expect(getDefinition(container, "transaction fee")).toBe(
-      "0.000290766 DUSK"
-    );
+    expect(getDefinition(container, "fee paid")).toBe("0.000290766 DUSK");
   });
 
-  it("should give gas in one format, the price in LUX", () => {
+  it("should give gas as the Dusk wallets do: the gas used of the limit, and the price in LUX", () => {
     const { container } = render(TransactionDetails, baseProps);
 
+    expect(getDefinition(container, "gas used")).toBe("290,766 of 500,000,000");
     expect(getDefinition(container, "gas price")).toBe("1 LUX");
-    expect(getDefinition(container, "transaction gas limit")).toBe(
-      "500,000,000"
-    );
-    expect(getDefinition(container, "gas spent")).toBe("290,766");
   });
 
   it("should give its own ID in full to copy, as it opens nothing, and the addresses as links", () => {
@@ -466,20 +473,20 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `Stake contract ${stake}`
       );
-      // Plain words for the type; the function's name is a technical detail.
+      // Plain words for the type; the method is a technical detail.
       expect(getDefinition(container, "type")).toBe("Claim rewards");
     });
     expect(getTerms(container)).not.toContain("to");
     expect(
       container.querySelector(".transaction-details__technical dl dt")
-    ).toHaveTextContent("Function");
-    expect(getDefinition(container, "function")).toBe("withdraw");
+    ).toHaveTextContent("Method");
+    expect(getDefinition(container, "method")).toBe("withdraw");
   });
 
-  it("should give no function for a transaction that calls no contract", () => {
+  it("should give no method for a transaction that calls no contract", () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(getTerms(container)).not.toContain("function");
+    expect(getTerms(container)).not.toContain("method");
   });
 
   it("should show the DUSK a call sends to its contract as the amount", () => {
@@ -621,7 +628,7 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)"
     );
-    expect(getDefinition(container, "transaction fee")).toBe(
+    expect(getDefinition(container, "fee paid")).toBe(
       "0.000290766 DUSK (< $0.01)"
     );
   });

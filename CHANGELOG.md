@@ -80,6 +80,8 @@ and this project adheres to
 - Show amounts and fees under 0.01 DUSK with two significant digits
 - Shorten IDs with "…", and contract IDs to their first and last six characters
 - Call a transaction that carries blobs a "Data blob"
+- Shorten IDs the same way as the Dusk wallets and the bridge
+- Say Method, Gas used of the limit, and Fee paid, as the Dusk wallets do
 
 ### Removed
 
