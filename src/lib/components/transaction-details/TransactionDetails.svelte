@@ -31,9 +31,17 @@
     summarizeTransaction,
     visibilityOf,
   } from "$lib/chain-info";
-  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
+  import {
+    bridgeDepositRecipient,
+    describeCall,
+    findDepositArrival,
+  } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
-  import { duskEvmAddressUrl, labelOf } from "$lib/network";
+  import {
+    duskEvmAddressUrl,
+    duskEvmTransactionUrl,
+    labelOf,
+  } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./TransactionDetails.css";
@@ -131,8 +139,12 @@
     ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
     : Promise.resolve(null);
 
-  // Who a deposit to DuskEVM pays, from its call data.
+  // Who a deposit to DuskEVM pays, from its call data, and the DuskEVM
+  // transaction that paid it: asked of DuskEVM's explorer on this page only.
   $: duskEvmRecipient = data ? bridgeDepositRecipient(data, chainId) : null;
+  $: duskEvmArrival = duskEvmRecipient
+    ? findDepositArrival(data, duskEvmRecipient, chainId).catch(() => null)
+    : Promise.resolve(null);
   $: fromLabel =
     from?.kind === "account" ? labelOf(chainId, from.address) : null;
   $: toLabel = to?.kind === "account" ? labelOf(chainId, to.address) : null;
@@ -160,6 +172,26 @@
 {#snippet sentAmount(/** @type {string} */ text, /** @type {number} */ lux)}
   {#if failed && lux}<span class="transaction-details__unsent">{text}</span
     ><span class="sr-only">, nothing sent</span>{:else}{text}{/if}
+{/snippet}
+
+<!-- A DuskEVM address or transaction, which opens on DuskEVM's own explorer. -->
+{#snippet onDuskEvm(
+  /** @type {string} */ value,
+  /** @type {string | null} */ href
+)}
+  {#if href}<Anchor
+      aria-label="{value} on the DuskEVM explorer"
+      className="transaction-details__evm-address chain-link"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text="Open on the DuskEVM explorer"
+      {href}
+      ><FullValue evm {value} /><span
+        aria-hidden="true"
+        class="transaction-details__evm-site">↗</span
+      ></Anchor
+    >{:else}<span class="transaction-details__evm-address"
+      ><FullValue evm {value} /></span
+    >{/if}
 {/snippet}
 
 <!-- A sentence's shortened IDs stay whole: a line may break after "…". -->
@@ -257,26 +289,16 @@
       </ListItem>
     {/if}
 
-    <!-- TO: a deposit's DuskEVM address opens on DuskEVM's own explorer -->
+    <!-- TO: a deposit's DuskEVM address, then the transaction that paid it -->
     {#if duskEvmRecipient}
-      {@const href = duskEvmAddressUrl(duskEvmRecipient, chainId)}
       <ListItem wide>
         <svelte:fragment slot="term">To</svelte:fragment>
         <svelte:fragment slot="definition">
           <span class="transaction-details__value transaction-details__evm"
-            >{#if href}<Anchor
-                aria-label="{duskEvmRecipient} on the DuskEVM explorer"
-                className="transaction-details__evm-address chain-link"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Open on the DuskEVM explorer"
-                {href}
-                ><FullValue evm value={duskEvmRecipient} /><span
-                  aria-hidden="true"
-                  class="transaction-details__evm-site">↗</span
-                ></Anchor
-              >{:else}<span class="transaction-details__evm-address"
-                ><FullValue evm value={duskEvmRecipient} /></span
-              >{/if} on DuskEVM</span
+            >{@render onDuskEvm(
+              duskEvmRecipient,
+              duskEvmAddressUrl(duskEvmRecipient, chainId)
+            )} on DuskEVM</span
           >
           <CopyButton
             name="DuskEVM address"
@@ -287,6 +309,27 @@
         </svelte:fragment>
       </ListItem>
     {/if}
+    {#await duskEvmArrival then hash}
+      {#if hash}
+        <ListItem wide>
+          <svelte:fragment slot="term">DuskEVM transaction</svelte:fragment>
+          <svelte:fragment slot="definition">
+            <span class="transaction-details__value transaction-details__evm"
+              >{@render onDuskEvm(
+                hash,
+                duskEvmTransactionUrl(hash, chainId)
+              )}</span
+            >
+            <CopyButton
+              name="DuskEVM transaction"
+              rawValue={hash}
+              text="Copy"
+              variant="secondary"
+            />
+          </svelte:fragment>
+        </ListItem>
+      {/if}
+    {/await}
     {#if to?.kind === "account"}
       <ListItem wide>
         <svelte:fragment slot="term">To</svelte:fragment>

@@ -3,6 +3,7 @@ export {
   TRANSFER_CONTRACT,
   duskEvmAddressUrl,
   duskEvmBridgeOf,
+  duskEvmTransactionUrl,
   isConnected,
   isMainnet,
   isTestNetwork,

@@ -26,6 +26,7 @@ and this project adheres to
 - Say how much stDUSK an account holds from staking with Sozu
 - Add the "/" key to go to the search
 - Name DuskEVM's contracts, each of Sozu's contracts and the bridge accounts
+- Link a deposit to DuskEVM to the DuskEVM transaction that delivered it
 
 ### Changed
 

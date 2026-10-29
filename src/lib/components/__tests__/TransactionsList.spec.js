@@ -232,6 +232,44 @@ describe("Transactions List", () => {
     );
   });
 
+  it("should show the DuskEVM address a deposit pays, and leave its DuskEVM transaction to its page", async () => {
+    const bridge =
+      "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
+
+    const { container } = render(TransactionsList, {
+      data: {
+        ...transaction,
+        amount: 0,
+        contract: bridge,
+        deposit: 500_000_000,
+        method: "depositETHToWithValue",
+        payload: /** @type {any} */ ({
+          call: {
+            // eslint-disable-next-line camelcase
+            fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
+          },
+        }),
+        to: null,
+      },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-party--evm")
+      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/)
+    );
+    expect(fetchSpy).not.toHaveBeenCalled();
+
+    fetchSpy.mockRestore();
+    await act(() =>
+      // eslint-disable-next-line camelcase
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+    );
+  });
+
   it("should auto-refresh relative times when the related prop is set to true", async () => {
     const props = {
       ...baseProps,

@@ -239,6 +239,8 @@ describe("Transactions Table", () => {
         to: null,
       };
 
+      const fetchSpy = vi.spyOn(globalThis, "fetch");
+
       appStore.setNodeInfo(apiNodeInfo);
 
       const { container } = render(TransactionsTable, {
@@ -264,7 +266,10 @@ describe("Transactions Table", () => {
         "href",
         "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01"
       );
+      // Its DuskEVM transaction is for its own page: a list asks nothing.
+      expect(fetchSpy).not.toHaveBeenCalled();
 
+      fetchSpy.mockRestore();
       // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
     });

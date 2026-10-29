@@ -1,4 +1,12 @@
-import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { base } from "$app/paths";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { readFileSync } from "node:fs";
@@ -93,7 +101,42 @@ describe("Transaction Details", () => {
     },
   };
 
-  afterEach(cleanup);
+  const bridge =
+    "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
+
+  // A 0.5 DUSK deposit to DuskEVM on testnet, which pays 0x5A3d…8a01.
+  const deposit = {
+    ...baseProps.data,
+    amount: 0,
+    contract: bridge,
+    deposit: 500_000_000,
+    method: "depositETHToWithValue",
+    payload: /** @type {any} */ ({
+      call: {
+        contract: bridge,
+        // eslint-disable-next-line camelcase
+        fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
+        // eslint-disable-next-line camelcase
+        fn_name: "depositETHToWithValue",
+      },
+    }),
+    to: null,
+  };
+
+  /** @type {import("vitest").MockInstance<typeof fetch>} */
+  let fetchSpy;
+
+  beforeEach(() => {
+    // DuskEVM's explorer is out of reach, unless a test answers for it.
+    fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockRejectedValue(new Error("offline"));
+  });
+
+  afterEach(() => {
+    cleanup();
+    fetchSpy.mockRestore();
+  });
 
   afterAll(() => {
     vi.useRealTimers();
@@ -273,30 +316,11 @@ describe("Transaction Details", () => {
   });
 
   it("should name the DuskEVM bridge on testnet, and say which DuskEVM address a deposit pays", async () => {
-    const bridge =
-      "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
-
     appStore.setNodeInfo(apiNodeInfo);
 
     const { container, getByRole } = render(TransactionDetails, {
       ...baseProps,
-      data: {
-        ...baseProps.data,
-        amount: 0,
-        contract: bridge,
-        deposit: 500_000_000,
-        method: "depositETHToWithValue",
-        payload: /** @type {any} */ ({
-          call: {
-            contract: bridge,
-            // eslint-disable-next-line camelcase
-            fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
-            // eslint-disable-next-line camelcase
-            fn_name: "depositETHToWithValue",
-          },
-        }),
-        to: null,
-      },
+      data: deposit,
       market: null,
     });
 
@@ -334,6 +358,89 @@ describe("Transaction Details", () => {
     ).toHaveAttribute("aria-hidden", "true");
     // Its ends set apart as every Dusk app shortens it: 0x and four, and four.
     expect(getEnds(container, "to")).toStrictEqual(["0x5A3d", "8a01"]);
+
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
+
+  it("should link the DuskEVM transaction that delivered a deposit, asking DuskEVM's explorer once", async () => {
+    const arrival =
+      "0x029e2c6ebfe60452800c97eaa2ac36f40039812679c9cee414ea6a8b1877d61b";
+
+    // The L2 bridge paid the deposit's amount 36 seconds after its block.
+    fetchSpy.mockImplementation(async () =>
+      Response.json({
+        items: [
+          {
+            from: { hash: "0x4200000000000000000000000000000000000010" },
+            success: true,
+            timestamp: "2024-04-16T06:39:45.000000Z",
+            // eslint-disable-next-line camelcase
+            transaction_hash: arrival,
+            value: "500000000000000000",
+          },
+        ],
+        // eslint-disable-next-line camelcase
+        next_page_params: null,
+      })
+    );
+    appStore.setNodeInfo(apiNodeInfo);
+
+    const { container, getByRole } = render(TransactionDetails, {
+      ...baseProps,
+      data: deposit,
+      market: null,
+    });
+
+    await vi.waitFor(() =>
+      expect(getDefinition(container, "duskevm transaction")).toBe(
+        `${arrival}↗`
+      )
+    );
+    // Right under the DuskEVM address it paid.
+    expect(getTerms(container).slice(0, 5)).toStrictEqual([
+      "id",
+      "from",
+      "to",
+      "duskevm transaction",
+      "contract",
+    ]);
+    expect(
+      getByRole("link", { name: `${arrival} on the DuskEVM explorer` })
+    ).toHaveAttribute(
+      "href",
+      `https://explorer.testnet.evm.dusk.network/tx/${arrival}`
+    );
+    expect(getEnds(container, "duskevm transaction")).toStrictEqual([
+      "0x029e",
+      "d61b",
+    ]);
+    expect(fetchSpy).toHaveBeenCalledOnce();
+    expect(fetchSpy.mock.calls[0][0]).toBe(
+      "https://explorer.testnet.evm.dusk.network/api/v2/addresses/0x5a3d8e1b7c2f4a6b9e0d1c3f5a7b9c2d4e6f8a01/internal-transactions?filter=to"
+    );
+
+    // eslint-disable-next-line camelcase
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
+
+  it("should ask DuskEVM's explorer nothing off a deposit's page, or for a deposit that failed", async () => {
+    appStore.setNodeInfo(apiNodeInfo);
+
+    for (const data of [baseProps.data, { ...deposit, txerror: "Panic" }]) {
+      const { container } = render(TransactionDetails, {
+        ...baseProps,
+        data,
+        market: null,
+      });
+
+      await vi.waitFor(() =>
+        expect(getDefinition(container, "type")).toMatch(/\w/)
+      );
+      cleanup();
+    }
+
+    expect(fetchSpy).not.toHaveBeenCalled();
 
     // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
