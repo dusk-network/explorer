@@ -1,6 +1,7 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { base } from "$app/paths";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
+import { readFileSync } from "node:fs";
 
 import { apiMarketData, apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
@@ -8,6 +9,9 @@ import { getPrimaryName } from "$lib/dusk-domains";
 import { appStore } from "$lib/stores";
 
 import { TransactionDetails } from "..";
+
+/** @param {string} path relative to this folder */
+const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 
 vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   .../** @type {object} */ (await importOriginal()),
@@ -333,6 +337,62 @@ describe("Transaction Details", () => {
 
     // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
+
+  it("should strike through what a failed transaction would have sent, and say its sender only tried", async () => {
+    const style = document.createElement("style");
+
+    style.textContent = readCss(
+      "../transaction-details/TransactionDetails.css"
+    );
+    document.head.append(style);
+
+    /**
+     * The part of the amount struck through.
+     *
+     * @param {HTMLElement} container
+     */
+    const struckAmount = (container) =>
+      Array.from(
+        Array.from(container.querySelectorAll("dt"))
+          .find((dt) => termOf(dt) === "amount")
+          ?.nextElementSibling?.querySelectorAll("*") ?? []
+      ).find((part) =>
+        getComputedStyle(part).textDecoration.includes("line-through")
+      );
+
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: { ...baseProps.data, txerror: "Panic" },
+      market: null,
+    });
+
+    expect(struckAmount(container)).toHaveTextContent(
+      /^9,812\.378912731 DUSK$/
+    );
+    expect(getDefinition(container, "amount")).toBe(
+      "9,812.378912731 DUSK, nothing sent"
+    );
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-details__summary-text")
+      ).toHaveTextContent(
+        /^kT5Bam…LwKbXj tried to send 9,812\.378912731 DUSK to mHWZo9…pjiUnj$/
+      )
+    );
+
+    cleanup();
+
+    // One that went through sent it.
+    const completed = render(TransactionDetails, {
+      ...baseProps,
+      market: null,
+    }).container;
+
+    expect(struckAmount(completed)).toBeUndefined();
+    expect(getDefinition(completed, "amount")).toBe("9,812.378912731 DUSK");
+
+    style.remove();
   });
 
   it("should explain only the terms that need it, with help reachable from the keyboard and named after its term", () => {

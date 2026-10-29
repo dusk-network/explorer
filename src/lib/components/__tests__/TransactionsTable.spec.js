@@ -1,12 +1,16 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 import { mapWith, slice } from "lamb";
+import { readFileSync } from "node:fs";
 
 import { apiNodeInfo, gqlTransaction, gqlTransactions } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
 
 import { TransactionsTable } from "..";
+
+/** @param {string} path relative to this folder */
+const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 
 describe("Transactions Table", () => {
   vi.useFakeTimers();
@@ -263,6 +267,51 @@ describe("Transactions Table", () => {
 
       // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+    });
+
+    it("should strike through what a failed transaction would have sent, as it moved nothing", () => {
+      const style = document.createElement("style");
+
+      style.textContent = readCss("../../../style/app-components/rows.css");
+      document.head.append(style);
+
+      // A shield that failed: it would have sent 20 DUSK to the transfer contract.
+      const shield = {
+        ...call,
+        contract: `01${"0".repeat(62)}`,
+        deposit: 20_000_000_000,
+        method: "convert",
+      };
+      const { container } = render(TransactionsTable, {
+        props: {
+          account: String(transfer.from),
+          data: [
+            shield,
+            call,
+            { ...shield, txerror: "", txid: "e".repeat(64) },
+          ],
+          mode: "full",
+        },
+      });
+      const [failedShield, failedCall, shieldDone] = Array.from(
+        container.querySelectorAll("tbody tr .row-amount")
+      );
+      /** @param {Element} amount */
+      const struck = (amount) =>
+        getComputedStyle(amount).textDecoration.includes("line-through");
+
+      expect(failedShield.textContent?.replace(/\s+/g, " ").trim()).toBe(
+        "20 DUSK, nothing sent"
+      );
+      expect(struck(failedShield)).toBe(true);
+      // A failure that would have sent nothing, and a shield that went through.
+      expect(struck(failedCall)).toBe(false);
+      expect(shieldDone.textContent?.replace(/\s+/g, " ").trim()).toBe(
+        "−20 DUSK"
+      );
+      expect(struck(shieldDone)).toBe(false);
+
+      style.remove();
     });
 
     it("should fit the home page: no fee or time column, the time under the amount, failures first", async () => {

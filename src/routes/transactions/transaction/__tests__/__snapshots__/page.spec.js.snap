@@ -496,7 +496,12 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="details-list__definition"
         >
           <!---->
-          9,812.378912731 DUSK 
+          <!---->
+          <!---->
+          9,812.378912731 DUSK
+          
+          <!---->
+           
           <!---->
           
           <!---->

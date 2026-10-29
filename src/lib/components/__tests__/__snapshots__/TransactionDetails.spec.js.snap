@@ -424,7 +424,12 @@ exports[`Transaction Details > renders the Transaction Details component 1`] = `
         class="details-list__definition"
       >
         <!---->
-        9,812.378912731 DUSK ($3,614.39) 
+        <!---->
+        <!---->
+        9,812.378912731 DUSK ($3,614.39)
+        
+        <!---->
+         
         <!---->
         
         <!---->
@@ -1251,7 +1256,12 @@ exports[`Transaction Details > renders the Transaction Details component with th
         class="details-list__definition"
       >
         <!---->
-        9,812.378912731 DUSK ($3,614.39) 
+        <!---->
+        <!---->
+        9,812.378912731 DUSK ($3,614.39)
+        
+        <!---->
+         
         <!---->
         
         <!---->
@@ -2099,7 +2109,12 @@ exports[`Transaction Details > should be able to render the details when they co
         class="details-list__definition"
       >
         <!---->
-        9,812.378912731 DUSK ($3,614.39) 
+        <!---->
+        <!---->
+        9,812.378912731 DUSK ($3,614.39)
+        
+        <!---->
+         
         <!---->
         
         <!---->
@@ -2300,7 +2315,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-391"
+              aria-describedby="list-item-help-418"
               aria-label="About gas used"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2324,7 +2339,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-391"
+                id="list-item-help-418"
               >
                 The gas the transaction used, of the most it could use. Only the gas used is paid for
               </span>
@@ -2351,7 +2366,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-392"
+              aria-describedby="list-item-help-419"
               aria-label="About gas price"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2375,7 +2390,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-392"
+                id="list-item-help-419"
               >
                 The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)
               </span>
@@ -2402,7 +2417,7 @@ exports[`Transaction Details > should be able to render the details when they co
             class="details-list__term-layout"
           >
             <button
-              aria-describedby="list-item-help-393"
+              aria-describedby="list-item-help-420"
               aria-label="About nonce"
               class="detail-list__help"
               data-tooltip-id="main-tooltip"
@@ -2426,7 +2441,7 @@ exports[`Transaction Details > should be able to render the details when they co
                
               <span
                 hidden=""
-                id="list-item-help-393"
+                id="list-item-help-420"
               >
                 The number of transactions sent from this address
               </span>

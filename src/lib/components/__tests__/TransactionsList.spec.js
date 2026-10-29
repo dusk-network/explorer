@@ -1,5 +1,6 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
+import { readFileSync } from "node:fs";
 
 import { STAKE_CONTRACT } from "$lib/network";
 import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
@@ -7,6 +8,9 @@ import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
 
 import { TransactionsList } from "..";
+
+/** @param {string} path relative to this folder */
+const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 
 /** @param {HTMLElement} container */
 function getTimeElement(container) {
@@ -185,20 +189,32 @@ describe("Transactions List", () => {
     );
   });
 
-  it("should say a failure first, and mute what it didn't send", async () => {
+  it("should say a failure first, and mute and strike through what it didn't send", async () => {
+    const style = document.createElement("style");
+
+    style.textContent = readCss("../../../style/app-components/rows.css");
+    document.head.append(style);
+
     const { container } = render(TransactionsList, {
       ...baseProps,
       data: { ...transaction, txerror: "Panic" },
     });
+    const amount = /** @type {Element} */ (
+      container.querySelector(".row-amount")
+    );
 
     await vi.waitFor(() =>
       expect(
         container.querySelector(".transaction-row__line")
       ).toHaveTextContent(/^Failed · Transfer$/)
     );
-    expect(container.querySelector(".row-amount")).toHaveClass(
-      "row-amount--muted"
+    expect(amount).toHaveClass("row-amount--muted");
+    expect(getComputedStyle(amount).textDecoration).toContain("line-through");
+    expect(amount.textContent?.replace(/\s+/g, " ").trim()).toBe(
+      "9,812.3789 DUSK, nothing sent"
     );
+
+    style.remove();
   });
 
   it("should give a named account's address in its tooltip as every Dusk app shortens it: the row is narrow, the tooltip isn't", () => {

@@ -124,6 +124,7 @@
     ? summarizeTransaction(data)
     : { amount: null, from: null, to: null });
   $: memoText = data ? hexToText(data.memo) : null;
+  $: failed = !!data?.txerror;
   $: visibility = data ? visibilityOf(data) : null;
   $: chainId = $appStore.nodeInfo.chain_id;
   $: contractName = data?.contract
@@ -154,6 +155,12 @@
       )
     : Promise.resolve("");
 </script>
+
+<!-- An amount; one a failure would have sent is struck through: it didn't move. -->
+{#snippet sentAmount(/** @type {string} */ text, /** @type {number} */ lux)}
+  {#if failed && lux}<span class="transaction-details__unsent">{text}</span
+    ><span class="sr-only">, nothing sent</span>{:else}{text}{/if}
+{/snippet}
 
 <!-- A sentence's shortened IDs stay whole: a line may break after "…". -->
 {#snippet withWholeIds(/** @type {string} */ sentence)}
@@ -348,7 +355,7 @@
         {#if amount?.kind === "shielded"}
           <span class="transaction-details__hidden">Shielded</span>
         {:else if amount}
-          {toDuskAndUsd(amount.lux, usdPrice)}
+          {@render sentAmount(toDuskAndUsd(amount.lux, usdPrice), amount.lux)}
           <StaleDataNotice />
         {/if}
       </svelte:fragment>
@@ -361,7 +368,10 @@
       >
         <svelte:fragment slot="term">Deposit</svelte:fragment>
         <svelte:fragment slot="definition">
-          {toDuskAndUsd(data.deposit, usdPrice)}
+          {@render sentAmount(
+            toDuskAndUsd(data.deposit, usdPrice),
+            data.deposit
+          )}
           <StaleDataNotice />
         </svelte:fragment>
       </ListItem>

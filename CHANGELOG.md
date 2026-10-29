@@ -82,6 +82,7 @@ and this project adheres to
 - Call a transaction that carries blobs a "Data blob"
 - Shorten IDs the same way as the Dusk wallets and the bridge
 - Say Method, Gas used of the limit, and Fee paid, as the Dusk wallets do
+- Strike through what a failed transaction would have sent, and say its sender only tried
 
 ### Removed
 

@@ -108,11 +108,14 @@
       <span
         class="row-amount"
         class:row-amount--muted={failed || amount.lux === 0}
+        class:row-amount--unsent={failed && amount.lux > 0}
         >{amountSign(direction, amount.lux, failed)}<span
           title="{formatDuskExact(amount.lux)} DUSK"
           >{formatDusk(amount.lux)}</span
         >
-        <span class="row-unit">DUSK</span></span
+        <span class="row-unit">DUSK</span>{#if failed && amount.lux > 0}<span
+            class="sr-only">, nothing sent</span
+          >{/if}</span
       >
     {/if}
     <span class="row-line transaction-row__time">
