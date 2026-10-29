@@ -78,22 +78,6 @@ export function labelOf(chainId, id) {
 }
 
 /**
- * The DuskEVM bridge's contracts on a network: deposits to DuskEVM call the
- * bridge, and withdrawals back are proved and claimed at the portal. `null`
- * on a network with no DuskEVM.
- *
- * @param {Network | null} network
- * @returns {{ bridge: string, portal: string } | null}
- */
-export function duskEvmBridgeOf(network) {
-  const contracts = network?.duskEvm?.contracts;
-  const bridge = contracts?.l1_standard_bridge?.contractId;
-  const portal = contracts?.optimism_portal?.contractId;
-
-  return bridge && portal ? { bridge, portal } : null;
-}
-
-/**
  * An address's page on the DuskEVM explorer of the node's network, or
  * `null` on a network with no DuskEVM.
  *

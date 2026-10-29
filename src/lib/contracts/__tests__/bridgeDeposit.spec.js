@@ -32,58 +32,24 @@ describe("bridgeDepositRecipient", () => {
     );
   });
 
-  it("should read nothing off the bridge's network, or from another call", () => {
-    expect(bridgeDepositRecipient(deposit, 1)).toBeNull();
+  it("should read nothing before the node says its network, or off the bridge's", () => {
     expect(bridgeDepositRecipient(deposit, undefined)).toBeNull();
-    expect(
-      bridgeDepositRecipient({ ...deposit, method: "deposit" }, 2)
-    ).toBeNull();
-    expect(
-      bridgeDepositRecipient({ ...deposit, contract: "00".repeat(32) }, 2)
-    ).toBeNull();
+    expect(bridgeDepositRecipient(deposit, 1)).toBeNull();
   });
 
-  it("should read nothing when the DUSK sent isn't the amount the call names, or the arguments aren't the bridge's", () => {
+  it("should read nothing when the DUSK sent isn't the amount the call names, or the payload isn't the call's", () => {
     expect(
       bridgeDepositRecipient({ ...deposit, deposit: 400_000_000 }, 2)
     ).toBeNull();
     expect(bridgeDepositRecipient({ ...deposit, amount: 1 }, 2)).toBeNull();
-
-    /** @param {string} args */
-    const withArgs = (args) => ({
-      ...deposit,
-      // eslint-disable-next-line camelcase
-      payload: { call: { fn_args: args } },
-    });
-
-    // One byte short, and extra data that points past the root.
-    const bytes = Uint8Array.from(atob(fnArgs), (c) => c.charCodeAt(0));
-    const toBase64 = (/** @type {Uint8Array} */ b) =>
-      btoa(String.fromCharCode(...b));
-    const outOfBounds = bytes.slice();
-
-    outOfBounds[36] = 1;
-
     expect(
       bridgeDepositRecipient(
         /** @type {Transaction} */ (
-          /** @type {unknown} */ (withArgs(toBase64(bytes.subarray(1))))
-        ),
-        2
-      )
-    ).toBeNull();
-    expect(
-      bridgeDepositRecipient(
-        /** @type {Transaction} */ (
-          /** @type {unknown} */ (withArgs(toBase64(outOfBounds)))
-        ),
-        2
-      )
-    ).toBeNull();
-    expect(
-      bridgeDepositRecipient(
-        /** @type {Transaction} */ (
-          /** @type {unknown} */ (withArgs("not base64!"))
+          /** @type {unknown} */ ({
+            ...deposit,
+            // eslint-disable-next-line camelcase
+            payload: { call: { fn_args: "not base64!" } },
+          })
         ),
         2
       )

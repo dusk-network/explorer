@@ -1,4 +1,6 @@
-import { STAKE_CONTRACT, duskEvmBridgeOf, networkOf } from "$lib/network";
+import { isBridgeContract } from "@dusk-network/networks/duskevm";
+
+import { STAKE_CONTRACT, networkOf } from "$lib/network";
 
 /**
  * @typedef {"bridge" | "call" | "shielded" | "staking" | "transfer"} TransactionKind
@@ -15,10 +17,9 @@ import { STAKE_CONTRACT, duskEvmBridgeOf, networkOf } from "$lib/network";
  */
 function callKind(contract, chainId) {
   const network = networkOf(chainId);
-  const bridge = duskEvmBridgeOf(network);
   const sozu = network?.sozu;
 
-  if (bridge && [bridge.bridge, bridge.portal].includes(contract)) {
+  if (network && isBridgeContract(network, contract)) {
     return "bridge";
   }
 

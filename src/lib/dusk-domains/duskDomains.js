@@ -1,10 +1,13 @@
+import { networkFor } from "@dusk-network/networks";
+import { decodeBase58 } from "@dusk-network/networks/account";
+import { nameProblem, toDuskName } from "@duskdomains/sdk/names";
 import { get } from "svelte/store";
 
 import { duskAPI } from "$lib/services";
 import { appStore } from "$lib/stores";
 import { makeNodeUrl } from "$lib/url";
 
-/** @typedef {typeof import("./dusk-domains-releases.json").mainnet} Release */
+/** @typedef {import("@duskdomains/sdk/releases").PinnedRelease} Release */
 
 /** @typedef {{ name: string, url: string }} PrimaryName */
 
@@ -44,10 +47,11 @@ const LENS_READS = new Map([
  */
 const LENS_REPLY_ESTIMATE = 1536;
 
-const loadSdk = () => import("./sdk");
+/** What can be wrong with a name's labels, which the message spells out. */
+const LABEL_PROBLEMS = ["characters", "hyphen", "length"];
 
-// The multicall batching, loaded with the reader that uses it.
-const loadMulticallFetch = () => import("./multicallFetch");
+/** @type {Promise<typeof import("@duskdomains/sdk/accounts")> | undefined} */
+let accountCheck;
 
 /**
  * @param {unknown} cause
@@ -68,11 +72,9 @@ const lookupFailed = (cause) => {
 async function getRelease() {
   const chainId =
     get(appStore).nodeInfo.chain_id ?? (await duskAPI.getNodeInfo()).chain_id;
-  const { default: releases } = await import("./dusk-domains-releases.json");
+  const { releaseFor } = await import("@duskdomains/sdk/releases");
 
-  return Object.values(releases).find(
-    (release) => release.chainId === `dusk:${chainId}`
-  );
+  return typeof chainId === "number" ? releaseFor(chainId) : undefined;
 }
 
 /**
@@ -99,8 +101,8 @@ function getReader(release, kind = "batched") {
       contractId === release.lens.contractId;
 
     reader = Promise.all([
-      loadSdk(),
-      kind === "batched" ? loadMulticallFetch() : null,
+      import("@duskdomains/sdk/lens-reader"),
+      kind === "batched" ? import("@hdauven/dusk-multicall") : null,
     ]).then(([{ createLensReader }, batching]) =>
       createLensReader(release, {
         artifactBaseUrl: release.artifactBaseUrl,
@@ -115,6 +117,8 @@ function getReader(release, kind = "batched") {
                     ? BigInt(reads) * 4_000_000n + 30_000_000n
                     : 0n;
                 },
+                multicallId:
+                  networkFor(release.chainId)?.contracts.multicall ?? null,
                 nodeUrl,
                 replyEstimate: (contractId, fnName) =>
                   isLens(contractId) && LENS_READS.has(fnName)
@@ -130,6 +134,22 @@ function getReader(release, kind = "batched") {
   }
 
   return reader;
+}
+
+/**
+ * The check of the account a name points to, a curve check: loaded with the
+ * first name looked up, and again after a failed load. Once loaded, it
+ * holds no lookup back a task, so lookups started together share a query.
+ */
+function loadAccounts() {
+  if (!accountCheck) {
+    accountCheck = import("@duskdomains/sdk/accounts");
+    accountCheck.catch(() => {
+      accountCheck = undefined;
+    });
+  }
+
+  return accountCheck;
 }
 
 /**
@@ -172,37 +192,6 @@ const readLens = (release, read) =>
     );
 
 /**
- * Whether a contract belongs to Dusk Domains on the node's network, by the
- * contract IDs of that network's pinned release: none off mainnet and
- * testnet, or before the node has said which it is on. It reads nothing
- * from the node.
- *
- * @param {string} contractId
- * @param {number | null | undefined} chainId The node's network
- * @returns {Promise<boolean>}
- */
-export async function isDuskDomainsContract(contractId, chainId) {
-  const { default: releases } = await import("./dusk-domains-releases.json");
-  const release = Object.values(releases).find(
-    (candidate) => candidate.chainId === `dusk:${chainId}`
-  );
-
-  return (
-    !!release &&
-    (release.lens.contractId === contractId ||
-      release.contracts.some((contract) => contract.contractId === contractId))
-  );
-}
-
-/**
- * Whether a search query is a `.dusk` name.
- *
- * @param {string} query
- * @returns {boolean}
- */
-export const isDuskName = (query) => /\.dusk$/i.test(query.trim());
-
-/**
  * Resolves a `.dusk` name to the Moonlight account in its
  * `moonlight_address` record. Rejects with a message for the user
  * when there is no such account or the lookup fails.
@@ -219,31 +208,30 @@ export async function resolveDuskName(query) {
     );
   }
 
-  const sdk = await loadSdk().catch(lookupFailed);
-  const validation = sdk.validateName(query);
+  const name = toDuskName(query);
 
-  if (!validation.ok) {
+  if (!name) {
     throw new Error(
-      validation.issues.includes("label")
+      LABEL_PROBLEMS.includes(nameProblem(query) ?? "")
         ? "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen."
         : "This is not a valid .dusk name."
     );
   }
 
-  const { records, status, value } = await readLens(release, (reader) =>
-    reader.resolve(validation.name.canonical, ["moonlight_address"])
+  const { resolveAccounts } = await loadAccounts().catch(lookupFailed);
+  const { account, status } = await readLens(release, (reader) =>
+    resolveAccounts(reader, name)
   ).catch(lookupFailed);
-  const account = records[0]?.value;
 
-  if (typeof value !== "object" || !("Local" in value) || status === "Absent") {
+  if (status === "Absent") {
     throw new Error("This name is not registered.");
   } else if (status !== "Active") {
     throw new Error("This name has expired.");
-  } else if (account?.length !== 96) {
-    throw new Error("This name has no Moonlight address.");
+  } else if (!account) {
+    throw new Error("This name has no public address.");
   }
 
-  return sdk.encodeBase58(account);
+  return account;
 }
 
 /**
@@ -328,11 +316,15 @@ export async function getPrimaryNames(addresses) {
  * @returns {Promise<PrimaryName | null>}
  */
 export async function getSearchedName(name, address) {
-  if (!name || !isDuskName(name)) {
+  const canonical = toDuskName(name ?? "");
+
+  if (!canonical) {
     return null;
   }
 
-  const canonical = name.trim().toLowerCase();
+  // Both lookups start once the account check has loaded: one query.
+  await loadAccounts().catch(() => undefined);
+
   const [account, primary, release] = await Promise.all([
     resolveDuskName(canonical).catch(() => null),
     getPrimaryName(address).catch(() => null),
@@ -361,7 +353,7 @@ const nameUrl = (release, name) =>
  * @returns {Promise<PrimaryName | null>}
  */
 async function lookUpPrimaryName(release, address) {
-  const endpoint = (await loadSdk()).decodeBase58(address);
+  const endpoint = decodeBase58(address);
 
   if (endpoint?.length !== 96) {
     return null;

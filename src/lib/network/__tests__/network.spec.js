@@ -7,7 +7,6 @@ import {
   STAKE_CONTRACT,
   TRANSFER_CONTRACT,
   duskEvmAddressUrl,
-  duskEvmBridgeOf,
   isMainnet,
   isTestNetwork,
   labelOf,
@@ -70,17 +69,6 @@ describe("network", () => {
       expect(labelOf(chainId, STAKE_CONTRACT)).toBe("Stake contract");
       expect(labelOf(chainId, TRANSFER_CONTRACT)).toBe("Transfer contract");
     }
-  });
-
-  it("should give the DuskEVM bridge's contracts, on the networks with a DuskEVM", () => {
-    expect(duskEvmBridgeOf(networks.testnet)).toStrictEqual({
-      bridge:
-        "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d",
-      portal:
-        "14eeb3d4021aff09af2c515603a01f8d956a7f6411d11a1b1c0b0561a93fb1b9",
-    });
-    expect(duskEvmBridgeOf(networks.mainnet)).toBeNull();
-    expect(duskEvmBridgeOf(null)).toBeNull();
   });
 
   it("should give an address's page on the DuskEVM explorer of the node's network", () => {

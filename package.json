@@ -38,10 +38,11 @@
     "cookie": "0.7.2"
   },
   "dependencies": {
-    "@dusk-network/networks": "0.1.0",
-    "@duskdomains/sdk": "npm:@jsr/duskdomains__sdk@0.5.4",
+    "@dusk-network/networks": "0.3.0",
+    "@duskdomains/sdk": "npm:@jsr/duskdomains__sdk@0.6.1",
     "@duskit/css": "1.0.0",
     "@floating-ui/dom": "1.7.6",
+    "@hdauven/dusk-multicall": "npm:@jsr/hdauven__dusk-multicall@0.1.0",
     "@mdi/js": "7.4.47",
     "d3-geo": "3.1.1",
     "d3-scale": "4.0.2",

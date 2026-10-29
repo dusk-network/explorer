@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-
-import * as base58 from "$lib/utils/encoders/base58";
+import { encodeBase58 } from "@dusk-network/networks/account";
 
 import explainSearchMiss from "../search-field/explainSearchMiss";
 
@@ -34,7 +33,7 @@ describe("explainSearchMiss", () => {
   });
 
   it("should say a shielded address can't be looked up", () => {
-    const shielded = base58.encode(new Uint8Array(64).fill(7));
+    const shielded = encodeBase58(new Uint8Array(64).fill(7));
 
     expect(explainSearchMiss(shielded).message).toMatch(
       /^This is a shielded address\./
@@ -49,10 +48,13 @@ describe("explainSearchMiss", () => {
     expect(explainSearchMiss("dusk-domains").suggestion).toBe(
       "dusk-domains.dusk"
     );
+    // A subname, and a name typed with its dot but not its ending.
+    expect(explainSearchMiss("pay.alice").suggestion).toBe("pay.alice.dusk");
+    expect(explainSearchMiss("alice.").suggestion).toBe("alice.dusk");
   });
 
   it("should say what can be searched for anything else", () => {
-    for (const query of ["bad_name", "-alice", "a b"]) {
+    for (const query of ["bad_name", "-alice", "a b", "0x12ab"]) {
       expect(explainSearchMiss(query)).toStrictEqual({
         message:
           "Search by account address, block height or hash, transaction ID or .dusk name.",

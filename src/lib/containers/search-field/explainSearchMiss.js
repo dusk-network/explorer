@@ -1,7 +1,5 @@
-import * as base58 from "$lib/utils/encoders/base58";
-
-/** A name label: a–z, 0–9 and inner hyphens. */
-const NAME_LABEL = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
+import { decodeBase58 } from "@dusk-network/networks/account";
+import { asDuskName } from "@duskdomains/sdk/names";
 
 /**
  * Why a search found nothing, in words for the person searching, and a
@@ -38,17 +36,19 @@ function explainSearchMiss(query) {
     };
   }
 
-  if (base58.decode(text)?.length === 64) {
+  if (decodeBase58(text)?.length === 64) {
     return {
       message:
         "This is a shielded address. Shielded balances and transfers are private, so the explorer can't show them.",
     };
   }
 
-  if (NAME_LABEL.test(text.toLowerCase())) {
+  const suggestion = asDuskName(text);
+
+  if (suggestion) {
     return {
       message: "No account, block or transaction matches this.",
-      suggestion: `${text.toLowerCase()}.dusk`,
+      suggestion,
     };
   }
 

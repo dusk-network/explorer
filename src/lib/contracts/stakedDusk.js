@@ -4,6 +4,7 @@
 // Sozu's. The hub's argument and the replies are as
 // `@dusk-network/networks/sozu` gives them.
 
+import { accountToRawKey } from "@dusk-network/networks/account";
 import {
   HUB_NAME_ARGS,
   decodeContractId,
@@ -14,27 +15,30 @@ import { failureToRejection } from "$lib/dusk/http";
 import { hexToBytes } from "$lib/dusk/string";
 import { networkOf } from "$lib/network";
 import { makeNodeUrl } from "$lib/url";
-import * as base58 from "$lib/utils/encoders/base58";
-
-import { rawAccountKey } from "./rawAccountKey";
 
 /**
- * The batched fetch of each node, kept so it learns the node's replies.
+ * The batched fetch of each node and multicall, kept so it learns the
+ * node's replies.
  *
- * @type {Map<string, Promise<typeof fetch>>}
+ * @type {Map<string, Promise<import("@hdauven/dusk-multicall").Fetch>>}
  */
 const batchedFetches = new Map();
 
-/** @param {string} nodeUrl */
-function batchedFetch(nodeUrl) {
-  let batched = batchedFetches.get(nodeUrl);
+/**
+ * @param {string} nodeUrl
+ * @param {string | null} multicallId
+ */
+function batchedFetch(nodeUrl, multicallId) {
+  const key = `${nodeUrl} ${multicallId}`;
+  let batched = batchedFetches.get(key);
 
   if (!batched) {
-    batched = import("$lib/dusk-domains/multicallFetch").then(
-      ({ createMulticallFetch }) => createMulticallFetch({ nodeUrl })
+    batched = import("@hdauven/dusk-multicall").then(
+      ({ createMulticallFetch }) =>
+        createMulticallFetch({ multicallId, nodeUrl })
     );
-    batchedFetches.set(nodeUrl, batched);
-    batched.catch(() => batchedFetches.delete(nodeUrl));
+    batchedFetches.set(key, batched);
+    batched.catch(() => batchedFetches.delete(key));
   }
 
   return batched;
@@ -50,15 +54,18 @@ function batchedFetch(nodeUrl) {
  * @returns {Promise<bigint | null>}
  */
 export async function getStakedDusk(address, chainId) {
-  const sozu = networkOf(chainId)?.sozu;
-  const key = base58.decode(address);
-  const raw = key?.length === 96 ? rawAccountKey(key) : null;
+  const network = networkOf(chainId);
+  const sozu = network?.sozu;
+  const raw = accountToRawKey(address);
 
-  if (!sozu || !raw) {
+  if (!network || !sozu || !raw) {
     return null;
   }
 
-  const fetchBatched = await batchedFetch(makeNodeUrl("/").href);
+  const fetchBatched = await batchedFetch(
+    makeNodeUrl("/").href,
+    network.contracts.multicall
+  );
 
   /**
    * @param {string} contract
