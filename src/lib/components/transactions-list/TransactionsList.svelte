@@ -2,7 +2,7 @@
 
 <script>
   import { RelativeTime } from "$lib/dusk/components";
-  import { middleEllipsis } from "$lib/dusk/string";
+  import { shortId } from "$lib/dusk/string";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
   import {
@@ -50,15 +50,6 @@
   const nameOf = (found, party) =>
     party?.kind === "account" ? found.get(party.address) : undefined;
 
-  /** Lists show an ID as its first and last six characters. */
-  const ID_CHARS = 6;
-
-  /**
-   * A phone's row shows an address, or a contract's ID, as its first and
-   * last four characters: the receiver's name keeps its room.
-   */
-  const ADDRESS_CHARS = 4;
-
   $: ({ amount, from, to } = summarizeTransaction(data));
   $: failed = !!data.txerror;
   $: direction = directionOf(data, account);
@@ -76,9 +67,9 @@
       <span class="transaction-row__party">
         <span class="sr-only">From</span>
         <TransactionParty
-          chars={ADDRESS_CHARS}
           contractWord={false}
           name={nameOf(names, from)}
+          narrow
           party={from}
         />
       </span>
@@ -87,9 +78,9 @@
         <span class="transaction-row__party">
           <span class="sr-only">To</span>
           <TransactionParty
-            chars={ADDRESS_CHARS}
             contractWord={false}
             name={nameOf(names, to)}
+            narrow
             party={to}
             transaction={data}
           />
@@ -117,11 +108,14 @@
       <span
         class="row-amount"
         class:row-amount--muted={failed || amount.lux === 0}
+        class:row-amount--unsent={failed && amount.lux > 0}
         >{amountSign(direction, amount.lux, failed)}<span
           title="{formatDuskExact(amount.lux)} DUSK"
           >{formatDusk(amount.lux)}</span
         >
-        <span class="row-unit">DUSK</span></span
+        <span class="row-unit">DUSK</span>{#if failed && amount.lux > 0}<span
+            class="sr-only">, nothing sent</span
+          >{/if}</span
       >
     {/if}
     <span class="row-line transaction-row__time">
@@ -136,8 +130,6 @@
   <AppAnchor
     className="transaction-row__link"
     href={`/transactions/transaction?id=${data.txid}`}
-    ><span class="sr-only"
-      >Transaction {middleEllipsis(data.txid, ID_CHARS)}</span
-    ></AppAnchor
+    ><span class="sr-only">Transaction {shortId(data.txid)}</span></AppAnchor
   >
 </div>

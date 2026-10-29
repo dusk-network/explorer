@@ -106,3 +106,17 @@ export function duskEvmAddressUrl(address, chainId) {
 
   return explorer ? `${explorer}/address/${address}` : null;
 }
+
+/**
+ * A transaction's page on the DuskEVM explorer of the node's network, or
+ * `null` on a network with no DuskEVM.
+ *
+ * @param {string} hash
+ * @param {number | null | undefined} chainId The node's network
+ * @returns {string | null}
+ */
+export function duskEvmTransactionUrl(hash, chainId) {
+  const explorer = networkOf(chainId)?.duskEvm?.explorerUrl;
+
+  return explorer ? `${explorer}/tx/${hash}` : null;
+}

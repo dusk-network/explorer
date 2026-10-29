@@ -26,7 +26,7 @@ const wordsFor = (summary, from, to) => ({
  * Who sent how much to whom, in one plain sentence, with the names a page
  * shows for the sender and the receiver: a `.dusk` name, a contract's name
  * or a short address. A deposit to DuskEVM goes to the DuskEVM address its
- * call names.
+ * call names. One that failed moved nothing: its sender only tried to send.
  *
  * @param {Transaction} tx
  * @param {{ duskEvm?: string | null, from: string | null, to: string | null }} names
@@ -35,13 +35,14 @@ const wordsFor = (summary, from, to) => ({
 function describeTransaction(tx, { duskEvm = null, from, to }) {
   const summary = summarizeTransaction(tx);
   const { amount, receiver, sender } = wordsFor(summary, from, to);
+  const sent = tx.txerror ? "tried to send" : "sent";
 
   if (tx.method === "deploy") {
     return `${sender} deployed a contract`;
   }
 
   if (duskEvm) {
-    return `${sender} sent ${amount} to ${duskEvm} on DuskEVM`;
+    return `${sender} ${sent} ${amount} to ${duskEvm} on DuskEVM`;
   }
 
   if (
@@ -53,8 +54,8 @@ function describeTransaction(tx, { duskEvm = null, from, to }) {
   }
 
   return receiver
-    ? `${sender} sent ${amount} to ${receiver}`
-    : `${sender} sent ${amount}`;
+    ? `${sender} ${sent} ${amount} to ${receiver}`
+    : `${sender} ${sent} ${amount}`;
 }
 
 export default describeTransaction;

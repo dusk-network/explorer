@@ -1011,6 +1011,7 @@ exports[`Block Details > should render the Block Details page and query the nece
                     >
                       DUSK
                     </span>
+                    <!---->
                   </span>
                   <!---->
                    
@@ -1963,6 +1964,7 @@ exports[`Block Details > should render the Transaction section of the Block Deta
               >
                 DUSK
               </span>
+              <!---->
             </span>
             <!---->
              

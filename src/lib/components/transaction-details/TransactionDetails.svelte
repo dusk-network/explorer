@@ -15,7 +15,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { hexToText, middleEllipsis } from "$lib/dusk/string";
+  import { hexToText, shortId } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
@@ -31,9 +31,17 @@
     summarizeTransaction,
     visibilityOf,
   } from "$lib/chain-info";
-  import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
+  import {
+    bridgeDepositRecipient,
+    describeCall,
+    findDepositArrival,
+  } from "$lib/contracts";
   import { getPrimaryName } from "$lib/dusk-domains";
-  import { duskEvmAddressUrl, labelOf } from "$lib/network";
+  import {
+    duskEvmAddressUrl,
+    duskEvmTransactionUrl,
+    labelOf,
+  } from "$lib/network";
   import { appStore } from "$lib/stores";
 
   import "./TransactionDetails.css";
@@ -81,7 +89,7 @@
    */
   const shortNameOf = (party) =>
     party?.kind === "account"
-      ? middleEllipsis(party.address, 6)
+      ? shortId(party.address)
       : party?.kind === "contract"
         ? `contract ${formatContractId(party.id, { short: true })}`
         : null;
@@ -124,14 +132,19 @@
     ? summarizeTransaction(data)
     : { amount: null, from: null, to: null });
   $: memoText = data ? hexToText(data.memo) : null;
+  $: failed = !!data?.txerror;
   $: visibility = data ? visibilityOf(data) : null;
   $: chainId = $appStore.nodeInfo.chain_id;
   $: contractName = data?.contract
     ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
     : Promise.resolve(null);
 
-  // Who a deposit to DuskEVM pays, from its call data.
+  // Who a deposit to DuskEVM pays, from its call data, and the DuskEVM
+  // transaction that paid it: asked of DuskEVM's explorer on this page only.
   $: duskEvmRecipient = data ? bridgeDepositRecipient(data, chainId) : null;
+  $: duskEvmArrival = duskEvmRecipient
+    ? findDepositArrival(data, duskEvmRecipient, chainId).catch(() => null)
+    : Promise.resolve(null);
   $: fromLabel =
     from?.kind === "account" ? labelOf(chainId, from.address) : null;
   $: toLabel = to?.kind === "account" ? labelOf(chainId, to.address) : null;
@@ -154,6 +167,32 @@
       )
     : Promise.resolve("");
 </script>
+
+<!-- An amount; one a failure would have sent is struck through: it didn't move. -->
+{#snippet sentAmount(/** @type {string} */ text, /** @type {number} */ lux)}
+  {#if failed && lux}<span class="transaction-details__unsent">{text}</span
+    ><span class="sr-only">, nothing sent</span>{:else}{text}{/if}
+{/snippet}
+
+<!-- A DuskEVM address or transaction, which opens on DuskEVM's own explorer. -->
+{#snippet onDuskEvm(
+  /** @type {string} */ value,
+  /** @type {string | null} */ href
+)}
+  {#if href}<Anchor
+      aria-label="{value} on the DuskEVM explorer"
+      className="transaction-details__evm-address chain-link"
+      data-tooltip-id="main-tooltip"
+      data-tooltip-text="Open on the DuskEVM explorer"
+      {href}
+      ><FullValue evm {value} /><span
+        aria-hidden="true"
+        class="transaction-details__evm-site">↗</span
+      ></Anchor
+    >{:else}<span class="transaction-details__evm-address"
+      ><FullValue evm {value} /></span
+    >{/if}
+{/snippet}
 
 <!-- A sentence's shortened IDs stay whole: a line may break after "…". -->
 {#snippet withWholeIds(/** @type {string} */ sentence)}
@@ -250,26 +289,16 @@
       </ListItem>
     {/if}
 
-    <!-- TO: a deposit's DuskEVM address opens on DuskEVM's own explorer -->
+    <!-- TO: a deposit's DuskEVM address, then the transaction that paid it -->
     {#if duskEvmRecipient}
-      {@const href = duskEvmAddressUrl(duskEvmRecipient, chainId)}
       <ListItem wide>
         <svelte:fragment slot="term">To</svelte:fragment>
         <svelte:fragment slot="definition">
           <span class="transaction-details__value transaction-details__evm"
-            >{#if href}<Anchor
-                aria-label="{duskEvmRecipient} on the DuskEVM explorer"
-                className="transaction-details__evm-address chain-link"
-                data-tooltip-id="main-tooltip"
-                data-tooltip-text="Open on the DuskEVM explorer"
-                {href}
-                ><FullValue ends={6} value={duskEvmRecipient} /><span
-                  aria-hidden="true"
-                  class="transaction-details__evm-site">↗</span
-                ></Anchor
-              >{:else}<span class="transaction-details__evm-address"
-                ><FullValue ends={6} value={duskEvmRecipient} /></span
-              >{/if} on DuskEVM</span
+            >{@render onDuskEvm(
+              duskEvmRecipient,
+              duskEvmAddressUrl(duskEvmRecipient, chainId)
+            )} on DuskEVM</span
           >
           <CopyButton
             name="DuskEVM address"
@@ -280,6 +309,27 @@
         </svelte:fragment>
       </ListItem>
     {/if}
+    {#await duskEvmArrival then hash}
+      {#if hash}
+        <ListItem wide>
+          <svelte:fragment slot="term">DuskEVM transaction</svelte:fragment>
+          <svelte:fragment slot="definition">
+            <span class="transaction-details__value transaction-details__evm"
+              >{@render onDuskEvm(
+                hash,
+                duskEvmTransactionUrl(hash, chainId)
+              )}</span
+            >
+            <CopyButton
+              name="DuskEVM transaction"
+              rawValue={hash}
+              text="Copy"
+              variant="secondary"
+            />
+          </svelte:fragment>
+        </ListItem>
+      {/if}
+    {/await}
     {#if to?.kind === "account"}
       <ListItem wide>
         <svelte:fragment slot="term">To</svelte:fragment>
@@ -348,7 +398,7 @@
         {#if amount?.kind === "shielded"}
           <span class="transaction-details__hidden">Shielded</span>
         {:else if amount}
-          {toDuskAndUsd(amount.lux, usdPrice)}
+          {@render sentAmount(toDuskAndUsd(amount.lux, usdPrice), amount.lux)}
           <StaleDataNotice />
         {/if}
       </svelte:fragment>
@@ -361,14 +411,17 @@
       >
         <svelte:fragment slot="term">Deposit</svelte:fragment>
         <svelte:fragment slot="definition">
-          {toDuskAndUsd(data.deposit, usdPrice)}
+          {@render sentAmount(
+            toDuskAndUsd(data.deposit, usdPrice),
+            data.deposit
+          )}
           <StaleDataNotice />
         </svelte:fragment>
       </ListItem>
     {/if}
 
     <ListItem>
-      <svelte:fragment slot="term">Transaction fee</svelte:fragment>
+      <svelte:fragment slot="term">Fee paid</svelte:fragment>
       <svelte:fragment slot="definition">
         {toDuskAndUsd(data.feepaid, usdPrice)}
         <StaleDataNotice />
@@ -437,15 +490,27 @@
       >Technical details</summary
     >
     <dl class="transaction-details__list detail-rows">
-      <!-- FUNCTION: the name of the contract's function the call ran -->
+      <!-- METHOD: the name of the contract's function the call ran -->
       {#if data.contract}
         <ListItem wide>
-          <svelte:fragment slot="term">Function</svelte:fragment>
+          <svelte:fragment slot="term">Method</svelte:fragment>
           <code class="transaction-details__function" slot="definition"
             >{data.method}</code
           >
         </ListItem>
       {/if}
+
+      <!-- GAS USED, OF THE TRANSACTION'S LIMIT -->
+      <ListItem
+        tooltipText="The gas the transaction used, of the most it could use. Only the gas used is paid for"
+      >
+        <svelte:fragment slot="term">Gas used</svelte:fragment>
+        <svelte:fragment slot="definition"
+          >{formatter(data.gasspent)} of {formatter(
+            data.gaslimit
+          )}</svelte:fragment
+        >
+      </ListItem>
 
       <ListItem
         tooltipText="The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)"
@@ -453,22 +518,6 @@
         <svelte:fragment slot="term">Gas price</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gasprice)} LUX</svelte:fragment
-        >
-      </ListItem>
-
-      <ListItem
-        tooltipText="The most gas the transaction could use. Only the gas spent is paid for"
-      >
-        <svelte:fragment slot="term">Transaction gas limit</svelte:fragment>
-        <svelte:fragment slot="definition"
-          >{formatter(data.gaslimit)}</svelte:fragment
-        >
-      </ListItem>
-
-      <ListItem>
-        <svelte:fragment slot="term">Gas spent</svelte:fragment>
-        <svelte:fragment slot="definition"
-          >{formatter(data.gasspent)}</svelte:fragment
         >
       </ListItem>
 

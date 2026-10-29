@@ -25,12 +25,14 @@ describe("FullValue", () => {
     );
   });
 
-  it("should set apart as many characters as asked", () => {
+  it("should set apart an EVM address's or hash's ends as its short form keeps them: 0x and four, and the last four", () => {
+    const address = "0xAB84EDFFd745aF9420Ac74feC73121fbEE9fC86F";
     const { container } = render(FullValue, {
-      props: { ends: 4, value: hash },
+      props: { evm: true, value: address },
     });
 
-    expect(endsOf(container)).toStrictEqual(["ac6b", "bc24"]);
+    expect(endsOf(container)).toStrictEqual(["0xAB84", "C86F"]);
+    expect(container.firstElementChild).toHaveTextContent(address);
   });
 
   it("should keep a value too short to split whole", () => {

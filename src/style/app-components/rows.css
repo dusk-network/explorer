@@ -27,7 +27,10 @@
   white-space: nowrap;
 }
 
-/* A failed transaction says so first, in red; its amount is muted. */
+/*
+ * A failed transaction says so first, in red. Its amount is muted, and
+ * struck through: it didn't move.
+ */
 .row-failed {
   color: var(--calm-danger);
 }
@@ -41,6 +44,10 @@
 .row-amount--muted {
   color: var(--calm-subtle);
   font-weight: 400;
+}
+
+.row-amount--unsent {
+  text-decoration: line-through;
 }
 
 .row-unit {

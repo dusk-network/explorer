@@ -63,6 +63,12 @@
   color: var(--calm-danger);
 }
 
+/* An amount a failure would have sent: it didn't move. */
+.transaction-details__unsent {
+  color: var(--calm-muted);
+  text-decoration: line-through;
+}
+
 .transaction-details__value {
   display: flex;
   flex-direction: column;

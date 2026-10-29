@@ -1,6 +1,6 @@
 <script>
   import { Anchor, CopyButton } from "$lib/dusk/components";
-  import { middleEllipsis } from "$lib/dusk/string";
+  import { shortId } from "$lib/dusk/string";
   import { createValueFormatter } from "$lib/dusk/value";
   import {
     DuskAmount,
@@ -83,7 +83,7 @@
   $: isProvisioner = !!(stake && (stake.active || stake.inactive));
 
   // As lists show addresses: the first and last six characters.
-  $: shortAddress = middleEllipsis(accountAddress, 6);
+  $: shortAddress = shortId(accountAddress);
 
   // What the network's labels call the account, before any primary name.
   $: label = labelOf($appStore.nodeInfo.chain_id, accountAddress);

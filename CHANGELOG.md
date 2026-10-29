@@ -26,6 +26,7 @@ and this project adheres to
 - Say how much stDUSK an account holds from staking with Sozu
 - Add the "/" key to go to the search
 - Name DuskEVM's contracts, each of Sozu's contracts and the bridge accounts
+- Link a deposit to DuskEVM to the DuskEVM transaction that delivered it
 
 ### Changed
 
@@ -80,6 +81,9 @@ and this project adheres to
 - Show amounts and fees under 0.01 DUSK with two significant digits
 - Shorten IDs with "…", and contract IDs to their first and last six characters
 - Call a transaction that carries blobs a "Data blob"
+- Shorten IDs the same way as the Dusk wallets and the bridge
+- Say Method, Gas used of the limit, and Fee paid, as the Dusk wallets do
+- Strike through what a failed transaction would have sent, and say its sender only tried
 
 ### Removed
 

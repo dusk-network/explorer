@@ -39,6 +39,20 @@ describe("describeTransaction", () => {
     ).toBe("alice.dusk sent 0.5 DUSK to DuskEVM bridge");
   });
 
+  it("should say that the sender of a transaction that failed only tried to send", () => {
+    const failed = { ...transfer, txerror: "Panic" };
+
+    expect(describeTransaction(failed, names)).toBe(
+      "alice.dusk tried to send 9,812.378912731 DUSK to bob.dusk"
+    );
+    expect(
+      describeTransaction(
+        { ...failed, amount: 500_000_000 },
+        { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null }
+      )
+    ).toBe("alice.dusk tried to send 0.5 DUSK to 0x5A3d…8a01 on DuskEVM");
+  });
+
   it("should say which method a call without DUSK called, on which contract", () => {
     const call = {
       ...transfer,

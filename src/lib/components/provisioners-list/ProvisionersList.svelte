@@ -5,7 +5,7 @@
 
   import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
-  import { makeClassName, middleEllipsis } from "$lib/dusk/string";
+  import { makeClassName, shortId } from "$lib/dusk/string";
   import { AppAnchor, DetailList, ListItem } from "$lib/components";
   import { labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
@@ -14,9 +14,6 @@
 
   /** @type {EnrichedProvisioner} */
   export let data;
-
-  /** Lists show an address as its first and last six characters. */
-  const ADDRESS_CHARS = 6;
 
   $: ownerLabel = labelOf($appStore.nodeInfo.chain_id, data.ownerAddress);
 </script>
@@ -28,8 +25,7 @@
       <span class="provisioners-list__rank">#{data.rank}</span>
       <AppAnchor
         className="provisioners-list__staking-address chain-link"
-        href="/accounts/?key={data.key}"
-        >{middleEllipsis(data.key, ADDRESS_CHARS)}</AppAnchor
+        href="/accounts/?key={data.key}">{shortId(data.key)}</AppAnchor
       >
       <CopyButton name="Staking address" rawValue={data.key} />
     </svelte:fragment>
@@ -86,8 +82,7 @@
               "chain-link",
             ])}
             href="/accounts/?key={data.ownerAddress}"
-            >{ownerLabel ??
-              middleEllipsis(data.ownerAddress, ADDRESS_CHARS)}</AppAnchor
+            >{ownerLabel ?? shortId(data.ownerAddress)}</AppAnchor
           >
         {:else}
           <span class:provisioners-list__staking-address={!ownerLabel}
