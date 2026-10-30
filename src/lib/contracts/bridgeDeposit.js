@@ -21,14 +21,16 @@ function fromBase64(base64) {
 }
 
 /**
- * The DuskEVM address a deposit to DuskEVM pays, with its checksum, or
- * `null` when the transaction isn't one the bridge's encoding vouches for.
+ * A deposit to DuskEVM as its call's arguments say it: the DuskEVM address
+ * it pays, with its checksum, and its amount in LUX, exactly, which the
+ * DUSK it sent matches; or `null` when the transaction isn't one the
+ * bridge's encoding vouches for.
  *
  * @param {Transaction} tx
  * @param {number | null | undefined} chainId The node's network
- * @returns {string | null}
+ * @returns {{ amountLux: bigint, recipient: string } | null}
  */
-export function bridgeDepositRecipient(tx, chainId) {
+export function bridgeDepositOf(tx, chainId) {
   const network = networkOf(chainId);
   /** @type {{ call?: { fn_args?: unknown } }} */
   const payload = /** @type {any} */ (tx.payload) ?? {};
@@ -44,6 +46,17 @@ export function bridgeDepositRecipient(tx, chainId) {
 
   return call?.kind === "deposit" &&
     bridgeEnvelopeOk(call, { amount: tx.amount, deposit: tx.deposit })
-    ? call.recipient
+    ? { amountLux: call.amountLux, recipient: call.recipient }
     : null;
 }
+
+/**
+ * The DuskEVM address a deposit to DuskEVM pays, with its checksum, or
+ * `null` when the transaction isn't one the bridge's encoding vouches for.
+ *
+ * @param {Transaction} tx
+ * @param {number | null | undefined} chainId The node's network
+ * @returns {string | null}
+ */
+export const bridgeDepositRecipient = (tx, chainId) =>
+  bridgeDepositOf(tx, chainId)?.recipient ?? null;
