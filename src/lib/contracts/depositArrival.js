@@ -6,6 +6,8 @@
 
 import { networkOf } from "$lib/network";
 
+import { bridgeDepositOf } from "./bridgeDeposit";
+
 /**
  * The hash of the DuskEVM transaction that paid a deposit to DuskEVM, or
  * `null` when DuskEVM's explorer doesn't show it, or not surely.
@@ -24,8 +26,10 @@ export async function findDepositArrival(
   { fetch, now } = {}
 ) {
   const network = networkOf(chainId);
+  // Its amount as its call names it: past 2^53 LUX, a number has lost digits.
+  const amount = bridgeDepositOf(tx, chainId)?.amountLux;
 
-  if (!network || tx.txerror || !tx.deposit) {
+  if (!network || tx.txerror || !amount) {
     return null;
   }
 
@@ -33,7 +37,7 @@ export async function findDepositArrival(
   const { arrivals } = await depositArrivals({
     deposits: [
       {
-        amount: tx.deposit,
+        amount,
         at: tx.date.getTime(),
         hash: tx.txid,
         to: recipient,
