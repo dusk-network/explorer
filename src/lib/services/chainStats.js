@@ -57,6 +57,9 @@ export function createChainStats({ api, head, now = Date.now }) {
   /** @type {Promise<void> | null} */
   let countRead = null;
 
+  /** Whether the count is read again once the read under way ends. */
+  let countAgain = false;
+
   /** The newest block counted. */
   let counted = /** @type {import("./chainHead").ChainHead | null} */ (null);
 
@@ -115,7 +118,16 @@ export function createChainStats({ api, head, now = Date.now }) {
   function readCount() {
     const mine = run;
 
-    countRead ??= api
+    // A block with transactions during a read: it may not count them, so
+    // the count is read again after it.
+    if (countRead) {
+      countAgain = true;
+
+      return;
+    }
+
+    countAgain = false;
+    countRead = api
       .getTxCount()
       .then(
         (count) => {
@@ -134,6 +146,10 @@ export function createChainStats({ api, head, now = Date.now }) {
 
         if (mine === run) {
           show();
+
+          if (countAgain) {
+            readCount();
+          }
         }
       });
   }

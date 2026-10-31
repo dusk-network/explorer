@@ -147,6 +147,7 @@
           <TableCell>
             <span class="transaction__time">
               <RelativeTime
+                autoRefresh
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text={formatDateTime(transaction.date)}
                 date={transaction.date}
@@ -183,6 +184,7 @@
           {#if !isFull}
             <span class="row-line transaction__time">
               <RelativeTime
+                autoRefresh
                 data-tooltip-id="main-tooltip"
                 data-tooltip-text={formatDateTime(transaction.date)}
                 date={transaction.date}

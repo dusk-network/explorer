@@ -123,4 +123,27 @@ describe("Transactions Card", () => {
       })
     ).toHaveLength(15);
   });
+
+  it("should let a list read again from its start, as another account's, ask for more again", async () => {
+    const more = vi.fn();
+    const props = { ...baseProps, more, txns: transactions(15) };
+    const { container, getByRole, rerender } = render(TransactionsCard, {
+      ...baseOptions,
+      props,
+    });
+
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
+
+    expect(more).toHaveBeenCalledTimes(1);
+
+    // Another account's list, read from its start.
+    await rerender({ ...props, loading: true, txns: null });
+    await rerender({ ...props, txns: transactions(15) });
+
+    expect(container.querySelectorAll("tbody tr")).toHaveLength(15);
+
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
+
+    expect(more).toHaveBeenCalledTimes(2);
+  });
 });

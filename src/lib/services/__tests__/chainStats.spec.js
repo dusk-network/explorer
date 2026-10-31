@@ -199,4 +199,33 @@ describe("createChainStats", () => {
       lastBlock: node.tip,
     });
   });
+
+  it("should read the transaction count again for a block with transactions that came during a read", async () => {
+    node = createFakeNode();
+    vi.stubGlobal("WebSocket", node.WebSocket);
+
+    // Each count answers 15 seconds after it was asked, as it was then.
+    const stats = showStats(async (input, init) => {
+      const response = await node.fetch(input, init);
+
+      if (String(input).endsWith("/on/stats/tx_count")) {
+        await new Promise((done) => setTimeout(done, 15_000));
+      }
+
+      return response;
+    });
+
+    await vi.advanceTimersByTimeAsync(20_000);
+
+    const counted = get(stats).data?.txCount?.total ?? 0;
+
+    await nextBlock(2);
+    // During the count's read.
+    await nextBlock(1);
+    await nextBlock();
+    await nextBlock();
+    await nextBlock();
+
+    expect(get(stats).data?.txCount?.total).toBe(counted + 3);
+  });
 });

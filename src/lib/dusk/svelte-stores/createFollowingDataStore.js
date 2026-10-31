@@ -76,29 +76,26 @@ const createFollowingDataStore = (dataRetriever, head) => {
 
     /**
      * The newest block the reads cover. The first read covers the one
-     * known as it begins, and one heard while it is under way.
+     * known as it begins; one heard while it is under way is read after it.
      *
      * @type {string | null}
      */
     let seen = null;
-    let firstRead = true;
+    let subscribing = true;
 
     unsubscribe = head.subscribe(({ head: newest }) => {
       if (!newest || newest.hash === seen) {
         return;
       }
 
-      const covered = seen === null && firstRead;
-
       seen = newest.hash;
 
-      if (!covered) {
+      if (!subscribing) {
         read();
       }
     });
-    read().finally(() => {
-      firstRead = false;
-    });
+    subscribing = false;
+    read();
   }
 
   const reset = () => {

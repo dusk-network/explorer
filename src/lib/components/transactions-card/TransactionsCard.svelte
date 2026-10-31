@@ -66,6 +66,13 @@
   $: waiting =
     askedWith >= 0 && !!more && !error && (txns?.length ?? 0) <= askedWith;
 
+  // A list read again from its start, as for another account or on a
+  // retry, shows its first rows and asks for nothing yet.
+  $: if (!txns) {
+    askedWith = -1;
+    itemsToDisplay = ITEMS_TO_DISPLAY;
+  }
+
   // The next rows, asking the page for more once they pass what it gave.
   const loadMoreItems = () => {
     if (!txns || !hasMore || waiting) {
@@ -93,7 +100,7 @@
   {#if isSmallScreen}
     <div class="data-card__list">
       {#each displayedTxns as txn (txn)}
-        <TransactionsList {account} data={txn} names={$names} />
+        <TransactionsList {account} autoRefreshTime data={txn} names={$names} />
       {/each}
     </div>
   {:else}

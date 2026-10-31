@@ -55,7 +55,7 @@
   {#if isSmallScreen}
     {#each txns as txn (txn)}
       <TransactionsList
-        autoRefreshTime={!isOnHomeScreen}
+        autoRefreshTime
         data={txn}
         {displayTooltips}
         names={$names}
