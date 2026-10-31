@@ -951,7 +951,11 @@ exports[`Block Details > should render the Block Details page and query the nece
                       datetime="2024-04-16T20:07:02.000Z"
                     >
                       <!---->
+                      <!---->
+                      <!---->
                       last month
+                      
+                      
                       
                       <!---->
                     </time>
@@ -1212,7 +1216,11 @@ exports[`Block Details > should render the Block Details page and query the nece
                       datetime="2024-04-16T20:07:02.000Z"
                     >
                       <!---->
+                      <!---->
+                      <!---->
                       last month
+                      
+                      
                       
                       <!---->
                     </time>

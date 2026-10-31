@@ -52,7 +52,6 @@ describe("appStore", () => {
         /* eslint-enable camelcase */
       },
       provisionersFetchInterval: Number(env.VITE_PROVISIONERS_REFETCH_INTERVAL),
-      statsFetchInterval: Number(env.VITE_STATS_REFETCH_INTERVAL),
       transactionsListEntries: Number(env.VITE_TRANSACTIONS_LIST_ENTRIES),
     });
   });
@@ -83,20 +82,17 @@ describe("appStore", () => {
     vi.stubEnv("VITE_REFETCH_INTERVAL", "");
     vi.stubEnv("VITE_MARKET_DATA_REFETCH_INTERVAL", "");
     vi.stubEnv("VITE_PROVISIONERS_REFETCH_INTERVAL", "");
-    vi.stubEnv("VITE_STATS_REFETCH_INTERVAL", "");
 
     const { appStore } = await import("..");
     const {
       fetchInterval,
       marketDataFetchInterval,
       provisionersFetchInterval,
-      statsFetchInterval,
     } = get(appStore);
 
     expect(fetchInterval).toBe(10000);
     expect(marketDataFetchInterval).toBe(120000);
     expect(provisionersFetchInterval).toBe(30000);
-    expect(statsFetchInterval).toBe(10000);
 
     vi.unstubAllEnvs();
   });
@@ -112,7 +108,7 @@ describe("appStore", () => {
 
     expect(blocksListEntries).toBe(100);
     expect(chainInfoEntries).toBe(15);
-    expect(transactionsListEntries).toBe(100);
+    expect(transactionsListEntries).toBe(25);
 
     vi.unstubAllEnvs();
   });

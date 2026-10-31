@@ -49,6 +49,9 @@ vi.mock("$lib/services", async (importOriginal) => {
     ...original,
     duskAPI: {
       ...original.duskAPI,
+      accountHistory: vi.fn(() => ({
+        next: vi.fn().mockResolvedValue({ done: true, transactions: [] }),
+      })),
       getAccountStatus: vi
         .fn()
         .mockResolvedValue({ balance: 1_484_920_000_000, nonce: 15 }),
@@ -56,8 +59,8 @@ vi.mock("$lib/services", async (importOriginal) => {
         date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
         hash: "",
         height: 123_000,
+        transactions: 0,
       }),
-      getMoonlightAccountTransactions: vi.fn().mockResolvedValue([]),
       getStake: vi.fn().mockResolvedValue({
         active: 1_000_000_000_000n,
         eligibility: 123_120,
@@ -164,6 +167,7 @@ describe("Account page", () => {
       date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
       hash: "",
       height: 123_120 + 8640,
+      transactions: 0,
     });
 
     const { findByText } = render(AccountPage);

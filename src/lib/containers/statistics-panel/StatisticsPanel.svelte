@@ -18,10 +18,14 @@
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
   import { DataGuard, StaleDataNotice, WorldMap } from "$lib/components";
-  import { duskAPI } from "$lib/services";
-  import { createPollingDataStore } from "$lib/dusk/svelte-stores";
   import { isMainnet } from "$lib/network";
-  import { appStore, marketDataStore, nodeLocationStore } from "$lib/stores";
+  import {
+    appStore,
+    chainHeadStore,
+    chainStatsStore,
+    marketDataStore,
+    nodeLocationStore,
+  } from "$lib/stores";
 
   import "./StatisticsPanel.css";
 
@@ -35,94 +39,29 @@
     return value >= 1e6 ? millionFormatter(value) : valueFormatter(value);
   };
 
-  const pollingStatsDataStore = createPollingDataStore(
-    duskAPI.getStats,
-    $appStore.statsFetchInterval
-  );
-
   /** No new block for this long, and the page says it waits for one. */
   const WAITING_AFTER = 30_000;
 
-  /** A read this long after the one before it, or longer, follows a gap. */
-  const GAP_AFTER = $appStore.statsFetchInterval + 5_000;
-
-  /** The newest block the page has read, and when it came. */
-  let newest = { at: 0, height: -1 };
-
-  /** The time, to the second, to tell how long ago that was. */
+  /** The time, to the second, to tell how long ago the newest block came. */
   let now = Date.now();
-
-  /** The last answer read, and when it came. */
-  let lastRead = { at: 0, data: /** @type {Stats | null} */ (null) };
-
-  /** Whether the reading stopped since then: a hidden tab or a failed read. */
-  let interrupted = false;
 
   /** @type {ReturnType<typeof setInterval> | undefined} */
   let clock;
 
-  /**
-   * When a new height's block came. Read on a regular poll, as the page
-   * watched, it came now, whatever the viewer's clock says. Read when the
-   * page opens, or after a gap, it came at its own time, no later than
-   * now: a chain that stopped meanwhile isn't live.
-   *
-   * @param {Stats | null} data
-   * @param {Error | null} error
-   */
-  function read(data, error) {
-    if (error) {
-      interrupted = true;
-
-      return;
-    }
-
-    if (!data || data === lastRead.data) {
-      return;
-    }
-
-    const arrived = Date.now();
-    const regular =
-      newest.height >= 0 && !interrupted && arrived - lastRead.at <= GAP_AFTER;
-    const made = data.lastBlockDate?.getTime() ?? arrived;
-
-    if (data.lastBlock !== newest.height) {
-      newest = {
-        at: regular ? arrived : Math.min(arrived, made),
-        height: data.lastBlock,
-      };
-    }
-
-    now = arrived;
-    lastRead = { at: arrived, data };
-    interrupted = false;
-  }
-
-  /** A hidden tab stops the reading: the next read follows a gap. */
-  function noteHidden() {
-    if (document.hidden) {
-      interrupted = true;
-    }
-  }
-
   onMount(() => {
-    pollingStatsDataStore.start();
     clock = setInterval(() => {
       now = Date.now();
     }, 1000);
-    document.addEventListener("visibilitychange", noteHidden);
   });
 
   onDestroy(() => {
-    pollingStatsDataStore.stop();
     clearInterval(clock);
-    document.removeEventListener("visibilitychange", noteHidden);
   });
 
   $: ({ data: marketData } = $marketDataStore);
-  $: ({ data: statsData, error: statsError } = $pollingStatsDataStore);
+  $: ({ data: statsData, error: statsError } = $chainStatsStore);
+  $: ({ head: newest } = $chainHeadStore);
   $: ({ data: nodesData } = $nodeLocationStore);
-  $: read(statsData, statsError);
 
   // The node locates the nodes it knows of, each by its public IP address,
   // to the city; the map groups them by city.
@@ -131,14 +70,16 @@
     located === 1 ? "1 node" : located ? `${located} nodes` : "the nodes";
 
   /**
-   * Live while new blocks come, waiting once the newest read is over 30
-   * seconds old; nothing said while the last block can't be read, or
-   * hasn't been yet.
+   * Live while new blocks come, waiting once the newest one came over 30
+   * seconds ago; nothing said while the last block can't be read, or
+   * hasn't been yet. A block heard as it came came then; one read on
+   * opening, or after a gap, came at its own time, no later than then: a
+   * chain that stopped meanwhile isn't live.
    *
    * @type {"live" | "waiting" | "unknown"}
    */
   $: chain =
-    statsError || newest.height < 0
+    statsError || !newest
       ? "unknown"
       : now - newest.at < WAITING_AFTER
         ? "live"
@@ -343,7 +284,7 @@
               class="statistics-panel__live"
               class:statistics-panel__live--waiting={chain === "waiting"}
               role="status"
-              >{#if chain !== "unknown"}{#key newest.height}<span
+              >{#if chain !== "unknown"}{#key newest?.height}<span
                     aria-hidden="true"
                     class="statistics-panel__live-dot"
                   ></span>{/key}{chain === "live"

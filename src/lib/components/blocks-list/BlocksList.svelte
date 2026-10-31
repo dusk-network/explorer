@@ -35,6 +35,7 @@
     >
     <span class="row-line">
       <RelativeTime
+        autoRefresh
         className="block-row__time"
         data-tooltip-id="main-tooltip"
         data-tooltip-text={formatDateTime(data.header.date)}

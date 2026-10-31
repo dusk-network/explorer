@@ -5,7 +5,6 @@ import * as mockData from "$lib/mock-data";
 
 import {
   addCountAndUnique,
-  calculateStats,
   transformBlock,
   transformSearchResult,
   transformTransaction,
@@ -71,13 +70,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($id: String!) { block(hash: $id) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { block(hash: "some-id") {...BlockInfo} }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""some-id"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -85,13 +80,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[1][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[1][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($height: Float!) { block(height: $height) { header { hash } } }",
+        "body": "query { block(height: 495869) { header { hash } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-height": "495869",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -129,13 +120,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($height: Float!) { block(height: $height) { header { hash } } }",
+        "body": "query { block(height: 11) { header { hash } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-height": "11",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -143,13 +130,9 @@ describe("duskAPI", () => {
     // expect(fetchSpy.mock.calls[1][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[1][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($height: Float!) { block(height: $height) { header { hash } } }",
+        "body": "query { block(height: 11) { header { hash } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-height": "11",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -165,13 +148,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($id: String!) { block(hash: $id) { header { json } } }",
+        "body": "query { block(hash: "some-id") { header { json } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""some-id"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -188,13 +167,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($amount: Int!) { blocks(last: $amount) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 100) {...BlockInfo} }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-amount": "100",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -213,13 +188,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($amount: Int!) { blocks(last: $amount) {...BlockInfo}, transactions(last: $amount) {...TransactionInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 15) {...BlockInfo}, transactions(last: 15) {...TransactionInfo} }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-amount": "15",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -327,11 +298,12 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
-  it("should read the last block's height, hash and time in one query", async () => {
+  it("should read the last block's height, hash and time, and how many transactions it holds, in one query", async () => {
     fetchSpy.mockResolvedValueOnce(
       makeOKResponse({
         block: {
           header: { hash: "abc", height: 4692520, timestamp: 1793032599 },
+          transactions: [{ id: "a1" }, { id: "b2" }],
         },
       })
     );
@@ -340,12 +312,144 @@ describe("duskAPI", () => {
       date: new Date(1793032599 * 1000),
       hash: "abc",
       height: 4692520,
+      transactions: 2,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]?.body).toBe(
-      "query { block(height: -1) { header { hash height timestamp } } }"
+      "query { block(height: -1) { header { hash height timestamp } transactions { id } } }"
     );
+  });
+
+  it("should share one request for the last block between callers at the same time", async () => {
+    fetchSpy.mockImplementation(async () =>
+      makeOKResponse({
+        block: {
+          header: { hash: "abc", height: 4692520, timestamp: 1793032599 },
+          transactions: [],
+        },
+      })
+    );
+
+    const [first, second] = await Promise.all([
+      duskAPI.getChainTip(),
+      duskAPI.getChainTip(),
+    ]);
+
+    expect(second).toBe(first);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    // A later call asks the node again.
+    await duskAPI.getChainTip();
+
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+    fetchSpy.mockReset();
+  });
+
+  it("should send each GraphQL query as plain text, its values written in and no other header, so a browser asks the node nothing first", async () => {
+    const queries = [
+      () => duskAPI.getBlock(fakeID),
+      () => duskAPI.getBlockDetails(fakeID),
+      () => duskAPI.getBlockHashByHeight(11),
+      () => duskAPI.getBlocks(100),
+      () => duskAPI.getBlocksAfter(10, 25),
+      () => duskAPI.getChainTip(),
+      () => duskAPI.getLatestChainInfo(15),
+      () => duskAPI.getTransaction(fakeID),
+      () => duskAPI.getTransactions(25),
+      () => duskAPI.getTransactionsAfter(10, 25),
+      () => duskAPI.getTransactionsById([fakeID]),
+      () => duskAPI.getTransactionsIn([[10, 25]]),
+      () => duskAPI.search("1".repeat(64)),
+      () => duskAPI.search("123456"),
+    ];
+
+    // Each answer a 500, as the requests are all that is looked at.
+    fetchSpy.mockImplementation(async () => new Response("", { status: 500 }));
+
+    for (const query of queries) {
+      await query().catch(() => {});
+    }
+
+    const gql = fetchSpy.mock.calls.filter(
+      ([url]) => String(url) === gqlExpectedURL.href
+    );
+
+    expect(gql).toHaveLength(queries.length);
+
+    for (const [, init] of gql) {
+      // A "simple request": a POST of text, with no header of its own.
+      expect(init).toStrictEqual({
+        body: expect.any(String),
+        headers: { "Content-Type": "text/plain" },
+        method: "POST",
+      });
+      expect(init?.body).not.toMatch(/\$\w/);
+    }
+
+    fetchSpy.mockReset();
+  });
+
+  it("should write a searched text into its query as a string, whatever it holds", async () => {
+    const tricky = `${"a".repeat(30)}") { id } evil: tx(hash: "${"b".repeat(8)}`;
+
+    expect(tricky).toHaveLength(64);
+    fetchSpy.mockResolvedValueOnce(makeOKResponse({ block: null, tx: null }));
+
+    await duskAPI.search(tricky);
+
+    expect(fetchSpy.mock.calls[0][1]?.body).toBe(
+      `query { block(hash: ${JSON.stringify(tricky)}) { header { hash } }, tx(hash: ${JSON.stringify(tricky)}) { id } }`
+    );
+  });
+
+  it("should read the transactions of ranges of blocks in one query, newest block first and in a block in its order", async () => {
+    const [a, b, c] = mockData.gqlTransactions.transactions;
+
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({
+        r0: [
+          { ...a, blockHeight: 300 },
+          { ...b, blockHeight: 399 },
+          { ...c, blockHeight: 399 },
+        ],
+        r1: [],
+      })
+    );
+
+    await expect(
+      duskAPI.getTransactionsIn([
+        [200, 399],
+        [0, 199],
+      ])
+    ).resolves.toStrictEqual(
+      [
+        { ...b, blockHeight: 399 },
+        { ...c, blockHeight: 399 },
+        { ...a, blockHeight: 300 },
+      ].map(transformTransaction)
+    );
+    expect(fetchSpy.mock.calls[0][1]?.body).toContain(
+      "r0: blockTxs(range: [200, 399]) {...TransactionInfo} r1: blockTxs(range: [0, 199]) {...TransactionInfo}"
+    );
+  });
+
+  it("should read transactions by their IDs in one query, in their order, leaving out those the node doesn't have", async () => {
+    const [first, second] = mockData.gqlTransactions.transactions;
+
+    fetchSpy.mockResolvedValueOnce(
+      makeOKResponse({ tx0: second, tx1: null, tx2: first })
+    );
+
+    await expect(
+      duskAPI.getTransactionsById([second.id, "unknown", first.id])
+    ).resolves.toStrictEqual([second, first].map(transformTransaction));
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy.mock.calls[0][1]?.body).toContain(
+      `tx0: tx(hash: "${second.id}") { ...TransactionInfo } tx1: tx(hash: "unknown") { ...TransactionInfo } tx2: tx(hash: "${first.id}") { ...TransactionInfo }`
+    );
+    await expect(duskAPI.getTransactionsById([])).resolves.toStrictEqual([]);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
   it("should read the blocks after a height, and that height's hash, in one query, newest first", async () => {
@@ -366,15 +470,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query($at: Float!, $from: Int!, $to: Int!) { anchor: block(height: $at) { header { hash } }, blocks(range: [$from, $to]) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { anchor: block(height: 10) { header { hash } }, blocks(range: [11, 25]) {...BlockInfo} }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-at": "10",
-          "Rusk-gqlvar-from": "11",
-          "Rusk-gqlvar-to": "25",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -412,15 +510,9 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query($at: Float!, $from: Int!, $to: Int!) { anchor: block(height: $at) { header { hash } }, blocks(range: [$from, $to]) { header { hash, height, prevBlockHash }, transactions {...TransactionInfo} } }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query { anchor: block(height: 1365376) { header { hash } }, blocks(range: [1365377, 1365383]) { header { hash, height, prevBlockHash }, transactions {...TransactionInfo} } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-at": "1365376",
-          "Rusk-gqlvar-from": "1365377",
-          "Rusk-gqlvar-to": "1365383",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -501,128 +593,6 @@ describe("duskAPI", () => {
     ).resolves.toBeNull();
   });
 
-  it("should still give the last block and its time when the provisioners or the transaction count can't be read", async () => {
-    const height = 1498332;
-    const timestamp = 1713249549;
-    const txCount = { public: 13742, shielded: 2621, total: 16363 };
-    const tip = () =>
-      makeOKResponse({
-        block: { header: { hash: "ab12", height, timestamp } },
-      });
-
-    fetchSpy
-      .mockRejectedValueOnce(new Error("Provisioners unreachable"))
-      .mockResolvedValueOnce(tip())
-      .mockResolvedValueOnce(makeOKResponse(txCount));
-
-    await expect(duskAPI.getStats()).resolves.toStrictEqual({
-      lastBlock: height,
-      lastBlockDate: new Date(timestamp * 1000),
-      txCount,
-    });
-
-    fetchSpy
-      .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
-      .mockResolvedValueOnce(tip())
-      .mockRejectedValueOnce(new Error("Count unreachable"));
-
-    await expect(duskAPI.getStats()).resolves.toStrictEqual({
-      ...calculateStats(mockData.hostProvisioners, height),
-      lastBlockDate: new Date(timestamp * 1000),
-      txCount: undefined,
-    });
-  });
-
-  it("should give no statistics when the last block can't be read", async () => {
-    fetchSpy
-      .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
-      .mockRejectedValueOnce(new Error("Node unreachable"))
-      .mockResolvedValueOnce(
-        makeOKResponse({ public: 1, shielded: 0, total: 1 })
-      );
-
-    await expect(duskAPI.getStats()).rejects.toThrow("Node unreachable");
-  });
-
-  it("should expose a method to retrieve the statistics, with when the last block was made", async () => {
-    const lastBlockHeight = 1498332;
-    const lastBlockTimestamp = 1713249549;
-    const txCount = {
-      public: 13742,
-      shielded: 2621,
-      total: 16363,
-    };
-    const expectedStats = {
-      ...calculateStats(mockData.hostProvisioners, lastBlockHeight),
-      lastBlockDate: new Date(lastBlockTimestamp * 1000),
-      txCount,
-    };
-
-    fetchSpy
-      .mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners))
-      .mockResolvedValueOnce(
-        makeOKResponse({
-          block: {
-            header: {
-              hash: "ab12",
-              height: lastBlockHeight,
-              timestamp: lastBlockTimestamp,
-            },
-          },
-        })
-      )
-      .mockResolvedValueOnce(makeOKResponse(txCount));
-
-    await expect(duskAPI.getStats()).resolves.toStrictEqual(expectedStats);
-
-    expect(fetchSpy).toHaveBeenCalledTimes(3);
-    expect(fetchSpy.mock.calls[0][0]).toStrictEqual(
-      new URL(
-        `${import.meta.env.VITE_RUSK_PATH || ""}/on/node/provisioners`,
-        node.origin
-      )
-    );
-    expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
-      {
-        "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-        },
-        "method": "POST",
-      }
-    `);
-    expect(fetchSpy.mock.calls[1][0]).toStrictEqual(gqlExpectedURL);
-    expect(fetchSpy.mock.calls[1][1]).toMatchInlineSnapshot(`
-      {
-        "body": "query { block(height: -1) { header { hash height timestamp } } }",
-        "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-      }
-    `);
-    expect(fetchSpy.mock.calls[2][0]).toStrictEqual(
-      new URL(
-        `${import.meta.env.VITE_RUSK_PATH || ""}/on/stats/tx_count`,
-        node.origin
-      )
-    );
-    expect(fetchSpy.mock.calls[2][1]).toMatchInlineSnapshot(`
-      {
-        "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-        },
-        "method": "POST",
-      }
-    `);
-  });
-
   it("should expose a method to retrieve a single transaction", async () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.gqlTransaction));
 
@@ -633,13 +603,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query($id: String!) { tx(hash: $id) { ...TransactionInfo tx { json } } }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query { tx(hash: "some-id") { ...TransactionInfo tx { json } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""some-id"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -656,13 +622,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query($amount: Int!) { transactions(last: $amount) {...TransactionInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } query { transactions(last: 100) {...TransactionInfo} }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-amount": "100",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -757,13 +719,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($id: String!) { block(hash: $id) { header { hash } }, tx(hash: $id) { id } }",
+        "body": "query { block(hash: "1111111111111111111111111111111111111111111111111111111111111111") { header { hash } }, tx(hash: "1111111111111111111111111111111111111111111111111111111111111111") { id } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""1111111111111111111111111111111111111111111111111111111111111111"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -771,13 +729,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[1][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[1][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($id: String!) { block(hash: $id) { header { hash } }, tx(hash: $id) { id } }",
+        "body": "query { block(hash: "2222222222222222222222222222222222222222222222222222222222222222") { header { hash } }, tx(hash: "2222222222222222222222222222222222222222222222222222222222222222") { id } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""2222222222222222222222222222222222222222222222222222222222222222"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -800,13 +754,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($id: String!) { block(hash: $id) { header { hash } }, tx(hash: $id) { id } }",
+        "body": "query { block(hash: "fda46b4e06cc78542db9c780adbaee83a27fdf917de653e8ac34294cf924dd63") { header { hash } }, tx(hash: "fda46b4e06cc78542db9c780adbaee83a27fdf917de653e8ac34294cf924dd63") { id } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-id": ""fda46b4e06cc78542db9c780adbaee83a27fdf917de653e8ac34294cf924dd63"",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
@@ -828,13 +778,9 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "query($height: Float!) { block(height: $height) { header { hash } } }",
+        "body": "query { block(height: 123456) { header { hash } } }",
         "headers": {
-          "Accept": "application/json",
-          "Accept-Charset": "utf-8",
-          "Connection": "Keep-Alive",
-          "Content-Type": "application/json",
-          "Rusk-gqlvar-height": "123456",
+          "Content-Type": "text/plain",
         },
         "method": "POST",
       }
