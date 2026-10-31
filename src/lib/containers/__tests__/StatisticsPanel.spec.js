@@ -4,8 +4,7 @@ import { get } from "svelte/store";
 
 import * as mockData from "$lib/mock-data";
 import { resolveAfter } from "$lib/dusk/promise";
-import { duskAPI } from "$lib/services";
-import { appStore } from "$lib/stores";
+import { appStore, chainHeadStore, chainStatsStore } from "$lib/stores";
 
 import { StatisticsPanel } from "..";
 
@@ -26,8 +25,7 @@ vi.mock("$lib/components", async (importOriginal) => {
 vi.mock("$lib/services", async (importOriginal) => {
   /** @type {import("$lib/services")} */
   const original = await importOriginal();
-  const { apiMarketData, apiStats, nodeLocationsCount } =
-    await import("$lib/mock-data");
+  const { apiMarketData, nodeLocationsCount } = await import("$lib/mock-data");
   const { current_price: currentPrice, market_cap: marketCap } =
     apiMarketData.market_data;
 
@@ -38,10 +36,56 @@ vi.mock("$lib/services", async (importOriginal) => {
       getMarketData: () =>
         resolveAfter(marketDataSettleTime, { currentPrice, marketCap }),
       getNodeLocations: vi.fn().mockResolvedValue(nodeLocationsCount),
-      getStats: vi.fn().mockResolvedValue(apiStats),
     },
   };
 });
+// The chain's newest block and the numbers, as the test gives them.
+vi.mock("$lib/stores", async (importOriginal) => {
+  /** @type {import("$lib/stores")} */
+  const original = await importOriginal();
+  const { writable } = await import("svelte/store");
+
+  return {
+    ...original,
+    chainHeadStore: writable({ error: null, head: null }),
+    chainStatsStore: writable({ data: null, error: null }),
+  };
+});
+
+/** @type {import("svelte/store").Writable<{ error: Error | null, head: any }>} */
+const head = /** @type {any} */ (chainHeadStore);
+
+/** @type {import("svelte/store").Writable<{ data: Stats | null, error: Error | null }>} */
+const stats = /** @type {any} */ (chainStatsStore);
+
+/**
+ * The chain's newest block, `ago` milliseconds since the page learned of it.
+ *
+ * @param {number} height
+ * @param {number} [ago]
+ */
+const newestBlock = (height, ago = 0) => {
+  const at = Date.now() - ago;
+
+  head.set({
+    error: null,
+    head: {
+      at,
+      date: new Date(at),
+      hash: `h${height}`,
+      height,
+      transactions: 0,
+    },
+  });
+  stats.set({
+    data: {
+      ...mockData.apiStats,
+      lastBlock: height,
+      lastBlockDate: new Date(at),
+    },
+    error: null,
+  });
+};
 
 /**
  * The titles of the leading cards, or of the smaller ones after them.
@@ -64,37 +108,18 @@ const titlesOf = (container, which) =>
     }
   );
 
-/**
- * Hides the page, or shows it again, as a browser does with a tab.
- *
- * @param {boolean} hidden
- */
-const setHidden = (hidden) => {
-  Object.defineProperty(document, "hidden", {
-    configurable: true,
-    get: () => hidden,
-  });
-  document.dispatchEvent(new Event("visibilitychange"));
-};
-
-/** The page as jsdom has it: shown. */
-const showPage = () => {
-  // @ts-ignore The own property set above, over jsdom's own.
-  delete document.hidden;
-};
-
 describe("StatisticsPanel", () => {
-  const { statsFetchInterval } = get(appStore);
-
   afterEach(() => {
     cleanup();
-    vi.mocked(duskAPI.getStats).mockResolvedValue(mockData.apiStats);
+    head.set({ error: null, head: null });
+    stats.set({ data: null, error: null });
   });
 
   afterAll(() => {
     vi.useRealTimers();
     vi.doUnmock("$lib/components");
     vi.doUnmock("$lib/services");
+    vi.doUnmock("$lib/stores");
   });
 
   /** @param {number} chainId */
@@ -105,40 +130,21 @@ describe("StatisticsPanel", () => {
       chain_id: chainId,
     });
 
-  it("should render the StatisticsPanel, query for the necessary info, start polling for stats and stop the polling when unmounted", async () => {
+  it("should render the StatisticsPanel, with the numbers once they come", async () => {
     setChain(1);
 
-    const { container, unmount } = render(StatisticsPanel);
+    const { container } = render(StatisticsPanel);
 
     expect(container.firstElementChild).toMatchSnapshot();
-    expect(duskAPI.getStats).toHaveBeenCalledTimes(1);
-    expect(duskAPI.getStats).toHaveBeenNthCalledWith(1);
 
+    await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     // snapshot with received data from APIs
     expect(container.firstElementChild).toMatchSnapshot();
-
-    await vi.advanceTimersByTimeAsync(
-      statsFetchInterval - marketDataSettleTime
-    );
-
-    expect(duskAPI.getStats).toHaveBeenCalledTimes(2);
-    expect(duskAPI.getStats).toHaveBeenNthCalledWith(2);
-
-    await vi.advanceTimersByTimeAsync(statsFetchInterval);
-
-    expect(duskAPI.getStats).toHaveBeenCalledTimes(3);
-    expect(duskAPI.getStats).toHaveBeenNthCalledWith(3);
-
-    unmount();
-
-    await vi.advanceTimersByTimeAsync(statsFetchInterval * 10);
-
-    expect(duskAPI.getStats).toHaveBeenCalledTimes(3);
   });
+
   it("should show no DUSK price or market cap on a test network", async () => {
-    vi.mocked(duskAPI.getStats).mockClear();
     setChain(2);
 
     const { container, getByText, queryByText } = render(StatisticsPanel);
@@ -195,17 +201,10 @@ describe("StatisticsPanel", () => {
   });
 
   it("should say the chain is live while new blocks come, and that it waits for them when none has come for half a minute", async () => {
-    let lastBlock = mockData.apiStats.lastBlock;
-
-    vi.mocked(duskAPI.getStats).mockImplementation(async () => ({
-      ...mockData.apiStats,
-      lastBlock,
-    }));
-
     const { getByRole } = render(StatisticsPanel);
     const status = getByRole("status");
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => newestBlock(100));
 
     expect(status).toHaveTextContent(/^Live$/);
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
@@ -213,7 +212,7 @@ describe("StatisticsPanel", () => {
       status.closest(".statistics-panel__statistics-item-title")
     ).toHaveTextContent(/^Last block/);
 
-    // The same block, poll after poll.
+    // No new block since.
     await vi.advanceTimersByTimeAsync(29_000);
 
     expect(status).toHaveTextContent(/^Live$/);
@@ -223,24 +222,13 @@ describe("StatisticsPanel", () => {
     expect(status).toHaveTextContent(/^Waiting for blocks$/);
     expect(status).toHaveClass("statistics-panel__live--waiting");
 
-    lastBlock += 1;
-    await vi.advanceTimersByTimeAsync(statsFetchInterval);
+    await act(() => newestBlock(101));
 
     expect(status).toHaveTextContent(/^Live$/);
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
   });
 
-  it("should make no claim about the chain before the first answer comes", async () => {
-    /** @type {(stats: Stats) => void} */
-    let answer = () => {};
-
-    vi.mocked(duskAPI.getStats).mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          answer = resolve;
-        })
-    );
-
+  it("should make no claim about the chain before the first block comes", async () => {
     const { getByRole } = render(StatisticsPanel);
     const status = getByRole("status");
 
@@ -250,19 +238,21 @@ describe("StatisticsPanel", () => {
     expect(status).toHaveTextContent(/^$/);
     expect(status.querySelector(".statistics-panel__live-dot")).toBeNull();
 
-    answer(mockData.apiStats);
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => newestBlock(100));
 
     expect(status).toHaveTextContent(/^Live$/);
   });
 
   it("should make no claim about the chain while its last block can't be read", async () => {
-    vi.mocked(duskAPI.getStats).mockRejectedValue(new Error("Unreachable"));
-
     const { getByRole } = render(StatisticsPanel);
     const status = getByRole("status");
+    const error = new Error("Unreachable");
 
-    await vi.advanceTimersByTimeAsync(0);
+    await act(() => {
+      newestBlock(100);
+      head.update(({ head: newest }) => ({ error, head: newest }));
+      stats.set({ data: null, error });
+    });
 
     expect(status).toHaveTextContent(/^$/);
 
@@ -272,83 +262,11 @@ describe("StatisticsPanel", () => {
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
   });
 
-  it("should date a block read after a gap by its own time, not by the read", async () => {
-    let stats = {
-      ...mockData.apiStats,
-      lastBlock: 100,
-      lastBlockDate: new Date(Date.now()),
-    };
-
-    vi.mocked(duskAPI.getStats).mockImplementation(async () => stats);
-
-    const { getByRole } = render(StatisticsPanel);
-    const status = getByRole("status");
-
-    await vi.advanceTimersByTimeAsync(0);
-
-    expect(status).toHaveTextContent(/^Live$/);
-
-    // The tab is hidden for five minutes, and the chain stops at a newer
-    // block meanwhile.
-    try {
-      setHidden(true);
-      await vi.advanceTimersByTimeAsync(5 * 60_000);
-      stats = {
-        ...mockData.apiStats,
-        lastBlock: 130,
-        lastBlockDate: new Date(Date.now() - 4 * 60_000),
-      };
-      setHidden(false);
-      await vi.advanceTimersByTimeAsync(0);
-    } finally {
-      showPage();
-    }
-
-    expect(status).toHaveTextContent(/^Waiting for blocks$/);
-  });
-
-  it("should call a chain live as it moves, on a viewer's clock two minutes fast", async () => {
-    const fast = 2 * 60_000;
-    let lastBlock = 100;
-
-    // Each block made just now, by the chain's time: two minutes ago by
-    // the viewer's clock.
-    vi.mocked(duskAPI.getStats).mockImplementation(async () => ({
-      ...mockData.apiStats,
-      lastBlock,
-      lastBlockDate: new Date(Date.now() - fast),
-    }));
-
-    const { getByRole } = render(StatisticsPanel);
-    const status = getByRole("status");
-
-    // On opening, the page has only the block's own time to go by.
-    await vi.advanceTimersByTimeAsync(0);
-
-    expect(status).toHaveTextContent(/^Waiting for blocks$/);
-
-    // The next block comes on a regular poll: the chain moved as the page
-    // watched.
-    lastBlock += 1;
-    await vi.advanceTimersByTimeAsync(statsFetchInterval);
-
-    expect(status).toHaveTextContent(/^Live$/);
-
-    // Then no block for half a minute.
-    await vi.advanceTimersByTimeAsync(31_000);
-
-    expect(status).toHaveTextContent(/^Waiting for blocks$/);
-  });
-
-  it("should not call a chain live that had stopped before the page opened", async () => {
-    vi.mocked(duskAPI.getStats).mockResolvedValue({
-      ...mockData.apiStats,
-      lastBlockDate: new Date(Date.now() - 5 * 60_000),
-    });
-
+  it("should say the chain waits for blocks when its newest block came half a minute ago or more", async () => {
     const { getByRole } = render(StatisticsPanel);
 
-    await vi.advanceTimersByTimeAsync(0);
+    // As the page learned of a block on opening, from its own time.
+    await act(() => newestBlock(100, 5 * 60_000));
 
     expect(getByRole("status")).toHaveTextContent(/^Waiting for blocks$/);
   });
@@ -358,6 +276,7 @@ describe("StatisticsPanel", () => {
 
     const { container } = render(StatisticsPanel);
 
+    await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     const abouts = Array.from(

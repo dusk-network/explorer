@@ -137,3 +137,35 @@ Object.defineProperty(window, "matchMedia", {
   value: (query) => new MediaQueryList(query, false),
   writable: true,
 });
+
+/*
+ * No socket reaches a node in tests: each one closes as it opens, as one
+ * to a node without a websocket would, unless a test gives its own.
+ */
+class ClosedWebSocket extends EventTarget {
+  static CONNECTING = 0;
+  static OPEN = 1;
+  static CLOSING = 2;
+  static CLOSED = 3;
+
+  binaryType = "blob";
+  readyState = 0;
+
+  /** @param {string | URL} url */
+  constructor(url) {
+    super();
+    this.url = String(url);
+    queueMicrotask(() => {
+      this.readyState = 3;
+      this.dispatchEvent(new Event("close"));
+    });
+  }
+
+  close() {
+    this.readyState = 3;
+  }
+
+  send() {}
+}
+
+vi.stubGlobal("WebSocket", ClosedWebSocket);

@@ -1,5 +1,5 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { mapWith, take } from "lamb";
 
 import { gqlTransaction, gqlTransactions } from "$lib/mock-data";
@@ -48,6 +48,40 @@ describe("Transactions Card", () => {
     name: "TransactionsCard",
     props: baseProps,
     title: "Transactions",
+  });
+
+  it("should ask its page for more once its rows pass what it holds, say it loads until they come, and give no count while more may come", async () => {
+    const more = vi.fn();
+    const props = { ...baseProps, more, txns: transactions(20) };
+    const { container, getByRole, rerender } = render(TransactionsCard, {
+      ...baseOptions,
+      props,
+    });
+    const rows = () => container.querySelectorAll("tbody tr");
+    const footer = () =>
+      /** @type {HTMLElement} */ (
+        container.querySelector(".data-card__footer")
+      );
+
+    expect(rows()).toHaveLength(15);
+    expect(footer().querySelector(".data-card__count")).toBeNull();
+
+    await fireEvent.click(getByRole("button", { name: "Show more" }));
+
+    expect(more).toHaveBeenCalledTimes(1);
+    expect(rows()).toHaveLength(20);
+    expect(getByRole("button", { name: "Loading…" })).toBeDisabled();
+
+    // Clicked again while they load: asked once.
+    await fireEvent.click(getByRole("button", { name: "Loading…" }));
+    expect(more).toHaveBeenCalledTimes(1);
+
+    // The page gives the rest, all there is.
+    await rerender({ ...props, more: undefined, txns: transactions(25) });
+
+    expect(rows()).toHaveLength(25);
+    expect(footer()).toHaveTextContent("25 of 25");
+    expect(footer().querySelector("button")).toBeNull();
   });
 
   it("should look up the names of the accounts it shows once, and show them", async () => {

@@ -1293,7 +1293,7 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
 </section>
 `;
 
-exports[`Blocks page > should render the Blocks page, start polling for blocks and stop the polling when unmounted 1`] = `
+exports[`Blocks page > should render the Blocks page, read the blocks again at each new block and only then, and stop when unmounted 1`] = `
 <section>
   <!---->
   <div
@@ -1343,7 +1343,7 @@ exports[`Blocks page > should render the Blocks page, start polling for blocks a
 </section>
 `;
 
-exports[`Blocks page > should render the Blocks page, start polling for blocks and stop the polling when unmounted 2`] = `
+exports[`Blocks page > should render the Blocks page, read the blocks again at each new block and only then, and stop when unmounted 2`] = `
 <section>
   <!---->
   <div

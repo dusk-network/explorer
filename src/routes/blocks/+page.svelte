@@ -1,13 +1,14 @@
 <script>
   import { BlocksCard } from "$lib/components";
   import { duskAPI, followBlocks } from "$lib/services";
-  import { appStore } from "$lib/stores";
-  import { createPollingDataStore } from "$lib/dusk/svelte-stores";
+  import { appStore, chainHeadStore } from "$lib/stores";
+  import { createFollowingDataStore } from "$lib/dusk/svelte-stores";
   import { onDestroy, onMount } from "svelte";
 
-  const pollingDataStore = createPollingDataStore(
+  // Read again at each new block.
+  const pollingDataStore = createFollowingDataStore(
     followBlocks(duskAPI),
-    $appStore.fetchInterval
+    chainHeadStore
   );
 
   onMount(() => pollingDataStore.start($appStore.blocksListEntries));

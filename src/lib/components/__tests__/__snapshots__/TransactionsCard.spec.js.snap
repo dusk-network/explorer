@@ -2519,11 +2519,13 @@ exports[`Transactions Card > should hide the \`Show more\` button if there is no
   <footer
     class="data-card__footer"
   >
+    <!---->
     <span
       class="data-card__count"
     >
       10 of 10
     </span>
+    <!---->
      
     <!---->
     <!---->

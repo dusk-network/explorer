@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`home page > should render the home page, start polling for the latest chain info and stop the polling when the component is destroyed 1`] = `
+exports[`home page > should render the home page, read the latest chain info again at each new block and only then, and stop when it is destroyed 1`] = `
 <section
   class="landing"
 >
@@ -1649,7 +1649,7 @@ exports[`home page > should render the home page, start polling for the latest c
 </section>
 `;
 
-exports[`home page > should render the home page, start polling for the latest chain info and stop the polling when the component is destroyed 2`] = `
+exports[`home page > should render the home page, read the latest chain info again at each new block and only then, and stop when it is destroyed 2`] = `
 <section
   class="landing"
 >

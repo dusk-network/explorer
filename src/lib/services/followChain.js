@@ -37,6 +37,7 @@ const MAX_RANGE = 200;
  * @typedef {{
  *   getChainTip: () => Promise<BlockRef>,
  *   getTransactions: (amount: number) => Promise<Transaction[]>,
+ *   getTransactionsIn: (ranges: number[][]) => Promise<Transaction[]>,
  *   getTransactionsAfter: (
  *     from: number,
  *     to: number
@@ -81,6 +82,29 @@ function oneAtATime(read) {
  * @returns {T[]}
  */
 const copies = (entries) => entries.map((entry) => ({ ...entry }));
+
+/** The most ranges of blocks one read of older transactions asks for. */
+const OLDER_RANGES = 10;
+
+/** How many transactions past the list's end a read may leave for the next. */
+const SPARE = 100;
+
+/**
+ * Ranges of `MAX_RANGE` blocks from height `to` down, `blocks` of them in
+ * all, highest first, none under the first block.
+ *
+ * @param {number} to
+ * @param {number} blocks
+ */
+function rangesDown(to, blocks) {
+  const ranges = [];
+
+  for (let hi = to; hi >= 0 && to - hi < blocks; hi -= MAX_RANGE) {
+    ranges.push([Math.max(0, hi - MAX_RANGE + 1), hi]);
+  }
+
+  return ranges;
+}
 
 /**
  * The heights a read asks for after a block: as many as a list of `amount`
@@ -279,13 +303,20 @@ export function followChainInfo(api) {
 
 /**
  * The last `amount` transactions: after the first read, only those of the
- * blocks after the last block it saw.
+ * blocks after the last block it saw, and for a larger `amount`, only the
+ * ones under the oldest it read. What a read brings beyond `amount` is
+ * kept, up to `SPARE` more, for the next larger `amount`.
  *
  * @param {TransactionsReader} api
  * @returns {(amount: number) => Promise<Transaction[]>}
  */
 export function followTransactions(api) {
-  /** @type {Transaction[]} */
+  /**
+   * The transactions read, newest first, each block's whole from the last
+   * block seen down to the oldest one's.
+   *
+   * @type {Transaction[]}
+   */
   let held = [];
   let heldFor = 0;
 
@@ -301,10 +332,9 @@ export function followTransactions(api) {
    * when the whole list must be read again.
    *
    * @param {BlockRef} last
-   * @param {number} amount
    * @returns {Promise<Transaction[] | null>}
    */
-  async function readNew(last, amount) {
+  async function readNew(last) {
     const span = MAX_RANGE - 1;
     const read = await api.getTransactionsAfter(
       last.height,
@@ -319,7 +349,46 @@ export function followTransactions(api) {
 
     seen = newest ? { hash: newest.hash, height: newest.height } : last;
 
-    return newestTransactions(read.transactions, held, amount);
+    return newestTransactions(read.transactions, held, Infinity);
+  }
+
+  /**
+   * The transactions under the oldest one held, newest first, at least
+   * `need` of them: from its block down, which is read again whole as a
+   * list may end in it, in ranges of blocks, as many blocks as the ones
+   * held took for as many transactions, then twice that. `null` when two
+   * reads aren't enough: the whole list is read again then.
+   *
+   * @param {number} need
+   * @returns {Promise<Transaction[] | null>}
+   */
+  async function readOlder(need) {
+    const oldest = held[held.length - 1];
+    const known = new Set(held.map(({ txid }) => txid));
+    /** @type {Transaction[]} */
+    const found = [];
+    const perTransaction =
+      Math.max(1, (seen?.height ?? 0) - oldest.blockheight + 1) / held.length;
+    let blocks = Math.ceil(perTransaction * need * 1.5);
+    let to = oldest.blockheight;
+
+    for (
+      let reads = 0;
+      reads < 2 && to >= 0 && found.length < need;
+      reads += 1
+    ) {
+      const ranges = rangesDown(to, Math.min(blocks, OLDER_RANGES * MAX_RANGE));
+      const read = await api.getTransactionsIn(ranges);
+
+      found.push(
+        ...read.filter(({ txid }) => !known.has(txid) && known.add(txid))
+      );
+      to = ranges[ranges.length - 1][0] - 1;
+      blocks *= 2;
+    }
+
+    // Enough, or down to the first block: all there is.
+    return found.length >= need || to < 0 ? found : null;
   }
 
   /**
@@ -337,15 +406,38 @@ export function followTransactions(api) {
     return transactions;
   }
 
+  /**
+   * More than the list held: what it kept beyond it, and only the ones
+   * under those when that isn't enough.
+   *
+   * @param {number} amount
+   */
+  async function readMore(amount) {
+    const need = amount - held.length;
+
+    if (need <= 0) {
+      return held;
+    }
+
+    const older = held.length ? await readOlder(need) : null;
+
+    return older && [...held, ...older];
+  }
+
   return oneAtATime(async (amount) => {
     try {
-      const fresh =
-        seen && amount === heldFor ? await readNew(seen, amount) : null;
+      const next = !seen
+        ? null
+        : amount === heldFor
+          ? await readNew(seen)
+          : amount > heldFor && held.length >= heldFor
+            ? await readMore(amount)
+            : null;
 
-      held = (fresh ?? (await readAll(amount))).slice(0, amount);
+      held = (next ?? (await readAll(amount))).slice(0, amount + SPARE);
       heldFor = amount;
 
-      return copies(held);
+      return copies(held.slice(0, amount));
     } catch (error) {
       held = [];
       heldFor = 0;

@@ -85,6 +85,8 @@ and this project adheres to
 - Shorten IDs the same way as the Dusk wallets and the bridge
 - Say Method, Gas used of the limit, and Fee paid, as the Dusk wallets do
 - Strike through what a failed transaction would have sent, and say its sender only tried
+- Show new blocks as soon as the node accepts them
+- Load transactions 25 at a time on the transactions page and an account's page, the next ones with Show more
 
 ### Removed
 

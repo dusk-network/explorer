@@ -132,6 +132,17 @@ const transactionsReader = (chain) => ({
       };
     }
   ),
+  getTransactionsIn: vi.fn(async (/** @type {number[][]} */ ranges) => {
+    for (const [from, to] of ranges) {
+      if (to - from + 1 > 200) {
+        throw new Error("range too large (max 200 blocks)");
+      }
+    }
+
+    return ranges.flatMap(([from, to]) =>
+      chain.between(from, to).flatMap((b) => b.transactions.data)
+    );
+  }),
 });
 
 describe("followBlocks", () => {
@@ -450,6 +461,64 @@ describe("followTransactions", () => {
 
     await expect(read(3)).rejects.toThrow("offline");
     expect(ids(await read(3))).toStrictEqual(["i1"]);
+    expect(api.getTransactions).toHaveBeenCalledTimes(2);
+  });
+
+  it("should read only the transactions under the oldest it holds when asked for more, the oldest block's rest included", async () => {
+    // Two transactions a block over the last 3,000 blocks.
+    /** @type {Record<number, string[]>} */
+    const txs = {};
+
+    for (let h = 1; h <= 3_000; h++) {
+      txs[h] = h % 10 === 0 ? [`a${h}`, `b${h}`] : [];
+    }
+
+    const chain = makeChain(3_000, txs);
+    const api = transactionsReader(chain);
+    const read = followTransactions(api);
+
+    // 25 cut a block in two.
+    expect(ids(await read(25))).toStrictEqual(ids(chain.lastTransactions(25)));
+
+    const more = await read(50);
+
+    expect(ids(more)).toStrictEqual(ids(chain.lastTransactions(50)));
+    expect(api.getTransactions).toHaveBeenCalledTimes(1);
+    expect(api.getTransactionsIn).toHaveBeenCalledTimes(1);
+
+    // And on: the next ones, each once, in order.
+    expect(ids(await read(75))).toStrictEqual(ids(chain.lastTransactions(75)));
+    expect(api.getTransactions).toHaveBeenCalledTimes(1);
+  });
+
+  it("should keep the transactions a new block pushed past the list's end, for the next page", async () => {
+    const chain = makeChain(10, { 3: ["c1"], 6: ["f1", "f2"], 9: ["i1"] });
+    const api = transactionsReader(chain);
+    const read = followTransactions(api);
+
+    expect(ids(await read(3))).toStrictEqual(["i1", "f1", "f2"]);
+
+    chain.add(11, ["k1"]);
+
+    expect(ids(await read(3))).toStrictEqual(["k1", "i1", "f1"]);
+    expect(ids(await read(4))).toStrictEqual(["k1", "i1", "f1", "f2"]);
+    expect(api.getTransactionsIn).not.toHaveBeenCalled();
+    expect(api.getTransactions).toHaveBeenCalledTimes(1);
+  });
+
+  it("should read the whole list again when the blocks under the oldest it holds hold too few", async () => {
+    const chain = makeChain(5_000, {
+      10: ["z1"],
+      4_990: ["x1"],
+      5_000: ["y1"],
+    });
+    const api = transactionsReader(chain);
+    const read = followTransactions(api);
+
+    await read(2);
+
+    expect(ids(await read(3))).toStrictEqual(["y1", "x1", "z1"]);
+    expect(api.getTransactionsIn).toHaveBeenCalledTimes(2);
     expect(api.getTransactions).toHaveBeenCalledTimes(2);
   });
 });

@@ -13,7 +13,6 @@ type AppStoreContent = {
   marketDataFetchInterval: number;
   provisionersFetchInterval: number;
   nodeInfo: NodeInfo;
-  statsFetchInterval: number;
   transactionsListEntries: number;
 };
 

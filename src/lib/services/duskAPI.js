@@ -1,15 +1,5 @@
 import { decodeBase58 } from "@dusk-network/networks/account";
-import {
-  fromPairs,
-  getKey,
-  getPath,
-  isUndefined,
-  mapWith,
-  ownPairs,
-  pipe,
-  setPathIn,
-  unless,
-} from "lamb";
+import { getKey, getPath, mapWith, setPathIn } from "lamb";
 
 import { unixTsToDate } from "$lib/dusk/date";
 import { failureToRejection } from "$lib/dusk/http";
@@ -18,7 +8,6 @@ import { STAKE_CONTRACT } from "$lib/network";
 
 import {
   addCountAndUnique,
-  calculateStats,
   transformBlock,
   transformSearchResult,
   transformTransaction,
@@ -30,15 +19,16 @@ import {
   getBlockQueryInfo,
   getBlocksAfterQueryInfo,
   getBlocksQueryInfo,
-  getFullMoonlightAccountHistoryQuery,
   getLatestChainQueryInfo,
   getMempoolTx,
   getTransactionQueryInfo,
   getTransactionsAfterQueryInfo,
+  getTransactionsByIdQueryInfo,
+  getTransactionsInQueryInfo,
   getTransactionsQueryInfo,
   searchByHashQueryInfo,
-  transactionFragment,
 } from "./gql-queries";
+import { createAccountHistory } from "./accountHistory";
 
 /** @type {(blocks: GQLBlock[]) => Block[]} */
 const transformBlocks = mapWith(transformBlock);
@@ -47,37 +37,27 @@ const transformBlocks = mapWith(transformBlock);
 const transformTransactions = mapWith(transformTransaction);
 
 /**
- * Adds the `Rusk-gqlvar-` prefix to all
- * keys of the given object and calls `JSON.stringify`
- * on their values. *
- * Returns `undefined` if the input is `undefined`.
+ * A query on one line: each run of white space outside its strings as one
+ * space.
  *
- * The `JSON.stringify` call is because the GraphQL
- * server will parse a variable containing only digits
- * as a number otherwise, when the expected type is a string.
+ * @param {string} query
  */
-const toHeadersVariables = unless(
-  isUndefined,
-  pipe([
-    ownPairs,
-    mapWith(([k, v]) => [`Rusk-gqlvar-${k}`, JSON.stringify(v)]),
-    fromPairs,
-  ])
-);
+const oneLine = (query) =>
+  query
+    .replace(/("(?:[^"\\]|\\.)*")|\s+/g, (match, string) => string ?? " ")
+    .trim();
 
 /**
- * @param {{ query: string, variables?: Record<string, string | number> }} queryInfo
+ * A GraphQL query, its values written in, sent as plain text with no
+ * headers of its own: a request a browser sends without asking the node
+ * first whether it may.
+ *
+ * @param {{ query: string }} queryInfo
  */
 const gqlGet = (queryInfo) =>
   fetch(makeNodeUrl("/on/graphql/query"), {
-    body: queryInfo.query.replace(/\s+/g, " ").trim(),
-    headers: {
-      Accept: "application/json",
-      "Accept-Charset": "utf-8",
-      Connection: "Keep-Alive",
-      "Content-Type": "application/json",
-      ...toHeadersVariables(queryInfo.variables),
-    },
+    body: oneLine(queryInfo.query),
+    headers: { "Content-Type": "text/plain" },
     method: "POST",
   })
     .then(failureToRejection)
@@ -106,7 +86,30 @@ const nodePost = (endpoint) =>
  */
 let nodeInfoRequest = null;
 
+/**
+ * The last block's request in flight, which callers at the same time share.
+ *
+ * @type {Promise<{ date: Date, hash: string, height: number, transactions: number }> | null}
+ */
+let chainTipRequest = null;
+
 const duskAPI = {
+  /**
+   * An account's public transactions, newest first, a page at a time
+   * (`next(size)`), from the archive.
+   *
+   * @param {string} address
+   */
+  accountHistory(address) {
+    return createAccountHistory(
+      {
+        getTransactionsById: (ids) => duskAPI.getTransactionsById(ids),
+        query: gqlGet,
+      },
+      address
+    );
+  },
+
   /**
    * @param {string} address
    * @returns {Promise<AccountStatus>}
@@ -181,18 +184,29 @@ const duskAPI = {
   },
 
   /**
-   * The height, hash and time of the last block, in one query.
+   * The height, hash and time of the last block, and how many transactions
+   * it holds, in one query. Callers at the same time share one request.
    *
-   * @returns {Promise<{ date: Date, hash: string, height: number }>}
+   * @returns {Promise<{ date: Date, hash: string, height: number, transactions: number }>}
    */
   getChainTip() {
-    return gqlGet({
-      query: "query { block(height: -1) { header { hash height timestamp } } }",
-    }).then(({ block }) => ({
-      date: unixTsToDate(block.header.timestamp),
-      hash: block.header.hash,
-      height: block.header.height,
-    }));
+    chainTipRequest ??= gqlGet({
+      query:
+        "query { block(height: -1) { header { hash height timestamp } transactions { id } } }",
+    })
+      .then(({ block }) => ({
+        date: unixTsToDate(block.header.timestamp),
+        hash: block.header.hash,
+        height: block.header.height,
+        transactions: Array.isArray(block.transactions)
+          ? block.transactions.length
+          : 0,
+      }))
+      .finally(() => {
+        chainTipRequest = null;
+      });
+
+    return chainTipRequest;
   },
 
   /**
@@ -275,54 +289,6 @@ const duskAPI = {
   },
 
   /**
-   * @param {string} address
-   * @returns {Promise<Transaction[]>} sortedTransactions
-   */
-  async getMoonlightAccountTransactions(address) {
-    // Gets contract interactions for the given address
-    const moonlightData = await gqlGet(
-      getFullMoonlightAccountHistoryQuery(address)
-    );
-    if (!moonlightData.fullMoonlightHistory) {
-      return [];
-    }
-    // Extracts the transaction IDs from the contract interactions
-    const transactionIds = moonlightData.fullMoonlightHistory.json.map(
-      (/** @type {{ origin: any; }} */ block) => block.origin
-    );
-    if (transactionIds.length === 0) return [];
-
-    // Build a single GraphQL query with aliases for all txs
-    /**
-     * @param {string[]} ids
-     * @returns {string}
-     */
-    const buildBatchTransactionQuery = (ids) => {
-      const fragment = transactionFragment;
-      const queries = ids.map(
-        (id, idx) => `tx${idx}: tx(hash: "${id}") { ...TransactionInfo }`
-      );
-      return `query {\n${queries.join("\n")}\n}\n${fragment}`;
-    };
-
-    // Batch fetch all transactions in a single query
-    const batchQuery = buildBatchTransactionQuery(transactionIds);
-    const response = await gqlGet({ query: batchQuery });
-    // response is an object: { tx0: {...}, tx1: {...}, ... }
-    const txs = Object.values(response).filter(Boolean);
-    const results = txs.map(transformTransaction);
-
-    // Sort transactions by date in descending order (newest first)
-    const sortedTransactions = results.sort((a, b) => {
-      const dateA = a.date instanceof Date ? a.date.getTime() : 0;
-      const dateB = b.date instanceof Date ? b.date.getTime() : 0;
-      return dateB - dateA;
-    });
-
-    return sortedTransactions;
-  },
-
-  /**
    * Callers at the same time share one request.
    *
    * @returns {Promise<NodeInfo>}
@@ -393,33 +359,6 @@ const duskAPI = {
   },
 
   /**
-   * The network's numbers. Without the last block there are none; the
-   * provisioners or the transaction count, when they can't be read, leave
-   * out only their own.
-   *
-   * @returns {Promise<Stats>}
-   */
-  getStats() {
-    return Promise.allSettled([
-      duskAPI.getProvisioners(),
-      duskAPI.getChainTip(),
-      duskAPI.getTxCount(),
-    ]).then(([provisioners, tip, txCount]) => {
-      if (tip.status === "rejected") {
-        throw tip.reason;
-      }
-
-      return {
-        ...(provisioners.status === "fulfilled"
-          ? calculateStats(provisioners.value, tip.value.height)
-          : { lastBlock: tip.value.height }),
-        lastBlockDate: tip.value.date,
-        txCount: txCount.status === "fulfilled" ? txCount.value : undefined,
-      };
-    });
-  },
-
-  /**
    * @param {string} id
    * @returns {Promise<Transaction | string>}
    */
@@ -481,6 +420,42 @@ const duskAPI = {
           ),
         };
       }
+    );
+  },
+
+  /**
+   * Transactions by their IDs, in their order, in one query; those the
+   * node doesn't have are left out.
+   *
+   * @param {string[]} ids
+   * @returns {Promise<Transaction[]>}
+   */
+  getTransactionsById(ids) {
+    return ids.length
+      ? gqlGet(getTransactionsByIdQueryInfo(ids)).then((found) =>
+          ids
+            .map((_, n) => found?.[`tx${n}`])
+            .filter(Boolean)
+            .map(transformTransaction)
+        )
+      : Promise.resolve([]);
+  },
+
+  /**
+   * The transactions of ranges of blocks, each of the node's bound or
+   * less, in one query: newest block first, and in a block in its order,
+   * as `getTransactions` gives them.
+   *
+   * @param {number[][]} ranges Each `[from, to]`, both in
+   * @returns {Promise<Transaction[]>}
+   */
+  getTransactionsIn(ranges) {
+    return gqlGet(getTransactionsInQueryInfo(ranges)).then((found) =>
+      transformTransactions(
+        ranges
+          .flatMap((_, n) => found?.[`r${n}`] ?? [])
+          .sort((a, b) => b.blockHeight - a.blockHeight)
+      )
     );
   },
 

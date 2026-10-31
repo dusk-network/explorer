@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`StatisticsPanel > should render the StatisticsPanel, query for the necessary info, start polling for stats and stop the polling when unmounted 1`] = `
+exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers once they come 1`] = `
 <div
   class="statistics-panel"
 >
@@ -460,7 +460,7 @@ exports[`StatisticsPanel > should render the StatisticsPanel, query for the nece
 </div>
 `;
 
-exports[`StatisticsPanel > should render the StatisticsPanel, query for the necessary info, start polling for stats and stop the polling when unmounted 2`] = `
+exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers once they come 2`] = `
 <div
   class="statistics-panel"
 >

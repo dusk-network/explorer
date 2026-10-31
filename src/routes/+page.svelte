@@ -4,12 +4,13 @@
   import { LatestBlocksCard, LatestTransactionsCard } from "$lib/components";
   import { StatisticsPanel } from "$lib/containers";
   import { duskAPI, followChainInfo } from "$lib/services";
-  import { appStore } from "$lib/stores";
-  import { createPollingDataStore } from "$lib/dusk/svelte-stores";
+  import { appStore, chainHeadStore } from "$lib/stores";
+  import { createFollowingDataStore } from "$lib/dusk/svelte-stores";
 
-  const pollingDataStore = createPollingDataStore(
+  // Read again at each new block.
+  const pollingDataStore = createFollowingDataStore(
     followChainInfo(duskAPI),
-    $appStore.fetchInterval
+    chainHeadStore
   );
 
   $: ({ data, error, isLoading } = $pollingDataStore);

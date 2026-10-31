@@ -6,11 +6,47 @@
   import { appStore } from "$lib/stores";
   import { createDataStore } from "$lib/dusk/svelte-stores";
 
-  const dataStore = createDataStore(duskAPI.getMoonlightAccountTransactions);
+  /**
+   * The account's history, read a page at a time, and the transactions
+   * read of it so far.
+   *
+   * @typedef {{
+   *   done: boolean,
+   *   pager: ReturnType<typeof duskAPI.accountHistory>,
+   *   transactions: Transaction[],
+   * }} Reading
+   */
+
+  /** @type {Reading | null} */
+  let reading = null;
+
+  const dataStore = createDataStore(
+    /** @param {Reading} of */
+    async (of) => {
+      const next = await of.pager.next($appStore.transactionsListEntries);
+
+      of.transactions = [...of.transactions, ...next.transactions];
+      of.done = next.done;
+
+      return of.transactions;
+    }
+  );
+
   const getTransactions = () => {
     if (key) {
+      reading = {
+        done: false,
+        pager: duskAPI.accountHistory(key),
+        transactions: [],
+      };
       dataStore.reset();
-      dataStore.getData(key);
+      dataStore.getData(reading);
+    }
+  };
+
+  const moreTransactions = () => {
+    if (reading && !reading.done) {
+      dataStore.getData(reading);
     }
   };
 
@@ -148,6 +184,7 @@
   }
   $: ({ data, error, isLoading } = $dataStore);
   $: ({ isSmallScreen } = $appStore);
+  $: done = data !== null && !!reading?.done;
 </script>
 
 {#if key}
@@ -168,6 +205,7 @@
     <TransactionsCard
       on:retry={getTransactions}
       account={key}
+      more={done ? undefined : moreTransactions}
       txns={data}
       {error}
       loading={isLoading}

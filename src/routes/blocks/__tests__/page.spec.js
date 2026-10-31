@@ -4,11 +4,39 @@ import { get } from "svelte/store";
 
 import { duskAPI } from "$lib/services";
 import { transformBlock } from "$lib/chain-info";
-import { appStore } from "$lib/stores";
+import { appStore, chainHeadStore } from "$lib/stores";
 import { gqlBlocks } from "$lib/mock-data";
 import { changeMediaQueryMatches } from "$lib/dusk/test-helpers";
 
 import Blocks from "../+page.svelte";
+
+// The chain's newest block, as the test gives it.
+vi.mock("$lib/stores", async (importOriginal) => {
+  /** @type {import("$lib/stores")} */
+  const original = await importOriginal();
+  const { writable } = await import("svelte/store");
+
+  return {
+    ...original,
+    chainHeadStore: writable({ error: null, head: null }),
+  };
+});
+
+/** @type {import("svelte/store").Writable<{ error: Error | null, head: any }>} */
+const head = /** @type {any} */ (chainHeadStore);
+
+/** @param {number} height */
+const newBlock = (height) =>
+  head.set({
+    error: null,
+    head: {
+      at: Date.now(),
+      date: new Date(),
+      hash: `h${height}`,
+      height,
+      transactions: 0,
+    },
+  });
 
 describe("Blocks page", () => {
   vi.useFakeTimers();
@@ -34,9 +62,10 @@ describe("Blocks page", () => {
     vi.useRealTimers();
     getBlocksSpy.mockRestore();
     getBlocksAfterSpy.mockRestore();
+    vi.doUnmock("$lib/stores");
   });
 
-  it("should render the Blocks page, start polling for blocks and stop the polling when unmounted", async () => {
+  it("should render the Blocks page, read the blocks again at each new block and only then, and stop when unmounted", async () => {
     const { container, unmount } = render(Blocks);
 
     // snapshost in loading state
@@ -49,7 +78,12 @@ describe("Blocks page", () => {
     // snapshot with received data from GraphQL
     expect(container.firstElementChild).toMatchSnapshot();
 
-    await vi.advanceTimersByTimeAsync(fetchInterval - 1);
+    // No new block: nothing more is read.
+    await vi.advanceTimersByTimeAsync(fetchInterval * 3);
+    expect(getBlocksAfterSpy).not.toHaveBeenCalled();
+
+    newBlock(newest + 1);
+    await vi.advanceTimersByTimeAsync(1);
 
     expect(getBlocksAfterSpy).toHaveBeenCalledTimes(1);
     expect(getBlocksAfterSpy).toHaveBeenNthCalledWith(
@@ -58,7 +92,8 @@ describe("Blocks page", () => {
       newest + blocksListEntries
     );
 
-    await vi.advanceTimersByTimeAsync(fetchInterval);
+    newBlock(newest + 2);
+    await vi.advanceTimersByTimeAsync(1);
 
     expect(getBlocksAfterSpy).toHaveBeenCalledTimes(2);
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
@@ -68,6 +103,7 @@ describe("Blocks page", () => {
 
     unmount();
 
+    newBlock(newest + 3);
     await vi.advanceTimersByTimeAsync(fetchInterval * 10);
 
     expect(getBlocksAfterSpy).toHaveBeenCalledTimes(2);

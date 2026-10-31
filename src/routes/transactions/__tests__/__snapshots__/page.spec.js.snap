@@ -2026,11 +2026,8 @@ exports[`Transactions page > should render the Transactions page with the mobile
     <footer
       class="data-card__footer"
     >
-      <span
-        class="data-card__count"
-      >
-        15 of 100
-      </span>
+      <!---->
+      <!---->
        
       <button
         class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
@@ -2058,7 +2055,7 @@ exports[`Transactions page > should render the Transactions page with the mobile
 </section>
 `;
 
-exports[`Transactions page > should render the Transactions page, start polling for blocks and stop the polling when unmounted 1`] = `
+exports[`Transactions page > should render the Transactions page, read the new transactions at each new block and only then, and stop when unmounted 1`] = `
 <section>
   <!---->
   <div
@@ -2108,7 +2105,7 @@ exports[`Transactions page > should render the Transactions page, start polling 
 </section>
 `;
 
-exports[`Transactions page > should render the Transactions page, start polling for blocks and stop the polling when unmounted 2`] = `
+exports[`Transactions page > should render the Transactions page, read the new transactions at each new block and only then, and stop when unmounted 2`] = `
 <section>
   <!---->
   <div
@@ -5781,11 +5778,8 @@ exports[`Transactions page > should render the Transactions page, start polling 
     <footer
       class="data-card__footer"
     >
-      <span
-        class="data-card__count"
-      >
-        15 of 100
-      </span>
+      <!---->
+      <!---->
        
       <button
         class="dusk-button dusk-button--type--button dusk-button--variant--secondary dusk-button--size--default"
