@@ -1,8 +1,6 @@
 <script>
-  /* eslint-disable import/no-duplicates */
   import { flip } from "svelte/animate";
   import { fly } from "svelte/transition";
-  /* eslint-enable import/no-duplicates */
   import { Icon } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
   import { toastList, toastTimer } from "./store";

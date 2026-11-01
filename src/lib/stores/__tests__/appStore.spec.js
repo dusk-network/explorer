@@ -43,13 +43,11 @@ describe("appStore", () => {
       isSmallScreen: false,
       marketDataFetchInterval: Number(env.VITE_MARKET_DATA_REFETCH_INTERVAL),
       nodeInfo: {
-        /* eslint-disable camelcase */
         bootstrapping_nodes: [],
         chain_id: undefined,
         kadcast_address: "",
         version: "",
         version_build: "",
-        /* eslint-enable camelcase */
       },
       provisionersFetchInterval: Number(env.VITE_PROVISIONERS_REFETCH_INTERVAL),
       transactionsListEntries: Number(env.VITE_TRANSACTIONS_LIST_ENTRIES),
@@ -153,13 +151,11 @@ describe("appStore", () => {
     const { appStore } = await import("..");
 
     const initialNodeInfo = {
-      /* eslint-disable camelcase */
       bootstrapping_nodes: [],
       chain_id: undefined,
       kadcast_address: "",
       version: "",
       version_build: "",
-      /* eslint-enable camelcase */
     };
 
     expect(get(appStore).nodeInfo).toStrictEqual(initialNodeInfo);

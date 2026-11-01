@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 import { get } from "svelte/store";
@@ -7,7 +6,6 @@ import { mdiAlertOutline } from "@mdi/js";
 
 import { Toast } from "..";
 import { toast, toastList, toastTimer } from "../toast/store";
-/* eslint-enable import/no-duplicates */
 
 vi.mock("svelte/transition");
 

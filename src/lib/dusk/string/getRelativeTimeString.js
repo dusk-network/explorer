@@ -4,8 +4,6 @@
  * @property {Intl.RelativeTimeFormatUnit} name
  */
 
-/* eslint-disable sort-keys */
-
 /** @type {TimeUnit[]} */
 const units = [
   { name: "year", factor: 1000 * 60 * 60 * 24 * 365 },
@@ -16,8 +14,6 @@ const units = [
   { name: "minute", factor: 1000 * 60 },
   { name: "second", factor: 1000 },
 ];
-
-/* eslint-enable sort-keys */
 
 /**
  * The largest unit the difference holds one of, and how many of it, to the

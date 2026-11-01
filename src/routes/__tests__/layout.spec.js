@@ -162,13 +162,11 @@ describe("Main layout", () => {
     vi.useFakeTimers();
 
     const nodeInfoInitialState = {
-      /* eslint-disable camelcase */
       bootstrapping_nodes: [],
       chain_id: undefined,
       kadcast_address: "",
       version: "",
       version_build: "",
-      /* eslint-enable camelcase */
     };
 
     appStore.setNodeInfo(nodeInfoInitialState);
@@ -203,7 +201,6 @@ describe("Main layout", () => {
     expect(strip).toHaveTextContent("Testnet · Test DUSK has no value");
     expect(strip.nextElementSibling).toHaveClass("dusk-navbar");
 
-    // eslint-disable-next-line camelcase
     await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
 
     expect(queryByRole("note")).toBeNull();

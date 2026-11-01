@@ -17,9 +17,7 @@ describe("bridgeDepositRecipient", () => {
       payload: {
         call: {
           contract: bridge,
-          // eslint-disable-next-line camelcase
           fn_args: fnArgs,
-          // eslint-disable-next-line camelcase
           fn_name: "depositETHToWithValue",
         },
       },
@@ -47,7 +45,6 @@ describe("bridgeDepositRecipient", () => {
         /** @type {Transaction} */ (
           /** @type {unknown} */ ({
             ...deposit,
-            // eslint-disable-next-line camelcase
             payload: { call: { fn_args: "not base64!" } },
           })
         ),
