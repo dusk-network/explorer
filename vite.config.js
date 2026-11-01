@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
       coverage: {
         all: true,
         include: ["src/**/*.{js,ts,svelte}"],
-        provider: "istanbul",
+        provider: "v8",
       },
       env: {
         APP_BUILD_INFO: "hash1234 2024-01-12",
