@@ -47,7 +47,6 @@ vi.mock("$lib/services", async (importOriginal) => ({
  * @param {Partial<NodeInfo>} [nodeInfo]
  * @returns {Promise<MarketDataStore>}
  */
-// eslint-disable-next-line camelcase
 async function importStore(nodeInfo = { chain_id: 1 }) {
   const { default: freshAppStore } = await import("../appStore");
 
@@ -201,7 +200,6 @@ describe("marketDataStore", async () => {
         JSON.stringify({ data: "C", lastUpdate: new Date(Date.now()) })
       );
 
-      // eslint-disable-next-line camelcase
       marketDataStore = await importStore({ chain_id: 2 });
 
       await vi.advanceTimersByTimeAsync(marketDataFetchInterval * 3);

@@ -149,7 +149,6 @@ describe("Navbar", () => {
     expect(dot).toHaveClass("dusk-navbar__network-dot--online");
 
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });

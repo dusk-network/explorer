@@ -141,7 +141,6 @@ function fieldsOf(query) {
 
 /** @param {Transfer} entry */
 const asGroup = (entry) => ({
-  // eslint-disable-next-line camelcase
   block_height: entry.height,
   events: [],
   origin: entry.origin,
@@ -369,7 +368,6 @@ function frameOf(block) {
       header: {
         hash: block.hash,
         height: block.height,
-        // eslint-disable-next-line camelcase
         prev_block_hash: blockHash(block.height - 1),
         timestamp: block.timestamp,
       },

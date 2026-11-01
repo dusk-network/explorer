@@ -198,7 +198,6 @@ describe("Account page", () => {
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 
     vi.mocked(getStakedDusk).mockResolvedValue(null);
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
@@ -214,7 +213,6 @@ describe("Account page", () => {
     );
     expect(container.querySelector(".account-overview-panel__sozu")).toBeNull();
 
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 

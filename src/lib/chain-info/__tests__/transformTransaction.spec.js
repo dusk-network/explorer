@@ -27,15 +27,11 @@ describe("transformTransaction", () => {
       call: null,
       deposit: 0,
       fee: {
-        // eslint-disable-next-line camelcase
         gas_limit: "2500000",
-        // eslint-disable-next-line camelcase
         gas_price: "1",
-        // eslint-disable-next-line camelcase
         refund_address:
           "kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj",
       },
-      // eslint-disable-next-line camelcase
       is_deploy: false,
       memo: null,
       nonce: 156,

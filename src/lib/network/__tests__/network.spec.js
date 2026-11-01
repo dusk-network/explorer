@@ -15,7 +15,6 @@ import {
 } from "..";
 
 /** @param {number | null | undefined} chainId */
-// eslint-disable-next-line camelcase
 const nodeOn = (chainId) => ({ ...apiNodeInfo, chain_id: chainId });
 
 describe("network", () => {

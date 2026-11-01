@@ -123,7 +123,6 @@ describe("AccountOverview", () => {
     });
 
     // On mainnet, whose file labels the BSC bridge's account.
-    // eslint-disable-next-line camelcase
     await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
 
     const { container } = render(AccountOverview, {
@@ -138,7 +137,6 @@ describe("AccountOverview", () => {
     );
 
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });

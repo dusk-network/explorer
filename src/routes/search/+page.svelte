@@ -15,7 +15,7 @@
     : "Search by account address, block height or hash, transaction ID or .dusk name."}
 </p>
 
-<style lang="postcss">
+<style>
   .search-page {
     margin: 0;
     color: var(--calm-muted);

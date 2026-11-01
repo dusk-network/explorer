@@ -232,7 +232,6 @@ describe("Transactions Table", () => {
         method: "depositETHToWithValue",
         payload: /** @type {any} */ ({
           call: {
-            // eslint-disable-next-line camelcase
             fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
           },
         }),
@@ -270,7 +269,6 @@ describe("Transactions Table", () => {
       expect(fetchSpy).not.toHaveBeenCalled();
 
       fetchSpy.mockRestore();
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
     });
 

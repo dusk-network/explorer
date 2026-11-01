@@ -184,7 +184,6 @@ describe("Transactions List", () => {
     });
 
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });
@@ -248,7 +247,6 @@ describe("Transactions List", () => {
         method: "depositETHToWithValue",
         payload: /** @type {any} */ ({
           call: {
-            // eslint-disable-next-line camelcase
             fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
           },
         }),
@@ -265,7 +263,6 @@ describe("Transactions List", () => {
 
     fetchSpy.mockRestore();
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });

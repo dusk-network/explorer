@@ -56,7 +56,7 @@
   </div>
 </section>
 
-<style lang="postcss">
+<style>
   :global {
     .landing {
       display: flex;

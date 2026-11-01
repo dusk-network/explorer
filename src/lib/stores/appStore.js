@@ -33,13 +33,11 @@ const initialState = {
     Number(import.meta.env.VITE_MARKET_DATA_REFETCH_INTERVAL) ||
     DEFAULT_MARKET_FETCH_INTERVAL,
   nodeInfo: {
-    /* eslint-disable camelcase */
     bootstrapping_nodes: [],
     chain_id: undefined,
     kadcast_address: "",
     version: "",
     version_build: "",
-    /* eslint-enable camelcase */
   },
   provisionersFetchInterval: Number(
     import.meta.env.VITE_PROVISIONERS_REFETCH_INTERVAL ||

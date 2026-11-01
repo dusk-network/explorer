@@ -5,8 +5,6 @@
 import * as matchers from "@testing-library/jest-dom/matchers";
 import { expect, vi } from "vitest";
 import { readable } from "svelte/store";
-import { ResizeObserver } from "@juggle/resize-observer";
-import "jsdom-worker";
 
 import {
   IntersectionObserver,
@@ -30,7 +28,12 @@ vi.spyOn(global, "btoa").mockImplementation((data) =>
 vi.mock("./src/lib/dusk/mocks/IntersectionObserver");
 
 global.IntersectionObserver = IntersectionObserver;
-global.ResizeObserver = ResizeObserver;
+// One that never reports a size: jsdom lays nothing out.
+global.ResizeObserver = class {
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+};
 global.MediaQueryListEvent = MediaQueryListEvent;
 global.MediaQueryList = MediaQueryList;
 

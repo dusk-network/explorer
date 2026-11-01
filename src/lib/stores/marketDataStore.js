@@ -14,7 +14,6 @@ const storeKey = "market-data";
  * @param {unknown} err
  */
 const logStoreError = (action, err) =>
-  /* eslint-disable-next-line no-console */
   console.error(`Error while ${action} market data: %s`, err);
 
 /** @type {() => MarketDataStorage | null} */

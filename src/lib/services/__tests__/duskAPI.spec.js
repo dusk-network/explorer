@@ -530,7 +530,6 @@ describe("duskAPI", () => {
           value: "362880000000",
         },
         faults: 10,
-        // eslint-disable-next-line camelcase
         hard_faults: 0,
         reward: "31027186",
       })
@@ -570,7 +569,6 @@ describe("duskAPI", () => {
           value: "13102790940789549",
         },
         faults: 0,
-        // eslint-disable-next-line camelcase
         hard_faults: 0,
         reward: "9007199254740993",
       })

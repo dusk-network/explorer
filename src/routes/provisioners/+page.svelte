@@ -33,7 +33,7 @@
   />
 </section>
 
-<style lang="postcss">
+<style>
   :global {
     #provisioners-tooltip {
       word-break: break-all;

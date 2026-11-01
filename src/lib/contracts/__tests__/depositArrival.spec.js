@@ -27,7 +27,6 @@ describe("findDepositArrival", () => {
         method: "depositETHToWithValue",
         payload: {
           call: {
-            // eslint-disable-next-line camelcase
             fn_args: Buffer.from(
               encodeDepositArgs({
                 amountLux: lux,
@@ -60,12 +59,10 @@ describe("findDepositArrival", () => {
             from: { hash: "0x4200000000000000000000000000000000000010" },
             success: true,
             timestamp: "2024-04-16T06:39:45.000000Z",
-            // eslint-disable-next-line camelcase
             transaction_hash: arrival,
             value: wei,
           },
         ],
-        // eslint-disable-next-line camelcase
         next_page_params: next,
       })
     );
@@ -81,7 +78,6 @@ describe("findDepositArrival", () => {
     expect(last).toHaveBeenCalledOnce();
 
     // A first page that doesn't reach back to the deposit links nothing.
-    // eslint-disable-next-line camelcase
     const more = explorer({ block_number: 1, index: 0, items_count: 50 });
 
     await expect(

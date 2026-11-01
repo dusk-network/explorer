@@ -24,7 +24,7 @@
   />
 </section>
 
-<style lang="postcss">
+<style>
   .error-message {
     display: flex;
     flex-direction: column;

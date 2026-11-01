@@ -56,7 +56,6 @@ describe("Provisioners Table", () => {
     expect(owners()).toStrictEqual(["Sozu relayer", "Contract ababab…ababab"]);
 
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });

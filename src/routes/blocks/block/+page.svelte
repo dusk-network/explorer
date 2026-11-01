@@ -51,7 +51,7 @@
   </div>
 </section>
 
-<style lang="postcss">
+<style>
   .block {
     display: flex;
     flex-direction: column;

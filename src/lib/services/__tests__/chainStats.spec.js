@@ -16,10 +16,8 @@ const provisioner = (key, eligibility) => ({
   amount: 1e12,
   eligibility,
   faults: 0,
-  // eslint-disable-next-line camelcase
   hard_faults: 0,
   key,
-  // eslint-disable-next-line camelcase
   locked_amt: 0,
   owner: { Account: key },
   reward: 0,

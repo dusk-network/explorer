@@ -114,9 +114,7 @@ describe("Transaction Details", () => {
     payload: /** @type {any} */ ({
       call: {
         contract: bridge,
-        // eslint-disable-next-line camelcase
         fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
-        // eslint-disable-next-line camelcase
         fn_name: "depositETHToWithValue",
       },
     }),
@@ -359,7 +357,6 @@ describe("Transaction Details", () => {
     // Its ends set apart as every Dusk app shortens it: 0x and four, and four.
     expect(getEnds(container, "to")).toStrictEqual(["0x5A3d", "8a01"]);
 
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
@@ -375,12 +372,10 @@ describe("Transaction Details", () => {
             from: { hash: "0x4200000000000000000000000000000000000010" },
             success: true,
             timestamp: "2024-04-16T06:39:45.000000Z",
-            // eslint-disable-next-line camelcase
             transaction_hash: arrival,
             value: "500000000000000000",
           },
         ],
-        // eslint-disable-next-line camelcase
         next_page_params: null,
       })
     );
@@ -420,7 +415,6 @@ describe("Transaction Details", () => {
       "https://explorer.testnet.evm.dusk.network/api/v2/addresses/0x5a3d8e1b7c2f4a6b9e0d1c3f5a7b9c2d4e6f8a01/internal-transactions?filter=to"
     );
 
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
@@ -442,7 +436,6 @@ describe("Transaction Details", () => {
 
     expect(fetchSpy).not.toHaveBeenCalled();
 
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
@@ -742,7 +735,6 @@ describe("Transaction Details", () => {
       url: "https://dusk.domains/name/bob.dusk",
     });
     // On mainnet, whose file labels the BSC bridge's account.
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 });
 
     const { container } = render(TransactionDetails, {
@@ -760,7 +752,6 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "to")).toBe(`BSC bridge ${bscBridge}`);
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
-    // eslint-disable-next-line camelcase
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 

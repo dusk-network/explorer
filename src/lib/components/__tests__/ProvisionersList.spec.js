@@ -89,7 +89,6 @@ describe("Provisioners List", () => {
     );
 
     await act(() =>
-      // eslint-disable-next-line camelcase
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
     );
   });

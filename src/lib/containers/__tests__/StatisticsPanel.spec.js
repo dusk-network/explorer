@@ -126,7 +126,6 @@ describe("StatisticsPanel", () => {
   const setChain = (chainId) =>
     appStore.setNodeInfo({
       ...get(appStore).nodeInfo,
-      // eslint-disable-next-line camelcase
       chain_id: chainId,
     });
 

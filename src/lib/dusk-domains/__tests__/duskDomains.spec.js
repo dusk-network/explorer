@@ -62,7 +62,6 @@ async function setup(chainId) {
     .mockReset()
     .mockResolvedValue(/** @type {any} */ (reader));
 
-  // eslint-disable-next-line camelcase
   appStore.setNodeInfo({ ...apiNodeInfo, chain_id: chainId });
 
   return { createReader, reader, ...(await import("..")) };
