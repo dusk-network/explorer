@@ -217,7 +217,7 @@
   <p class="account-missing">No account given.</p>
 {/if}
 
-<style lang="postcss">
+<style>
   .account-missing {
     margin: 0;
     color: var(--calm-muted);
