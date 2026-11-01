@@ -1,8 +1,8 @@
 // The DuskEVM transaction that delivered a deposit to DuskEVM, as
-// @dusk-network/app-core/bridge finds it on DuskEVM's explorer, which lists
-// the recipient's incoming calls: it asks once, for the first page, and
-// links a payment only when it is surely this deposit's. The package loads
-// on a deposit's page only.
+// @dusk-network/app-core/bridge-explorer finds it on DuskEVM's explorer,
+// which lists the recipient's incoming calls: it asks once, for the first
+// page, and links a payment only when it is surely this deposit's. The
+// package loads on a deposit's page only.
 
 import { networkOf } from "$lib/network";
 
@@ -33,8 +33,9 @@ export async function findDepositArrival(
     return null;
   }
 
-  const { depositArrivals } = await import("@dusk-network/app-core/bridge");
-  const { arrivals } = await depositArrivals({
+  const { depositArrivalsFromExplorer } =
+    await import("@dusk-network/app-core/bridge-explorer");
+  const { arrivals } = await depositArrivalsFromExplorer({
     deposits: [
       {
         amount,
@@ -47,7 +48,6 @@ export async function findDepositArrival(
     maxPages: 1,
     network,
     now,
-    via: "explorer",
     // However long ago it was sent.
     waitMs: Infinity,
   });
