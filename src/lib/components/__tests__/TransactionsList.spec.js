@@ -2,7 +2,7 @@ import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
 import { readFileSync } from "node:fs";
 
-import { STAKE_CONTRACT } from "$lib/network";
+import { STAKE_CONTRACT, TRANSFER_CONTRACT } from "$lib/network";
 import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
@@ -90,9 +90,9 @@ describe("Transactions List", () => {
     const call = {
       ...transaction,
       amount: 0,
-      contract: STAKE_CONTRACT,
+      contract: TRANSFER_CONTRACT,
       deposit: 0,
-      method: "stake",
+      method: "convert",
       to: null,
     };
     const toContract = render(TransactionsList, { data: call }).container;
@@ -108,12 +108,37 @@ describe("Transactions List", () => {
       ).toHaveTextContent(/^Contract call$/);
       expect(
         toAccount.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Stake contract$/);
+      ).toHaveTextContent(/^Transfer contract$/);
     });
     expect(toContract.querySelector("code")).toBeNull();
     expect(
       toAccount.querySelector(".transaction-row__parties")
     ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
+  });
+
+  it("should say Stake, Unstake or Claim rewards for a call to the stake contract, as the Dusk wallets do", async () => {
+    const call = {
+      ...transaction,
+      amount: 0,
+      contract: STAKE_CONTRACT,
+      deposit: 0,
+      to: null,
+    };
+    const lines = [
+      { ...call, deposit: 1_000_000_000_000, method: "stake" },
+      { ...call, method: "unstake" },
+      { ...call, method: "withdraw" },
+    ].map((data) =>
+      render(TransactionsList, { data }).container.querySelector(
+        ".transaction-row__line"
+      )
+    );
+
+    await vi.waitFor(() =>
+      expect(
+        lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim())
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards"])
+    );
   });
 
   it("should give the sender's address short, so the receiver's name keeps its room", async () => {
