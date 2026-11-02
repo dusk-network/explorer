@@ -10,6 +10,16 @@ and this project adheres to
 
 ### Added
 
+### Changed
+
+### Removed
+
+### Fixed
+
+## [1.7.0] - 2026-11-02
+
+### Added
+
 - Add .dusk name search and primary names on account and transaction pages
 - Add From / To and Amount to transaction lists
 - Name the contract a call went to, with plain words for common calls
@@ -89,8 +99,6 @@ and this project adheres to
 - Load transactions 25 at a time on the transactions page and an account's page, the next ones with Show more
 - Load pages faster
 - Say Stake, Unstake or Claim rewards for calls to the stake contract, in lists and in the transaction's sentence
-
-### Removed
 
 ### Fixed
 
@@ -402,6 +410,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.7.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.0
 [1.6.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.6.0
 [1.5.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.5.0
 [1.4.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.4.0
