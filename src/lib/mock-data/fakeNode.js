@@ -43,6 +43,15 @@ const hashOf = (kind, n) => `${kind}${n.toString(16).padStart(63, "0")}`;
 const blockHash = (height) => hashOf("b", height);
 
 /**
+ * The provisioner that made the block at a height, by its key: one of the
+ * provisioners in turn.
+ *
+ * @param {number} height
+ */
+const generatorOf = (height) =>
+  hostProvisioners[height % hostProvisioners.length].key;
+
+/**
  * A query with its `Rusk-gqlvar-` headers written in, as the node reads them.
  *
  * @param {string} query
@@ -251,6 +260,7 @@ const gqlBlock = (block) => ({
   gasSpent: 0,
   header: {
     gasLimit: 5_000_000_000,
+    generatorBlsPubkey: generatorOf(block.height),
     hash: block.hash,
     height: block.height,
     prevBlockHash: blockHash(block.height - 1),

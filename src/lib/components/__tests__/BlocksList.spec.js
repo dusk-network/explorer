@@ -3,7 +3,7 @@ import { cleanup, render } from "@testing-library/svelte";
 
 import { gqlBlock } from "$lib/mock-data";
 import { transformBlock } from "$lib/chain-info";
-import { getRelativeTimeString } from "$lib/dusk/string";
+import { getRelativeTimeString, middleEllipsis } from "$lib/dusk/string";
 
 import { BlocksList } from "..";
 
@@ -41,5 +41,42 @@ describe("Blocks List", () => {
 
     expect(age()).toBe(getRelativeTimeString(date, "long"));
     expect(age()).toMatch(/2 minutes ago/);
+  });
+
+  it("says when and by whom a block was made, opening the generator's account, and the fees it took, if any; the home page's row says neither", async () => {
+    const { container, rerender } = render(BlocksList, baseProps);
+    const line = () =>
+      container
+        .querySelector(".block-row__main .row-line")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim();
+    const end = () =>
+      container
+        .querySelector(".block-row__end")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim();
+    const key = block.header.generator;
+
+    expect(line()).toBe(
+      `${getRelativeTimeString(block.header.date, "long")} · by ${middleEllipsis(key, 4)}`
+    );
+    expect(container.querySelector(".transaction-party")).toHaveAttribute(
+      "href",
+      `/some-base-path/accounts/?key=${key}`
+    );
+    // Two transactions, which paid 580,718 LUX in fees.
+    expect(end()).toBe("16 DUSK 2 transactions + 0.00058 DUSK fees");
+
+    await rerender({
+      data: { ...block, header: { ...block.header, feespaid: 0 } },
+    });
+
+    expect(end()).toBe("16 DUSK 2 transactions");
+
+    await rerender({ brief: true, data: block });
+
+    expect(line()).toBe(getRelativeTimeString(block.header.date, "long"));
+    expect(end()).toBe("16 DUSK 2 transactions");
+    expect(container.querySelector(".transaction-party")).toBeNull();
   });
 });

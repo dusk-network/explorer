@@ -70,7 +70,7 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { block(hash: "some-id") {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, generatorBlsPubkey, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { block(hash: "some-id") {...BlockInfo} }",
         "headers": {
           "Content-Type": "text/plain",
         },
@@ -167,7 +167,7 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 100) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, generatorBlsPubkey, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 100) {...BlockInfo} }",
         "headers": {
           "Content-Type": "text/plain",
         },
@@ -188,7 +188,7 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 15) {...BlockInfo}, transactions(last: 15) {...TransactionInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, generatorBlsPubkey, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { blocks(last: 15) {...BlockInfo}, transactions(last: 15) {...TransactionInfo} }",
         "headers": {
           "Content-Type": "text/plain",
         },
@@ -216,9 +216,14 @@ describe("duskAPI", () => {
       }
     );
 
+    // The 24 hours' change and the supply come with them, at no other request.
     await expect(duskAPI.getMarketData()).resolves.toStrictEqual({
+      circulatingSupply: 456000000,
       currentPrice: mockData.apiMarketData.market_data.current_price,
       marketCap: expectedMarketCap,
+      priceChange24h:
+        mockData.apiMarketData.market_data
+          .price_change_percentage_24h_in_currency.usd,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy).toHaveBeenNthCalledWith(
@@ -237,8 +242,12 @@ describe("duskAPI", () => {
       .mockRejectedValueOnce(new Error("Supply endpoint unavailable"));
 
     await expect(duskAPI.getMarketData()).resolves.toStrictEqual({
+      circulatingSupply: mockData.apiMarketData.market_data.circulating_supply,
       currentPrice: mockData.apiMarketData.market_data.current_price,
       marketCap: mockData.apiMarketData.market_data.market_cap,
+      priceChange24h:
+        mockData.apiMarketData.market_data
+          .price_change_percentage_24h_in_currency.usd,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy).toHaveBeenNthCalledWith(
@@ -470,7 +479,7 @@ describe("duskAPI", () => {
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
       {
-        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { anchor: block(height: 10) { header { hash } }, blocks(range: [11, 25]) {...BlockInfo} }",
+        "body": "fragment TransactionInfo on SpentTransaction { blockHash, blockHeight, blockTimestamp, err, gasSpent, id, tx { blobHashes, callData { contractId, data, fnName }, gasLimit, gasPrice, id, isDeploy, memo, txType, json } } fragment BlockInfo on Block { header { hash, gasLimit, generatorBlsPubkey, height, prevBlockHash, seed, stateHash, timestamp, version }, fees, gasSpent, reward, transactions {...TransactionInfo} } query { anchor: block(height: 10) { header { hash } }, blocks(range: [11, 25]) {...BlockInfo} }",
         "headers": {
           "Content-Type": "text/plain",
         },

@@ -57,6 +57,7 @@ fragment BlockInfo on Block {
   header {
     hash,
     gasLimit,
+    generatorBlsPubkey,
     height,
     prevBlockHash,
     seed,

@@ -15,6 +15,8 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { createCompactFormatter } from "$lib/dusk/value";
+  import { formatDateTime } from "$lib/dusk/date";
+  import { getRelativeTimeString } from "$lib/dusk/string";
   import { duskIcon } from "$lib/dusk/icons";
   import { Icon } from "$lib/dusk/components";
   import { DataGuard, StaleDataNotice, WorldMap } from "$lib/components";
@@ -84,6 +86,37 @@
       : now - newest.at < WAITING_AFTER
         ? "live"
         : "waiting";
+
+  /**
+   * A line under a number that says more about it, and maybe more after it,
+   * each part kept whole: on a phone, one to a line. A price's move says
+   * which way it went.
+   *
+   * @typedef {{ more: string | null, text: string, way: "down" | "up" | null }} Note
+   */
+
+  /**
+   * How the price moved over 24 hours, or `null` while that is unknown.
+   *
+   * @param {number | null | undefined} change In percent
+   * @returns {Note | null}
+   */
+  function priceMove(change) {
+    if (typeof change !== "number" || !Number.isFinite(change)) {
+      return null;
+    }
+
+    const percent = Math.abs(change).toFixed(2);
+
+    if (percent === "0.00") {
+      return { more: null, text: "Unchanged in 24h", way: null };
+    }
+
+    return change < 0
+      ? { more: null, text: `Down ${percent}% in 24h`, way: "down" }
+      : { more: null, text: `Up ${percent}% in 24h`, way: "up" };
+  }
+
   /**
    * @typedef {{
    *   approximate: boolean,
@@ -92,6 +125,7 @@
    *   compact: boolean | null,
    *   data: any,
    *   icon: string,
+   *   note: Note | null,
    *   prefix: string,
    *   title: string,
    *   unit: string,
@@ -114,6 +148,7 @@
     compact: true,
     data,
     icon: "",
+    note: null,
     prefix: "",
     title,
     unit: "",
@@ -153,7 +188,19 @@
         : null,
       { compact: null }
     ),
-    currentStake: stakeStatistic("Current stake", statsData?.activeStake),
+    currentStake: {
+      ...stakeStatistic("Current stake", statsData?.activeStake),
+      // Its share of the DUSK in circulation, on mainnet: the market data
+      // brings that.
+      note:
+        statsData?.activeStake && marketData?.circulatingSupply
+          ? {
+              more: null,
+              text: `${((luxToDusk(statsData.activeStake) / marketData.circulatingSupply) * 100).toFixed(1)}% of circulating supply`,
+              way: null,
+            }
+          : null,
+    },
     largestCluster: statistic(
       "Largest node cluster",
       nodesData?.length ? nodesData[0].count : null,
@@ -175,22 +222,21 @@
     price: statistic("DUSK price", marketData?.currentPrice.usd, {
       canBeStale: true,
       icon: mdiCurrencyUsd,
+      note: priceMove(marketData?.priceChange24h),
       prefix: "$",
     }),
     totalTransactions: statistic(
       "Total transactions",
       statsData?.txCount?.total,
       {
-        attributes: statsData?.txCount
+        icon: mdiSwapVertical,
+        note: statsData?.txCount
           ? {
-              "data-tooltip-id": "main-tooltip",
-              "data-tooltip-place": "top",
-              "data-tooltip-text": `Public: ${formatter(
-                statsData.txCount.public
-              )}, Shielded: ${formatter(statsData.txCount.shielded)}`,
+              more: `${valueFormatter(statsData.txCount.shielded)} shielded`,
+              text: `${valueFormatter(statsData.txCount.public)} public`,
+              way: null,
             }
           : null,
-        icon: mdiSwapVertical,
       }
     ),
   };
@@ -256,8 +302,8 @@
 
 <!--
   The network's map first, and beside it the four numbers that matter most
-  as cards, their labels above them; the rest in one quiet row of smaller
-  labels and values.
+  as cards, each under its label with a line that says more; the rest in one
+  quiet card of smaller labels and values, under the four on wide screens.
 -->
 <div class="statistics-panel">
   <figure class="statistics-panel__face">
@@ -296,6 +342,42 @@
         <div class="statistics-panel__statistics-item-value-container">
           {@render valueOf(item, "div")}
         </div>
+        {#if key === "lastBlock"}
+          <!-- How long ago the last block was made, by its own time, never ahead of now; as the status, nothing while it can't be read. -->
+          {#if chain !== "unknown" && newest}
+            <time
+              class="statistics-panel__statistics-item-note"
+              data-tooltip-id="main-tooltip"
+              data-tooltip-text={formatDateTime(newest.date)}
+              datetime={newest.date.toISOString()}
+              >{getRelativeTimeString(
+                new Date(Math.min(newest.date.getTime(), now)),
+                "long"
+              )}</time
+            >
+          {/if}
+        {:else if item.note}
+          <span
+            class="statistics-panel__statistics-item-note"
+            class:statistics-panel__statistics-item-note--down={item.note
+              .way === "down"}
+            class:statistics-panel__statistics-item-note--up={item.note.way ===
+              "up"}
+          >
+            <span class="statistics-panel__statistics-item-note-part"
+              >{item.note.text}</span
+            >
+            {#if item.note.more}
+              <span class="statistics-panel__statistics-item-note-part"
+                ><span
+                  aria-hidden="true"
+                  class="statistics-panel__statistics-item-note-dot">·</span
+                >
+                {item.note.more}</span
+              >
+            {/if}
+          </span>
+        {/if}
       </div>
     {/each}
   </div>

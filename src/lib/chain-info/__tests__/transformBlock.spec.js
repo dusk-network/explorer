@@ -11,6 +11,7 @@ describe("transformBlock", () => {
     header: {
       date: new Date(blockData.header.timestamp * 1000),
       feespaid: 580718,
+      generator: blockData.header.generatorBlsPubkey,
       hash: "bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f",
       height: 495868,
       nextblockhash:
@@ -93,6 +94,14 @@ describe("transformBlock", () => {
         gasUsed: 0,
       })
     );
+  });
+
+  it("should set an empty string to the `generator` if the node gives none", () => {
+    expect(
+      transformBlock(
+        updateIn(blockData, "header", skip(["generatorBlsPubkey"]))
+      )
+    ).toStrictEqual(setPathIn(expectedBlock, "header.generator", ""));
   });
 
   it("should set an empty string to the `nextblockhash` if it's missing", () => {

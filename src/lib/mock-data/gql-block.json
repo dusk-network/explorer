@@ -4,6 +4,7 @@
     "gasSpent": 580718,
     "header": {
       "gasLimit": 5000000000,
+      "generatorBlsPubkey": "m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf",
       "hash": "bd5c99bb720b03500e89f103fe66113ba62f2e124ed9651563f38fd15977719f",
       "height": 495868,
       "nextBlockHash": "6011556208a85e6001bd01ccbf936486b91318a7f6cbcf7ab810adf6fae34204",

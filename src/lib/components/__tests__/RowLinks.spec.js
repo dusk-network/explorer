@@ -67,6 +67,7 @@ describe("Row links", () => {
       block: {
         details: [...block.querySelectorAll(".row-amount [title], time")],
         link: /** @type {Element} */ (block.querySelector(".block-row__link")),
+        names: [...block.querySelectorAll(".transaction-party")],
       },
       transaction: {
         details: [...transaction.querySelectorAll(".row-amount [title], time")],
@@ -96,18 +97,24 @@ describe("Row links", () => {
       )
     ).toStrictEqual([]);
     expect(block.details).toHaveLength(2);
+    // The block's generator, as a transaction's names.
+    expect(block.names).toHaveLength(1);
     expect(
-      block.details.filter((el) => !isAbove(block.link)(el))
+      [...block.names, ...block.details].filter(
+        (el) => !isAbove(block.link)(el)
+      )
     ).toStrictEqual([]);
   });
 
-  it("should open the row from a tap anywhere but on a name, on a touch screen", () => {
+  it("should open the row from a tap anywhere but on a name or a block's generator, on a touch screen", () => {
     loadStyles("touch");
 
     const { block, transaction } = renderRows();
 
     expect(transaction.names.every(isAbove(transaction.link))).toBe(true);
     expect(transaction.details.some(isAbove(transaction.link))).toBe(false);
+    expect(block.names).toHaveLength(1);
+    expect(block.names.every(isAbove(block.link))).toBe(true);
     expect(block.details.some(isAbove(block.link))).toBe(false);
   });
 });

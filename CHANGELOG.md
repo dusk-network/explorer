@@ -10,7 +10,13 @@ and this project adheres to
 
 ### Added
 
+- Show who generated each block in the blocks list
+- Add a line under each home page number: the price's 24h change, the stake's share of the circulating supply, the last block's age, and public and shielded transactions
+
 ### Changed
+
+- Show a block's fees and how full it was in the blocks list, instead of gas used and average gas price
+- Fit the home page's number cards to their numbers, with the other numbers beside the map
 
 ### Removed
 

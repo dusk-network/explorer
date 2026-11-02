@@ -73,6 +73,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -125,6 +127,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -179,6 +183,10 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <!---->
+      
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -227,6 +235,8 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <!---->
     </div>
     
   </div>
@@ -533,6 +543,19 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <span
+        class="statistics-panel__statistics-item-note statistics-panel__statistics-item-note--down"
+      >
+        <span
+          class="statistics-panel__statistics-item-note-part"
+        >
+          Down 8.05% in 24h
+        </span>
+         
+        <!---->
+      </span>
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -604,6 +627,19 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <span
+        class="statistics-panel__statistics-item-note"
+      >
+        <span
+          class="statistics-panel__statistics-item-note-part"
+        >
+          12.7% of circulating supply
+        </span>
+         
+        <!---->
+      </span>
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -665,12 +701,21 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <!---->
+      <time
+        class="statistics-panel__statistics-item-note"
+        data-tooltip-id="main-tooltip"
+        data-tooltip-text="Thu 30 May 2024, 12:00:00 AM UTC"
+        datetime="2024-05-30T00:00:00.000Z"
+      >
+        now
+      </time>
+      
+      <!---->
     </div>
     <div
       class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
-      data-tooltip-id="main-tooltip"
-      data-tooltip-place="top"
-      data-tooltip-text="Public: 13,742, Shielded: 2,621"
     >
       <span
         class="statistics-panel__statistics-item-title"
@@ -716,6 +761,30 @@ exports[`StatisticsPanel > should render the StatisticsPanel, with the numbers o
         <!---->
         <!---->
       </div>
+       
+      <span
+        class="statistics-panel__statistics-item-note"
+      >
+        <span
+          class="statistics-panel__statistics-item-note-part"
+        >
+          13,742 public
+        </span>
+         
+        <span
+          class="statistics-panel__statistics-item-note-part"
+        >
+          <span
+            aria-hidden="true"
+            class="statistics-panel__statistics-item-note-dot"
+          >
+            ·
+          </span>
+           2,621 shielded
+        </span>
+        <!---->
+      </span>
+      <!---->
     </div>
     
   </div>

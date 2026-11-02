@@ -3,6 +3,7 @@ type GQLBlock = {
   gasSpent: number;
   header: {
     gasLimit: number;
+    generatorBlsPubkey?: string;
     hash: string;
     height: number;
     nextBlockHash?: string;

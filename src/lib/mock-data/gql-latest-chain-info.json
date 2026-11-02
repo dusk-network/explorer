@@ -5,6 +5,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf",
         "hash": "dc4ac511e5f6679d26512e0786047b6f251e64603ea4f037f1fdd1ea5d524459",
         "height": 1378753,
         "prevBlockHash": "d01be62e92ac5918234851543a6508220345f4f631798086ec1f3a251386b8d8",
@@ -21,6 +22,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz",
         "hash": "d01be62e92ac5918234851543a6508220345f4f631798086ec1f3a251386b8d8",
         "height": 1378752,
         "prevBlockHash": "5b1180bc706fda90671e00a0a7eb52aad227f33cc9f4377f8c8e7394b9ff4495",
@@ -37,6 +39,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mHGvQ9XdjzuGyixBGrMeeC7EdX9QZNWV64FQWWwTMhFYmdskMbZkQMGiKC3DXqx8ALS4ipC3TJ9NckHPzD7AC1Tfc1GH3TrCxAZ8o93rPux7H5V95Q3hPxdxHiTfxTvgn7f",
         "hash": "5b1180bc706fda90671e00a0a7eb52aad227f33cc9f4377f8c8e7394b9ff4495",
         "height": 1378751,
         "prevBlockHash": "e71cf924be5c901cb0d3e8172ab2729082d152dc1856562e4846843435d3a78c",
@@ -53,6 +56,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mLx5HUo5PhsobwgMJhzL9j8TY7TjC13EsxHL7cKLTmMJ9BqvnG2RttD2uMg1FEDprnSvmN7BwCkpr6wW9XSco2ASrUjou2neUXj4uq16NreXVk4jmfr3CEHqvBrRgEzoka8",
         "hash": "e71cf924be5c901cb0d3e8172ab2729082d152dc1856562e4846843435d3a78c",
         "height": 1378750,
         "prevBlockHash": "618889eb6d244cae4ca6bd9aeec7ef056482e726eb59e81c36a07768382d5b40",
@@ -69,6 +73,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU",
         "hash": "618889eb6d244cae4ca6bd9aeec7ef056482e726eb59e81c36a07768382d5b40",
         "height": 1378749,
         "prevBlockHash": "1273d2eb6de3847cc38c51c5e7aea13664947b3123a1b2bca34f781e57f35b65",
@@ -85,6 +90,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mUJHMDEBiTUVJU5U76Krb5wwMXK6R7CjBrTTGFFAZzgwnasxspJMbcUjedRsY8TbrRfxCuyhmvgb7Kv4chjvHNDsyWA6J8XTSCPH4y5PeqLyLvCCdgUnQ74FDFHNxRNhoAA",
         "hash": "1273d2eb6de3847cc38c51c5e7aea13664947b3123a1b2bca34f781e57f35b65",
         "height": 1378748,
         "prevBlockHash": "b769d25325e1e3e5f0b695c8a7bc540ef0f2fe8093229c4fe94afea0b55ba4dd",
@@ -101,6 +107,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW",
         "hash": "b769d25325e1e3e5f0b695c8a7bc540ef0f2fe8093229c4fe94afea0b55ba4dd",
         "height": 1378747,
         "prevBlockHash": "43e390da70e7a87c4b7b8fa09c1017c315e8f9176153304c17195c879c71beb6",
@@ -117,6 +124,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mWvq9EWD9b8gQw5uD4GnYaV8Wsn86youaZ1ghCjwTkTyghBnrMz1tGdwKRnjd3svKQE1fMxfdu6M64pEN9NCUhcbwrER4s3HKpYGEp4m7pfsBMoDjbYzTTUxooU7BY2oEDe",
         "hash": "43e390da70e7a87c4b7b8fa09c1017c315e8f9176153304c17195c879c71beb6",
         "height": 1378746,
         "prevBlockHash": "96e2f5f2b7fc0bdd63c665223404d8cdccc34c875ab170b2d71ca1ddfb0f838d",
@@ -133,6 +141,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4",
         "hash": "96e2f5f2b7fc0bdd63c665223404d8cdccc34c875ab170b2d71ca1ddfb0f838d",
         "height": 1378745,
         "prevBlockHash": "02b22e52c519c4b710d7d9fbb19b66bd41c093ad3ede7e35e2a71850618f2eeb",
@@ -149,6 +158,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J",
         "hash": "02b22e52c519c4b710d7d9fbb19b66bd41c093ad3ede7e35e2a71850618f2eeb",
         "height": 1378744,
         "prevBlockHash": "35b0091069ca46af8d84dfd3c8a4f54b6f6c4a8e5322be074cdd0e6ae59e98c3",
@@ -165,6 +175,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mdca2ea2KpRZaW6s6NkYAY29wbprGPGGo8MmB812HxUXcvb8dDDE8J4GjN9VH9FbB8GJdohgFKoK2oDFLyL5cCsDtPU1maWw1o7Xnzo7uHBPg8MmRfxyBCUVRji7SxM2zBD",
         "hash": "35b0091069ca46af8d84dfd3c8a4f54b6f6c4a8e5322be074cdd0e6ae59e98c3",
         "height": 1378743,
         "prevBlockHash": "2fedbac54c72690572584207118062c597432c92084b2996dac623e1c3edc073",
@@ -181,6 +192,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mgmcqkk1VFfsa1ko7ydBjhVuM9WuVFDGby9JthvDWsKX9kyqdNeqrSzbW1ccQ19sVfbHgVzfYwdGLipYdPcU4ZD5CjsbRmzZeEQ3WBZHUcEWDB1wsvV5avoC2xddxLvEDVP",
         "hash": "2fedbac54c72690572584207118062c597432c92084b2996dac623e1c3edc073",
         "height": 1378742,
         "prevBlockHash": "0d7fcdffceb29079c330b141af0523995c6abf48cfaee8eb014a323b6ddc571a",
@@ -197,6 +209,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mvft6AXjR1mDtg1Qo3GzGBKZAvvxY1S6h41DSEPh9Ewj9GFR61rPQnjVaM1W9nqkHijRC2d5Yo4FSBwU8wf9eHeEJYXuMSrB7eJxvsY6HjCeDJ9pKfJLdjayAfrxEyudvx2",
         "hash": "0d7fcdffceb29079c330b141af0523995c6abf48cfaee8eb014a323b6ddc571a",
         "height": 1378741,
         "prevBlockHash": "392b1279a149b39a9ffd974e328d00a25948e8b1c9f47f05af4b0d427a4a8fd9",
@@ -213,6 +226,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "mvsVWvCaiHtugFDx1VmDCX5Zeex1u1768EWuMYBF68czYLbJ8rtaxBbqKvLJJsCD9xEDmLm2STduJsb2j11VEsT7ZUGBzAURd8884zUMDyeWVgrE1CfbGCaYvcdeSzHCUUb",
         "hash": "392b1279a149b39a9ffd974e328d00a25948e8b1c9f47f05af4b0d427a4a8fd9",
         "height": 1378740,
         "prevBlockHash": "c5fac8e025a39dd2b6557654a5c561fddfe61f75ef1b55d052362a9c57301d1c",
@@ -229,6 +243,7 @@
       "gasSpent": 0,
       "header": {
         "gasLimit": 5000000000,
+        "generatorBlsPubkey": "n2DPucZgNznPCfhRfAS8aHQUktJYZ99wAUcYM5Qijs7XyENoF6w1bzHuHdX9duEcZTX1X7o7tX9UkFF35AE8JzdbGqN5zYNAnyGJXVogBzbDNKwS6GhaRRR9f95PUxRwtD1",
         "hash": "c5fac8e025a39dd2b6557654a5c561fddfe61f75ef1b55d052362a9c57301d1c",
         "height": 1378739,
         "prevBlockHash": "f7c1ca01425b8472211d8d1e32b3a125d8eed3d66145fc87515dc86c5cdc46ee",

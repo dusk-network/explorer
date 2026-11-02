@@ -9,6 +9,7 @@ const transformBlock = (v) => ({
   header: {
     date: unixTsToDate(v.header.timestamp),
     feespaid: v.fees,
+    generator: v.header.generatorBlsPubkey ?? "",
     hash: v.header.hash,
     height: v.header.height,
     nextblockhash: v.header.nextBlockHash ?? "",

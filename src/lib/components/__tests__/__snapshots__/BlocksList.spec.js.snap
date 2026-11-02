@@ -56,6 +56,26 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
         <!---->
       </time>
       <!---->
+       
+      <span
+        aria-hidden="true"
+      >
+        ·
+      </span>
+       by 
+      <!---->
+      <a
+        class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+        href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
+      >
+        <!---->
+        m6dy…tnpf
+        
+        <!---->
+      </a>
+      
+      <!---->
+      <!---->
     </span>
   </div>
    
@@ -84,6 +104,13 @@ exports[`Blocks List > renders the Blocks List component 1`] = `
       2
       transactions
     </span>
+     
+    <span
+      class="row-line"
+    >
+      + 0.00058 DUSK fees
+    </span>
+    <!---->
   </div>
 </div>
 `;

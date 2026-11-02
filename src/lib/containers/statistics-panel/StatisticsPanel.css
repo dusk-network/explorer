@@ -1,7 +1,8 @@
 /*
  * The network's face: the map in full contrast leads, the four numbers that
- * matter most beside it as cards, two by two, each label above its number;
- * the rest in one quiet card of smaller labels and values, under both.
+ * matter most beside it as cards, two by two, each number under its label
+ * with a line that says more; the rest in one quiet card of smaller labels
+ * and values, under the four on wide screens and under the map otherwise.
  */
 .statistics-panel {
   display: grid;
@@ -180,6 +181,28 @@
 }
 
 /*
+ * The line under a number, muted; the price's move in red when down and in
+ * green when up, its words saying the same. Each part stays whole.
+ */
+.statistics-panel__statistics-item-note {
+  color: var(--calm-muted);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.statistics-panel__statistics-item-note--down {
+  color: var(--calm-danger);
+}
+
+.statistics-panel__statistics-item-note--up {
+  color: var(--calm-online-text);
+}
+
+.statistics-panel__statistics-item-note-part {
+  white-space: nowrap;
+}
+
+/*
  * A number rounded to show: "≈" before it, a space apart, in the unit's
  * colour. Screen readers say "about".
  */
@@ -215,29 +238,46 @@
   font-size: 0.8125rem;
 }
 
-/* Wide screens: the map, and the four numbers beside it two by two. */
+/*
+ * Wide screens: the map, and beside it the four numbers two by two, as tall
+ * as what they hold, with the rest under them, two to a row.
+ */
 @media (min-width: 75rem) {
   .statistics-panel {
     grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+    grid-template-rows: auto 1fr;
     grid-template-areas:
       "face cards"
-      "secondary secondary";
+      "face secondary";
     column-gap: 1.5rem;
+    row-gap: 1rem;
+  }
+
+  /* The map in the middle of the numbers' height, when they stand taller. */
+  .statistics-panel__face {
+    align-self: center;
   }
 
   .statistics-panel__statistics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-
-  /* Each number at its card's foot, its label at the head. */
-  .statistics-panel__statistics-item--primary {
-    justify-content: space-between;
   }
 
   .statistics-panel__statistics-item--primary
     .statistics-panel__statistics-item-value-container {
     font-size: 1.75rem;
+  }
+
+  /* The line close under its number. */
+  .statistics-panel__statistics-item-note {
+    margin-top: -0.25rem;
+  }
+
+  .statistics-panel__secondary {
+    align-self: start;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 0.625rem;
+    padding-block: 0.75rem;
   }
 }
 
@@ -290,6 +330,19 @@
 
   .statistics-panel__statistics-item-unit {
     font-size: 0.8125rem;
+  }
+
+  /* A line under a number: smaller, one part to a line. */
+  .statistics-panel__statistics-item-note {
+    font-size: 0.75rem;
+  }
+
+  .statistics-panel__statistics-item-note-part {
+    display: block;
+  }
+
+  .statistics-panel__statistics-item-note-dot {
+    display: none;
   }
 
   .statistics-panel__secondary {
