@@ -49,8 +49,6 @@
     "@floating-ui/dom": "1.7.6",
     "@hdauven/dusk-multicall": "npm:@jsr/hdauven__dusk-multicall@0.1.0",
     "@mdi/js": "7.4.47",
-    "d3-geo": "3.1.1",
-    "d3-scale": "4.0.2",
     "lamb": "0.61.1"
   },
   "devDependencies": {
@@ -61,7 +59,6 @@
     "@sveltejs/vite-plugin-svelte": "7.1.2",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/svelte": "5.4.1",
-    "@types/d3-geo": "3.1.0",
     "@types/node": "26.0.0",
     "@vitest/coverage-v8": "4.1.12",
     "eslint": "9.39.4",

@@ -1,24 +1,54 @@
 <script>
-  // @ts-nocheck
-  import { geoNaturalEarth1, geoPath } from "d3-geo";
-  import { scaleSqrt } from "d3-scale";
-  import dataset from "./world-map.json";
+  import land from "./land.js";
 
   import "./WorldMap.css";
 
   /** @type {NodeLocation[] | null}*/
   export let nodes;
 
-  /** @type {import("d3-geo").GeoProjection}*/
-  const projection = geoNaturalEarth1().scale(195).center([0, 8]);
+  /*
+   * Where each node goes: Natural Earth 1 at scale 195, centred on 0°, 8°N,
+   * the projection the land was drawn with (scripts/draw-world-map.js).
+   * Computed term for term as d3-geo computes it, so each ring sits exactly
+   * where d3 put it.
+   */
+  const radians = Math.PI / 180;
 
-  /** @type {import("d3-geo").GeoPath<any, import("d3").GeoPermissibleObjects>} */
-  const path = geoPath(projection);
+  /** @type {(lambda: number, phi: number) => [number, number]} */
+  const naturalEarth1 = (lambda, phi) => {
+    const phi2 = phi * phi;
+    const phi4 = phi2 * phi2;
 
-  const radius = scaleSqrt().domain([0, 100]).range([0, 20]);
+    return [
+      lambda *
+        (0.8707 -
+          0.131979 * phi2 +
+          phi4 * (-0.013791 + phi4 * (0.003971 * phi2 - 0.001529 * phi4))),
+      phi *
+        (1.007226 +
+          phi2 *
+            (0.015085 +
+              phi4 * (-0.044475 + 0.028874 * phi2 - 0.005916 * phi4))),
+    ];
+  };
 
-  /** @param {number} count */
-  const markerRadius = (count) => Math.max(5, radius(count));
+  // 0°, 8°N at the centre, (480, 250).
+  const offsetY = 250 + 195 * naturalEarth1(0, 8 * radians)[1];
+
+  /** @param {NodeLocation} location */
+  const placeOf = ({ lat, lon }) => {
+    const [x, y] = naturalEarth1(lon * radians, lat * radians);
+
+    return `translate(${480 + 195 * x}, ${offsetY - 195 * y})`;
+  };
+
+  /**
+   * The ring's area grows with the count, as d3-scale's
+   * `scaleSqrt().domain([0, 100]).range([0, 20])` has it.
+   *
+   * @param {number} count
+   */
+  const markerRadius = (count) => Math.max(5, 20 * (Math.sqrt(count) / 10));
 
   /** @param {number} count */
   const markerCoreRadius = (count) => Math.max(2.5, markerRadius(count) * 0.45);
@@ -48,9 +78,7 @@
       />
     </pattern>
   </defs>
-  {#each dataset.features as data, index (index)}
-    <path d={path(data)} style="fill:url(#vertical-lines)" />
-  {/each}
+  <path d={land} style="fill:url(#vertical-lines)" />
   <g>
     {#each nodes ? nodes : [] as marker (`${marker.lon}x${marker.lat}`)}
       <g
@@ -59,7 +87,7 @@
         data-tooltip-text={`${marker.country} - ${marker.city} - ${marker.count} ${marker.count === 1 ? "node" : "nodes"}`}
         data-tooltip-place="top"
         data-tooltip-type="info"
-        transform={`translate(${projection([marker.lon, marker.lat])[0]}, ${projection([marker.lon, marker.lat])[1]})`}
+        transform={placeOf(marker)}
       >
         <circle
           class="nodes-world-map__location-ring"
