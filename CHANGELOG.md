@@ -87,6 +87,7 @@ and this project adheres to
 - Strike through what a failed transaction would have sent, and say its sender only tried
 - Show new blocks as soon as the node accepts them
 - Load transactions 25 at a time on the transactions page and an account's page, the next ones with Show more
+- Load pages faster
 
 ### Removed
 
