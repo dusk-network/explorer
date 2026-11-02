@@ -10,7 +10,11 @@ and this project adheres to
 
 ### Added
 
+- Show who generated each block in the blocks list
+
 ### Changed
+
+- Show a block's fees and how full it was in the blocks list, instead of gas used and average gas price
 
 ### Removed
 

@@ -34,13 +34,9 @@
 >
   {#if isSmallScreen}
     {#each blocks as block (block)}
-      <BlocksList data={block} />
+      <BlocksList brief data={block} />
     {/each}
   {:else}
-    <BlocksTable
-      data={blocks}
-      className="latest-blocks-card__table"
-      showGas={false}
-    />
+    <BlocksTable brief data={blocks} className="latest-blocks-card__table" />
   {/if}
 </DataCard>

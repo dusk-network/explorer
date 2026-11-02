@@ -92,6 +92,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
+              >
+                <!---->
+                m6dy…tnpf
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -120,6 +140,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -177,6 +199,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
+              >
+                <!---->
+                m9dV…FQyz
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -205,6 +247,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -262,6 +306,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mHGvQ9XdjzuGyixBGrMeeC7EdX9QZNWV64FQWWwTMhFYmdskMbZkQMGiKC3DXqx8ALS4ipC3TJ9NckHPzD7AC1Tfc1GH3TrCxAZ8o93rPux7H5V95Q3hPxdxHiTfxTvgn7f"
+              >
+                <!---->
+                mHGv…gn7f
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -290,6 +354,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -347,6 +413,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mLx5HUo5PhsobwgMJhzL9j8TY7TjC13EsxHL7cKLTmMJ9BqvnG2RttD2uMg1FEDprnSvmN7BwCkpr6wW9XSco2ASrUjou2neUXj4uq16NreXVk4jmfr3CEHqvBrRgEzoka8"
+              >
+                <!---->
+                mLx5…oka8
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -375,6 +461,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -432,6 +520,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
+              >
+                <!---->
+                mTgX…AsfU
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -460,6 +568,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -517,6 +627,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mUJHMDEBiTUVJU5U76Krb5wwMXK6R7CjBrTTGFFAZzgwnasxspJMbcUjedRsY8TbrRfxCuyhmvgb7Kv4chjvHNDsyWA6J8XTSCPH4y5PeqLyLvCCdgUnQ74FDFHNxRNhoAA"
+              >
+                <!---->
+                mUJH…hoAA
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -545,6 +675,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -602,6 +734,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
+              >
+                <!---->
+                mUUp…wzaW
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -630,6 +782,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -687,6 +841,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mWvq9EWD9b8gQw5uD4GnYaV8Wsn86youaZ1ghCjwTkTyghBnrMz1tGdwKRnjd3svKQE1fMxfdu6M64pEN9NCUhcbwrER4s3HKpYGEp4m7pfsBMoDjbYzTTUxooU7BY2oEDe"
+              >
+                <!---->
+                mWvq…oEDe
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -715,6 +889,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -772,6 +948,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
+              >
+                <!---->
+                mXKJ…o7x4
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -800,6 +996,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -857,6 +1055,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
+              >
+                <!---->
+                mdXs…mZ2J
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -885,6 +1103,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -942,6 +1162,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mdca2ea2KpRZaW6s6NkYAY29wbprGPGGo8MmB812HxUXcvb8dDDE8J4GjN9VH9FbB8GJdohgFKoK2oDFLyL5cCsDtPU1maWw1o7Xnzo7uHBPg8MmRfxyBCUVRji7SxM2zBD"
+              >
+                <!---->
+                mdca…2zBD
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -970,6 +1210,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -1027,6 +1269,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mgmcqkk1VFfsa1ko7ydBjhVuM9WuVFDGby9JthvDWsKX9kyqdNeqrSzbW1ccQ19sVfbHgVzfYwdGLipYdPcU4ZD5CjsbRmzZeEQ3WBZHUcEWDB1wsvV5avoC2xddxLvEDVP"
+              >
+                <!---->
+                mgmc…EDVP
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -1055,6 +1317,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -1112,6 +1376,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mvft6AXjR1mDtg1Qo3GzGBKZAvvxY1S6h41DSEPh9Ewj9GFR61rPQnjVaM1W9nqkHijRC2d5Yo4FSBwU8wf9eHeEJYXuMSrB7eJxvsY6HjCeDJ9pKfJLdjayAfrxEyudvx2"
+              >
+                <!---->
+                mvft…dvx2
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -1140,6 +1424,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -1197,6 +1483,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=mvsVWvCaiHtugFDx1VmDCX5Zeex1u1768EWuMYBF68czYLbJ8rtaxBbqKvLJJsCD9xEDmLm2STduJsb2j11VEsT7ZUGBzAURd8884zUMDyeWVgrE1CfbGCaYvcdeSzHCUUb"
+              >
+                <!---->
+                mvsV…CUUb
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -1225,6 +1531,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         <div
@@ -1282,6 +1590,26 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
                 <!---->
               </time>
               <!---->
+               
+              <span
+                aria-hidden="true"
+              >
+                ·
+              </span>
+               by 
+              <!---->
+              <a
+                class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                href="/some-base-path/accounts/?key=n2DPucZgNznPCfhRfAS8aHQUktJYZ99wAUcYM5Qijs7XyENoF6w1bzHuHdX9duEcZTX1X7o7tX9UkFF35AE8JzdbGqN5zYNAnyGJXVogBzbDNKwS6GhaRRR9f95PUxRwtD1"
+              >
+                <!---->
+                n2DP…wtD1
+                
+                <!---->
+              </a>
+              
+              <!---->
+              <!---->
             </span>
           </div>
            
@@ -1310,6 +1638,8 @@ exports[`Blocks page > should render the Blocks page with the mobile layout 1`] 
               0
       transactions
             </span>
+             
+            <!---->
           </div>
         </div>
         
@@ -1438,7 +1768,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
     >
       <!---->
       <div
-        class="table-container blocks-table data-card__table"
+        class="table-container blocks-table blocks-table--full data-card__table"
       >
         <table
           class="table"
@@ -1465,10 +1795,10 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <th
-                class="table__header-cell align-right"
+                class="table__header-cell align-left"
               >
                 <!---->
-                Transactions
+                Generated by
                 
                 
               </th>
@@ -1480,7 +1810,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                 class="table__header-cell align-right"
               >
                 <!---->
-                Gas used
+                Transactions
                 
                 
               </th>
@@ -1582,10 +1912,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=m6dy2gz3jC3ifLpZmdTaZbgcptWxRrfnQEZ8hG8ewhopKXTcCTnTqs4UeucXFkcSuFMfTqMzT1Go6KfNkuFvJPvsrvp5vKxEccuJNUgMi1uSCne1ti5kgYeNHtW82FWtnpf"
+                >
+                  <!---->
+                  m6dy2g…FWtnpf
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -1598,7 +1940,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -1630,6 +1972,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -1711,10 +2055,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=m9dVuRgr3CQX5P5Fxh2t68QRhRFBZFWroUM9Do77Xusc6ZuJHfj4xhPokm62bFXw8WrA2Lq7dkJcFSEGHKBvVxJ2TmZBJKBBjzhEXtCP7UmZ9qF734nJJhb2f94r33pFQyz"
+                >
+                  <!---->
+                  m9dVuR…3pFQyz
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -1727,7 +2083,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -1759,6 +2115,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -1840,10 +2198,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mHGvQ9XdjzuGyixBGrMeeC7EdX9QZNWV64FQWWwTMhFYmdskMbZkQMGiKC3DXqx8ALS4ipC3TJ9NckHPzD7AC1Tfc1GH3TrCxAZ8o93rPux7H5V95Q3hPxdxHiTfxTvgn7f"
+                >
+                  <!---->
+                  mHGvQ9…Tvgn7f
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -1856,7 +2226,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -1888,6 +2258,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -1969,10 +2341,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mLx5HUo5PhsobwgMJhzL9j8TY7TjC13EsxHL7cKLTmMJ9BqvnG2RttD2uMg1FEDprnSvmN7BwCkpr6wW9XSco2ASrUjou2neUXj4uq16NreXVk4jmfr3CEHqvBrRgEzoka8"
+                >
+                  <!---->
+                  mLx5HU…Ezoka8
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -1985,7 +2369,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2017,6 +2401,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2098,10 +2484,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mTgXDqkyVacn7zCgoJfk7rKMVbvKhxfG1WD3jcXaXXdmUwiDouhYvGTGgVtYqW7MsvbKYtpFMKDRkJNJ5BWRvkP8TLHf2uz1XUuPU7cnz5nRE4uXaAhpCPPSjgAseybAsfU"
+                >
+                  <!---->
+                  mTgXDq…ybAsfU
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2114,7 +2512,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2146,6 +2544,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2227,10 +2627,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mUJHMDEBiTUVJU5U76Krb5wwMXK6R7CjBrTTGFFAZzgwnasxspJMbcUjedRsY8TbrRfxCuyhmvgb7Kv4chjvHNDsyWA6J8XTSCPH4y5PeqLyLvCCdgUnQ74FDFHNxRNhoAA"
+                >
+                  <!---->
+                  mUJHMD…RNhoAA
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2243,7 +2655,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2275,6 +2687,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2356,10 +2770,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mUUpjnXow2LHwm8a65cJsckTeQz55mRem6Vzo5VjZDbANnCoDKAFWESLiAPx6WUYcuosbSpYSoRm21amChNuLu3gqA2zo9VXdPNYNkfq8pxrsre7jNbLdDocqSfzQcywzaW"
+                >
+                  <!---->
+                  mUUpjn…cywzaW
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2372,7 +2798,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2404,6 +2830,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2485,10 +2913,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mWvq9EWD9b8gQw5uD4GnYaV8Wsn86youaZ1ghCjwTkTyghBnrMz1tGdwKRnjd3svKQE1fMxfdu6M64pEN9NCUhcbwrER4s3HKpYGEp4m7pfsBMoDjbYzTTUxooU7BY2oEDe"
+                >
+                  <!---->
+                  mWvq9E…Y2oEDe
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2501,7 +2941,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2533,6 +2973,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2614,10 +3056,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mXKJ97xTtrSPzxWHBKPurUpehP1yPywcPVw554CCFhMtEL4Vh6jQTmFgqQD416xScqwEix5NCQwfQ9BAh1pkp3Fae6BTG5FxGyMEiP3VDzeUPuXjqaC9dp6H7JgkCK2o7x4"
+                >
+                  <!---->
+                  mXKJ97…K2o7x4
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2630,7 +3084,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2662,6 +3116,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2743,10 +3199,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mdXsA3Ee1YDt1aTcvUg7AKpzTKgJBoUDpvSRYmtZhM85dLBZN6VPYDd4BzFxLMo3RA2XKEc7t3nfipBcKQHbgpCqSZTZEZz8ohhMzqjDfvepuR9FPWCcJQfDwK8VZPimZ2J"
+                >
+                  <!---->
+                  mdXsA3…PimZ2J
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2759,7 +3227,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2791,6 +3259,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -2872,10 +3342,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mdca2ea2KpRZaW6s6NkYAY29wbprGPGGo8MmB812HxUXcvb8dDDE8J4GjN9VH9FbB8GJdohgFKoK2oDFLyL5cCsDtPU1maWw1o7Xnzo7uHBPg8MmRfxyBCUVRji7SxM2zBD"
+                >
+                  <!---->
+                  mdca2e…xM2zBD
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -2888,7 +3370,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -2920,6 +3402,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -3001,10 +3485,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mgmcqkk1VFfsa1ko7ydBjhVuM9WuVFDGby9JthvDWsKX9kyqdNeqrSzbW1ccQ19sVfbHgVzfYwdGLipYdPcU4ZD5CjsbRmzZeEQ3WBZHUcEWDB1wsvV5avoC2xddxLvEDVP"
+                >
+                  <!---->
+                  mgmcqk…LvEDVP
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -3017,7 +3513,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -3049,6 +3545,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -3130,10 +3628,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mvft6AXjR1mDtg1Qo3GzGBKZAvvxY1S6h41DSEPh9Ewj9GFR61rPQnjVaM1W9nqkHijRC2d5Yo4FSBwU8wf9eHeEJYXuMSrB7eJxvsY6HjCeDJ9pKfJLdjayAfrxEyudvx2"
+                >
+                  <!---->
+                  mvft6A…yudvx2
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -3146,7 +3656,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -3178,6 +3688,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -3259,10 +3771,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=mvsVWvCaiHtugFDx1VmDCX5Zeex1u1768EWuMYBF68czYLbJ8rtaxBbqKvLJJsCD9xEDmLm2STduJsb2j11VEsT7ZUGBzAURd8884zUMDyeWVgrE1CfbGCaYvcdeSzHCUUb"
+                >
+                  <!---->
+                  mvsVWv…zHCUUb
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -3275,7 +3799,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -3307,6 +3831,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>
@@ -3388,10 +3914,22 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                
               <!---->
               <td
-                class="table__data-cell align-right"
+                class="table__data-cell align-left"
               >
                 <!---->
-                0
+                <!---->
+                <!---->
+                <a
+                  class="dusk-anchor dusk-anchor--on-surface transaction-party transaction-party--account chain-link"
+                  href="/some-base-path/accounts/?key=n2DPucZgNznPCfhRfAS8aHQUktJYZ99wAUcYM5Qijs7XyENoF6w1bzHuHdX9duEcZTX1X7o7tX9UkFF35AE8JzdbGqN5zYNAnyGJXVogBzbDNKwS6GhaRRR9f95PUxRwtD1"
+                >
+                  <!---->
+                  n2DPuc…xRwtD1
+                  
+                  <!---->
+                </a>
+                
+                
                 
                 
               </td>
@@ -3404,7 +3942,7 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
               >
                 <!---->
                 <span
-                  class="block__gas"
+                  class="block__none"
                 >
                   0
                 </span>
@@ -3436,6 +3974,8 @@ exports[`Blocks page > should render the Blocks page, read the blocks again at e
                     DUSK
                   </span>
                 </span>
+                 
+                <!---->
                 
                 
               </td>

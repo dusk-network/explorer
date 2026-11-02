@@ -3,15 +3,21 @@
 <script>
   import { mdiCubeOutline } from "@mdi/js";
 
-  import { AppAnchor } from "$lib/components";
+  import { AppAnchor, TransactionParty } from "$lib/components";
   import { Icon, RelativeTime } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
-  import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
+  import { formatDusk, formatDuskExact, formatFee } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
   import "./BlocksList.css";
 
   /** @type {Block} */
   export let data;
+
+  /**
+   * Whether the row is the home page's short one. On the blocks page a row
+   * also says who made the block, and the fees it took, if any.
+   */
+  export let brief = false;
 
   const formatter = createValueFormatter("en");
 
@@ -19,9 +25,10 @@
 </script>
 
 <!--
-  A block as a row of the web wallet's History on a phone: its height and
-  when, its reward and how many transactions it holds. The height is the
-  link to the block, and the whole row opens it.
+  A block as a row of the web wallet's History on a phone: its height, when
+  and by whom, its reward and how many transactions it holds. The height is
+  the link to the block, and the whole row opens it; the generator opens its
+  account.
 -->
 <div class="block-row">
   <span aria-hidden="true" class="row-icon"><Icon path={mdiCubeOutline} /></span
@@ -41,6 +48,12 @@
         data-tooltip-text={formatDateTime(data.header.date)}
         date={data.header.date}
       />
+      {#if !brief && data.header.generator}<span aria-hidden="true">·</span>
+        by
+        <TransactionParty
+          narrow
+          party={{ address: data.header.generator, kind: "account" }}
+        />{/if}
     </span>
   </div>
   <div class="block-row__end">
@@ -54,5 +67,9 @@
       >{formatter(count)}
       {count === 1 ? "transaction" : "transactions"}</span
     >
+    {#if !brief && data.header.feespaid > 0}
+      <span class="row-line">+ {formatFee(data.header.feespaid)} DUSK fees</span
+      >
+    {/if}
   </div>
 </div>

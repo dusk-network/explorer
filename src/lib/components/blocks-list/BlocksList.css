@@ -46,6 +46,12 @@
   outline-offset: -2px;
 }
 
+/* The generator stays a link of its own, to its account. */
+.block-row .transaction-party {
+  position: relative;
+  z-index: 1;
+}
+
 /*
  * With a mouse, the exact reward and the full time show on hover. On a
  * touch screen a tap there opens the block, as anywhere in the row.

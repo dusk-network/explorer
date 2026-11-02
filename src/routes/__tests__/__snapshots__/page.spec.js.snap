@@ -1800,7 +1800,7 @@ exports[`home page > should render the home page, read the latest chain info aga
       >
         <!---->
         <div
-          class="table-container blocks-table latest-blocks-card__table"
+          class="table-container blocks-table blocks-table--brief latest-blocks-card__table"
         >
           <table
             class="table"
@@ -1826,6 +1826,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <th
                   class="table__header-cell align-right"
                 >
@@ -1835,8 +1837,6 @@ exports[`home page > should render the home page, read the latest chain info aga
                   
                 </th>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -1933,17 +1933,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -1966,6 +1970,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2046,17 +2052,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2079,6 +2089,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2159,17 +2171,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2192,6 +2208,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2272,17 +2290,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2305,6 +2327,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2385,17 +2409,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2418,6 +2446,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2498,17 +2528,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2531,6 +2565,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2611,17 +2647,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2644,6 +2684,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2724,17 +2766,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2757,6 +2803,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2837,17 +2885,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2870,6 +2922,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -2950,17 +3004,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -2983,6 +3041,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -3063,17 +3123,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -3096,6 +3160,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -3176,17 +3242,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -3209,6 +3279,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -3289,17 +3361,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -3322,6 +3398,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -3402,17 +3480,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -3435,6 +3517,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>
@@ -3515,17 +3599,21 @@ exports[`home page > should render the home page, read the latest chain info aga
                 <!---->
                  
                 <!---->
+                 
+                <!---->
                 <td
                   class="table__data-cell align-right"
                 >
                   <!---->
-                  0
+                  <span>
+                    0
+                  </span>
+                   
+                  <!---->
                   
                   
                 </td>
                 
-                <!---->
-                 
                 <!---->
                  
                 <!---->
@@ -3548,6 +3636,8 @@ exports[`home page > should render the home page, read the latest chain info aga
                       DUSK
                     </span>
                   </span>
+                   
+                  <!---->
                   
                   
                 </td>

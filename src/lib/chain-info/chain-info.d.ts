@@ -14,6 +14,8 @@ type AccountStake = {
 type BlockHeader = {
   date: Date;
   feespaid: number;
+  /** The key of the provisioner that made the block: its account. */
+  generator: string;
   hash: string;
   height: number;
   nextblockhash: string;
