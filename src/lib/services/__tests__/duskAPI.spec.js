@@ -216,9 +216,14 @@ describe("duskAPI", () => {
       }
     );
 
+    // The 24 hours' change and the supply come with them, at no other request.
     await expect(duskAPI.getMarketData()).resolves.toStrictEqual({
+      circulatingSupply: 456000000,
       currentPrice: mockData.apiMarketData.market_data.current_price,
       marketCap: expectedMarketCap,
+      priceChange24h:
+        mockData.apiMarketData.market_data
+          .price_change_percentage_24h_in_currency.usd,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy).toHaveBeenNthCalledWith(
@@ -237,8 +242,12 @@ describe("duskAPI", () => {
       .mockRejectedValueOnce(new Error("Supply endpoint unavailable"));
 
     await expect(duskAPI.getMarketData()).resolves.toStrictEqual({
+      circulatingSupply: mockData.apiMarketData.market_data.circulating_supply,
       currentPrice: mockData.apiMarketData.market_data.current_price,
       marketCap: mockData.apiMarketData.market_data.market_cap,
+      priceChange24h:
+        mockData.apiMarketData.market_data
+          .price_change_percentage_24h_in_currency.usd,
     });
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy).toHaveBeenNthCalledWith(

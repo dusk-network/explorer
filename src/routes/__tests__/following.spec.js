@@ -36,7 +36,7 @@ describe("The home page, following the chain", () => {
     vi.doUnmock("$lib/dusk-domains");
   });
 
-  it("should show each block as the node announces it and keep the numbers up to date, asking for the provisioners twice in five minutes and for nothing but the new blocks between", async () => {
+  it("should show each block as the node announces it and keep the numbers and the lines under them up to date, asking for the provisioners twice in five minutes and for nothing but the new blocks between", async () => {
     const fake = createFakeNode();
 
     vi.stubGlobal("fetch", fake.fetch);
@@ -48,6 +48,13 @@ describe("The home page, following the chain", () => {
         .querySelectorAll(".statistics-panel__statistics-item--primary")[1]
         ?.querySelector(".statistics-panel__statistics-item-value")
         ?.textContent?.replace(/\D/g, "");
+    /** @param {number} card */
+    const noteOf = (card) =>
+      container
+        .querySelectorAll(".statistics-panel__statistics-item--primary")
+        [card]?.querySelector(".statistics-panel__statistics-item-note")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim();
     const listed = () =>
       Array.from(
         container.querySelectorAll(".latest-blocks-card a[href*='block?id=']"),
@@ -78,7 +85,15 @@ describe("The home page, following the chain", () => {
       // Within half a second of the node announcing it.
       expect(listed()[0]).toBe(block.hash);
       expect(lastBlock()).toBe(String(block.height));
+      expect(noteOf(1)).toMatch(/^(now|1 second ago)$/);
     }
+
+    // The last block's age, and the transactions by kind, from what the
+    // page reads anyway.
+    await vi.advanceTimersByTimeAsync(5_000);
+
+    expect(noteOf(1)).toBe("6 seconds ago");
+    expect(noteOf(2)).toBe(`${withTransactions} public · 0 shielded`);
 
     const since = fake.log.slice(opened);
     const graphql = since.filter((r) => r.path === "/on/graphql/query");

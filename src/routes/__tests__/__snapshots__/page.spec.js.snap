@@ -470,6 +470,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -524,6 +526,10 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
+          
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -572,6 +578,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -620,6 +628,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         
       </div>
@@ -1418,6 +1428,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -1472,6 +1484,10 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
+          
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -1520,6 +1536,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         <div
           class="statistics-panel__statistics-item statistics-panel__statistics-item--primary"
@@ -1568,6 +1586,8 @@ exports[`home page > should render the home page, read the latest chain info aga
             <!---->
             <!---->
           </div>
+           
+          <!---->
         </div>
         
       </div>

@@ -26,15 +26,24 @@ vi.mock("$lib/services", async (importOriginal) => {
   /** @type {import("$lib/services")} */
   const original = await importOriginal();
   const { apiMarketData, nodeLocationsCount } = await import("$lib/mock-data");
-  const { current_price: currentPrice, market_cap: marketCap } =
-    apiMarketData.market_data;
+  const {
+    circulating_supply: circulatingSupply,
+    current_price: currentPrice,
+    market_cap: marketCap,
+    price_change_percentage_24h_in_currency: { usd: priceChange24h },
+  } = apiMarketData.market_data;
 
   return {
     ...original,
     duskAPI: {
       ...original.duskAPI,
       getMarketData: () =>
-        resolveAfter(marketDataSettleTime, { currentPrice, marketCap }),
+        resolveAfter(marketDataSettleTime, {
+          circulatingSupply,
+          currentPrice,
+          marketCap,
+          priceChange24h,
+        }),
       getNodeLocations: vi.fn().mockResolvedValue(nodeLocationsCount),
     },
   };
@@ -130,6 +139,8 @@ describe("StatisticsPanel", () => {
     });
 
   it("should render the StatisticsPanel, with the numbers once they come", async () => {
+    // The last block's time is in the snapshot.
+    vi.setSystemTime(new Date(2024, 4, 30));
     setChain(1);
 
     const { container } = render(StatisticsPanel);
@@ -297,5 +308,41 @@ describe("StatisticsPanel", () => {
 
     expect(container.textContent).not.toContain("~");
     expect(container.querySelector(".approximate")).toBeNull();
+  });
+
+  it("should say more under each of the four numbers, from what the page reads anyway: the price's move, the stake's share of the supply, the last block's age and the transactions by kind", async () => {
+    setChain(1);
+
+    const { container } = render(StatisticsPanel);
+    const notes = () =>
+      Array.from(
+        container.querySelectorAll(
+          ".statistics-panel__statistics-item--primary"
+        ),
+        (card) =>
+          card
+            .querySelector(".statistics-panel__statistics-item-note")
+            ?.textContent?.replace(/\s+/g, " ")
+            .trim() ?? null
+      );
+
+    await act(() => newestBlock(mockData.apiStats.lastBlock, 4_000));
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    expect(notes()).toStrictEqual([
+      "Down 8.05% in 24h",
+      "12.7% of circulating supply",
+      "4 seconds ago",
+      "13,742 public · 2,621 shielded",
+    ]);
+    // The price's move in red too, its words saying the same.
+    expect(
+      container.querySelector(".statistics-panel__statistics-item-note")
+    ).toHaveClass("statistics-panel__statistics-item-note--down");
+
+    // The last block's age keeps up while no new block comes.
+    await vi.advanceTimersByTimeAsync(10_000);
+
+    expect(notes()[2]).toBe("14 seconds ago");
   });
 });

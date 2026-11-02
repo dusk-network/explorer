@@ -280,8 +280,18 @@ const duskAPI = {
       }
 
       return {
+        // The DUSK in circulation: Dusk's own count, else CoinGecko's.
+        circulatingSupply:
+          circulatingSupply !== null && !isNaN(circulatingSupply)
+            ? circulatingSupply
+            : (coinGeckoData.circulating_supply ?? null),
         currentPrice,
         marketCap,
+        // How much the price moved over the last 24 hours, in percent.
+        priceChange24h:
+          coinGeckoData.price_change_percentage_24h_in_currency?.usd ??
+          coinGeckoData.price_change_percentage_24h ??
+          null,
       };
     } catch (/** @type {any} */ error) {
       throw new Error(`Failed to fetch market data: ${error.message}`);
