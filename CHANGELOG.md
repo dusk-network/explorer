@@ -10,6 +10,16 @@ and this project adheres to
 
 ### Added
 
+### Changed
+
+### Removed
+
+### Fixed
+
+## [1.7.1] - 2026-11-02
+
+### Added
+
 - Show who generated each block in the blocks list
 - Add a line under each home page number: the price's 24h change, the stake's share of the circulating supply, the last block's age, and public and shielded transactions
 
@@ -17,10 +27,6 @@ and this project adheres to
 
 - Show a block's fees and how full it was in the blocks list, instead of gas used and average gas price
 - Fit the home page's number cards to their numbers, with the other numbers beside the map
-
-### Removed
-
-### Fixed
 
 ## [1.7.0] - 2026-11-02
 
@@ -416,6 +422,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.7.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.1
 [1.7.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.0
 [1.6.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.6.0
 [1.5.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.5.0
