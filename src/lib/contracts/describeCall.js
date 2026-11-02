@@ -2,9 +2,9 @@ import { duskEvmContracts } from "@dusk-network/networks/duskevm";
 
 import { STAKE_CONTRACT, labelOf, networkOf } from "$lib/network";
 
-/** Plain words for the common calls whose function name says less. */
-const stakeCalls = new Map([["withdraw", "Claim rewards"]]);
+import { stakeCallLabels } from "./stakeCalls";
 
+/** Plain words for the common calls whose function name says less. */
 const duskEvmBridgeCalls = new Map([
   ["depositETHToWithValue", "Deposit to DuskEVM"],
 ]);
@@ -49,7 +49,7 @@ function callsTo(contractId, chainId) {
 
   switch (contractId) {
     case STAKE_CONTRACT:
-      return stakeCalls;
+      return stakeCallLabels;
     case bridge?.bridge:
       return duskEvmBridgeCalls;
     case bridge?.portal:

@@ -17,7 +17,7 @@ describe("describeCall", () => {
       name: "Transfer contract",
     });
     await expect(describeCall(STAKE_CONTRACT, "stake")).resolves.toEqual({
-      label: null,
+      label: "Stake",
       name: "Stake contract",
     });
   });

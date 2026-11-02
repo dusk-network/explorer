@@ -57,15 +57,15 @@ describe("describeTransaction", () => {
     const call = {
       ...transfer,
       amount: 0,
-      contract: "02".padEnd(64, "0"),
+      contract: "01".padEnd(64, "0"),
       deposit: 0,
-      method: "withdraw",
+      method: "convert",
       to: null,
     };
 
     expect(
-      describeTransaction(call, { from: "alice.dusk", to: "Stake contract" })
-    ).toBe("alice.dusk called withdraw on Stake contract");
+      describeTransaction(call, { from: "alice.dusk", to: "Transfer contract" })
+    ).toBe("alice.dusk called convert on Transfer contract");
   });
 
   it("should say what a shielded transaction hides", () => {

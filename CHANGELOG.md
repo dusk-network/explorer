@@ -88,6 +88,7 @@ and this project adheres to
 - Show new blocks as soon as the node accepts them
 - Load transactions 25 at a time on the transactions page and an account's page, the next ones with Show more
 - Load pages faster
+- Say Stake, Unstake or Claim rewards for calls to the stake contract, in lists and in the transaction's sentence
 
 ### Removed
 

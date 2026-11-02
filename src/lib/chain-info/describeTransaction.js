@@ -1,3 +1,4 @@
+import { stakeCallOf } from "$lib/contracts/stakeCalls";
 import { formatDuskExact } from "$lib/dusk/currency";
 
 import summarizeTransaction from "./summarizeTransaction";
@@ -26,7 +27,9 @@ const wordsFor = (summary, from, to) => ({
  * Who sent how much to whom, in one plain sentence, with the names a page
  * shows for the sender and the receiver: a `.dusk` name, a contract's name
  * or a short address. A deposit to DuskEVM goes to the DuskEVM address its
- * call names. One that failed moved nothing: its sender only tried to send.
+ * call names. A call to the stake contract says what it did in its type's
+ * words: staked, unstaked or claimed rewards. One that failed moved
+ * nothing: its sender only tried.
  *
  * @param {Transaction} tx
  * @param {{ duskEvm?: string | null, from: string | null, to: string | null }} names
@@ -37,12 +40,24 @@ function describeTransaction(tx, { duskEvm = null, from, to }) {
   const { amount, receiver, sender } = wordsFor(summary, from, to);
   const sent = tx.txerror ? "tried to send" : "sent";
 
+  // Unless it sends DUSK on to an account as well.
+  const stakeCall =
+    summary.to?.kind === "contract"
+      ? stakeCallOf(tx.contract, tx.method)
+      : null;
+
   if (tx.method === "deploy") {
     return `${sender} deployed a contract`;
   }
 
   if (duskEvm) {
     return `${sender} ${sent} ${amount} to ${duskEvm} on DuskEVM`;
+  }
+
+  if (stakeCall) {
+    const did = tx.txerror ? stakeCall.tried : stakeCall.done;
+
+    return stakeCall.staked ? `${sender} ${did} ${amount}` : `${sender} ${did}`;
   }
 
   if (

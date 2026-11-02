@@ -161,14 +161,19 @@ describe("Transactions Table", () => {
     });
 
     it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
-      const stake = { ...call, method: "stake", txerror: "" };
+      const convert = {
+        ...call,
+        contract: "01".padEnd(64, "0"),
+        method: "convert",
+        txerror: "",
+      };
       const { container } = render(TransactionsTable, {
         props: {
           data: [
-            stake,
+            convert,
             // A value sent along: the receiver is an account.
             {
-              ...stake,
+              ...convert,
               amount: 1_000_000_000,
               to: transfer.to,
               txid: "e".repeat(64),
@@ -181,14 +186,16 @@ describe("Transactions Table", () => {
 
       await vi.waitFor(() => {
         expect(readOut(toContract, ".transaction__parties")).toMatch(
-          / To Stake contract$/
+          / To Transfer contract$/
         );
         // Plain words only: the function's name is for the transaction page.
         expect(textOf(toContract, ".transaction__line")).toBe("Contract call");
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
           ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`
         );
-        expect(textOf(toAccount, ".transaction__line")).toBe("Stake contract");
+        expect(textOf(toAccount, ".transaction__line")).toBe(
+          "Transfer contract"
+        );
       });
     });
 

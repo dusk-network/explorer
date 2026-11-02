@@ -790,4 +790,73 @@ describe("Transaction Details", () => {
       "0.000290766 DUSK (< $0.01)"
     );
   });
+
+  it("should say what a call to the stake contract did, in its type's words, as the Dusk wallets do", async () => {
+    const sender = String(baseProps.data.from);
+    const call = {
+      ...baseProps.data,
+      amount: 0,
+      contract:
+        "0200000000000000000000000000000000000000000000000000000000000000",
+      deposit: 0,
+      to: null,
+    };
+    /** @type {[any, string, string][]} */
+    const cases = [
+      [
+        { ...call, deposit: 442_409_461_511, method: "stake" },
+        `${sender.slice(0, 6)}…${sender.slice(-6)} staked 442.409461511 DUSK`,
+        "Stake",
+      ],
+      [
+        { ...call, method: "unstake" },
+        `${sender.slice(0, 6)}…${sender.slice(-6)} unstaked`,
+        "Unstake",
+      ],
+      [
+        { ...call, method: "withdraw" },
+        `${sender.slice(0, 6)}…${sender.slice(-6)} claimed rewards`,
+        "Claim rewards",
+      ],
+      [
+        {
+          ...call,
+          deposit: 1_000_000_000_000,
+          method: "stake",
+          txerror: "Panic",
+        },
+        `${sender.slice(0, 6)}…${sender.slice(-6)} tried to stake 1,000 DUSK`,
+        "Stake",
+      ],
+      // A shielded claim hides who claimed, and sends no DUSK to hide.
+      [
+        {
+          ...call,
+          amount: undefined,
+          from: undefined,
+          method: "withdraw",
+          txtype: "Phoenix",
+        },
+        "A shielded account claimed rewards",
+        "Claim rewards",
+      ],
+    ];
+
+    for (const [data, sentence, type] of cases) {
+      const { container } = render(TransactionDetails, { ...baseProps, data });
+
+      await vi.waitFor(() => {
+        expect(
+          container
+            .querySelector(".transaction-details__summary-text")
+            ?.textContent?.replace(/\s+/g, " ")
+            .trim()
+        ).toBe(sentence);
+        expect(getDefinition(container, "type")).toBe(type);
+      });
+      // The function's own name stays a technical detail.
+      expect(getDefinition(container, "method")).toBe(data.method);
+      cleanup();
+    }
+  });
 });
