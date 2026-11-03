@@ -1,2 +1,5 @@
+/explorer / 302
+/explorer/ / 302
 /block/:id /blocks/block/?id=:id 302
 /block/:id/ /blocks/block/?id=:id 302
+/explorer/* /:splat 302

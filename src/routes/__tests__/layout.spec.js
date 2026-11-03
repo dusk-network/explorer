@@ -284,4 +284,19 @@ describe("Main layout", () => {
     expect(setNodeInfo).not.toHaveBeenCalled();
     setNodeInfo.mockRestore();
   });
+
+  it("should tidy the mark from a link that came from the old address", () => {
+    window.history.replaceState(null, "", "/blocks/block/?moved=1&id=abc");
+
+    renderWithSimpleContent(MainLayout, baseOptions);
+
+    expect(window.location.search).toBe("?id=abc");
+
+    window.history.replaceState(null, "", "/?moved=1&");
+    cleanup();
+    renderWithSimpleContent(MainLayout, baseOptions);
+
+    expect(window.location.search).toBe("");
+    window.history.replaceState(null, "", "/");
+  });
 });

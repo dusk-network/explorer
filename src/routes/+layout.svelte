@@ -33,6 +33,16 @@
   };
 
   onMount(() => {
+    // A link from the old address arrives marked, so that a browser's
+    // remembered redirect from before the move can't send it round in a
+    // circle. Here, the mark has done its job.
+    const url = new URL(window.location.href);
+
+    if (url.searchParams.has("moved")) {
+      url.searchParams.delete("moved");
+      window.history.replaceState(window.history.state, "", url);
+    }
+
     askNode();
 
     const timer = setInterval(askNodeIfShown, NODE_CHECK_INTERVAL);
