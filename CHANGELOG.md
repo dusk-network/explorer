@@ -12,6 +12,8 @@ and this project adheres to
 
 ### Changed
 
+- Link the other networks' explorers at their own domains
+
 ### Removed
 
 ### Fixed

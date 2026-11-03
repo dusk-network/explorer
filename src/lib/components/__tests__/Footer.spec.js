@@ -29,7 +29,7 @@ describe("Footer", () => {
     await act(() => appStore.setNodeInfo(apiNodeInfo));
 
     expect(links().slice(0, 4)).toStrictEqual([
-      ["Mainnet", "https://apps.dusk.network/explorer"],
+      ["Mainnet", "https://explorer.dusk.network"],
       ["Devnet", "https://apps.devnet.dusk.network/explorer"],
       ["Privacy policy", "https://dusk.network/privacy-policy"],
       ["Terms of use", "https://dusk.network/terms-of-use"],
