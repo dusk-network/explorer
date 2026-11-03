@@ -79,17 +79,27 @@ export const getBlockHashQueryInfo = (height) => ({
   `,
 });
 
-/** @param {string} id */
+/**
+ * What the node finds a block by: all digits, its height; else its hash.
+ *
+ * @param {string} id
+ */
+const blockBy = (id) =>
+  /^\d{1,19}$/.test(id)
+    ? `height: ${gqlNumber(Number(id))}`
+    : `hash: ${gqlString(id)}`;
+
+/** @param {string} id A block's hash, or its height */
 export const getBlockQueryInfo = (id) => ({
   query: `
     ${blockFragment}
-    query { block(hash: ${gqlString(id)}) {...BlockInfo} }
+    query { block(${blockBy(id)}) {...BlockInfo} }
   `,
 });
 
-/** @param {string} id */
+/** @param {string} id A block's hash, or its height */
 export const getBlockDetailsQueryInfo = (id) => ({
-  query: `query { block(hash: ${gqlString(id)}) { header { json } } }`,
+  query: `query { block(${blockBy(id)}) { header { json } } }`,
 });
 
 /** @param {number} amount */

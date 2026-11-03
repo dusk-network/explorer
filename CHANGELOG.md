@@ -10,6 +10,7 @@ and this project adheres to
 
 ### Added
 
+- Open a block by its height, also at `/block/<height>` [#26]
 - Add a switch to show provisioners with no stake [#63]
 
 ### Changed
@@ -443,6 +444,7 @@ dusk-network/rusk#3931: https://github.com/dusk-network/rusk/issues/3931
 dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 [#18]: https://github.com/dusk-network/explorer/issues/18
 [#19]: https://github.com/dusk-network/explorer/issues/19
+[#26]: https://github.com/dusk-network/explorer/issues/26
 [#30]: https://github.com/dusk-network/explorer/issues/30
 [#63]: https://github.com/dusk-network/explorer/issues/63
 [#71]: https://github.com/dusk-network/explorer/issues/71
