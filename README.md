@@ -59,6 +59,6 @@ The application will determine which network it is connected to by the subdomain
 
 ## Deploying
 
-The explorer runs on Cloudflare (`wrangler.jsonc`), at `explorer.dusk.network` and `explorer.testnet.dusk.network`. It picks its node by hostname, so one build serves both.
+The explorer runs on Cloudflare (`wrangler.jsonc`), at `explorer.dusk.network`, `explorer.testnet.dusk.network` and `explorer.devnet.dusk.network`. It picks its node by hostname, so one build serves them all.
 
-The Deploy workflow does it: every merge to `main` goes to testnet, and an `explorer-v*` tag goes to mainnet. Its Cloudflare token is a secret of the `cloudflare` environment, which only `main` and those tags can use.
+The Deploy workflow does it: every merge to `main` goes to testnet and devnet, and an `explorer-v*` tag goes to mainnet. Its Cloudflare token is a secret of the `cloudflare` environment, which only `main` and those tags can use.
