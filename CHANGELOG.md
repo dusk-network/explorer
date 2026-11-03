@@ -12,10 +12,16 @@ and this project adheres to
 
 ### Changed
 
+### Removed
+
+### Fixed
+
+## [1.7.3] - 2026-11-03
+
+### Changed
+
 - Show who generated each block on the home page, and a contract call's method in transaction rows and on the transaction page
 - Show a chevron on technical details
-
-### Removed
 
 ### Fixed
 
@@ -433,6 +439,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.7.3]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.3
 [1.7.2]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.2
 [1.7.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.1
 [1.7.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.0
