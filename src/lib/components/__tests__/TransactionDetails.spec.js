@@ -430,8 +430,14 @@ describe("Transaction Details", () => {
       "0x029e",
       "d61b",
     ]);
-    expect(fetchSpy).toHaveBeenCalledOnce();
-    expect(fetchSpy.mock.calls[0][0]).toBe(
+    // Only what was asked of DuskEVM's explorer: under load, a read another
+    // test began can land here too.
+    const askedOfExplorer = fetchSpy.mock.calls
+      .map(([url]) => String(url))
+      .filter((url) => url.startsWith("https://explorer.testnet.evm."));
+
+    expect(askedOfExplorer).toHaveLength(1);
+    expect(askedOfExplorer[0]).toBe(
       "https://explorer.testnet.evm.dusk.network/api/v2/addresses/0x5a3d8e1b7c2f4a6b9e0d1c3f5a7b9c2d4e6f8a01/internal-transactions?filter=to"
     );
 
