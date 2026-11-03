@@ -52,6 +52,15 @@ describe("Tooltip", () => {
   };
 
   const clearTimeoutSpy = vi.spyOn(window, "clearTimeout");
+  /**
+   * The timers the tooltip cleared. The test worker clears some of its own
+   * under load, and those it has marked with `unref`, as the tooltip never does.
+   */
+  const tooltipClears = () =>
+    clearTimeoutSpy.mock.calls.filter(
+      ([timer]) => typeof timer !== "object" || timer.hasRef()
+    );
+
   const disconnectSpy = vi.spyOn(IntersectionObserver.prototype, "disconnect");
   const observeSpy = vi.spyOn(IntersectionObserver.prototype, "observe");
   const unobserveSpy = vi.spyOn(IntersectionObserver.prototype, "unobserve");
@@ -200,7 +209,7 @@ describe("Tooltip", () => {
         expect(prevTooltipElement.getAttribute("aria-described-by")).toBe(
           baseProps.id
         );
-        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        expect(tooltipClears()).toHaveLength(0);
         expect(computePosition).not.toHaveBeenCalled();
       });
 
@@ -229,7 +238,7 @@ describe("Tooltip", () => {
         expect(prevTooltipElement.getAttribute("aria-described-by")).toBe(
           baseProps.id
         );
-        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        expect(tooltipClears()).toHaveLength(0);
         expect(computePosition).not.toHaveBeenCalled();
       });
 
@@ -239,7 +248,7 @@ describe("Tooltip", () => {
 
         await fireEvent.focusIn(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(observeSpy).toHaveBeenCalledTimes(1);
         expect(observeSpy).toHaveBeenCalledWith(target);
         expect(computePosition).toHaveBeenCalledTimes(1);
@@ -273,7 +282,7 @@ describe("Tooltip", () => {
 
         await fireEvent.mouseEnter(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(observeSpy).toHaveBeenCalledTimes(1);
         expect(observeSpy).toHaveBeenCalledWith(target);
         expect(computePosition).toHaveBeenCalledTimes(1);
@@ -312,7 +321,7 @@ describe("Tooltip", () => {
 
         await fireEvent.mouseEnter(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(computePosition).toHaveBeenCalledTimes(1);
         expect(computePosition).toHaveBeenCalledWith(
           target,
@@ -369,7 +378,7 @@ describe("Tooltip", () => {
 
         await fireEvent.mouseEnter(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(observeSpy).toHaveBeenCalledTimes(1);
         expect(computePosition).toHaveBeenCalledTimes(1);
         expect(setOffset).toHaveBeenCalledTimes(1);
@@ -420,7 +429,7 @@ describe("Tooltip", () => {
 
         await fireEvent.focusOut(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(unobserveSpy).toHaveBeenCalledTimes(1);
         expect(unobserveSpy).toHaveBeenCalledWith(target);
 
@@ -444,7 +453,7 @@ describe("Tooltip", () => {
 
         await fireEvent.mouseLeave(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(unobserveSpy).toHaveBeenCalledTimes(1);
         expect(unobserveSpy).toHaveBeenCalledWith(target);
 
@@ -470,7 +479,7 @@ describe("Tooltip", () => {
 
         await fireEvent.mouseLeave(target);
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(unobserveSpy).toHaveBeenCalledTimes(1);
         expect(unobserveSpy).toHaveBeenCalledWith(target);
 
@@ -503,7 +512,7 @@ describe("Tooltip", () => {
         await fireEvent.mouseLeave(target);
         await tick();
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(unobserveSpy).toHaveBeenCalledTimes(1);
         expect(unobserveSpy).toHaveBeenCalledWith(target);
         expect(tooltip).toHaveTextContent("");
@@ -525,14 +534,14 @@ describe("Tooltip", () => {
         await fireEvent.keyDown(target, { key: "a" });
         await vi.advanceTimersToNextTimerAsync();
 
-        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        expect(tooltipClears()).toHaveLength(0);
         expect(unobserveSpy).not.toHaveBeenCalled();
         expect(tooltip.getAttribute("aria-hidden")).toBe("false");
 
         await fireEvent.keyDown(target, { key: "Escape" });
         await vi.advanceTimersToNextTimerAsync();
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(unobserveSpy).toHaveBeenCalledTimes(1);
         expect(unobserveSpy).toHaveBeenCalledWith(target);
         expect(tooltip).toHaveTextContent("");
@@ -561,7 +570,7 @@ describe("Tooltip", () => {
         await tick();
 
         expect(target.isConnected).toBe(false);
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(tooltip.getAttribute("aria-hidden")).toBe("true");
         expect(disconnectSpy).toHaveBeenCalledTimes(1);
       });
@@ -588,7 +597,7 @@ describe("Tooltip", () => {
 
         await tick();
 
-        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        expect(tooltipClears()).toHaveLength(0);
         expect(tooltip.getAttribute("aria-hidden")).toBe("false");
         expect(disconnectSpy).not.toHaveBeenCalled();
       });
@@ -613,7 +622,7 @@ describe("Tooltip", () => {
 
         await tick();
 
-        expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
+        expect(tooltipClears()).toHaveLength(1);
         expect(tooltip.getAttribute("aria-hidden")).toBe("true");
         expect(disconnectSpy).toHaveBeenCalledTimes(1);
       });
@@ -637,7 +646,7 @@ describe("Tooltip", () => {
 
         await tick();
 
-        expect(clearTimeoutSpy).not.toHaveBeenCalled();
+        expect(tooltipClears()).toHaveLength(0);
         expect(tooltip.getAttribute("aria-hidden")).toBe("false");
         expect(disconnectSpy).not.toHaveBeenCalled();
       });
