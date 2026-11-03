@@ -30,7 +30,7 @@ describe("Footer", () => {
 
     expect(links().slice(0, 4)).toStrictEqual([
       ["Mainnet", "https://explorer.dusk.network"],
-      ["Devnet", "https://apps.devnet.dusk.network/explorer"],
+      ["Devnet", "https://explorer.devnet.dusk.network"],
       ["Privacy policy", "https://dusk.network/privacy-policy"],
       ["Terms of use", "https://dusk.network/terms-of-use"],
     ]);
