@@ -24,7 +24,7 @@ The application defines these variables by reading a local `.env`
 ```
 # *_PATH variables can be empty string, must start with a slash otherwise, must not end with a slash
 
-VITE_BASE_PATH="" # Optional, set to '/explorer' when deploying to an 'apps.*' subdomain
+VITE_BASE_PATH="" # Optional, a path to serve it under; empty on its own domain
 VITE_BLOCKS_LIST_ENTRIES=100
 VITE_CHAIN_INFO_ENTRIES=15
 VITE_MARKET_DATA_REFETCH_INTERVAL=120000
@@ -57,3 +57,15 @@ The application will determine which network it is connected to by the subdomain
 - `npm run test:watch` runs the test suite in watch mode
 - `npm run typecheck` runs the type checker
 - `npm run typecheck:watch` runs the type checker in watch mode
+
+## Deploying
+
+The explorer runs on Cloudflare (`wrangler.jsonc`), at `explorer.dusk.network` and `explorer.testnet.dusk.network`. It picks its node by hostname, so one build serves both.
+
+Build with no local `.env`, testnet first:
+
+```bash
+VITE_FEATURE_BLOB_HASHES=true npm run build
+npx wrangler deploy --env testnet
+npx wrangler deploy --env mainnet
+```
