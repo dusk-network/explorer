@@ -1,4 +1,6 @@
 <script>
+  import { decodeBase58 } from "@dusk-network/networks/account";
+
   import { page } from "$app/stores";
   import { AccountOverview, TransactionsCard } from "$lib/components/";
   import { getStakedDusk } from "$lib/contracts";
@@ -166,7 +168,9 @@
 
   $: key = $page.url.searchParams.get("key");
   $: searchedName = $page.url.searchParams.get("name");
-  $: if (key && key !== lastRequestedKey) {
+  // A public account's address: 96 bytes. Anything else, the node can't answer.
+  $: isAccount = !!key && decodeBase58(key)?.length === 96;
+  $: if (key && isAccount && key !== lastRequestedKey) {
     lastRequestedKey = key;
     generation += 1;
     getTransactions();
@@ -176,6 +180,7 @@
   $: chainId = $appStore.nodeInfo.chain_id;
   $: if (
     key &&
+    isAccount &&
     chainId !== undefined &&
     `${key}:${chainId}` !== lastStakedDuskAsk
   ) {
@@ -187,7 +192,7 @@
   $: done = data !== null && !!reading?.done;
 </script>
 
-{#if key}
+{#if isAccount && key}
   <section>
     <article>
       <AccountOverview
@@ -213,6 +218,10 @@
       variant="section"
     />
   </section>
+{:else if key}
+  <p class="account-missing">
+    This isn't a valid account address. Check it and search again.
+  </p>
 {:else}
   <p class="account-missing">No account given.</p>
 {/if}

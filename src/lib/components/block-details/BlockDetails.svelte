@@ -32,6 +32,7 @@
   export let payload;
 
   const formatter = createValueFormatter("en");
+  const gasPriceFormatter = createValueFormatter("en", 0, 2);
 
   /** @type {Boolean} */
   let isPayloadToggled = false;
@@ -135,7 +136,7 @@
     <ListItem>
       <svelte:fragment slot="term">Average gas price</svelte:fragment>
       <svelte:fragment slot="definition"
-        >{formatter(data.transactions.stats.averageGasPrice)} LUX</svelte:fragment
+        >{gasPriceFormatter(data.transactions.stats.averageGasPrice)} LUX</svelte:fragment
       >
     </ListItem>
   </dl>

@@ -128,4 +128,20 @@ describe("Block Details", () => {
 
     await fireEvent.click(getByRole("switch"));
   });
+
+  it("should round the average gas price to two decimals", () => {
+    const { transactions } = baseProps.data;
+    const { getByText } = render(BlockDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        transactions: {
+          ...transactions,
+          stats: { ...transactions.stats, averageGasPrice: 1.23456789 },
+        },
+      },
+    });
+
+    expect(getByText("1.23 LUX")).toBeInTheDocument();
+  });
 });
