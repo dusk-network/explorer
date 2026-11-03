@@ -119,48 +119,24 @@ git tag -a explorer-v1.1.0 -m "Explorer: Release v1.1.0"
 git push origin explorer-v1.1.0
 ```
 
-### 8. Verify Staging Environments
+The tag deploys to mainnet through the Deploy workflow. Every merge to `main` is already on testnet and devnet, so test the features in the changelog there before pushing it.
 
-- Wait for staging environments to rebuild automatically
-- Verify the application works as expected on all staging environments
-- Check that the version number displayed matches the released version
-- Test all features mentioned in the changelog
-
-### 9. Progressive Deployment on Production
-
-Deploy the new version progressively through each environment:
-
-1. **Devnet**
-   - Deploy to development network
-   - Verify functionality
-   - Address any issues before proceeding
-
-2. **Testnet**
-   - Deploy to test network after devnet validation
-   - Run comprehensive tests
-   - Verify integrations with other systems
-
-3. **Mainnet**
-   - Deploy to production after successful testnet validation
-   - Monitor deployment closely
-
-### 10. Troubleshooting Deployment
+### 8. Troubleshooting Deployment
 
 If errors occur during deployment:
 
-- Try rebuilding with the "clear cache" option enabled
-- Check build logs for specific errors
-- Verify environment variables are correctly set
+- Check the Deploy workflow's log for specific errors
 - Confirm that all dependencies are properly resolved
+- If the workflow failed before deploying, run it again; nothing has changed on the site
 
-### 11. Final Validation
+### 9. Final Validation
 
 - Confirm the application works correctly across all production environments
 - Verify the product version displayed in the UI matches the released version
 - Test all key user flows and features on different devices and browsers
 - Monitor error logs and performance metrics
 
-### 12. Announce the Release
+### 10. Announce the Release
 
 - Notify marketing team to prepare community announcement
 - Directly inform stakeholders whose requested features or fixes are included
@@ -173,7 +149,7 @@ If errors occur during deployment:
 If critical issues are discovered after deployment:
 
 1. Identify the last stable tag/version
-2. Deploy the previous stable version to affected environments
+2. Roll the affected Worker back to that version in Cloudflare
 3. Create a hotfix branch from the stable tag
 4. Fix the issue and follow an expedited version of the release process
 5. Communicate transparently about the issue and resolution
@@ -185,10 +161,8 @@ If critical issues are discovered after deployment:
 - [ ] Update version with npm version command
 - [ ] Update CHANGELOG.md
 - [ ] Open and get approval on PR
+- [ ] Verify on testnet and devnet
 - [ ] Create and push annotated tag
-- [ ] Verify staging deployment
-- [ ] Deploy to devnet and verify
-- [ ] Deploy to testnet and verify
-- [ ] Deploy to mainnet and verify
+- [ ] Verify on mainnet
 - [ ] Final validation across environments
 - [ ] Announce release to stakeholders
