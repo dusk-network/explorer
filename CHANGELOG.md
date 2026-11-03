@@ -12,11 +12,15 @@ and this project adheres to
 
 ### Changed
 
-- Show Copied on the copy button, fade messages in place, open and close technical details, and say what a card loads beside a throbber
-
 ### Removed
 
 ### Fixed
+
+## [1.7.2] - 2026-11-03
+
+### Changed
+
+- Show Copied on the copy button, fade messages in place, open and close technical details, and say what a card loads beside a throbber
 
 ## [1.7.1] - 2026-11-02
 
@@ -424,6 +428,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.7.2]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.2
 [1.7.1]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.1
 [1.7.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.0
 [1.6.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.6.0
