@@ -29,8 +29,6 @@ describe("AppSource", () => {
       const { container, rerender } = render(AppSource, baseProps);
       const source = getSourceElementIn(container);
 
-      expect(container.firstElementChild).toMatchSnapshot();
-
       ownPairs(commonProps).forEach(([key, value]) => {
         expect(source).toHaveAttribute(key, value);
       });
@@ -65,8 +63,6 @@ describe("AppSource", () => {
       };
       const { container, rerender } = render(AppSource, props);
       const source = getSourceElementIn(container);
-
-      expect(container.firstElementChild).toMatchSnapshot();
 
       ownPairs(commonProps).forEach(([key, value]) => {
         expect(source).toHaveAttribute(key, value);

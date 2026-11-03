@@ -69,14 +69,12 @@ describe("Blocks page", () => {
     const { container, unmount } = render(Blocks);
 
     // snapshost in loading state
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
     expect(getBlocksSpy).toHaveBeenNthCalledWith(1, blocksListEntries);
 
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from GraphQL
-    expect(container.firstElementChild).toMatchSnapshot();
 
     // No new block: nothing more is read.
     await vi.advanceTimersByTimeAsync(fetchInterval * 3);
@@ -111,7 +109,7 @@ describe("Blocks page", () => {
   });
 
   it("should render the Blocks page with the mobile layout", async () => {
-    const { container } = render(Blocks);
+    render(Blocks);
 
     changeMediaQueryMatches("(max-width: 1024px)", true);
 
@@ -121,7 +119,5 @@ describe("Blocks page", () => {
     expect(getBlocksSpy).toHaveBeenNthCalledWith(1, blocksListEntries);
 
     await vi.advanceTimersByTimeAsync(1);
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

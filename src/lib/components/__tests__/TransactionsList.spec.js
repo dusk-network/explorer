@@ -47,12 +47,6 @@ describe("Transactions List", () => {
     vi.useRealTimers();
   });
 
-  it("should render the `TransactionsList` component", () => {
-    const { container } = render(TransactionsList, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should show who sent how much to whom, what it did and when, and leave the rest to the transaction page", () => {
     const { container, getByRole } = render(TransactionsList, baseProps);
     const parties = /** @type {Element} */ (

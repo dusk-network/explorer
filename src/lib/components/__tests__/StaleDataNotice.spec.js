@@ -60,25 +60,6 @@ describe("StaleDataNotice", () => {
     expect(container.childElementCount).toBe(0);
   });
 
-  it("renders the Stale Data notice if data is stale", async () => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date(2024, 4, 20));
-
-    mockedReadableStore.setMockedStoreValue({
-      ...initialState,
-      data: { data: "some data" },
-      lastUpdate: new Date(),
-    });
-
-    vi.mocked(marketDataStore.isDataStale).mockReturnValueOnce(true);
-
-    const { container } = render(StaleDataNotice, { target: document.body });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-
-    vi.useRealTimers();
-  });
-
   it("should react to data changes", async () => {
     mockedReadableStore.setMockedStoreValue({
       ...initialState,

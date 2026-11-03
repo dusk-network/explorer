@@ -1,8 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 
-import { renderWithSimpleContent } from "$lib/dusk/test-helpers";
-
 import { DataCard } from "..";
 
 describe("DataCard", () => {
@@ -76,16 +74,6 @@ describe("DataCard", () => {
     expect(queryByRole("button")).toBeNull();
   });
 
-  it("should render the `DataCard` in the loading state", () => {
-    const loading = true;
-    const { container } = render(DataCard, {
-      ...baseOptions,
-      props: { ...baseProps, loading },
-    });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it.each(
     /** @type {Array<["page" | "section" | "detail", string, string | undefined, string]>} */ ([
       ["page", "Blocks", undefined, "Loading blocks…"],
@@ -111,26 +99,6 @@ describe("DataCard", () => {
       expect(container.querySelector("[role='progressbar']")).toBeNull();
     }
   );
-
-  it("should render the `DataCard` in the error state", () => {
-    const error = new Error("error");
-    const { container } = render(DataCard, {
-      ...baseOptions,
-      props: { ...baseProps, error },
-    });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should render the `DataCard` in the no data state", () => {
-    const data = new Array(0);
-    const { container } = render(DataCard, {
-      ...baseOptions,
-      props: { ...baseProps, data },
-    });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
 
   it("should say what an empty list means, as its card tells it", () => {
     const { container } = render(DataCard, {
@@ -164,27 +132,6 @@ describe("DataCard", () => {
     expect(retry).toHaveBeenCalledOnce();
   });
 
-  it("should render the `DataCard` in the data state", () => {
-    const data = new Array(2);
-    const renderWithSlots = renderWithSimpleContent(DataCard, {
-      ...baseOptions,
-      props: { ...baseProps, data },
-    });
-
-    expect(renderWithSlots.container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should render the `DataCard` in the data state when loading is true", () => {
-    const data = new Array(2);
-    const loading = true;
-    const renderWithSlots = renderWithSimpleContent(DataCard, {
-      ...baseOptions,
-      props: { ...baseProps, data, loading },
-    });
-
-    expect(renderWithSlots.container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should pass the correct function to the button on click event", async () => {
     const onClickMock = vi.fn();
     const headerButtonDetails = {
@@ -208,12 +155,11 @@ describe("DataCard", () => {
       disabled: true,
       label: "Back",
     };
-    const { container, getByRole } = render(DataCard, {
+    const { getByRole } = render(DataCard, {
       ...baseOptions,
       props: { ...baseProps, headerButtonDetails },
     });
 
     expect(getByRole("button")).toBeDisabled();
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

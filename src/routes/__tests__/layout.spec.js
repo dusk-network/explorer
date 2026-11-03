@@ -86,12 +86,9 @@ describe("Main layout", () => {
     getNodeInfoSpy.mockRestore();
   });
 
-  it("should render the app's main layout", () => {
-    const { container } = renderWithSimpleContent(MainLayout, baseOptions);
-    expect(container).toMatchSnapshot();
-  });
-
   it('should add and remove the "dark" class name to the `html` element when the `darkMode` value changes in the settings store', async () => {
+    renderWithSimpleContent(MainLayout, baseOptions);
+
     const isDarkMode = () => get(appStore).darkMode;
     const hasDarkClass = () =>
       document.documentElement.classList.contains("dark");

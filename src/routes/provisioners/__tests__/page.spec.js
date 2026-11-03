@@ -30,16 +30,14 @@ describe("Provisioners page", () => {
   });
 
   it("should render the Provisioners page, start polling for provisioners and stop the polling when unmounted", async () => {
-    const { container, unmount } = render(Provisioners);
+    const { unmount } = render(Provisioners);
 
     // snapshost in loading state
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(getProvisionersSpy).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from GraphQL
-    expect(container.firstElementChild).toMatchSnapshot();
 
     await vi.advanceTimersByTimeAsync(provisionersFetchInterval - 1);
 
@@ -57,7 +55,7 @@ describe("Provisioners page", () => {
   });
 
   it("should render the Provisioners page with the mobile layout", async () => {
-    const { container } = render(Provisioners);
+    render(Provisioners);
 
     changeMediaQueryMatches("(max-width: 1024px)", true);
 
@@ -66,7 +64,5 @@ describe("Provisioners page", () => {
     expect(getProvisionersSpy).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(1);
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

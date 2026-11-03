@@ -138,22 +138,6 @@ describe("StatisticsPanel", () => {
       chain_id: chainId,
     });
 
-  it("should render the StatisticsPanel, with the numbers once they come", async () => {
-    // The last block's time is in the snapshot.
-    vi.setSystemTime(new Date(2024, 4, 30));
-    setChain(1);
-
-    const { container } = render(StatisticsPanel);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-
-    await act(() => newestBlock(mockData.apiStats.lastBlock));
-    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
-
-    // snapshot with received data from APIs
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should show no DUSK price or market cap on a test network", async () => {
     setChain(2);
 

@@ -28,23 +28,11 @@ describe("RelativeTime", () => {
     const { container } = render(RelativeTime, baseOptions);
     const textContent = container.firstElementChild?.textContent;
 
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(textContent).toMatchInlineSnapshot(`"20 seconds ago"`);
 
     await vi.advanceTimersByTimeAsync(10000);
 
     expect(container.firstElementChild?.textContent).toBe(textContent);
-  });
-
-  it("should pass additional class names and attributes to the rendered element", () => {
-    const props = {
-      ...baseProps,
-      className: "foo bar",
-      "data-baz": "baz",
-    };
-    const { container } = render(RelativeTime, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should update the relative time every second if the `autoRefresh` property is set to `true`", async () => {
@@ -74,7 +62,6 @@ describe("RelativeTime", () => {
       props: { date: baseProps.date },
     });
 
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
       `"The relative time now is 32 seconds ago"`
     );

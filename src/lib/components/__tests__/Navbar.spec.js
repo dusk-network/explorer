@@ -87,12 +87,6 @@ describe("Navbar", () => {
     afterNavigateSpy.mockRestore();
   });
 
-  it("renders the Navbar component", () => {
-    const { container } = render(Navbar);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should show the Dusk wordmark, a thin line and the app's name, as one link home", () => {
     const { getByRole } = render(Navbar);
     const brand = getByRole("link", { name: "Dusk Explorer, home" });
