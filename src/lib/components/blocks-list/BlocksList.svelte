@@ -15,7 +15,7 @@
 
   /**
    * Whether the row is the home page's short one. On the blocks page a row
-   * also says who made the block, and the fees it took, if any.
+   * also says the fees the block took, if any.
    */
   export let brief = false;
 
@@ -48,7 +48,7 @@
         data-tooltip-text={formatDateTime(data.header.date)}
         date={data.header.date}
       />
-      {#if !brief && data.header.generator}<span aria-hidden="true">·</span>
+      {#if data.header.generator}<span aria-hidden="true">·</span>
         by
         <TransactionParty
           narrow

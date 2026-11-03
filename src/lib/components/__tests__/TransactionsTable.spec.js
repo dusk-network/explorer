@@ -150,7 +150,7 @@ describe("Transactions Table", () => {
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards"
+          "Failed · Claim rewards · withdraw"
         );
       });
       expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
@@ -189,12 +189,14 @@ describe("Transactions Table", () => {
           / To Transfer contract$/
         );
         // Plain words only: the function's name is for the transaction page.
-        expect(textOf(toContract, ".transaction__line")).toBe("Contract call");
+        expect(textOf(toContract, ".transaction__line")).toBe(
+          "Contract call · convert"
+        );
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
           ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`
         );
         expect(textOf(toAccount, ".transaction__line")).toBe(
-          "Transfer contract"
+          "Transfer contract · convert"
         );
       });
     });
@@ -338,7 +340,7 @@ describe("Transactions Table", () => {
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
       await vi.waitFor(() =>
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards"
+          "Failed · Claim rewards · withdraw"
         )
       );
       expect(

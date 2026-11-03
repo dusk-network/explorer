@@ -202,6 +202,33 @@ describe("Transaction Details", () => {
     ]);
   });
 
+  it("should show a call's method among the main rows, not folded away", () => {
+    const { container } = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        contract:
+          "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c",
+        method: "schedule",
+      },
+    });
+    const terms = getTerms(container);
+
+    expect(terms[terms.indexOf("type") + 1]).toBe("method");
+    expect(getDefinition(container, "method")).toBe("schedule");
+    expect(
+      Array.from(
+        /** @type {HTMLElement} */ (
+          container.querySelector("details")
+        ).querySelectorAll("dt"),
+        termOf
+      )
+    ).not.toContain("method");
+    expect(
+      container.querySelector("summary .detail-technical__chevron")
+    ).toBeInTheDocument();
+  });
+
   it("should lead with one sentence: who sent how much to whom, the status, and the time in the viewer's zone", async () => {
     vi.mocked(getPrimaryName).mockImplementation(async (address) =>
       address === baseProps.data.from
@@ -634,13 +661,10 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `Stake contract ${stake}`
       );
-      // Plain words for the type; the method is a technical detail.
+      // Plain words for the type; the method has its own row.
       expect(getDefinition(container, "type")).toBe("Claim rewards");
     });
     expect(getTerms(container)).not.toContain("to");
-    expect(
-      container.querySelector(".transaction-details__technical dl dt")
-    ).toHaveTextContent("Method");
     expect(getDefinition(container, "method")).toBe("withdraw");
   });
 

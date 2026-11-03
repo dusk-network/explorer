@@ -4,6 +4,7 @@
   width: max-content;
   max-width: min(40%, 22rem);
   white-space: break-spaces;
+  overflow-wrap: anywhere;
   z-index: 9999;
 
   --tip-size: 0.625em;

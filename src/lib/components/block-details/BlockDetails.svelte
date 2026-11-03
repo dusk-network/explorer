@@ -1,7 +1,12 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { mdiArrowLeft, mdiArrowRight, mdiCubeOutline } from "@mdi/js";
+  import {
+    mdiArrowLeft,
+    mdiArrowRight,
+    mdiChevronDown,
+    mdiCubeOutline,
+  } from "@mdi/js";
   import {
     AppAnchorButton,
     DataCard,
@@ -138,7 +143,10 @@
   <!-- The state root and the raw header, for those who want them. -->
   <details class="block-details__technical detail-technical">
     <summary class="block-details__technical-summary detail-technical__summary"
-      >Technical details</summary
+      >Technical details<Icon
+        className="detail-technical__chevron"
+        path={mdiChevronDown}
+      /></summary
     >
     <dl class="block-details__list detail-rows">
       <ListItem wide>

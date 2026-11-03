@@ -37,6 +37,47 @@ describe("TransactionType", () => {
     );
   });
 
+  it("should show the function a call ran, unless its words already say it", async () => {
+    const contract =
+      "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c";
+    const stake =
+      "0200000000000000000000000000000000000000000000000000000000000000";
+    const words = async (/** @type {Partial<Transaction>} */ call) => {
+      cleanup();
+
+      const { container } = render(TransactionType, {
+        props: { data: { ...transaction, ...call }, showPrivacy: false },
+      });
+
+      await vi.waitFor(() =>
+        expect(
+          container.querySelector(".transaction-type__label")
+        ).toBeInTheDocument()
+      );
+
+      return [
+        container.querySelector(".transaction-type__label")?.textContent,
+        container.querySelector(".transaction-type__method")?.textContent,
+      ];
+    };
+
+    expect(await words({ contract, method: "schedule" })).toStrictEqual([
+      "Contract call",
+      "schedule",
+    ]);
+    expect(await words({ contract: stake, method: "stake" })).toStrictEqual([
+      "Stake",
+      undefined,
+    ]);
+    expect(await words({ contract: stake, method: "withdraw" })).toStrictEqual([
+      "Claim rewards",
+      "withdraw",
+    ]);
+    expect(
+      await words({ contract: undefined, method: "transfer" })
+    ).toStrictEqual(["Transfer", undefined]);
+  });
+
   it("should say what a shielded call hides, and what it shows", () => {
     const shielded = { ...transaction, txtype: "Phoenix" };
     const stake =

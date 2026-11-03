@@ -4,20 +4,19 @@
   padding-bottom: 0.5rem;
 }
 
-/* The home page's short list: the block first, its numbers at the end. */
-.blocks-table--brief .table__data-cell:first-child {
-  width: 100%;
-}
-
 /*
- * The blocks page: the block, then who made it, from a set place that new
- * blocks don't move; the numbers at the end.
+ * The block, then who made it, from a set place that new blocks don't move;
+ * the numbers at the end.
  */
-.blocks-table--full .table__data-cell:first-child {
+.blocks-table .table__data-cell:first-child {
   width: 13rem;
 }
 
-.blocks-table--full .table__data-cell:nth-child(2) {
+.blocks-table--brief .table__data-cell:first-child {
+  width: 11rem;
+}
+
+.blocks-table .table__data-cell:nth-child(2) {
   width: 100%;
 }
 
