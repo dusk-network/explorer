@@ -14,5 +14,3 @@ export { default as hostProvisioners } from "./host-provisioners.json";
 export { default as nodeLocationsCount } from "./node-locations.count.json";
 
 export { default as accounts } from "./accounts.json";
-export { default as tokens } from "./tokens.json";
-export { default as gqlTokenTransactions } from "./gql-token-transactions.json";

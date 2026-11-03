@@ -30,12 +30,7 @@ export { default as TransactionDetails } from "./transaction-details/Transaction
 export { default as TransactionIcon } from "./transaction-icon/TransactionIcon.svelte";
 export { default as TransactionsList } from "./transactions-list/TransactionsList.svelte";
 export { default as TransactionsTable } from "./transactions-table/TransactionsTable.svelte";
-export { default as TokensTable } from "./tokens-table/TokensTable.svelte";
-export { default as TokenOverview } from "./token-overview/TokenOverview.svelte";
 export { default as OverviewPanelDetailsItem } from "./overview-panel-details-item/OverviewPanelDetailsItem.svelte";
-export { default as TokenDetailsTable } from "./token-details-table/TokenDetailsTable.svelte";
-export { default as TokenListDetails } from "./token-list-details/TokenListDetails.svelte";
-export { default as TokenTransactionsList } from "./token-transactions-list/TokenTransactionsList.svelte";
 export { default as TransactionType } from "./transaction-type/TransactionType.svelte";
 export { default as TransactionStatus } from "./transaction-status/TransactionStatus.svelte";
 export { default as WorldMap } from "./world-map/WorldMap.svelte";

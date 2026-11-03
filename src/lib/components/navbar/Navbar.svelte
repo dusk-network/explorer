@@ -2,7 +2,6 @@
   import { createEventDispatcher, onDestroy, tick } from "svelte";
   import {
     mdiAccountGroupOutline,
-    mdiCircleMultipleOutline,
     mdiCubeOutline,
     mdiHomeOutline,
     mdiSwapHorizontal,
@@ -59,9 +58,6 @@
       link: "/provisioners",
       title: "Provisioners",
     },
-    ...(import.meta.env.VITE_FEATURE_TOKENS === "true"
-      ? [{ icon: mdiCircleMultipleOutline, link: "/tokens", title: "Tokens" }]
-      : []),
   ];
 
   /**

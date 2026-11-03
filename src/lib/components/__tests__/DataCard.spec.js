@@ -75,23 +75,17 @@ describe("DataCard", () => {
   });
 
   it.each(
-    /** @type {Array<["page" | "section" | "detail", string, string | undefined, string]>} */ ([
-      ["page", "Blocks", undefined, "Loading blocks…"],
-      ["section", "Transactions", undefined, "Loading transactions…"],
-      ["detail", "Block", undefined, "Loading the block…"],
-      [
-        "page",
-        "Tokens — 0 Displayed Items",
-        "Loading tokens…",
-        "Loading tokens…",
-      ],
+    /** @type {Array<["page" | "section" | "detail", string, string]>} */ ([
+      ["page", "Blocks", "Loading blocks…"],
+      ["section", "Transactions", "Loading transactions…"],
+      ["detail", "Block", "Loading the block…"],
     ])
   )(
     "should say what a first load waits for beside a throbber, from the first moment, as a %s titled %s",
-    (variant, title, loadingText, words) => {
+    (variant, title, words) => {
       const { container, getByText } = render(DataCard, {
         ...baseOptions,
-        props: { ...baseProps, loading: true, loadingText, title, variant },
+        props: { ...baseProps, loading: true, title, variant },
       });
 
       expect(getByText(words)).toBeInTheDocument();
