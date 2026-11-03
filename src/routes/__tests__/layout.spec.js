@@ -10,6 +10,7 @@ import {
 import { act, cleanup, fireEvent } from "@testing-library/svelte";
 import { get } from "svelte/store";
 import { duskAPI } from "$lib/services";
+import { nodeAnswers } from "$lib/network";
 import { appStore as realAppStore } from "$lib/stores";
 import { apiNodeInfo } from "$lib/mock-data";
 import { renderWithSimpleContent } from "$lib/dusk/test-helpers";
@@ -230,5 +231,57 @@ describe("Main layout", () => {
     );
 
     expect(main).toBeVisible();
+  });
+
+  it("should keep asking the node while the tab shows, and say so when it stops answering", async () => {
+    const answers = () => get(nodeAnswers);
+
+    renderWithSimpleContent(MainLayout, baseOptions);
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(getNodeInfoSpy).toHaveBeenCalledTimes(1);
+    expect(answers()).toBe(true);
+
+    // The node goes away.
+    getNodeInfoSpy.mockRejectedValueOnce(new Error("offline"));
+    await vi.advanceTimersByTimeAsync(60_000);
+
+    expect(getNodeInfoSpy).toHaveBeenCalledTimes(2);
+    expect(answers()).toBe(false);
+    // What it said it was stays: the network's name, and the labels from it.
+    expect(get(appStore).nodeInfo).toStrictEqual(apiNodeInfo);
+
+    // It's back.
+    await vi.advanceTimersByTimeAsync(60_000);
+
+    expect(getNodeInfoSpy).toHaveBeenCalledTimes(3);
+    expect(answers()).toBe(true);
+
+    // Nothing is asked while the tab is hidden, and once as it shows again.
+    const hidden = vi.spyOn(document, "hidden", "get").mockReturnValue(true);
+
+    await vi.advanceTimersByTimeAsync(180_000);
+
+    expect(getNodeInfoSpy).toHaveBeenCalledTimes(3);
+
+    hidden.mockReturnValue(false);
+    document.dispatchEvent(new Event("visibilitychange"));
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(getNodeInfoSpy).toHaveBeenCalledTimes(4);
+    hidden.mockRestore();
+  });
+
+  it("should leave the store alone when the node says the same", async () => {
+    const setNodeInfo = vi.spyOn(appStore, "setNodeInfo");
+
+    renderWithSimpleContent(MainLayout, baseOptions);
+    await vi.advanceTimersByTimeAsync(0);
+    setNodeInfo.mockClear();
+    await vi.advanceTimersByTimeAsync(60_000);
+
+    expect(getNodeInfoSpy).toHaveBeenCalled();
+    expect(setNodeInfo).not.toHaveBeenCalled();
+    setNodeInfo.mockRestore();
   });
 });

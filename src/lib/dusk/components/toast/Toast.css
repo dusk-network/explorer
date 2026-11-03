@@ -44,7 +44,7 @@
 }
 
 .dusk-toast__item-icon-wrapper--success {
-  color: var(--calm-online);
+  color: var(--calm-online-text);
 }
 
 .dusk-toast__item-icon-wrapper--warning {

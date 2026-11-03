@@ -14,6 +14,7 @@ import * as appNavigation from "$app/navigation";
 import { apiNodeInfo, hostProvisioners } from "$lib/mock-data";
 import { resolveDuskName } from "$lib/dusk-domains";
 import { duskAPI } from "$lib/services";
+import { nodeAnswers } from "$lib/network";
 import { appStore } from "$lib/stores";
 
 import { Navbar } from "..";
@@ -141,6 +142,22 @@ describe("Navbar", () => {
 
     expect(network).toHaveTextContent(/^Testnet$/);
     expect(dot).toHaveClass("dusk-navbar__network-dot--online");
+
+    // The node stops answering: the network stays named, and says so.
+    await act(() => nodeAnswers.set(false));
+
+    expect(dot).not.toHaveClass("dusk-navbar__network-dot--online");
+    expect(network).toHaveTextContent(/^Testnet , not answering$/);
+    expect(network).toHaveAttribute(
+      "data-tooltip-text",
+      "The node isn't answering"
+    );
+
+    await act(() => nodeAnswers.set(true));
+
+    expect(dot).toHaveClass("dusk-navbar__network-dot--online");
+    expect(network).toHaveTextContent(/^Testnet$/);
+    expect(network).not.toHaveAttribute("data-tooltip-text");
 
     await act(() =>
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })

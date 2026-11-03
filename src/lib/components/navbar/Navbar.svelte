@@ -19,7 +19,7 @@
   } from "$lib/dusk/icons";
   import { AppAnchor, SearchNotification } from "$lib/components";
   import { SearchField } from "$lib/containers";
-  import { isConnected, networkLabel } from "$lib/network";
+  import { isConnected, networkLabel, nodeAnswers } from "$lib/network";
   import {
     currentPage,
     goto,
@@ -243,7 +243,8 @@
   });
 
   $: ({ nodeInfo } = $appStore);
-  $: connected = isConnected(nodeInfo);
+  $: known = isConnected(nodeInfo);
+  $: connected = known && $nodeAnswers;
   $: networkName = networkLabel(nodeInfo);
   $: current = currentPage(
     $page.url.pathname,
@@ -309,13 +310,22 @@
     {/if}
   </div>
 
-  <!-- The network, and a dot that says whether its node answered. -->
-  <span class="dusk-navbar__network">
+  <!-- The network, and a dot that says whether its node answers. -->
+  <span
+    class="dusk-navbar__network"
+    data-tooltip-id={known && !connected ? "main-tooltip" : undefined}
+    data-tooltip-text={known && !connected
+      ? "The node isn't answering"
+      : undefined}
+  >
     <span
       aria-hidden="true"
       class="dusk-navbar__network-dot"
       class:dusk-navbar__network-dot--online={connected}
     ></span>
     {networkName}
+    {#if known && !connected}
+      <span class="sr-only">, not answering</span>
+    {/if}
   </span>
 </nav>

@@ -4,11 +4,45 @@
   import { Toast, Tooltip } from "$lib/dusk/components";
   import { Footer, Navbar, TestnetStrip } from "$lib/components";
   import { appStore } from "$lib/stores";
+  import { nodeAnswers } from "$lib/network";
   import { duskAPI } from "$lib/services";
   import "../style/main.css";
 
-  onMount(async () => {
-    appStore.setNodeInfo(await duskAPI.getNodeInfo());
+  /** How often the node is asked if it's there while the tab shows, in ms. */
+  const NODE_CHECK_INTERVAL = 60_000;
+
+  const askNode = () =>
+    duskAPI.getNodeInfo().then(
+      (nodeInfo) => {
+        nodeAnswers.set(true);
+
+        // Only what changed: all that's drawn from the store draws again.
+        if (JSON.stringify(nodeInfo) !== JSON.stringify($appStore.nodeInfo)) {
+          appStore.setNodeInfo(nodeInfo);
+        }
+      },
+      () => {
+        nodeAnswers.set(false);
+      }
+    );
+
+  const askNodeIfShown = () => {
+    if (!document.hidden) {
+      askNode();
+    }
+  };
+
+  onMount(() => {
+    askNode();
+
+    const timer = setInterval(askNodeIfShown, NODE_CHECK_INTERVAL);
+
+    document.addEventListener("visibilitychange", askNodeIfShown);
+
+    return () => {
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", askNodeIfShown);
+    };
   });
 
   appStore.subscribe(({ darkMode }) => {

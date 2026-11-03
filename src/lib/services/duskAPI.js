@@ -67,7 +67,7 @@ const gqlGet = (queryInfo) =>
  * @param {string} endpoint
  * @returns {Promise<any>}
  */
-const nodePost = (endpoint) =>
+const nodePost = (endpoint, options = {}) =>
   fetch(makeNodeUrl(endpoint), {
     headers: {
       Accept: "application/json",
@@ -75,9 +75,13 @@ const nodePost = (endpoint) =>
       Connection: "Keep-Alive",
     },
     method: "POST",
+    ...options,
   })
     .then(failureToRejection)
     .then((res) => res.json());
+
+/** How long the node gets to answer what it is, in ms. */
+const NODE_INFO_TIMEOUT = 20_000;
 
 /**
  * The node info request in flight, which callers at the same time share.
@@ -304,7 +308,9 @@ const duskAPI = {
    * @returns {Promise<NodeInfo>}
    */
   getNodeInfo() {
-    nodeInfoRequest ??= nodePost("/on/node/info").finally(() => {
+    nodeInfoRequest ??= nodePost("/on/node/info", {
+      signal: AbortSignal.timeout(NODE_INFO_TIMEOUT),
+    }).finally(() => {
       nodeInfoRequest = null;
     });
 

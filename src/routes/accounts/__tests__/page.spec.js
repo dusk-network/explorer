@@ -264,6 +264,26 @@ describe("Account page", () => {
       expect(duskAPI.getStake).toHaveBeenCalledTimes(3);
     }
   );
+
+  it("should say an address isn't valid, and ask the node nothing about it", async () => {
+    pages.open("notanaccount");
+
+    const { getByText, queryByText } = render(AccountPage);
+
+    expect(
+      getByText(
+        "This isn't a valid account address. Check it and search again."
+      )
+    ).toBeInTheDocument();
+    expect(queryByText("Couldn't load this.")).toBeNull();
+    expect(duskAPI.getAccountStatus).not.toHaveBeenCalled();
+    expect(duskAPI.getStake).not.toHaveBeenCalled();
+    expect(duskAPI.accountHistory).not.toHaveBeenCalled();
+
+    await act(() => appStore.setNodeInfo(apiNodeInfo));
+
+    expect(getStakedDusk).not.toHaveBeenCalled();
+  });
 });
 
 /**
