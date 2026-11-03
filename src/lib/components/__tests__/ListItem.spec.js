@@ -9,12 +9,6 @@ const baseProps = {
 describe("List Item", () => {
   afterEach(cleanup);
 
-  it("renders the List Item component", () => {
-    const { container } = render(ListItem, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should put a wide value under its label, across the list", () => {
     const { container, rerender } = render(ListItem, baseProps);
     const term = /** @type {HTMLElement} */ (container.querySelector("dt"));

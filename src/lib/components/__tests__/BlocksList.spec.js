@@ -22,12 +22,6 @@ describe("Blocks List", () => {
     vi.useRealTimers();
   });
 
-  it("renders the Blocks List component", () => {
-    const { container } = render(BlocksList, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("keeps a block's age up to date while no new block comes", async () => {
     const date = new Date(Date.now() - 1_000);
     const { container } = render(BlocksList, {

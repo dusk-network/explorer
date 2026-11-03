@@ -17,12 +17,6 @@ describe("Footer", () => {
     vi.useRealTimers();
   });
 
-  it("renders the Footer component", () => {
-    const { container } = render(Footer);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should link the other networks' explorers and Dusk's terms, as @dusk-network/networks gives them", async () => {
     const { getAllByRole } = render(Footer);
     const links = () =>

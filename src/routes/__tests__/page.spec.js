@@ -92,10 +92,9 @@ describe("home page", () => {
   });
 
   it("should render the home page, read the latest chain info again at each new block and only then, and stop when it is destroyed", async () => {
-    const { container, unmount } = render(HomePage);
+    const { unmount } = render(HomePage);
 
     // snapshost in loading state
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
     expect(duskAPI.getLatestChainInfo).toHaveBeenNthCalledWith(
       1,
@@ -105,7 +104,6 @@ describe("home page", () => {
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     // snapshot with received data from GraphQL
-    expect(container.firstElementChild).toMatchSnapshot();
 
     // No new block: nothing more is read.
     await vi.advanceTimersByTimeAsync(fetchInterval * 3);

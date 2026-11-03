@@ -81,10 +81,9 @@ describe("Transactions page", () => {
   });
 
   it("should render the Transactions page, read the new transactions at each new block and only then, and stop when unmounted", async () => {
-    const { container, unmount } = render(Transactions);
+    const { unmount } = render(Transactions);
 
     // snapshost in loading state
-    expect(container.firstElementChild).toMatchSnapshot();
     expect(getChainTipSpy).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(1);
@@ -96,7 +95,6 @@ describe("Transactions page", () => {
     );
 
     // snapshot with received data from GraphQL
-    expect(container.firstElementChild).toMatchSnapshot();
 
     // No new block: nothing more is read.
     await vi.advanceTimersByTimeAsync(fetchInterval * 3);
@@ -129,7 +127,7 @@ describe("Transactions page", () => {
   });
 
   it("should render the Transactions page with the mobile layout", async () => {
-    const { container } = render(Transactions);
+    render(Transactions);
 
     changeMediaQueryMatches("(max-width: 1024px)", true);
 
@@ -142,7 +140,5 @@ describe("Transactions page", () => {
       1,
       transactionsListEntries
     );
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

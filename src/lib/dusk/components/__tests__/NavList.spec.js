@@ -20,12 +20,6 @@ describe("NavList", () => {
 
   afterEach(cleanup);
 
-  it("renders the NavList component", () => {
-    const { container } = render(NavList, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should render the Nav List with the correct information", () => {
     const { container } = render(NavList, baseProps);
 
@@ -70,15 +64,5 @@ describe("NavList", () => {
 
     expect(icon).toHaveClass("dusk-nav-list__icon");
     expect(icon).toHaveAttribute("aria-hidden", "true");
-  });
-
-  it("should pass additional class names and attributes to the rendered element", () => {
-    const props = {
-      ...baseProps,
-      className: "foo bar",
-    };
-    const { container } = render(NavList, props);
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

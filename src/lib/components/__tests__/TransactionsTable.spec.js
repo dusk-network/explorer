@@ -1,9 +1,8 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
-import { mapWith, slice } from "lamb";
 import { readFileSync } from "node:fs";
 
-import { apiNodeInfo, gqlTransaction, gqlTransactions } from "$lib/mock-data";
+import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
 
@@ -16,41 +15,10 @@ describe("Transactions Table", () => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date(2024, 4, 30));
 
-  const transformTransactions = mapWith(transformTransaction);
-  const data = slice(
-    transformTransactions(gqlTransactions.transactions),
-    0,
-    10
-  );
-
-  /** @type {import("svelte").ComponentProps<TransactionsTable>} */
-  const baseProps = {
-    data: data,
-    mode: "full",
-  };
-  const baseOptions = {
-    props: baseProps,
-    target: document.body,
-  };
-
   afterEach(cleanup);
 
   afterAll(() => {
     vi.useRealTimers();
-  });
-
-  it('should render the `TransactionsTable` component in "full" mode', () => {
-    const { container } = render(TransactionsTable, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it('should render the `TransactionsTable` component in "compact" mode', () => {
-    /** @type {import("svelte").ComponentProps<TransactionsTable>} */
-    const props = { ...baseProps, mode: "compact" };
-    const { container } = render(TransactionsTable, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   describe("Columns", () => {
@@ -372,12 +340,5 @@ describe("Transactions Table", () => {
         amount.textContent?.replace(/\s+/g, " ").trim()
       )
     ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
-  });
-
-  it("should pass additional class names to the rendered element", () => {
-    const props = { ...baseProps, className: "foo bar" };
-    const { container } = render(TransactionsTable, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

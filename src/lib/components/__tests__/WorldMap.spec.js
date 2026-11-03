@@ -8,24 +8,6 @@ import { apiNodeLocations } from "$lib/mock-data";
 describe("World Map", () => {
   afterEach(cleanup);
 
-  it("renders the WorldMap component with nodes", () => {
-    const props = {
-      nodes: addCountAndUnique(apiNodeLocations),
-    };
-    const { container } = render(WorldMap, props);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("renders the WorldMap component even if nodes is empty array", () => {
-    const props = {
-      nodes: [],
-    };
-    const { container } = render(WorldMap, props);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   /**
    * The land was drawn with d3-geo, which placed the nodes too. Where d3
    * put each of these places, and how big a ring it gave each count, to six

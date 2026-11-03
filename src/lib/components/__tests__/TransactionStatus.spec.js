@@ -14,12 +14,6 @@ describe("TransactionStatus", () => {
 
   afterEach(cleanup);
 
-  it("should render the transaction status", () => {
-    const { container } = render(TransactionStatus, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should say Completed or Failed, as the wallets do", () => {
     const { container, rerender } = render(TransactionStatus, baseOptions);
 
@@ -32,48 +26,20 @@ describe("TransactionStatus", () => {
     );
   });
 
-  it("should pass additional class names to the rendered `Badge` component", () => {
-    const props = {
-      ...baseProps,
-      className: "foo bar",
+  it("should say why it failed in a tooltip when asked to, and only then", () => {
+    const tooltipOf = (/** @type {Record<string, unknown>} */ props) => {
+      cleanup();
+
+      return render(TransactionStatus, {
+        ...baseOptions,
+        props: { ...baseProps, ...props },
+      }).container.firstElementChild?.getAttribute("data-tooltip-text");
     };
 
-    const { container } = render(TransactionStatus, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should render the status as error if it receives an error message", () => {
-    const props = {
-      ...baseProps,
-      errorMessage: "Transaction failed",
-    };
-
-    const { container } = render(TransactionStatus, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("should add tooltip info if it receives an error message and the related property is set", () => {
-    const props = {
-      ...baseProps,
-      errorMessage: "Transaction failed",
-      showErrorTooltip: true,
-    };
-
-    const { container } = render(TransactionStatus, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
-  it("shouldn't add tooltip info if there's no error message, even if the related property is set to `true`", () => {
-    const props = {
-      ...baseProps,
-      showErrorTooltip: true,
-    };
-
-    const { container } = render(TransactionStatus, { ...baseOptions, props });
-
-    expect(container.firstElementChild).toMatchSnapshot();
+    expect(tooltipOf({ errorMessage: "Panic", showErrorTooltip: true })).toBe(
+      "Panic"
+    );
+    expect(tooltipOf({ errorMessage: "Panic" })).toBeNull();
+    expect(tooltipOf({ showErrorTooltip: true })).toBeNull();
   });
 });

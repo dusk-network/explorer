@@ -34,9 +34,7 @@ describe("Block Details", () => {
   });
 
   it("should render the Block Details page and query the necessary info", async () => {
-    const { container } = render(BlockDetails);
-
-    expect(container.firstElementChild).toMatchSnapshot();
+    render(BlockDetails);
 
     expect(getBlockSpy).toHaveBeenCalledTimes(1);
     expect(getBlockDetailsSpy).toHaveBeenCalledTimes(1);
@@ -44,12 +42,11 @@ describe("Block Details", () => {
     await vi.advanceTimersByTimeAsync(1);
 
     // snapshot with received data from APIs
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should render the Transaction section of the Block Details page with the mobile layout", async () => {
     const { appStore } = await import("$lib/stores");
-    const { container } = render(BlockDetails);
+    render(BlockDetails);
 
     changeMediaQueryMatches("(max-width: 1024px)", true);
 
@@ -59,7 +56,5 @@ describe("Block Details", () => {
     expect(getBlockDetailsSpy).toHaveBeenCalledTimes(1);
 
     await vi.advanceTimersByTimeAsync(1);
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

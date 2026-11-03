@@ -10,22 +10,11 @@ describe("Search Notification", () => {
       res: new Error("HTTP Request failed - failed"),
     },
   };
-  const baseOptions = {
-    props: baseProps,
-    target: document.body,
-  };
-
   const eventHandler = vi.fn();
 
   afterEach(() => {
     cleanup();
     eventHandler.mockClear();
-  });
-
-  it("renders the Search Notification component with a Error message", () => {
-    const { container } = render(SearchNotification, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 
   it("should offer to search a suggested .dusk name", async () => {

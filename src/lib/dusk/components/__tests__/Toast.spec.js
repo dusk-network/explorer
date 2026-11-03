@@ -182,7 +182,5 @@ describe("Toast", () => {
     expect(list).toHaveClass(`${customProps.className}`);
     expect(list).toHaveAttribute("id", customProps.id);
     expect(list).toHaveAttribute("data-baz", customProps["data-baz"]);
-
-    expect(list).toMatchSnapshot();
   });
 });

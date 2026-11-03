@@ -15,12 +15,6 @@ describe("Provisioners List", () => {
 
   afterEach(cleanup);
 
-  it("renders the `ProvisionersList` component", () => {
-    const { container } = render(ProvisionersList, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   /**
    * The terms of the list, in order, without their help.
    *

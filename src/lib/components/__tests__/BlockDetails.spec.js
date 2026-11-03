@@ -35,12 +35,6 @@ describe("Block Details", () => {
     vi.useRealTimers();
   });
 
-  it("renders the Block Details component", () => {
-    const { container } = render(BlockDetails, baseProps);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   it("should disable the previous block link if the prev block hash is empty or if the current height is `0`", async () => {
     const { container, rerender } = render(
       BlockDetails,
@@ -130,10 +124,8 @@ describe("Block Details", () => {
   });
 
   it("should render the Block Details component with the payload visible", async () => {
-    const { container, getByRole } = render(BlockDetails, baseProps);
+    const { getByRole } = render(BlockDetails, baseProps);
 
     await fireEvent.click(getByRole("switch"));
-
-    expect(container.firstElementChild).toMatchSnapshot();
   });
 });

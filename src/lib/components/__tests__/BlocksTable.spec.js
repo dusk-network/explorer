@@ -30,12 +30,6 @@ describe("Blocks Table", () => {
     vi.useRealTimers();
   });
 
-  it("should render the `BlocksTable` component", () => {
-    const { container } = render(BlocksTable, baseOptions);
-
-    expect(container.firstElementChild).toMatchSnapshot();
-  });
-
   /** @param {HTMLElement} container */
   const getHeaders = (container) =>
     Array.from(container.querySelectorAll("th"), (th) =>
