@@ -39,22 +39,29 @@
    */
   export let text = undefined;
 
-  /** Whether it says Copied, for a moment after it copied. */
-  let copied = false;
+  /**
+   * What it just copied: it says Copied for a moment, while that's still
+   * the value it copies.
+   *
+   * @type {string | undefined}
+   */
+  let justCopied = undefined;
 
   let timer = 0;
 
   function copyToClipboard() {
+    const copying = rawValue;
+
     navigator.clipboard
-      .writeText(rawValue)
+      .writeText(copying)
       .then(() => {
         // Said where it was pressed: a check, the word Copied, and once
         // to screen readers.
-        copied = true;
+        justCopied = copying;
         announce("Copied", COPIED_FOR);
         clearTimeout(timer);
         timer = window.setTimeout(() => {
-          copied = false;
+          justCopied = undefined;
         }, COPIED_FOR);
       })
       .catch((err) => {
@@ -70,6 +77,7 @@
 
   onDestroy(() => clearTimeout(timer));
 
+  $: copied = justCopied !== undefined && justCopied === rawValue;
   $: classes = makeClassName(["dusk-copy-button", className]);
   $: label = `Copy ${name.charAt(0).toLowerCase()}${name.slice(1)}`;
 </script>

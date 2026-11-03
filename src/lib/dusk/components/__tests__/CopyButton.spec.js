@@ -148,4 +148,24 @@ describe("CopyButton", () => {
     expect(button).toHaveAccessibleName("Copy transaction ID");
     expect(heard()).toBe("");
   });
+
+  it("should not say Copied for a value it didn't copy", async () => {
+    clipboardThat();
+
+    const { getByRole, rerender } = render(CopyButton, {
+      name: "Transaction ID",
+      rawValue,
+    });
+
+    await fireEvent.click(getByRole("button", { name: "Copy transaction ID" }));
+    await vi.advanceTimersByTimeAsync(50);
+    expect(getByRole("button", { name: "Copied" })).toBeInTheDocument();
+
+    // The page moved on to another transaction within the 1.5 s.
+    await rerender({ name: "Transaction ID", rawValue: "another hash" });
+    expect(
+      getByRole("button", { name: "Copy transaction ID" })
+    ).toBeInTheDocument();
+    expect(iconOf(getByRole("button"))).toBe(mdiContentCopy);
+  });
 });
