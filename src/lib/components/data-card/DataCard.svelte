@@ -10,7 +10,7 @@
 
   import "./DataCard.css";
 
-  /** @type {Block[] | Transaction[] | HostProvisioner[] | Block | Transaction | Token[] | null}*/
+  /** @type {Block[] | Transaction[] | HostProvisioner[] | Block | Transaction | null}*/
   export let data;
 
   /** @type {Error | null}*/
@@ -39,14 +39,6 @@
   export let emptyText = "Nothing to show.";
 
   /**
-   * What the card says while its first load runs: by default, that it loads
-   * what its title names, as "Loading blocks…" or "Loading the block…".
-   *
-   * @type {string | undefined}
-   */
-  export let loadingText = undefined;
-
-  /**
    * How the title reads: a page's heading, the heading of a section of the
    * home page, with its link to the whole list beside it, or the small line
    * above a detail page's summary.
@@ -59,9 +51,8 @@
 
   $: classes = makeClassName(["data-card", `data-card--${variant}`, className]);
   $: hasEmptyData = Array.isArray(data) && data.length === 0;
-  $: loadingWords =
-    loadingText ??
-    `Loading ${variant === "detail" ? "the " : ""}${title.toLowerCase()}…`;
+  // What its first load waits for, as its title names it.
+  $: loadingWords = `Loading ${variant === "detail" ? "the " : ""}${title.toLowerCase()}…`;
 </script>
 
 <Card className={classes}>

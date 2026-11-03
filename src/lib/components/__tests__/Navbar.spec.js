@@ -122,7 +122,6 @@ describe("Navbar", () => {
       ["Blocks", null],
       ["Transactions", null],
       ["Provisioners", null],
-      ["Tokens", null],
     ]);
   });
 

@@ -16,6 +16,8 @@ and this project adheres to
 
 ### Removed
 
+- Remove the token pages, which only showed sample data [#90]
+
 ### Fixed
 
 - Show the explorer's own page for a page that isn't there
@@ -446,6 +448,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 [#30]: https://github.com/dusk-network/explorer/issues/30
 [#63]: https://github.com/dusk-network/explorer/issues/63
 [#71]: https://github.com/dusk-network/explorer/issues/71
+[#90]: https://github.com/dusk-network/explorer/issues/90
 [#278]: https://github.com/dusk-network/explorer/pull/278
 [#279]: https://github.com/dusk-network/explorer/issues/279
 
