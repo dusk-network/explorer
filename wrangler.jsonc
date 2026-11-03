@@ -1,6 +1,7 @@
 {
   // One build serves every network: the explorer picks its node by hostname.
   "name": "explorer",
+  "account_id": "73fe1e33bc30f9350533005be8c1d297",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./build",
