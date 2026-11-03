@@ -95,6 +95,33 @@ describe("duskAPI", () => {
     getByHeightSpy.mockRestore();
   });
 
+  it("should find a block by its height as well as its hash, and its details", async () => {
+    const asked = () =>
+      String(fetchSpy.mock.lastCall?.[1]?.body).match(/block\([^)]*\)/)?.[0];
+
+    fetchSpy.mockImplementation(async () =>
+      makeOKResponse({ block: { header: { json: "{}" } } })
+    );
+
+    await duskAPI.getBlockDetails("27730");
+    expect(asked()).toBe("block(height: 27730)");
+
+    await duskAPI.getBlockDetails(fakeID);
+    expect(asked()).toBe(`block(hash: ${JSON.stringify(fakeID)})`);
+
+    fetchSpy.mockReset();
+  });
+
+  it("should say there's no such block, for a height past the last one", async () => {
+    fetchSpy.mockResolvedValueOnce(makeOKResponse({ block: null }));
+
+    await expect(duskAPI.getBlock("999999999")).rejects.toThrow(
+      "There's no such block."
+    );
+
+    fetchSpy.mockReset();
+  });
+
   it("should expose a method to retrieve a block hash by its height", async () => {
     const expectedHash = mockData.gqlBlock.block.header.nextBlockHash;
 

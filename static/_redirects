@@ -1,0 +1,2 @@
+/block/:id /blocks/block/?id=:id 302
+/block/:id/ /blocks/block/?id=:id 302

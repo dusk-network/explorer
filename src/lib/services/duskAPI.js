@@ -123,23 +123,27 @@ const duskAPI = {
   },
 
   /**
-   * @param {string} id
+   * @param {string} id A block's hash, or its height
    * @returns {Promise<Block>}
    */
   getBlock(id) {
     return gqlGet(getBlockQueryInfo(id))
-      .then(async ({ block }) =>
-        setPathIn(
+      .then(async ({ block }) => {
+        if (!block) {
+          throw new Error("There's no such block.");
+        }
+
+        return setPathIn(
           block,
           "header.nextBlockHash",
           await duskAPI.getBlockHashByHeight(block.header.height + 1)
-        )
-      )
+        );
+      })
       .then(transformBlock);
   },
 
   /**
-   * @param {string} id
+   * @param {string} id A block's hash, or its height
    * @returns {Promise<string>}
    */
   getBlockDetails(id) {
