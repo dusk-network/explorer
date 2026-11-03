@@ -1,10 +1,8 @@
-
 type BannerVariant = "info" | "warning" | "error";
 
 type ButtonSize = "default" | "small";
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
-
 
 type IconProp = {
   path: string;
@@ -21,10 +19,6 @@ type NavListItem = {
   icon?: string;
   title: string;
   link: string;
-};
-
-  label?: string;
-  value: string;
 };
 
 type TextboxTypes =
