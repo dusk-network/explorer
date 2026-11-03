@@ -22,7 +22,9 @@
   <ListItem>
     <svelte:fragment slot="term">Provisioner</svelte:fragment>
     <svelte:fragment slot="definition">
-      <span class="provisioners-list__rank">#{data.rank}</span>
+      {#if data.rank}
+        <span class="provisioners-list__rank">#{data.rank}</span>
+      {/if}
       <AppAnchor
         className="provisioners-list__staking-address chain-link"
         href="/accounts/?key={data.key}">{shortId(data.key)}</AppAnchor
