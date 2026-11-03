@@ -1,9 +1,12 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { mdiAlertOutline, mdiContentCopy } from "@mdi/js";
+  import { mdiAlertOutline, mdiCheck, mdiContentCopy } from "@mdi/js";
+  import { onDestroy } from "svelte";
   import { Button } from "$lib/dusk/components";
   import { toast } from "$lib/dusk/components/toast/store";
+  import { announce } from "$lib/dusk/announce";
+  import { COPIED_FOR } from "$lib/dusk/motion";
   import { makeClassName } from "$lib/dusk/string";
 
   import "./CopyButton.css";
@@ -13,8 +16,7 @@
 
   /**
    * What the button copies, in sentence case (e.g. "Transaction ID"):
-   * the button is named "Copy transaction ID" and the toast says
-   * "Transaction ID copied".
+   * the button is named "Copy transaction ID".
    *
    * @type {string}
    */
@@ -37,11 +39,23 @@
    */
   export let text = undefined;
 
+  /** Whether it says Copied, for a moment after it copied. */
+  let copied = false;
+
+  let timer = 0;
+
   function copyToClipboard() {
     navigator.clipboard
       .writeText(rawValue)
       .then(() => {
-        toast("success", `${name} copied`, mdiContentCopy);
+        // Said where it was pressed: a check, the word Copied, and once
+        // to screen readers.
+        copied = true;
+        announce("Copied", COPIED_FOR);
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          copied = false;
+        }, COPIED_FOR);
       })
       .catch((err) => {
         toast(
@@ -54,20 +68,22 @@
       });
   }
 
+  onDestroy(() => clearTimeout(timer));
+
   $: classes = makeClassName(["dusk-copy-button", className]);
   $: label = `Copy ${name.charAt(0).toLowerCase()}${name.slice(1)}`;
 </script>
 
 <div class={classes} {...$$restProps}>
   <Button
-    aria-label={label}
+    aria-label={copied ? "Copied" : label}
     className={classes}
     data-tooltip-id={text ? undefined : "main-tooltip"}
     data-tooltip-text={text ? undefined : "Copy to clipboard"}
-    icon={{ path: mdiContentCopy }}
+    icon={{ path: copied ? mdiCheck : mdiContentCopy }}
     on:click={copyToClipboard}
     size={text ? "small" : "default"}
-    {text}
+    text={text && copied ? "Copied" : text}
     {variant}
     {disabled}
   />

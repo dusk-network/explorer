@@ -83,8 +83,47 @@
   border-radius: 0.75rem;
 }
 
-.detail-technical[open] {
+/* Inside what opens, so it opens and closes with the rows. */
+.detail-technical > .detail-rows {
   padding-bottom: 0.25rem;
+}
+
+/*
+ * The technical details open as every section in the Dusk apps does: over
+ * base, their height and opacity together, and close over fast the same
+ * way back. Where the browser can't, they open and close at once.
+ */
+details {
+  interpolate-size: allow-keywords;
+}
+
+details::details-content {
+  block-size: 0;
+  opacity: 0;
+  overflow: clip;
+  overflow-clip-margin: 0.25rem;
+  transition:
+    block-size var(--motion-fast) var(--motion-ease-exit),
+    opacity var(--motion-fast) var(--motion-ease-exit),
+    content-visibility var(--motion-fast) var(--motion-ease-exit) allow-discrete;
+}
+
+details[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--motion-ease);
+}
+
+/* With less motion: at once, the content fading in. */
+@media (prefers-reduced-motion: reduce) {
+  details::details-content {
+    transition: none;
+  }
+
+  details[open]::details-content {
+    transition: opacity var(--motion-fast) var(--motion-ease);
+  }
 }
 
 .detail-technical__summary {
