@@ -1,0 +1,21 @@
+/*
+ * The Dusk mark turns while something loads, with words beside it that say
+ * what it waits for. With less motion it stands still, and the words stay.
+ */
+.dusk-throbber {
+  flex: 0 0 auto;
+  fill: currentColor;
+  animation: dusk-throbber-turn 1.8s linear infinite;
+}
+
+@keyframes dusk-throbber-turn {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dusk-throbber {
+    animation: none;
+  }
+}
