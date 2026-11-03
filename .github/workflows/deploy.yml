@@ -1,7 +1,7 @@
 name: Deploy
 
-# main goes to testnet, a release tag to mainnet. Anything to deploy has passed
-# CI on its pull request.
+# main goes to testnet and devnet, a release tag to mainnet. Anything to deploy
+# has passed CI on its pull request.
 on:
   push:
     branches: [main]
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy to ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet' }}
+    name: Deploy to ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet and devnet' }}
     # GitHub-hosted, for a clean machine around the Cloudflare token.
     runs-on: ubuntu-latest
     # The token is this environment's, which only main and release tags can use.
@@ -55,8 +55,11 @@ jobs:
           VITE_FEATURE_BLOB_HASHES: "true"
 
       - name: Deploying to Cloudflare
-        run: deploy/node_modules/.bin/wrangler deploy --env "$NETWORK"
+        run: |
+          for network in $NETWORKS; do
+            deploy/node_modules/.bin/wrangler deploy --env "$network"
+          done
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          NETWORK: ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet' }}
+          NETWORKS: ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet devnet' }}
           WRANGLER_SEND_METRICS: "false"

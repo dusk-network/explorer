@@ -8,6 +8,12 @@
     "not_found_handling": "404-page",
   },
   "env": {
+    "devnet": {
+      "name": "explorer-devnet",
+      "routes": [
+        { "pattern": "explorer.devnet.dusk.network", "custom_domain": true },
+      ],
+    },
     "testnet": {
       "name": "explorer-testnet",
       "routes": [
