@@ -1,0 +1,21 @@
+{
+  // One build serves every network: the explorer picks its node by hostname.
+  "name": "explorer",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./build",
+    "not_found_handling": "404-page",
+  },
+  "env": {
+    "testnet": {
+      "name": "explorer-testnet",
+      "routes": [
+        { "pattern": "explorer.testnet.dusk.network", "custom_domain": true },
+      ],
+    },
+    "mainnet": {
+      "name": "explorer-mainnet",
+      "routes": [{ "pattern": "explorer.dusk.network", "custom_domain": true }],
+    },
+  },
+}
