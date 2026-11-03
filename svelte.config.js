@@ -2,12 +2,12 @@ import adapter from "@sveltejs/adapter-static";
 import { loadEnv } from "vite";
 
 const env = loadEnv("", process.cwd());
-const fallBackBase = env.VITE_BASE_PATH ? `${env.VITE_BASE_PATH}/` : "";
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
   kit: {
-    adapter: adapter({ fallback: `${fallBackBase}index.html` }),
+    // A host serves it for a page that isn't there, and the app says so.
+    adapter: adapter({ fallback: "404.html" }),
 
     paths: {
       base: /** @type {"" | `/${string}` | undefined} */ (env.VITE_BASE_PATH),

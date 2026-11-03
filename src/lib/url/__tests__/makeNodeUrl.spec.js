@@ -74,6 +74,20 @@ describe("makeNodeUrl", () => {
     expect(makeNodeUrl().hostname).toBe("nodes.dusk.network");
   });
 
+  it.each([
+    ["explorer.dusk.network", "https://nodes.dusk.network/on"],
+    ["explorer.testnet.dusk.network", "https://testnet.nodes.dusk.network/on"],
+    ["explorer.devnet.dusk.network", "https://devnet.nodes.dusk.network/on"],
+  ])("should read %s's own network's node", (hostname, expected) => {
+    vi.spyOn(window, "location", "get").mockReturnValue({
+      ...window.location,
+      hostname,
+      protocol: "https:",
+    });
+
+    expect(makeNodeUrl("/on").href).toBe(expected);
+  });
+
   it("should return the mainnet URL when the hostname starts with 'apps'", () => {
     const hostname = "apps.dusk.network";
 

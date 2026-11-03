@@ -16,6 +16,8 @@ and this project adheres to
 
 ### Fixed
 
+- Show the explorer's own page for a page that isn't there
+
 ## [1.7.3] - 2026-11-03
 
 ### Changed
