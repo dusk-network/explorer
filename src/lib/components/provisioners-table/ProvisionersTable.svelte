@@ -202,7 +202,8 @@
 
       <TableRow>
         <TableCell
-          ><span class="provisioners-table__rank">{provisioner.rank}</span
+          ><span class="provisioners-table__rank"
+            >{provisioner.rank || "—"}</span
           ></TableCell
         >
 

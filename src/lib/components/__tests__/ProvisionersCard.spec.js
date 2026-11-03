@@ -116,4 +116,75 @@ describe("Provisioners Card", () => {
       await findByText("This name is not registered.")
     ).toBeInTheDocument();
   });
+
+  it.each([[false], [true]])(
+    "should show those with no stake only when asked, after the others and unranked (phone: %s)",
+    async (isSmallScreen) => {
+      const noStake = hostProvisioners.find(
+        (p) => !p.amount && !p.locked_amt && !p.eligibility
+      );
+      const { container, getByLabelText, getByRole, queryByRole } = render(
+        ProvisionersCard,
+        {
+          ...baseOptions,
+          props: {
+            ...baseProps,
+            isSmallScreen,
+            provisioners: hostProvisioners,
+          },
+        }
+      );
+      const count = () =>
+        container.querySelector(".data-card__count")?.textContent;
+      const rows = () =>
+        container.querySelectorAll(
+          isSmallScreen ? ".provisioners-list" : "tbody tr"
+        );
+      const toggle = getByRole("switch", {
+        name: "Show provisioners with no stake",
+      });
+
+      expect(container).toHaveTextContent("Show 2 with no stake");
+      expect(count()).toBe("15 of 214");
+
+      // Off, searching for one finds nothing.
+      await fireEvent.input(getByLabelText(/^Search provisioners/), {
+        target: { value: noStake?.key },
+      });
+      expect(rows()).toHaveLength(0);
+
+      await fireEvent.click(toggle);
+
+      expect(rows()).toHaveLength(1);
+
+      if (isSmallScreen) {
+        expect(container.querySelector(".provisioners-list__rank")).toBeNull();
+      } else {
+        expect(
+          container.querySelector(".provisioners-table__rank")
+        ).toHaveTextContent(/^—$/);
+      }
+
+      await fireEvent.input(getByLabelText(/^Search provisioners/), {
+        target: { value: "" },
+      });
+
+      expect(count()).toBe("15 of 216");
+      expect(queryByRole("button", { name: "Show more" })).toBeInTheDocument();
+    }
+  );
+
+  it("should offer no switch when every provisioner has a stake", () => {
+    const { queryByRole } = render(ProvisionersCard, {
+      ...baseOptions,
+      props: {
+        ...baseProps,
+        provisioners: hostProvisioners.filter(
+          (p) => p.amount || p.locked_amt || p.eligibility
+        ),
+      },
+    });
+
+    expect(queryByRole("switch")).toBeNull();
+  });
 });

@@ -10,6 +10,8 @@ and this project adheres to
 
 ### Added
 
+- Add a switch to show provisioners with no stake [#63]
+
 ### Changed
 
 ### Removed
@@ -442,6 +444,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 [#18]: https://github.com/dusk-network/explorer/issues/18
 [#19]: https://github.com/dusk-network/explorer/issues/19
 [#30]: https://github.com/dusk-network/explorer/issues/30
+[#63]: https://github.com/dusk-network/explorer/issues/63
 [#71]: https://github.com/dusk-network/explorer/issues/71
 [#278]: https://github.com/dusk-network/explorer/pull/278
 [#279]: https://github.com/dusk-network/explorer/issues/279

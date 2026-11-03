@@ -7,7 +7,7 @@
     ProvisionersList,
     ProvisionersTable,
   } from "$lib/components";
-  import { Button, Textbox } from "$lib/dusk/components";
+  import { Button, Switch, Textbox } from "$lib/dusk/components";
   import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
   import { appStore } from "$lib/stores";
 
@@ -31,6 +31,9 @@
 
   /** @type {string} */
   let query = "";
+
+  /** Whether the list also shows those with no stake, only rewards left. */
+  let showNoStake = false;
 
   /** @param {HostProvisioner} p */
   const hasActiveStake = (p) =>
@@ -67,14 +70,26 @@
     p.key.toLowerCase().includes(search) ||
     p.ownerAddress.toLowerCase().includes(search);
 
+  $: all = Array.isArray(provisioners) ? provisioners : [];
+
   /** @type {EnrichedProvisioner[]} */
-  $: enrichedProvisioners = Array.isArray(provisioners)
-    ? provisioners
-        .filter(hasActiveStake)
-        .map(withOwner)
-        .toSorted((a, b) => Number(b.amount ?? 0) - Number(a.amount ?? 0))
-        .map((p, index) => ({ ...p, rank: index + 1 }))
-    : [];
+  $: withStake = all
+    .filter(hasActiveStake)
+    .map(withOwner)
+    .toSorted((a, b) => Number(b.amount ?? 0) - Number(a.amount ?? 0))
+    .map((p, index) => ({ ...p, rank: index + 1 }));
+
+  // After those with a stake and unranked, the most rewards first.
+  /** @type {EnrichedProvisioner[]} */
+  $: withNoStake = all
+    .filter((p) => !hasActiveStake(p))
+    .map(withOwner)
+    .toSorted((a, b) => Number(b.reward ?? 0) - Number(a.reward ?? 0));
+
+  /** @type {EnrichedProvisioner[]} */
+  $: enrichedProvisioners = showNoStake
+    ? [...withStake, ...withNoStake]
+    : withStake;
 
   /**
    * What each `.dusk` name searched for resolved to: the account, or why
@@ -146,6 +161,15 @@
       placeholder="Staking or owner address, or .dusk name"
       type="search"
     />
+    {#if withNoStake.length}
+      <span class="provisioners-card__no-stake">
+        <Switch
+          aria-label="Show provisioners with no stake"
+          bind:value={showNoStake}
+        />
+        Show {withNoStake.length} with no stake
+      </span>
+    {/if}
   </div>
   {#if !displayedProvisioners.length}
     <p class="provisioners-card__empty">
