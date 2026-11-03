@@ -1,0 +1,62 @@
+name: Deploy
+
+# main goes to testnet, a release tag to mainnet. Anything to deploy has passed
+# CI on its pull request.
+on:
+  push:
+    branches: [main]
+    tags: ["explorer-v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref_type }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet' }}
+    # GitHub-hosted, for a clean machine around the Cloudflare token.
+    runs-on: ubuntu-latest
+    # The token is this environment's, which only main and release tags can use.
+    environment: cloudflare
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # The footer's commit comes from the history.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setting up Node from `.nvmrc`
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "./.nvmrc"
+
+      - name: Pin npm
+        run: npm install --global npm@11.18.0 --ignore-scripts
+        working-directory: ${{ runner.temp }}
+
+      - name: Installing dependencies without lifecycle scripts
+        run: |
+          npm ci --ignore-scripts
+          npm ci --ignore-scripts --prefix deploy
+
+      - name: Verify registry signatures
+        run: |
+          npm audit signatures
+          cd deploy && npm audit signatures
+
+      - name: Building the app
+        run: npx svelte-kit sync && npm run build
+        env:
+          VITE_FEATURE_BLOB_HASHES: "true"
+
+      - name: Deploying to Cloudflare
+        run: deploy/node_modules/.bin/wrangler deploy --env "$NETWORK"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          NETWORK: ${{ github.ref_type == 'tag' && 'mainnet' || 'testnet' }}
+          WRANGLER_SEND_METRICS: "false"
