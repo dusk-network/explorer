@@ -1,4 +1,3 @@
-type BadgeVariant = "neutral" | "success" | "warning" | "error" | "alt";
 
 type BannerVariant = "info" | "warning" | "error";
 
@@ -6,7 +5,6 @@ type ButtonSize = "default" | "small";
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
 
-type GroupedSelectOptions = Record<string, SelectOption[] | string[]>;
 
 type IconProp = {
   path: string;
@@ -25,8 +23,6 @@ type NavListItem = {
   link: string;
 };
 
-type SelectOption = {
-  disabled?: boolean;
   label?: string;
   value: string;
 };

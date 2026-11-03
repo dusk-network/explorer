@@ -24,7 +24,6 @@ and this project adheres to
 - Show the explorer's own page for a page that isn't there
 - Say an account address isn't valid, rather than that the network couldn't be read [#30]
 - Round the average gas price to two decimals [#71]
-- Make success text on badges easier to read on the light page [#18]
 - Change the network dot when the node stops answering [#19]
 
 ## [1.7.3] - 2026-11-03
@@ -444,7 +443,6 @@ dusk-network/rusk#3925: https://github.com/dusk-network/rusk/issues/3925
 dusk-network/rusk#3930: https://github.com/dusk-network/rusk/issues/3930
 dusk-network/rusk#3931: https://github.com/dusk-network/rusk/issues/3931
 dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
-[#18]: https://github.com/dusk-network/explorer/issues/18
 [#19]: https://github.com/dusk-network/explorer/issues/19
 [#26]: https://github.com/dusk-network/explorer/issues/26
 [#30]: https://github.com/dusk-network/explorer/issues/30

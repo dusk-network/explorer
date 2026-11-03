@@ -98,9 +98,6 @@
   --success-color-variant-dark: var(--calm-online);
   --warning-color: var(--calm-pending);
   --warning-color-variant-dark: var(--calm-pending);
-  --badge-error-color: var(--calm-danger);
-  --badge-success-color: var(--calm-online);
-  --badge-warning-color: var(--calm-pending);
 
   --on-background-color: var(--calm-text);
   --on-primary-color: var(--calm-on-pill);
