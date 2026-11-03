@@ -75,8 +75,12 @@ describe("Blocks List", () => {
 
     await rerender({ brief: true, data: block });
 
-    expect(line()).toBe(getRelativeTimeString(block.header.date, "long"));
+    // The home page's short row says who made it too, and no fees.
+    expect(line()).toContain(getRelativeTimeString(block.header.date, "long"));
     expect(end()).toBe("16 DUSK 2 transactions");
-    expect(container.querySelector(".transaction-party")).toBeNull();
+    expect(container.querySelector(".transaction-party")).toHaveAttribute(
+      "href",
+      `/some-base-path/accounts/?key=${key}`
+    );
   });
 });

@@ -34,6 +34,14 @@
   export let nameContract = true;
 
   /**
+   * Whether to name the function a call ran. The transaction page has its
+   * own row for it.
+   *
+   * @type {boolean}
+   */
+  export let showMethod = true;
+
+  /**
    * Plain words for a transaction that calls no contract.
    *
    * @type {Map<string, string>}
@@ -55,8 +63,8 @@
   $: transferDirection =
     !data.contract && data.method === "transfer" ? direction : undefined;
 
-  // A call shows plain words, or the contract's name. Its function's name
-  // is for the transaction page's technical details.
+  // A call shows plain words, or the contract's name, and the function it
+  // ran, unless those words already say it.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
         .then(
@@ -86,6 +94,10 @@
     {:else}
       {#await callLabel then label}
         <span class="transaction-type__label">{label}</span>
+        {#if showMethod && data.contract && data.method && data.method.toLowerCase() !== label.toLowerCase()}
+          <span aria-hidden="true">·</span>
+          <code class="transaction-type__method">{data.method}</code>
+        {/if}
       {/await}
     {/if}
   </span>

@@ -581,12 +581,16 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
               >
                 Transfer
               </span>
+               
+              <!---->
               
               <!---->
             </span>
           </div>
           <!---->
         </dd>
+        <!---->
+         
         <!---->
          
         <dt
@@ -689,13 +693,23 @@ exports[`Transaction Details > should render the Transaction details page 2`] = 
           class="transaction-details__technical-summary detail-technical__summary"
         >
           Technical details
+          <!---->
+          <svg
+            class="dusk-icon dusk-icon--size--default detail-technical__chevron"
+            role="graphics-symbol"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+            />
+          </svg>
+          
+          <!---->
         </summary>
          
         <dl
           class="transaction-details__list detail-rows"
         >
-          <!---->
-           
           <dt
             class="details-list__term"
           >

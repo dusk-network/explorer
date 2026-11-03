@@ -12,9 +12,14 @@ and this project adheres to
 
 ### Changed
 
+- Show who generated each block on the home page, and a contract call's method in transaction rows and on the transaction page
+- Show a chevron on technical details
+
 ### Removed
 
 ### Fixed
+
+- Keep a long hash inside its tooltip
 
 ## [1.7.2] - 2026-11-03
 

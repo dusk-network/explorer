@@ -388,6 +388,18 @@ exports[`Block Details > renders the Block Details component 1`] = `
         class="block-details__technical-summary detail-technical__summary"
       >
         Technical details
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default detail-technical__chevron"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+          />
+        </svg>
+        
+        <!---->
       </summary>
        
       <dl
@@ -904,6 +916,18 @@ exports[`Block Details > should render the Block Details component with the payl
         class="block-details__technical-summary detail-technical__summary"
       >
         Technical details
+        <!---->
+        <svg
+          class="dusk-icon dusk-icon--size--default detail-technical__chevron"
+          role="graphics-symbol"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+          />
+        </svg>
+        
+        <!---->
       </summary>
        
       <dl

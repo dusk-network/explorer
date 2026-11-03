@@ -129,9 +129,31 @@ details[open]::details-content {
 .detail-technical__summary {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   min-height: 44px;
   font-size: 0.875rem;
   cursor: pointer;
+}
+
+/* The chevron says it opens, and turns as it does. */
+.detail-technical__chevron {
+  flex: 0 0 auto;
+  color: var(--calm-muted);
+  transition: transform var(--motion-fast) var(--motion-ease-exit);
+}
+
+.detail-technical[open] .detail-technical__chevron {
+  transform: rotate(180deg);
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--motion-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-technical__chevron,
+  .detail-technical[open] .detail-technical__chevron {
+    transition: none;
+  }
 }
 
 .detail-technical__summary:focus-visible {

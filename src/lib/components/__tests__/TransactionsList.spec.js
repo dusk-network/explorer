@@ -101,16 +101,16 @@ describe("Transactions List", () => {
       data: { ...call, amount: 1_000_000_000, to: transaction.to },
     }).container;
 
-    // Plain words only: the function's name is for the transaction page.
+    // Plain words, and the function it ran.
     await vi.waitFor(() => {
       expect(
         toContract.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Contract call$/);
+      ).toHaveTextContent(/^Contract call · \S+$/);
       expect(
         toAccount.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Transfer contract$/);
+      ).toHaveTextContent(/^Transfer contract · \S+$/);
     });
-    expect(toContract.querySelector("code")).toBeNull();
+    expect(toContract.querySelector("code")).toHaveTextContent(/^convert$/);
     expect(
       toAccount.querySelector(".transaction-row__parties")
     ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
@@ -137,7 +137,7 @@ describe("Transactions List", () => {
     await vi.waitFor(() =>
       expect(
         lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim())
-      ).toStrictEqual(["Stake", "Unstake", "Claim rewards"])
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"])
     );
   });
 
@@ -197,7 +197,7 @@ describe("Transactions List", () => {
         rows[1]
           .closest(".transaction-row")
           ?.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Contract call$/)
+      ).toHaveTextContent(/^Contract call · \S+$/)
     );
 
     // On testnet, whose file labels both.

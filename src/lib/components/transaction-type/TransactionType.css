@@ -15,6 +15,13 @@
   min-width: 0;
 }
 
+/* The function a call ran, as the contract names it. */
+.transaction-type__method {
+  font-family: var(--mono-font-family);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
 /* Public or shielded: a quiet chip before the words. */
 .transaction-type__privacy {
   display: inline-flex;

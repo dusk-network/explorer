@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script>
-  import { mdiAlertCircleOutline, mdiCheck } from "@mdi/js";
+  import { mdiAlertCircleOutline, mdiCheck, mdiChevronDown } from "@mdi/js";
   import {
     formatContractId,
     formatEvmAddress,
@@ -431,9 +431,24 @@
     <ListItem>
       <svelte:fragment slot="term">Type</svelte:fragment>
       <svelte:fragment slot="definition">
-        <TransactionType {data} displayTooltips={true} showPrivacy={false} />
+        <TransactionType
+          {data}
+          displayTooltips={true}
+          showMethod={false}
+          showPrivacy={false}
+        />
       </svelte:fragment>
     </ListItem>
+
+    <!-- METHOD: the name of the contract's function the call ran -->
+    {#if data.contract}
+      <ListItem wide>
+        <svelte:fragment slot="term">Method</svelte:fragment>
+        <code class="transaction-details__function" slot="definition"
+          >{data.method}</code
+        >
+      </ListItem>
+    {/if}
 
     <!-- VISIBILITY: public or shielded, and what that shows everyone -->
     {#if visibility}
@@ -487,19 +502,12 @@
   <details class="transaction-details__technical detail-technical">
     <summary
       class="transaction-details__technical-summary detail-technical__summary"
-      >Technical details</summary
+      >Technical details<Icon
+        className="detail-technical__chevron"
+        path={mdiChevronDown}
+      /></summary
     >
     <dl class="transaction-details__list detail-rows">
-      <!-- METHOD: the name of the contract's function the call ran -->
-      {#if data.contract}
-        <ListItem wide>
-          <svelte:fragment slot="term">Method</svelte:fragment>
-          <code class="transaction-details__function" slot="definition"
-            >{data.method}</code
-          >
-        </ListItem>
-      {/if}
-
       <!-- GAS USED, OF THE TRANSACTION'S LIMIT -->
       <ListItem
         tooltipText="The gas the transaction used, of the most it could use. Only the gas used is paid for"
