@@ -110,9 +110,21 @@
   font-size: 0.8125rem;
 }
 
-.data-card__progress-bar.dusk-progress-bar {
-  height: 0.125rem;
-  background-color: var(--calm-line);
+/* A first load: the throbber, and what it waits for under it. */
+.data-card__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 7rem;
+  margin: 0;
+  color: var(--calm-muted);
+  font-size: 0.875rem;
+}
+
+.data-card__loading .dusk-throbber {
+  color: var(--calm-text);
 }
 
 .data-card__table,

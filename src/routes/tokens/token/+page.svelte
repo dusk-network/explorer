@@ -75,6 +75,7 @@
       data={transactions}
       {error}
       {loading}
+      loadingText="Loading transactions…"
       title="{tokenData?.token.toUpperCase()} Transactions — {displayedTxns.length} Displayed Items"
       headerButtonDetails={error || (!loading && isLoadMoreDisabled)
         ? undefined

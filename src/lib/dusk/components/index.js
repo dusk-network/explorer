@@ -13,5 +13,6 @@ export { default as RelativeTime } from "./relative-time/RelativeTime.svelte";
 export { default as Select } from "./select/Select.svelte";
 export { default as Switch } from "./switch/Switch.svelte";
 export { default as Textbox } from "./textbox/Textbox.svelte";
+export { default as Throbber } from "./throbber/Throbber.svelte";
 export { default as Tooltip } from "./tooltip/Tooltip.svelte";
 export { default as Toast } from "./toast/Toast.svelte";

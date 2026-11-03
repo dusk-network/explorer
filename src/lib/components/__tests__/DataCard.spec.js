@@ -86,6 +86,32 @@ describe("DataCard", () => {
     expect(container.firstElementChild).toMatchSnapshot();
   });
 
+  it.each(
+    /** @type {Array<["page" | "section" | "detail", string, string | undefined, string]>} */ ([
+      ["page", "Blocks", undefined, "Loading blocks…"],
+      ["section", "Transactions", undefined, "Loading transactions…"],
+      ["detail", "Block", undefined, "Loading the block…"],
+      [
+        "page",
+        "Tokens — 0 Displayed Items",
+        "Loading tokens…",
+        "Loading tokens…",
+      ],
+    ])
+  )(
+    "should say what a first load waits for beside a throbber, from the first moment, as a %s titled %s",
+    (variant, title, loadingText, words) => {
+      const { container, getByText } = render(DataCard, {
+        ...baseOptions,
+        props: { ...baseProps, loading: true, loadingText, title, variant },
+      });
+
+      expect(getByText(words)).toBeInTheDocument();
+      expect(container.querySelector(".dusk-throbber")).toBeInTheDocument();
+      expect(container.querySelector("[role='progressbar']")).toBeNull();
+    }
+  );
+
   it("should render the `DataCard` in the error state", () => {
     const error = new Error("error");
     const { container } = render(DataCard, {

@@ -29,6 +29,7 @@
     data={displayedTokens}
     {error}
     {loading}
+    loadingText="Loading tokens…"
     title="Tokens — {displayedTokens.length} Displayed Items"
     headerButtonDetails={error || (!loading && isLoadMoreDisabled)
       ? undefined

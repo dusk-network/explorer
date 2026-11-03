@@ -44,6 +44,17 @@
   --ledger-font-size: 0.6875rem;
   --ledger-letter-spacing: 0.08em;
 
+  /*
+   * Motion, as in every Dusk app: fast for feedback and every exit, base
+   * for anything that arrives or opens, and never farther than the shift.
+   * $lib/dusk/motion has the same numbers for Svelte's transitions.
+   */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --motion-ease-exit: cubic-bezier(0.32, 0, 0.67, 0);
+  --motion-shift: 4px;
+
   /* Violet is a test network, as on the bridge and in the wallets. */
   --calm-test: #5b4bc4;
   --calm-test-bg: #eeebfb;
@@ -191,4 +202,11 @@
   --calm-test-line: rgb(185 174 255 / 0.28);
 
   color-scheme: dark;
+}
+
+/* Less motion: nothing travels or changes size; opacity and colour may. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-shift: 0px;
+  }
 }

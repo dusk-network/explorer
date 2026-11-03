@@ -12,6 +12,8 @@ and this project adheres to
 
 ### Changed
 
+- Show Copied on the copy button, fade messages in place, open and close technical details, and say what a card loads beside a throbber
+
 ### Removed
 
 ### Fixed

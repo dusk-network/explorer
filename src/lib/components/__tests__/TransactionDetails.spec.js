@@ -147,13 +147,14 @@ describe("Transaction Details", () => {
   });
 
   it("should show the loading state before there is data", () => {
-    const { getByRole } = render(TransactionDetails, {
+    const { container, getByText } = render(TransactionDetails, {
       ...baseProps,
       data: /** @type {any} */ (null),
       loading: true,
     });
 
-    expect(getByRole("progressbar")).toBeInTheDocument();
+    expect(getByText("Loading the transaction…")).toBeInTheDocument();
+    expect(container.querySelector(".dusk-throbber")).toBeInTheDocument();
   });
 
   it("renders the Transaction Details component with the payload visible", async () => {

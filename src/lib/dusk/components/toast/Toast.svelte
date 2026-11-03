@@ -1,7 +1,7 @@
 <script>
   import { flip } from "svelte/animate";
-  import { fly } from "svelte/transition";
   import { Icon } from "$lib/dusk/components";
+  import { closeUp, messageIn, messageOut } from "$lib/dusk/motion";
   import { makeClassName } from "$lib/dusk/string";
   import { toastList, toastTimer } from "./store";
 
@@ -13,20 +13,19 @@
   /** @type {Number} */
   export let timer = 2000;
 
-  /** @type {Number} */
-  export let flyDuration = 500;
-
   const classes = makeClassName(["dusk-toast", className]);
 
   $: $toastTimer = timer;
 </script>
 
+<!-- A message fades in where it stays and fades out in place; the others
+  close up. -->
 <ul {...$$restProps} class={classes}>
   {#each $toastList as { id, icon, message, type } (id)}
     <li
-      in:fly|global={{ duration: flyDuration, x: 200 }}
-      out:fly|global={{ duration: flyDuration, x: 200 }}
-      animate:flip={{ duration: 200 }}
+      in:messageIn|global
+      out:messageOut|global
+      animate:flip={closeUp()}
       class="dusk-toast__item"
     >
       {#if icon}

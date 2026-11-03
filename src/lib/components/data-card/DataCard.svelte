@@ -5,7 +5,7 @@
   import { createEventDispatcher } from "svelte";
 
   import { AppAnchor } from "$lib/components";
-  import { Button, Card, Icon, ProgressBar } from "$lib/dusk/components";
+  import { Button, Card, Icon, Throbber } from "$lib/dusk/components";
   import { makeClassName } from "$lib/dusk/string";
 
   import "./DataCard.css";
@@ -39,6 +39,14 @@
   export let emptyText = "Nothing to show.";
 
   /**
+   * What the card says while its first load runs: by default, that it loads
+   * what its title names, as "Loading blocks…" or "Loading the block…".
+   *
+   * @type {string | undefined}
+   */
+  export let loadingText = undefined;
+
+  /**
    * How the title reads: a page's heading, the heading of a section of the
    * home page, with its link to the whole list beside it, or the small line
    * above a detail page's summary.
@@ -51,6 +59,9 @@
 
   $: classes = makeClassName(["data-card", `data-card--${variant}`, className]);
   $: hasEmptyData = Array.isArray(data) && data.length === 0;
+  $: loadingWords =
+    loadingText ??
+    `Loading ${variant === "detail" ? "the " : ""}${title.toLowerCase()}…`;
 </script>
 
 <Card className={classes}>
@@ -92,7 +103,11 @@
     {/if}
   </header>
   {#if loading && !data}
-    <ProgressBar ariaLabel="Loading" className="data-card__progress-bar" />
+    <!-- What it waits for, with the throbber, from the first moment. -->
+    <p class="data-card__loading">
+      <Throbber />
+      <span>{loadingWords}</span>
+    </p>
   {:else if error || hasEmptyData}
     <!-- A load that failed, and how to try again; or that there is nothing yet. -->
     <div class="alert" class:alert--error={!!error}>
