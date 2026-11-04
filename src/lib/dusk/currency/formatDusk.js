@@ -1,5 +1,5 @@
 /**
- * DUSK as the explorer shows it, as `@dusk-network/networks/format` writes
+ * DUSK as the explorer shows it, as `@dusk-network/app-core/amounts` writes
  * it for every Dusk app: lists and summaries show at most four decimals,
  * but two significant digits under 0.01 DUSK, the rest cut and trailing
  * zeros trimmed; fees paid round to the nearest; details and hover texts
@@ -9,7 +9,7 @@
  * Every function takes LUX, as a number, a bigint or a string of digits.
  */
 
-import { formatDusk as format } from "@dusk-network/networks/format";
+import { formatDusk as format } from "@dusk-network/app-core/amounts";
 
 /** @param {bigint | number | string | null | undefined} value */
 function toLux(value) {
