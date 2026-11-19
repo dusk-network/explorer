@@ -18,7 +18,7 @@
   $: otherExplorers = Object.values(networks).flatMap(({ apps, label }) =>
     apps.explorer && apps.explorer !== network?.apps.explorer
       ? [{ label, url: apps.explorer }]
-      : []
+      : [],
   );
   $: ({ privacyUrl, termsUrl } = (network ?? networks.mainnet).operator);
 </script>

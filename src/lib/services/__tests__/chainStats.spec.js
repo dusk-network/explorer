@@ -105,7 +105,7 @@ describe("createChainStats", () => {
       expect(get(stats).data?.lastBlock).toBe(node.tip);
       // "b" counts from its block on, without another read.
       expect(get(stats).data?.activeProvisioners).toBe(
-        node.tip >= tip + 3 ? 2 : 1
+        node.tip >= tip + 3 ? 2 : 1,
       );
     }
 
@@ -178,7 +178,7 @@ describe("createChainStats", () => {
     const stats = showStats(async (input, init) =>
       refuse && String(input).endsWith("/on/node/provisioners")
         ? new Response("", { status: 503 })
-        : node.fetch(input, init)
+        : node.fetch(input, init),
     );
 
     await vi.advanceTimersByTimeAsync(0);

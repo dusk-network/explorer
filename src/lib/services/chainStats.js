@@ -104,7 +104,7 @@ export function createChainStats({ api, head, now = Date.now }) {
         },
         () => {
           // Left out, and read again at the next block.
-        }
+        },
       )
       .finally(() => {
         provisionersRead = null;
@@ -139,7 +139,7 @@ export function createChainStats({ api, head, now = Date.now }) {
           if (mine === run) {
             txCount = undefined;
           }
-        }
+        },
       )
       .finally(() => {
         countRead = null;

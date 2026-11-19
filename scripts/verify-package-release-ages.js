@@ -60,7 +60,7 @@ const readExemptions = async (file) => {
     .split(/\r?\n/)
     .map(
       (line) =>
-        line.match(/^\s*min-release-age-exclude(?:\[\])?\s*=\s*(.+?)\s*$/)?.[1]
+        line.match(/^\s*min-release-age-exclude(?:\[\])?\s*=\s*(.+?)\s*$/)?.[1],
     )
     .filter(Boolean)
     .flatMap((value) => value.split(","))
@@ -75,7 +75,7 @@ const patternToRegExp = (pattern) =>
     `^${pattern
       .split("*")
       .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, "\\$&"))
-      .join("[^/]*")}$`
+      .join("[^/]*")}$`,
   );
 
 const packageNameFromPath = (packagePath) => {
@@ -84,7 +84,7 @@ const packageNameFromPath = (packagePath) => {
 
   if (markerIndex === -1) {
     throw new Error(
-      `Cannot derive a package name from lockfile path: ${packagePath}`
+      `Cannot derive a package name from lockfile path: ${packagePath}`,
     );
   }
 
@@ -104,7 +104,7 @@ const registryPackageFromResolvedUrl = (resolved, packagePath) => {
     url = new URL(resolved);
   } catch {
     throw new Error(
-      `Unsupported resolved source for ${packagePath}: ${resolved}`
+      `Unsupported resolved source for ${packagePath}: ${resolved}`,
     );
   }
 
@@ -185,7 +185,7 @@ const readExceptions = async (file, now) => {
       !Number.isFinite(expiresAt)
     ) {
       throw new Error(
-        `Invalid release-age exception; expected package, version, reason, and expires: ${JSON.stringify(exception)}`
+        `Invalid release-age exception; expected package, version, reason, and expires: ${JSON.stringify(exception)}`,
       );
     }
 
@@ -227,7 +227,7 @@ const fetchPackageMetadata = async (name, origin) => {
       }
 
       const error = new Error(
-        `Registry returned HTTP ${response.status} for ${name}`
+        `Registry returned HTTP ${response.status} for ${name}`,
       );
 
       if (response.status !== 429 && response.status < 500) {
@@ -277,7 +277,7 @@ const verifyReleaseAges = async ({
 
         if (!published || !Number.isFinite(publishedAt)) {
           failures.push(
-            `${name}@${version}: registry publication timestamp is unavailable`
+            `${name}@${version}: registry publication timestamp is unavailable`,
           );
           continue;
         }
@@ -292,7 +292,7 @@ const verifyReleaseAges = async ({
 
           const age = ((now - publishedAt) / DAY_MS).toFixed(2);
           failures.push(
-            `${name}@${version}: published ${published} (${age} days old)`
+            `${name}@${version}: published ${published} (${age} days old)`,
           );
         }
       }
@@ -300,13 +300,13 @@ const verifyReleaseAges = async ({
   };
 
   await Promise.all(
-    Array.from({ length: Math.min(concurrency, queue.length) }, () => worker())
+    Array.from({ length: Math.min(concurrency, queue.length) }, () => worker()),
   );
 
   for (const [key, exception] of exceptions) {
     if (!usedExceptions.has(key)) {
       failures.push(
-        `${exception.package}@${exception.version}: exception is unused and must be removed`
+        `${exception.package}@${exception.version}: exception is unused and must be removed`,
       );
     }
   }
@@ -323,7 +323,7 @@ const main = async () => {
   const exemptions = await readExemptions(options.npmrc);
   const { entryCount, exemptCount, packages } = collectRegistryPackages(
     lockfile,
-    exemptions.map(patternToRegExp)
+    exemptions.map(patternToRegExp),
   );
   const failures = await verifyReleaseAges({
     concurrency: options.concurrency,
@@ -337,12 +337,12 @@ const main = async () => {
     throw new Error(
       `Package release-age verification failed (minimum ${options.days} days):\n- ${failures
         .sort()
-        .join("\n- ")}`
+        .join("\n- ")}`,
     );
   }
 
   console.log(
-    `Verified ${entryCount} lockfile entries across ${packages.size} registry packages are at least ${options.days} days old; ${exemptCount} entries of ${exemptions.join(", ") || "no exempt packages"} (.npmrc's min-release-age-exclude) are exempt.`
+    `Verified ${entryCount} lockfile entries across ${packages.size} registry packages are at least ${options.days} days old; ${exemptCount} entries of ${exemptions.join(", ") || "no exempt packages"} (.npmrc's min-release-age-exclude) are exempt.`,
   );
 };
 

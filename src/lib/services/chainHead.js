@@ -230,7 +230,7 @@ export function createChainHead({
     clearTimeout(reconnectTimer);
     reconnectTimer = setTimeout(
       openSocket,
-      RECONNECT_MS[Math.min(reconnects, RECONNECT_MS.length - 1)]
+      RECONNECT_MS[Math.min(reconnects, RECONNECT_MS.length - 1)],
     );
     reconnects += 1;
   }
@@ -258,7 +258,7 @@ export function createChainHead({
             height: block.height,
             transactions: block.transactions,
           },
-          true
+          true,
         );
         listenQuietly();
       },

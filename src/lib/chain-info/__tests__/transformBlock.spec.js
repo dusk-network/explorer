@@ -92,15 +92,15 @@ describe("transformBlock", () => {
         ...expectedBlock.transactions.stats,
         averageGasPrice: 0,
         gasUsed: 0,
-      })
+      }),
     );
   });
 
   it("should set an empty string to the `generator` if the node gives none", () => {
     expect(
       transformBlock(
-        updateIn(blockData, "header", skip(["generatorBlsPubkey"]))
-      )
+        updateIn(blockData, "header", skip(["generatorBlsPubkey"])),
+      ),
     ).toStrictEqual(setPathIn(expectedBlock, "header.generator", ""));
   });
 
@@ -108,11 +108,11 @@ describe("transformBlock", () => {
     const blockWithoutNextHash = updateIn(
       blockData,
       "header",
-      skip(["nextBlockHash"])
+      skip(["nextBlockHash"]),
     );
 
     expect(transformBlock(blockWithoutNextHash)).toStrictEqual(
-      setPathIn(expectedBlock, "header.nextblockhash", "")
+      setPathIn(expectedBlock, "header.nextblockhash", ""),
     );
   });
 });

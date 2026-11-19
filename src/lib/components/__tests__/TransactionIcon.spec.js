@@ -38,7 +38,7 @@ describe("TransactionIcon", () => {
     expect(iconOf(transfer)).toBe(mdiArrowTopRight);
     expect(iconOf({ ...transfer, txtype: "Phoenix" })).toBe(mdiEyeOffOutline);
     expect(
-      iconOf({ ...transfer, contract: STAKE_CONTRACT, method: "stake" })
+      iconOf({ ...transfer, contract: STAKE_CONTRACT, method: "stake" }),
     ).toBe(mdiLayersOutline);
     expect(iconOf({ ...transfer, method: "blob" })).toBe(mdiCodeBraces);
   });

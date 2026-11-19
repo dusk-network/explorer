@@ -38,13 +38,13 @@ describe("Transactions Table", () => {
     /** @param {HTMLElement} container */
     const getHeaders = (container) =>
       Array.from(container.querySelectorAll("th"), (th) =>
-        th.textContent?.trim()
+        th.textContent?.trim(),
       );
 
     /** @param {HTMLElement} row */
     const getCells = (row) =>
       Array.from(row.querySelectorAll("td"), (td) =>
-        td.textContent?.replace(/\s+/g, " ").trim()
+        td.textContent?.replace(/\s+/g, " ").trim(),
       );
 
     /**
@@ -80,7 +80,7 @@ describe("Transactions Table", () => {
         TransactionsTable,
         {
           props: { data: [transfer, call], mode: "full" },
-        }
+        },
       );
       const rows = container.querySelectorAll("tbody tr");
 
@@ -92,38 +92,38 @@ describe("Transactions Table", () => {
         "Amount",
       ]);
       expect(readOut(rows[0], ".transaction__parties")).toBe(
-        `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`
+        `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
       );
       expect(getCells(/** @type {HTMLElement} */ (rows[0]))[4]).toBe(
-        "9,812.3789 DUSK"
+        "9,812.3789 DUSK",
       );
       // Four decimals at most, as in the wallets, and every one on hover. A
       // fee under 0.01 DUSK keeps two significant digits, to the nearest.
       expect(getByText("9,812.3789")).toHaveAttribute(
         "title",
-        "9,812.378912731 DUSK"
+        "9,812.378912731 DUSK",
       );
       expect(getAllByText("0.00029")[0]).toHaveAttribute(
         "title",
-        "0.000290766 DUSK"
+        "0.000290766 DUSK",
       );
       expect(
         getByRole("link", {
           name: `${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
-        })
+        }),
       ).toHaveAttribute("href", `/some-base-path/accounts/?key=${transfer.to}`);
       await vi.waitFor(() => {
         expect(readOut(rows[1], ".transaction__parties")).toBe(
-          `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To Stake contract`
+          `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To Stake contract`,
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw"
+          "Failed · Claim rewards · withdraw",
         );
       });
       expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
       expect(rows[1].querySelector(".row-amount")).toHaveClass(
-        "row-amount--muted"
+        "row-amount--muted",
       );
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
     });
@@ -154,17 +154,17 @@ describe("Transactions Table", () => {
 
       await vi.waitFor(() => {
         expect(readOut(toContract, ".transaction__parties")).toMatch(
-          / To Transfer contract$/
+          / To Transfer contract$/,
         );
         // Plain words only: the function's name is for the transaction page.
         expect(textOf(toContract, ".transaction__line")).toBe(
-          "Contract call · convert"
+          "Contract call · convert",
         );
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
-          ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`
+          ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
         );
         expect(textOf(toAccount, ".transaction__line")).toBe(
-          "Transfer contract · convert"
+          "Transfer contract · convert",
         );
       });
     });
@@ -183,18 +183,18 @@ describe("Transactions Table", () => {
       // The tests run in UTC.
       expect(container.querySelector("time")).toHaveAttribute(
         "data-tooltip-text",
-        "Tue 16 Apr 2024, 6:39:09 AM UTC"
+        "Tue 16 Apr 2024, 6:39:09 AM UTC",
       );
       expect(container.querySelector(".transaction__link")).toHaveTextContent(
-        `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`
+        `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`,
       );
       await vi.waitFor(() =>
         expect(
           readOut(
             container.querySelectorAll("tbody tr")[1],
-            ".transaction__parties"
-          )
-        ).toMatch(/ To Contract ababab…ababab$/)
+            ".transaction__parties",
+          ),
+        ).toMatch(/ To Contract ababab…ababab$/),
       );
     });
 
@@ -225,22 +225,22 @@ describe("Transactions Table", () => {
 
       await vi.waitFor(() =>
         expect(
-          container.querySelector(".transaction-party--evm")
-        ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/)
+          container.querySelector(".transaction-party--evm"),
+        ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
       );
       // The address and "on DuskEVM" each wrap whole.
       expect(
         Array.from(
           container.querySelectorAll(".transaction-party--evm > *"),
-          (part) => part.textContent
-        )
+          (part) => part.textContent,
+        ),
       ).toStrictEqual(["0x5A3d…8a01", "on DuskEVM"]);
       // The address opens on the testnet's DuskEVM explorer.
       expect(
-        container.querySelector(".transaction-party--evm > a")
+        container.querySelector(".transaction-party--evm > a"),
       ).toHaveAttribute(
         "href",
-        "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01"
+        "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01",
       );
       // Its DuskEVM transaction is for its own page: a list asks nothing.
       expect(fetchSpy).not.toHaveBeenCalled();
@@ -274,20 +274,20 @@ describe("Transactions Table", () => {
         },
       });
       const [failedShield, failedCall, shieldDone] = Array.from(
-        container.querySelectorAll("tbody tr .row-amount")
+        container.querySelectorAll("tbody tr .row-amount"),
       );
       /** @param {Element} amount */
       const struck = (amount) =>
         getComputedStyle(amount).textDecoration.includes("line-through");
 
       expect(failedShield.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "20 DUSK, nothing sent"
+        "20 DUSK, nothing sent",
       );
       expect(struck(failedShield)).toBe(true);
       // A failure that would have sent nothing, and a shield that went through.
       expect(struck(failedCall)).toBe(false);
       expect(shieldDone.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "−20 DUSK"
+        "−20 DUSK",
       );
       expect(struck(shieldDone)).toBe(false);
 
@@ -308,11 +308,11 @@ describe("Transactions Table", () => {
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
       await vi.waitFor(() =>
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw"
-        )
+          "Failed · Claim rewards · withdraw",
+        ),
       );
       expect(
-        rows[0].querySelectorAll("td")[2].querySelector("time")
+        rows[0].querySelectorAll("td")[2].querySelector("time"),
       ).toHaveAttribute("data-tooltip-text", "Tue 16 Apr 2024, 6:39:09 AM UTC");
     });
   });
@@ -337,8 +337,8 @@ describe("Transactions Table", () => {
 
     expect(
       Array.from(container.querySelectorAll(".row-amount"), (amount) =>
-        amount.textContent?.replace(/\s+/g, " ").trim()
-      )
+        amount.textContent?.replace(/\s+/g, " ").trim(),
+      ),
     ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
   });
 });

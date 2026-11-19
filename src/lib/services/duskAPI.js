@@ -110,7 +110,7 @@ const duskAPI = {
         getTransactionsById: (ids) => duskAPI.getTransactionsById(ids),
         query: gqlGet,
       },
-      address
+      address,
     );
   },
 
@@ -136,7 +136,7 @@ const duskAPI = {
         return setPathIn(
           block,
           "header.nextBlockHash",
-          await duskAPI.getBlockHashByHeight(block.header.height + 1)
+          await duskAPI.getBlockHashByHeight(block.header.height + 1),
         );
       })
       .then(transformBlock);
@@ -148,7 +148,7 @@ const duskAPI = {
    */
   getBlockDetails(id) {
     return gqlGet(getBlockDetailsQueryInfo(id)).then(
-      getPath("block.header.json")
+      getPath("block.header.json"),
     );
   },
 
@@ -158,7 +158,7 @@ const duskAPI = {
    */
   getBlockHashByHeight(height) {
     return gqlGet(getBlockHashQueryInfo(height)).then(({ block }) =>
-      block ? block.header.hash : ""
+      block ? block.header.hash : "",
     );
   },
 
@@ -187,7 +187,7 @@ const duskAPI = {
       ({ anchor, blocks }) => ({
         anchor: anchor?.header.hash ?? null,
         blocks: transformBlocks(blocks).reverse(),
-      })
+      }),
     );
   },
 
@@ -226,7 +226,7 @@ const duskAPI = {
       ({ blocks, transactions }) => ({
         blocks: transformBlocks(blocks),
         transactions: transformTransactions(transactions),
-      })
+      }),
     );
   },
 
@@ -239,7 +239,7 @@ const duskAPI = {
         "&localization=false" +
         "&market_data=true" +
         "&sparkline=false" +
-        "&tickers=false"
+        "&tickers=false",
     );
 
     try {
@@ -326,7 +326,7 @@ const duskAPI = {
    */
   getNodeLocations() {
     return nodePost("/on/network/peers_location").then((data) =>
-      addCountAndUnique(data)
+      addCountAndUnique(data),
     );
   },
 
@@ -374,7 +374,7 @@ const duskAPI = {
                 inactive: BigInt(data.amount?.locked ?? 0),
                 reward: BigInt(data.reward),
               }
-            : null
+            : null,
       );
   },
 
@@ -436,10 +436,10 @@ const duskAPI = {
             prevblockhash: header.prevBlockHash,
           })),
           transactions: newestFirst.flatMap((block) =>
-            transformTransactions(block.transactions)
+            transformTransactions(block.transactions),
           ),
         };
-      }
+      },
     );
   },
 
@@ -456,7 +456,7 @@ const duskAPI = {
           ids
             .map((_, n) => found?.[`tx${n}`])
             .filter(Boolean)
-            .map(transformTransaction)
+            .map(transformTransaction),
         )
       : Promise.resolve([]);
   },
@@ -474,8 +474,8 @@ const duskAPI = {
       transformTransactions(
         ranges
           .flatMap((_, n) => found?.[`r${n}`] ?? [])
-          .sort((a, b) => b.blockHeight - a.blockHeight)
-      )
+          .sort((a, b) => b.blockHeight - a.blockHeight),
+      ),
     );
   },
 

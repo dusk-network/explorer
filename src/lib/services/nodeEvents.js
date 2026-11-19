@@ -39,7 +39,7 @@ export function acceptedBlockOf(data) {
     }
 
     const { header, transactions } = JSON.parse(
-      decoder.decode(new Uint8Array(data, 4 + length))
+      decoder.decode(new Uint8Array(data, 4 + length)),
     );
 
     if (

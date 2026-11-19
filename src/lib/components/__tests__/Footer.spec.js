@@ -36,7 +36,7 @@ describe("Footer", () => {
     ]);
 
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 });

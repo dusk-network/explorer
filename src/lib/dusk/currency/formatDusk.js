@@ -15,7 +15,7 @@ import { formatDusk as format } from "@dusk-network/app-core/amounts";
 function toLux(value) {
   try {
     return BigInt(
-      typeof value === "number" ? Math.trunc(value) : String(value ?? 0)
+      typeof value === "number" ? Math.trunc(value) : String(value ?? 0),
     );
   } catch {
     return 0n;

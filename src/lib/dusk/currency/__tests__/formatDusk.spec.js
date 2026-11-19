@@ -17,7 +17,7 @@ describe("formatDusk", () => {
     expect(formatDuskExact(9_435_908_700_000_000)).toBe("9,435,908.7");
     expect(formatDusk("13102790940789549")).toBe("13,102,790.9407");
     expect(formatDuskExact(13_102_790_940_789_549n)).toBe(
-      "13,102,790.940789549"
+      "13,102,790.940789549",
     );
   });
 

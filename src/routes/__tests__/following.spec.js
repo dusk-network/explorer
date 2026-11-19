@@ -61,8 +61,8 @@ describe("The home page, following the chain", () => {
         (a) =>
           new URL(
             String(a.getAttribute("href")),
-            "http://localhost"
-          ).searchParams.get("id")
+            "http://localhost",
+          ).searchParams.get("id"),
       );
 
     await vi.advanceTimersByTimeAsync(1_000);
@@ -102,7 +102,7 @@ describe("The home page, following the chain", () => {
     expect(fake.requests("/on/node/provisioners")).toHaveLength(2);
     // The count again for each block with transactions, and with the provisioners.
     expect(since.filter((r) => r.path === "/on/stats/tx_count")).toHaveLength(
-      withTransactions + 1
+      withTransactions + 1,
     );
     // Each new block read once, and the last block never asked for.
     expect(graphql).toHaveLength(30);
@@ -114,8 +114,8 @@ describe("The home page, following the chain", () => {
         .every(
           (r) =>
             JSON.stringify(r.headers) ===
-            JSON.stringify({ "Content-Type": "text/plain" })
-        )
+            JSON.stringify({ "Content-Type": "text/plain" }),
+        ),
     ).toBe(true);
   }, 30_000);
 });

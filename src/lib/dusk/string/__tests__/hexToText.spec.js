@@ -18,7 +18,7 @@ describe("hexToText", () => {
   it("should give `null` for text with control, bidi or zero-width characters", () => {
     const hex = (/** @type {string} */ text) =>
       Array.from(new TextEncoder().encode(text), (b) =>
-        b.toString(16).padStart(2, "0")
+        b.toString(16).padStart(2, "0"),
       ).join("");
 
     // C1 control (NEL) and right-to-left override

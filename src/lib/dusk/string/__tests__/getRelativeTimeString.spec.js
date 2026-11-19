@@ -57,7 +57,7 @@ describe("getRelativeTimeString", () => {
 
     // Ahead as well as behind.
     expect(
-      getRelativeTimeString(new Date(Date.now() + 59.6 * SECOND), "long")
+      getRelativeTimeString(new Date(Date.now() + 59.6 * SECOND), "long"),
     ).toBe("in 1 minute");
   });
 });

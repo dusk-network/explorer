@@ -36,7 +36,7 @@ vi.mock("$lib/stores", async (importOriginal) => {
 
 describe("StaleDataNotice", () => {
   const initialState = structuredClone(
-    mockedReadableStore.getMockedStoreValue()
+    mockedReadableStore.getMockedStoreValue(),
   );
 
   beforeEach(() => {

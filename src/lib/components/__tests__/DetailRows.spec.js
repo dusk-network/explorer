@@ -42,7 +42,7 @@ describe("Detail rows", () => {
     style.textContent = css
       .replaceAll(
         "@media (min-width: 64rem)",
-        screen === "wide" ? "@media all" : "@media not all"
+        screen === "wide" ? "@media all" : "@media not all",
       )
       .replaceAll("@media (max-width: 47.99rem)", "@media not all");
     document.head.append(style);
@@ -52,7 +52,7 @@ describe("Detail rows", () => {
   const rowOf = (term) => {
     const dt = /** @type {Element} */ (
       Array.from(document.querySelectorAll("dt")).find(
-        (el) => el.textContent?.trim() === term
+        (el) => el.textContent?.trim() === term,
       )
     );
 
@@ -83,7 +83,7 @@ describe("Detail rows", () => {
     const amount = rowOf("Amount");
 
     expect(getComputedStyle(list).gridTemplateColumns).toBe(
-      "11rem minmax(0, 1fr)"
+      "11rem minmax(0, 1fr)",
     );
     // A long value beside its label, not under it.
     expect(getComputedStyle(from.dt).gridColumn).toBe("auto");

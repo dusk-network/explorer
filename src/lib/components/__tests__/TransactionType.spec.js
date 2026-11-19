@@ -32,8 +32,8 @@ describe("TransactionType", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".transaction-type__label")
-      ).toHaveTextContent(/^Data blob$/)
+        container.querySelector(".transaction-type__label"),
+      ).toHaveTextContent(/^Data blob$/),
     );
   });
 
@@ -51,8 +51,8 @@ describe("TransactionType", () => {
 
       await vi.waitFor(() =>
         expect(
-          container.querySelector(".transaction-type__label")
-        ).toBeInTheDocument()
+          container.querySelector(".transaction-type__label"),
+        ).toBeInTheDocument(),
       );
 
       return [
@@ -74,7 +74,7 @@ describe("TransactionType", () => {
       "withdraw",
     ]);
     expect(
-      await words({ contract: undefined, method: "transfer" })
+      await words({ contract: undefined, method: "transfer" }),
     ).toStrictEqual(["Transfer", undefined]);
   });
 
@@ -92,12 +92,12 @@ describe("TransactionType", () => {
 
     expect(privacy(shielded)).toBe("Sender, receiver and amount are hidden");
     expect(
-      privacy({ ...shielded, contract: stake, deposit: 1_000_000_000_000 })
+      privacy({ ...shielded, contract: stake, deposit: 1_000_000_000_000 }),
     ).toBe(
-      "Sender and value are hidden. The contract called and the DUSK sent to it are public"
+      "Sender and value are hidden. The contract called and the DUSK sent to it are public",
     );
     expect(privacy({ ...shielded, contract: stake, deposit: 0 })).toBe(
-      "Sender and value are hidden. The contract called is public"
+      "Sender and value are hidden. The contract called is public",
     );
   });
 
@@ -116,7 +116,7 @@ describe("TransactionType", () => {
       });
 
       expect(getByText(words)).toHaveClass("transaction-type__direction");
-    }
+    },
   );
 
   it("should keep a call's own words, its way shown by the row's sign", async () => {
@@ -135,8 +135,8 @@ describe("TransactionType", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".transaction-type__label")
-      ).toHaveTextContent("Claim rewards")
+        container.querySelector(".transaction-type__label"),
+      ).toHaveTextContent("Claim rewards"),
     );
     expect(queryByText("Sent")).toBeNull();
   });

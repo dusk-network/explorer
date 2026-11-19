@@ -94,11 +94,11 @@ describe("Navbar", () => {
 
     expect(brand.querySelector(".dusk-navbar__wordmark")).toHaveAttribute(
       "aria-hidden",
-      "true"
+      "true",
     );
     expect(brand.querySelector(".dusk-navbar__divider")).toHaveAttribute(
       "aria-hidden",
-      "true"
+      "true",
     );
     expect(brand).toHaveTextContent(/^Explorer$/);
   });
@@ -110,13 +110,13 @@ describe("Navbar", () => {
     // The tests' page is the home page.
     expect(getByRole("link", { name: "Home" })).toHaveAttribute(
       "aria-current",
-      "page"
+      "page",
     );
     expect(
       Array.from(pages.querySelectorAll("a"), (link) => [
         link.textContent?.trim(),
         link.getAttribute("aria-current"),
-      ])
+      ]),
     ).toStrictEqual([
       ["Home", "page"],
       ["Blocks", null],
@@ -149,7 +149,7 @@ describe("Navbar", () => {
     expect(network).toHaveTextContent(/^Testnet , not answering$/);
     expect(network).toHaveAttribute(
       "data-tooltip-text",
-      "The node isn't answering"
+      "The node isn't answering",
     );
 
     await act(() => nodeAnswers.set(true));
@@ -159,7 +159,7 @@ describe("Navbar", () => {
     expect(network).not.toHaveAttribute("data-tooltip-text");
 
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 
@@ -187,7 +187,7 @@ describe("Navbar", () => {
 
     // With a modifier, "/" is someone else's shortcut.
     expect(
-      await fireEvent.keyDown(document.body, { ctrlKey: true, key: "/" })
+      await fireEvent.keyDown(document.body, { ctrlKey: true, key: "/" }),
     ).toBe(true);
     expect(search).not.toHaveFocus();
 
@@ -238,7 +238,7 @@ describe("Navbar", () => {
       afterNavigateCallback(
         /** @type {any} */ ({
           to: { url: new URL("http://localhost/some-base-path/blocks/") },
-        })
+        }),
       );
     });
 
@@ -255,7 +255,7 @@ describe("Navbar", () => {
     await showSearchNotification(container);
 
     expect(getNotificationElement(container)).toHaveTextContent(
-      "Nothing found for foo_bar"
+      "Nothing found for foo_bar",
     );
     // A new entry: Back, or closing the notice, returns to the account.
     expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
@@ -265,7 +265,7 @@ describe("Navbar", () => {
         noScroll: true,
         replaceState: false,
         state: { searchedInApp: true },
-      }
+      },
     );
 
     gotoSpy.mockRestore();
@@ -285,7 +285,7 @@ describe("Navbar", () => {
 
       await fireEvent.input(
         /** @type {HTMLInputElement} */ (form.querySelector("input")),
-        { target: { value: "bar_baz" } }
+        { target: { value: "bar_baz" } },
       );
       await fireEvent.submit(form);
       unmount();
@@ -295,7 +295,7 @@ describe("Navbar", () => {
 
     for (const searchedInApp of [true, false]) {
       expect(
-        await searchAgainOn(searchedInApp ? { searchedInApp } : {})
+        await searchAgainOn(searchedInApp ? { searchedInApp } : {}),
       ).toStrictEqual([
         "/some-base-path/search/?q=bar_baz",
         {
@@ -319,12 +319,12 @@ describe("Navbar", () => {
 
     await act(() =>
       afterNavigateCallback(
-        /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } })
-      )
+        /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } }),
+      ),
     );
 
     expect(getNotificationElement(container)).toHaveTextContent(
-      "Nothing found for foo_bar"
+      "Nothing found for foo_bar",
     );
     expect(getByRole("textbox")).toHaveValue("foo_bar");
     // Its address already says it.
@@ -345,15 +345,15 @@ describe("Navbar", () => {
 
     await act(() =>
       afterNavigateCallback(
-        /** @type {any} */ ({ to: { url: new URL(searchPage(account)) } })
-      )
+        /** @type {any} */ ({ to: { url: new URL(searchPage(account)) } }),
+      ),
     );
 
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
         `/some-base-path/accounts/?key=${account}`,
-        { replaceState: true }
-      )
+        { replaceState: true },
+      ),
     );
 
     searchSpy.mockRestore();
@@ -367,23 +367,23 @@ describe("Navbar", () => {
 
     await fireEvent.input(input, { target: { value: "foobar" } });
     await fireEvent.submit(
-      /** @type {HTMLFormElement} */ (input.closest("form"))
+      /** @type {HTMLFormElement} */ (input.closest("form")),
     );
     await vi.waitFor(() =>
       expect(getNotificationElement(container)).toHaveTextContent(
-        "Nothing found for foobar"
-      )
+        "Nothing found for foobar",
+      ),
     );
 
     pageStore.at(searchPage("foobar"), { searchedInApp: true });
     await act(() =>
       afterNavigateCallback(
-        /** @type {any} */ ({ to: { url: new URL(searchPage("foobar")) } })
-      )
+        /** @type {any} */ ({ to: { url: new URL(searchPage("foobar")) } }),
+      ),
     );
 
     expect(getNotificationElement(container)).toHaveTextContent(
-      "Nothing found for foobar"
+      "Nothing found for foobar",
     );
     expect(searchSpy).toHaveBeenCalledExactlyOnceWith("foobar");
 
@@ -402,19 +402,21 @@ describe("Navbar", () => {
     // The search page, opened: it searches again and offers alice.dusk.
     await act(() =>
       afterNavigateCallback(
-        /** @type {any} */ ({ to: { url: new URL(searchPage("alice")) } })
-      )
+        /** @type {any} */ ({ to: { url: new URL(searchPage("alice")) } }),
+      ),
     );
     await fireEvent.click(
-      await vi.waitFor(() => getByRole("button", { name: "Search alice.dusk" }))
+      await vi.waitFor(() =>
+        getByRole("button", { name: "Search alice.dusk" }),
+      ),
     );
 
     // Back then skips the search that found nothing.
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
         `/some-base-path/accounts/?key=${account}&name=alice.dusk`,
-        { replaceState: true }
-      )
+        { replaceState: true },
+      ),
     );
 
     gotoSpy.mockRestore();
@@ -435,7 +437,7 @@ describe("Navbar", () => {
     await fireEvent.click(
       /** @type {HTMLButtonElement} */ (
         container.querySelector(".search-notification__header-action")
-      )
+      ),
     );
 
     expect(getNotificationElement(container)).toBeNull();
@@ -448,7 +450,9 @@ describe("Navbar", () => {
     });
 
     await act(() =>
-      afterNavigateCallback(/** @type {any} */ ({ to: { url: new URL(from) } }))
+      afterNavigateCallback(
+        /** @type {any} */ ({ to: { url: new URL(from) } }),
+      ),
     );
 
     expect(getNotificationElement(container)).toBeNull();
@@ -468,13 +472,13 @@ describe("Navbar", () => {
 
       await act(() =>
         afterNavigateCallback(
-          /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } })
-        )
+          /** @type {any} */ ({ to: { url: new URL(searchPage("foo_bar")) } }),
+        ),
       );
       await fireEvent.click(
         /** @type {HTMLButtonElement} */ (
           container.querySelector(".search-notification__header-action")
-        )
+        ),
       );
       unmount();
     };
@@ -522,7 +526,7 @@ describe("Navbar", () => {
         disconnect() {
           this.targets = [];
         }
-      }
+      },
     );
 
     const { container } = render(Navbar);
@@ -580,19 +584,19 @@ describe("Navbar", () => {
 
     await fireEvent.input(input, { target: { value: "alice" } });
     await fireEvent.submit(
-      /** @type {HTMLFormElement} */ (input.closest("form"))
+      /** @type {HTMLFormElement} */ (input.closest("form")),
     );
 
     const suggestion = await vi.waitFor(() =>
-      getByRole("button", { name: "Search alice.dusk" })
+      getByRole("button", { name: "Search alice.dusk" }),
     );
 
     await fireEvent.click(suggestion);
 
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledWith(
-        `/some-base-path/accounts/?key=${account}&name=alice.dusk`
-      )
+        `/some-base-path/accounts/?key=${account}&name=alice.dusk`,
+      ),
     );
     expect(resolveDuskName).toHaveBeenCalledWith("alice.dusk");
     expect(getNotificationElement(container)).toBeNull();

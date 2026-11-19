@@ -52,7 +52,7 @@ const entriesOf = (field) =>
     .filter(
       (/** @type {Entry} */ entry) =>
         Number.isSafeInteger(entry.height) &&
-        /^[0-9a-f]{64}$/i.test(entry.origin)
+        /^[0-9a-f]{64}$/i.test(entry.origin),
     );
 
 /**
@@ -78,7 +78,7 @@ const newerFirst = (a, b) =>
  */
 const newestFirst = (entries) =>
   [...new Map(entries.map((entry) => [entry.origin, entry])).values()].sort(
-    newerFirst
+    newerFirst,
   );
 
 /**
@@ -130,7 +130,7 @@ const reachedAt = (below, cursor) => below.find((range) => range.hi === cursor);
 const floorUnder = (below, cursor) =>
   Math.max(
     -1,
-    ...below.filter((range) => range.hi < cursor).map((range) => range.hi)
+    ...below.filter((range) => range.hi < cursor).map((range) => range.hi),
   );
 
 /**
@@ -223,7 +223,7 @@ export function createAccountHistory(api, address) {
     for (let n = 2, more = first.full; more; n += 1) {
       const next = rangeOf(
         await read({ from: height, page: n, to: height }),
-        height
+        height,
       );
 
       entries.push(...next.entries);
@@ -275,7 +275,7 @@ export function createAccountHistory(api, address) {
 
     const from = Math.max(
       floorUnder(at.below, at.cursor) + 1,
-      at.cursor - at.window + 1
+      at.cursor - at.window + 1,
     );
     const range = rangeOf(await read({ from, to: at.cursor }), at.cursor);
 

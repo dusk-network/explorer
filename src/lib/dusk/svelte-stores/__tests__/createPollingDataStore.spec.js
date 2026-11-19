@@ -207,7 +207,7 @@ describe("createPollingDataStore", () => {
 
   it("should start a new poll process and stop the previous one when the `start` method is called and a polling is running", async () => {
     dataRetriever.mockImplementation((v) =>
-      Promise.resolve(v === 1 ? data1 : data2)
+      Promise.resolve(v === 1 ? data1 : data2),
     );
 
     pollingDataStore.start(1);

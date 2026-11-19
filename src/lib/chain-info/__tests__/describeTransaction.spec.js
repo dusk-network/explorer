@@ -10,10 +10,10 @@ describe("describeTransaction", () => {
 
   it("should say who sent how much to whom, every decimal of it", () => {
     expect(describeTransaction(transfer, names)).toBe(
-      "alice.dusk sent 9,812.378912731 DUSK to bob.dusk"
+      "alice.dusk sent 9,812.378912731 DUSK to bob.dusk",
     );
     expect(
-      describeTransaction({ ...transfer, amount: 500_000_000 }, names)
+      describeTransaction({ ...transfer, amount: 500_000_000 }, names),
     ).toBe("alice.dusk sent 0.5 DUSK to bob.dusk");
   });
 
@@ -32,10 +32,13 @@ describe("describeTransaction", () => {
         duskEvm: "0x5A3d…8a01",
         from: "alice.dusk",
         to: "DuskEVM bridge",
-      })
+      }),
     ).toBe("alice.dusk sent 0.5 DUSK to 0x5A3d…8a01 on DuskEVM");
     expect(
-      describeTransaction(deposit, { from: "alice.dusk", to: "DuskEVM bridge" })
+      describeTransaction(deposit, {
+        from: "alice.dusk",
+        to: "DuskEVM bridge",
+      }),
     ).toBe("alice.dusk sent 0.5 DUSK to DuskEVM bridge");
   });
 
@@ -43,13 +46,13 @@ describe("describeTransaction", () => {
     const failed = { ...transfer, txerror: "Panic" };
 
     expect(describeTransaction(failed, names)).toBe(
-      "alice.dusk tried to send 9,812.378912731 DUSK to bob.dusk"
+      "alice.dusk tried to send 9,812.378912731 DUSK to bob.dusk",
     );
     expect(
       describeTransaction(
         { ...failed, amount: 500_000_000 },
-        { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null }
-      )
+        { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null },
+      ),
     ).toBe("alice.dusk tried to send 0.5 DUSK to 0x5A3d…8a01 on DuskEVM");
   });
 
@@ -64,7 +67,10 @@ describe("describeTransaction", () => {
     };
 
     expect(
-      describeTransaction(call, { from: "alice.dusk", to: "Transfer contract" })
+      describeTransaction(call, {
+        from: "alice.dusk",
+        to: "Transfer contract",
+      }),
     ).toBe("alice.dusk called convert on Transfer contract");
   });
 
@@ -78,14 +84,14 @@ describe("describeTransaction", () => {
           to: undefined,
           txtype: "Phoenix",
         },
-        { from: null, to: null }
-      )
+        { from: null, to: null },
+      ),
     ).toBe("A shielded account sent a hidden amount to a shielded account");
   });
 
   it("should say a deployment deployed a contract", () => {
     expect(
-      describeTransaction({ ...transfer, method: "deploy", to: null }, names)
+      describeTransaction({ ...transfer, method: "deploy", to: null }, names),
     ).toBe("alice.dusk deployed a contract");
   });
 });

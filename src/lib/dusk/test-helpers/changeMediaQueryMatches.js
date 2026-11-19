@@ -9,6 +9,6 @@ export default function changeMediaQueryMatches(media, matches) {
   dispatchEvent(
     new CustomEvent("DuskMediaQueryMatchesChange", {
       detail: { matches, media },
-    })
+    }),
   );
 }

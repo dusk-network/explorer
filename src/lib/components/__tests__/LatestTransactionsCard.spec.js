@@ -35,7 +35,7 @@ describe("LatestTransactionsCard", () => {
             sender,
             { name: "tdi.dusk", url: "https://dusk.domains/name/tdi.dusk" },
           ],
-        ])
+        ]),
       );
 
       const { findAllByRole } = render(LatestTransactionsCard, {
@@ -56,13 +56,13 @@ describe("LatestTransactionsCard", () => {
       expect(names).toHaveLength(2);
       expect(names[0]).toHaveAttribute(
         "href",
-        `/some-base-path/accounts/?key=${sender}`
+        `/some-base-path/accounts/?key=${sender}`,
       );
       expect(names[0]).toHaveAttribute(
         "data-tooltip-text",
-        `tdi.dusk · ${sender.slice(0, 6)}…${sender.slice(-6)}`
+        `tdi.dusk · ${sender.slice(0, 6)}…${sender.slice(-6)}`,
       );
-    }
+    },
   );
 
   it("should look up nothing for a list without public accounts", () => {

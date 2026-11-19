@@ -22,7 +22,7 @@ describe("transformSearchResult", () => {
         account: null,
         block: null,
         tx: null,
-      })
+      }),
     ).toStrictEqual(null);
   });
 });

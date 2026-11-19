@@ -31,7 +31,7 @@ describe("describeCall", () => {
 
   it("should name Dusk Domains contracts and their common calls", async () => {
     await expect(
-      describeCall(duskDomainsStore, "issue_reserved", 1)
+      describeCall(duskDomainsStore, "issue_reserved", 1),
     ).resolves.toEqual({ label: "Reserved name issued", name: "Dusk Domains" });
     await expect(describeCall(duskDomainsStore, "commit", 1)).resolves.toEqual({
       label: null,
@@ -52,7 +52,7 @@ describe("describeCall", () => {
     // node has said which network it is on.
     for (const chainId of [2, 3, undefined]) {
       await expect(
-        describeCall(duskDomainsStore, "issue_reserved", chainId)
+        describeCall(duskDomainsStore, "issue_reserved", chainId),
       ).resolves.toEqual({ label: null, name: null });
     }
   });
@@ -75,19 +75,19 @@ describe("describeCall", () => {
       "14eeb3d4021aff09af2c515603a01f8d956a7f6411d11a1b1c0b0561a93fb1b9";
 
     await expect(
-      describeCall(bridge, "depositETHToWithValue", 2)
+      describeCall(bridge, "depositETHToWithValue", 2),
     ).resolves.toEqual({ label: "Deposit to DuskEVM", name: "DuskEVM bridge" });
     await expect(
-      describeCall(portal, "proveWithdrawalTransaction", 2)
+      describeCall(portal, "proveWithdrawalTransaction", 2),
     ).resolves.toEqual({
       label: "Prove withdrawal",
       name: "DuskEVM bridge portal",
     });
     await expect(
-      describeCall(bridge, "depositETHToWithValue", 1)
+      describeCall(bridge, "depositETHToWithValue", 1),
     ).resolves.toEqual({ label: null, name: null });
     await expect(
-      describeCall(bridge, "depositETHToWithValue")
+      describeCall(bridge, "depositETHToWithValue"),
     ).resolves.toEqual({ label: null, name: null });
   });
 
@@ -100,7 +100,7 @@ describe("describeCall", () => {
       name: "Sozu pool",
     });
     await expect(
-      describeCall(mainnetPool, "stake_activate", 1)
+      describeCall(mainnetPool, "stake_activate", 1),
     ).resolves.toEqual({ label: null, name: "Sozu pool" });
     await expect(describeCall(mainnetPool, "sozu_stake", 2)).resolves.toEqual({
       label: null,
@@ -113,36 +113,36 @@ describe("describeCall", () => {
       describeCall(
         "2e4b8b46390c860282b765641fa94037812601bf777164d7b7f801a262206046",
         "submit",
-        2
-      )
+        2,
+      ),
     ).resolves.toEqual({ label: null, name: "DuskEVM transaction router" });
     await expect(
       describeCall(
         "179f68303f0eb935660d52a52c2f104709d8b3b1d6f6525689d4d599695840c9",
         "registerBlobTxMeta",
-        2
-      )
+        2,
+      ),
     ).resolves.toEqual({ label: null, name: "DuskEVM transaction metadata" });
     await expect(
       describeCall(
         "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37",
         "",
-        2
-      )
+        2,
+      ),
     ).resolves.toEqual({ label: null, name: "Sozu relayer" });
   });
 
   it("should name every contract by its network's label in @dusk-network/networks", async () => {
     for (const network of Object.values(networks)) {
       const contracts = Object.entries(network.display.labels).filter(([id]) =>
-        /^[0-9a-f]{64}$/.test(id)
+        /^[0-9a-f]{64}$/.test(id),
       );
 
       expect(contracts.length).toBeGreaterThan(1);
 
       for (const [id, label] of contracts) {
         await expect(
-          describeCall(id, "", network.chainId)
+          describeCall(id, "", network.chainId),
         ).resolves.toMatchObject({ name: label });
       }
     }

@@ -32,7 +32,7 @@ describe("findDepositArrival", () => {
                 amountLux: lux,
                 minGasLimit: 200_000,
                 to: recipient,
-              })
+              }),
             ).toString("base64"),
           },
         },
@@ -64,7 +64,7 @@ describe("findDepositArrival", () => {
           },
         ],
         next_page_params: next,
-      })
+      }),
     );
 
   it("should ask DuskEVM's explorer once, for its first page, however long ago the deposit was sent", async () => {
@@ -73,7 +73,7 @@ describe("findDepositArrival", () => {
     const last = explorer(null);
 
     await expect(
-      findDepositArrival(deposit, recipient, 2, { fetch: last, now })
+      findDepositArrival(deposit, recipient, 2, { fetch: last, now }),
     ).resolves.toBe(arrival);
     expect(last).toHaveBeenCalledOnce();
 
@@ -81,7 +81,7 @@ describe("findDepositArrival", () => {
     const more = explorer({ block_number: 1, index: 0, items_count: 50 });
 
     await expect(
-      findDepositArrival(deposit, recipient, 2, { fetch: more, now })
+      findDepositArrival(deposit, recipient, 2, { fetch: more, now }),
     ).resolves.toBeNull();
     expect(more).toHaveBeenCalledOnce();
   });
@@ -92,7 +92,7 @@ describe("findDepositArrival", () => {
     const fetch = explorer(null, String(lux * 1_000_000_000n));
 
     await expect(
-      findDepositArrival(depositOf(lux), recipient, 2, { fetch })
+      findDepositArrival(depositOf(lux), recipient, 2, { fetch }),
     ).resolves.toBe(arrival);
   });
 });

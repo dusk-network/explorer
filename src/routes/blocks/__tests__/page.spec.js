@@ -87,7 +87,7 @@ describe("Blocks page", () => {
     expect(getBlocksAfterSpy).toHaveBeenNthCalledWith(
       1,
       newest,
-      newest + blocksListEntries
+      newest + blocksListEntries,
     );
 
     newBlock(newest + 2);
@@ -96,7 +96,7 @@ describe("Blocks page", () => {
     expect(getBlocksAfterSpy).toHaveBeenCalledTimes(2);
     expect(getBlocksSpy).toHaveBeenCalledTimes(1);
     expect(container.querySelectorAll(".blocks-table tbody tr")).toHaveLength(
-      Math.min(blocks.length, get(appStore).chainInfoEntries)
+      Math.min(blocks.length, get(appStore).chainInfoEntries),
     );
 
     unmount();

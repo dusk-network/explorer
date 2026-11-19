@@ -10,7 +10,7 @@
   // Read again at each new block.
   const pollingDataStore = createFollowingDataStore(
     followChainInfo(duskAPI),
-    chainHeadStore
+    chainHeadStore,
   );
 
   $: ({ data, error, isLoading } = $pollingDataStore);

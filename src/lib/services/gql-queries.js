@@ -154,7 +154,7 @@ export const getMempoolTx = (id) => ({
  */
 export const getMoonlightHistoryQueryInfo = (
   address,
-  { count, from, page = 1, tip = false, to }
+  { count, from, page = 1, tip = false, to },
 ) => {
   const range = [
     `fromBlock: ${gqlNumber(from)}`,

@@ -15,7 +15,7 @@ function currentPage(pathname, links, base = "") {
       : pathname;
 
   return links.find((link) =>
-    link === "/" ? path === "/" : path === link || path.startsWith(`${link}/`)
+    link === "/" ? path === "/" : path === link || path.startsWith(`${link}/`),
   );
 }
 

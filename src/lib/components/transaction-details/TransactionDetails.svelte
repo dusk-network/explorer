@@ -110,7 +110,7 @@
         labelOf(chainId, party.address) ??
         getPrimaryName(party.address).then(
           (found) => found?.name ?? short,
-          () => short
+          () => short,
         )
       );
     }
@@ -118,7 +118,7 @@
     if (party?.kind === "contract") {
       return describeCall(party.id, "", chainId).then(
         ({ name }) => name ?? short,
-        () => short
+        () => short,
       );
     }
 
@@ -163,7 +163,7 @@
               formatEvmAddress(duskEvmRecipient, { short: true }),
             from: fromName,
             to: toName,
-          })
+          }),
       )
     : Promise.resolve("");
 </script>
@@ -177,7 +177,7 @@
 <!-- A DuskEVM address or transaction, which opens on DuskEVM's own explorer. -->
 {#snippet onDuskEvm(
   /** @type {string} */ value,
-  /** @type {string | null} */ href
+  /** @type {string | null} */ href,
 )}
   {#if href}<Anchor
       aria-label="{value} on the DuskEVM explorer"
@@ -216,7 +216,7 @@
     <p class="transaction-details__summary-lines detail-summary__lines">
       <span class="transaction-details__summary-text detail-summary__text"
         >{#await lead}{@render withWholeIds(
-            shortLead
+            shortLead,
           )}{:then sentence}{@render withWholeIds(sentence)}{/await}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">
@@ -297,7 +297,7 @@
           <span class="transaction-details__value transaction-details__evm"
             >{@render onDuskEvm(
               duskEvmRecipient,
-              duskEvmAddressUrl(duskEvmRecipient, chainId)
+              duskEvmAddressUrl(duskEvmRecipient, chainId),
             )} on DuskEVM</span
           >
           <CopyButton
@@ -317,7 +317,7 @@
             <span class="transaction-details__value transaction-details__evm"
               >{@render onDuskEvm(
                 hash,
-                duskEvmTransactionUrl(hash, chainId)
+                duskEvmTransactionUrl(hash, chainId),
               )}</span
             >
             <CopyButton
@@ -413,7 +413,7 @@
         <svelte:fragment slot="definition">
           {@render sentAmount(
             toDuskAndUsd(data.deposit, usdPrice),
-            data.deposit
+            data.deposit,
           )}
           <StaleDataNotice />
         </svelte:fragment>
@@ -515,7 +515,7 @@
         <svelte:fragment slot="term">Gas used</svelte:fragment>
         <svelte:fragment slot="definition"
           >{formatter(data.gasspent)} of {formatter(
-            data.gaslimit
+            data.gaslimit,
           )}</svelte:fragment
         >
       </ListItem>
@@ -558,7 +558,7 @@
                 class="transaction-details__payload detail-payload">{JSON.stringify(
                   data.payload,
                   null,
-                  2
+                  2,
                 )}</pre>
             {/if}
           </svelte:fragment>

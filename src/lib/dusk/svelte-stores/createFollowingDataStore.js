@@ -108,7 +108,7 @@ const createFollowingDataStore = (dataRetriever, head) => {
     ($dataStore, set) => {
       set($dataStore);
     },
-    get(dataStore)
+    get(dataStore),
   );
 
   return {

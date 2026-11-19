@@ -20,7 +20,7 @@ const block = (
   height,
   txids = [],
   hash = `hash-${height}`,
-  prevblockhash = `hash-${height - 1}`
+  prevblockhash = `hash-${height - 1}`,
 ) =>
   /** @type {Block} */ ({
     header: { hash, height, prevblockhash },
@@ -98,7 +98,7 @@ const blocksReader = (chain) => ({
     async (/** @type {number} */ from, /** @type {number} */ to) => ({
       anchor: chain.hashAt(from),
       blocks: chain.between(from + 1, to),
-    })
+    }),
   ),
   getLatestChainInfo: vi.fn(async (/** @type {number} */ amount) => ({
     blocks: chain.last(amount),
@@ -111,11 +111,11 @@ const transactionsReader = (chain) => ({
   getChainTip: vi.fn(async () => ({
     date: new Date(0),
     ...(({ hash, height }) => ({ hash, height }))(
-      chain.between(chain.tip, chain.tip)[0].header
+      chain.between(chain.tip, chain.tip)[0].header,
     ),
   })),
   getTransactions: vi.fn(async (/** @type {number} */ amount) =>
-    chain.lastTransactions(amount)
+    chain.lastTransactions(amount),
   ),
   getTransactionsAfter: vi.fn(
     async (/** @type {number} */ from, /** @type {number} */ to) => {
@@ -130,7 +130,7 @@ const transactionsReader = (chain) => ({
         })),
         transactions: found.flatMap((b) => b.transactions.data),
       };
-    }
+    },
   ),
   getTransactionsIn: vi.fn(async (/** @type {number[][]} */ ranges) => {
     for (const [from, to] of ranges) {
@@ -140,7 +140,7 @@ const transactionsReader = (chain) => ({
     }
 
     return ranges.flatMap(([from, to]) =>
-      chain.between(from, to).flatMap((b) => b.transactions.data)
+      chain.between(from, to).flatMap((b) => b.transactions.data),
     );
   }),
 });
@@ -372,7 +372,7 @@ describe("followTransactions", () => {
 
     expect(ids(await read(3))).toStrictEqual(["i1", "f1", "f2"]);
     expect(api.getChainTip.mock.invocationCallOrder[0]).toBeLessThan(
-      api.getTransactions.mock.invocationCallOrder[0]
+      api.getTransactions.mock.invocationCallOrder[0],
     );
 
     chain.add(11, ["k1"]);

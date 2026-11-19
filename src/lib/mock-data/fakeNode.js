@@ -116,7 +116,7 @@ function argsOf(raw) {
   const args = {};
 
   for (const [, key, value] of (raw ?? "").matchAll(
-    /(\w+)\s*:\s*("(?:[^"\\]|\\.)*"|\[[^\]]*\]|-?[\d.]+)/g
+    /(\w+)\s*:\s*("(?:[^"\\]|\\.)*"|\[[^\]]*\]|-?[\d.]+)/g,
   )) {
     args[key] = JSON.parse(value);
   }
@@ -166,7 +166,7 @@ function pageOf(list, { fromBlock = 0, maxCount, pageCount = 1, toBlock }) {
     .filter(
       (entry) =>
         entry.height >= fromBlock &&
-        (toBlock === undefined || entry.height <= toBlock)
+        (toBlock === undefined || entry.height <= toBlock),
     )
     .sort((a, b) => a.height - b.height);
   const picked =
@@ -227,7 +227,7 @@ function createChain({ behind, history, tip, transactions }) {
       height,
       timestamp: timeAt(height),
       transactions: Array.from({ length: count }, () =>
-        transactionOf(hashOf("e", serial + 1), height)
+        transactionOf(hashOf("e", serial + 1), height),
       ),
     };
 
@@ -340,7 +340,7 @@ const answersOf = (chain, history) => ({
             .sort((a, b) =>
               a.height === b.height
                 ? a.origin.localeCompare(b.origin)
-                : a.height - b.height
+                : a.height - b.height,
             )
             .map(asGroup),
         }
@@ -371,7 +371,7 @@ function frameOf(block) {
     JSON.stringify({
       "Content-Location": `/on/blocks:${block.hash}/accepted`,
       "Content-Type": "application/json",
-    })
+    }),
   );
   const payload = encoder.encode(
     JSON.stringify({
@@ -382,7 +382,7 @@ function frameOf(block) {
         timestamp: block.timestamp,
       },
       transactions: block.transactions.map((t) => t.id),
-    })
+    }),
   );
   const frame = new Uint8Array(4 + headers.length + payload.length);
 
@@ -461,7 +461,7 @@ function createSockets(log) {
       for (const socket of sockets) {
         if (subscribed.has(socket.session)) {
           socket.dispatchEvent(
-            new MessageEvent("message", { data: frameOf(block) })
+            new MessageEvent("message", { data: frameOf(block) }),
           );
         }
       }
@@ -499,7 +499,7 @@ const routesOf = ({ answers, chain, provisioners, subscribed }) => ({
 
     try {
       return Response.json(
-        Object.fromEntries(fields.map((f) => [f.alias, answers[f.name](f)]))
+        Object.fromEntries(fields.map((f) => [f.alias, answers[f.name](f)])),
       );
     } catch (error) {
       return new Response(String(error), { status: 500 });
@@ -609,7 +609,7 @@ export function createFakeNode({
      */
     requests: (what) =>
       log.filter((l) =>
-        what.startsWith("/") ? l.path === what : l.fields.includes(what)
+        what.startsWith("/") ? l.path === what : l.fields.includes(what),
       ),
 
     /** The node's sockets, as the explorer opened them. */

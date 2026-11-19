@@ -33,7 +33,7 @@ describe("Search Notification", () => {
     await fireEvent.click(getByRole("button", { name: "Search alice.dusk" }));
 
     expect(onSuggest).toHaveBeenCalledExactlyOnceWith(
-      expect.objectContaining({ detail: "alice.dusk" })
+      expect.objectContaining({ detail: "alice.dusk" }),
     );
   });
 

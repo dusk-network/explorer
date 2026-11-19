@@ -41,11 +41,11 @@ const initialState = {
   },
   provisionersFetchInterval: Number(
     import.meta.env.VITE_PROVISIONERS_REFETCH_INTERVAL ||
-      DEFAULT_PROVISIONERS_FETCH_INTERVAL
+      DEFAULT_PROVISIONERS_FETCH_INTERVAL,
   ),
   transactionsListEntries: Number(
     import.meta.env.VITE_TRANSACTIONS_LIST_ENTRIES ||
-      DEFAULT_TRANSACTIONS_LIST_ENTRIES
+      DEFAULT_TRANSACTIONS_LIST_ENTRIES,
   ),
 };
 const store = writable(initialState);

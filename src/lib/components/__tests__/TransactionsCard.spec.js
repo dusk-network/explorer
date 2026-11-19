@@ -104,7 +104,7 @@ describe("Transactions Card", () => {
           { name: "alice.dusk", url: "https://dusk.domains/name/alice.dusk" },
         ],
         [bob, null],
-      ])
+      ]),
     );
 
     const { findAllByRole, getAllByRole } = render(TransactionsCard, {
@@ -115,12 +115,12 @@ describe("Transactions Card", () => {
     // The 15 rows shown have two accounts between them.
     expect(getPrimaryNames).toHaveBeenCalledExactlyOnceWith([alice, bob]);
     expect(await findAllByRole("link", { name: "alice.dusk" })).toHaveLength(
-      15
+      15,
     );
     expect(
       getAllByRole("link", {
         name: `${bob.slice(0, 6)}…${bob.slice(-6)}`,
-      })
+      }),
     ).toHaveLength(15);
   });
 

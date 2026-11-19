@@ -39,10 +39,10 @@ describe("Provisioners List", () => {
       "slashes",
     ]);
     expect(
-      getByRole("link", { name: new RegExp(provisioners.key.slice(0, 4)) })
+      getByRole("link", { name: new RegExp(provisioners.key.slice(0, 4)) }),
     ).toHaveAttribute(
       "href",
-      `/some-base-path/accounts/?key=${provisioners.key}`
+      `/some-base-path/accounts/?key=${provisioners.key}`,
     );
   });
 
@@ -75,15 +75,15 @@ describe("Provisioners List", () => {
 
     expect(
       ownedBy(
-        "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37"
-      )
+        "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37",
+      ),
     ).toHaveTextContent(/^Sozu relayer$/);
     expect(ownedBy("ab".repeat(32))).toHaveTextContent(
-      /^Contract ababab…ababab$/
+      /^Contract ababab…ababab$/,
     );
 
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 });

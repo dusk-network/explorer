@@ -23,7 +23,7 @@ export async function findDepositArrival(
   tx,
   recipient,
   chainId,
-  { fetch, now } = {}
+  { fetch, now } = {},
 ) {
   const network = networkOf(chainId);
   // Its amount as its call names it: past 2^53 LUX, a number has lost digits.

@@ -41,7 +41,7 @@ function setStorage(info) {
 const fetchInterval = get(appStore).marketDataFetchInterval;
 const pollingDataStore = createPollingDataStore(
   duskAPI.getMarketData,
-  fetchInterval
+  fetchInterval,
 );
 
 /** @type {MarketDataStoreContent} */
@@ -72,14 +72,14 @@ const marketDataStore = derived(
       setStorage(
         new MarketDataInfo(
           newStore.data,
-          /** @type {Date}*/ (newStore.lastUpdate)
-        )
+          /** @type {Date}*/ (newStore.lastUpdate),
+        ),
       );
     }
 
     set(newStore);
   },
-  initialState
+  initialState,
 );
 
 function isDataStale() {
@@ -97,7 +97,7 @@ function startPolling() {
   } else {
     setTimeout(
       pollingDataStore.start,
-      +initialState.lastUpdate + fetchInterval - Date.now()
+      +initialState.lastUpdate + fetchInterval - Date.now(),
     );
   }
 }
@@ -119,7 +119,7 @@ const shownMarketData = derived(
   ([$marketDataStore, $appStore], set) => {
     set(isMainnet($appStore.nodeInfo) ? $marketDataStore : noMarketData);
   },
-  noMarketData
+  noMarketData,
 );
 
 let isPolling = false;

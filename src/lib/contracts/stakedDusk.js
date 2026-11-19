@@ -35,7 +35,7 @@ function batchedFetch(nodeUrl, multicallId) {
   if (!batched) {
     batched = import("@hdauven/dusk-multicall").then(
       ({ createMulticallFetch }) =>
-        createMulticallFetch({ multicallId, nodeUrl })
+        createMulticallFetch({ multicallId, nodeUrl }),
     );
     batchedFetches.set(key, batched);
     batched.catch(() => batchedFetches.delete(key));
@@ -64,7 +64,7 @@ export async function getStakedDusk(address, chainId) {
 
   const fetchBatched = await batchedFetch(
     makeNodeUrl("/").href,
-    network.contracts.multicall
+    network.contracts.multicall,
   );
 
   /**

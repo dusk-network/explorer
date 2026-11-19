@@ -71,8 +71,8 @@
     return Boolean(
       element?.isContentEditable ||
       element?.matches?.(
-        "textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])"
-      )
+        "textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])",
+      ),
     );
   };
 
@@ -111,7 +111,7 @@
 
   const getNotification = () =>
     document.getElementsByClassName(
-      "dusk-navbar__menu--search-notification"
+      "dusk-navbar__menu--search-notification",
     )[0];
 
   /**
@@ -245,7 +245,7 @@
   $: current = currentPage(
     $page.url.pathname,
     navigation.map(({ link }) => link),
-    base
+    base,
   );
 </script>
 

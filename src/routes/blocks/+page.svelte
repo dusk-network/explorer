@@ -8,7 +8,7 @@
   // Read again at each new block.
   const pollingDataStore = createFollowingDataStore(
     followBlocks(duskAPI),
-    chainHeadStore
+    chainHeadStore,
   );
 
   onMount(() => pollingDataStore.start($appStore.blocksListEntries));

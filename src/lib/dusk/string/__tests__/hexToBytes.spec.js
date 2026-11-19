@@ -6,7 +6,7 @@ describe("hexToBytes", () => {
     expect(hexToBytes("a1b2")).toEqual(new Uint8Array([161, 178]));
     expect(hexToBytes("0f1e")).toEqual(new Uint8Array([15, 30]));
     expect(hexToBytes("0011223344")).toEqual(
-      new Uint8Array([0, 17, 34, 51, 68])
+      new Uint8Array([0, 17, 34, 51, 68]),
     );
   });
 

@@ -26,7 +26,7 @@ describe("bridgeDepositRecipient", () => {
 
   it("should read the DuskEVM address a deposit pays, with its checksum", () => {
     expect(bridgeDepositRecipient(deposit, 2)).toBe(
-      "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01"
+      "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01",
     );
   });
 
@@ -37,7 +37,7 @@ describe("bridgeDepositRecipient", () => {
 
   it("should read nothing when the DUSK sent isn't the amount the call names, or the payload isn't the call's", () => {
     expect(
-      bridgeDepositRecipient({ ...deposit, deposit: 400_000_000 }, 2)
+      bridgeDepositRecipient({ ...deposit, deposit: 400_000_000 }, 2),
     ).toBeNull();
     expect(bridgeDepositRecipient({ ...deposit, amount: 1 }, 2)).toBeNull();
     expect(
@@ -48,8 +48,8 @@ describe("bridgeDepositRecipient", () => {
             payload: { call: { fn_args: "not base64!" } },
           })
         ),
-        2
-      )
+        2,
+      ),
     ).toBeNull();
   });
 });

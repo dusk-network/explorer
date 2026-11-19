@@ -19,7 +19,7 @@ import MainLayout from "../+layout.svelte";
 
 function createTooltippedElement() {
   const tooltippedElement = document.body.appendChild(
-    document.createElement("div")
+    document.createElement("div"),
   );
 
   tooltippedElement.setAttribute("data-tooltip-id", "main-tooltip");
@@ -189,7 +189,7 @@ describe("Main layout", () => {
   it("should say at the top of a test network that test DUSK has no value", async () => {
     const { getByRole, queryByRole } = renderWithSimpleContent(
       MainLayout,
-      baseOptions
+      baseOptions,
     );
 
     await vi.advanceTimersByTimeAsync(1);
@@ -207,7 +207,7 @@ describe("Main layout", () => {
   it("should show a search that found nothing in place of the page, until it is closed", async () => {
     const { container, getByRole } = renderWithSimpleContent(
       MainLayout,
-      baseOptions
+      baseOptions,
     );
     const main = /** @type {HTMLElement} */ (container.querySelector("main"));
     const input = /** @type {HTMLInputElement} */ (
@@ -218,16 +218,16 @@ describe("Main layout", () => {
 
     await fireEvent.input(input, { target: { value: "bad_name" } });
     await fireEvent.submit(
-      /** @type {HTMLFormElement} */ (input.closest("form"))
+      /** @type {HTMLFormElement} */ (input.closest("form")),
     );
 
     expect(container.querySelector(".search-notification")).toHaveTextContent(
-      "Nothing found for bad_name"
+      "Nothing found for bad_name",
     );
     expect(main).not.toBeVisible();
 
     await fireEvent.click(
-      /** @type {HTMLElement} */ (getByRole("button", { name: "Close" }))
+      /** @type {HTMLElement} */ (getByRole("button", { name: "Close" })),
     );
 
     expect(main).toBeVisible();

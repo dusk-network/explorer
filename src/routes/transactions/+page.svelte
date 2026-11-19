@@ -8,7 +8,7 @@
   // Read again at each new block.
   const pollingDataStore = createFollowingDataStore(
     followTransactions(duskAPI),
-    chainHeadStore
+    chainHeadStore,
   );
 
   /** How many of the latest transactions the page reads: a page more each time it is asked for more. */

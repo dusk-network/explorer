@@ -17,10 +17,10 @@ import {
  * Vitest get stuck otherwise.
  */
 vi.spyOn(global, "atob").mockImplementation((data) =>
-  Buffer.from(data, "base64").toString("binary")
+  Buffer.from(data, "base64").toString("binary"),
 );
 vi.spyOn(global, "btoa").mockImplementation((data) =>
-  Buffer.from(data, "binary").toString("base64")
+  Buffer.from(data, "binary").toString("base64"),
 );
 
 // Adding missing bits in JSDOM

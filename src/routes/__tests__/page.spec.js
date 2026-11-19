@@ -98,7 +98,7 @@ describe("home page", () => {
     expect(duskAPI.getLatestChainInfo).toHaveBeenCalledTimes(1);
     expect(duskAPI.getLatestChainInfo).toHaveBeenNthCalledWith(
       1,
-      chainInfoEntries
+      chainInfoEntries,
     );
 
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
@@ -117,7 +117,7 @@ describe("home page", () => {
     expect(duskAPI.getBlocksAfter).toHaveBeenNthCalledWith(
       1,
       newest,
-      newest + chainInfoEntries
+      newest + chainInfoEntries,
     );
 
     newBlock(newest + 2);

@@ -33,7 +33,7 @@ describe("Blocks Table", () => {
   /** @param {HTMLElement} container */
   const getHeaders = (container) =>
     Array.from(container.querySelectorAll("th"), (th) =>
-      th.textContent?.trim()
+      th.textContent?.trim(),
     );
 
   it("should say who made each block on the blocks page, opening its account, and leave it out on the home page", async () => {
@@ -48,7 +48,7 @@ describe("Blocks Table", () => {
 
     const generators = Array.from(
       container.querySelectorAll("tbody tr"),
-      (row) => row.querySelectorAll("td")[1].querySelector("a")
+      (row) => row.querySelectorAll("td")[1].querySelector("a"),
     );
 
     expect(generators).toHaveLength(data.length);
@@ -58,7 +58,7 @@ describe("Blocks Table", () => {
       expect(link?.textContent?.trim()).toBe(shortId(key));
       expect(link).toHaveAttribute(
         "href",
-        `/some-base-path/accounts/?key=${key}`
+        `/some-base-path/accounts/?key=${key}`,
       );
     });
 
@@ -72,7 +72,7 @@ describe("Blocks Table", () => {
       "Reward",
     ]);
     expect(container.querySelectorAll("a[href*='/accounts/']")).toHaveLength(
-      data.length
+      data.length,
     );
   });
 
@@ -88,7 +88,7 @@ describe("Blocks Table", () => {
     /** @param {Element} row */
     const numbersOf = (row) =>
       Array.from(row.querySelectorAll("td"), (td) =>
-        td.textContent?.replace(/\s+/g, " ").trim()
+        td.textContent?.replace(/\s+/g, " ").trim(),
       ).slice(2);
 
     expect(numbersOf(busyRow)).toStrictEqual([
@@ -97,7 +97,7 @@ describe("Blocks Table", () => {
     ]);
     expect(busyRow.querySelector(".block__line")).toHaveAttribute(
       "title",
-      "580,718 of 5,000,000,000 gas"
+      "580,718 of 5,000,000,000 gas",
     );
     expect(numbersOf(emptyRow)).toStrictEqual([
       "0",

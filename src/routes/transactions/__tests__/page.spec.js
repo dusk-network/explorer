@@ -67,7 +67,7 @@ describe("Transactions page", () => {
     getTransactionSpy
       .mockClear()
       .mockResolvedValue(
-        gqlTransactions.transactions.map(transformTransaction)
+        gqlTransactions.transactions.map(transformTransaction),
       );
     getTransactionsAfterSpy.mockClear();
   });
@@ -91,7 +91,7 @@ describe("Transactions page", () => {
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getTransactionSpy).toHaveBeenNthCalledWith(
       1,
-      transactionsListEntries
+      transactionsListEntries,
     );
 
     // snapshot with received data from GraphQL
@@ -107,7 +107,7 @@ describe("Transactions page", () => {
     expect(getTransactionsAfterSpy).toHaveBeenNthCalledWith(
       1,
       tip.height,
-      tip.height + 199
+      tip.height + 199,
     );
 
     newBlock(tip.height + 2);
@@ -138,7 +138,7 @@ describe("Transactions page", () => {
     expect(getTransactionSpy).toHaveBeenCalledTimes(1);
     expect(getTransactionSpy).toHaveBeenNthCalledWith(
       1,
-      transactionsListEntries
+      transactionsListEntries,
     );
   });
 });

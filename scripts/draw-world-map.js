@@ -15,7 +15,7 @@ import { geoNaturalEarth1, geoPath } from "d3-geo";
 
 const folder = new URL("../src/lib/components/world-map/", import.meta.url);
 const countries = JSON.parse(
-  readFileSync(new URL("world-map.json", folder), "utf8")
+  readFileSync(new URL("world-map.json", folder), "utf8"),
 );
 const projection = geoNaturalEarth1().scale(195).center([0, 8]);
 
@@ -45,7 +45,7 @@ const land = drawn
       .slice(1)
       .map(
         ([x, y], index) =>
-          `${units(x - points[index][0])},${units(y - points[index][1])}`
+          `${units(x - points[index][0])},${units(y - points[index][1])}`,
       );
 
     return `M${units(startX)},${units(startY)}l${steps.join(" ")}z`;
@@ -54,5 +54,5 @@ const land = drawn
 
 writeFileSync(
   new URL("land.js", folder),
-  `// Drawn by scripts/draw-world-map.js from world-map.json.\nexport default ${JSON.stringify(land)};\n`
+  `// Drawn by scripts/draw-world-map.js from world-map.json.\nexport default ${JSON.stringify(land)};\n`,
 );

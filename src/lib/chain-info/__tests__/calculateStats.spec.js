@@ -16,7 +16,7 @@ describe("calculateStats", () => {
       waitingStake: 0,
     };
     expect(calculateStats(hostProvisioners, lastBlockHeight)).toStrictEqual(
-      expectedStats
+      expectedStats,
     );
   });
 

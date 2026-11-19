@@ -17,7 +17,7 @@ const getValidProvisioners = filterWith((p) => p.amount >= 1e12);
 const sumByAmount = condition(
   (provisioners) => provisioners.length > 0,
   arraySumByKey("amount"),
-  always(0)
+  always(0),
 );
 
 /**
@@ -28,7 +28,7 @@ const sumByAmount = condition(
 function calculateStats(provisioners, lastHeight) {
   const [activeProvisioners, waitingProvisioners] = partition(
     getValidProvisioners(provisioners),
-    (p) => p.eligibility <= lastHeight
+    (p) => p.eligibility <= lastHeight,
   );
 
   return {

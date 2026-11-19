@@ -30,7 +30,7 @@ describe("transactionKind", () => {
   it("should tell a public transfer from a shielded one", () => {
     expect(transactionKind(transfer, 2)).toBe("transfer");
     expect(transactionKind({ ...transfer, txtype: "Phoenix" }, 2)).toBe(
-      "shielded"
+      "shielded",
     );
   });
 
@@ -47,19 +47,19 @@ describe("transactionKind", () => {
   it("should count native staking and Sozu's pool as staking", () => {
     expect(transactionKind(callTo(STAKE_CONTRACT, "stake"))).toBe("staking");
     expect(transactionKind(callTo(sozu.mainnetPool, "sozu_stake"), 1)).toBe(
-      "staking"
+      "staking",
     );
     expect(transactionKind(callTo(sozu.testnetHub, "stake_activate"), 2)).toBe(
-      "staking"
+      "staking",
     );
     expect(transactionKind(callTo(sozu.mainnetPool, "sozu_stake"), 2)).toBe(
-      "call"
+      "call",
     );
   });
 
   it("should call any other contract call, blob or deployment a call", () => {
     expect(transactionKind(callTo(TRANSFER_CONTRACT, "convert"), 2)).toBe(
-      "call"
+      "call",
     );
     expect(transactionKind({ ...transfer, method: "blob" }, 2)).toBe("call");
     expect(transactionKind({ ...transfer, method: "deploy" }, 2)).toBe("call");

@@ -90,7 +90,7 @@ const stakeRowsOf = (container) =>
         term.textContent?.trim(),
         dt.nextElementSibling?.textContent?.replace(/\s+/g, " ").trim(),
       ];
-    }
+    },
   );
 
 describe("Account page", () => {
@@ -111,14 +111,14 @@ describe("Account page", () => {
     const { container, getByText } = render(AccountPage);
 
     await vi.waitFor(() =>
-      expect(container.textContent).toContain("Stake rewards")
+      expect(container.textContent).toContain("Stake rewards"),
     );
     await vi.waitFor(() =>
       expect(
         Array.from(container.querySelectorAll(".dusk-amount"), (amount) =>
-          amount.textContent?.trim()
-        )
-      ).toStrictEqual(["1,484.92 DUSK", "1,000 DUSK", "31.0271 DUSK"])
+          amount.textContent?.trim(),
+        ),
+      ).toStrictEqual(["1,484.92 DUSK", "1,000 DUSK", "31.0271 DUSK"]),
     );
 
     expect(duskAPI.getStake).toHaveBeenCalledExactlyOnceWith(key);
@@ -132,12 +132,12 @@ describe("Account page", () => {
         ["Inactive stake", "0 DUSK"],
         ["Eligibility", "From about Mon 26 Oct 2026, 10:20 AM UTC"],
         ["Slashes", "1 soft, 0 hard"],
-      ])
+      ]),
     );
     expect(getByText(/From about/)).toHaveAttribute("title", "Block 123,120");
     expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
     expect(
-      container.querySelector(".account-overview-panel__kind")
+      container.querySelector(".account-overview-panel__kind"),
     ).toHaveTextContent(/^\[Provisioner\]$/);
     expect(container.textContent).toContain("Shielded funds aren't shown.");
   });
@@ -151,13 +151,13 @@ describe("Account page", () => {
       expect(
         Array.from(
           container.querySelectorAll(".overview-panel__details-item"),
-          (item) => item.textContent?.replace(/\s+/g, " ").trim()
-        )
+          (item) => item.textContent?.replace(/\s+/g, " ").trim(),
+        ),
       ).toStrictEqual([
         "Public balance 1,484.92 DUSK",
         "Native stake N/A",
         "Stake rewards N/A",
-      ])
+      ]),
     );
     expect(duskAPI.getStake).toHaveBeenCalledTimes(1);
   });
@@ -173,7 +173,7 @@ describe("Account page", () => {
     const { findByText } = render(AccountPage);
 
     expect(
-      await findByText(/Since about Sun 25 Oct 2026, 10:00 AM UTC/)
+      await findByText(/Since about Sun 25 Oct 2026, 10:00 AM UTC/),
     ).toHaveAttribute("title", "Block 123,120");
   });
 
@@ -184,7 +184,7 @@ describe("Account page", () => {
 
     // No network yet: nothing to read it from.
     await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
     );
     expect(getStakedDusk).not.toHaveBeenCalled();
 
@@ -192,8 +192,8 @@ describe("Account page", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".account-overview-panel__sozu")
-      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK")
+        container.querySelector(".account-overview-panel__sozu"),
+      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK"),
     );
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 
@@ -209,7 +209,7 @@ describe("Account page", () => {
 
     await vi.waitFor(() => expect(getStakedDusk).toHaveBeenCalledOnce());
     await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
     );
     expect(container.querySelector(".account-overview-panel__sozu")).toBeNull();
 
@@ -222,14 +222,14 @@ describe("Account page", () => {
     const { container } = render(AccountPage);
 
     await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3)
+      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
     );
 
     expect(
-      container.querySelector(".account-overview-panel__kind")
+      container.querySelector(".account-overview-panel__kind"),
     ).toHaveTextContent(/^\[Account\]$/);
     expect(
-      container.querySelector(".account-overview-panel__stake")
+      container.querySelector(".account-overview-panel__stake"),
     ).toBeNull();
     expect(duskAPI.getChainTip).not.toHaveBeenCalled();
   });
@@ -262,7 +262,7 @@ describe("Account page", () => {
 
       expect(rewards()).toBe("2 DUSK");
       expect(duskAPI.getStake).toHaveBeenCalledTimes(3);
-    }
+    },
   );
 
   it("should say an address isn't valid, and ask the node nothing about it", async () => {
@@ -272,8 +272,8 @@ describe("Account page", () => {
 
     expect(
       getByText(
-        "This isn't a valid account address. Check it and search again."
-      )
+        "This isn't a valid account address. Check it and search again.",
+      ),
     ).toBeInTheDocument();
     expect(queryByText("Couldn't load this.")).toBeNull();
     expect(duskAPI.getAccountStatus).not.toHaveBeenCalled();

@@ -23,7 +23,7 @@
       },
       () => {
         nodeAnswers.set(false);
-      }
+      },
     );
 
   const askNodeIfShown = () => {

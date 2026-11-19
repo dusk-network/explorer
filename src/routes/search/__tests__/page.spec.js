@@ -36,7 +36,7 @@ describe("Search page", () => {
     const { container } = render(SearchPage);
 
     expect(container.querySelector(".search-page")).toHaveTextContent(
-      /^Searching…$/
+      /^Searching…$/,
     );
   });
 
@@ -44,7 +44,7 @@ describe("Search page", () => {
     const { container } = render(SearchPage);
 
     expect(container.querySelector(".search-page")).toHaveTextContent(
-      "Search by account address, block height or hash, transaction ID or .dusk name."
+      "Search by account address, block height or hash, transaction ID or .dusk name.",
     );
   });
 });
