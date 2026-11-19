@@ -49,9 +49,9 @@ describe("duskAPI", () => {
           updatePathIn(
             mockData.gqlBlock,
             "block.header",
-            skip(["nextBlockHash"])
-          )
-        )
+            skip(["nextBlockHash"]),
+          ),
+        ),
       )
       .mockResolvedValueOnce(
         makeOKResponse({
@@ -60,11 +60,11 @@ describe("duskAPI", () => {
               hash: mockData.gqlBlock.block.header.nextBlockHash,
             },
           },
-        })
+        }),
       );
 
     await expect(duskAPI.getBlock(fakeID)).resolves.toStrictEqual(
-      transformBlock(mockData.gqlBlock.block)
+      transformBlock(mockData.gqlBlock.block),
     );
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
@@ -89,7 +89,7 @@ describe("duskAPI", () => {
     `);
     expect(getByHeightSpy).toHaveBeenCalledTimes(1);
     expect(getByHeightSpy).toHaveBeenCalledWith(
-      mockData.gqlBlock.block.header.height + 1
+      mockData.gqlBlock.block.header.height + 1,
     );
 
     getByHeightSpy.mockRestore();
@@ -100,7 +100,7 @@ describe("duskAPI", () => {
       String(fetchSpy.mock.lastCall?.[1]?.body).match(/block\([^)]*\)/)?.[0];
 
     fetchSpy.mockImplementation(async () =>
-      makeOKResponse({ block: { header: { json: "{}" } } })
+      makeOKResponse({ block: { header: { json: "{}" } } }),
     );
 
     await duskAPI.getBlockDetails("27730");
@@ -116,7 +116,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse({ block: null }));
 
     await expect(duskAPI.getBlock("999999999")).rejects.toThrow(
-      "There's no such block."
+      "There's no such block.",
     );
 
     fetchSpy.mockReset();
@@ -133,12 +133,12 @@ describe("duskAPI", () => {
               hash: expectedHash,
             },
           },
-        })
+        }),
       )
       .mockResolvedValueOnce(
         makeOKResponse({
           block: null,
-        })
+        }),
       );
 
     await expect(duskAPI.getBlockHashByHeight(11)).resolves.toBe(expectedHash);
@@ -170,7 +170,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.gqlBlockDetails));
 
     await expect(duskAPI.getBlockDetails(fakeID)).resolves.toBe(
-      mockData.gqlBlockDetails.block.header.json
+      mockData.gqlBlockDetails.block.header.json,
     );
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]).toMatchInlineSnapshot(`
@@ -188,7 +188,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.gqlBlocks));
 
     await expect(duskAPI.getBlocks(100)).resolves.toStrictEqual(
-      mockData.gqlBlocks.blocks.map(transformBlock)
+      mockData.gqlBlocks.blocks.map(transformBlock),
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
@@ -240,7 +240,7 @@ describe("duskAPI", () => {
           /** @type {Record<string, number>} */ (
             mockData.apiMarketData.market_data.current_price
           )[currency];
-      }
+      },
     );
 
     // The 24 hours' change and the supply come with them, at no other request.
@@ -256,9 +256,9 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenNthCalledWith(
       1,
       new URL(
-        "https://api.coingecko.com/api/v3/coins/dusk-network?community_data=false&developer_data=false&localization=false&market_data=true&sparkline=false&tickers=false"
+        "https://api.coingecko.com/api/v3/coins/dusk-network?community_data=false&developer_data=false&localization=false&market_data=true&sparkline=false&tickers=false",
       ),
-      apiGetOptions
+      apiGetOptions,
     );
     expect(fetchSpy).toHaveBeenNthCalledWith(2, "https://supply.dusk.network/");
   });
@@ -280,9 +280,9 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenNthCalledWith(
       1,
       new URL(
-        "https://api.coingecko.com/api/v3/coins/dusk-network?community_data=false&developer_data=false&localization=false&market_data=true&sparkline=false&tickers=false"
+        "https://api.coingecko.com/api/v3/coins/dusk-network?community_data=false&developer_data=false&localization=false&market_data=true&sparkline=false&tickers=false",
       ),
-      apiGetOptions
+      apiGetOptions,
     );
     expect(fetchSpy).toHaveBeenNthCalledWith(2, "https://supply.dusk.network/");
   });
@@ -291,7 +291,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.apiNodeLocations));
 
     await expect(duskAPI.getNodeLocations()).resolves.toStrictEqual(
-      addCountAndUnique(mockData.apiNodeLocations)
+      addCountAndUnique(mockData.apiNodeLocations),
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -300,7 +300,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.hostProvisioners));
 
     await expect(duskAPI.getProvisioners()).resolves.toStrictEqual(
-      mockData.hostProvisioners
+      mockData.hostProvisioners,
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -309,7 +309,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.apiNodeInfo));
 
     await expect(duskAPI.getNodeInfo()).resolves.toStrictEqual(
-      mockData.apiNodeInfo
+      mockData.apiNodeInfo,
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -341,7 +341,7 @@ describe("duskAPI", () => {
           header: { hash: "abc", height: 4692520, timestamp: 1793032599 },
           transactions: [{ id: "a1" }, { id: "b2" }],
         },
-      })
+      }),
     );
 
     await expect(duskAPI.getChainTip()).resolves.toStrictEqual({
@@ -353,7 +353,7 @@ describe("duskAPI", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
     expect(fetchSpy.mock.calls[0][1]?.body).toBe(
-      "query { block(height: -1) { header { hash height timestamp } transactions { id } } }"
+      "query { block(height: -1) { header { hash height timestamp } transactions { id } } }",
     );
   });
 
@@ -364,7 +364,7 @@ describe("duskAPI", () => {
           header: { hash: "abc", height: 4692520, timestamp: 1793032599 },
           transactions: [],
         },
-      })
+      }),
     );
 
     const [first, second] = await Promise.all([
@@ -408,7 +408,7 @@ describe("duskAPI", () => {
     }
 
     const gql = fetchSpy.mock.calls.filter(
-      ([url]) => String(url) === gqlExpectedURL.href
+      ([url]) => String(url) === gqlExpectedURL.href,
     );
 
     expect(gql).toHaveLength(queries.length);
@@ -435,7 +435,7 @@ describe("duskAPI", () => {
     await duskAPI.search(tricky);
 
     expect(fetchSpy.mock.calls[0][1]?.body).toBe(
-      `query { block(hash: ${JSON.stringify(tricky)}) { header { hash } }, tx(hash: ${JSON.stringify(tricky)}) { id } }`
+      `query { block(hash: ${JSON.stringify(tricky)}) { header { hash } }, tx(hash: ${JSON.stringify(tricky)}) { id } }`,
     );
   });
 
@@ -450,23 +450,23 @@ describe("duskAPI", () => {
           { ...c, blockHeight: 399 },
         ],
         r1: [],
-      })
+      }),
     );
 
     await expect(
       duskAPI.getTransactionsIn([
         [200, 399],
         [0, 199],
-      ])
+      ]),
     ).resolves.toStrictEqual(
       [
         { ...b, blockHeight: 399 },
         { ...c, blockHeight: 399 },
         { ...a, blockHeight: 300 },
-      ].map(transformTransaction)
+      ].map(transformTransaction),
     );
     expect(fetchSpy.mock.calls[0][1]?.body).toContain(
-      "r0: blockTxs(range: [200, 399]) {...TransactionInfo} r1: blockTxs(range: [0, 199]) {...TransactionInfo}"
+      "r0: blockTxs(range: [200, 399]) {...TransactionInfo} r1: blockTxs(range: [0, 199]) {...TransactionInfo}",
     );
   });
 
@@ -474,15 +474,15 @@ describe("duskAPI", () => {
     const [first, second] = mockData.gqlTransactions.transactions;
 
     fetchSpy.mockResolvedValueOnce(
-      makeOKResponse({ tx0: second, tx1: null, tx2: first })
+      makeOKResponse({ tx0: second, tx1: null, tx2: first }),
     );
 
     await expect(
-      duskAPI.getTransactionsById([second.id, "unknown", first.id])
+      duskAPI.getTransactionsById([second.id, "unknown", first.id]),
     ).resolves.toStrictEqual([second, first].map(transformTransaction));
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][1]?.body).toContain(
-      `tx0: tx(hash: "${second.id}") { ...TransactionInfo } tx1: tx(hash: "unknown") { ...TransactionInfo } tx2: tx(hash: "${first.id}") { ...TransactionInfo }`
+      `tx0: tx(hash: "${second.id}") { ...TransactionInfo } tx1: tx(hash: "unknown") { ...TransactionInfo } tx2: tx(hash: "${first.id}") { ...TransactionInfo }`,
     );
     await expect(duskAPI.getTransactionsById([])).resolves.toStrictEqual([]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -495,7 +495,7 @@ describe("duskAPI", () => {
       makeOKResponse({
         anchor: { header: { hash: "abc" } },
         blocks: oldestFirst,
-      })
+      }),
     );
 
     await expect(duskAPI.getBlocksAfter(10, 25)).resolves.toStrictEqual({
@@ -517,7 +517,7 @@ describe("duskAPI", () => {
 
   it("should read the transactions of the blocks after a height, with those blocks and that height's hash, in one query, newest first", async () => {
     const [newer, older] = mockData.gqlBlocks.blocks.filter(
-      (block) => block.transactions.length
+      (block) => block.transactions.length,
     );
 
     fetchSpy.mockResolvedValueOnce(
@@ -527,11 +527,14 @@ describe("duskAPI", () => {
           { header: older.header, transactions: older.transactions },
           { header: newer.header, transactions: newer.transactions },
         ],
-      })
+      }),
     );
 
     await expect(
-      duskAPI.getTransactionsAfter(older.header.height - 1, newer.header.height)
+      duskAPI.getTransactionsAfter(
+        older.header.height - 1,
+        newer.header.height,
+      ),
     ).resolves.toStrictEqual({
       anchor: null,
       blocks: [newer, older].map(({ header }) => ({
@@ -540,7 +543,7 @@ describe("duskAPI", () => {
         prevblockhash: header.prevBlockHash,
       })),
       transactions: [...newer.transactions, ...older.transactions].map(
-        transformTransaction
+        transformTransaction,
       ),
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -568,7 +571,7 @@ describe("duskAPI", () => {
         faults: 10,
         hard_faults: 0,
         reward: "31027186",
-      })
+      }),
     );
 
     await expect(duskAPI.getStake(address)).resolves.toStrictEqual({
@@ -586,8 +589,8 @@ describe("duskAPI", () => {
     expect(String(url)).toBe(
       new URL(
         "/on/contracts:0200000000000000000000000000000000000000000000000000000000000000/get_stake",
-        node
-      ).href
+        node,
+      ).href,
     );
     expect(init).toMatchObject({
       body: JSON.stringify(address),
@@ -607,11 +610,11 @@ describe("duskAPI", () => {
         faults: 0,
         hard_faults: 0,
         reward: "9007199254740993",
-      })
+      }),
     );
 
     await expect(
-      duskAPI.getStake(mockData.hostProvisioners[0].key)
+      duskAPI.getStake(mockData.hostProvisioners[0].key),
     ).resolves.toMatchObject({
       active: 13102790940789549n,
       inactive: 1048434300000001n,
@@ -623,7 +626,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(new Response("null", { status: 200 }));
 
     await expect(
-      duskAPI.getStake(mockData.hostProvisioners[0].key)
+      duskAPI.getStake(mockData.hostProvisioners[0].key),
     ).resolves.toBeNull();
   });
 
@@ -631,7 +634,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.gqlTransaction));
 
     await expect(duskAPI.getTransaction(fakeID)).resolves.toStrictEqual(
-      transformTransaction(mockData.gqlTransaction.tx)
+      transformTransaction(mockData.gqlTransaction.tx),
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
@@ -650,7 +653,7 @@ describe("duskAPI", () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse(mockData.gqlTransactions));
 
     await expect(duskAPI.getTransactions(100)).resolves.toStrictEqual(
-      mockData.gqlTransactions.transactions.map(transformTransaction)
+      mockData.gqlTransactions.transactions.map(transformTransaction),
     );
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
@@ -667,7 +670,7 @@ describe("duskAPI", () => {
 
   it("should return a rejected promise, with the original Response in the error's `cause` property, for a 4xx error", async () => {
     const apiMethods = Object.keys(duskAPI).filter(
-      (k) => typeof k === "function"
+      (k) => typeof k === "function",
     );
 
     for (const apiMethod of apiMethods) {
@@ -677,18 +680,18 @@ describe("duskAPI", () => {
 
       await expect(() =>
         // @ts-expect-error we don't care of the parameters we pass as the call to fetch is mocked
-        duskAPI[apiMethod]("foo/bar", "some-id")
+        duskAPI[apiMethod]("foo/bar", "some-id"),
       ).rejects.toThrow(
         expect.objectContaining({
           cause: notFoundResponse,
-        })
+        }),
       );
     }
   });
 
   it("should be able to make the correct request whether the endpoint in env vars ends with a trailing slash or not", () => {
     const expectedURL = new URL(
-      "https://nodes.dusk.network/on/network/peers_location"
+      "https://nodes.dusk.network/on/network/peers_location",
     );
 
     fetchSpy
@@ -742,11 +745,11 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse(heightResult));
 
     await expect(duskAPI.search(fakeHash1)).resolves.toStrictEqual(
-      transformSearchResult(hashResult)
+      transformSearchResult(hashResult),
     );
 
     await expect(duskAPI.search(fakeHash2)).resolves.toStrictEqual(
-      transformSearchResult(heightResult)
+      transformSearchResult(heightResult),
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
@@ -777,11 +780,11 @@ describe("duskAPI", () => {
       "fda46b4e06cc78542db9c780adbaee83a27fdf917de653e8ac34294cf924dd63";
 
     fetchSpy.mockResolvedValueOnce(
-      makeOKResponse(mockData.gqlSearchPossibleResults[0])
+      makeOKResponse(mockData.gqlSearchPossibleResults[0]),
     );
 
     await expect(duskAPI.search(entryHash)).resolves.toStrictEqual(
-      transformSearchResult(mockData.gqlSearchPossibleResults[0])
+      transformSearchResult(mockData.gqlSearchPossibleResults[0]),
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -801,11 +804,11 @@ describe("duskAPI", () => {
     const entryHeight = "123456";
 
     fetchSpy.mockResolvedValueOnce(
-      makeOKResponse(mockData.gqlSearchPossibleResults[0])
+      makeOKResponse(mockData.gqlSearchPossibleResults[0]),
     );
 
     await expect(duskAPI.search(entryHeight)).resolves.toStrictEqual(
-      transformSearchResult(mockData.gqlSearchPossibleResults[0])
+      transformSearchResult(mockData.gqlSearchPossibleResults[0]),
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -833,7 +836,7 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: true }));
 
     await expect(duskAPI.getTransaction(fakeID)).resolves.toBe(
-      "This transaction is currently in the mempool and has not yet been confirmed. The transaction details will be displayed after confirmation."
+      "This transaction is currently in the mempool and has not yet been confirmed. The transaction details will be displayed after confirmation.",
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
@@ -847,7 +850,7 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: null }));
 
     await expect(duskAPI.getTransaction(fakeID)).rejects.toThrow(
-      "Transaction not found"
+      "Transaction not found",
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);

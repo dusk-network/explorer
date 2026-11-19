@@ -55,7 +55,7 @@ const newestFirst = (entries) =>
     .sort((a, b) =>
       a.height === b.height
         ? a.origin.localeCompare(b.origin)
-        : b.height - a.height
+        : b.height - a.height,
     )
     .map((entry) => entry.origin);
 
@@ -98,7 +98,7 @@ describe("duskAPI.accountHistory", () => {
 
     expect(first.done).toBe(false);
     expect(first.transactions.map((tx) => tx.txid)).toStrictEqual(
-      newestFirst([...sent, ...received]).slice(0, 25)
+      newestFirst([...sent, ...received]).slice(0, 25),
     );
     expect(historyReads()).toHaveLength(1);
     // Only that page's transactions.
@@ -118,7 +118,7 @@ describe("duskAPI.accountHistory", () => {
         ...first.transactions,
         ...second.transactions,
         ...third.transactions,
-      ].map((tx) => tx.txid)
+      ].map((tx) => tx.txid),
     ).toStrictEqual(newestFirst([...sent, ...received]));
     expect(historyReads()).toHaveLength(1);
   });
@@ -171,14 +171,16 @@ describe("duskAPI.accountHistory", () => {
     const first = await duskAPI.accountHistory(ACCOUNT).next(25);
 
     expect(first.transactions.map((tx) => tx.txid)).toStrictEqual(
-      newestFirst(sent).slice(0, 25)
+      newestFirst(sent).slice(0, 25),
     );
     expect(historyReads().length).toBeLessThanOrEqual(6);
     // At most a page each way per read.
     expect(
       historyReads().every((read) =>
-        [...read.body.matchAll(/maxCount: (\d+)/g)].every(([, n]) => n === "50")
-      )
+        [...read.body.matchAll(/maxCount: (\d+)/g)].every(
+          ([, n]) => n === "50",
+        ),
+      ),
     ).toBe(true);
     expect(node.requests("fullMoonlightHistory")).toHaveLength(0);
   });
@@ -187,7 +189,7 @@ describe("duskAPI.accountHistory", () => {
     useNode(new Map());
 
     await expect(
-      duskAPI.accountHistory(ACCOUNT).next(25)
+      duskAPI.accountHistory(ACCOUNT).next(25),
     ).resolves.toStrictEqual({
       done: true,
       transactions: [],

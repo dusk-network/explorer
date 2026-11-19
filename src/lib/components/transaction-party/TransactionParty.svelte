@@ -125,9 +125,9 @@
     data-tooltip-id="main-tooltip"
     data-tooltip-text="Contract {party.id}"
     >{#await contractName}{@render unnamed(
-        shortContractId
+        shortContractId,
       )}{:then known}{#if known}{known}{:else}{@render unnamed(
-          shortContractId
+          shortContractId,
         )}{/if}{/await}</span
   >
 {:else if party?.kind === "shielded"}

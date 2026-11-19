@@ -48,11 +48,11 @@ describe("summarizeTransaction", () => {
     });
     // Also when it calls a contract on the way: the value goes to the sender.
     expect(
-      summarizeTransaction({ ...toSelf, contract: stake, deposit: 5 }).to
+      summarizeTransaction({ ...toSelf, contract: stake, deposit: 5 }).to,
     ).toStrictEqual({ address: transfer.from, kind: "account" });
     // Without a value, the call's contract is where it went.
     expect(
-      summarizeTransaction({ ...toSelf, amount: 0, contract: stake }).to
+      summarizeTransaction({ ...toSelf, amount: 0, contract: stake }).to,
     ).toStrictEqual({ id: stake, kind: "contract" });
   });
 
@@ -71,7 +71,7 @@ describe("summarizeTransaction", () => {
       to: { kind: "shielded" },
     });
     expect(
-      summarizeTransaction({ ...shielded, contract: stake, deposit: 5 })
+      summarizeTransaction({ ...shielded, contract: stake, deposit: 5 }),
     ).toStrictEqual({
       amount: { kind: "deposit", lux: 5 },
       from: { kind: "shielded" },

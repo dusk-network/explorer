@@ -111,7 +111,7 @@ describe("createChainHead", () => {
           super(url);
           setTimeout(() => this.drop(), 0);
         }
-      }
+      },
     );
 
     const { head, stop } = follow();

@@ -58,7 +58,7 @@ describe("Chain links", () => {
   const transactions = slice(
     mapWith(transformTransaction)(gqlTransactions.transactions),
     0,
-    3
+    3,
   );
   const transaction = transformTransaction(gqlTransaction.tx);
 
@@ -82,8 +82,8 @@ describe("Chain links", () => {
     expect(blue.length).toBeGreaterThan(0);
     expect(
       blue.filter(
-        (element) => element.tagName !== "A" || !element.getAttribute("href")
-      )
+        (element) => element.tagName !== "A" || !element.getAttribute("href"),
+      ),
     ).toStrictEqual([]);
     expect([...new Set(blue.map(pageOf))].sort()).toStrictEqual([
       "/accounts/",
@@ -96,7 +96,7 @@ describe("Chain links", () => {
     const { container } = render(TransactionsList, { data: transaction });
 
     expect(container.querySelector(".transaction-row__link")).not.toHaveClass(
-      "chain-link"
+      "chain-link",
     );
     expect(blueOf(container).map(pageOf)).toStrictEqual([
       "/accounts/",
@@ -122,12 +122,12 @@ describe("Chain links", () => {
     const definitionOf = (term) =>
       /** @type {Element} */ (
         Array.from(container.querySelectorAll("dt")).find(
-          (dt) => dt.textContent?.trim() === term
+          (dt) => dt.textContent?.trim() === term,
         )?.nextElementSibling
       );
 
     await vi.waitFor(() =>
-      expect(definitionOf("Contract")).toHaveTextContent("Stake contract")
+      expect(definitionOf("Contract")).toHaveTextContent("Stake contract"),
     );
 
     for (const term of ["ID", "Contract"]) {
@@ -149,7 +149,7 @@ describe("Chain links", () => {
     });
 
     await vi.waitFor(() =>
-      expect(contract.container).toHaveTextContent("Stake contract")
+      expect(contract.container).toHaveTextContent("Stake contract"),
     );
 
     expect(blueOf(withPage.container).map(pageOf)).toStrictEqual([

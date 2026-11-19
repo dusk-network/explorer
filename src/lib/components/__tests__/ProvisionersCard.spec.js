@@ -56,7 +56,7 @@ describe("Provisioners Card", () => {
     });
     const rows = () =>
       Array.from(container.querySelectorAll("tbody tr"), (row) =>
-        row.querySelector("a")?.getAttribute("href")
+        row.querySelector("a")?.getAttribute("href"),
       );
 
     await fireEvent.input(search, {
@@ -71,7 +71,7 @@ describe("Provisioners Card", () => {
 
     expect(rows()).toStrictEqual([]);
     expect(container.textContent).toContain(
-      "No provisioner has an address with “no such address”."
+      "No provisioner has an address with “no such address”.",
     );
     // Nothing found has no count to give.
     expect(container.querySelector(".data-card__count")).toBeNull();
@@ -86,7 +86,7 @@ describe("Provisioners Card", () => {
     const search = getByRole("searchbox");
     const rows = () =>
       Array.from(container.querySelectorAll("tbody tr"), (row) =>
-        row.querySelector("a")?.getAttribute("href")
+        row.querySelector("a")?.getAttribute("href"),
       );
 
     vi.mocked(resolveDuskName).mockResolvedValueOnce(third.key);
@@ -96,7 +96,7 @@ describe("Provisioners Card", () => {
     await vi.waitFor(() =>
       expect(rows()).toStrictEqual([
         `/some-base-path/accounts/?key=${third.key}`,
-      ])
+      ]),
     );
     expect(resolveDuskName).toHaveBeenCalledExactlyOnceWith("domains.dusk");
 
@@ -104,16 +104,16 @@ describe("Provisioners Card", () => {
     await fireEvent.input(search, { target: { value: "alice.dusk" } });
 
     expect(
-      await findByText("No provisioner has alice.dusk's address.")
+      await findByText("No provisioner has alice.dusk's address."),
     ).toBeInTheDocument();
 
     vi.mocked(resolveDuskName).mockRejectedValueOnce(
-      new Error("This name is not registered.")
+      new Error("This name is not registered."),
     );
     await fireEvent.input(search, { target: { value: "nobody.dusk" } });
 
     expect(
-      await findByText("This name is not registered.")
+      await findByText("This name is not registered."),
     ).toBeInTheDocument();
   });
 
@@ -121,7 +121,7 @@ describe("Provisioners Card", () => {
     "should show those with no stake only when asked, after the others and unranked (phone: %s)",
     async (isSmallScreen) => {
       const noStake = hostProvisioners.find(
-        (p) => !p.amount && !p.locked_amt && !p.eligibility
+        (p) => !p.amount && !p.locked_amt && !p.eligibility,
       );
       const { container, getByLabelText, getByRole, queryByRole } = render(
         ProvisionersCard,
@@ -132,13 +132,13 @@ describe("Provisioners Card", () => {
             isSmallScreen,
             provisioners: hostProvisioners,
           },
-        }
+        },
       );
       const count = () =>
         container.querySelector(".data-card__count")?.textContent;
       const rows = () =>
         container.querySelectorAll(
-          isSmallScreen ? ".provisioners-list" : "tbody tr"
+          isSmallScreen ? ".provisioners-list" : "tbody tr",
         );
       const toggle = getByRole("switch", {
         name: "Show provisioners with no stake",
@@ -161,7 +161,7 @@ describe("Provisioners Card", () => {
         expect(container.querySelector(".provisioners-list__rank")).toBeNull();
       } else {
         expect(
-          container.querySelector(".provisioners-table__rank")
+          container.querySelector(".provisioners-table__rank"),
         ).toHaveTextContent(/^—$/);
       }
 
@@ -171,7 +171,7 @@ describe("Provisioners Card", () => {
 
       expect(count()).toBe("15 of 216");
       expect(queryByRole("button", { name: "Show more" })).toBeInTheDocument();
-    }
+    },
   );
 
   it("should offer no switch when every provisioner has a stake", () => {
@@ -180,7 +180,7 @@ describe("Provisioners Card", () => {
       props: {
         ...baseProps,
         provisioners: hostProvisioners.filter(
-          (p) => p.amount || p.locked_amt || p.eligibility
+          (p) => p.amount || p.locked_amt || p.eligibility,
         ),
       },
     });

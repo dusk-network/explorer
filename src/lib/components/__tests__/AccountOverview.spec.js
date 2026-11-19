@@ -48,8 +48,8 @@ describe("AccountOverview", () => {
     await vi.waitFor(() =>
       expect(
         container.querySelector(".account-overview-panel__searched-name")
-          ?.textContent
-      ).toMatch(/^\s*Primary name:\s+duskdomains\.dusk/)
+          ?.textContent,
+      ).toMatch(/^\s*Primary name:\s+duskdomains\.dusk/),
     );
     const kind = /** @type {Element} */ (
       container.querySelector(".account-overview-panel__kind")
@@ -61,7 +61,7 @@ describe("AccountOverview", () => {
       Array.from(kind.children, (bracket) => [
         bracket.textContent,
         bracket.getAttribute("aria-hidden"),
-      ])
+      ]),
     ).toStrictEqual([
       ["[", "true"],
       ["]", "true"],
@@ -69,14 +69,14 @@ describe("AccountOverview", () => {
     expect(header.textContent).toMatch(/^\s*domains\.dusk/);
     expect(header.textContent).not.toContain("duskdomains.dusk");
     expect(
-      getByRole("link", { name: "Open domains.dusk on Dusk Domains" })
+      getByRole("link", { name: "Open domains.dusk on Dusk Domains" }),
     ).toHaveAttribute("href", "https://dusk.domains/name/domains.dusk");
     expect(
-      getByRole("link", { name: "Open duskdomains.dusk on Dusk Domains" })
+      getByRole("link", { name: "Open duskdomains.dusk on Dusk Domains" }),
     ).toHaveAttribute("href", "https://dusk.domains/name/duskdomains.dusk");
     expect(getSearchedName).toHaveBeenCalledWith(
       "Domains.dusk",
-      accountAddress
+      accountAddress,
     );
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
@@ -94,7 +94,7 @@ describe("AccountOverview", () => {
     await vi.waitFor(() => expect(heading).toHaveTextContent(/^alice\.dusk$/));
     expect(heading.querySelector("a")).toBeNull();
     expect(
-      getByRole("link", { name: "Open alice.dusk on Dusk Domains" })
+      getByRole("link", { name: "Open alice.dusk on Dusk Domains" }),
     ).toHaveAttribute("href", "https://dusk.domains/name/alice.dusk");
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
@@ -109,7 +109,7 @@ describe("AccountOverview", () => {
     await vi.mocked(getSearchedName).mock.results[0].value;
     await tick();
     expect(
-      container.querySelector(".account-overview-panel__searched-name")
+      container.querySelector(".account-overview-panel__searched-name"),
     ).toBeNull();
   });
 
@@ -132,12 +132,12 @@ describe("AccountOverview", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".account-overview-panel__header")
-      ).toHaveTextContent(/^BSC bridge$/)
+        container.querySelector(".account-overview-panel__header"),
+      ).toHaveTextContent(/^BSC bridge$/),
     );
 
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 
@@ -145,7 +145,7 @@ describe("AccountOverview", () => {
   const cardsOf = (container) =>
     Array.from(
       container.querySelectorAll(".overview-panel__details-item"),
-      (card) => card.textContent?.replace(/\s+/g, " ").trim()
+      (card) => card.textContent?.replace(/\s+/g, " ").trim(),
     );
 
   it("should call the stake the native stake, so that none doesn't read as nothing staked", () => {
@@ -172,11 +172,11 @@ describe("AccountOverview", () => {
     expect(sozu()).toHaveTextContent(/^Also staked with Sozu: 0\.1621 stDUSK$/);
     // Every decimal on hover.
     expect(
-      container.querySelector(".account-overview-panel__sozu-amount")
+      container.querySelector(".account-overview-panel__sozu-amount"),
     ).toHaveAttribute("title", "0.162189471 stDUSK");
     // In the native stake's card, under its amount.
     expect(
-      sozu()?.closest(".overview-panel__details-item")?.textContent
+      sozu()?.closest(".overview-panel__details-item")?.textContent,
     ).toMatch(/^\s*Native stake\s+0 DUSK\s+Also staked with Sozu/);
 
     for (const stakedDusk of [0n, null]) {

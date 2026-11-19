@@ -31,7 +31,7 @@
       of.done = next.done;
 
       return of.transactions;
-    }
+    },
   );
 
   const getTransactions = () => {
@@ -79,7 +79,7 @@
         if (asked === generation) {
           errorFetchingAccountStatus = true;
         }
-      }
+      },
     );
   }
 
@@ -106,7 +106,7 @@
         if (asked === generation) {
           errorFetchingStake = true;
         }
-      }
+      },
     );
   }
 
@@ -132,7 +132,7 @@
           stakedDusk = result;
         }
       },
-      () => {}
+      () => {},
     );
   }
 
@@ -155,7 +155,7 @@
       },
       () => {
         isTipAsked = false;
-      }
+      },
     );
   }
 

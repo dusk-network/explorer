@@ -42,7 +42,7 @@ describe("PrimaryName", () => {
 
     expect(name).toHaveAttribute("href", `${base}/accounts/?key=${address}`);
     expect(
-      getByRole("link", { name: "Open tdi.dusk on Dusk Domains" })
+      getByRole("link", { name: "Open tdi.dusk on Dusk Domains" }),
     ).toHaveAttribute("href", "https://testnet.dusk.domains/name/tdi.dusk");
   });
 

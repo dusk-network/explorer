@@ -52,11 +52,11 @@ describe("Blocks List", () => {
     const key = block.header.generator;
 
     expect(line()).toBe(
-      `${getRelativeTimeString(block.header.date, "long")} · by ${middleEllipsis(key, 4)}`
+      `${getRelativeTimeString(block.header.date, "long")} · by ${middleEllipsis(key, 4)}`,
     );
     expect(container.querySelector(".transaction-party")).toHaveAttribute(
       "href",
-      `/some-base-path/accounts/?key=${key}`
+      `/some-base-path/accounts/?key=${key}`,
     );
     // Two transactions, which paid 580,718 LUX in fees.
     expect(end()).toBe("16 DUSK 2 transactions + 0.00058 DUSK fees");
@@ -74,7 +74,7 @@ describe("Blocks List", () => {
     expect(end()).toBe("16 DUSK 2 transactions");
     expect(container.querySelector(".transaction-party")).toHaveAttribute(
       "href",
-      `/some-base-path/accounts/?key=${key}`
+      `/some-base-path/accounts/?key=${key}`,
     );
   });
 });

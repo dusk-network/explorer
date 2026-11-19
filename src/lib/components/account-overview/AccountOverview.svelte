@@ -58,10 +58,10 @@
   export let searchedName = null;
 
   $: searchedNameShown = getSearchedName(searchedName, accountAddress).catch(
-    () => null
+    () => null,
   );
   $: primaryNameShown = searchedNameShown.then((searched) =>
-    searched ? getPrimaryName(accountAddress).catch(() => null) : null
+    searched ? getPrimaryName(accountAddress).catch(() => null) : null,
   );
 
   /** Blocks come every 10 seconds, on mainnet and testnet alike. */
@@ -93,7 +93,7 @@
   $: headingName = searchedNameShown.then(
     (searched) =>
       searched ??
-      (label ? null : getPrimaryName(accountAddress).catch(() => null))
+      (label ? null : getPrimaryName(accountAddress).catch(() => null)),
   );
 </script>
 

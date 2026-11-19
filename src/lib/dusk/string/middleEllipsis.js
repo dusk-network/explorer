@@ -12,7 +12,7 @@ function middleEllipsis(originalString, charactersToDisplay) {
 
   return `${originalString.substring(
     0,
-    charactersToDisplay
+    charactersToDisplay,
   )}…${originalString.substring(originalString.length - charactersToDisplay)}`;
 }
 

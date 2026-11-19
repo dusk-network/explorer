@@ -37,7 +37,7 @@
 
   onMount(() => {
     const term = Array.from(layout.childNodes, (node) =>
-      node === help ? "" : node.textContent
+      node === help ? "" : node.textContent,
     )
       .join("")
       .trim();

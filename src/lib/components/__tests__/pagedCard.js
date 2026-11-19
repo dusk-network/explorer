@@ -49,22 +49,22 @@ export function itShowsItsListAPageAtATime({
     );
 
     expect(
-      card.getByRole("heading", { level: 1, name: title })
+      card.getByRole("heading", { level: 1, name: title }),
     ).toBeInTheDocument();
     expect(footer).toHaveTextContent(`${PAGE} of ${total}`);
     expect(
       footer.compareDocumentPosition(
-        /** @type {HTMLElement} */ (card.container.querySelector("table"))
-      )
+        /** @type {HTMLElement} */ (card.container.querySelector("table")),
+      ),
     ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
 
     await fireEvent.click(card.getByRole("button", showMore));
 
     expect(footer).toHaveTextContent(
-      `${Math.min(2 * PAGE, total)} of ${total}`
+      `${Math.min(2 * PAGE, total)} of ${total}`,
     );
     expect(card.queryByRole("button", showMore) !== null).toBe(
-      total > 2 * PAGE
+      total > 2 * PAGE,
     );
   });
 

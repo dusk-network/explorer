@@ -93,16 +93,16 @@ describe("Row links", () => {
     expect(transaction.names).toHaveLength(2);
     expect(
       [...transaction.names, ...transaction.details].filter(
-        (element) => !isAbove(transaction.link)(element)
-      )
+        (element) => !isAbove(transaction.link)(element),
+      ),
     ).toStrictEqual([]);
     expect(block.details).toHaveLength(2);
     // The block's generator, as a transaction's names.
     expect(block.names).toHaveLength(1);
     expect(
       [...block.names, ...block.details].filter(
-        (el) => !isAbove(block.link)(el)
-      )
+        (el) => !isAbove(block.link)(el),
+      ),
     ).toStrictEqual([]);
   });
 

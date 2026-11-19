@@ -28,11 +28,11 @@ describe("Switch", () => {
       expect(handler).toHaveBeenCalledTimes(2);
       expect(handler).toHaveBeenNthCalledWith(
         1,
-        expect.objectContaining({ detail: true })
+        expect.objectContaining({ detail: true }),
       );
       expect(handler).toHaveBeenNthCalledWith(
         2,
-        expect.objectContaining({ detail: false })
+        expect.objectContaining({ detail: false }),
       );
     });
 
@@ -50,11 +50,11 @@ describe("Switch", () => {
       expect(handler).toHaveBeenCalledTimes(2);
       expect(handler).toHaveBeenNthCalledWith(
         1,
-        expect.objectContaining({ detail: true })
+        expect.objectContaining({ detail: true }),
       );
       expect(handler).toHaveBeenNthCalledWith(
         2,
-        expect.objectContaining({ detail: false })
+        expect.objectContaining({ detail: false }),
       );
     });
 
@@ -68,7 +68,7 @@ describe("Switch", () => {
       await fireEvent.keyDown(getByRole("switch"), { key: "Enter" });
 
       expect(handler).toHaveBeenCalledExactlyOnceWith(
-        expect.objectContaining({ detail: true })
+        expect.objectContaining({ detail: true }),
       );
     });
 
@@ -93,7 +93,7 @@ describe("Switch", () => {
       // `fireEvent` returns `false` when a handler cancelled the event.
       expect(await fireEvent.keyDown(switchElement, { key: "Tab" })).toBe(true);
       expect(
-        await fireEvent.keyDown(switchElement, { key: "Tab", shiftKey: true })
+        await fireEvent.keyDown(switchElement, { key: "Tab", shiftKey: true }),
       ).toBe(true);
       expect(await fireEvent.keyDown(switchElement, { key: " " })).toBe(false);
     });

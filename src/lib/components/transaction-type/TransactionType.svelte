@@ -69,7 +69,7 @@
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
         .then(
           ({ label, name }) =>
-            label ?? (nameContract ? name : null) ?? "Contract call"
+            label ?? (nameContract ? name : null) ?? "Contract call",
         )
         .catch(() => "Contract call")
     : Promise.resolve(plainTypes.get(data.method) ?? data.method);

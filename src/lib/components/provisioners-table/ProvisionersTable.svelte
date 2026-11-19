@@ -95,7 +95,7 @@
   $: sortArrow = sort.direction === "asc" ? "↑" : "↓";
 
   $: sortedData = data.toSorted((a, b) =>
-    compare(a, b, sort.column, sort.direction)
+    compare(a, b, sort.column, sort.direction),
   );
 </script>
 
@@ -255,7 +255,7 @@
             {#if provisioner.eligibility}
               <span
                 >eligible from block {numberFormatter(
-                  provisioner.eligibility
+                  provisioner.eligibility,
                 )}</span
               >
             {/if}
@@ -274,7 +274,7 @@
         <TableCell align="right">
           <span class:provisioners-table__muted={!slashCount}
             >{numberFormatter(provisioner.faults)} soft, {numberFormatter(
-              provisioner.hard_faults
+              provisioner.hard_faults,
             )} hard</span
           >
         </TableCell>

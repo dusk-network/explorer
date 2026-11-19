@@ -9,7 +9,7 @@ describe("currentPage", () => {
     expect(currentPage("/blocks/", links)).toBe("/blocks");
     expect(currentPage("/blocks/block/", links)).toBe("/blocks");
     expect(currentPage("/transactions/transaction/", links)).toBe(
-      "/transactions"
+      "/transactions",
     );
   });
 
@@ -21,10 +21,10 @@ describe("currentPage", () => {
   it("should leave out the base path the explorer is served from", () => {
     expect(currentPage("/explorer/", links, "/explorer")).toBe("/");
     expect(currentPage("/explorer/provisioners/", links, "/explorer")).toBe(
-      "/provisioners"
+      "/provisioners",
     );
     expect(currentPage("/explorer/accounts/", links, "/explorer")).toBe(
-      undefined
+      undefined,
     );
   });
 

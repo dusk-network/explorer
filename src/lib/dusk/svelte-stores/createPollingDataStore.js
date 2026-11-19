@@ -36,9 +36,9 @@ const createPollingDataStore = (dataRetriever, fetchInterval) => {
         .then((store) =>
           store.error === null
             ? resolveAfter(fetchInterval, undefined).then(() =>
-                poll(pollId, args)
+                poll(pollId, args),
               )
-            : stop()
+            : stop(),
         )
         .catch(stop);
     }
@@ -71,7 +71,7 @@ const createPollingDataStore = (dataRetriever, fetchInterval) => {
     ($dataStore, set) => {
       set($dataStore);
     },
-    get(dataStore)
+    get(dataStore),
   );
 
   return {

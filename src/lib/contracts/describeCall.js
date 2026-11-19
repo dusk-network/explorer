@@ -88,7 +88,7 @@ async function describeCall(contractId, method, chainId = undefined) {
     typeof chainId === "number"
       ? await import("@duskdomains/sdk/call-facts").then(
           ({ nameCall }) => nameCall({ contractId, fnName: method }, chainId),
-          () => null
+          () => null,
         )
       : null;
 

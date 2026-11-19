@@ -105,7 +105,7 @@ const newestBlock = (height, ago = 0) => {
 const titlesOf = (container, which) =>
   Array.from(
     container.querySelectorAll(
-      `.statistics-panel__statistics-item--${which} .statistics-panel__statistics-item-title`
+      `.statistics-panel__statistics-item--${which} .statistics-panel__statistics-item-title`,
     ),
     (title) => {
       const label = /** @type {Element} */ (title.cloneNode(true));
@@ -114,7 +114,7 @@ const titlesOf = (container, which) =>
       label.querySelector(".statistics-panel__live")?.remove();
 
       return label.textContent?.trim();
-    }
+    },
   );
 
 describe("StatisticsPanel", () => {
@@ -149,7 +149,7 @@ describe("StatisticsPanel", () => {
     expect(queryByText("Market cap")).toBeNull();
     expect(getByText("Current stake")).toBeInTheDocument();
     expect(
-      container.querySelectorAll(".statistics-panel__statistics-item")
+      container.querySelectorAll(".statistics-panel__statistics-item"),
     ).toHaveLength(8);
     // Four numbers lead as cards; the rest follow, smaller.
     expect(titlesOf(container, "primary")).toStrictEqual([
@@ -184,11 +184,11 @@ describe("StatisticsPanel", () => {
     expect(face?.tagName).toBe("FIGURE");
     expect(face?.querySelector(".nodes-world-map")).toHaveAttribute(
       "data-places",
-      String(mockData.nodeLocationsCount.length)
+      String(mockData.nodeLocationsCount.length),
     );
     // 88 nodes in 21 cities.
     expect(face?.querySelector("figcaption")).toHaveTextContent(
-      "Approximate locations of 88 nodes the explorer's node knows of, from their public IP addresses, rounded to the city. The bigger the ring, the more nodes."
+      "Approximate locations of 88 nodes the explorer's node knows of, from their public IP addresses, rounded to the city. The bigger the ring, the more nodes.",
     );
     // First in the panel, before the numbers.
     expect(container.firstElementChild?.firstElementChild).toBe(face);
@@ -203,7 +203,7 @@ describe("StatisticsPanel", () => {
     expect(status).toHaveTextContent(/^Live$/);
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
     expect(
-      status.closest(".statistics-panel__statistics-item-title")
+      status.closest(".statistics-panel__statistics-item-title"),
     ).toHaveTextContent(/^Last block/);
 
     // No new block since.
@@ -274,7 +274,7 @@ describe("StatisticsPanel", () => {
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
     const abouts = Array.from(
-      container.querySelectorAll(".statistics-panel__statistics-item-about")
+      container.querySelectorAll(".statistics-panel__statistics-item-about"),
     );
 
     // The current stake, as a card, and the pending stake, in the row.
@@ -282,11 +282,11 @@ describe("StatisticsPanel", () => {
 
     for (const about of abouts) {
       expect(about.querySelector("[aria-hidden='true']")).toHaveTextContent(
-        /^≈$/
+        /^≈$/,
       );
       expect(about.querySelector(".sr-only")).toHaveTextContent(/^about$/);
       expect(about.nextElementSibling).toHaveClass(
-        "statistics-panel__statistics-item-value"
+        "statistics-panel__statistics-item-value",
       );
     }
 
@@ -301,13 +301,13 @@ describe("StatisticsPanel", () => {
     const notes = () =>
       Array.from(
         container.querySelectorAll(
-          ".statistics-panel__statistics-item--primary"
+          ".statistics-panel__statistics-item--primary",
         ),
         (card) =>
           card
             .querySelector(".statistics-panel__statistics-item-note")
             ?.textContent?.replace(/\s+/g, " ")
-            .trim() ?? null
+            .trim() ?? null,
       );
 
     await act(() => newestBlock(mockData.apiStats.lastBlock, 4_000));
@@ -321,7 +321,7 @@ describe("StatisticsPanel", () => {
     ]);
     // The price's move in red too, its words saying the same.
     expect(
-      container.querySelector(".statistics-panel__statistics-item-note")
+      container.querySelector(".statistics-panel__statistics-item-note"),
     ).toHaveClass("statistics-panel__statistics-item-note--down");
 
     // The last block's age keeps up while no new block comes.

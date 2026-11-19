@@ -87,7 +87,7 @@ describe("marketDataStore", async () => {
      * starts with the import and isn't resolved yet
      */
     vi.mocked(duskAPI.getMarketData).mockImplementationOnce(() =>
-      resolveAfter(settleTime, fakeMarketDataB)
+      resolveAfter(settleTime, fakeMarketDataB),
     );
 
     expect(duskAPI.getMarketData).toHaveBeenCalledTimes(1);
@@ -197,7 +197,7 @@ describe("marketDataStore", async () => {
     it("should ask for no market data and give none on a test network, even with data stored", async () => {
       localStorage.setItem(
         storeKey,
-        JSON.stringify({ data: "C", lastUpdate: new Date(Date.now()) })
+        JSON.stringify({ data: "C", lastUpdate: new Date(Date.now()) }),
       );
 
       marketDataStore = await importStore({ chain_id: 2 });
@@ -370,7 +370,7 @@ describe("marketDataStore", async () => {
         JSON.stringify({
           data: "D",
           lastUpdate: new Date(Date.now() - marketDataFetchInterval - 1),
-        })
+        }),
       );
 
       marketDataStore = await importStore();
@@ -391,7 +391,7 @@ describe("marketDataStore", async () => {
         JSON.stringify({
           data: "D",
           lastUpdate: new Date(Date.now() - marketDataFetchInterval + offset),
-        })
+        }),
       );
 
       marketDataStore = await importStore();
@@ -429,7 +429,7 @@ describe("marketDataStore", async () => {
       expect(duskAPI.getMarketData).toHaveBeenCalledTimes(1);
       expect(get(marketDataStore)).toStrictEqual(expectedStore);
       expect(localStorage.getItem(storeKey)).toStrictEqual(
-        JSON.stringify(expectedStorage)
+        JSON.stringify(expectedStorage),
       );
     });
 
@@ -437,7 +437,7 @@ describe("marketDataStore", async () => {
       const error = new Error("some error");
 
       vi.mocked(duskAPI.getMarketData).mockImplementationOnce(() =>
-        rejectAfter(settleTime, error)
+        rejectAfter(settleTime, error),
       );
 
       marketDataStore = await importStore();

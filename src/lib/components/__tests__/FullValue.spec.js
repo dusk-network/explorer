@@ -12,7 +12,7 @@ describe("FullValue", () => {
   /** @param {HTMLElement} container */
   const endsOf = (container) =>
     Array.from(container.querySelectorAll(".full-value__end"), (end) =>
-      end.textContent?.trim()
+      end.textContent?.trim(),
     );
 
   it("should give a value in full, its first and last six characters set apart", () => {
@@ -21,7 +21,7 @@ describe("FullValue", () => {
     expect(container.firstElementChild).toHaveTextContent(hash);
     expect(endsOf(container)).toStrictEqual(["ac6b2f", "16bc24"]);
     expect(container.querySelector(".full-value__middle")).toHaveTextContent(
-      hash.slice(6, -6)
+      hash.slice(6, -6),
     );
   });
 

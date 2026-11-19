@@ -14,7 +14,7 @@ import { BlockDetails } from "../";
  */
 const getBlockNavLink = (container, which) =>
   container.querySelector(
-    `.block-details__list-anchor:nth-of-type(${which === "prev" ? "1" : "2"})`
+    `.block-details__list-anchor:nth-of-type(${which === "prev" ? "1" : "2"})`,
   );
 
 describe("Block Details", () => {
@@ -38,38 +38,38 @@ describe("Block Details", () => {
   it("should disable the previous block link if the prev block hash is empty or if the current height is `0`", async () => {
     const { container, rerender } = render(
       BlockDetails,
-      setPathIn(baseProps, "data.header.prevblockhash", "")
+      setPathIn(baseProps, "data.header.prevblockhash", ""),
     );
 
     expect(getBlockNavLink(container, "prev")).toHaveAttribute(
       "aria-disabled",
-      "true"
+      "true",
     );
 
     await rerender(baseProps);
 
     expect(getBlockNavLink(container, "prev")).toHaveAttribute(
       "aria-disabled",
-      "false"
+      "false",
     );
 
     await rerender(setPathIn(baseProps, "data.header.height", 0));
 
     expect(getBlockNavLink(container, "prev")).toHaveAttribute(
       "aria-disabled",
-      "true"
+      "true",
     );
   });
 
   it("should disable the next block link if the next block hash is empty", () => {
     const { container } = render(
       BlockDetails,
-      setPathIn(baseProps, "data.header.nextblockhash", "")
+      setPathIn(baseProps, "data.header.nextblockhash", ""),
     );
 
     expect(getBlockNavLink(container, "next")).toHaveAttribute(
       "aria-disabled",
-      "true"
+      "true",
     );
   });
 
@@ -78,14 +78,14 @@ describe("Block Details", () => {
 
     expect(getByRole("link", { name: "Previous block" })).toHaveAttribute(
       "href",
-      `/some-base-path/blocks/block?id=${baseProps.data.header.prevblockhash}`
+      `/some-base-path/blocks/block?id=${baseProps.data.header.prevblockhash}`,
     );
     expect(getByRole("link", { name: "Next block" })).toHaveAttribute(
       "href",
-      `/some-base-path/blocks/block?id=${baseProps.data.header.nextblockhash}`
+      `/some-base-path/blocks/block?id=${baseProps.data.header.nextblockhash}`,
     );
     expect(
-      getByRole("switch", { name: "Show block header" })
+      getByRole("switch", { name: "Show block header" }),
     ).toBeInTheDocument();
   });
 
@@ -94,10 +94,10 @@ describe("Block Details", () => {
     const count = baseProps.data.transactions.data.length;
 
     expect(
-      container.querySelector(".block-details__summary-text")
+      container.querySelector(".block-details__summary-text"),
     ).toHaveTextContent(/^Block 487,166$|^Block [\d,]+$/);
     expect(
-      container.querySelector(".block-details__summary-meta")
+      container.querySelector(".block-details__summary-meta"),
     ).toHaveTextContent(new RegExp(`· ${count} transactions?$`));
     expect(
       Array.from(container.querySelectorAll("dt"), (dt) => {
@@ -106,7 +106,7 @@ describe("Block Details", () => {
         term.querySelector(".detail-list__help")?.remove();
 
         return term.textContent?.trim();
-      })
+      }),
     ).toStrictEqual([
       "Hash",
       "Block reward",
@@ -118,8 +118,8 @@ describe("Block Details", () => {
     ]);
     expect(
       getAllByRole("button", { name: /^About / }).map((help) =>
-        help.getAttribute("aria-label")
-      )
+        help.getAttribute("aria-label"),
+      ),
     ).toStrictEqual(["About block reward", "About gas used"]);
   });
 

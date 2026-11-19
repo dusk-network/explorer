@@ -127,7 +127,7 @@ function getReader(release, kind = "batched") {
               }),
             }
           : {}),
-      })
+      }),
     );
     cache.set(release.network, reader);
     reader.catch(() => cache.delete(release.network));
@@ -188,7 +188,7 @@ const readLens = (release, read) =>
     .catch((error) =>
       isShortOfGas(error)
         ? getReader(release, "direct").then(read)
-        : Promise.reject(error)
+        : Promise.reject(error),
     );
 
 /**
@@ -204,7 +204,7 @@ export async function resolveDuskName(query) {
 
   if (!release) {
     throw new Error(
-      "Dusk Domains names are only available on mainnet and testnet."
+      "Dusk Domains names are only available on mainnet and testnet.",
     );
   }
 
@@ -214,13 +214,13 @@ export async function resolveDuskName(query) {
     throw new Error(
       LABEL_PROBLEMS.includes(nameProblem(query) ?? "")
         ? "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen."
-        : "This is not a valid .dusk name."
+        : "This is not a valid .dusk name.",
     );
   }
 
   const { resolveAccounts } = await loadAccounts().catch(lookupFailed);
   const { account, status } = await readLens(release, (reader) =>
-    resolveAccounts(reader, name)
+    resolveAccounts(reader, name),
   ).catch(lookupFailed);
 
   if (status === "Absent") {
@@ -281,8 +281,8 @@ export async function getPrimaryNames(addresses) {
     ...new Set(
       addresses.filter(
         /** @returns {address is string} */
-        (address) => typeof address === "string" && address !== ""
-      )
+        (address) => typeof address === "string" && address !== "",
+      ),
     ),
   ];
 
@@ -360,7 +360,7 @@ async function lookUpPrimaryName(release, address) {
   }
 
   const primary = await readLens(release, (reader) =>
-    reader.verifyPrimary(endpoint)
+    reader.verifyPrimary(endpoint),
   );
   const name = primary?.primary.spelling;
 

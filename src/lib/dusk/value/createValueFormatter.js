@@ -9,7 +9,7 @@
 const createFormatter = (
   locale,
   minFractionDigits = 0,
-  maxFractionDigits = 9
+  maxFractionDigits = 9,
 ) => {
   const formatter = new Intl.NumberFormat(locale, {
     maximumFractionDigits: maxFractionDigits,

@@ -46,7 +46,7 @@ describe("renderWithSimpleContent", () => {
   it("should render its content and re-render it every second by default", async () => {
     const { container } = renderAndObserveContainer(
       RerenderCounter,
-      baseOptions
+      baseOptions,
     );
 
     expect(container.textContent).toBe("0");
@@ -154,7 +154,7 @@ describe("renderWithSimpleContent", () => {
   it("should expose the custom generated value and let it be used as part of custom content", async () => {
     const { container } = renderAndObserveContainer(
       RerenderGenerateValue2,
-      baseOptions
+      baseOptions,
     );
 
     expect(container.textContent).toBe("now the value is: 0");

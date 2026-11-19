@@ -74,10 +74,10 @@ describe("network", () => {
     const address = "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01";
 
     expect(duskEvmAddressUrl(address, 2)).toBe(
-      `${networks.testnet.duskEvm?.explorerUrl}/address/${address}`
+      `${networks.testnet.duskEvm?.explorerUrl}/address/${address}`,
     );
     expect(duskEvmAddressUrl(address, 2)).toBe(
-      `https://explorer.testnet.evm.dusk.network/address/${address}`
+      `https://explorer.testnet.evm.dusk.network/address/${address}`,
     );
 
     // None where there is no DuskEVM: mainnet for now, and other networks.

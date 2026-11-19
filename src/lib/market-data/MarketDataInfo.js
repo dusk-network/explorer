@@ -3,7 +3,7 @@ import { compose, updateKey } from "lamb";
 /** @returns {MarketData} */
 const jsonToMarketData = compose(
   updateKey("lastUpdate", (v) => new Date(v)),
-  JSON.parse
+  JSON.parse,
 );
 
 class MarketDataInfo {

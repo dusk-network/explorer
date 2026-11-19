@@ -53,7 +53,7 @@ const stakeCalls = new Map([
 
 /** The stake contract's calls' types, by function. */
 export const stakeCallLabels = new Map(
-  Array.from(stakeCalls, ([method, { label }]) => [method, label])
+  Array.from(stakeCalls, ([method, { label }]) => [method, label]),
 );
 
 /**

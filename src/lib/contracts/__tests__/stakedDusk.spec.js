@@ -45,11 +45,11 @@ describe("getStakedDusk", () => {
 
   it("should read an account's stDUSK and the hub's token in one Multicall for Dusk query, as testnet answered", async () => {
     fetchSpy.mockResolvedValueOnce(
-      new Response(fromHex(recorded.reply), { status: 200 })
+      new Response(fromHex(recorded.reply), { status: 200 }),
     );
 
     await expect(getStakedDusk(recorded.account, 2)).resolves.toBe(
-      BigInt(recorded.stDusk)
+      BigInt(recorded.stDusk),
     );
     expect(fetchSpy).toHaveBeenCalledOnce();
 
@@ -72,7 +72,7 @@ describe("getStakedDusk", () => {
 
     // The hub's token, with a balance of 5.
     fetchSpy.mockResolvedValueOnce(
-      replyWith("9fd0aa0900000000", "0500000000000000")
+      replyWith("9fd0aa0900000000", "0500000000000000"),
     );
 
     await expect(getStakedDusk(recorded.account, 2)).resolves.toBe(5n);
@@ -89,7 +89,7 @@ describe("getStakedDusk", () => {
     fetchSpy.mockRejectedValue(new TypeError("Failed to fetch"));
 
     await expect(getStakedDusk(recorded.account, 1)).rejects.toThrow(
-      "Failed to fetch"
+      "Failed to fetch",
     );
   });
 });

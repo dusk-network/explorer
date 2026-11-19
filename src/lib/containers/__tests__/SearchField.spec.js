@@ -61,7 +61,7 @@ describe("SearchField", () => {
 
     await fireEvent.input(input, { target: { value: query } });
     await fireEvent.submit(
-      /** @type {HTMLFormElement} */ (input.closest("form"))
+      /** @type {HTMLFormElement} */ (input.closest("form")),
     );
 
     return onInvalid;
@@ -91,12 +91,12 @@ describe("SearchField", () => {
 
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledWith(
-        `/some-base-path/accounts/?key=${account}&name=tdi.dusk`
-      )
+        `/some-base-path/accounts/?key=${account}&name=tdi.dusk`,
+      ),
     );
     expect(reader.resolve).toHaveBeenCalledWith(
       "tdi.dusk",
-      expect.arrayContaining(["moonlight_address"])
+      expect.arrayContaining(["moonlight_address"]),
     );
     expect(searchSpy).not.toHaveBeenCalled();
   });
@@ -128,7 +128,7 @@ describe("SearchField", () => {
     const submit = async (/** @type {string} */ query) => {
       await fireEvent.input(input, { target: { value: query } });
       await fireEvent.submit(
-        /** @type {HTMLFormElement} */ (input.closest("form"))
+        /** @type {HTMLFormElement} */ (input.closest("form")),
       );
     };
 
@@ -140,8 +140,8 @@ describe("SearchField", () => {
     await submit("67890");
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledExactlyOnceWith(
-        `/some-base-path/accounts/?key=${account}`
-      )
+        `/some-base-path/accounts/?key=${account}`,
+      ),
     );
 
     // The first search finds nothing, after the second opened its page.
@@ -158,7 +158,7 @@ describe("SearchField", () => {
     await expect(getMiss(onInvalid)).resolves.toStrictEqual({
       query: "e5f314fb49a8a2f8",
       res: new Error(
-        "This looks like the start of an ID. Search with the whole ID, 64 characters."
+        "This looks like the start of an ID. Search with the whole ID, 64 characters.",
       ),
       suggestion: undefined,
     });
@@ -181,7 +181,7 @@ describe("SearchField", () => {
     await expect(getMiss(onInvalid)).resolves.toStrictEqual({
       query: "bad_name",
       res: new Error(
-        "Search by account address, block height or hash, transaction ID or .dusk name."
+        "Search by account address, block height or hash, transaction ID or .dusk name.",
       ),
       suggestion: undefined,
     });
@@ -197,8 +197,8 @@ describe("SearchField", () => {
 
     await vi.waitFor(() =>
       expect(gotoSpy).toHaveBeenCalledWith(
-        `/some-base-path/accounts/?key=${account}&name=alice.dusk`
-      )
+        `/some-base-path/accounts/?key=${account}&name=alice.dusk`,
+      ),
     );
   });
 
@@ -218,7 +218,7 @@ describe("SearchField", () => {
 
       await fireEvent.input(input, { target: { value: account } });
       await fireEvent.submit(
-        /** @type {HTMLFormElement} */ (input.closest("form"))
+        /** @type {HTMLFormElement} */ (input.closest("form")),
       );
       await vi.waitFor(() => expect(gotoSpy).toHaveBeenCalledOnce());
 
@@ -232,13 +232,13 @@ describe("SearchField", () => {
 
     // A correction on the page of a search that found nothing: Back skips it.
     expect(
-      await findFrom("http://localhost/some-base-path/search/?q=bad_name")
+      await findFrom("http://localhost/some-base-path/search/?q=bad_name"),
     ).toStrictEqual([
       `/some-base-path/accounts/?key=${account}`,
       { replaceState: true },
     ]);
     expect(
-      await findFrom("http://localhost/some-base-path/blocks/")
+      await findFrom("http://localhost/some-base-path/blocks/"),
     ).toStrictEqual([`/some-base-path/accounts/?key=${account}`]);
   });
 
@@ -248,7 +248,7 @@ describe("SearchField", () => {
     expect(
       getByRole("textbox", {
         name: "Search by address, block, transaction or .dusk name",
-      })
+      }),
     ).toHaveAttribute("placeholder", "Address, hash or .dusk name");
   });
 
@@ -257,7 +257,7 @@ describe("SearchField", () => {
 
     expect(getByRole("button", { name: "Search" })).toHaveAttribute(
       "type",
-      "submit"
+      "submit",
     );
   });
 

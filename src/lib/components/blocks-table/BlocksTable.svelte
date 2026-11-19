@@ -110,7 +110,7 @@
             <span
               class="row-line block__line"
               title="{numberFormatter(gasUsed)} of {numberFormatter(
-                gasLimit
+                gasLimit,
               )} gas">{fullness(gasUsed, gasLimit)} full</span
             >
           {/if}

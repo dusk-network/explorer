@@ -9,7 +9,7 @@
 
   const pollingDataStore = createPollingDataStore(
     duskAPI.getProvisioners,
-    $appStore.provisionersFetchInterval
+    $appStore.provisionersFetchInterval,
   );
 
   onMount(() => pollingDataStore.start());

@@ -95,8 +95,8 @@ export const accountsOf = (transactions) => [
       const { from, to } = summarizeTransaction(tx);
 
       return [from, to].flatMap((party) =>
-        party?.kind === "account" ? [party.address] : []
+        party?.kind === "account" ? [party.address] : [],
       );
-    })
+    }),
   ),
 ];

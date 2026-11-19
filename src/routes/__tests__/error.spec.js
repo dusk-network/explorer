@@ -22,17 +22,17 @@ describe("Error page", () => {
         ...storeWithoutError,
         error: new Error("Not Found"),
         status: 404,
-      })
+      }),
     );
     const { getByRole, queryByText } = render(ErrorPage, baseOptions);
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      /^Page not found$/
+      /^Page not found$/,
     );
     expect(queryByText("Not Found")).toBeNull();
     expect(getByRole("link", { name: "Home" })).toHaveAttribute(
       "href",
-      "/some-base-path/"
+      "/some-base-path/",
     );
     pageStoreSpy.mockRestore();
   });

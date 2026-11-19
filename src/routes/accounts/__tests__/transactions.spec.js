@@ -83,8 +83,8 @@ describe("Account page, its transactions", () => {
       .requests("tx")
       .map((request) =>
         [...request.body.matchAll(/tx\(hash: "([0-9a-f]{64})"\)/g)].map(
-          ([, id]) => id
-        )
+          ([, id]) => id,
+        ),
       );
 
   it("should read the account's transactions a page at a time, newest first, and the next page only when asked for more", async () => {
@@ -95,8 +95,8 @@ describe("Account page, its transactions", () => {
         (a) =>
           new URL(
             String(a.getAttribute("href")),
-            "http://localhost"
-          ).searchParams.get("id")
+            "http://localhost",
+          ).searchParams.get("id"),
       );
 
     await vi.waitFor(() => expect(shown()).toHaveLength(15));
@@ -122,7 +122,7 @@ describe("Account page, its transactions", () => {
     expect(asked().flat()).toStrictEqual(newestFirst);
     expect(node.requests("moonlightHistory")).toHaveLength(1);
     expect(container.querySelector(".data-card__footer")).toHaveTextContent(
-      "58 of 58"
+      "58 of 58",
     );
   });
 });

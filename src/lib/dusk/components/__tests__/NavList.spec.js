@@ -46,13 +46,13 @@ describe("NavList", () => {
 
     expect(getByRole("link", { name: "Explorer" })).toHaveAttribute(
       "aria-current",
-      "page"
+      "page",
     );
     expect(getByRole("link", { name: "Explorer" })).toHaveClass(
-      "dusk-nav-list__link--current"
+      "dusk-nav-list__link--current",
     );
     expect(getByRole("link", { name: "Dusk" })).not.toHaveAttribute(
-      "aria-current"
+      "aria-current",
     );
   });
 

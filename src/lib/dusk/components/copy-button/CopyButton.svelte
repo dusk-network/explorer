@@ -70,7 +70,7 @@
           err.name === "NotAllowedError"
             ? "Clipboard access denied"
             : err.message,
-          mdiAlertOutline
+          mdiAlertOutline,
         );
       });
   }

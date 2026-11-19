@@ -96,7 +96,7 @@ describe("resolveDuskName", () => {
     await expect(resolveDuskName("tdi.dusk")).resolves.toBe(account);
     expect(reader.resolve).toHaveBeenCalledWith(
       "tdi.dusk",
-      expect.arrayContaining(["moonlight_address"])
+      expect.arrayContaining(["moonlight_address"]),
     );
     expect(createReader).toHaveBeenCalledTimes(1);
     expect(createReader).toHaveBeenCalledWith(releases.testnet, {
@@ -130,7 +130,7 @@ describe("resolveDuskName", () => {
       reader.resolve.mockResolvedValue(resolved(status, record));
 
       await expect(resolveDuskName("tdi.dusk")).rejects.toThrow(message);
-    }
+    },
   );
 
   it("should reject invalid names and failed lookups, and retry a reader that failed to load", async () => {
@@ -139,8 +139,8 @@ describe("resolveDuskName", () => {
 
     await expect(resolveDuskName("bad_name.dusk")).rejects.toThrow(
       new Error(
-        "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen."
-      )
+        "This is not a valid .dusk name. Names use a–z, 0–9 and hyphens, and don't start or end with a hyphen.",
+      ),
     );
     expect(createReader).not.toHaveBeenCalled();
 
@@ -171,7 +171,7 @@ describe("getPrimaryName", () => {
         url,
       });
       expect(reader.verifyPrimary).toHaveBeenCalledWith(decodeBase58(account));
-    }
+    },
   );
 
   it("should give null without a verified primary or for other input", async () => {
@@ -237,7 +237,7 @@ describe("getPrimaryName", () => {
     });
     expect(batched.verifyPrimary).toHaveBeenCalledTimes(1);
     expect(direct.verifyPrimary).toHaveBeenCalledExactlyOnceWith(
-      decodeBase58(account)
+      decodeBase58(account),
     );
     // The batched reader reads through Multicall for Dusk, the direct one not.
     expect(createReader.mock.calls[0][1]).toHaveProperty("fetch");
@@ -253,17 +253,17 @@ describe("getPrimaryName", () => {
       .mockRejectedValueOnce(
         Object.assign(new Error("Lens evidence does not check"), {
           reason: "evidence",
-        })
+        }),
       )
       .mockRejectedValueOnce(
         Object.assign(new Error("Lens refused: InvalidEndpoint"), {
           reason: "refused",
           refusal: { cause: null, code: "InvalidEndpoint" },
-        })
+        }),
       );
 
     await expect(getPrimaryName(account)).rejects.toThrow(
-      "Lens evidence does not check"
+      "Lens evidence does not check",
     );
     await expect(getPrimaryNames([other])).resolves.toStrictEqual(new Map());
     expect(reader.verifyPrimary).toHaveBeenCalledTimes(2);
@@ -276,7 +276,7 @@ describe("getPrimaryName", () => {
       new Map([
         [account, null],
         [other, null],
-      ])
+      ]),
     );
   });
 
@@ -319,7 +319,7 @@ describe("getPrimaryNames", () => {
 
         const calls = countCalls(init?.body);
         const names = Array.from({ length: calls }, (slot, i) =>
-          new TextEncoder().encode(i % 2 ? "" : `name${i}.dusk`)
+          new TextEncoder().encode(i % 2 ? "" : `name${i}.dusk`),
         );
 
         return new Response(aggregateReply(names));
@@ -341,20 +341,20 @@ describe("getPrimaryNames", () => {
                 body: new Uint8Array(endpoint),
                 headers: { "Content-Type": "application/octet-stream" },
                 method: "POST",
-              }
+              },
             );
             const spelling = new TextDecoder().decode(await res.arrayBuffer());
 
             return spelling ? { primary: { spelling } } : null;
           },
-        })
+        }),
     );
 
     const names = await getPrimaryNames([...accounts, accounts[0], null]);
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(String(fetchSpy.mock.calls[0][0])).toBe(
-      `https://testnet.nodes.dusk.network/on/contracts:${multicall}/aggregate`
+      `https://testnet.nodes.dusk.network/on/contracts:${multicall}/aggregate`,
     );
     expect(countCalls(fetchSpy.mock.calls[0][1]?.body)).toBe(5);
     expect([...names]).toStrictEqual(
@@ -366,7 +366,7 @@ describe("getPrimaryNames", () => {
               name: `name${i}.dusk`,
               url: `https://testnet.dusk.domains/name/name${i}.dusk`,
             },
-      ])
+      ]),
     );
 
     // The same accounts again: the names are kept for the session.
@@ -388,14 +388,14 @@ describe("getSearchedName", () => {
     });
 
     await expect(
-      getSearchedName("Domains.dusk ", account)
+      getSearchedName("Domains.dusk ", account),
     ).resolves.toStrictEqual({
       name: "domains.dusk",
       url: `${releases.testnet.site}/name/domains.dusk`,
     });
     expect(reader.resolve).toHaveBeenCalledWith(
       "domains.dusk",
-      expect.arrayContaining(["moonlight_address"])
+      expect.arrayContaining(["moonlight_address"]),
     );
     await expect(getSearchedName("TDI.dusk", account)).resolves.toBeNull();
     await expect(getSearchedName("domains.dusk", other)).resolves.toBeNull();
@@ -420,11 +420,11 @@ describe("getSearchedName", () => {
           ? new Response(
               aggregateReply(
                 Array.from({ length: countCalls(init?.body) }, () =>
-                  Uint8Array.of(1)
-                )
-              )
+                  Uint8Array.of(1),
+                ),
+              ),
             )
-          : new Response("Not in the test", { status: 500 })
+          : new Response("Not in the test", { status: 500 }),
       );
 
     // A reader whose reads go through the fetch it was given, as the SDK's
@@ -437,7 +437,7 @@ describe("getSearchedName", () => {
             body: new Uint8Array(1),
             headers: { "Content-Type": "application/octet-stream" },
             method: "POST",
-          }
+          },
         );
 
       return /** @type {any} */ ({
@@ -453,7 +453,7 @@ describe("getSearchedName", () => {
     fetchSpy.mockClear();
 
     await expect(
-      getSearchedName("domains.dusk", account)
+      getSearchedName("domains.dusk", account),
     ).resolves.toMatchObject({ name: "domains.dusk" });
     expect(fetchSpy).toHaveBeenCalledOnce();
     expect(countCalls(fetchSpy.mock.calls[0][1]?.body)).toBe(2);
@@ -477,7 +477,7 @@ it("should be off on other networks", async () => {
   const { createReader, getPrimaryName, resolveDuskName } = await setup(3);
 
   await expect(resolveDuskName("tdi.dusk")).rejects.toThrow(
-    "Dusk Domains names are only available on mainnet and testnet."
+    "Dusk Domains names are only available on mainnet and testnet.",
   );
   await expect(getPrimaryName(account)).resolves.toBeNull();
   expect(createReader).not.toHaveBeenCalled();

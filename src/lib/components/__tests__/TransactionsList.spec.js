@@ -59,23 +59,23 @@ describe("Transactions List", () => {
       .forEach((arrow) => arrow.remove());
 
     expect(parties.textContent?.replace(/\s+/g, " ").trim()).toBe(
-      `From ${shortAddress(String(transaction.from))} To ${shortAddress(String(transaction.to))}`
+      `From ${shortAddress(String(transaction.from))} To ${shortAddress(String(transaction.to))}`,
     );
     expect(container.textContent).toContain("9,812.3789 DUSK");
     expect(
       Array.from(container.querySelectorAll("[title]"), (el) =>
-        el.getAttribute("title")
-      )
+        el.getAttribute("title"),
+      ),
     ).toStrictEqual(["9,812.378912731 DUSK"]);
     expect(container.querySelector("time")).toHaveAttribute(
       "data-tooltip-text",
-      "Tue 16 Apr 2024, 6:39:09 AM UTC"
+      "Tue 16 Apr 2024, 6:39:09 AM UTC",
     );
     expect(
-      getByRole("link", { name: `Transaction ${short(transaction.txid)}` })
+      getByRole("link", { name: `Transaction ${short(transaction.txid)}` }),
     ).toHaveAttribute(
       "href",
-      `/some-base-path/transactions/transaction?id=${transaction.txid}`
+      `/some-base-path/transactions/transaction?id=${transaction.txid}`,
     );
     expect(container.textContent).not.toMatch(/gas|fee/i);
   });
@@ -98,15 +98,15 @@ describe("Transactions List", () => {
     // Plain words, and the function it ran.
     await vi.waitFor(() => {
       expect(
-        toContract.querySelector(".transaction-row__line")
+        toContract.querySelector(".transaction-row__line"),
       ).toHaveTextContent(/^Contract call · \S+$/);
       expect(
-        toAccount.querySelector(".transaction-row__line")
+        toAccount.querySelector(".transaction-row__line"),
       ).toHaveTextContent(/^Transfer contract · \S+$/);
     });
     expect(toContract.querySelector("code")).toHaveTextContent(/^convert$/);
     expect(
-      toAccount.querySelector(".transaction-row__parties")
+      toAccount.querySelector(".transaction-row__parties"),
     ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
   });
 
@@ -124,14 +124,14 @@ describe("Transactions List", () => {
       { ...call, method: "withdraw" },
     ].map((data) =>
       render(TransactionsList, { data }).container.querySelector(
-        ".transaction-row__line"
-      )
+        ".transaction-row__line",
+      ),
     );
 
     await vi.waitFor(() =>
       expect(
-        lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim())
-      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"])
+        lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim()),
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"]),
     );
   });
 
@@ -147,14 +147,14 @@ describe("Transactions List", () => {
       },
     });
     const [sender, receiver] = container.querySelectorAll(
-      ".transaction-row__party"
+      ".transaction-row__party",
     );
 
     expect(sender).toHaveTextContent(
-      new RegExp(`^From ${shortAddress(String(transaction.from))}$`)
+      new RegExp(`^From ${shortAddress(String(transaction.from))}$`),
     );
     await vi.waitFor(() =>
-      expect(receiver).toHaveTextContent(/^To Stake contract$/)
+      expect(receiver).toHaveTextContent(/^To Stake contract$/),
     );
   });
 
@@ -170,9 +170,9 @@ describe("Transactions List", () => {
       (data) =>
         /** @type {Element} */ (
           render(TransactionsList, { data }).container.querySelectorAll(
-            ".transaction-row__party"
+            ".transaction-row__party",
           )[1]
-        )
+        ),
     );
 
     await vi.waitFor(() => {
@@ -180,18 +180,18 @@ describe("Transactions List", () => {
       expect(rows[1]).toHaveTextContent(/^To 2e4b…6046$/);
     });
     expect(
-      rows[1].querySelector(".transaction-party__contract-id")
+      rows[1].querySelector(".transaction-party__contract-id"),
     ).not.toBeNull();
     // The words are for the tooltip and the type line.
     expect(
-      rows[1].querySelector(".transaction-party--contract")
+      rows[1].querySelector(".transaction-party--contract"),
     ).toHaveAttribute("data-tooltip-text", `Contract ${router}`);
     await vi.waitFor(() =>
       expect(
         rows[1]
           .closest(".transaction-row")
-          ?.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Contract call · \S+$/)
+          ?.querySelector(".transaction-row__line"),
+      ).toHaveTextContent(/^Contract call · \S+$/),
     );
 
     // On testnet, whose file labels both.
@@ -203,7 +203,7 @@ describe("Transactions List", () => {
     });
 
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 
@@ -223,13 +223,13 @@ describe("Transactions List", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".transaction-row__line")
-      ).toHaveTextContent(/^Failed · Transfer$/)
+        container.querySelector(".transaction-row__line"),
+      ).toHaveTextContent(/^Failed · Transfer$/),
     );
     expect(amount).toHaveClass("row-amount--muted");
     expect(getComputedStyle(amount).textDecoration).toContain("line-through");
     expect(amount.textContent?.replace(/\s+/g, " ").trim()).toBe(
-      "9,812.3789 DUSK, nothing sent"
+      "9,812.3789 DUSK, nothing sent",
     );
 
     style.remove();
@@ -246,7 +246,7 @@ describe("Transactions List", () => {
 
     expect(getByRole("link", { name: "alice.dusk" })).toHaveAttribute(
       "data-tooltip-text",
-      `alice.dusk · ${short(sender)}`
+      `alice.dusk · ${short(sender)}`,
     );
   });
 
@@ -275,14 +275,14 @@ describe("Transactions List", () => {
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".transaction-party--evm")
-      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/)
+        container.querySelector(".transaction-party--evm"),
+      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
     );
     expect(fetchSpy).not.toHaveBeenCalled();
 
     fetchSpy.mockRestore();
     await act(() =>
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined })
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
   });
 
@@ -306,19 +306,19 @@ describe("Transactions List", () => {
     await rerender({ ...props, autoRefreshTime: true });
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->3 seconds ago<!---->"`
+      `"<!----><!----><!---->3 seconds ago<!---->"`,
     );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->4 seconds ago<!---->"`
+      `"<!----><!----><!---->4 seconds ago<!---->"`,
     );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->5 seconds ago<!---->"`
+      `"<!----><!----><!---->5 seconds ago<!---->"`,
     );
   });
 });

@@ -39,12 +39,12 @@ describe("The blocks page, following the chain", () => {
         const generator = row.querySelector("a[href*='/accounts/']");
         const param = (
           /** @type {Element | null} */ link,
-          /** @type {string} */ name
+          /** @type {string} */ name,
         ) =>
           link
             ? new URL(
                 String(link.getAttribute("href")),
-                "http://localhost"
+                "http://localhost",
               ).searchParams.get(name)
             : null;
 
@@ -59,7 +59,7 @@ describe("The blocks page, following the chain", () => {
     // The latest blocks, the newest first, each with its generator.
     expect(rows()).toHaveLength(15);
     expect(rows().map((row) => row.generator)).toStrictEqual(
-      Array.from({ length: 15 }, (_, i) => generatorOf(fake.tip - i))
+      Array.from({ length: 15 }, (_, i) => generatorOf(fake.tip - i)),
     );
 
     const opened = fake.log.length;
@@ -88,8 +88,8 @@ describe("The blocks page, following the chain", () => {
         (r) =>
           r.path === "/on/graphql/query" &&
           r.fields.join() === "block,blocks" &&
-          r.body.includes("generatorBlsPubkey")
-      )
+          r.body.includes("generatorBlsPubkey"),
+      ),
     ).toBe(true);
   }, 30_000);
 });

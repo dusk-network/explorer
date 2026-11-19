@@ -115,7 +115,7 @@
       },
       (/** @type {Error} */ failure) => {
         lookups = { ...lookups, [name]: { error: failure.message } };
-      }
+      },
     );
   }
 
@@ -131,7 +131,7 @@
     ? enrichedProvisioners.filter(
         (p) =>
           p.key === searchedName?.account ||
-          p.ownerAddress === searchedName?.account
+          p.ownerAddress === searchedName?.account,
       )
     : search
       ? enrichedProvisioners.filter((p) => matches(p, search))

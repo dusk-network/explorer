@@ -159,7 +159,7 @@ async function readBlocksAfter(api, held, amount) {
   const span = spanFor(amount);
   const { anchor, blocks } = await api.getBlocksAfter(
     newest.height,
-    newest.height + span
+    newest.height + span,
   );
 
   return carriesOn({ anchor, blocks: blocks.map(refOf) }, newest, span)
@@ -201,7 +201,7 @@ export function followBlocks(api) {
 
       held = (fresh ? [...fresh, ...held] : await api.getBlocks(amount)).slice(
         0,
-        amount
+        amount,
       );
       heldFor = amount;
 
@@ -239,23 +239,23 @@ export function followChainInfo(api) {
   async function readAll(amount) {
     const { blocks, transactions } = await api.getLatestChainInfo(amount);
     const hashAt = new Map(
-      blocks.map(({ header }) => [header.height, header.hash])
+      blocks.map(({ header }) => [header.height, header.hash]),
     );
     const replaced = new Set(
       transactions
         .filter(
           ({ blockhash, blockheight }) =>
-            (hashAt.get(blockheight) ?? blockhash) !== blockhash
+            (hashAt.get(blockheight) ?? blockhash) !== blockhash,
         )
-        .map(({ blockheight }) => blockheight)
+        .map(({ blockheight }) => blockheight),
     );
     const kept = transactions.filter(
-      ({ blockheight }) => !replaced.has(blockheight)
+      ({ blockheight }) => !replaced.has(blockheight),
     );
     const newest = kept[0]?.blockheight ?? -1;
     const fromBlocks = blocks
       .filter(
-        ({ header }) => header.height > newest || replaced.has(header.height)
+        ({ header }) => header.height > newest || replaced.has(header.height),
       )
       .flatMap((block) => block.transactions.data);
 
@@ -277,7 +277,7 @@ export function followChainInfo(api) {
             transactions: newestTransactions(
               fresh.flatMap((block) => block.transactions.data),
               held.transactions,
-              amount
+              amount,
             ),
           }
         : await readAll(amount);
@@ -338,7 +338,7 @@ export function followTransactions(api) {
     const span = MAX_RANGE - 1;
     const read = await api.getTransactionsAfter(
       last.height,
-      last.height + span
+      last.height + span,
     );
 
     if (!carriesOn(read, last, span)) {
@@ -381,7 +381,7 @@ export function followTransactions(api) {
       const read = await api.getTransactionsIn(ranges);
 
       found.push(
-        ...read.filter(({ txid }) => !known.has(txid) && known.add(txid))
+        ...read.filter(({ txid }) => !known.has(txid) && known.add(txid)),
       );
       to = ranges[ranges.length - 1][0] - 1;
       blocks *= 2;

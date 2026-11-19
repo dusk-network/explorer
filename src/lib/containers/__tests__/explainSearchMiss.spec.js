@@ -15,7 +15,7 @@ describe("explainSearchMiss", () => {
 
   it("should ask for the whole ID when given the start of one", () => {
     expect(explainSearchMiss("e5f314fb49a8a2f8").message).toBe(
-      "This looks like the start of an ID. Search with the whole ID, 64 characters."
+      "This looks like the start of an ID. Search with the whole ID, 64 characters.",
     );
   });
 
@@ -36,7 +36,7 @@ describe("explainSearchMiss", () => {
     const shielded = encodeBase58(new Uint8Array(64).fill(7));
 
     expect(explainSearchMiss(shielded).message).toMatch(
-      /^This is a shielded address\./
+      /^This is a shielded address\./,
     );
   });
 
@@ -46,7 +46,7 @@ describe("explainSearchMiss", () => {
       suggestion: "alice.dusk",
     });
     expect(explainSearchMiss("dusk-domains").suggestion).toBe(
-      "dusk-domains.dusk"
+      "dusk-domains.dusk",
     );
     // A subname, and a name typed with its dot but not its ending.
     expect(explainSearchMiss("pay.alice").suggestion).toBe("pay.alice.dusk");

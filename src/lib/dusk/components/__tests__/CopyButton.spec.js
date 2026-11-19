@@ -87,7 +87,7 @@ describe("CopyButton", () => {
     await vi.advanceTimersByTimeAsync(50);
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledExactlyOnceWith(
-      rawValue
+      rawValue,
     );
     expect(button).toHaveAccessibleName("Copied");
     expect(button).toHaveTextContent(/^Copied$/);
@@ -143,7 +143,7 @@ describe("CopyButton", () => {
     expect(toast).toHaveBeenCalledExactlyOnceWith(
       "error",
       "Clipboard access denied",
-      expect.any(String)
+      expect.any(String),
     );
     expect(button).toHaveAccessibleName("Copy transaction ID");
     expect(heard()).toBe("");
@@ -164,7 +164,7 @@ describe("CopyButton", () => {
     // The page moved on to another transaction within the 1.5 s.
     await rerender({ name: "Transaction ID", rawValue: "another hash" });
     expect(
-      getByRole("button", { name: "Copy transaction ID" })
+      getByRole("button", { name: "Copy transaction ID" }),
     ).toBeInTheDocument();
     expect(iconOf(getByRole("button"))).toBe(mdiContentCopy);
   });

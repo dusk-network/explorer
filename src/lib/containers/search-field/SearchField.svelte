@@ -114,10 +114,10 @@
       resolveDuskName(query).then(
         ifLatest((address) =>
           open(
-            `/accounts/?key=${address}&name=${encodeURIComponent(query.toLowerCase())}`
-          )
+            `/accounts/?key=${address}&name=${encodeURIComponent(query.toLowerCase())}`,
+          ),
         ),
-        ifLatest((res) => notFound(query, res))
+        ifLatest((res) => notFound(query, res)),
       );
       return;
     }
@@ -141,8 +141,8 @@
         }
       }),
       ifLatest(() =>
-        notFound(query, new Error("The search failed. Please try again."))
-      )
+        notFound(query, new Error("The search failed. Please try again.")),
+      ),
     );
   }
 </script>

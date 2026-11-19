@@ -50,8 +50,8 @@ describe("Transactions page, a page at a time", () => {
         (a) =>
           new URL(
             String(a.getAttribute("href")),
-            "http://localhost"
-          ).searchParams.get("id")
+            "http://localhost",
+          ).searchParams.get("id"),
       );
     const showMore = () => getByRole("button", { name: "Show more" });
     const newestFirst = async (/** @type {number} */ count) => {
@@ -61,7 +61,7 @@ describe("Transactions page, a page at a time", () => {
       });
 
       return (await answer.json()).transactions.map(
-        (/** @type {{ id: string }} */ t) => t.id
+        (/** @type {{ id: string }} */ t) => t.id,
       );
     };
     const reads = () =>
@@ -69,12 +69,12 @@ describe("Transactions page, a page at a time", () => {
         .requests("/on/graphql/query")
         .filter(
           (r) =>
-            r.fields.includes("transactions") || r.fields.includes("blockTxs")
+            r.fields.includes("transactions") || r.fields.includes("blockTxs"),
         );
 
     await vi.waitFor(() => expect(shown()).toHaveLength(15));
     expect(
-      reads().map((r) => r.body.match(/transactions\(last: \d+\)/)?.[0])
+      reads().map((r) => r.body.match(/transactions\(last: \d+\)/)?.[0]),
     ).toStrictEqual(["transactions(last: 25)"]);
 
     // Past the 25 read, the ones under them.

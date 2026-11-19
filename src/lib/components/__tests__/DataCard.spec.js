@@ -39,7 +39,7 @@ describe("DataCard", () => {
       Array.from(heading.children, (bracket) => [
         bracket.textContent,
         bracket.getAttribute("aria-hidden"),
-      ])
+      ]),
     ).toStrictEqual([
       ["[", "true"],
       ["]", "true"],
@@ -79,7 +79,7 @@ describe("DataCard", () => {
       ["page", "Blocks", "Loading blocks…"],
       ["section", "Transactions", "Loading transactions…"],
       ["detail", "Block", "Loading the block…"],
-    ])
+    ]),
   )(
     "should say what a first load waits for beside a throbber, from the first moment, as a %s titled %s",
     (variant, title, words) => {
@@ -91,7 +91,7 @@ describe("DataCard", () => {
       expect(getByText(words)).toBeInTheDocument();
       expect(container.querySelector(".dusk-throbber")).toBeInTheDocument();
       expect(container.querySelector("[role='progressbar']")).toBeNull();
-    }
+    },
   );
 
   it("should say what an empty list means, as its card tells it", () => {
@@ -105,7 +105,7 @@ describe("DataCard", () => {
     });
 
     expect(container.querySelector(".alert")).toHaveTextContent(
-      /^No transactions in this block\.$/
+      /^No transactions in this block\.$/,
     );
   });
 
@@ -118,7 +118,7 @@ describe("DataCard", () => {
     });
 
     expect(container.querySelector(".alert")).toHaveTextContent(
-      /^Couldn't load this\.\s*Request timed out\s*Try again$/
+      /^Couldn't load this\.\s*Request timed out\s*Try again$/,
     );
 
     await fireEvent.click(getByRole("button", { name: "Try again" }));

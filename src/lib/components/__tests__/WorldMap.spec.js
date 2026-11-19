@@ -50,13 +50,13 @@ describe("World Map", () => {
       const marker = markers[index];
       const [, left, top] =
         /^translate\((.+), (.+)\)$/.exec(
-          marker.getAttribute("transform") ?? ""
+          marker.getAttribute("transform") ?? "",
         ) ?? [];
       const drawn = marker.querySelector(".nodes-world-map__location-ring");
 
       expect(marker).toHaveAttribute(
         "data-tooltip-text",
-        `Somewhere - ${city} - ${count} ${count === 1 ? "node" : "nodes"}`
+        `Somewhere - ${city} - ${count} ${count === 1 ? "node" : "nodes"}`,
       );
       expect(Number(left)).toBeCloseTo(x, 5);
       expect(Number(top)).toBeCloseTo(y, 5);
@@ -82,10 +82,10 @@ describe("World Map", () => {
       style = document.createElement("style");
       style.textContent = readFileSync(
         new URL(sheet, import.meta.url),
-        "utf8"
+        "utf8",
       ).replaceAll(
         "@media (prefers-reduced-motion: reduce)",
-        motion === "reduced" ? "@media all" : "@media not all"
+        motion === "reduced" ? "@media all" : "@media not all",
       );
       document.head.append(style);
 
@@ -95,7 +95,7 @@ describe("World Map", () => {
 
       return Array.from(
         container.querySelectorAll(".nodes-world-map__location"),
-        (ring) => getComputedStyle(ring)
+        (ring) => getComputedStyle(ring),
       );
     };
 
@@ -124,7 +124,7 @@ describe("World Map", () => {
       }
 
       expect(style.textContent).toMatch(
-        /@keyframes nodes-world-map-pulse \{\s*50% \{\s*color: var\(--chain-blue-glow\);\s*\}\s*\}/
+        /@keyframes nodes-world-map-pulse \{\s*50% \{\s*color: var\(--chain-blue-glow\);\s*\}\s*\}/,
       );
     });
 

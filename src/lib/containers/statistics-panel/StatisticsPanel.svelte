@@ -179,14 +179,14 @@
     activeProvisioners: statistic(
       "Active provisioners",
       statsData?.activeProvisioners,
-      { icon: mdiAccountGroupOutline }
+      { icon: mdiAccountGroupOutline },
     ),
     clusterLocation: statistic(
       "Largest cluster location",
       nodesData?.length
         ? `${nodesData[0].city}, ${nodesData[0].countryCode}`
         : null,
-      { compact: null }
+      { compact: null },
     ),
     currentStake: {
       ...stakeStatistic("Current stake", statsData?.activeStake),
@@ -204,7 +204,7 @@
     largestCluster: statistic(
       "Largest node cluster",
       nodesData?.length ? nodesData[0].count : null,
-      { unit: "nodes" }
+      { unit: "nodes" },
     ),
     lastBlock: statistic("Last block", statsData?.lastBlock, {
       compact: false,
@@ -216,7 +216,7 @@
     }),
     pendingProvisioners: statistic(
       "Pending provisioners",
-      statsData?.waitingProvisioners
+      statsData?.waitingProvisioners,
     ),
     pendingStake: stakeStatistic("Pending stake", statsData?.waitingStake),
     price: statistic("DUSK price", marketData?.currentPrice.usd, {
@@ -237,7 +237,7 @@
               way: null,
             }
           : null,
-      }
+      },
     ),
   };
 
@@ -274,7 +274,7 @@
 <!-- A number's value: "≈" when rounded, its unit, and whether it is stale. -->
 {#snippet valueOf(
   /** @type {Statistic} */ item,
-  /** @type {"div" | "span"} */ tag
+  /** @type {"div" | "span"} */ tag,
 )}
   {#if item.approximate}
     <span class="statistics-panel__statistics-item-about"
@@ -352,7 +352,7 @@
               datetime={newest.date.toISOString()}
               >{getRelativeTimeString(
                 new Date(Math.min(newest.date.getTime(), now)),
-                "long"
+                "long",
               )}</time
             >
           {/if}

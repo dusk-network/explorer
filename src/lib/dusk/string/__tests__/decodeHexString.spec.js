@@ -29,7 +29,7 @@ describe("decodeHexString", () => {
     const hexString = Buffer.from(jsonString).toString("hex"); // Convert JSON string to hex
 
     expect(decodeHexString(hexString)).toBe(
-      JSON.stringify(JSON.parse(jsonString), null, 2)
+      JSON.stringify(JSON.parse(jsonString), null, 2),
     );
   });
 
