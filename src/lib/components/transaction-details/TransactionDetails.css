@@ -94,7 +94,7 @@
   font-size: 0.8rem;
 }
 
-/* The function a call ran, in Details. */
+/* The function a call ran. */
 .transaction-details__function {
   font-size: 0.8125rem;
   overflow-wrap: anywhere;

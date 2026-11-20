@@ -64,25 +64,18 @@
   $: transferDirection =
     !data.contract && data.method === "transfer" ? direction : undefined;
 
-  // What the transaction did: a call's plain words alone, as "Claim rewards",
-  // its function's name being the transaction page's detail; else the
-  // contract's name, or "Contract call", and the function it ran, or the
-  // function alone where the row names the contract.
+  // What the transaction did and the function a call ran, as main gives
+  // them: a call's plain words, as "Claim rewards · withdraw", unless the
+  // words already say it; else the contract's name, or "Contract call", and
+  // the function, or the function alone where the row names the contract.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
-        .then(({ label, name }) => ({
-          isPlain: Boolean(label),
-          text:
+        .then(
+          ({ label, name }) =>
             label ?? (nameContract ? (name ?? "Contract call") : null) ?? "",
-        }))
-        .catch(() => ({
-          isPlain: false,
-          text: nameContract ? "Contract call" : "",
-        }))
-    : Promise.resolve({
-        isPlain: true,
-        text: plainTypes.get(data.method) ?? data.method,
-      });
+        )
+        .catch(() => (nameContract ? "Contract call" : ""))
+    : Promise.resolve(plainTypes.get(data.method) ?? data.method);
 </script>
 
 <div class="transaction-type">
@@ -102,11 +95,11 @@
         >{directionWords[transferDirection]}</span
       >
     {:else}
-      {#await callLabel then { isPlain, text }}
+      {#await callLabel then text}
         {#if text}
           <span class="transaction-type__label">{text}</span>
         {/if}
-        {#if !isPlain && showMethod && data.contract && data.method && data.method.toLowerCase() !== text.toLowerCase()}
+        {#if showMethod && data.contract && data.method && data.method.toLowerCase() !== text.toLowerCase()}
           {#if text}<span aria-hidden="true">·</span>{/if}
           <code class="transaction-type__method">{data.method}</code>
         {:else if !text && data.contract}

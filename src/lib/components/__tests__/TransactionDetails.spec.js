@@ -334,6 +334,40 @@ describe("Transaction Details", () => {
     }
   });
 
+  it("should give the function a contract call ran in its own row on the main view, and none for a transfer", async () => {
+    /** @type {[string, string, string][]} */
+    const calls = [
+      [stake, "withdraw", "Claim rewards"],
+      [
+        "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c",
+        "transfer_remote",
+        "Contract call",
+      ],
+    ];
+
+    for (const [contract, method, lead] of calls) {
+      const { container } = render(TransactionDetails, {
+        ...props,
+        data: { ...transaction, contract, method, to: null },
+        market: null,
+      });
+
+      expect(valueOf(container, /^method$/i)).toBe(method);
+      // Not folded away under Details.
+      expect(rowOf(container, /^method$/i).closest("details")).toBeNull();
+      // What leads says what it did; the function is its row.
+      await vi.waitFor(() => expect(leadOf(container)).toBe(lead));
+      cleanup();
+    }
+
+    const transfer = render(TransactionDetails, {
+      ...props,
+      market: null,
+    }).container;
+
+    expect(rowOf(transfer, /^method$/i)).toBeUndefined();
+  });
+
   it("should lead a transfer to an account the network's labels name with whom it went to, and any other with what it did alone", async () => {
     const bscBridge =
       "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";

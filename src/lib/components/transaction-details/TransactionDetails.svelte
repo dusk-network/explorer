@@ -147,6 +147,7 @@
       <span class="transaction-details__summary-text detail-summary__text"
         ><TransactionType
           {data}
+          showMethod={false}
           showPrivacy={false}
         />{#if !data.contract && toLabel}
           <span class="transaction-details__summary-to">to {toLabel}</span
@@ -354,6 +355,16 @@
       </svelte:fragment>
     </ListItem>
 
+    <!-- METHOD: the name of the contract's function the call ran -->
+    {#if data.contract}
+      <ListItem wide>
+        <svelte:fragment slot="term">Method</svelte:fragment>
+        <code class="transaction-details__function" slot="definition"
+          >{data.method}</code
+        >
+      </ListItem>
+    {/if}
+
     <!-- VISIBILITY: public or shielded; what that shows everyone, on hover -->
     {#if visibility}
       <ListItem tooltipText={visibility.seen}>
@@ -409,16 +420,6 @@
       /></summary
     >
     <dl class="transaction-details__list detail-rows">
-      <!-- METHOD: the name of the contract's function the call ran -->
-      {#if data.contract}
-        <ListItem wide>
-          <svelte:fragment slot="term">Method</svelte:fragment>
-          <code class="transaction-details__function" slot="definition"
-            >{data.method}</code
-          >
-        </ListItem>
-      {/if}
-
       <!-- GAS USED, OF THE TRANSACTION'S LIMIT -->
       <ListItem
         tooltipText="The gas the transaction used, of the most it could use. Only the gas used is paid for"

@@ -238,6 +238,34 @@ describe("Transactions Table", () => {
     style.remove();
   });
 
+  it("should give the function each contract call ran in its row, after plain words where it has them", async () => {
+    // Calls that send no DUSK along: the receiver is the contract.
+    const call = { ...transfer, amount: 0, deposit: 0, to: null };
+    const calls = [
+      { ...call, contract: STAKE_CONTRACT, method: "withdraw" },
+      {
+        ...call,
+        contract: "ab".repeat(32),
+        method: "transfer_remote",
+        txid: "e".repeat(64),
+      },
+    ];
+    const { container } = render(TransactionsTable, {
+      props: { data: calls, mode: "full" },
+    });
+    const [claim, remote] = container.querySelectorAll("tbody tr");
+
+    await vi.waitFor(() =>
+      expect(shownIn(claim, ".transaction__line")).toBe(
+        "Claim rewards · withdraw",
+      ),
+    );
+    expect(claim.querySelector("code")?.textContent).toBe("withdraw");
+    // A call with no plain words: its function, as the row names the contract.
+    expect(shownIn(remote, ".transaction__line")).toBe("transfer_remote");
+    expect(remote.querySelector("code")?.textContent).toBe("transfer_remote");
+  });
+
   it("should give the DuskEVM address a deposit pays, on DuskEVM, and ask DuskEVM's explorer nothing", async () => {
     const bridge =
       "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
