@@ -17,13 +17,25 @@ vi.mock("$app/stores", async (importOriginal) => {
 });
 
 /**
- * Whether words say a transaction is confirmed: "confirmed", with no "not"
- * to say it isn't yet.
+ * Whether words say a transaction waits for a block.
+ *
+ * @param {string} text
+ */
+const saysPending = (text) =>
+  /\b(mempool|pending|not yet|being processed|once it's in a block)\b/i.test(
+    text,
+  );
+
+/**
+ * Whether words say a transaction is confirmed: "confirmed", but for "not
+ * (yet) (been) confirmed".
  *
  * @param {string} text
  */
 const saysConfirmed = (text) =>
-  /\bconfirmed\b/i.test(text) && !/\bnot\b/i.test(text);
+  /\bconfirmed\b/i.test(
+    text.replace(/\bnot (?:yet )?(?:been )?confirmed\b/gi, ""),
+  );
 
 /*
  * A transaction the node holds in its mempool, not yet in a block.
@@ -57,11 +69,17 @@ describe("Transaction page", () => {
       container.querySelector(".dusk-banner--info")?.cloneNode(true)
     );
 
-    banner.querySelector(".dusk-banner__title")?.remove();
+    const title = banner.querySelector(".dusk-banner__title");
 
-    const body = String(banner.textContent).replace(/\s+/g, " ").trim();
+    // Its state, in words: being processed.
+    expect(saysPending(title?.textContent ?? "")).toBe(true);
+    title?.remove();
+
+    // And the node's words under it: waiting for a block, never confirmed.
+    const body = banner.textContent?.replace(/\s+/g, " ").trim() ?? "";
 
     expect(body).toMatch(/\w/);
+    expect(saysPending(body)).toBe(true);
     expect(saysConfirmed(body)).toBe(false);
     expect(container.querySelector(".transaction-details__outcome")).toBeNull();
     expect(String(fetch.mock.calls[0][1]?.body)).toContain(id);

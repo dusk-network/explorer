@@ -154,15 +154,31 @@ describe("Transactions Table", () => {
     expect(
       Array.from(container.querySelectorAll("tbody tr"), (row) => ({
         amount: shownIn(row, ".row-amount"),
-        failed: row.querySelector(".row-failed") !== null,
+        // The status it shows in words: "Failed" first, or none.
+        line: row
+          .querySelector(".transaction__line")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim(),
         struck: getComputedStyle(
           /** @type {Element} */ (row.querySelector(".row-amount")),
         ).textDecoration.includes("line-through"),
       })),
     ).toStrictEqual([
-      { amount: "20 DUSK", failed: true, struck: true },
-      { amount: "0 DUSK", failed: true, struck: false },
-      { amount: "−20 DUSK", failed: false, struck: false },
+      {
+        amount: "20 DUSK",
+        line: expect.stringMatching(/^Failed\b/),
+        struck: true,
+      },
+      {
+        amount: "0 DUSK",
+        line: expect.stringMatching(/^Failed\b/),
+        struck: false,
+      },
+      {
+        amount: "−20 DUSK",
+        line: expect.not.stringMatching(/Failed/),
+        struck: false,
+      },
     ]);
 
     style.remove();
@@ -200,7 +216,12 @@ describe("Transactions Table", () => {
     await vi.waitFor(() =>
       expect(
         container.querySelector(".transaction-party--evm"),
-      ).toHaveTextContent(/^0x5A3d…8a01 .*DuskEVM$/),
+      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
+    );
+    // The whole address, and its network, on hover.
+    expect(container.querySelector(".transaction-party--evm")).toHaveAttribute(
+      "data-tooltip-text",
+      "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM",
     );
     expect(
       container.querySelector(".transaction-party__evm-address"),

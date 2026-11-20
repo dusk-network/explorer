@@ -32,7 +32,7 @@ describe("Blocks Table", () => {
     expect(full).toHaveTextContent(/^0\.01%/);
     expect(full).toHaveAttribute(
       "title",
-      expect.stringMatching(/^580,718\D+5,000,000,000\b/),
+      expect.stringMatching(/^580,718[^\d−-]+5,000,000,000\b/),
     );
     expect(fees).toHaveTextContent(/^\+ ?0\.00058 DUSK\b/);
     expect(fees).toHaveAttribute("title", "0.000580718 DUSK");

@@ -118,15 +118,38 @@ describe("StatisticsPanel", () => {
     });
 
   /**
-   * The line under each of the four numbers that lead.
+   * A number's card, found by its label: the labels' words are copy, what
+   * each number is isn't.
    *
    * @param {HTMLElement} container
+   * @param {RegExp} label
    */
-  const notesOf = (container) =>
+  const cardOf = (container, label) =>
     Array.from(
-      container.querySelectorAll(".statistics-panel__statistics-item--primary"),
-      (card) => card.querySelector(".statistics-panel__statistics-item-note"),
-    );
+      container.querySelectorAll(".statistics-panel__statistics-item"),
+    ).find((card) => {
+      const title = /** @type {Element | undefined} */ (
+        card
+          .querySelector(".statistics-panel__statistics-item-title")
+          ?.cloneNode(true)
+      );
+
+      // The last block's label says whether new blocks come, after it.
+      title?.querySelector(".statistics-panel__live")?.remove();
+
+      return label.test(title?.textContent?.trim() ?? "");
+    });
+
+  /** @param {Element | undefined} card */
+  const valueOf = (card) =>
+    card
+      ?.querySelector(".statistics-panel__statistics-item-value")
+      ?.textContent?.replace(/\s+/g, " ")
+      .trim();
+
+  /** @param {Element | undefined} card */
+  const noteOf = (card) =>
+    card?.querySelector(".statistics-panel__statistics-item-note");
 
   it("should show no DUSK price or market cap on a test network, and both on mainnet", async () => {
     setChain(2);
@@ -136,13 +159,16 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    // Test DUSK has no value: no dollar figure anywhere.
+    // Test DUSK has no value: no price, no market cap, no dollar figure.
+    expect(cardOf(container, /price/i)).toBeUndefined();
+    expect(cardOf(container, /market cap/i)).toBeUndefined();
     expect(container.textContent).not.toContain("$");
 
     await act(() => setChain(1));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    expect(container.textContent).toContain("$");
+    expect(valueOf(cardOf(container, /price/i))).toBe("$0.368");
+    expect(valueOf(cardOf(container, /market cap/i))).toBe("$168.00M");
   });
 
   it("should give the price's move with its sign, and the stake's share of the circulating supply", async () => {
@@ -153,12 +179,12 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    const [price, stake] = notesOf(container);
+    const price = noteOf(cardOf(container, /price/i));
+    const stake = noteOf(cardOf(container, /^(?!pending).*stake/i));
 
-    // -8.04817% in 24 hours: down, to two decimals.
+    // -8.04817% in 24 hours: down, in red, to two decimals.
     expect(price).toHaveTextContent(/^(?:Down |[−-])8\.05%/);
     expect(price).toHaveClass("statistics-panel__statistics-item-note--down");
-    expect(price).not.toHaveClass("statistics-panel__statistics-item-note--up");
     // 58,226,174 DUSK staked of 457,027,796 in circulation.
     expect(stake).toHaveTextContent(/^12\.7%/);
   });

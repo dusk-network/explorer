@@ -12,6 +12,27 @@ import {
 
 import { duskAPI } from "..";
 
+/**
+ * Whether words say a transaction waits for a block.
+ *
+ * @param {string} text
+ */
+const saysPending = (text) =>
+  /\b(mempool|pending|not yet|being processed|once it's in a block)\b/i.test(
+    text,
+  );
+
+/**
+ * Whether words say a transaction is confirmed: "confirmed", but for "not
+ * (yet) (been) confirmed".
+ *
+ * @param {string} text
+ */
+const saysConfirmed = (text) =>
+  /\bconfirmed\b/i.test(
+    text.replace(/\bnot (?:yet )?(?:been )?confirmed\b/gi, ""),
+  );
+
 describe("duskAPI", () => {
   const fetchSpy = vi.spyOn(global, "fetch");
   const node = new URL(import.meta.env.VITE_NODE_URL, import.meta.url);
@@ -833,14 +854,17 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ tx: null }))
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: true }));
 
-    const message = String(await duskAPI.getTransaction(fakeID));
+    const message = await duskAPI.getTransaction(fakeID);
 
-    // Words for the processing banner: there are some, and they don't say
-    // it's confirmed.
-    expect(message).toMatch(/\w/);
-    expect(/\bconfirmed\b/i.test(message) && !/\bnot\b/i.test(message)).toBe(
-      false,
-    );
+    // Words for the processing banner, which say it waits for a block, and
+    // never that it's confirmed.
+    expect(message).toBeTypeOf("string");
+
+    const words = /** @type {string} */ (message);
+
+    expect(words).toMatch(/\w/);
+    expect(saysPending(words)).toBe(true);
+    expect(saysConfirmed(words)).toBe(false);
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);

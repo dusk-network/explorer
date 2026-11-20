@@ -75,6 +75,11 @@ describe("Transactions List", () => {
       "href",
       `/some-base-path/transactions/transaction?id=${transaction.txid}`,
     );
+    // The fee and the gas are for the transaction's page.
+    expect(container.textContent).not.toMatch(/gas|fee/i);
+    for (const figure of ["0.00029", "290,766", "500,000,000"]) {
+      expect(container.innerHTML).not.toContain(figure);
+    }
   });
 
   it("should sign the amount by which way it went for the account whose page it is", () => {
@@ -108,7 +113,11 @@ describe("Transactions List", () => {
 
       return {
         amount: amountOf(container),
-        failed: container.querySelector(".row-failed") !== null,
+        // The status it shows in words: "Failed" first, or none.
+        line: container
+          .querySelector(".transaction-row__line")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim(),
         struck:
           getComputedStyle(amount).textDecoration.includes("line-through"),
       };
@@ -116,12 +125,12 @@ describe("Transactions List", () => {
 
     expect(rowOf(transaction)).toStrictEqual({
       amount: "9,812.3789 DUSK",
-      failed: false,
+      line: expect.not.stringMatching(/Failed/),
       struck: false,
     });
     expect(rowOf({ ...transaction, txerror: "Panic" })).toStrictEqual({
       amount: "9,812.3789 DUSK",
-      failed: true,
+      line: expect.stringMatching(/^Failed\b/),
       struck: true,
     });
     // A call's deposit doesn't reach its contract either.
@@ -135,7 +144,11 @@ describe("Transactions List", () => {
         to: null,
         txerror: "Panic",
       }),
-    ).toStrictEqual({ amount: "20 DUSK", failed: true, struck: true });
+    ).toStrictEqual({
+      amount: "20 DUSK",
+      line: expect.stringMatching(/^Failed\b/),
+      struck: true,
+    });
 
     style.remove();
   });
@@ -191,7 +204,12 @@ describe("Transactions List", () => {
     await vi.waitFor(() =>
       expect(
         container.querySelector(".transaction-party--evm"),
-      ).toHaveTextContent(/^0x5A3d…8a01 .*DuskEVM$/),
+      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
+    );
+    // The whole address, and its network, on hover.
+    expect(container.querySelector(".transaction-party--evm")).toHaveAttribute(
+      "data-tooltip-text",
+      "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM",
     );
     expect(
       container.querySelector(".transaction-party__evm-address"),

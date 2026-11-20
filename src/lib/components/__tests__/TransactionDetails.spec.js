@@ -73,9 +73,34 @@ const leadOf = (container) =>
     ?.textContent?.replace(/\s+/g, " ")
     .trim();
 
+/**
+ * The status the page gives, in its own word.
+ *
+ * @param {HTMLElement} container
+ */
+const statusOf = (container) =>
+  container.querySelector(".transaction-details__outcome")?.textContent?.trim();
+
+/**
+ * What an explanation of a transaction's privacy says is hidden, and what
+ * it says is public: the sentences that say each.
+ *
+ * @param {string | undefined} text
+ */
+const saidOf = (text = "") => {
+  const sentences = text.split(/\.\s*/);
+
+  return {
+    hidden: sentences.filter((s) => /\bhidden\b/i.test(s)).join(". "),
+    public: sentences.filter((s) => /\b(public|visible)\b/i.test(s)).join(". "),
+  };
+};
+
 /** @param {HTMLElement} container */
-const outcomeOf = (container) =>
-  container.querySelector(".transaction-details__outcome");
+const explanationOf = (container) =>
+  container
+    .querySelector(".transaction-details__visibility-seen")
+    ?.textContent?.trim();
 
 describe("Transaction Details", () => {
   vi.useFakeTimers();
@@ -168,7 +193,7 @@ describe("Transaction Details", () => {
     const { container } = render(TransactionDetails, props);
 
     expect(valueOf(container, /^gas used$/i)).toMatch(
-      /^290,766\D+500,000,000$/,
+      /^290,766[^\d−-]+500,000,000$/,
     );
     expect(valueOf(container, /^gas price$/i)).toBe("1 LUX");
   });
@@ -197,13 +222,13 @@ describe("Transaction Details", () => {
       market: null,
     }).container;
 
-    expect(outcomeOf(completed)).toHaveClass(
-      "transaction-details__outcome--completed",
-    );
-    expect(outcomeOf(completed)).not.toHaveClass(
-      "transaction-details__outcome--failed",
-    );
+    expect(statusOf(completed)).toBe("Completed");
     expect(struckIn(completed)).toBeUndefined();
+    await vi.waitFor(() =>
+      expect(leadOf(completed)).toBe(
+        "kT5Bam…LwKbXj sent 9,812.378912731 DUSK to mHWZo9…pjiUnj",
+      ),
+    );
     cleanup();
 
     /** @type {[any, string, RegExp][]} */
@@ -236,15 +261,12 @@ describe("Transaction Details", () => {
         market: null,
       });
 
-      expect(outcomeOf(container)).toHaveClass(
-        "transaction-details__outcome--failed",
-      );
-      expect(outcomeOf(container)).not.toHaveClass(
-        "transaction-details__outcome--completed",
-      );
+      expect(statusOf(container)).toBe("Failed");
       expect(struckIn(container)?.textContent).toBe(unsent);
       await vi.waitFor(() => expect(leadOf(container)).toMatch(lead));
-      expect(leadOf(container)).not.toMatch(/\b(sent|staked)\b/);
+      // Only tried: never sent, paid or staked.
+      expect(leadOf(container)).toMatch(/\btried\b/);
+      expect(leadOf(container)).not.toMatch(/\b(sent|paid|staked)\b/i);
       cleanup();
     }
 
@@ -269,19 +291,29 @@ describe("Transaction Details", () => {
     expect(writeText).toHaveBeenCalledExactlyOnceWith(transaction.txid);
   });
 
-  it("should link the sender and the receiver to their own accounts, given in full and in their case", () => {
+  it("should link the sender and the receiver to their own accounts, given in full and in their case, and Copy each whole", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+
+    Object.assign(navigator, { clipboard: { writeText } });
+
     const { container } = render(TransactionDetails, props);
 
     for (const [field, account] of /** @type {[RegExp, string][]} */ ([
       [/^from$/i, sender],
       [/^to$/i, receiver],
     ])) {
-      const link = rowOf(container, field).querySelector(
-        ".transaction-details__list-anchor",
-      );
+      const row = rowOf(container, field);
+      const link = row.querySelector(".transaction-details__list-anchor");
 
       expect(link).toHaveAttribute("href", `${base}/accounts/?key=${account}`);
       expect(link?.textContent?.replace(/\s+/g, "")).toBe(account);
+
+      writeText.mockClear();
+      await fireEvent.click(
+        /** @type {Element} */ (row.querySelector("button")),
+      );
+
+      expect(writeText).toHaveBeenCalledExactlyOnceWith(account);
     }
   });
 
@@ -303,12 +335,18 @@ describe("Transaction Details", () => {
         [/^from$/i, "alice.dusk", sender],
         [/^to$/i, "bob.dusk", receiver],
       ])) {
-        const shown = rowOf(container, field).querySelector(".primary-name");
+        const row = rowOf(container, field);
+        const shown = row.querySelector(".primary-name");
 
-        expect(shown).toHaveTextContent(new RegExp(`^${name}$`));
+        expect(shown?.textContent?.trim()).toBe(name);
         expect(shown).toHaveAttribute(
           "href",
           `${base}/accounts/?key=${account}`,
+        );
+        // And its page on Dusk Domains.
+        expect(row.querySelector(".primary-name__site")).toHaveAttribute(
+          "href",
+          `https://dusk.domains/name/${name}`,
         );
       }
     });
@@ -327,13 +365,19 @@ describe("Transaction Details", () => {
     });
 
     for (const field of [/^from$/i, /^to$/i, /^amount$/i]) {
-      expect(
-        rowOf(container, field).querySelector(".transaction-details__hidden"),
-      ).not.toBeNull();
+      expect(valueOf(container, field)).toBe("Shielded");
     }
     expect(
       container.querySelector(".transaction-details__visibility-label"),
     ).toHaveTextContent(/^Shielded$/);
+
+    // Its sender, receiver and amount said hidden, nothing said public.
+    const said = saidOf(explanationOf(container));
+
+    expect(said.hidden).toMatch(/sender/i);
+    expect(said.hidden).toMatch(/receiver/i);
+    expect(said.hidden).toMatch(/amount/i);
+    expect(said.public).toBe("");
   });
 
   it("should never hide what is public: a public transfer, or the DUSK a shielded call sends to its contract", () => {
@@ -345,9 +389,13 @@ describe("Transaction Details", () => {
     expect(
       publicTransfer.querySelector(".transaction-details__visibility-label"),
     ).toHaveTextContent(/^Public$/);
-    expect(
-      publicTransfer.querySelector(".transaction-details__hidden"),
-    ).toBeNull();
+    expect(saidOf(explanationOf(publicTransfer))).toStrictEqual({
+      hidden: "",
+      public: expect.stringMatching(/sender.*receiver.*amount/i),
+    });
+    for (const field of [/^from$/i, /^to$/i, /^amount$/i]) {
+      expect(valueOf(publicTransfer, field)).not.toBe("Shielded");
+    }
     cleanup();
 
     // A shielded stake: who sent it is hidden, the DUSK it stakes isn't.
@@ -366,10 +414,15 @@ describe("Transaction Details", () => {
       market: null,
     });
 
-    expect(
-      rowOf(container, /^from$/i).querySelector(".transaction-details__hidden"),
-    ).not.toBeNull();
+    expect(valueOf(container, /^from$/i)).toBe("Shielded");
     expect(valueOf(container, /^amount$/i)).toBe("1,000 DUSK");
+
+    // The contract and the DUSK sent to it are said public, never hidden.
+    const said = saidOf(explanationOf(container));
+
+    expect(said.hidden).not.toMatch(/contract|DUSK/i);
+    expect(said.public).toMatch(/contract/i);
+    expect(said.public).toMatch(/DUSK/);
   });
 
   it("should give the DuskEVM address a deposit pays, on DuskEVM, linked on DuskEVM's explorer", async () => {
@@ -400,7 +453,7 @@ describe("Transaction Details", () => {
         `DuskEVM bridge ${bridge}`,
       );
       expect(leadOf(container)).toMatch(
-        /^kT5Bam…LwKbXj .* 0\.5 DUSK .* 0x5A3d…8a01 .*DuskEVM$/,
+        /^kT5Bam…LwKbXj .* 0\.5 DUSK .* 0x5A3d…8a01 on DuskEVM$/,
       );
     });
     // Its lookup of the payment on DuskEVM ends here, with this test.

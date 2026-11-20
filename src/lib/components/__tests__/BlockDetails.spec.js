@@ -12,7 +12,7 @@ describe("Block Details", () => {
   afterEach(cleanup);
 
   it("should round the average gas price to two decimals, in LUX", () => {
-    const { getByText } = render(BlockDetails, {
+    const { container } = render(BlockDetails, {
       data: {
         ...data,
         transactions: {
@@ -25,6 +25,11 @@ describe("Block Details", () => {
       payload: "",
     });
 
-    expect(getByText("1.23 LUX")).toBeInTheDocument();
+    // In its own row, found by the name of its field.
+    const row = Array.from(container.querySelectorAll("dt")).find((dt) =>
+      /average gas price/i.test(dt.textContent ?? ""),
+    )?.nextElementSibling;
+
+    expect(row?.textContent?.trim()).toBe("1.23 LUX");
   });
 });

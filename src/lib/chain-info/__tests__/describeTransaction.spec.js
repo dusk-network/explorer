@@ -17,6 +17,8 @@ describe("describeTransaction", () => {
     expect(describeTransaction(transfer, names)).toMatch(
       /^alice\.dusk .* 9,812\.378912731 DUSK .* bob\.dusk$/,
     );
+    // It went through: sent.
+    expect(describeTransaction(transfer, names)).toMatch(/\bsent\b/);
     expect(
       describeTransaction({ ...transfer, amount: 500_000_000 }, names),
     ).toMatch(/^alice\.dusk .* 0\.5 DUSK .* bob\.dusk$/);
@@ -38,7 +40,7 @@ describe("describeTransaction", () => {
     });
 
     expect(toAddress).toMatch(
-      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 .*DuskEVM$/,
+      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 on DuskEVM$/,
     );
     expect(toAddress).not.toContain("DuskEVM bridge");
     expect(
@@ -56,15 +58,17 @@ describe("describeTransaction", () => {
       { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null },
     );
 
-    // The same parties and amount, never said to be sent.
+    // The same parties and amount: only tried, never sent or paid.
     expect(describeTransaction(failed, names)).toMatch(
       /^alice\.dusk .* 9,812\.378912731 DUSK .* bob\.dusk$/,
     );
-    expect(describeTransaction(failed, names)).not.toMatch(/\bsent\b/);
+    expect(describeTransaction(failed, names)).toMatch(/\btried\b/);
+    expect(describeTransaction(failed, names)).not.toMatch(/\b(sent|paid)\b/i);
     expect(toDuskEvm).toMatch(
-      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 .*DuskEVM$/,
+      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 on DuskEVM$/,
     );
-    expect(toDuskEvm).not.toMatch(/\bsent\b/);
+    expect(toDuskEvm).toMatch(/\btried\b/);
+    expect(toDuskEvm).not.toMatch(/\b(sent|paid)\b/i);
   });
 
   it("should say which method a call without DUSK called, on which contract", () => {
@@ -133,6 +137,8 @@ describe("describeTransaction", () => {
     const claim = said({ method: "withdraw" });
 
     expect(stake).toMatch(/^alice\.dusk .* 442\.409461511 DUSK$/);
+    // It went through: staked.
+    expect(stake).toMatch(/\bstaked\b/);
     // An unstake and a reward claim send no DUSK, each its own action, in
     // plain words rather than as a call on the contract.
     expect(unstake).toMatch(/^alice\.dusk .*\bunstake/i);
@@ -143,13 +149,16 @@ describe("describeTransaction", () => {
       expect(sentence).not.toMatch(/DUSK|Stake contract|withdraw\b/);
     }
 
-    // One that failed staked nothing, and never says it did.
-    expect(
-      said({ deposit: 1_000_000_000_000, method: "stake", txerror: "Panic" }),
-    ).toMatch(/^alice\.dusk .* 1,000 DUSK$/);
-    expect(
-      said({ deposit: 1_000_000_000_000, method: "stake", txerror: "Panic" }),
-    ).not.toMatch(/\bstaked\b/);
+    // One that failed staked nothing: it only tried.
+    const tried = said({
+      deposit: 1_000_000_000_000,
+      method: "stake",
+      txerror: "Panic",
+    });
+
+    expect(tried).toMatch(/^alice\.dusk .* 1,000 DUSK$/);
+    expect(tried).toMatch(/\btried\b/);
+    expect(tried).not.toMatch(/\b(staked|sent|paid)\b/i);
 
     // A shielded claim hides who claimed, and sends no DUSK to hide.
     expect(

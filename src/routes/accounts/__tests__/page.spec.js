@@ -145,9 +145,10 @@ describe("Account page", () => {
 
     // The stake's block, 120 blocks after the last one, comes in about 20
     // minutes.
+    // Still to come: from then.
     await vi.waitFor(() =>
       expect(stakeValueOf(container, /^eligib/i)).toMatch(
-        /\b26 Oct 2026, 10:20\b/,
+        /^From\b.*\b26 Oct 2026, 10:20\b/,
       ),
     );
     expect(
@@ -155,8 +156,9 @@ describe("Account page", () => {
     ).toHaveAttribute("title", expect.stringMatching(/\b123,120$/));
     expect(stakeValueOf(container, /^active/i)).toBe("1,000 DUSK");
     expect(stakeValueOf(container, /^inactive/i)).toBe("0 DUSK");
-    expect(stakeValueOf(container, /^slash/i)).toMatch(/\b1 soft\b/);
-    expect(stakeValueOf(container, /^slash/i)).toMatch(/\b0 hard\b/);
+    // Counts, which have no sign.
+    expect(stakeValueOf(container, /^slash/i)).toMatch(/(?<![\d−-])1 soft\b/);
+    expect(stakeValueOf(container, /^slash/i)).toMatch(/(?<![\d−-])0 hard\b/);
     expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
   });
 
@@ -171,9 +173,10 @@ describe("Account page", () => {
 
     const { container } = render(AccountPage);
 
+    // Already past: since then.
     await vi.waitFor(() =>
       expect(stakeValueOf(container, /^eligib/i)).toMatch(
-        /\b25 Oct 2026, 10:00\b/,
+        /^Since\b.*\b25 Oct 2026, 10:00\b/,
       ),
     );
     expect(

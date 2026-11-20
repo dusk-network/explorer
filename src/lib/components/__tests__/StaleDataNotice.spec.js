@@ -1,70 +1,71 @@
-import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import { afterAll, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
+import { get } from "svelte/store";
 
-import { marketDataStore } from "$lib/stores";
+import { apiMarketData, apiNodeInfo } from "$lib/mock-data";
+import { duskAPI } from "$lib/services";
+import { appStore } from "$lib/stores";
 
 import { StaleDataNotice } from "..";
 
-const { market } = vi.hoisted(() => ({
-  /** @type {{ set: (value: any) => void }} */
-  market: { set: () => {} },
-}));
-
-// The market data, and whether it is stale, as the test gives them.
-vi.mock("$lib/stores", async (importOriginal) => {
-  /** @type {import("$lib/stores")} */
+// The market data the store reads, as the test gives it.
+vi.mock("$lib/services", async (importOriginal) => {
+  /** @type {import("$lib/services")} */
   const original = await importOriginal();
-  const { writable } = await import("svelte/store");
-  const store = writable({
-    data: null,
-    error: null,
-    isLoading: false,
-    lastUpdate: null,
-  });
-
-  market.set = store.set;
 
   return {
     ...original,
-    marketDataStore: { ...store, isDataStale: vi.fn(() => false) },
+    duskAPI: { ...original.duskAPI, getMarketData: vi.fn() },
   };
 });
 
 /*
- * A price shown from data too old to trust comes with a warning.
+ * A price shown from market data too old to trust comes with a warning.
  */
 describe("StaleDataNotice", () => {
-  afterEach(() => {
-    cleanup();
-    vi.mocked(marketDataStore.isDataStale).mockReturnValue(false);
-  });
-
   afterAll(() => {
-    vi.doUnmock("$lib/stores");
+    cleanup();
+    vi.useRealTimers();
+    vi.doUnmock("$lib/services");
   });
 
-  /** @param {HTMLElement} container */
-  const warningOf = (container) =>
-    container.querySelector("[data-tooltip-type='warning']");
+  it("should warn once the market data is stale: not while it is fresh or being read again, and once a read failed", async () => {
+    vi.useFakeTimers();
 
-  it("should warn while the market data is stale, and only then", async () => {
-    const data = { data: { currentPrice: { usd: 0.36835 } }, error: null };
+    const {
+      circulating_supply: circulatingSupply,
+      current_price: currentPrice,
+      market_cap: marketCap,
+    } = apiMarketData.market_data;
+    const next = Promise.withResolvers();
+
+    vi.mocked(duskAPI.getMarketData)
+      .mockResolvedValueOnce({ circulatingSupply, currentPrice, marketCap })
+      .mockReturnValueOnce(/** @type {any} */ (next.promise));
+
     const { container } = render(StaleDataNotice);
+    const warned = () =>
+      container.querySelector("[data-tooltip-type='warning']") !== null;
 
-    // Nothing read yet: nothing to warn about.
-    expect(warningOf(container)).toBeNull();
+    // On mainnet, the store reads the market data: fresh.
+    await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
+    await vi.advanceTimersByTimeAsync(0);
 
-    await act(() =>
-      market.set({ ...data, isLoading: false, lastUpdate: new Date() }),
+    expect(duskAPI.getMarketData).toHaveBeenCalledOnce();
+    expect(warned()).toBe(false);
+
+    // Read again later, which takes a while: no warning while it's read.
+    await vi.advanceTimersByTimeAsync(
+      get(appStore).marketDataFetchInterval * 1.5,
     );
 
-    expect(warningOf(container)).toBeNull();
+    expect(duskAPI.getMarketData).toHaveBeenCalledTimes(2);
+    expect(warned()).toBe(false);
 
-    vi.mocked(marketDataStore.isDataStale).mockReturnValue(true);
-    await act(() =>
-      market.set({ ...data, isLoading: true, lastUpdate: new Date(0) }),
-    );
+    // That read failed: what the page shows is stale.
+    await act(() => next.reject(new Error("offline")));
+    await vi.advanceTimersByTimeAsync(0);
 
-    expect(warningOf(container)).not.toBeNull();
+    expect(warned()).toBe(true);
   });
 });

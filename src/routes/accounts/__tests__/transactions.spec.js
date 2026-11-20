@@ -125,7 +125,10 @@ describe("Account page, its transactions", () => {
     expect(shown()).toStrictEqual(newestFirst);
     expect(asked().flat()).toStrictEqual(newestFirst);
     expect(node.requests("moonlightHistory")).toHaveLength(1);
-    // With all of them there, no more to ask for.
+    // With all of them there, how many, and no more to ask for.
+    expect(container.querySelector(".data-card__footer")).toHaveTextContent(
+      /^58 of 58$/,
+    );
     expect(showMore()).toBeNull();
   });
 });
