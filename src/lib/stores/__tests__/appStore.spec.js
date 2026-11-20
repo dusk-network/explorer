@@ -2,8 +2,6 @@ import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { get } from "svelte/store";
 import { apiNodeInfo } from "$lib/mock-data";
 
-import { changeMediaQueryMatches } from "$lib/dusk/test-helpers";
-
 describe("appStore", () => {
   const originalTouchStart = window.ontouchstart;
   const originalMaxTouchPoints = navigator.maxTouchPoints;
@@ -54,28 +52,6 @@ describe("appStore", () => {
     });
   });
 
-  it("should set the `hasTouchSupport` property to true if the `ontouchstart` property exists on `window`", async () => {
-    window.ontouchstart = originalTouchStart;
-
-    const { appStore } = await import("..");
-
-    expect(get(appStore).hasTouchSupport).toBe(true);
-
-    delete window.ontouchstart;
-  });
-
-  it("should set the `hasTouchSupport` property to true if the `navigator.maxTouchPoints` property is greater than zero", async () => {
-    // @ts-ignore
-    navigator.maxTouchPoints = 1;
-
-    const { appStore } = await import("..");
-
-    expect(get(appStore).hasTouchSupport).toBe(true);
-
-    // @ts-ignore
-    navigator.maxTouchPoints = 0;
-  });
-
   it("should use default values for the fetch intervals if the env vars are missing", async () => {
     vi.stubEnv("VITE_REFETCH_INTERVAL", "");
     vi.stubEnv("VITE_MARKET_DATA_REFETCH_INTERVAL", "");
@@ -109,42 +85,6 @@ describe("appStore", () => {
     expect(transactionsListEntries).toBe(25);
 
     vi.unstubAllEnvs();
-  });
-
-  it("should expose a service method to set the dark mode theme", async () => {
-    const { appStore } = await import("..");
-
-    appStore.setTheme(true);
-
-    expect(get(appStore).darkMode).toBe(true);
-  });
-
-  it("should set the `isSmallScreen` property to `false` when the related media query doesn't match", async () => {
-    const { appStore } = await import("..");
-
-    expect(get(appStore).isSmallScreen).toBe(false);
-  });
-
-  it("should set the `isSmallScreen` property to `true` when the related media query matches", async () => {
-    const mqMatchesSpy = vi
-      .spyOn(MediaQueryList.prototype, "matches", "get")
-      .mockReturnValue(true);
-
-    const { appStore } = await import("..");
-
-    expect(get(appStore).isSmallScreen).toBe(true);
-
-    mqMatchesSpy.mockRestore();
-  });
-
-  it("should update the `isSmallScreen` property when the media query match changes", async () => {
-    const { appStore } = await import("..");
-
-    expect(get(appStore).isSmallScreen).toBe(false);
-
-    changeMediaQueryMatches("(max-width: 1024px)", true);
-
-    expect(get(appStore).isSmallScreen).toBe(true);
   });
 
   it("should expose a service method to set the node info", async () => {

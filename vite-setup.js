@@ -6,11 +6,7 @@ import * as matchers from "@testing-library/jest-dom/matchers";
 import { expect, vi } from "vitest";
 import { readable } from "svelte/store";
 
-import {
-  IntersectionObserver,
-  MediaQueryList,
-  MediaQueryListEvent,
-} from "./src/lib/dusk/mocks";
+import { MediaQueryList, MediaQueryListEvent } from "./src/lib/dusk/mocks";
 
 /*
  * Mocking deprecated `atob` and `btoa` functions in Node.
@@ -25,9 +21,6 @@ vi.spyOn(global, "btoa").mockImplementation((data) =>
 
 // Adding missing bits in JSDOM
 
-vi.mock("./src/lib/dusk/mocks/IntersectionObserver");
-
-global.IntersectionObserver = IntersectionObserver;
 // One that never reports a size: jsdom lays nothing out.
 global.ResizeObserver = class {
   disconnect() {}
@@ -36,25 +29,6 @@ global.ResizeObserver = class {
 };
 global.MediaQueryListEvent = MediaQueryListEvent;
 global.MediaQueryList = MediaQueryList;
-
-const elementMethods = ["scrollBy", "scrollTo", "scrollIntoView"];
-
-elementMethods.forEach((method) => {
-  if (!Element.prototype[method]) {
-    Object.defineProperty(Element.prototype, method, {
-      value: () => {},
-      writable: true,
-    });
-  }
-});
-
-// Needed by Svelte's animation helpers (e.g. `animate:flip`) which use the Web Animations API.
-if (!Element.prototype.getAnimations) {
-  Object.defineProperty(Element.prototype, "getAnimations", {
-    value: () => [],
-    writable: true,
-  });
-}
 
 // Add custom jest matchers
 expect.extend(matchers);
