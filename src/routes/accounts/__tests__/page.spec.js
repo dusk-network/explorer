@@ -84,6 +84,33 @@ const amountsOf = (container) =>
     amount.textContent?.trim(),
   );
 
+/**
+ * A stake row's value, found by the name of its field: the labels' words
+ * are copy, what each field holds isn't.
+ *
+ * @param {HTMLElement} container
+ * @param {RegExp} field
+ */
+const stakeRowOf = (container, field) =>
+  /** @type {HTMLElement | undefined} */ (
+    Array.from(
+      container.querySelectorAll(".account-overview-panel__stake dt"),
+    ).find((dt) => {
+      const label = /** @type {Element} */ (dt.cloneNode(true));
+
+      label.querySelector(".detail-list__help")?.remove();
+
+      return field.test(label.textContent?.trim() ?? "");
+    })?.nextElementSibling ?? undefined
+  );
+
+/**
+ * @param {HTMLElement} container
+ * @param {RegExp} field
+ */
+const stakeValueOf = (container, field) =>
+  stakeRowOf(container, field)?.textContent?.replace(/\s+/g, " ").trim();
+
 /*
  * The figures the page gives an account, from which reads: its words are
  * copy.
@@ -115,6 +142,43 @@ describe("Account page", () => {
 
     expect(duskAPI.getStake).toHaveBeenCalledExactlyOnceWith(key);
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
+
+    // The stake's block, 120 blocks after the last one, comes in about 20
+    // minutes.
+    await vi.waitFor(() =>
+      expect(stakeValueOf(container, /^eligib/i)).toMatch(
+        /\b26 Oct 2026, 10:20\b/,
+      ),
+    );
+    expect(
+      stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
+    ).toHaveAttribute("title", expect.stringMatching(/\b123,120$/));
+    expect(stakeValueOf(container, /^active/i)).toBe("1,000 DUSK");
+    expect(stakeValueOf(container, /^inactive/i)).toBe("0 DUSK");
+    expect(stakeValueOf(container, /^slash/i)).toMatch(/\b1 soft\b/);
+    expect(stakeValueOf(container, /^slash/i)).toMatch(/\b0 hard\b/);
+    expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
+  });
+
+  it("should date a stake that already takes part from its block", async () => {
+    // A day of blocks, 8,640, after the stake's.
+    vi.mocked(duskAPI.getChainTip).mockResolvedValueOnce({
+      date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
+      hash: "",
+      height: 123_120 + 8640,
+      transactions: 0,
+    });
+
+    const { container } = render(AccountPage);
+
+    await vi.waitFor(() =>
+      expect(stakeValueOf(container, /^eligib/i)).toMatch(
+        /\b25 Oct 2026, 10:00\b/,
+      ),
+    );
+    expect(
+      stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
+    ).toHaveAttribute("title", expect.stringMatching(/\b123,120$/));
   });
 
   it("should give no stake figures when the stake can't be read, and leave the balance", async () => {
@@ -141,22 +205,36 @@ describe("Account page", () => {
     await act(() => appStore.setNodeInfo(apiNodeInfo));
 
     await vi.waitFor(() =>
-      expect(container).toHaveTextContent("0.1621 stDUSK"),
+      expect(
+        container.querySelector(".account-overview-panel__sozu-amount"),
+      ).toHaveTextContent(/^0\.1621 stDUSK$/),
     );
+    // Every decimal on hover.
+    expect(
+      container.querySelector(".account-overview-panel__sozu-amount"),
+    ).toHaveAttribute("title", "0.162189471 stDUSK");
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 
     vi.mocked(getStakedDusk).mockResolvedValue(null);
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should leave out the Sozu line when the stDUSK can't be read", async () => {
-    vi.mocked(getStakedDusk).mockRejectedValueOnce(new Error("offline"));
+  it.each([
+    [
+      "can't be read",
+      () =>
+        vi.mocked(getStakedDusk).mockRejectedValueOnce(new Error("offline")),
+    ],
+    ["is none", () => vi.mocked(getStakedDusk).mockResolvedValueOnce(0n)],
+  ])("should leave out the Sozu line when the stDUSK %s", async (_, answer) => {
+    answer();
     appStore.setNodeInfo(apiNodeInfo);
 
     const { container } = render(AccountPage);
 
     await vi.waitFor(() => expect(getStakedDusk).toHaveBeenCalledOnce());
     await vi.waitFor(() => expect(amountsOf(container)).toHaveLength(3));
+    await new Promise((resolve) => setTimeout(resolve));
     expect(container.textContent).not.toContain("stDUSK");
 
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });

@@ -117,7 +117,35 @@ describe("StatisticsPanel", () => {
       chain_id: chainId,
     });
 
-  it("should give the stake's share of the circulating supply, and the price's move", async () => {
+  /**
+   * The line under each of the four numbers that lead.
+   *
+   * @param {HTMLElement} container
+   */
+  const notesOf = (container) =>
+    Array.from(
+      container.querySelectorAll(".statistics-panel__statistics-item--primary"),
+      (card) => card.querySelector(".statistics-panel__statistics-item-note"),
+    );
+
+  it("should show no DUSK price or market cap on a test network, and both on mainnet", async () => {
+    setChain(2);
+
+    const { container } = render(StatisticsPanel);
+
+    await act(() => newestBlock(mockData.apiStats.lastBlock));
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    // Test DUSK has no value: no dollar figure anywhere.
+    expect(container.textContent).not.toContain("$");
+
+    await act(() => setChain(1));
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    expect(container.textContent).toContain("$");
+  });
+
+  it("should give the price's move with its sign, and the stake's share of the circulating supply", async () => {
     setChain(1);
 
     const { container } = render(StatisticsPanel);
@@ -125,9 +153,13 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
+    const [price, stake] = notesOf(container);
+
+    // -8.04817% in 24 hours: down, to two decimals.
+    expect(price).toHaveTextContent(/^(?:Down |[−-])8\.05%/);
+    expect(price).toHaveClass("statistics-panel__statistics-item-note--down");
+    expect(price).not.toHaveClass("statistics-panel__statistics-item-note--up");
     // 58,226,174 DUSK staked of 457,027,796 in circulation.
-    expect(container).toHaveTextContent(/\b12\.7%/);
-    // -8.04817% in 24 hours, to two decimals.
-    expect(container).toHaveTextContent(/\b8\.05%/);
+    expect(stake).toHaveTextContent(/^12\.7%/);
   });
 });

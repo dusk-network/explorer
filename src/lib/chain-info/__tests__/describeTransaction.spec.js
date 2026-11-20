@@ -37,7 +37,9 @@ describe("describeTransaction", () => {
       to: "DuskEVM bridge",
     });
 
-    expect(toAddress).toMatch(/^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01\b/);
+    expect(toAddress).toMatch(
+      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 .*DuskEVM$/,
+    );
     expect(toAddress).not.toContain("DuskEVM bridge");
     expect(
       describeTransaction(deposit, {
@@ -49,20 +51,20 @@ describe("describeTransaction", () => {
 
   it("should say that the sender of a transaction that failed only tried to send", () => {
     const failed = { ...transfer, txerror: "Panic" };
-    const deposit = { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null };
+    const toDuskEvm = describeTransaction(
+      { ...failed, amount: 500_000_000 },
+      { duskEvm: "0x5A3d…8a01", from: "alice.dusk", to: null },
+    );
 
-    // The same parties and amount, not in the words of one that went through.
+    // The same parties and amount, never said to be sent.
     expect(describeTransaction(failed, names)).toMatch(
       /^alice\.dusk .* 9,812\.378912731 DUSK .* bob\.dusk$/,
     );
-    expect(describeTransaction(failed, names)).not.toBe(
-      describeTransaction(transfer, names),
+    expect(describeTransaction(failed, names)).not.toMatch(/\bsent\b/);
+    expect(toDuskEvm).toMatch(
+      /^alice\.dusk .* 0\.5 DUSK .* 0x5A3d…8a01 .*DuskEVM$/,
     );
-    expect(
-      describeTransaction({ ...failed, amount: 500_000_000 }, deposit),
-    ).not.toBe(
-      describeTransaction({ ...transfer, amount: 500_000_000 }, deposit),
-    );
+    expect(toDuskEvm).not.toMatch(/\bsent\b/);
   });
 
   it("should say which method a call without DUSK called, on which contract", () => {
@@ -84,19 +86,22 @@ describe("describeTransaction", () => {
   });
 
   it("should say what a shielded transaction hides", () => {
-    // No amount, no account, and nothing in their place that reads as one.
-    expect(
-      describeTransaction(
-        {
-          ...transfer,
-          amount: undefined,
-          from: undefined,
-          to: undefined,
-          txtype: "Phoenix",
-        },
-        { from: null, to: null },
-      ),
-    ).not.toMatch(/\d|DUSK|undefined|null|NaN/);
+    const sentence = describeTransaction(
+      {
+        ...transfer,
+        amount: undefined,
+        from: undefined,
+        to: undefined,
+        txtype: "Phoenix",
+      },
+      { from: null, to: null },
+    );
+
+    // Shielded, never public, and nothing in place of an account or an
+    // amount that reads as one.
+    expect(sentence).toMatch(/\bshielded\b/i);
+    expect(sentence).not.toMatch(/\bpublic\b/i);
+    expect(sentence).not.toMatch(/\d|DUSK|undefined|null|NaN/);
   });
 
   it("should say a deployment deployed a contract", () => {
@@ -128,21 +133,23 @@ describe("describeTransaction", () => {
     const claim = said({ method: "withdraw" });
 
     expect(stake).toMatch(/^alice\.dusk .* 442\.409461511 DUSK$/);
-    // An unstake and a reward claim send no DUSK. Each reads as its own, in
+    // An unstake and a reward claim send no DUSK, each its own action, in
     // plain words rather than as a call on the contract.
+    expect(unstake).toMatch(/^alice\.dusk .*\bunstake/i);
+    expect(unstake).not.toMatch(/claim/i);
+    expect(claim).toMatch(/^alice\.dusk .*\bclaim/i);
+    expect(claim).not.toMatch(/unstake/i);
     for (const sentence of [unstake, claim]) {
-      expect(sentence).toMatch(/^alice\.dusk /);
       expect(sentence).not.toMatch(/DUSK|Stake contract|withdraw\b/);
     }
-    expect(new Set([stake, unstake, claim]).size).toBe(3);
 
-    // One that failed staked nothing: not in the words of one that did.
-    const tried = { deposit: 1_000_000_000_000, method: "stake" };
-
-    expect(said({ ...tried, txerror: "Panic" })).toMatch(
-      /^alice\.dusk .* 1,000 DUSK$/,
-    );
-    expect(said({ ...tried, txerror: "Panic" })).not.toBe(said(tried));
+    // One that failed staked nothing, and never says it did.
+    expect(
+      said({ deposit: 1_000_000_000_000, method: "stake", txerror: "Panic" }),
+    ).toMatch(/^alice\.dusk .* 1,000 DUSK$/);
+    expect(
+      said({ deposit: 1_000_000_000_000, method: "stake", txerror: "Panic" }),
+    ).not.toMatch(/\bstaked\b/);
 
     // A shielded claim hides who claimed, and sends no DUSK to hide.
     expect(

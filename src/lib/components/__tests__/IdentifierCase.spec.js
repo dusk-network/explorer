@@ -50,8 +50,9 @@ describe("Identifier case", () => {
     sheets.forEach((sheet) => sheet.remove());
   });
 
-  it("should show a provisioner's staking address with no text-transform", () => {
+  it("should show a provisioner's staking address as it is, with no text-transform", () => {
     const [provisioner] = hostProvisioners;
+    const { key } = provisioner;
     const { container } = render(ProvisionersList, {
       props: {
         data: {
@@ -67,13 +68,18 @@ describe("Identifier case", () => {
     expect(
       Array.from(
         container.querySelectorAll(".provisioners-list__staking-address"),
-        textTransformOf,
+        (address) => [address.textContent?.trim(), textTransformOf(address)],
       ),
-    ).toStrictEqual(["none"]);
+    ).toStrictEqual([[`${key.slice(0, 6)}…${key.slice(-6)}`, "none"]]);
   });
 
-  it("should show a transaction's accounts and ID with no text-transform", () => {
+  it("should show a transaction's accounts and ID as they are, with no text-transform", () => {
     const transaction = transformTransaction(gqlTransaction.tx);
+    const { txid } = transaction;
+    const [sender, receiver] = [
+      String(transaction.from),
+      String(transaction.to),
+    ];
     const { container } = render(TransactionsList, {
       props: { data: transaction },
     });
@@ -81,10 +87,19 @@ describe("Identifier case", () => {
     expect(
       Array.from(
         container.querySelectorAll(
-          `.transaction-party--account, a[href$="?id=${transaction.txid}"]`,
+          `.transaction-party--account, a[href$="?id=${txid}"]`,
         ),
-        textTransformOf,
+        (shown) => [shown.textContent?.trim(), textTransformOf(shown)],
       ),
-    ).toStrictEqual(["none", "none", "none"]);
+    ).toStrictEqual([
+      [`${sender.slice(0, 4)}…${sender.slice(-4)}`, "none"],
+      [`${receiver.slice(0, 4)}…${receiver.slice(-4)}`, "none"],
+      [
+        expect.stringMatching(
+          new RegExp(`(^| )${txid.slice(0, 6)}…${txid.slice(-6)}$`),
+        ),
+        "none",
+      ],
+    ]);
   });
 });

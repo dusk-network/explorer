@@ -92,4 +92,46 @@ describe("Provisioners Card", () => {
     expect(resolveDuskName).toHaveBeenLastCalledWith("nobody.dusk");
     expect(rowsOf(container)).toStrictEqual([]);
   });
+
+  it.each([[false], [true]])(
+    "should leave out a provisioner with no stake until asked, then find it, unranked (phone: %s)",
+    async (isSmallScreen) => {
+      // One that left, with only its rewards to claim.
+      const noStake = /** @type {HostProvisioner} */ (
+        hostProvisioners.find(
+          (p) => !p.amount && !p.locked_amt && !p.eligibility,
+        )
+      );
+      const { container, getByRole } = render(ProvisionersCard, {
+        props: { ...props, isSmallScreen },
+      });
+      const found = () =>
+        Array.from(
+          container.querySelectorAll(
+            isSmallScreen ? ".provisioners-list" : "tbody tr",
+          ),
+        );
+
+      await fireEvent.input(getByRole("searchbox"), {
+        target: { value: noStake.key },
+      });
+
+      expect(found()).toHaveLength(0);
+
+      await fireEvent.click(getByRole("switch"));
+
+      expect(found()).toHaveLength(1);
+      expect(
+        found()[0].querySelector(`a[href$="?key=${noStake.key}"]`),
+      ).not.toBeNull();
+
+      if (isSmallScreen) {
+        expect(found()[0].querySelector(".provisioners-list__rank")).toBeNull();
+      } else {
+        expect(
+          found()[0].querySelector(".provisioners-table__rank"),
+        ).toHaveTextContent(/^—$/);
+      }
+    },
+  );
 });

@@ -833,7 +833,14 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ tx: null }))
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: true }));
 
-    await expect(duskAPI.getTransaction(fakeID)).resolves.toBeTypeOf("string");
+    const message = String(await duskAPI.getTransaction(fakeID));
+
+    // Words for the processing banner: there are some, and they don't say
+    // it's confirmed.
+    expect(message).toMatch(/\w/);
+    expect(/\bconfirmed\b/i.test(message) && !/\bnot\b/i.test(message)).toBe(
+      false,
+    );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
