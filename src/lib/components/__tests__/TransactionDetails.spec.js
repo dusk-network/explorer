@@ -334,6 +334,34 @@ describe("Transaction Details", () => {
     }
   });
 
+  it("should lead a transfer to an account the network's labels name with whom it went to, and any other with what it did alone", async () => {
+    const bscBridge =
+      "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";
+
+    // On mainnet, whose labels name the BSC bridge's account.
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 });
+
+    const labelled = render(TransactionDetails, {
+      ...props,
+      data: { ...transaction, to: bscBridge },
+      market: null,
+    }).container;
+
+    await vi.waitFor(() =>
+      expect(leadOf(labelled)).toBe("Transfer to BSC bridge"),
+    );
+    // The receiver's row still gives the account in full.
+    expect(valueOf(labelled, /^to$/i)).toBe(`BSC bridge ${bscBridge}`);
+    cleanup();
+
+    const plain = render(TransactionDetails, {
+      ...props,
+      market: null,
+    }).container;
+
+    await vi.waitFor(() => expect(leadOf(plain)).toBe("Transfer"));
+  });
+
   it("should give the sender's and the receiver's primary names, each linked to its own account", async () => {
     vi.mocked(getPrimaryName).mockImplementation(async (address) => {
       const name = address === sender ? "alice.dusk" : "bob.dusk";

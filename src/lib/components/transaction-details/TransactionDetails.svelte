@@ -139,9 +139,18 @@
   <div class="transaction-details__summary detail-summary">
     <TransactionIcon transaction={data} />
     <p class="transaction-details__summary-lines detail-summary__lines">
-      <!-- What it did: who with, how much and the fee are the rows. -->
+      <!--
+        What it did; a transfer to an account the network's labels name says
+        whom, as "Transfer to BSC bridge". Who with, how much and the fee are
+        the rows.
+      -->
       <span class="transaction-details__summary-text detail-summary__text"
-        ><TransactionType {data} showPrivacy={false} /></span
+        ><TransactionType
+          {data}
+          showPrivacy={false}
+        />{#if !data.contract && toLabel}
+          <span class="transaction-details__summary-to">to {toLabel}</span
+          >{/if}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">
         <span

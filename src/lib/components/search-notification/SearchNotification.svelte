@@ -42,9 +42,12 @@
     />
   </header>
   <div aria-live="polite" class="search-notification__body">
-    <span class="search-notification__content">
-      {data.res.message}
-    </span>
+    <!-- No empty line before a suggestion: it would take the body's gap. -->
+    {#if data.res.message}
+      <span class="search-notification__content">
+        {data.res.message}
+      </span>
+    {/if}
     {#if data.suggestion}
       <Button
         className="search-notification__suggestion"
