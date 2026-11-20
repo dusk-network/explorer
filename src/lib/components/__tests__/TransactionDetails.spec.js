@@ -30,13 +30,6 @@ vi.mock("$lib/dusk-domains", async (importOriginal) => ({
 const toHex = (text) => Buffer.from(text, "utf8").toString("hex");
 
 /**
- * An account or an ID as the page shortens one that isn't its own.
- *
- * @param {string} value
- */
-const short = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
-
-/**
  * A term as it reads, without its help.
  *
  * @param {Element} dt
@@ -328,7 +321,7 @@ describe("Transaction Details", () => {
         "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01↗ on DuskEVM",
       );
       expect(getDefinition(container, "contract")).toBe(
-        `DuskEVM bridge ${short(bridge)}`,
+        `DuskEVM bridge ${bridge}`,
       );
       expect(getDefinition(container, "visibility")).toBe("Public");
       expect(
@@ -562,27 +555,23 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "gas price")).toBe("1 LUX");
   });
 
-  it("should give its own ID in full to copy, as it opens nothing, and the accounts short as links, whole on hover", () => {
+  it("should give its own ID in full to copy, as it opens nothing, and the accounts in full as links: this is where they're checked", () => {
     const { container, getByRole, queryByRole } = render(
       TransactionDetails,
       baseProps,
     );
-    const from = String(transaction.from);
-    const to = String(transaction.to);
 
     expect(getDefinition(container, "id")).toBe(transaction.txid);
     expect(queryByRole("link", { name: transaction.txid })).toBeNull();
-
-    const sender = getByRole("link", { name: short(from) });
-    const receiver = getByRole("link", { name: short(to) });
-
-    expect(sender).toHaveAttribute("href", `${base}/accounts/?key=${from}`);
-    expect(sender).toHaveAttribute("title", from);
-    expect(receiver).toHaveAttribute("href", `${base}/accounts/?key=${to}`);
-    expect(receiver).toHaveAttribute("title", to);
+    expect(
+      getByRole("link", { name: /** @type {string} */ (transaction.from) }),
+    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.from}`);
+    expect(
+      getByRole("link", { name: /** @type {string} */ (transaction.to) }),
+    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.to}`);
   });
 
-  it("should give the ID in full, its ends set apart, and each value a copy button, its icon alone", () => {
+  it("should give the ID and the accounts in full, their ends set apart, each with a copy button, its icon alone", () => {
     const { container, getByRole } = render(TransactionDetails, baseProps);
     const id = /** @type {Element} */ (
       Array.from(container.querySelectorAll("dt")).find(
@@ -595,6 +584,18 @@ describe("Transaction Details", () => {
         end.textContent?.trim(),
       ),
     ).toStrictEqual([transaction.txid.slice(0, 6), transaction.txid.slice(-6)]);
+
+    const from = String(transaction.from);
+    const to = String(transaction.to);
+
+    expect(getEnds(container, "from")).toStrictEqual([
+      from.slice(0, 6),
+      from.slice(-6),
+    ]);
+    expect(getEnds(container, "to")).toStrictEqual([
+      to.slice(0, 6),
+      to.slice(-6),
+    ]);
     for (const name of [
       "Copy transaction ID",
       "Copy sender's account",
@@ -650,16 +651,13 @@ describe("Transaction Details", () => {
 
     await vi.waitFor(() => {
       expect(getDefinition(container, "contract")).toBe(
-        `Stake contract ${short(stake)}`,
+        `Stake contract ${stake}`,
       );
       // Plain words in the headline; the function's name is the contract's.
       expect(
         container.querySelector(".transaction-details__summary-text"),
       ).toHaveTextContent(/^Claim rewards$/);
     });
-    expect(
-      container.querySelector(".transaction-details__contract-id"),
-    ).toHaveAttribute("title", stake);
     expect(getTerms(container)).not.toContain("to");
     expect(container.textContent).not.toContain("withdraw");
   });
@@ -764,9 +762,7 @@ describe("Transaction Details", () => {
     await vi.waitFor(() =>
       expect(getDefinition(container, "from")).toMatch(/^bob\.dusk/),
     );
-    expect(getDefinition(container, "to")).toBe(
-      `BSC bridge ${short(bscBridge)}`,
-    );
+    expect(getDefinition(container, "to")).toBe(`BSC bridge ${bscBridge}`);
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });

@@ -15,8 +15,8 @@
 
   $: classes = makeClassName(["search-notification", className]);
 
-  // A whole ID or address, short as the lists show it: the search field
-  // keeps it whole.
+  // A whole ID or address, short as every Dusk app shortens one: the search
+  // field keeps it whole.
   $: shownQuery = /^[0-9a-z]{24,}$/i.test(data.query)
     ? shortId(data.query)
     : data.query;

@@ -37,7 +37,7 @@ describe("Search Notification", () => {
     );
   });
 
-  it("should give a whole ID or address short, as the lists show one, and anything else as typed", () => {
+  it("should give a whole ID or address short, as every Dusk app shortens one, and anything else as typed", () => {
     /** @param {string} query */
     const shown = (query) => {
       cleanup();
@@ -48,7 +48,7 @@ describe("Search Notification", () => {
         ?.textContent;
     };
 
-    expect(shown("ab".repeat(32))).toBe("abab…abab");
+    expect(shown("ab".repeat(32))).toBe("ababab…ababab");
     expect(shown("e5f314fb49a8a2f8")).toBe("e5f314fb49a8a2f8");
     expect(shown("dc3f73…1c204a")).toBe("dc3f73…1c204a");
     expect(shown("alice.dusk")).toBe("alice.dusk");

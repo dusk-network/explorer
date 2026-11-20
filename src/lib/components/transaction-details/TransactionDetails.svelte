@@ -11,7 +11,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { hexToText, shortId } from "$lib/dusk/string";
+  import { hexToText } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
@@ -196,7 +196,7 @@
               <AppAnchor
                 className="transaction-details__list-anchor chain-link"
                 href="/accounts/?key={from.address}"
-                title={from.address}>{shortId(from.address)}</AppAnchor
+                ><FullValue value={from.address} /></AppAnchor
               >
             </span>
             <CopyButton
@@ -266,7 +266,7 @@
             <AppAnchor
               className="transaction-details__list-anchor chain-link"
               href="/accounts/?key={to.address}"
-              title={to.address}>{shortId(to.address)}</AppAnchor
+              ><FullValue value={to.address} /></AppAnchor
             >
           </span>
           <CopyButton
@@ -297,8 +297,8 @@
                 <span class="transaction-details__contract-name">{name}</span>
               {/if}
             {/await}
-            <span class="transaction-details__contract-id" title={data.contract}
-              >{shortId(data.contract)}</span
+            <span class="transaction-details__contract-id"
+              ><FullValue value={data.contract} /></span
             >
           </span>
           <CopyButton

@@ -104,10 +104,12 @@
       {/each}
     </div>
   {:else}
+    <!-- The transactions list is dense; an account's own rows keep six. -->
     <TransactionsTable
       {account}
       data={displayedTxns}
       displayTooltips={true}
+      idLength={account ? 6 : 4}
       mode="full"
       names={$names}
     />

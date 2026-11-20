@@ -92,7 +92,7 @@ describe("Transactions Table", () => {
         "Amount (DUSK)",
       ]);
       expect(readOut(rows[0], ".transaction__parties")).toBe(
-        `From ${transfer.from?.slice(0, 4)}…${transfer.from?.slice(-4)} To ${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
+        `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
       );
       // The unit is the column's: the cell is the number.
       expect(getCells(/** @type {HTMLElement} */ (rows[0]))[4]).toBe(
@@ -110,12 +110,12 @@ describe("Transactions Table", () => {
       );
       expect(
         getByRole("link", {
-          name: `${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
+          name: `${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
         }),
       ).toHaveAttribute("href", `/some-base-path/accounts/?key=${transfer.to}`);
       await vi.waitFor(() => {
         expect(readOut(rows[1], ".transaction__parties")).toBe(
-          `From ${transfer.from?.slice(0, 4)}…${transfer.from?.slice(-4)} To Stake contract`,
+          `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To Stake contract`,
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
@@ -160,7 +160,7 @@ describe("Transactions Table", () => {
         // Plain words only: the function's name is for the transaction page.
         expect(textOf(toContract, ".transaction__line")).toBe("convert");
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
-          ` To ${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
+          ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
         );
         expect(textOf(toAccount, ".transaction__line")).toBe(
           "Transfer contract · convert",
@@ -168,7 +168,7 @@ describe("Transactions Table", () => {
       });
     });
 
-    it("should give each time in full on hover, in the viewer's zone, and IDs as four and four characters", async () => {
+    it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", async () => {
       const { container } = render(TransactionsTable, {
         props: {
           data: [
@@ -185,7 +185,42 @@ describe("Transactions Table", () => {
         "16 Apr 2024, 6:39:09 AM UTC",
       );
       expect(container.querySelector(".transaction__link")).toHaveTextContent(
+        `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`,
+      );
+      await vi.waitFor(() =>
+        expect(
+          readOut(
+            container.querySelectorAll("tbody tr")[1],
+            ".transaction__parties",
+          ),
+        ).toMatch(/ To Contract ababab…ababab$/),
+      );
+    });
+
+    it("should keep four characters at each end of accounts, contracts and IDs in the dense list's table, and the whole on hover", async () => {
+      const { container } = render(TransactionsTable, {
+        props: {
+          data: [
+            transfer,
+            { ...call, contract: "ab".repeat(32), method: "submit", to: null },
+          ],
+          idLength: 4,
+          mode: "full",
+        },
+      });
+      const from = String(transfer.from);
+      const to = String(transfer.to);
+
+      expect(container.querySelector(".transaction__link")).toHaveTextContent(
         `${transfer.txid.slice(0, 4)}…${transfer.txid.slice(-4)}`,
+      );
+      expect(
+        readOut(
+          container.querySelectorAll("tbody tr")[0],
+          ".transaction__parties",
+        ),
+      ).toBe(
+        `From ${from.slice(0, 4)}…${from.slice(-4)} To ${to.slice(0, 4)}…${to.slice(-4)}`,
       );
       await vi.waitFor(() =>
         expect(
@@ -195,6 +230,9 @@ describe("Transactions Table", () => {
           ),
         ).toMatch(/ To Contract abab…abab$/),
       );
+      expect(
+        container.querySelector(".transaction-party--contract"),
+      ).toHaveAttribute("data-tooltip-text", `Contract ${"ab".repeat(32)}`);
     });
 
     it("should show the DuskEVM address a deposit to DuskEVM pays, read from its call data", async () => {

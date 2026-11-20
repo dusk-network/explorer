@@ -82,7 +82,7 @@
   // An account with a stake is a provisioner.
   $: isProvisioner = !!(stake && (stake.active || stake.inactive));
 
-  // As lists show addresses: the first and last four characters.
+  // Short, as every Dusk app shortens an account: six characters at each end.
   $: shortAddress = shortId(accountAddress);
 
   // What the network's labels call the account, before any primary name.

@@ -60,10 +60,12 @@
       />
     {/each}
   {:else}
+    <!-- The home page's list is dense; a block's own rows keep six. -->
     <TransactionsTable
       data={txns}
       className="latest-transactions-card__table"
       {displayTooltips}
+      idLength={isOnHomeScreen ? 4 : 6}
       mode={isOnHomeScreen ? "compact" : "full"}
       names={$names}
     />

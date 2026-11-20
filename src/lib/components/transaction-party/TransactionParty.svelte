@@ -23,6 +23,14 @@
   export let party;
 
   /**
+   * The characters a short account or contract ID keeps at each end: six,
+   * or four in the blocks and transactions lists' tables, which are dense.
+   *
+   * @type {number}
+   */
+  export let idLength = 6;
+
+  /**
    * The account's verified primary name, shown instead of its address.
    *
    * @type {{ name: string, url: string } | null | undefined}
@@ -63,9 +71,12 @@
     party?.kind === "contract" && transaction
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
-  $: shortAddress = party?.kind === "account" ? shortId(party.address) : "";
+  $: shortAddress =
+    party?.kind === "account" ? shortId(party.address, idLength) : "";
   $: shortContractId =
-    party?.kind === "contract" ? shortId(formatContractId(party.id)) : "";
+    party?.kind === "contract"
+      ? shortId(formatContractId(party.id), idLength)
+      : "";
 </script>
 
 <!-- A contract with no name: its ID short, after "Contract" or alone. -->

@@ -28,16 +28,13 @@ describe("Transactions List", () => {
     data: transaction,
   };
 
-  /** @param {string} value */
-  const short = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
-
   /**
-   * An address as a phone's row gives it: its first and last four
-   * characters.
+   * An account or an ID as a phone's row gives it, as every Dusk app
+   * shortens one: its first and last six characters.
    *
    * @param {string} value
    */
-  const shortAddress = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
+  const short = (value) => `${value.slice(0, 6)}…${value.slice(-6)}`;
 
   const timeRefreshInterval = 1000;
 
@@ -59,7 +56,7 @@ describe("Transactions List", () => {
       .forEach((arrow) => arrow.remove());
 
     expect(parties.textContent?.replace(/\s+/g, " ").trim()).toBe(
-      `From ${shortAddress(String(transaction.from))} To ${shortAddress(String(transaction.to))}`,
+      `From ${short(String(transaction.from))} To ${short(String(transaction.to))}`,
     );
     expect(container.textContent).toContain("9,812.3789 DUSK");
     expect(
@@ -107,7 +104,7 @@ describe("Transactions List", () => {
     expect(toContract.querySelector("code")).toHaveTextContent(/^convert$/);
     expect(
       toAccount.querySelector(".transaction-row__parties"),
-    ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
+    ).toHaveTextContent(`To ${short(String(transaction.to))}`);
   });
 
   it("should say Stake, Unstake or Claim rewards for a call to the stake contract, as the Dusk wallets do", async () => {
@@ -135,7 +132,7 @@ describe("Transactions List", () => {
     );
   });
 
-  it("should give the sender's account short, so the receiver's name keeps its room", async () => {
+  it("should give the sender's account short, six characters at each end, as every Dusk app shortens one", async () => {
     const { container } = render(TransactionsList, {
       data: {
         ...transaction,
@@ -151,7 +148,7 @@ describe("Transactions List", () => {
     );
 
     expect(sender).toHaveTextContent(
-      new RegExp(`^From ${shortAddress(String(transaction.from))}$`),
+      new RegExp(`^From ${short(String(transaction.from))}$`),
     );
     await vi.waitFor(() =>
       expect(receiver).toHaveTextContent(/^To Stake contract$/),
@@ -176,8 +173,8 @@ describe("Transactions List", () => {
     );
 
     await vi.waitFor(() => {
-      expect(rows[0]).toHaveTextContent(`To ${shortAddress(sepoliaBridge)}`);
-      expect(rows[1]).toHaveTextContent(/^To 2e4b…6046$/);
+      expect(rows[0]).toHaveTextContent(`To ${short(sepoliaBridge)}`);
+      expect(rows[1]).toHaveTextContent(/^To 2e4b8b…206046$/);
     });
     expect(
       rows[1].querySelector(".transaction-party__contract-id"),
@@ -235,7 +232,7 @@ describe("Transactions List", () => {
     style.remove();
   });
 
-  it("should give a named account's address in its tooltip as every Dusk app shortens it: the row is narrow, the tooltip isn't", () => {
+  it("should give a named account's address in its tooltip as every Dusk app shortens it", () => {
     const sender = String(transaction.from);
     const { getByRole } = render(TransactionsList, {
       ...baseProps,
