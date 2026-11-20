@@ -178,7 +178,9 @@ describe("SearchField", () => {
 
     await expect(getMiss(onInvalid)).resolves.toStrictEqual({
       query: "bad_name",
-      res: new Error("Try an account, block, transaction ID or .dusk name"),
+      res: new Error(
+        "Try an account, block height or hash, transaction ID or .dusk name",
+      ),
       suggestion: undefined,
     });
     expect(searchSpy).not.toHaveBeenCalled();
@@ -245,7 +247,7 @@ describe("SearchField", () => {
       getByRole("textbox", {
         name: "Search by account, block, transaction or .dusk name",
       }),
-    ).toHaveAttribute("placeholder", "Account, ID or .dusk name");
+    ).toHaveAttribute("placeholder", "Account, ID, hash or .dusk name");
   });
 
   it("should name the search button", () => {

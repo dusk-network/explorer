@@ -24,11 +24,11 @@ describe("LatestTransactionsCard", () => {
   });
 
   it.each([
-    ["home page", true, 4],
-    ["block page", false, 6],
+    ["home page", true],
+    ["block page", false],
   ])(
-    "should look up the names of the accounts it lists in one go on the %s, and keep %i characters at each end of the rest",
-    async (_, isOnHomeScreen, ends) => {
+    "should look up the names of the accounts it lists in one go on the %s",
+    async (_, isOnHomeScreen) => {
       vi.mocked(getPrimaryNames).mockResolvedValueOnce(
         new Map([
           [
@@ -38,7 +38,7 @@ describe("LatestTransactionsCard", () => {
         ]),
       );
 
-      const { findAllByRole, getAllByRole } = render(LatestTransactionsCard, {
+      const { findAllByRole } = render(LatestTransactionsCard, {
         error: null,
         isOnHomeScreen,
         isSmallScreen: false,
@@ -62,12 +62,6 @@ describe("LatestTransactionsCard", () => {
         "data-tooltip-text",
         `tdi.dusk · ${sender.slice(0, 6)}…${sender.slice(-6)}`,
       );
-      // The home page's list is dense: four; a block's own rows keep six.
-      expect(
-        getAllByRole("link", {
-          name: `${receiver.slice(0, ends)}…${receiver.slice(-ends)}`,
-        }),
-      ).toHaveLength(2);
     },
   );
 

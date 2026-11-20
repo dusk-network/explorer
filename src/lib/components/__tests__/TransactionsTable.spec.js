@@ -119,7 +119,7 @@ describe("Transactions Table", () => {
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards",
+          "Failed · Claim rewards · withdraw",
         );
       });
       expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0");
@@ -129,7 +129,7 @@ describe("Transactions Table", () => {
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
     });
 
-    it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
+    it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
       const convert = {
         ...call,
         contract: "01".padEnd(64, "0"),
@@ -158,7 +158,9 @@ describe("Transactions Table", () => {
           / To Transfer contract$/,
         );
         // Plain words only: the function's name is for the transaction page.
-        expect(textOf(toContract, ".transaction__line")).toBe("convert");
+        expect(textOf(toContract, ".transaction__line")).toBe(
+          "Contract call · convert",
+        );
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
           ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
         );
@@ -195,44 +197,6 @@ describe("Transactions Table", () => {
           ),
         ).toMatch(/ To Contract ababab…ababab$/),
       );
-    });
-
-    it("should keep four characters at each end of accounts, contracts and IDs in the dense list's table, and the whole on hover", async () => {
-      const { container } = render(TransactionsTable, {
-        props: {
-          data: [
-            transfer,
-            { ...call, contract: "ab".repeat(32), method: "submit", to: null },
-          ],
-          idLength: 4,
-          mode: "full",
-        },
-      });
-      const from = String(transfer.from);
-      const to = String(transfer.to);
-
-      expect(container.querySelector(".transaction__link")).toHaveTextContent(
-        `${transfer.txid.slice(0, 4)}…${transfer.txid.slice(-4)}`,
-      );
-      expect(
-        readOut(
-          container.querySelectorAll("tbody tr")[0],
-          ".transaction__parties",
-        ),
-      ).toBe(
-        `From ${from.slice(0, 4)}…${from.slice(-4)} To ${to.slice(0, 4)}…${to.slice(-4)}`,
-      );
-      await vi.waitFor(() =>
-        expect(
-          readOut(
-            container.querySelectorAll("tbody tr")[1],
-            ".transaction__parties",
-          ),
-        ).toMatch(/ To Contract abab…abab$/),
-      );
-      expect(
-        container.querySelector(".transaction-party--contract"),
-      ).toHaveAttribute("data-tooltip-text", `Contract ${"ab".repeat(32)}`);
     });
 
     it("should show the DuskEVM address a deposit to DuskEVM pays, read from its call data", async () => {
@@ -343,7 +307,7 @@ describe("Transactions Table", () => {
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
       await vi.waitFor(() =>
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards",
+          "Failed · Claim rewards · withdraw",
         ),
       );
       expect(

@@ -28,13 +28,16 @@ describe("Transactions List", () => {
     data: transaction,
   };
 
+  /** @param {string} value */
+  const short = (value) => `${value.slice(0, 6)}…${value.slice(-6)}`;
+
   /**
-   * An account or an ID as a phone's row gives it, as every Dusk app
-   * shortens one: its first and last six characters.
+   * An address as a phone's row gives it: its first and last four
+   * characters.
    *
    * @param {string} value
    */
-  const short = (value) => `${value.slice(0, 6)}…${value.slice(-6)}`;
+  const shortAddress = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
 
   const timeRefreshInterval = 1000;
 
@@ -56,7 +59,7 @@ describe("Transactions List", () => {
       .forEach((arrow) => arrow.remove());
 
     expect(parties.textContent?.replace(/\s+/g, " ").trim()).toBe(
-      `From ${short(String(transaction.from))} To ${short(String(transaction.to))}`,
+      `From ${shortAddress(String(transaction.from))} To ${shortAddress(String(transaction.to))}`,
     );
     expect(container.textContent).toContain("9,812.3789 DUSK");
     expect(
@@ -77,7 +80,7 @@ describe("Transactions List", () => {
     expect(container.textContent).not.toMatch(/gas|fee/i);
   });
 
-  it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
+  it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
     const call = {
       ...transaction,
       amount: 0,
@@ -92,11 +95,11 @@ describe("Transactions List", () => {
       data: { ...call, amount: 1_000_000_000, to: transaction.to },
     }).container;
 
-    // The function it ran, said once: the row names the contract.
+    // Plain words, and the function it ran.
     await vi.waitFor(() => {
       expect(
         toContract.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^convert$/);
+      ).toHaveTextContent(/^Contract call · \S+$/);
       expect(
         toAccount.querySelector(".transaction-row__line"),
       ).toHaveTextContent(/^Transfer contract · \S+$/);
@@ -104,7 +107,7 @@ describe("Transactions List", () => {
     expect(toContract.querySelector("code")).toHaveTextContent(/^convert$/);
     expect(
       toAccount.querySelector(".transaction-row__parties"),
-    ).toHaveTextContent(`To ${short(String(transaction.to))}`);
+    ).toHaveTextContent(`To ${shortAddress(String(transaction.to))}`);
   });
 
   it("should say Stake, Unstake or Claim rewards for a call to the stake contract, as the Dusk wallets do", async () => {
@@ -128,11 +131,11 @@ describe("Transactions List", () => {
     await vi.waitFor(() =>
       expect(
         lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim()),
-      ).toStrictEqual(["Stake", "Unstake", "Claim rewards"]),
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"]),
     );
   });
 
-  it("should give the sender's account short, six characters at each end, as every Dusk app shortens one", async () => {
+  it("should give the sender's address short, so the receiver's name keeps its room", async () => {
     const { container } = render(TransactionsList, {
       data: {
         ...transaction,
@@ -148,7 +151,7 @@ describe("Transactions List", () => {
     );
 
     expect(sender).toHaveTextContent(
-      new RegExp(`^From ${short(String(transaction.from))}$`),
+      new RegExp(`^From ${shortAddress(String(transaction.from))}$`),
     );
     await vi.waitFor(() =>
       expect(receiver).toHaveTextContent(/^To Stake contract$/),
@@ -173,8 +176,8 @@ describe("Transactions List", () => {
     );
 
     await vi.waitFor(() => {
-      expect(rows[0]).toHaveTextContent(`To ${short(sepoliaBridge)}`);
-      expect(rows[1]).toHaveTextContent(/^To 2e4b8b…206046$/);
+      expect(rows[0]).toHaveTextContent(`To ${shortAddress(sepoliaBridge)}`);
+      expect(rows[1]).toHaveTextContent(/^To 2e4b…6046$/);
     });
     expect(
       rows[1].querySelector(".transaction-party__contract-id"),
@@ -188,7 +191,7 @@ describe("Transactions List", () => {
         rows[1]
           .closest(".transaction-row")
           ?.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^[a-z_]+$/),
+      ).toHaveTextContent(/^Contract call · \S+$/),
     );
 
     // On testnet, whose file labels both.
@@ -232,7 +235,7 @@ describe("Transactions List", () => {
     style.remove();
   });
 
-  it("should give a named account's address in its tooltip as every Dusk app shortens it", () => {
+  it("should give a named account's address in its tooltip as every Dusk app shortens it: the row is narrow, the tooltip isn't", () => {
     const sender = String(transaction.from);
     const { getByRole } = render(TransactionsList, {
       ...baseProps,

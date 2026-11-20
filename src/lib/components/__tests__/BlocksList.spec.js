@@ -3,7 +3,7 @@ import { cleanup, render } from "@testing-library/svelte";
 
 import { gqlBlock } from "$lib/mock-data";
 import { transformBlock } from "$lib/chain-info";
-import { getRelativeTimeString, shortId } from "$lib/dusk/string";
+import { getRelativeTimeString, middleEllipsis } from "$lib/dusk/string";
 
 import { BlocksList } from "..";
 
@@ -52,7 +52,7 @@ describe("Blocks List", () => {
     const key = block.header.generator;
 
     expect(line()).toBe(
-      `${getRelativeTimeString(block.header.date, "compact")} · by ${shortId(key)}`,
+      `${getRelativeTimeString(block.header.date, "compact")} · by ${middleEllipsis(key, 4)}`,
     );
     expect(container.querySelector(".transaction-party")).toHaveAttribute(
       "href",

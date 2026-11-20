@@ -58,14 +58,6 @@
   export let account = undefined;
 
   /**
-   * The characters a short account or ID keeps at each end: six, or four
-   * in the transactions list's table, which is dense.
-   *
-   * @type {number}
-   */
-  export let idLength = 6;
-
-  /**
    * @param {Map<string, { name: string, url: string } | null>} found
    * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
    */
@@ -105,18 +97,13 @@
               <span class="transaction__parties">
                 <span class="transaction__party">
                   <span class="sr-only">From</span>
-                  <TransactionParty
-                    {idLength}
-                    name={nameOf(names, from)}
-                    party={from}
-                  />
+                  <TransactionParty name={nameOf(names, from)} party={from} />
                 </span>
                 {#if to}
                   <span aria-hidden="true" class="transaction__arrow">→</span>
                   <span class="transaction__party">
                     <span class="sr-only">To</span>
                     <TransactionParty
-                      {idLength}
                       name={nameOf(names, to)}
                       party={to}
                       {transaction}
@@ -149,7 +136,7 @@
             <AppAnchor
               className="transaction__link chain-link"
               href={`/transactions/transaction?id=${transaction.txid}`}
-              >{shortId(transaction.txid, idLength)}</AppAnchor
+              >{shortId(transaction.txid)}</AppAnchor
             >
             {#if isFull}
               <CopyButton name="Transaction ID" rawValue={transaction.txid} />

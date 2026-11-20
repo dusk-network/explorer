@@ -119,36 +119,9 @@ describe("Transactions Card", () => {
     );
     expect(
       getAllByRole("link", {
-        name: `${bob.slice(0, 4)}…${bob.slice(-4)}`,
+        name: `${bob.slice(0, 6)}…${bob.slice(-6)}`,
       }),
     ).toHaveLength(15);
-  });
-
-  it("should keep four characters at each end in the transactions list's dense table, and six in an account's own rows", async () => {
-    const transfer = transformTransaction(gqlTransaction.tx);
-    const receiver = String(transfer.to);
-    const { getByRole, rerender } = render(TransactionsCard, {
-      ...baseOptions,
-      props: { ...baseProps, txns: [transfer] },
-    });
-
-    expect(
-      getByRole("link", {
-        name: `${receiver.slice(0, 4)}…${receiver.slice(-4)}`,
-      }),
-    ).toBeInTheDocument();
-
-    await rerender({
-      ...baseProps,
-      account: String(transfer.from),
-      txns: [transfer],
-    });
-
-    expect(
-      getByRole("link", {
-        name: `${receiver.slice(0, 6)}…${receiver.slice(-6)}`,
-      }),
-    ).toBeInTheDocument();
   });
 
   it("should let a list read again from its start, as another account's, ask for more again", async () => {

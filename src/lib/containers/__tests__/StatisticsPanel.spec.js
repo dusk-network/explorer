@@ -162,7 +162,7 @@ describe("StatisticsPanel", () => {
       "Pending stake",
       "Pending provisioners",
       "Largest cluster",
-      "Cluster location",
+      "Largest cluster location",
     ]);
 
     await act(() => setChain(1));
@@ -188,7 +188,7 @@ describe("StatisticsPanel", () => {
     );
     // 88 nodes in 21 cities.
     expect(face?.querySelector("figcaption")).toHaveTextContent(
-      /^88 nodes, located roughly by IP$/,
+      /^88 nodes the explorer's node knows of, located by IP to the city\. The bigger the ring, the more nodes\.$/,
     );
     // First in the panel, before the numbers.
     expect(container.firstElementChild?.firstElementChild).toBe(face);
@@ -201,8 +201,6 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(100));
 
     expect(status).toHaveTextContent(/^Live$/);
-    // Said to screen readers: on screen the dot and the block's age say it.
-    expect(status.querySelector(".sr-only")).toHaveTextContent(/^Live$/);
     expect(status).not.toHaveClass("statistics-panel__live--waiting");
     expect(
       status.closest(".statistics-panel__statistics-item-title"),
@@ -267,7 +265,7 @@ describe("StatisticsPanel", () => {
     expect(getByRole("status")).toHaveTextContent(/^Waiting for blocks$/);
   });
 
-  it("should give a number rounded to show with no sign before it: its short form, as 170.93M, says it is rounded", async () => {
+  it("should mark a number rounded to show as about that much, with a sign that can't pass for a minus", async () => {
     setChain(1);
 
     const { container } = render(StatisticsPanel);
@@ -275,10 +273,24 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    expect(
-      container.querySelector(".statistics-panel__statistics-item-about"),
-    ).toBeNull();
-    expect(container.textContent).not.toMatch(/[≈~]/);
+    const abouts = Array.from(
+      container.querySelectorAll(".statistics-panel__statistics-item-about"),
+    );
+
+    // The current stake, as a card, and the pending stake, in the row.
+    expect(abouts).toHaveLength(2);
+
+    for (const about of abouts) {
+      expect(about.querySelector("[aria-hidden='true']")).toHaveTextContent(
+        /^≈$/,
+      );
+      expect(about.querySelector(".sr-only")).toHaveTextContent(/^about$/);
+      expect(about.nextElementSibling).toHaveClass(
+        "statistics-panel__statistics-item-value",
+      );
+    }
+
+    expect(container.textContent).not.toContain("~");
     expect(container.querySelector(".approximate")).toBeNull();
   });
 
@@ -303,7 +315,7 @@ describe("StatisticsPanel", () => {
 
     expect(notes()).toStrictEqual([
       "−8.05% (24h)",
-      "12.7% of supply",
+      "12.7% of circulating supply",
       "4 s ago",
       "13,742 public · 2,621 shielded",
     ]);

@@ -23,12 +23,13 @@
   export let party;
 
   /**
-   * The characters a short account or contract ID keeps at each end: six,
-   * or four in the blocks and transactions lists' tables, which are dense.
+   * Whether the row is a phone's, too narrow for the six characters at each
+   * end that every Dusk app keeps of an address or a contract's ID: it
+   * keeps four.
    *
-   * @type {number}
+   * @type {boolean}
    */
-  export let idLength = 6;
+  export let narrow = false;
 
   /**
    * The account's verified primary name, shown instead of its address.
@@ -72,10 +73,10 @@
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
   $: shortAddress =
-    party?.kind === "account" ? shortId(party.address, idLength) : "";
+    party?.kind === "account" ? shortId(party.address, narrow ? 4 : 6) : "";
   $: shortContractId =
     party?.kind === "contract"
-      ? shortId(formatContractId(party.id), idLength)
+      ? shortId(formatContractId(party.id), narrow ? 4 : 6)
       : "";
 </script>
 

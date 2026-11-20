@@ -37,13 +37,11 @@ describe("TransactionType", () => {
     );
   });
 
-  it("should say what a call did once: its plain words, or else the contract's name and the function it ran", async () => {
+  it("should show the function a call ran, unless its words already say it", async () => {
     const contract =
       "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c";
     const stake =
       "0200000000000000000000000000000000000000000000000000000000000000";
-    const transfer =
-      "0100000000000000000000000000000000000000000000000000000000000000";
     const words = async (/** @type {Partial<Transaction>} */ call) => {
       cleanup();
 
@@ -53,8 +51,8 @@ describe("TransactionType", () => {
 
       await vi.waitFor(() =>
         expect(
-          container.querySelector(".transaction-type__call")?.textContent,
-        ).toMatch(/\S/),
+          container.querySelector(".transaction-type__label"),
+        ).toBeInTheDocument(),
       );
 
       return [
@@ -63,22 +61,17 @@ describe("TransactionType", () => {
       ];
     };
 
-    // A contract with no name: the function alone, the row's icon saying
-    // it is a call.
     expect(await words({ contract, method: "schedule" })).toStrictEqual([
-      undefined,
+      "Contract call",
       "schedule",
     ]);
-    expect(
-      await words({ contract: transfer, method: "convert" }),
-    ).toStrictEqual(["Transfer contract", "convert"]);
     expect(await words({ contract: stake, method: "stake" })).toStrictEqual([
       "Stake",
       undefined,
     ]);
     expect(await words({ contract: stake, method: "withdraw" })).toStrictEqual([
       "Claim rewards",
-      undefined,
+      "withdraw",
     ]);
     expect(
       await words({ contract: undefined, method: "transfer" }),

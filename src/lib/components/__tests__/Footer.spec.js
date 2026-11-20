@@ -40,7 +40,7 @@ describe("Footer", () => {
     );
   });
 
-  it("should give the copyright as it is, and the version with its build's commit", () => {
+  it("should give the copyright as it is, and the version with its build's commit and date", () => {
     const { container } = render(Footer);
     const lines = Array.from(
       container.querySelectorAll(".footer__copyright-container p"),
@@ -49,7 +49,7 @@ describe("Footer", () => {
 
     expect(lines).toStrictEqual([
       "© 2018 - 2025 Dusk Network B.V. All Rights Reserved.",
-      "v0.0.0 · hash1234",
+      "v0.0.0 (hash1234 2024-01-12)",
     ]);
   });
 });

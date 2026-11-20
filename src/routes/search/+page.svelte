@@ -10,7 +10,9 @@
   stands under it.
 -->
 <p class="search-page">
-  {query ? "Searching…" : "Try an account, block, transaction ID or .dusk name"}
+  {query
+    ? "Searching…"
+    : "Try an account, block height or hash, transaction ID or .dusk name"}
 </p>
 
 <style>

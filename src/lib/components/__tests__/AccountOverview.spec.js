@@ -156,7 +156,7 @@ describe("AccountOverview", () => {
 
     expect(cardsOf(container)).toStrictEqual([
       "Public balance 1 DUSK",
-      "Stake 0 DUSK",
+      "Native stake 0 DUSK",
       "Stake rewards 0 DUSK",
     ]);
   });
@@ -169,7 +169,7 @@ describe("AccountOverview", () => {
     });
     const sozu = () => container.querySelector(".account-overview-panel__sozu");
 
-    expect(sozu()).toHaveTextContent(/^Sozu: 0\.1621 stDUSK$/);
+    expect(sozu()).toHaveTextContent(/^Also staked with Sozu: 0\.1621 stDUSK$/);
     // Every decimal on hover.
     expect(
       container.querySelector(".account-overview-panel__sozu-amount"),
@@ -177,7 +177,7 @@ describe("AccountOverview", () => {
     // In the native stake's card, under its amount.
     expect(
       sozu()?.closest(".overview-panel__details-item")?.textContent,
-    ).toMatch(/^\s*Stake\s+0 DUSK\s+Sozu:/);
+    ).toMatch(/^\s*Native stake\s+0 DUSK\s+Also staked with Sozu/);
 
     for (const stakedDusk of [0n, null]) {
       await rerender({ stakedDusk });

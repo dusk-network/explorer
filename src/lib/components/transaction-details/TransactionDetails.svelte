@@ -60,20 +60,17 @@
 
   /**
    * An amount in DUSK, every decimal of it, with its value in dollars when
-   * the price is known, on mainnet only, and it is a cent or more: "0 DUSK",
-   * not "0 DUSK ($0.00)". The price is an argument, so that an amount shown
-   * before the price came gets its dollars when it comes.
+   * the price is known: on mainnet only. None for 0 DUSK, which is $0. The
+   * price is an argument, so that an amount shown before the price came
+   * gets its dollars when it comes.
    *
    * @param {number} lux
    * @param {number | undefined} price A DUSK's price in dollars
    */
-  const toDuskAndUsd = (lux, price) => {
-    const usd = price === undefined ? 0 : luxToDusk(lux) * price;
-
-    return usd < 0.01
+  const toDuskAndUsd = (lux, price) =>
+    price === undefined || !lux
       ? `${formatDuskExact(lux)} DUSK`
-      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(usd)})`;
-  };
+      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
 
   $: usdPrice = market?.currentPrice.usd;
 
@@ -139,7 +136,7 @@
   <div class="transaction-details__summary detail-summary">
     <TransactionIcon transaction={data} />
     <p class="transaction-details__summary-lines detail-summary__lines">
-      <!-- What it did, once: who with, how much and the fee are the rows. -->
+      <!-- What it did, and the function a call ran: who with, how much and the fee are the rows. -->
       <span class="transaction-details__summary-text detail-summary__text"
         ><TransactionType {data} showPrivacy={false} /></span
       >
@@ -341,7 +338,8 @@
     <ListItem>
       <svelte:fragment slot="term">Fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {formatDuskExact(data.feepaid)} DUSK
+        {toDuskAndUsd(data.feepaid, usdPrice)}
+        <StaleDataNotice />
       </svelte:fragment>
     </ListItem>
 
@@ -353,7 +351,10 @@
           ><span class="transaction-details__visibility-label"
             >{visibility.label}</span
           >
-        </span>
+          <span class="transaction-details__visibility-seen"
+            >{visibility.seen}</span
+          ></span
+        >
       </ListItem>
     {/if}
 

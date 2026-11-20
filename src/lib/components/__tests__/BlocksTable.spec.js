@@ -52,11 +52,10 @@ describe("Blocks Table", () => {
     );
 
     expect(generators).toHaveLength(data.length);
-    // A dense list: four characters at each end.
     generators.forEach((link, i) => {
       const key = data[i].header.generator;
 
-      expect(link?.textContent?.trim()).toBe(shortId(key, 4));
+      expect(link?.textContent?.trim()).toBe(shortId(key));
       expect(link).toHaveAttribute(
         "href",
         `/some-base-path/accounts/?key=${key}`,

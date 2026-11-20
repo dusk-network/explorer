@@ -125,11 +125,12 @@ describe("Account page", () => {
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
     expect(getByText("Public balance")).toBeInTheDocument();
     // The stake's block, 120 blocks after the last one, comes in about
-    // 20 minutes: that day. All of the stake is active, as the Stake above
-    // says: no split.
+    // 20 minutes: a coming one keeps its hour.
     await vi.waitFor(() =>
       expect(stakeRowsOf(container)).toStrictEqual([
-        ["Eligibility", "From about 26 Oct 2026"],
+        ["Active stake", "1,000 DUSK"],
+        ["Inactive stake", "0 DUSK"],
+        ["Eligibility", "From about 26 Oct 2026, 10:20 AM UTC"],
         ["Slashes", "1 soft, 0 hard"],
       ]),
     );
@@ -138,26 +139,8 @@ describe("Account page", () => {
     expect(
       container.querySelector(".account-overview-panel__kind"),
     ).toHaveTextContent(/^\[Provisioner\]$/);
-    expect(container.textContent).toContain("Shielded funds aren't shown.");
-  });
-
-  it("should split the stake into active and inactive while part of it is inactive", async () => {
-    vi.mocked(duskAPI.getStake).mockResolvedValueOnce({
-      active: 750_000_000_000n,
-      eligibility: 123_120,
-      faults: 0,
-      hardFaults: 0,
-      inactive: 250_000_000_000n,
-      reward: 0n,
-    });
-
-    const { container } = render(AccountPage);
-
-    await vi.waitFor(() =>
-      expect(stakeRowsOf(container).slice(0, 2)).toStrictEqual([
-        ["Active", "750 DUSK"],
-        ["Inactive", "250 DUSK"],
-      ]),
+    expect(container.textContent).toContain(
+      "Everything here is public. Shielded funds aren't shown.",
     );
   });
 
@@ -174,7 +157,7 @@ describe("Account page", () => {
         ),
       ).toStrictEqual([
         "Public balance 1,484.92 DUSK",
-        "Stake N/A",
+        "Native stake N/A",
         "Stake rewards N/A",
       ]),
     );
@@ -213,7 +196,7 @@ describe("Account page", () => {
     await vi.waitFor(() =>
       expect(
         container.querySelector(".account-overview-panel__sozu"),
-      ).toHaveTextContent("Sozu: 0.1621 stDUSK"),
+      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK"),
     );
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 

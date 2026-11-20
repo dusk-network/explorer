@@ -36,7 +36,7 @@ function explainSearchMiss(query) {
 
   if (decodeBase58(text)?.length === 64) {
     return {
-      message: "Shielded address: private, not shown",
+      message: "Shielded address: its balance and transfers are private",
     };
   }
 
@@ -47,7 +47,8 @@ function explainSearchMiss(query) {
   }
 
   return {
-    message: "Try an account, block, transaction ID or .dusk name",
+    message:
+      "Try an account, block height or hash, transaction ID or .dusk name",
   };
 }
 

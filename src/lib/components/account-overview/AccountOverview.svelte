@@ -82,7 +82,7 @@
   // An account with a stake is a provisioner.
   $: isProvisioner = !!(stake && (stake.active || stake.inactive));
 
-  // Short, as every Dusk app shortens an account: six characters at each end.
+  // As lists show addresses: the first and last six characters.
   $: shortAddress = shortId(accountAddress);
 
   // What the network's labels call the account, before any primary name.
@@ -162,7 +162,7 @@
       {/if}
     </OverviewPanelDetailsItem>
 
-    <OverviewPanelDetailsItem subtitle="Stake">
+    <OverviewPanelDetailsItem subtitle="Native stake">
       {#if errorFetchingStake}
         <p>N/A</p>
       {:else if stake !== undefined}
@@ -176,7 +176,7 @@
       <!-- What the account also staked with Sozu, when it holds stDUSK. -->
       {#if stakedDusk}
         <p class="account-overview-panel__sozu">
-          Sozu: <span
+          Also staked with Sozu: <span
             class="account-overview-panel__sozu-amount"
             title="{formatDuskExact(stakedDusk)} stDUSK"
             >{formatDusk(stakedDusk)} stDUSK</span
@@ -201,21 +201,18 @@
 
   {#if stake && isProvisioner}
     <dl class="account-overview-panel__stake detail-rows">
-      <!-- The stake's split while part of it is inactive; else the Stake above says it. -->
-      {#if stake.inactive}
-        <ListItem>
-          <svelte:fragment slot="term">Active</svelte:fragment>
-          <span title="{formatDuskExact(stake.active)} DUSK" slot="definition"
-            >{formatDusk(stake.active)} DUSK</span
-          >
-        </ListItem>
-        <ListItem>
-          <svelte:fragment slot="term">Inactive</svelte:fragment>
-          <span title="{formatDuskExact(stake.inactive)} DUSK" slot="definition"
-            >{formatDusk(stake.inactive)} DUSK</span
-          >
-        </ListItem>
-      {/if}
+      <ListItem>
+        <svelte:fragment slot="term">Active stake</svelte:fragment>
+        <span title="{formatDuskExact(stake.active)} DUSK" slot="definition"
+          >{formatDusk(stake.active)} DUSK</span
+        >
+      </ListItem>
+      <ListItem>
+        <svelte:fragment slot="term">Inactive stake</svelte:fragment>
+        <span title="{formatDuskExact(stake.inactive)} DUSK" slot="definition"
+          >{formatDusk(stake.inactive)} DUSK</span
+        >
+      </ListItem>
       <ListItem
         tooltipText="When the stake takes part in consensus and starts to earn rewards"
       >
@@ -225,7 +222,9 @@
             <span title="Block {formatter(stake.eligibility)}"
               >{stake.eligibility > tip.height ? "From about" : "Since about"}
               {formatDateTime(estimateDate(stake.eligibility, tip), {
-                time: false,
+                seconds: false,
+                // A day for a past one; a coming one keeps its hour.
+                time: stake.eligibility > tip.height,
               })}</span
             >
           {:else}
@@ -244,5 +243,7 @@
     </dl>
   {/if}
 
-  <p class="account-overview-panel__note">Shielded funds aren't shown.</p>
+  <p class="account-overview-panel__note">
+    Everything here is public. Shielded funds aren't shown.
+  </p>
 </section>

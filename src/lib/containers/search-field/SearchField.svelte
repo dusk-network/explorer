@@ -155,7 +155,7 @@
       bind:this={field}
       bind:value
       required
-      placeholder="Account, ID or .dusk name"
+      placeholder="Account, ID, hash or .dusk name"
     />
     <Button
       aria-label="Search"

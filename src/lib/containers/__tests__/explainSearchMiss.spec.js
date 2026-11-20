@@ -35,7 +35,7 @@ describe("explainSearchMiss", () => {
     const shielded = encodeBase58(new Uint8Array(64).fill(7));
 
     expect(explainSearchMiss(shielded).message).toBe(
-      "Shielded address: private, not shown",
+      "Shielded address: its balance and transfers are private",
     );
   });
 
@@ -55,7 +55,8 @@ describe("explainSearchMiss", () => {
   it("should say what can be searched for anything else", () => {
     for (const query of ["bad_name", "-alice", "a b", "0x12ab"]) {
       expect(explainSearchMiss(query)).toStrictEqual({
-        message: "Try an account, block, transaction ID or .dusk name",
+        message:
+          "Try an account, block height or hash, transaction ID or .dusk name",
       });
     }
   });

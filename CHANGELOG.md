@@ -13,7 +13,7 @@ and this project adheres to
 ### Changed
 
 - Link the other networks' explorers at their own domains
-- Cut repeated text: a transaction's kind said once, units in column headers, accounts and IDs four characters at each end in the blocks and transactions lists, short relative times and dates without the weekday
+- Say the same things in fewer words: units in column headers, short relative times, dates without the weekday, and a transaction page that leads with what it did
 
 ### Removed
 

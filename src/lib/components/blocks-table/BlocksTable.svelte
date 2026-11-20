@@ -94,9 +94,8 @@
         </TableCell>
         <TableCell>
           {#if block.header.generator}
-            <!-- A dense list: four characters at each end. -->
             <TransactionParty
-              idLength={4}
+              narrow={brief}
               party={{ address: block.header.generator, kind: "account" }}
             />
           {:else}

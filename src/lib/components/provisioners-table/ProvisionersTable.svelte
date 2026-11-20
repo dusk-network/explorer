@@ -252,7 +252,11 @@
               <span aria-hidden="true">·</span>
             {/if}
             {#if provisioner.eligibility}
-              <span>from block {numberFormatter(provisioner.eligibility)}</span>
+              <span
+                >eligible from block {numberFormatter(
+                  provisioner.eligibility,
+                )}</span
+              >
             {/if}
           </span>
         </TableCell>
