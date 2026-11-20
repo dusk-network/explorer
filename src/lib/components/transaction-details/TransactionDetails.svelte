@@ -149,8 +149,8 @@
           {data}
           showMethod={false}
           showPrivacy={false}
-        />{#if !data.contract && toLabel}
-          <span class="transaction-details__summary-to">to {toLabel}</span
+        />{#if !data.contract && toLabel}<span
+            class="transaction-details__summary-to">{` to ${toLabel}`}</span
           >{/if}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">

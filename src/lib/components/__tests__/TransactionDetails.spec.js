@@ -384,6 +384,14 @@ describe("Transaction Details", () => {
     await vi.waitFor(() =>
       expect(leadOf(labelled)).toBe("Transfer to BSC bridge"),
     );
+    // As the screen shows it: the type's label is a flex box, so its own
+    // spaces don't show; the receiver's words carry the space between.
+    expect(
+      [
+        labelled.querySelector(".transaction-type__label")?.textContent?.trim(),
+        labelled.querySelector(".transaction-details__summary-to")?.textContent,
+      ].join(""),
+    ).toBe("Transfer to BSC bridge");
     // The receiver's row still gives the account in full.
     expect(valueOf(labelled, /^to$/i)).toBe(`BSC bridge ${bscBridge}`);
     cleanup();
