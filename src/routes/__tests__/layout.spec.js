@@ -196,7 +196,7 @@ describe("Main layout", () => {
 
     const strip = /** @type {HTMLElement} */ (getByRole("note"));
 
-    expect(strip).toHaveTextContent("Testnet · Test DUSK has no value");
+    expect(strip).toHaveTextContent("Test DUSK has no value");
     expect(strip.nextElementSibling).toHaveClass("dusk-navbar");
 
     await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));

@@ -202,14 +202,6 @@
   white-space: nowrap;
 }
 
-/*
- * A number rounded to show: "≈" before it, a space apart, in the unit's
- * colour. Screen readers say "about".
- */
-.statistics-panel__statistics-item-about {
-  color: var(--calm-muted);
-}
-
 /* The rest: one card, its labels and values small. */
 .statistics-panel__secondary {
   display: grid;

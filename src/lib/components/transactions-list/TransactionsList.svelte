@@ -69,7 +69,6 @@
         <TransactionParty
           contractWord={false}
           name={nameOf(names, from)}
-          narrow
           party={from}
         />
       </span>
@@ -80,7 +79,6 @@
           <TransactionParty
             contractWord={false}
             name={nameOf(names, to)}
-            narrow
             party={to}
             transaction={data}
           />

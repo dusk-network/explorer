@@ -118,7 +118,7 @@ describe("DataCard", () => {
     });
 
     expect(container.querySelector(".alert")).toHaveTextContent(
-      /^Couldn't load this\.\s*Request timed out\s*Try again$/,
+      /^Couldn't load\s*Request timed out\s*Try again$/,
     );
 
     await fireEvent.click(getByRole("button", { name: "Try again" }));

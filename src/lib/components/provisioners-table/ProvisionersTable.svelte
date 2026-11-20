@@ -123,7 +123,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.STAKING_ADDRESS)}
         >
-          <span>Staking address</span>
+          <span>Staking account</span>
           {#if sort.column === SortColumn.STAKING_ADDRESS}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -153,7 +153,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.STAKE)}
         >
-          <span>Stake</span>
+          <span>Stake (DUSK)</span>
           {#if sort.column === SortColumn.STAKE}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -168,7 +168,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.REWARD)}
         >
-          <span>Rewards</span>
+          <span>Rewards (DUSK)</span>
           {#if sort.column === SortColumn.REWARD}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -183,7 +183,7 @@
           class="provisioners-table__header-button"
           on:click={() => toggleSort(SortColumn.SLASHES)}
         >
-          <span>Slashes</span>
+          <span>Slashes (soft/hard)</span>
           {#if sort.column === SortColumn.SLASHES}
             <span class="provisioners-table__header-sort-indicator">
               {sortArrow}
@@ -214,7 +214,7 @@
               href="/accounts/?key={consensusAddress}"
               >{shortId(consensusAddress)}</AppAnchor
             >
-            <CopyButton name="Staking address" rawValue={consensusAddress} />
+            <CopyButton name="Staking account" rawValue={consensusAddress} />
           </div>
         </TableCell>
 
@@ -229,7 +229,7 @@
               >{ownerLabel ??
                 (provisioner.ownerType === "Account"
                   ? shortId(provisioner.ownerAddress)
-                  : `Contract ${formatContractId(provisioner.ownerAddress, { short: true })}`)}</span
+                  : `Contract ${shortId(formatContractId(provisioner.ownerAddress))}`)}</span
             >
           {:else}
             <span class="provisioners-table__muted">—</span>
@@ -240,8 +240,7 @@
           <span class="row-amount"
             ><span title="{formatDuskExact(provisioner.amount)} DUSK"
               >{formatDusk(provisioner.amount)}</span
-            >
-            <span class="row-unit">DUSK</span></span
+            ></span
           >
           <span class="row-line provisioners-table__stake-line">
             {#if provisioner.locked_amt}
@@ -253,11 +252,7 @@
               <span aria-hidden="true">·</span>
             {/if}
             {#if provisioner.eligibility}
-              <span
-                >eligible from block {numberFormatter(
-                  provisioner.eligibility,
-                )}</span
-              >
+              <span>from block {numberFormatter(provisioner.eligibility)}</span>
             {/if}
           </span>
         </TableCell>
@@ -266,16 +261,15 @@
           <span class="row-amount"
             ><span title="{formatDuskExact(provisioner.reward)} DUSK"
               >{formatDusk(provisioner.reward)}</span
-            >
-            <span class="row-unit">DUSK</span></span
+            ></span
           >
         </TableCell>
 
         <TableCell align="right">
           <span class:provisioners-table__muted={!slashCount}
-            >{numberFormatter(provisioner.faults)} soft, {numberFormatter(
+            >{numberFormatter(provisioner.faults)}/{numberFormatter(
               provisioner.hard_faults,
-            )} hard</span
+            )}</span
           >
         </TableCell>
       </TableRow>

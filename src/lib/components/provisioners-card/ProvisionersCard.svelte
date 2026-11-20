@@ -156,9 +156,9 @@
 >
   <div class="provisioners-card__search">
     <Textbox
-      aria-label="Search provisioners by staking or owner address, or .dusk name"
+      aria-label="Search provisioners by staking or owner account, or .dusk name"
       bind:value={query}
-      placeholder="Staking or owner address, or .dusk name"
+      placeholder="Staking or owner account, or .dusk name"
       type="search"
     />
     {#if withNoStake.length}
@@ -178,9 +178,9 @@
       {:else if searchedName && !searchedName.account}
         Looking up {searchedName.name}…
       {:else if searchedName}
-        No provisioner has {searchedName.name}'s address.
+        No provisioner for {searchedName.name}
       {:else}
-        No provisioner has an address with “{query.trim()}”.
+        No provisioner matches “{query.trim()}”
       {/if}
     </p>
   {:else if isSmallScreen}

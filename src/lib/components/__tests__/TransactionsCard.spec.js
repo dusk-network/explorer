@@ -119,7 +119,7 @@ describe("Transactions Card", () => {
     );
     expect(
       getAllByRole("link", {
-        name: `${bob.slice(0, 6)}…${bob.slice(-6)}`,
+        name: `${bob.slice(0, 4)}…${bob.slice(-4)}`,
       }),
     ).toHaveLength(15);
   });

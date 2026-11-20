@@ -29,12 +29,12 @@ describe("Blocks List", () => {
     });
     const age = () => container.querySelector("time")?.textContent?.trim();
 
-    expect(age()).toBe(getRelativeTimeString(date, "long"));
+    expect(age()).toBe(getRelativeTimeString(date, "compact"));
 
     await vi.advanceTimersByTimeAsync(2 * 60_000);
 
-    expect(age()).toBe(getRelativeTimeString(date, "long"));
-    expect(age()).toMatch(/2 minutes ago/);
+    expect(age()).toBe(getRelativeTimeString(date, "compact"));
+    expect(age()).toMatch(/2 min ago/);
   });
 
   it("says when and by whom a block was made, opening the generator's account, and the fees it took, if any; the home page's row says neither", async () => {
@@ -52,7 +52,7 @@ describe("Blocks List", () => {
     const key = block.header.generator;
 
     expect(line()).toBe(
-      `${getRelativeTimeString(block.header.date, "long")} · by ${middleEllipsis(key, 4)}`,
+      `${getRelativeTimeString(block.header.date, "compact")} · by ${middleEllipsis(key, 4)}`,
     );
     expect(container.querySelector(".transaction-party")).toHaveAttribute(
       "href",
@@ -70,7 +70,9 @@ describe("Blocks List", () => {
     await rerender({ brief: true, data: block });
 
     // The home page's short row says who made it too, and no fees.
-    expect(line()).toContain(getRelativeTimeString(block.header.date, "long"));
+    expect(line()).toContain(
+      getRelativeTimeString(block.header.date, "compact"),
+    );
     expect(end()).toBe("16 DUSK 2 transactions");
     expect(container.querySelector(".transaction-party")).toHaveAttribute(
       "href",

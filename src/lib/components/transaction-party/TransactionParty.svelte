@@ -9,7 +9,7 @@
   import { AppAnchor } from "$lib/components";
   import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { Anchor } from "$lib/dusk/components";
-  import { middleEllipsis, shortId } from "$lib/dusk/string";
+  import { shortId } from "$lib/dusk/string";
   import { duskEvmAddressUrl, labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
@@ -21,15 +21,6 @@
    * @type {import("$lib/chain-info/summarizeTransaction").TransactionParty | null}
    */
   export let party;
-
-  /**
-   * Whether the row is a phone's, too narrow for the six characters at each
-   * end that every Dusk app keeps of an address or a contract's ID: it
-   * keeps four.
-   *
-   * @type {boolean}
-   */
-  export let narrow = false;
 
   /**
    * The account's verified primary name, shown instead of its address.
@@ -72,18 +63,9 @@
     party?.kind === "contract" && transaction
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
-  $: shortAddress =
-    party?.kind === "account"
-      ? narrow
-        ? middleEllipsis(party.address, 4)
-        : shortId(party.address)
-      : "";
+  $: shortAddress = party?.kind === "account" ? shortId(party.address) : "";
   $: shortContractId =
-    party?.kind === "contract"
-      ? narrow
-        ? middleEllipsis(formatContractId(party.id), 4)
-        : formatContractId(party.id, { short: true })
-      : "";
+    party?.kind === "contract" ? shortId(formatContractId(party.id)) : "";
 </script>
 
 <!-- A contract with no name: its ID short, after "Contract" or alone. -->

@@ -59,4 +59,17 @@ describe("Transaction Details", () => {
 
     // snapshot with received data from APIs
   });
+
+  it("should say a transaction waiting in the mempool isn't confirmed yet, in a line", async () => {
+    vi.mocked(duskAPI.getTransaction).mockResolvedValueOnce(
+      /** @type {any} */ ("Its details show once it's in a block."),
+    );
+
+    const { findByText, getByText } = render(TransactionDetails);
+
+    expect(await findByText("Not confirmed yet")).toBeInTheDocument();
+    expect(
+      getByText("Its details show once it's in a block."),
+    ).toBeInTheDocument();
+  });
 });

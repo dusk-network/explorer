@@ -6,16 +6,16 @@ import explainSearchMiss from "../search-field/explainSearchMiss";
 describe("explainSearchMiss", () => {
   it("should say there is no such block or transaction", () => {
     expect(explainSearchMiss("99999999")).toStrictEqual({
-      message: "There is no block at this height.",
+      message: "No block at this height yet",
     });
     expect(explainSearchMiss("ab".repeat(32))).toStrictEqual({
-      message: "No block or transaction has this ID.",
+      message: "No block or transaction with this ID",
     });
   });
 
   it("should ask for the whole ID when given the start of one", () => {
     expect(explainSearchMiss("e5f314fb49a8a2f8").message).toBe(
-      "This looks like the start of an ID. Search with the whole ID, 64 characters.",
+      "Partial ID: search with all 64 characters",
     );
   });
 
@@ -26,8 +26,7 @@ describe("explainSearchMiss", () => {
       "DC3F73..1C204A",
     ]) {
       expect(explainSearchMiss(query)).toStrictEqual({
-        message:
-          "This is a shortened ID. Copy the whole ID, 64 characters, and search again.",
+        message: "Shortened ID: search with all 64 characters",
       });
     }
   });
@@ -35,14 +34,14 @@ describe("explainSearchMiss", () => {
   it("should say a shielded address can't be looked up", () => {
     const shielded = encodeBase58(new Uint8Array(64).fill(7));
 
-    expect(explainSearchMiss(shielded).message).toMatch(
-      /^This is a shielded address\./,
+    expect(explainSearchMiss(shielded).message).toBe(
+      "Shielded address: private, not shown",
     );
   });
 
-  it("should offer the .dusk name a word could be", () => {
+  it("should offer the .dusk name a word could be, and add no words to the notice's heading", () => {
     expect(explainSearchMiss(" Alice ")).toStrictEqual({
-      message: "No account, block or transaction matches this.",
+      message: "",
       suggestion: "alice.dusk",
     });
     expect(explainSearchMiss("dusk-domains").suggestion).toBe(
@@ -56,8 +55,7 @@ describe("explainSearchMiss", () => {
   it("should say what can be searched for anything else", () => {
     for (const query of ["bad_name", "-alice", "a b", "0x12ab"]) {
       expect(explainSearchMiss(query)).toStrictEqual({
-        message:
-          "Search by account address, block height or hash, transaction ID or .dusk name.",
+        message: "Try an account, block, transaction ID or .dusk name",
       });
     }
   });

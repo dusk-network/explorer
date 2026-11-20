@@ -27,7 +27,7 @@
 
   /**
    * Whether a call with no plain words for it is named by its contract. A
-   * row whose receiver already is the contract says "Contract call".
+   * row whose receiver already is the contract names the function alone.
    *
    * @type {boolean}
    */
@@ -63,16 +63,20 @@
   $: transferDirection =
     !data.contract && data.method === "transfer" ? direction : undefined;
 
-  // A call shows plain words, or the contract's name, and the function it
-  // ran, unless those words already say it.
+  // What the transaction did, said once: a call's plain words alone, as
+  // "Claim rewards"; else the contract's name and the function it ran, or
+  // the function alone, its icon saying it is a call.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
-        .then(
-          ({ label, name }) =>
-            label ?? (nameContract ? name : null) ?? "Contract call",
-        )
-        .catch(() => "Contract call")
-    : Promise.resolve(plainTypes.get(data.method) ?? data.method);
+        .then(({ label, name }) => ({
+          isPlain: Boolean(label),
+          text: label ?? (nameContract ? name : null) ?? "",
+        }))
+        .catch(() => ({ isPlain: false, text: "" }))
+    : Promise.resolve({
+        isPlain: true,
+        text: plainTypes.get(data.method) ?? data.method,
+      });
 </script>
 
 <div class="transaction-type">
@@ -92,11 +96,15 @@
         >{directionWords[transferDirection]}</span
       >
     {:else}
-      {#await callLabel then label}
-        <span class="transaction-type__label">{label}</span>
-        {#if showMethod && data.contract && data.method && data.method.toLowerCase() !== label.toLowerCase()}
-          <span aria-hidden="true">·</span>
+      {#await callLabel then { isPlain, text }}
+        {#if text}
+          <span class="transaction-type__label">{text}</span>
+        {/if}
+        {#if !isPlain && showMethod && data.contract && data.method && data.method.toLowerCase() !== text.toLowerCase()}
+          {#if text}<span aria-hidden="true">·</span>{/if}
           <code class="transaction-type__method">{data.method}</code>
+        {:else if !text && data.contract}
+          <span class="transaction-type__label">Contract call</span>
         {/if}
       {/await}
     {/if}

@@ -44,9 +44,7 @@
   {loading}
   className={classes}
   title="Transactions"
-  emptyText={isOnHomeScreen
-    ? "No transactions yet."
-    : "No transactions in this block."}
+  emptyText={isOnHomeScreen ? "No transactions yet." : "No transactions"}
   variant="section"
   headerLink={isOnHomeScreen
     ? { href: "/transactions", label: "All transactions" }

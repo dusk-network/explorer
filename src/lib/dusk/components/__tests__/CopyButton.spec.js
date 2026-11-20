@@ -44,7 +44,7 @@ describe("CopyButton", () => {
   it.each([
     ["Transaction ID", "Copy transaction ID"],
     ["Block hash", "Copy block hash"],
-    ["Staking address", "Copy staking address"],
+    ["Staking account", "Copy staking account"],
   ])("should name the button for what it copies (%s)", (name, label) => {
     const { getByRole } = render(CopyButton, {
       props: { name, rawValue: "abc" },

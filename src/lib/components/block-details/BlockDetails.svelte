@@ -96,7 +96,6 @@
         <CopyButton
           name="Block hash"
           rawValue={data.header.hash}
-          text="Copy"
           variant="secondary"
         />
       </svelte:fragment>
@@ -105,14 +104,14 @@
     <ListItem
       tooltipText="The reward allocated to the block generator can fluctuate between 70-80% of the total reward and the flexible 10% can end up being burnt if there's no unanimous vote on a block"
     >
-      <svelte:fragment slot="term">Block reward</svelte:fragment>
+      <svelte:fragment slot="term">Reward</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatDuskExact(data.header.reward)} DUSK</svelte:fragment
       >
     </ListItem>
 
     <ListItem>
-      <svelte:fragment slot="term">Block fees paid</svelte:fragment>
+      <svelte:fragment slot="term">Fees</svelte:fragment>
       <svelte:fragment slot="definition"
         >{formatDuskExact(data.header.feespaid)} DUSK</svelte:fragment
       >
@@ -144,7 +143,7 @@
   <!-- The state root and the raw header, for those who want them. -->
   <details class="block-details__technical detail-technical">
     <summary class="block-details__technical-summary detail-technical__summary"
-      >Technical details<Icon
+      >Details<Icon
         className="detail-technical__chevron"
         path={mdiChevronDown}
       /></summary
@@ -157,7 +156,6 @@
           <CopyButton
             name="State root hash"
             rawValue={data.header.statehash}
-            text="Copy"
             variant="secondary"
           />
         </svelte:fragment>

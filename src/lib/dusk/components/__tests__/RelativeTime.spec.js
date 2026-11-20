@@ -28,7 +28,7 @@ describe("RelativeTime", () => {
     const { container } = render(RelativeTime, baseOptions);
     const textContent = container.firstElementChild?.textContent;
 
-    expect(textContent).toMatchInlineSnapshot(`"20 seconds ago"`);
+    expect(textContent).toMatchInlineSnapshot(`"20 s ago"`);
 
     await vi.advanceTimersByTimeAsync(10000);
 
@@ -40,19 +40,19 @@ describe("RelativeTime", () => {
     const { container } = render(RelativeTime, { ...baseOptions, props });
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"30 seconds ago"`,
+      `"30 s ago"`,
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"31 seconds ago"`,
+      `"31 s ago"`,
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"32 seconds ago"`,
+      `"32 s ago"`,
     );
   });
 
@@ -63,19 +63,19 @@ describe("RelativeTime", () => {
     });
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"The relative time now is 32 seconds ago"`,
+      `"The relative time now is 32 s ago"`,
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"The relative time now is 33 seconds ago"`,
+      `"The relative time now is 33 s ago"`,
     );
 
     await vi.advanceTimersByTimeAsync(1000);
 
     expect(container.firstElementChild?.textContent).toMatchInlineSnapshot(
-      `"The relative time now is 34 seconds ago"`,
+      `"The relative time now is 34 s ago"`,
     );
   });
 });

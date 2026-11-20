@@ -78,9 +78,7 @@ describe("Provisioners List", () => {
         "51ced4fad52fc590def2736969c9e3e30013275a996c53714b81d8a08774aa37",
       ),
     ).toHaveTextContent(/^Sozu relayer$/);
-    expect(ownedBy("ab".repeat(32))).toHaveTextContent(
-      /^Contract ababab…ababab$/,
-    );
+    expect(ownedBy("ab".repeat(32))).toHaveTextContent(/^Contract abab…abab$/);
 
     await act(() =>
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),

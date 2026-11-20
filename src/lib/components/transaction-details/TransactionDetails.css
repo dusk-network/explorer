@@ -94,9 +94,9 @@
   font-size: 0.8rem;
 }
 
-.transaction-details__function {
-  font-size: 0.8125rem;
-  overflow-wrap: anywhere;
+/* The headline's words, a call's function too, at the headline's size. */
+.transaction-details__summary-text .transaction-type__method {
+  font-size: inherit;
 }
 
 /* A contract's name, and an account's when the network's labels name it. */
@@ -109,17 +109,12 @@
   color: var(--calm-muted);
 }
 
-/* Public or shielded, and under it what that shows everyone. */
+/* Public or shielded. */
 .transaction-details__visibility {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.125rem;
-}
-
-.transaction-details__visibility-seen {
-  color: var(--calm-muted);
-  font-size: 0.8125rem;
 }
 
 /* Wide screens: at the start of the value's column, as every value. */

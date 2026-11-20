@@ -81,10 +81,6 @@
   white-space: nowrap;
 }
 
-.transaction__fee .row-unit {
-  color: var(--calm-subtle);
-}
-
 /* On the home page, the time goes under the amount. */
 .transactions-table--compact .row-amount,
 .transactions-table--compact .transaction__time {

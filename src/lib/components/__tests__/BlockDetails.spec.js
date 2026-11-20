@@ -109,8 +109,8 @@ describe("Block Details", () => {
       }),
     ).toStrictEqual([
       "Hash",
-      "Block reward",
-      "Block fees paid",
+      "Reward",
+      "Fees",
       "Gas used",
       "Average gas price",
       "State root hash",
@@ -120,7 +120,7 @@ describe("Block Details", () => {
       getAllByRole("button", { name: /^About / }).map((help) =>
         help.getAttribute("aria-label"),
       ),
-    ).toStrictEqual(["About block reward", "About gas used"]);
+    ).toStrictEqual(["About reward", "About gas used"]);
   });
 
   it("should render the Block Details component with the payload visible", async () => {

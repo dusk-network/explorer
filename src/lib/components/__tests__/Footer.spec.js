@@ -31,12 +31,25 @@ describe("Footer", () => {
     expect(links().slice(0, 4)).toStrictEqual([
       ["Mainnet", "https://explorer.dusk.network"],
       ["Devnet", "https://explorer.devnet.dusk.network"],
-      ["Privacy policy", "https://dusk.network/privacy-policy"],
-      ["Terms of use", "https://dusk.network/terms-of-use"],
+      ["Privacy", "https://dusk.network/privacy-policy"],
+      ["Terms", "https://dusk.network/terms-of-use"],
     ]);
 
     await act(() =>
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),
     );
+  });
+
+  it("should give the copyright as it is, and the version with its build's commit", () => {
+    const { container } = render(Footer);
+    const lines = Array.from(
+      container.querySelectorAll(".footer__copyright-container p"),
+      (line) => line.textContent?.replace(/\s+/g, " ").trim(),
+    );
+
+    expect(lines).toStrictEqual([
+      "© 2018 - 2025 Dusk Network B.V. All Rights Reserved.",
+      "v0.0.0 · hash1234",
+    ]);
   });
 });

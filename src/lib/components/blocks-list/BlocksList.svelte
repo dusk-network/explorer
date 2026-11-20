@@ -51,7 +51,6 @@
       {#if data.header.generator}<span aria-hidden="true">·</span>
         by
         <TransactionParty
-          narrow
           party={{ address: data.header.generator, kind: "account" }}
         />{/if}
     </span>

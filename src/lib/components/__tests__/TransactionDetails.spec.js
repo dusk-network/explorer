@@ -30,6 +30,13 @@ vi.mock("$lib/dusk-domains", async (importOriginal) => ({
 const toHex = (text) => Buffer.from(text, "utf8").toString("hex");
 
 /**
+ * An account or an ID as the page shortens one that isn't its own.
+ *
+ * @param {string} value
+ */
+const short = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
+
+/**
  * A term as it reads, without its help.
  *
  * @param {Element} dt
@@ -160,32 +167,30 @@ describe("Transaction Details", () => {
   it("should lead with the status, the parties and the amount, and end with the technical details", () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    // The status and the time are in the line under the sentence.
+    // The status and the time are in the line under the headline, which
+    // says what it did: no row for its type.
     expect(getTerms(container)).toStrictEqual([
       "id",
       "from",
       "to",
       "amount",
-      "fee paid",
-      "type",
+      "fee",
       "visibility",
       "memo",
-      "block height",
+      "block",
       "gas used",
       "gas price",
       "nonce",
       "payload",
     ]);
 
-    // Gas, the nonce and the payload are folded under "Technical details".
+    // Gas, the nonce and the payload are folded under "Details".
     const technical = /** @type {HTMLDetailsElement} */ (
       container.querySelector("details")
     );
 
     expect(technical.open).toBe(false);
-    expect(technical.querySelector("summary")).toHaveTextContent(
-      "Technical details",
-    );
+    expect(technical.querySelector("summary")).toHaveTextContent("Details");
     expect(Array.from(technical.querySelectorAll("dt"), termOf)).toStrictEqual([
       "gas used",
       "gas price",
@@ -194,7 +199,7 @@ describe("Transaction Details", () => {
     ]);
   });
 
-  it("should show a call's method among the main rows, not folded away", () => {
+  it("should give a call's function in the headline, once, and in no row", async () => {
     const { container } = render(TransactionDetails, {
       ...baseProps,
       data: {
@@ -204,30 +209,20 @@ describe("Transaction Details", () => {
         method: "schedule",
       },
     });
-    const terms = getTerms(container);
 
-    expect(terms[terms.indexOf("type") + 1]).toBe("method");
-    expect(getDefinition(container, "method")).toBe("schedule");
-    expect(
-      Array.from(
-        /** @type {HTMLElement} */ (
-          container.querySelector("details")
-        ).querySelectorAll("dt"),
-        termOf,
-      ),
-    ).not.toContain("method");
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-details__summary-text"),
+      ).toHaveTextContent(/^schedule$/),
+    );
+    expect(getTerms(container)).not.toContain("method");
+    expect(getTerms(container)).not.toContain("type");
     expect(
       container.querySelector("summary .detail-technical__chevron"),
     ).toBeInTheDocument();
   });
 
-  it("should lead with one sentence: who sent how much to whom, the status, and the time in the viewer's zone", async () => {
-    vi.mocked(getPrimaryName).mockImplementation(async (address) =>
-      address === baseProps.data.from
-        ? { name: "alice.dusk", url: "https://dusk.domains/name/alice.dusk" }
-        : null,
-    );
-
+  it("should lead with what it did, said once, then the status and the time in the viewer's zone: who with and how much are the rows", async () => {
     const { container } = render(TransactionDetails, baseProps);
     const summary = () =>
       container
@@ -237,12 +232,11 @@ describe("Transaction Details", () => {
 
     await vi.waitFor(() =>
       expect(summary()).toBe(
-        "alice.dusk sent 9,812.378912731 DUSK to mHWZo9…pjiUnj Completed · Tue 16 Apr 2024, 6:39:09 AM UTC",
+        "Transfer Completed · 16 Apr 2024, 6:39:09 AM UTC",
       ),
     );
 
     cleanup();
-    vi.mocked(getPrimaryName).mockResolvedValue(null);
 
     const failed = render(TransactionDetails, {
       ...baseProps,
@@ -252,19 +246,6 @@ describe("Transaction Details", () => {
     expect(
       failed.container.querySelector(".transaction-details__outcome--failed"),
     ).toHaveTextContent("Failed");
-  });
-
-  it("should keep the sentence's shortened IDs whole, as a line may break after their '…'", () => {
-    const { container } = render(TransactionDetails, baseProps);
-
-    expect(
-      Array.from(
-        container.querySelectorAll(
-          ".transaction-details__summary-text .detail-summary__id",
-        ),
-        (id) => id.textContent,
-      ),
-    ).toStrictEqual(["kT5Bam…LwKbXj", "mHWZo9…pjiUnj"]);
   });
 
   it("should give the status in its colour: green when it went through, red when it failed", () => {
@@ -287,12 +268,12 @@ describe("Transaction Details", () => {
     expect(failed).not.toHaveClass("transaction-details__outcome--completed");
   });
 
-  it("should give the status and the time in the viewer's zone once, under the sentence", () => {
+  it("should give the status and the time in the viewer's zone once, under the headline", () => {
     const { container } = render(TransactionDetails, baseProps);
 
     expect(
       container.querySelector(".transaction-details__summary-meta"),
-    ).toHaveTextContent(/^Completed · Tue 16 Apr 2024, 6:39:09 AM UTC$/);
+    ).toHaveTextContent(/^Completed · 16 Apr 2024, 6:39:09 AM UTC$/);
     expect(getTerms(container)).not.toContain("status");
     expect(getTerms(container)).not.toContain("timestamp");
   });
@@ -306,7 +287,7 @@ describe("Transaction Details", () => {
     // The line's parts keep together; only the time may wrap, inside itself.
     expect(
       Array.from(meta.children, (part) => part.textContent?.trim()),
-    ).toStrictEqual(["Completed", "·", "Tue 16 Apr 2024, 6:39:09 AM UTC"]);
+    ).toStrictEqual(["Completed", "·", "16 Apr 2024, 6:39:09 AM UTC"]);
     expect(meta.lastElementChild).toHaveClass("transaction-details__time");
   });
 
@@ -347,18 +328,12 @@ describe("Transaction Details", () => {
         "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01↗ on DuskEVM",
       );
       expect(getDefinition(container, "contract")).toBe(
-        `DuskEVM bridge ${bridge}`,
+        `DuskEVM bridge ${short(bridge)}`,
       );
-      expect(getDefinition(container, "type")).toBe("Deposit to DuskEVM");
-      expect(getDefinition(container, "method")).toBe("depositETHToWithValue");
-      expect(getDefinition(container, "visibility")).toBe(
-        "Public Sender, receiver and amount are visible to everyone",
-      );
+      expect(getDefinition(container, "visibility")).toBe("Public");
       expect(
         container.querySelector(".transaction-details__summary-text"),
-      ).toHaveTextContent(
-        /^kT5Bam…LwKbXj sent 0\.5 DUSK to 0x5A3d…8a01 on DuskEVM$/,
-      );
+      ).toHaveTextContent(/^Deposit to DuskEVM$/);
     });
 
     // The address opens on the testnet's DuskEVM explorer, its arrow
@@ -455,7 +430,9 @@ describe("Transaction Details", () => {
       });
 
       await vi.waitFor(() =>
-        expect(getDefinition(container, "type")).toMatch(/\w/),
+        expect(
+          container.querySelector(".transaction-details__summary-text"),
+        ).toHaveTextContent(/\w/),
       );
       cleanup();
     }
@@ -465,7 +442,7 @@ describe("Transaction Details", () => {
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should strike through what a failed transaction would have sent, and say its sender only tried", async () => {
+  it("should strike through what a failed transaction would have sent, under a headline that says what it tried", async () => {
     const style = document.createElement("style");
 
     style.textContent = readCss(
@@ -501,10 +478,8 @@ describe("Transaction Details", () => {
     );
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".transaction-details__summary-text"),
-      ).toHaveTextContent(
-        /^kT5Bam…LwKbXj tried to send 9,812\.378912731 DUSK to mHWZo9…pjiUnj$/,
-      ),
+        container.querySelector(".transaction-details__summary"),
+      ).toHaveTextContent(/^Transfer\s+Failed/),
     );
 
     cleanup();
@@ -535,7 +510,7 @@ describe("Transaction Details", () => {
     ).toStrictEqual([
       "The gas the transaction used, of the most it could use. Only the gas used is paid for",
       "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
-      "The number of transactions sent from this address",
+      "The number of transactions sent from this account",
     ]);
     expect(helps[1].tagName).toBe("BUTTON");
     expect(helps[1]).toHaveAccessibleDescription(
@@ -543,15 +518,31 @@ describe("Transaction Details", () => {
     );
   });
 
-  it("should show amounts in DUSK, with dollars rounded to cents", () => {
+  it("should show amounts in DUSK, with dollars rounded to cents where there's a cent or more, and the fee in DUSK alone", () => {
     const { container } = render(TransactionDetails, baseProps);
 
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(getDefinition(container, "fee paid")).toBe(
-      "0.000290766 DUSK (< $0.01)",
-    );
+    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK");
+
+    cleanup();
+
+    // A call that sent nothing: "0 DUSK", not "0 DUSK ($0.00)".
+    const call = render(TransactionDetails, {
+      ...baseProps,
+      data: {
+        ...baseProps.data,
+        amount: 0,
+        contract:
+          "0200000000000000000000000000000000000000000000000000000000000000",
+        deposit: 0,
+        method: "withdraw",
+        to: null,
+      },
+    }).container;
+
+    expect(getDefinition(call, "amount")).toBe("0 DUSK");
   });
 
   it("should show amounts in DUSK when there is no price", () => {
@@ -561,7 +552,7 @@ describe("Transaction Details", () => {
     });
 
     expect(getDefinition(container, "amount")).toBe("9,812.378912731 DUSK");
-    expect(getDefinition(container, "fee paid")).toBe("0.000290766 DUSK");
+    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK");
   });
 
   it("should give gas as the Dusk wallets do: the gas used of the limit, and the price in LUX", () => {
@@ -571,23 +562,27 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "gas price")).toBe("1 LUX");
   });
 
-  it("should give its own ID in full to copy, as it opens nothing, and the addresses as links", () => {
+  it("should give its own ID in full to copy, as it opens nothing, and the accounts short as links, whole on hover", () => {
     const { container, getByRole, queryByRole } = render(
       TransactionDetails,
       baseProps,
     );
+    const from = String(transaction.from);
+    const to = String(transaction.to);
 
     expect(getDefinition(container, "id")).toBe(transaction.txid);
     expect(queryByRole("link", { name: transaction.txid })).toBeNull();
-    expect(
-      getByRole("link", { name: /** @type {string} */ (transaction.from) }),
-    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.from}`);
-    expect(
-      getByRole("link", { name: /** @type {string} */ (transaction.to) }),
-    ).toHaveAttribute("href", `${base}/accounts/?key=${transaction.to}`);
+
+    const sender = getByRole("link", { name: short(from) });
+    const receiver = getByRole("link", { name: short(to) });
+
+    expect(sender).toHaveAttribute("href", `${base}/accounts/?key=${from}`);
+    expect(sender).toHaveAttribute("title", from);
+    expect(receiver).toHaveAttribute("href", `${base}/accounts/?key=${to}`);
+    expect(receiver).toHaveAttribute("title", to);
   });
 
-  it("should give the ID and the addresses in full, their ends set apart, each with a Copy", () => {
+  it("should give the ID in full, its ends set apart, and each value a copy button, its icon alone", () => {
     const { container, getByRole } = render(TransactionDetails, baseProps);
     const id = /** @type {Element} */ (
       Array.from(container.querySelectorAll("dt")).find(
@@ -600,15 +595,13 @@ describe("Transaction Details", () => {
         end.textContent?.trim(),
       ),
     ).toStrictEqual([transaction.txid.slice(0, 6), transaction.txid.slice(-6)]);
-    expect(
-      getByRole("button", { name: "Copy transaction ID" }),
-    ).toHaveTextContent(/^Copy$/);
-    expect(
-      getByRole("button", { name: "Copy sender's address" }),
-    ).toHaveTextContent(/^Copy$/);
-    expect(
-      getByRole("button", { name: "Copy receiver's address" }),
-    ).toHaveTextContent(/^Copy$/);
+    for (const name of [
+      "Copy transaction ID",
+      "Copy sender's account",
+      "Copy receiver's account",
+    ]) {
+      expect(getByRole("button", { name })).toHaveTextContent(/^$/);
+    }
   });
 
   it("should show the memo as text, with hex as an option", async () => {
@@ -657,13 +650,18 @@ describe("Transaction Details", () => {
 
     await vi.waitFor(() => {
       expect(getDefinition(container, "contract")).toBe(
-        `Stake contract ${stake}`,
+        `Stake contract ${short(stake)}`,
       );
-      // Plain words for the type; the method has its own row.
-      expect(getDefinition(container, "type")).toBe("Claim rewards");
+      // Plain words in the headline; the function's name is the contract's.
+      expect(
+        container.querySelector(".transaction-details__summary-text"),
+      ).toHaveTextContent(/^Claim rewards$/);
     });
+    expect(
+      container.querySelector(".transaction-details__contract-id"),
+    ).toHaveAttribute("title", stake);
     expect(getTerms(container)).not.toContain("to");
-    expect(getDefinition(container, "method")).toBe("withdraw");
+    expect(container.textContent).not.toContain("withdraw");
   });
 
   it("should give no method for a transaction that calls no contract", () => {
@@ -705,20 +703,18 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "from")).toBe("Shielded");
     expect(getDefinition(container, "to")).toBe("Shielded");
     expect(getDefinition(container, "amount")).toBe("Shielded");
-    expect(getDefinition(container, "visibility")).toBe(
-      "Shielded Sender, receiver and amount are hidden",
-    );
+    expect(getDefinition(container, "visibility")).toBe("Shielded");
   });
 
-  it("should say in a row of its own that a transaction is public, and what that shows", async () => {
+  it("should say in a row of its own that a transaction is public: the word says what it shows", async () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(getDefinition(container, "visibility")).toBe(
-      "Public Sender, receiver and amount are visible to everyone",
-    );
-    // Not as a tag beside the type any more.
+    expect(getDefinition(container, "visibility")).toBe("Public");
+    // Not as a tag beside the headline.
     await vi.waitFor(() =>
-      expect(getDefinition(container, "type")).toBe("Transfer"),
+      expect(
+        container.querySelector(".transaction-details__summary-text"),
+      ).toHaveTextContent(/^Transfer$/),
     );
     expect(container.querySelector(".transaction-type__privacy")).toBeNull();
   });
@@ -766,13 +762,11 @@ describe("Transaction Details", () => {
     });
 
     await vi.waitFor(() =>
-      expect(
-        container.querySelector(".transaction-details__summary-text"),
-      ).toHaveTextContent(
-        /^bob\.dusk sent 9,812\.378912731 DUSK to BSC bridge$/,
-      ),
+      expect(getDefinition(container, "from")).toMatch(/^bob\.dusk/),
     );
-    expect(getDefinition(container, "to")).toBe(`BSC bridge ${bscBridge}`);
+    expect(getDefinition(container, "to")).toBe(
+      `BSC bridge ${short(bscBridge)}`,
+    );
 
     vi.mocked(getPrimaryName).mockResolvedValue(null);
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
@@ -791,13 +785,10 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(getDefinition(container, "fee paid")).toBe(
-      "0.000290766 DUSK (< $0.01)",
-    );
+    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK");
   });
 
   it("should say what a call to the stake contract did, in its type's words, as the Dusk wallets do", async () => {
-    const sender = String(baseProps.data.from);
     const call = {
       ...baseProps.data,
       amount: 0,
@@ -806,23 +797,11 @@ describe("Transaction Details", () => {
       deposit: 0,
       to: null,
     };
-    /** @type {[any, string, string][]} */
+    /** @type {[any, string][]} */
     const cases = [
-      [
-        { ...call, deposit: 442_409_461_511, method: "stake" },
-        `${sender.slice(0, 6)}…${sender.slice(-6)} staked 442.409461511 DUSK`,
-        "Stake",
-      ],
-      [
-        { ...call, method: "unstake" },
-        `${sender.slice(0, 6)}…${sender.slice(-6)} unstaked`,
-        "Unstake",
-      ],
-      [
-        { ...call, method: "withdraw" },
-        `${sender.slice(0, 6)}…${sender.slice(-6)} claimed rewards`,
-        "Claim rewards",
-      ],
+      [{ ...call, deposit: 442_409_461_511, method: "stake" }, "Stake"],
+      [{ ...call, method: "unstake" }, "Unstake"],
+      [{ ...call, method: "withdraw" }, "Claim rewards"],
       [
         {
           ...call,
@@ -830,10 +809,9 @@ describe("Transaction Details", () => {
           method: "stake",
           txerror: "Panic",
         },
-        `${sender.slice(0, 6)}…${sender.slice(-6)} tried to stake 1,000 DUSK`,
         "Stake",
       ],
-      // A shielded claim hides who claimed, and sends no DUSK to hide.
+      // A shielded claim, which hides who claimed.
       [
         {
           ...call,
@@ -842,25 +820,25 @@ describe("Transaction Details", () => {
           method: "withdraw",
           txtype: "Phoenix",
         },
-        "A shielded account claimed rewards",
         "Claim rewards",
       ],
     ];
 
-    for (const [data, sentence, type] of cases) {
+    for (const [data, headline] of cases) {
       const { container } = render(TransactionDetails, { ...baseProps, data });
 
-      await vi.waitFor(() => {
+      await vi.waitFor(() =>
         expect(
           container
             .querySelector(".transaction-details__summary-text")
             ?.textContent?.replace(/\s+/g, " ")
             .trim(),
-        ).toBe(sentence);
-        expect(getDefinition(container, "type")).toBe(type);
-      });
-      // The function's own name stays a technical detail.
-      expect(getDefinition(container, "method")).toBe(data.method);
+        ).toBe(headline),
+      );
+      // Said once: no row repeats it, and the function's own name is the
+      // contract's business.
+      expect(getTerms(container)).not.toContain("type");
+      expect(getTerms(container)).not.toContain("method");
       cleanup();
     }
   });

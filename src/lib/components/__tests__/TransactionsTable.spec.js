@@ -88,14 +88,15 @@ describe("Transactions Table", () => {
         "Transaction",
         "ID",
         "Time",
-        "Fee",
-        "Amount",
+        "Fee (DUSK)",
+        "Amount (DUSK)",
       ]);
       expect(readOut(rows[0], ".transaction__parties")).toBe(
-        `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
+        `From ${transfer.from?.slice(0, 4)}…${transfer.from?.slice(-4)} To ${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
       );
+      // The unit is the column's: the cell is the number.
       expect(getCells(/** @type {HTMLElement} */ (rows[0]))[4]).toBe(
-        "9,812.3789 DUSK",
+        "9,812.3789",
       );
       // Four decimals at most, as in the wallets, and every one on hover. A
       // fee under 0.01 DUSK keeps two significant digits, to the nearest.
@@ -109,26 +110,26 @@ describe("Transactions Table", () => {
       );
       expect(
         getByRole("link", {
-          name: `${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
+          name: `${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
         }),
       ).toHaveAttribute("href", `/some-base-path/accounts/?key=${transfer.to}`);
       await vi.waitFor(() => {
         expect(readOut(rows[1], ".transaction__parties")).toBe(
-          `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To Stake contract`,
+          `From ${transfer.from?.slice(0, 4)}…${transfer.from?.slice(-4)} To Stake contract`,
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
+          "Failed · Claim rewards",
         );
       });
-      expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
+      expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0");
       expect(rows[1].querySelector(".row-amount")).toHaveClass(
         "row-amount--muted",
       );
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
     });
 
-    it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+    it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
       const convert = {
         ...call,
         contract: "01".padEnd(64, "0"),
@@ -157,11 +158,9 @@ describe("Transactions Table", () => {
           / To Transfer contract$/,
         );
         // Plain words only: the function's name is for the transaction page.
-        expect(textOf(toContract, ".transaction__line")).toBe(
-          "Contract call · convert",
-        );
+        expect(textOf(toContract, ".transaction__line")).toBe("convert");
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
-          ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
+          ` To ${transfer.to?.slice(0, 4)}…${transfer.to?.slice(-4)}`,
         );
         expect(textOf(toAccount, ".transaction__line")).toBe(
           "Transfer contract · convert",
@@ -169,7 +168,7 @@ describe("Transactions Table", () => {
       });
     });
 
-    it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", async () => {
+    it("should give each time in full on hover, in the viewer's zone, and IDs as four and four characters", async () => {
       const { container } = render(TransactionsTable, {
         props: {
           data: [
@@ -183,10 +182,10 @@ describe("Transactions Table", () => {
       // The tests run in UTC.
       expect(container.querySelector("time")).toHaveAttribute(
         "data-tooltip-text",
-        "Tue 16 Apr 2024, 6:39:09 AM UTC",
+        "16 Apr 2024, 6:39:09 AM UTC",
       );
       expect(container.querySelector(".transaction__link")).toHaveTextContent(
-        `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`,
+        `${transfer.txid.slice(0, 4)}…${transfer.txid.slice(-4)}`,
       );
       await vi.waitFor(() =>
         expect(
@@ -194,7 +193,7 @@ describe("Transactions Table", () => {
             container.querySelectorAll("tbody tr")[1],
             ".transaction__parties",
           ),
-        ).toMatch(/ To Contract ababab…ababab$/),
+        ).toMatch(/ To Contract abab…abab$/),
       );
     });
 
@@ -281,14 +280,12 @@ describe("Transactions Table", () => {
         getComputedStyle(amount).textDecoration.includes("line-through");
 
       expect(failedShield.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "20 DUSK, nothing sent",
+        "20, nothing sent",
       );
       expect(struck(failedShield)).toBe(true);
       // A failure that would have sent nothing, and a shield that went through.
       expect(struck(failedCall)).toBe(false);
-      expect(shieldDone.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "−20 DUSK",
-      );
+      expect(shieldDone.textContent?.replace(/\s+/g, " ").trim()).toBe("−20");
       expect(struck(shieldDone)).toBe(false);
 
       style.remove();
@@ -303,17 +300,17 @@ describe("Transactions Table", () => {
       expect(getHeaders(container)).toStrictEqual([
         "Transaction",
         "ID",
-        "Amount",
+        "Amount (DUSK)",
       ]);
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
       await vi.waitFor(() =>
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
+          "Failed · Claim rewards",
         ),
       );
       expect(
         rows[0].querySelectorAll("td")[2].querySelector("time"),
-      ).toHaveAttribute("data-tooltip-text", "Tue 16 Apr 2024, 6:39:09 AM UTC");
+      ).toHaveAttribute("data-tooltip-text", "16 Apr 2024, 6:39:09 AM UTC");
     });
   });
 
@@ -339,6 +336,6 @@ describe("Transactions Table", () => {
       Array.from(container.querySelectorAll(".row-amount"), (amount) =>
         amount.textContent?.replace(/\s+/g, " ").trim(),
       ),
-    ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
+    ).toStrictEqual(["−9,812.3789", "+9,812.3789"]);
   });
 });

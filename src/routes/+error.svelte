@@ -9,7 +9,7 @@
 
 <!-- A page that isn't there, or that failed: said plainly, with the way home. -->
 <section class="error-message">
-  <p class="error-message__status">Error {status}</p>
+  <p class="error-message__status">{status}</p>
   <h1 class="error-message__title">
     {status === 404 ? "Page not found" : "Something went wrong"}
   </h1>

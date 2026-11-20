@@ -836,7 +836,7 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: true }));
 
     await expect(duskAPI.getTransaction(fakeID)).resolves.toBe(
-      "This transaction is currently in the mempool and has not yet been confirmed. The transaction details will be displayed after confirmation.",
+      "Its details show once it's in a block.",
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
@@ -850,7 +850,7 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: null }));
 
     await expect(duskAPI.getTransaction(fakeID)).rejects.toThrow(
-      "Transaction not found",
+      "No transaction with this ID",
     );
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);

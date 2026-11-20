@@ -60,4 +60,40 @@ describe("getRelativeTimeString", () => {
       getRelativeTimeString(new Date(Date.now() + 59.6 * SECOND), "long"),
     ).toBe("in 1 minute");
   });
+
+  it("should write the units short, compact, and keep the words for one day, week, month or year", () => {
+    vi.useFakeTimers({ now: new Date(2026, 9, 27, 12) });
+
+    const SECOND = 1000;
+    const MINUTE = 60 * SECOND;
+    const HOUR = 60 * MINUTE;
+    const DAY = 24 * HOUR;
+
+    /** @param {number} ms */
+    const ago = (ms) =>
+      getRelativeTimeString(new Date(Date.now() - ms), "compact");
+
+    expect(ago(0)).toBe("now");
+    expect(ago(1 * SECOND)).toBe("1 s ago");
+    expect(ago(18 * SECOND)).toBe("18 s ago");
+    expect(ago(1 * MINUTE)).toBe("1 min ago");
+    expect(ago(40 * MINUTE)).toBe("40 min ago");
+    expect(ago(3 * HOUR)).toBe("3 h ago");
+    expect(ago(1 * DAY)).toBe("yesterday");
+    expect(ago(2 * DAY)).toBe("2 d ago");
+    expect(ago(7 * DAY)).toBe("last week");
+    expect(ago(14 * DAY)).toBe("2 wk ago");
+    expect(ago(30 * DAY)).toBe("last month");
+    expect(ago(60 * DAY)).toBe("2 mo ago");
+    expect(ago(365 * DAY)).toBe("last year");
+    expect(ago(730 * DAY)).toBe("2 y ago");
+
+    // Ahead as well as behind.
+    expect(
+      getRelativeTimeString(new Date(Date.now() + 3 * HOUR), "compact"),
+    ).toBe("in 3 h");
+    expect(getRelativeTimeString(new Date(Date.now() + DAY), "compact")).toBe(
+      "tomorrow",
+    );
+  });
 });

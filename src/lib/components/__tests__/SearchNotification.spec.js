@@ -24,7 +24,7 @@ describe("Search Notification", () => {
       props: {
         data: {
           query: "alice",
-          res: new Error("No account, block or transaction matches this."),
+          res: new Error(""),
           suggestion: "alice.dusk",
         },
       },
@@ -35,6 +35,23 @@ describe("Search Notification", () => {
     expect(onSuggest).toHaveBeenCalledExactlyOnceWith(
       expect.objectContaining({ detail: "alice.dusk" }),
     );
+  });
+
+  it("should give a whole ID or address short, as the lists show one, and anything else as typed", () => {
+    /** @param {string} query */
+    const shown = (query) => {
+      cleanup();
+
+      return render(SearchNotification, {
+        props: { data: { query, res: new Error("") } },
+      }).container.querySelector(".search-notification__content-query")
+        ?.textContent;
+    };
+
+    expect(shown("ab".repeat(32))).toBe("abab…abab");
+    expect(shown("e5f314fb49a8a2f8")).toBe("e5f314fb49a8a2f8");
+    expect(shown("dc3f73…1c204a")).toBe("dc3f73…1c204a");
+    expect(shown("alice.dusk")).toBe("alice.dusk");
   });
 
   it("should dispatch a 'close' event when the button is clicked", async () => {

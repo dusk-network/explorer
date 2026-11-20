@@ -32,8 +32,8 @@
   export let variant = "tertiary";
 
   /**
-   * A word to show beside the icon, as the details' "Copy". Without it the
-   * button is the icon alone, with a tooltip.
+   * A word to show beside the icon. Without it, as everywhere in the app,
+   * the button is the icon alone, with a tooltip.
    *
    * @type {string | undefined}
    */

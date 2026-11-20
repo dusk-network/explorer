@@ -85,14 +85,14 @@ describe("The home page, following the chain", () => {
       // Within half a second of the node announcing it.
       expect(listed()[0]).toBe(block.hash);
       expect(lastBlock()).toBe(String(block.height));
-      expect(noteOf(1)).toMatch(/^(now|1 second ago)$/);
+      expect(noteOf(1)).toMatch(/^(now|1 s ago)$/);
     }
 
     // The last block's age, and the transactions by kind, from what the
     // page reads anyway.
     await vi.advanceTimersByTimeAsync(5_000);
 
-    expect(noteOf(1)).toBe("6 seconds ago");
+    expect(noteOf(1)).toBe("6 s ago");
     expect(noteOf(2)).toBe(`${withTransactions} public · 0 shielded`);
 
     const since = fake.log.slice(opened);

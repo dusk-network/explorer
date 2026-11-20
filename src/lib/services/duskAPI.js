@@ -391,9 +391,9 @@ const duskAPI = {
             .then(getKey("mempoolTx"))
             .then((mempoolTx) => {
               if (mempoolTx) {
-                return "This transaction is currently in the mempool and has not yet been confirmed. The transaction details will be displayed after confirmation.";
+                return "Its details show once it's in a block.";
               } else {
-                throw new Error("Transaction not found");
+                throw new Error("No transaction with this ID");
               }
             });
         } else {

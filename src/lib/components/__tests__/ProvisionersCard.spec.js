@@ -52,7 +52,7 @@ describe("Provisioners Card", () => {
       props: { ...baseProps, provisioners: hostProvisioners },
     });
     const search = getByRole("searchbox", {
-      name: "Search provisioners by staking or owner address, or .dusk name",
+      name: "Search provisioners by staking or owner account, or .dusk name",
     });
     const rows = () =>
       Array.from(container.querySelectorAll("tbody tr"), (row) =>
@@ -71,7 +71,7 @@ describe("Provisioners Card", () => {
 
     expect(rows()).toStrictEqual([]);
     expect(container.textContent).toContain(
-      "No provisioner has an address with “no such address”.",
+      "No provisioner matches “no such address”",
     );
     // Nothing found has no count to give.
     expect(container.querySelector(".data-card__count")).toBeNull();
@@ -104,7 +104,7 @@ describe("Provisioners Card", () => {
     await fireEvent.input(search, { target: { value: "alice.dusk" } });
 
     expect(
-      await findByText("No provisioner has alice.dusk's address."),
+      await findByText("No provisioner for alice.dusk"),
     ).toBeInTheDocument();
 
     vi.mocked(resolveDuskName).mockRejectedValueOnce(

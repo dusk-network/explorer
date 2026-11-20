@@ -29,7 +29,7 @@ describe("Transactions List", () => {
   };
 
   /** @param {string} value */
-  const short = (value) => `${value.slice(0, 6)}…${value.slice(-6)}`;
+  const short = (value) => `${value.slice(0, 4)}…${value.slice(-4)}`;
 
   /**
    * An address as a phone's row gives it: its first and last four
@@ -69,7 +69,7 @@ describe("Transactions List", () => {
     ).toStrictEqual(["9,812.378912731 DUSK"]);
     expect(container.querySelector("time")).toHaveAttribute(
       "data-tooltip-text",
-      "Tue 16 Apr 2024, 6:39:09 AM UTC",
+      "16 Apr 2024, 6:39:09 AM UTC",
     );
     expect(
       getByRole("link", { name: `Transaction ${short(transaction.txid)}` }),
@@ -80,7 +80,7 @@ describe("Transactions List", () => {
     expect(container.textContent).not.toMatch(/gas|fee/i);
   });
 
-  it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+  it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
     const call = {
       ...transaction,
       amount: 0,
@@ -95,11 +95,11 @@ describe("Transactions List", () => {
       data: { ...call, amount: 1_000_000_000, to: transaction.to },
     }).container;
 
-    // Plain words, and the function it ran.
+    // The function it ran, said once: the row names the contract.
     await vi.waitFor(() => {
       expect(
         toContract.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^Contract call · \S+$/);
+      ).toHaveTextContent(/^convert$/);
       expect(
         toAccount.querySelector(".transaction-row__line"),
       ).toHaveTextContent(/^Transfer contract · \S+$/);
@@ -131,11 +131,11 @@ describe("Transactions List", () => {
     await vi.waitFor(() =>
       expect(
         lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim()),
-      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"]),
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards"]),
     );
   });
 
-  it("should give the sender's address short, so the receiver's name keeps its room", async () => {
+  it("should give the sender's account short, so the receiver's name keeps its room", async () => {
     const { container } = render(TransactionsList, {
       data: {
         ...transaction,
@@ -191,7 +191,7 @@ describe("Transactions List", () => {
         rows[1]
           .closest(".transaction-row")
           ?.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^Contract call · \S+$/),
+      ).toHaveTextContent(/^[a-z_]+$/),
     );
 
     // On testnet, whose file labels both.
@@ -306,19 +306,19 @@ describe("Transactions List", () => {
     await rerender({ ...props, autoRefreshTime: true });
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->3 seconds ago<!---->"`,
+      `"<!----><!----><!---->3 s ago<!---->"`,
     );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->4 seconds ago<!---->"`,
+      `"<!----><!----><!---->4 s ago<!---->"`,
     );
 
     await vi.advanceTimersByTimeAsync(timeRefreshInterval);
 
     expect(timeElement.innerHTML).toMatchInlineSnapshot(
-      `"<!----><!----><!---->5 seconds ago<!---->"`,
+      `"<!----><!----><!---->5 s ago<!---->"`,
     );
   });
 });

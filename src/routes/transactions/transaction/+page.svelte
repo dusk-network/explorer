@@ -27,7 +27,7 @@
 
 <section class="transaction">
   {#if typeof data === "string"}
-    <Banner title="This transaction is being processed" variant="info">
+    <Banner title="Not confirmed yet" variant="info">
       {data}
     </Banner>
   {:else}

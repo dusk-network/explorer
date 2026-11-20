@@ -69,7 +69,7 @@
   // to the city; the map groups them by city.
   $: located = nodesData?.reduce((sum, { count }) => sum + count, 0) ?? 0;
   $: locatedNodes =
-    located === 1 ? "1 node" : located ? `${located} nodes` : "the nodes";
+    located === 1 ? "1 node" : located ? `${located} nodes` : "Nodes";
 
   /**
    * Live while new blocks come, waiting once the newest one came over 30
@@ -109,17 +109,16 @@
     const percent = Math.abs(change).toFixed(2);
 
     if (percent === "0.00") {
-      return { more: null, text: "Unchanged in 24h", way: null };
+      return { more: null, text: "Unchanged (24h)", way: null };
     }
 
     return change < 0
-      ? { more: null, text: `Down ${percent}% in 24h`, way: "down" }
-      : { more: null, text: `Up ${percent}% in 24h`, way: "up" };
+      ? { more: null, text: `−${percent}% (24h)`, way: "down" }
+      : { more: null, text: `+${percent}% (24h)`, way: "up" };
   }
 
   /**
    * @typedef {{
-   *   approximate: boolean,
    *   attributes: Record<string, string> | null,
    *   canBeStale: boolean,
    *   compact: boolean | null,
@@ -142,7 +141,6 @@
    * @returns {Statistic}
    */
   const statistic = (title, data, rest = {}) => ({
-    approximate: false,
     attributes: null,
     canBeStale: false,
     compact: true,
@@ -163,7 +161,6 @@
    */
   const stakeStatistic = (title, lux) =>
     statistic(title, lux ? luxToDusk(lux) : undefined, {
-      approximate: !!lux,
       attributes: {
         "data-tooltip-id": "main-tooltip",
         "data-tooltip-place": "top",
@@ -182,27 +179,27 @@
       { icon: mdiAccountGroupOutline },
     ),
     clusterLocation: statistic(
-      "Largest cluster location",
+      "Cluster location",
       nodesData?.length
         ? `${nodesData[0].city}, ${nodesData[0].countryCode}`
         : null,
       { compact: null },
     ),
     currentStake: {
-      ...stakeStatistic("Current stake", statsData?.activeStake),
+      ...stakeStatistic("Staked", statsData?.activeStake),
       // Its share of the DUSK in circulation, on mainnet: the market data
       // brings that.
       note:
         statsData?.activeStake && marketData?.circulatingSupply
           ? {
               more: null,
-              text: `${((luxToDusk(statsData.activeStake) / marketData.circulatingSupply) * 100).toFixed(1)}% of circulating supply`,
+              text: `${((luxToDusk(statsData.activeStake) / marketData.circulatingSupply) * 100).toFixed(1)}% of supply`,
               way: null,
             }
           : null,
     },
     largestCluster: statistic(
-      "Largest node cluster",
+      "Largest cluster",
       nodesData?.length ? nodesData[0].count : null,
       { unit: "nodes" },
     ),
@@ -271,16 +268,11 @@
       ];
 </script>
 
-<!-- A number's value: "≈" when rounded, its unit, and whether it is stale. -->
+<!-- A number's value, its unit, and whether it is stale. -->
 {#snippet valueOf(
   /** @type {Statistic} */ item,
   /** @type {"div" | "span"} */ tag,
 )}
-  {#if item.approximate}
-    <span class="statistics-panel__statistics-item-about"
-      ><span aria-hidden="true">≈</span><span class="sr-only">about</span></span
-    >
-  {/if}
   <svelte:element this={tag} class="statistics-panel__statistics-item-value">
     <DataGuard data={item.data}>
       {item.prefix}{#if item.compact}
@@ -309,8 +301,7 @@
   <figure class="statistics-panel__face">
     <WorldMap nodes={nodesData ?? []} />
     <figcaption class="statistics-panel__face-caption">
-      Approximate locations of {locatedNodes} the explorer's node knows of, from their
-      public IP addresses, rounded to the city. The bigger the ring, the more nodes.
+      {locatedNodes}, located roughly by IP
     </figcaption>
   </figure>
   <div class="statistics-panel__statistics">
@@ -333,9 +324,9 @@
               >{#if chain !== "unknown"}{#key newest?.height}<span
                     aria-hidden="true"
                     class="statistics-panel__live-dot"
-                  ></span>{/key}{chain === "live"
-                  ? "Live"
-                  : "Waiting for blocks"}{/if}</span
+                  ></span>{/key}{#if chain === "live"}<span class="sr-only"
+                    >Live</span
+                  >{:else}Waiting for blocks{/if}{/if}</span
             >
           {/if}</span
         >
@@ -352,7 +343,7 @@
               datetime={newest.date.toISOString()}
               >{getRelativeTimeString(
                 new Date(Math.min(newest.date.getTime(), now)),
-                "long",
+                "compact",
               )}</time
             >
           {/if}

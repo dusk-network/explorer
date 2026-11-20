@@ -40,14 +40,14 @@ describe("Provisioners Table", () => {
       );
 
     expect(owners()).toStrictEqual([
-      "Contract 51ced4…74aa37",
-      "Contract ababab…ababab",
+      "Contract 51ce…aa37",
+      "Contract abab…abab",
     ]);
 
     // On testnet, where the stake of Sozu's relayer is.
     await act(() => appStore.setNodeInfo(apiNodeInfo));
 
-    expect(owners()).toStrictEqual(["Sozu relayer", "Contract ababab…ababab"]);
+    expect(owners()).toStrictEqual(["Sozu relayer", "Contract abab…abab"]);
 
     await act(() =>
       appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined }),

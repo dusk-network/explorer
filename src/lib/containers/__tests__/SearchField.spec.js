@@ -157,9 +157,7 @@ describe("SearchField", () => {
 
     await expect(getMiss(onInvalid)).resolves.toStrictEqual({
       query: "e5f314fb49a8a2f8",
-      res: new Error(
-        "This looks like the start of an ID. Search with the whole ID, 64 characters.",
-      ),
+      res: new Error("Partial ID: search with all 64 characters"),
       suggestion: undefined,
     });
     expect(document.querySelector("input")).toHaveValue("e5f314fb49a8a2f8");
@@ -180,9 +178,7 @@ describe("SearchField", () => {
 
     await expect(getMiss(onInvalid)).resolves.toStrictEqual({
       query: "bad_name",
-      res: new Error(
-        "Search by account address, block height or hash, transaction ID or .dusk name.",
-      ),
+      res: new Error("Try an account, block, transaction ID or .dusk name"),
       suggestion: undefined,
     });
     expect(searchSpy).not.toHaveBeenCalled();
@@ -247,9 +243,9 @@ describe("SearchField", () => {
 
     expect(
       getByRole("textbox", {
-        name: "Search by address, block, transaction or .dusk name",
+        name: "Search by account, block, transaction or .dusk name",
       }),
-    ).toHaveAttribute("placeholder", "Address, hash or .dusk name");
+    ).toHaveAttribute("placeholder", "Account, ID or .dusk name");
   });
 
   it("should name the search button", () => {

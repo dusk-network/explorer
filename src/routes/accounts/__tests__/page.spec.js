@@ -125,12 +125,11 @@ describe("Account page", () => {
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
     expect(getByText("Public balance")).toBeInTheDocument();
     // The stake's block, 120 blocks after the last one, comes in about
-    // 20 minutes.
+    // 20 minutes: that day. All of the stake is active, as the Stake above
+    // says: no split.
     await vi.waitFor(() =>
       expect(stakeRowsOf(container)).toStrictEqual([
-        ["Active stake", "1,000 DUSK"],
-        ["Inactive stake", "0 DUSK"],
-        ["Eligibility", "From about Mon 26 Oct 2026, 10:20 AM UTC"],
+        ["Eligibility", "From about 26 Oct 2026"],
         ["Slashes", "1 soft, 0 hard"],
       ]),
     );
@@ -140,6 +139,26 @@ describe("Account page", () => {
       container.querySelector(".account-overview-panel__kind"),
     ).toHaveTextContent(/^\[Provisioner\]$/);
     expect(container.textContent).toContain("Shielded funds aren't shown.");
+  });
+
+  it("should split the stake into active and inactive while part of it is inactive", async () => {
+    vi.mocked(duskAPI.getStake).mockResolvedValueOnce({
+      active: 750_000_000_000n,
+      eligibility: 123_120,
+      faults: 0,
+      hardFaults: 0,
+      inactive: 250_000_000_000n,
+      reward: 0n,
+    });
+
+    const { container } = render(AccountPage);
+
+    await vi.waitFor(() =>
+      expect(stakeRowsOf(container).slice(0, 2)).toStrictEqual([
+        ["Active", "750 DUSK"],
+        ["Inactive", "250 DUSK"],
+      ]),
+    );
   });
 
   it("should say N/A when the stake can't be read, and leave the rest", async () => {
@@ -155,7 +174,7 @@ describe("Account page", () => {
         ),
       ).toStrictEqual([
         "Public balance 1,484.92 DUSK",
-        "Native stake N/A",
+        "Stake N/A",
         "Stake rewards N/A",
       ]),
     );
@@ -172,9 +191,10 @@ describe("Account page", () => {
 
     const { findByText } = render(AccountPage);
 
-    expect(
-      await findByText(/Since about Sun 25 Oct 2026, 10:00 AM UTC/),
-    ).toHaveAttribute("title", "Block 123,120");
+    expect(await findByText(/^Since about 25 Oct 2026$/)).toHaveAttribute(
+      "title",
+      "Block 123,120",
+    );
   });
 
   it("should say what the account also staked with Sozu, from one read made once the node says its network", async () => {
@@ -193,7 +213,7 @@ describe("Account page", () => {
     await vi.waitFor(() =>
       expect(
         container.querySelector(".account-overview-panel__sozu"),
-      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK"),
+      ).toHaveTextContent("Sozu: 0.1621 stDUSK"),
     );
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 
@@ -270,12 +290,8 @@ describe("Account page", () => {
 
     const { getByText, queryByText } = render(AccountPage);
 
-    expect(
-      getByText(
-        "This isn't a valid account address. Check it and search again.",
-      ),
-    ).toBeInTheDocument();
-    expect(queryByText("Couldn't load this.")).toBeNull();
+    expect(getByText("Not a valid account")).toBeInTheDocument();
+    expect(queryByText("Couldn't load")).toBeNull();
     expect(duskAPI.getAccountStatus).not.toHaveBeenCalled();
     expect(duskAPI.getStake).not.toHaveBeenCalled();
     expect(duskAPI.accountHistory).not.toHaveBeenCalled();

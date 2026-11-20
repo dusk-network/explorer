@@ -134,8 +134,9 @@ describe("Chain links", () => {
       expect(definitionOf(term).querySelector("a, .chain-link")).toBeNull();
     }
 
+    // The sender short, as every row shortens an account not the page's own.
     expect(blueOf(container).map((link) => link.textContent)).toStrictEqual([
-      transaction.from,
+      `${transaction.from?.slice(0, 4)}…${transaction.from?.slice(-4)}`,
       "487,166",
     ]);
   });
