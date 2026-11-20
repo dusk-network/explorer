@@ -88,7 +88,11 @@ describe("Account page, its transactions", () => {
       );
 
   it("should read the account's transactions a page at a time, newest first, and the next page only when asked for more", async () => {
-    const { container, getByRole } = render(AccountPage);
+    const { container } = render(AccountPage);
+    const showMore = () =>
+      /** @type {HTMLElement} */ (
+        container.querySelector(".data-card__footer button")
+      );
     const shown = () =>
       Array.from(
         container.querySelectorAll("tbody tr a[href*='transaction?id=']"),
@@ -108,21 +112,23 @@ describe("Account page, its transactions", () => {
     expect(asked()).toStrictEqual([newestFirst.slice(0, 25)]);
 
     // Past the first page, the next one.
-    await fireEvent.click(getByRole("button", { name: "Show more" }));
+    await fireEvent.click(showMore());
     await vi.waitFor(() => expect(shown()).toHaveLength(30));
     expect(asked()).toHaveLength(2);
 
-    await fireEvent.click(getByRole("button", { name: "Show more" }));
+    await fireEvent.click(showMore());
     await vi.waitFor(() => expect(shown()).toHaveLength(45));
-    await fireEvent.click(getByRole("button", { name: "Show more" }));
+    await fireEvent.click(showMore());
     await vi.waitFor(() => expect(shown()).toHaveLength(58));
 
     // All of them, newest first, each once, and how many once all are there.
     expect(shown()).toStrictEqual(newestFirst);
     expect(asked().flat()).toStrictEqual(newestFirst);
     expect(node.requests("moonlightHistory")).toHaveLength(1);
+    // With all of them there, how many, and no more to ask for.
     expect(container.querySelector(".data-card__footer")).toHaveTextContent(
-      "58 of 58",
+      /^58 of 58$/,
     );
+    expect(showMore()).toBeNull();
   });
 });

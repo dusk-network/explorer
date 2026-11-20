@@ -12,8 +12,7 @@ afterAll(() => {
 /**
  * Mocks the `MediaQueryList` object and listens to the
  * "DuskMediaQueryMatchesChange" custom event.
- * Fire one manually or with the `changeMediaQueryMatches`
- * helper function to simulate media query changes.
+ * Fire one to simulate media query changes.
  */
 export default class MediaQueryList extends EventTarget {
   #matches;

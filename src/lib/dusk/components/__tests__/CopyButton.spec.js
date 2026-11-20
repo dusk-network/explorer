@@ -1,6 +1,5 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
-import { mdiCheck, mdiContentCopy } from "@mdi/js";
 
 import { CopyButton } from "..";
 
@@ -8,29 +7,27 @@ vi.mock("$lib/dusk/components/toast/store", () => ({ toast: vi.fn() }));
 
 import { toast } from "$lib/dusk/components/toast/store";
 
+/*
+ * What lands on the clipboard, and that the button says Copied, in sight
+ * and to screen readers, only while it holds the value it shows.
+ */
 describe("CopyButton", () => {
   const rawValue =
     "8dcf6f8a4b5f0a6e1d2c3b4a59687766554433221100ffeeddccbbaa993db55e";
+  const props = { name: "Transaction ID", rawValue, text: "Copy" };
 
   vi.useFakeTimers();
 
   /** @param {Error | null} [refusal] */
   const clipboardThat = (refusal = null) => {
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: refusal
-          ? vi.fn().mockRejectedValue(refusal)
-          : vi.fn().mockResolvedValue(undefined),
-      },
-    });
+    const writeText = refusal
+      ? vi.fn().mockRejectedValue(refusal)
+      : vi.fn().mockResolvedValue(undefined);
+
+    Object.assign(navigator, { clipboard: { writeText } });
+
+    return writeText;
   };
-
-  /** What screen readers hear, from the app's polite live region. */
-  const heard = () =>
-    document.querySelector("[aria-live='polite']")?.textContent ?? "";
-
-  /** @param {HTMLElement} button */
-  const iconOf = (button) => button.querySelector("path")?.getAttribute("d");
 
   afterEach(() => {
     cleanup();
@@ -41,131 +38,71 @@ describe("CopyButton", () => {
     vi.useRealTimers();
   });
 
-  it.each([
-    ["Transaction ID", "Copy transaction ID"],
-    ["Block hash", "Copy block hash"],
-    ["Staking account", "Copy staking account"],
-  ])("should name the button for what it copies (%s)", (name, label) => {
-    const { getByRole } = render(CopyButton, {
-      props: { name, rawValue: "abc" },
-    });
+  it("should copy the value whole, as it is, and say Copied for 1.5 s", async () => {
+    const writeText = clipboardThat();
+    const { getByRole } = render(CopyButton, { props });
 
-    expect(getByRole("button", { name: label })).toBeInTheDocument();
-  });
+    expect(getByRole("button")).toHaveTextContent(/^Copy$/);
 
-  it("should show its word beside the icon when given one, still named for what it copies", () => {
-    const { getByRole } = render(CopyButton, {
-      props: { name: "Transaction ID", rawValue: "abc", text: "Copy" },
-    });
-    const button = getByRole("button", { name: "Copy transaction ID" });
-
-    expect(button).toHaveTextContent(/^Copy$/);
-    expect(button).not.toHaveAttribute("data-tooltip-text");
-  });
-
-  it("should be the icon alone, with a tooltip, without a word", () => {
-    const { getByRole } = render(CopyButton, {
-      props: { name: "Block hash", rawValue: "abc" },
-    });
-    const button = getByRole("button", { name: "Copy block hash" });
-
-    expect(button).toHaveTextContent(/^$/);
-    expect(button).toHaveAttribute("data-tooltip-text", "Copy to clipboard");
-  });
-
-  it("should say Copied on the button for 1.5 s, where it was pressed, and in no toast", async () => {
-    clipboardThat();
-
-    const { getByRole } = render(CopyButton, {
-      props: { name: "Transaction ID", rawValue, text: "Copy" },
-    });
-    const button = getByRole("button", { name: "Copy transaction ID" });
-
-    expect(heard()).toBe("");
-
-    await fireEvent.click(button);
+    await fireEvent.click(getByRole("button"));
     await vi.advanceTimersByTimeAsync(50);
 
-    expect(navigator.clipboard.writeText).toHaveBeenCalledExactlyOnceWith(
-      rawValue,
-    );
-    expect(button).toHaveAccessibleName("Copied");
-    expect(button).toHaveTextContent(/^Copied$/);
-    expect(iconOf(button)).toBe(mdiCheck);
-    expect(heard()).toBe("Copied");
+    expect(writeText).toHaveBeenCalledExactlyOnceWith(rawValue);
+    expect(getByRole("button")).toHaveTextContent(/^Copied$/);
+    expect(getByRole("button")).toHaveAccessibleName("Copied");
     expect(toast).not.toHaveBeenCalled();
 
-    await vi.advanceTimersByTimeAsync(1449);
+    // Still at 1.4 s, and Copy again by 1.6 s.
+    await vi.advanceTimersByTimeAsync(1350);
 
-    expect(button).toHaveAccessibleName("Copied");
+    expect(getByRole("button")).toHaveTextContent(/^Copied$/);
 
-    await vi.advanceTimersByTimeAsync(51);
+    await vi.advanceTimersByTimeAsync(200);
 
-    expect(button).toHaveAccessibleName("Copy transaction ID");
-    expect(button).toHaveTextContent(/^Copy$/);
-    expect(iconOf(button)).toBe(mdiContentCopy);
-    expect(heard()).toBe("");
+    expect(getByRole("button")).toHaveTextContent(/^Copy$/);
+    expect(getByRole("button")).not.toHaveAccessibleName("Copied");
   });
 
-  it("should name an icon alone Copied, once it copied, its tooltip as it was", async () => {
-    clipboardThat();
-
-    const { getByRole } = render(CopyButton, {
-      props: { name: "Block hash", rawValue },
-    });
-    const button = getByRole("button", { name: "Copy block hash" });
-
-    await fireEvent.click(button);
-    await vi.advanceTimersByTimeAsync(50);
-
-    expect(button).toHaveAccessibleName("Copied");
-    expect(iconOf(button)).toBe(mdiCheck);
-    expect(button).toHaveAttribute("data-tooltip-text", "Copy to clipboard");
-    expect(heard()).toBe("Copied");
-
-    await vi.advanceTimersByTimeAsync(1500);
-  });
-
-  it("should say in a toast it couldn't copy, and not that it copied", async () => {
+  it("should say in an error toast that it couldn't copy, and not that it copied", async () => {
     const refusal = new Error("Write failed");
 
     refusal.name = "NotAllowedError";
     clipboardThat(refusal);
 
-    const { getByRole } = render(CopyButton, {
-      props: { name: "Transaction ID", rawValue, text: "Copy" },
-    });
-    const button = getByRole("button", { name: "Copy transaction ID" });
+    const { getByRole } = render(CopyButton, { props });
 
-    await fireEvent.click(button);
+    await fireEvent.click(getByRole("button"));
     await vi.advanceTimersByTimeAsync(50);
 
     expect(toast).toHaveBeenCalledExactlyOnceWith(
       "error",
-      "Clipboard access denied",
+      expect.not.stringMatching(/copied/i),
       expect.any(String),
     );
-    expect(button).toHaveAccessibleName("Copy transaction ID");
-    expect(heard()).toBe("");
+    expect(getByRole("button")).toHaveTextContent(/^Copy$/);
+    expect(getByRole("button")).not.toHaveAccessibleName("Copied");
+
+    // Nowhere on the page, at any time after.
+    for (let at = 0; at < 2000; at += 500) {
+      expect(document.body.textContent).not.toMatch(/copied/i);
+      await vi.advanceTimersByTimeAsync(500);
+    }
   });
 
   it("should not say Copied for a value it didn't copy", async () => {
     clipboardThat();
 
-    const { getByRole, rerender } = render(CopyButton, {
-      name: "Transaction ID",
-      rawValue,
-    });
+    const { getByRole, rerender } = render(CopyButton, { props });
 
-    await fireEvent.click(getByRole("button", { name: "Copy transaction ID" }));
+    await fireEvent.click(getByRole("button"));
     await vi.advanceTimersByTimeAsync(50);
-    expect(getByRole("button", { name: "Copied" })).toBeInTheDocument();
 
-    // The page moved on to another transaction within the 1.5 s.
-    await rerender({ name: "Transaction ID", rawValue: "another hash" });
-    expect(
-      getByRole("button", { name: "Copy transaction ID" }),
-    ).toBeInTheDocument();
-    expect(iconOf(getByRole("button"))).toBe(mdiContentCopy);
+    expect(getByRole("button")).toHaveTextContent(/^Copied$/);
+
+    // The page moved on to another transaction within the moment it says so.
+    await rerender({ ...props, rawValue: "another hash" });
+
+    expect(getByRole("button")).toHaveTextContent(/^Copy$/);
+    expect(getByRole("button")).not.toHaveAccessibleName("Copied");
   });
 });

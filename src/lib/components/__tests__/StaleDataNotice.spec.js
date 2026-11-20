@@ -1,84 +1,87 @@
-import {
-  afterAll,
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { afterAll, describe, expect, it, vi } from "vitest";
 import { act, cleanup, render } from "@testing-library/svelte";
-import { marketDataStore } from "$lib/stores";
-import { StaleDataNotice } from "../";
+import { get } from "svelte/store";
 
-const mockedReadableStore = await vi.hoisted(async () => {
-  const { mockReadableStore } = await import("$lib/dusk/test-helpers");
-  return mockReadableStore({
-    data: null,
-    error: null,
-    isLoading: false,
-    lastUpdate: null,
-  });
-});
+import { apiMarketData, apiNodeInfo } from "$lib/mock-data";
+import { duskAPI } from "$lib/services";
+import { appStore } from "$lib/stores";
 
-vi.mock("$lib/stores", async (importOriginal) => {
-  /** @type {typeof import("$lib/stores")} */
+import { StaleDataNotice } from "..";
+
+// The market data the store reads, as the test gives it.
+vi.mock("$lib/services", async (importOriginal) => {
+  /** @type {import("$lib/services")} */
   const original = await importOriginal();
 
   return {
     ...original,
-    marketDataStore: {
-      ...mockedReadableStore,
-      isDataStale: vi.fn(() => false),
-    },
+    duskAPI: { ...original.duskAPI, getMarketData: vi.fn() },
   };
 });
 
+/*
+ * A price shown from market data too old to trust comes with a warning.
+ */
 describe("StaleDataNotice", () => {
-  const initialState = structuredClone(
-    mockedReadableStore.getMockedStoreValue(),
-  );
-
-  beforeEach(() => {
-    mockedReadableStore.setMockedStoreValue(initialState);
-  });
-
-  afterEach(cleanup);
-
   afterAll(() => {
-    vi.doUnmock("$lib/stores");
+    cleanup();
+    vi.useRealTimers();
+    vi.doUnmock("$lib/services");
   });
 
-  it("does not render the Stale Data notice if data is not stale", () => {
-    mockedReadableStore.setMockedStoreValue({
-      ...initialState,
-      data: { data: "some data" },
-      lastUpdate: new Date(),
-    });
+  it("should warn once the market data is stale: not while it is fresh or read again, but once it got old or a read failed", async () => {
+    vi.useFakeTimers();
 
-    const { container } = render(StaleDataNotice, { target: document.body });
-    expect(container.childElementCount).toBe(0);
-  });
+    const {
+      circulating_supply: circulatingSupply,
+      current_price: currentPrice,
+      market_cap: marketCap,
+    } = apiMarketData.market_data;
+    const next = Promise.withResolvers();
+    const interval = get(appStore).marketDataFetchInterval;
 
-  it("should react to data changes", async () => {
-    mockedReadableStore.setMockedStoreValue({
-      ...initialState,
-      lastUpdate: null,
-    });
+    vi.mocked(duskAPI.getMarketData)
+      .mockResolvedValueOnce({ circulatingSupply, currentPrice, marketCap })
+      .mockReturnValueOnce(/** @type {any} */ (next.promise));
 
-    const { container } = render(StaleDataNotice, { target: document.body });
+    const { container } = render(StaleDataNotice);
+    const warned = () =>
+      container.querySelector("[data-tooltip-type='warning']") !== null;
 
-    expect(container.childElementCount).toBe(0);
+    // On mainnet, the store reads the market data: fresh.
+    await act(() => appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 }));
+    await vi.advanceTimersByTimeAsync(0);
 
-    vi.mocked(marketDataStore.isDataStale).mockReturnValueOnce(true);
+    expect(duskAPI.getMarketData).toHaveBeenCalledOnce();
+    expect(warned()).toBe(false);
 
-    await act(() => {
-      mockedReadableStore.setMockedStoreValue({
-        ...initialState,
-        lastUpdate: new Date(),
-      });
-    });
+    // A hidden tab reads nothing: the data gets old, with no read failing,
+    // and says so as the page draws again.
+    const hidden = vi.spyOn(document, "hidden", "get").mockReturnValue(true);
 
-    expect(container.firstElementChild).toHaveClass("dusk-icon");
+    document.dispatchEvent(new Event("visibilitychange"));
+    await vi.advanceTimersByTimeAsync(interval * 1.5);
+    await act(() =>
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1, version: "next" }),
+    );
+
+    expect(duskAPI.getMarketData).toHaveBeenCalledOnce();
+    expect(warned()).toBe(true);
+
+    // Shown again, it reads again: no warning while it does.
+    hidden.mockReturnValue(false);
+    document.dispatchEvent(new Event("visibilitychange"));
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(duskAPI.getMarketData).toHaveBeenCalledTimes(2);
+    expect(warned()).toBe(false);
+
+    // That read failed: stale again.
+    await act(() => next.reject(new Error("offline")));
+    await vi.advanceTimersByTimeAsync(0);
+
+    expect(warned()).toBe(true);
+
+    hidden.mockRestore();
   });
 });

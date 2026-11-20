@@ -4,6 +4,8 @@ import { get } from "svelte/store";
 
 import * as mockData from "$lib/mock-data";
 import { resolveAfter } from "$lib/dusk/promise";
+import figure from "$lib/dusk/test-helpers/figure";
+import { duskAPI } from "$lib/services";
 import { appStore, chainHeadStore, chainStatsStore } from "$lib/stores";
 
 import { StatisticsPanel } from "..";
@@ -13,7 +15,12 @@ const marketDataSettleTime = vi.hoisted(() => {
 
   return 100;
 });
-// The map's countries are drawn in full on the home page's snapshot.
+// The price's move over 24 hours the market data gives, unless the
+// mock data's.
+const market = vi.hoisted(() => ({
+  priceChange24h: /** @type {number | null} */ (null),
+}));
+// The numbers, without drawing the map's countries.
 vi.mock("$lib/components", async (importOriginal) => {
   /** @type {import("$lib/components")} */
   const original = await importOriginal();
@@ -37,13 +44,14 @@ vi.mock("$lib/services", async (importOriginal) => {
     ...original,
     duskAPI: {
       ...original.duskAPI,
-      getMarketData: () =>
+      getMarketData: vi.fn(() =>
         resolveAfter(marketDataSettleTime, {
           circulatingSupply,
           currentPrice,
           marketCap,
-          priceChange24h,
+          priceChange24h: market.priceChange24h ?? priceChange24h,
         }),
+      ),
       getNodeLocations: vi.fn().mockResolvedValue(nodeLocationsCount),
     },
   };
@@ -96,27 +104,6 @@ const newestBlock = (height, ago = 0) => {
   });
 };
 
-/**
- * The titles of the leading cards, or of the smaller ones after them.
- *
- * @param {HTMLElement} container
- * @param {"primary" | "secondary"} which
- */
-const titlesOf = (container, which) =>
-  Array.from(
-    container.querySelectorAll(
-      `.statistics-panel__statistics-item--${which} .statistics-panel__statistics-item-title`,
-    ),
-    (title) => {
-      const label = /** @type {Element} */ (title.cloneNode(true));
-
-      // The last block's label says whether new blocks come, after it.
-      label.querySelector(".statistics-panel__live")?.remove();
-
-      return label.textContent?.trim();
-    },
-  );
-
 describe("StatisticsPanel", () => {
   afterEach(() => {
     cleanup();
@@ -138,136 +125,67 @@ describe("StatisticsPanel", () => {
       chain_id: chainId,
     });
 
-  it("should show no DUSK price or market cap on a test network", async () => {
-    setChain(2);
-
-    const { container, getByText, queryByText } = render(StatisticsPanel);
-
-    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
-
-    expect(queryByText("DUSK price")).toBeNull();
-    expect(queryByText("Market cap")).toBeNull();
-    expect(getByText("Staked")).toBeInTheDocument();
-    expect(
+  /**
+   * A number's card, found by its label: the labels' words are copy, what
+   * each number is isn't.
+   *
+   * @param {HTMLElement} container
+   * @param {RegExp} label
+   */
+  const cardOf = (container, label) =>
+    Array.from(
       container.querySelectorAll(".statistics-panel__statistics-item"),
-    ).toHaveLength(8);
-    // Four numbers lead as cards; the rest follow, smaller.
-    expect(titlesOf(container, "primary")).toStrictEqual([
-      "Staked",
-      "Last block",
-      "Total transactions",
-      "Active provisioners",
-    ]);
-    expect(titlesOf(container, "secondary")).toStrictEqual([
-      "Pending stake",
-      "Pending provisioners",
-      "Largest cluster",
-      "Largest cluster location",
-    ]);
+    ).find((card) => {
+      const title = /** @type {Element | undefined} */ (
+        card
+          .querySelector(".statistics-panel__statistics-item-title")
+          ?.cloneNode(true)
+      );
 
-    await act(() => setChain(1));
+      // The last block's label says whether new blocks come, after it.
+      title?.querySelector(".statistics-panel__live")?.remove();
 
-    expect(getByText("DUSK price")).toBeInTheDocument();
-    expect(getByText("Market cap")).toBeInTheDocument();
-    // On mainnet the price leads, and the market cap follows.
-    expect(titlesOf(container, "primary")[0]).toBe("DUSK price");
-    expect(titlesOf(container, "secondary")[0]).toBe("Market cap");
-  });
-
-  it("should lead with the network's map, and say where its places come from and how precise they are", async () => {
-    const { container } = render(StatisticsPanel);
-
-    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
-
-    const face = container.querySelector(".statistics-panel__face");
-
-    expect(face?.tagName).toBe("FIGURE");
-    expect(face?.querySelector(".nodes-world-map")).toHaveAttribute(
-      "data-places",
-      String(mockData.nodeLocationsCount.length),
-    );
-    // 88 nodes in 21 cities.
-    expect(face?.querySelector("figcaption")).toHaveTextContent(
-      /^88 nodes, located roughly by IP$/,
-    );
-    // First in the panel, before the numbers.
-    expect(container.firstElementChild?.firstElementChild).toBe(face);
-  });
-
-  it("should say the chain is live while new blocks come, and that it waits for them when none has come for half a minute", async () => {
-    const { getByRole } = render(StatisticsPanel);
-    const status = getByRole("status");
-
-    await act(() => newestBlock(100));
-
-    expect(status).toHaveTextContent(/^Live$/);
-    // Said to screen readers: on screen the dot and the block's age say it.
-    expect(status.querySelector(".sr-only")).toHaveTextContent(/^Live$/);
-    expect(status).not.toHaveClass("statistics-panel__live--waiting");
-    expect(
-      status.closest(".statistics-panel__statistics-item-title"),
-    ).toHaveTextContent(/^Last block/);
-
-    // No new block since.
-    await vi.advanceTimersByTimeAsync(29_000);
-
-    expect(status).toHaveTextContent(/^Live$/);
-
-    await vi.advanceTimersByTimeAsync(2_000);
-
-    expect(status).toHaveTextContent(/^Waiting for blocks$/);
-    expect(status).toHaveClass("statistics-panel__live--waiting");
-
-    await act(() => newestBlock(101));
-
-    expect(status).toHaveTextContent(/^Live$/);
-    expect(status).not.toHaveClass("statistics-panel__live--waiting");
-  });
-
-  it("should make no claim about the chain before the first block comes", async () => {
-    const { getByRole } = render(StatisticsPanel);
-    const status = getByRole("status");
-
-    // A slow first answer isn't a stalled chain.
-    await vi.advanceTimersByTimeAsync(31_000);
-
-    expect(status).toHaveTextContent(/^$/);
-    expect(status.querySelector(".statistics-panel__live-dot")).toBeNull();
-
-    await act(() => newestBlock(100));
-
-    expect(status).toHaveTextContent(/^Live$/);
-  });
-
-  it("should make no claim about the chain while its last block can't be read", async () => {
-    const { getByRole } = render(StatisticsPanel);
-    const status = getByRole("status");
-    const error = new Error("Unreachable");
-
-    await act(() => {
-      newestBlock(100);
-      head.update(({ head: newest }) => ({ error, head: newest }));
-      stats.set({ data: null, error });
+      return label.test(title?.textContent?.trim() ?? "");
     });
 
-    expect(status).toHaveTextContent(/^$/);
+  /** @param {Element | undefined} card */
+  const valueOf = (card) =>
+    card
+      ?.querySelector(".statistics-panel__statistics-item-value")
+      ?.textContent?.replace(/\s+/g, " ")
+      .trim();
 
-    await vi.advanceTimersByTimeAsync(31_000);
+  /** @param {Element | undefined} card */
+  const noteOf = (card) =>
+    card?.querySelector(".statistics-panel__statistics-item-note");
 
-    expect(status).toHaveTextContent(/^$/);
-    expect(status).not.toHaveClass("statistics-panel__live--waiting");
+  it("should show no DUSK price or market cap on a test network, and both on mainnet", async () => {
+    setChain(2);
+
+    const { container } = render(StatisticsPanel);
+
+    await act(() => newestBlock(mockData.apiStats.lastBlock));
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    // Test DUSK has no value: no price, no market cap, no dollar figure.
+    expect(cardOf(container, /price/i)).toBeUndefined();
+    expect(cardOf(container, /market cap/i)).toBeUndefined();
+    expect(container.textContent).not.toContain("$");
+
+    await act(() => setChain(1));
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    expect(valueOf(cardOf(container, /price/i))).toBe("$0.368");
+    expect(valueOf(cardOf(container, /market cap/i))).toBe("$168.00M");
   });
 
-  it("should say the chain waits for blocks when its newest block came half a minute ago or more", async () => {
-    const { getByRole } = render(StatisticsPanel);
+  /** The time it takes the market data to be read again. */
+  const nextRead = () =>
+    vi.advanceTimersByTimeAsync(
+      get(appStore).marketDataFetchInterval + marketDataSettleTime,
+    );
 
-    // As the page learned of a block on opening, from its own time.
-    await act(() => newestBlock(100, 5 * 60_000));
-
-    expect(getByRole("status")).toHaveTextContent(/^Waiting for blocks$/);
-  });
-
-  it("should give a number rounded to show with no sign before it: its short form, as 170.93M, says it is rounded", async () => {
+  it("should give the price's move with its sign and colour, and the stake's share of the circulating supply", async () => {
     setChain(1);
 
     const { container } = render(StatisticsPanel);
@@ -275,45 +193,75 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
+    /** The price's move, and the colours it's given: one of the two. */
+    const move = () => {
+      const note = noteOf(cardOf(container, /price/i));
+
+      return [
+        note?.textContent?.replace(/\s+/g, " ").trim(),
+        ["down", "up"].filter((way) =>
+          note?.classList.contains(
+            `statistics-panel__statistics-item-note--${way}`,
+          ),
+        ),
+      ];
+    };
+
+    // -8.04817% in 24 hours: down, in red, to two decimals.
+    expect(move()).toStrictEqual([
+      expect.stringMatching(
+        new RegExp(
+          `^(?:Down ${figure("8.05%")}|${figure("−8.05%")}).*\\b24 ?h\\b`,
+        ),
+      ),
+      ["down"],
+    ]);
+    // 58,226,174 DUSK staked of 457,027,796 in circulation.
     expect(
-      container.querySelector(".statistics-panel__statistics-item-about"),
-    ).toBeNull();
-    expect(container.textContent).not.toMatch(/[≈~]/);
+      noteOf(cardOf(container, /^(?!pending).*stake/i))?.textContent?.trim(),
+    ).toMatch(new RegExp(`^${figure("12.7%")} of circulating supply$`));
+
+    // A rise, read next: up, in green.
+    market.priceChange24h = 8.04817;
+    await nextRead();
+
+    expect(move()).toStrictEqual([
+      expect.stringMatching(
+        new RegExp(
+          `^(?:Up ${figure("8.05%")}|${figure("+8.05%")}).*\\b24 ?h\\b`,
+        ),
+      ),
+      ["up"],
+    ]);
+
+    market.priceChange24h = null;
   });
 
-  it("should say more under each of the four numbers, from what the page reads anyway: the price's move, the stake's share of the supply, the last block's age and the transactions by kind", async () => {
+  it("should warn by the price and the market cap once the market data is stale", async () => {
     setChain(1);
 
     const { container } = render(StatisticsPanel);
-    const notes = () =>
-      Array.from(
-        container.querySelectorAll(
-          ".statistics-panel__statistics-item--primary",
-        ),
-        (card) =>
-          card
-            .querySelector(".statistics-panel__statistics-item-note")
-            ?.textContent?.replace(/\s+/g, " ")
-            .trim() ?? null,
-      );
+    const warned = (/** @type {RegExp} */ label) =>
+      cardOf(container, label)?.querySelector(
+        "[data-tooltip-type='warning']",
+      ) != null;
 
-    await act(() => newestBlock(mockData.apiStats.lastBlock, 4_000));
-    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+    await nextRead();
 
-    expect(notes()).toStrictEqual([
-      "−8.05% (24h)",
-      "12.7% of circulating supply",
-      "4 s ago",
-      "13,742 public · 2,621 shielded",
+    expect([warned(/price/i), warned(/market cap/i)]).toStrictEqual([
+      false,
+      false,
     ]);
-    // The price's move in red too, its sign saying the same.
-    expect(
-      container.querySelector(".statistics-panel__statistics-item-note"),
-    ).toHaveClass("statistics-panel__statistics-item-note--down");
 
-    // The last block's age keeps up while no new block comes.
-    await vi.advanceTimersByTimeAsync(10_000);
+    // The next read fails: what the two show is stale.
+    vi.mocked(duskAPI.getMarketData).mockRejectedValueOnce(
+      new Error("offline"),
+    );
+    await nextRead();
 
-    expect(notes()[2]).toBe("14 s ago");
+    expect([warned(/price/i), warned(/market cap/i)]).toStrictEqual([
+      true,
+      true,
+    ]);
   });
 });

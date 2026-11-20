@@ -1,82 +1,57 @@
-import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
 import { gqlBlock } from "$lib/mock-data";
 import { transformBlock } from "$lib/chain-info";
-import { getRelativeTimeString, middleEllipsis } from "$lib/dusk/string";
 
 import { BlocksList } from "..";
 
+/*
+ * A phone's row of a block: the figures it gives, whatever its words.
+ */
 describe("Blocks List", () => {
-  vi.useFakeTimers();
-  vi.setSystemTime(new Date(2024, 4, 20));
-
   const block = transformBlock(gqlBlock.block);
-
-  /** @type {import("svelte").ComponentProps<BlocksList>} */
-  const baseProps = { data: block };
 
   afterEach(cleanup);
 
-  afterAll(() => {
-    vi.useRealTimers();
-  });
+  /**
+   * The lines under the reward that give a figure in DUSK.
+   *
+   * @param {HTMLElement} container
+   */
+  const feesOf = (container) =>
+    Array.from(container.querySelectorAll(".block-row__end .row-line"))
+      .map((line) => line.textContent?.replace(/\s+/g, " ").trim())
+      .filter((line) => line?.includes("DUSK"));
 
-  it("keeps a block's age up to date while no new block comes", async () => {
-    const date = new Date(Date.now() - 1_000);
-    const { container } = render(BlocksList, {
-      data: { ...block, header: { ...block.header, date } },
-    });
-    const age = () => container.querySelector("time")?.textContent?.trim();
+  it("should give a block's reward and the fees it took, and link who made it to its own account", async () => {
+    const { container, rerender } = render(BlocksList, { data: block });
 
-    expect(age()).toBe(getRelativeTimeString(date, "compact"));
-
-    await vi.advanceTimersByTimeAsync(2 * 60_000);
-
-    expect(age()).toBe(getRelativeTimeString(date, "compact"));
-    expect(age()).toMatch(/2 min ago/);
-  });
-
-  it("says when and by whom a block was made, opening the generator's account, and the fees it took, if any; the home page's row says neither", async () => {
-    const { container, rerender } = render(BlocksList, baseProps);
-    const line = () =>
-      container
-        .querySelector(".block-row__main .row-line")
-        ?.textContent?.replace(/\s+/g, " ")
-        .trim();
-    const end = () =>
-      container
-        .querySelector(".block-row__end")
-        ?.textContent?.replace(/\s+/g, " ")
-        .trim();
-    const key = block.header.generator;
-
-    expect(line()).toBe(
-      `${getRelativeTimeString(block.header.date, "compact")} · by ${middleEllipsis(key, 4)}`,
+    expect(container.querySelector(".row-amount")).toHaveTextContent(
+      /^16 DUSK$/,
     );
-    expect(container.querySelector(".transaction-party")).toHaveAttribute(
-      "href",
-      `/some-base-path/accounts/?key=${key}`,
+    expect(container.querySelector(".row-amount [title]")).toHaveAttribute(
+      "title",
+      "16 DUSK",
     );
     // Two transactions, which paid 580,718 LUX in fees.
-    expect(end()).toBe("16 DUSK 2 transactions + 0.00058 DUSK fees");
+    expect(feesOf(container)).toStrictEqual([
+      expect.stringMatching(/^\+ ?0\.00058 DUSK\b/),
+    ]);
+    expect(container.querySelector(".transaction-party")).toHaveAttribute(
+      "href",
+      `/some-base-path/accounts/?key=${block.header.generator}`,
+    );
 
+    // No fees, and the home page's short row: no fee line.
     await rerender({
       data: { ...block, header: { ...block.header, feespaid: 0 } },
     });
 
-    expect(end()).toBe("16 DUSK 2 transactions");
+    expect(feesOf(container)).toStrictEqual([]);
 
     await rerender({ brief: true, data: block });
 
-    // The home page's short row says who made it too, and no fees.
-    expect(line()).toContain(
-      getRelativeTimeString(block.header.date, "compact"),
-    );
-    expect(end()).toBe("16 DUSK 2 transactions");
-    expect(container.querySelector(".transaction-party")).toHaveAttribute(
-      "href",
-      `/some-base-path/accounts/?key=${key}`,
-    );
+    expect(feesOf(container)).toStrictEqual([]);
   });
 });

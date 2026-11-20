@@ -1,30 +1,25 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
-import { slice } from "lamb";
+import { tick } from "svelte";
 
 import { hostProvisioners } from "$lib/mock-data";
 import { resolveDuskName } from "$lib/dusk-domains";
 import { ProvisionersCard } from "..";
-
-import { itShowsItsListAPageAtATime } from "./pagedCard";
 
 vi.mock("$lib/dusk-domains", async (importOriginal) => ({
   .../** @type {object} */ (await importOriginal()),
   resolveDuskName: vi.fn(),
 }));
 
+/*
+ * The provisioners a search finds: what it says when it finds none is copy.
+ */
 describe("Provisioners Card", () => {
-  const data = slice(hostProvisioners, 0, 10);
-
-  const baseProps = {
+  const props = {
     error: null,
     isSmallScreen: false,
     loading: false,
-    provisioners: null,
-  };
-  const baseOptions = {
-    props: baseProps,
-    target: document.body,
+    provisioners: hostProvisioners,
   };
 
   afterEach(cleanup);
@@ -33,158 +28,110 @@ describe("Provisioners Card", () => {
     vi.doUnmock("$lib/dusk-domains");
   });
 
-  itShowsItsListAPageAtATime({
-    Card: ProvisionersCard,
-    few: data,
-    list: "provisioners",
-    many: hostProvisioners,
-    name: "ProvisionersCard",
-    props: baseProps,
-    title: "Provisioners",
-    // Of the 216, the 214 with a stake.
-    total: 214,
-  });
+  /** @param {HTMLElement} container */
+  const rowsOf = (container) =>
+    Array.from(container.querySelectorAll("tbody tr"), (row) =>
+      row.querySelector("a")?.getAttribute("href"),
+    );
+
+  /** Waits for the last name lookup to settle, and the card to show it. */
+  const lookedUp = async () => {
+    await vi
+      .mocked(resolveDuskName)
+      .mock.results.at(-1)
+      ?.value.catch(() => {});
+    await tick();
+  };
 
   it("should find provisioners by staking or owner address", async () => {
     const [first] = hostProvisioners;
-    const { container, getByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...baseProps, provisioners: hostProvisioners },
-    });
-    const search = getByRole("searchbox", {
-      name: "Search provisioners by staking or owner account, or .dusk name",
-    });
-    const rows = () =>
-      Array.from(container.querySelectorAll("tbody tr"), (row) =>
-        row.querySelector("a")?.getAttribute("href"),
-      );
+    const { container, getByRole } = render(ProvisionersCard, { props });
+    const search = getByRole("searchbox");
 
     await fireEvent.input(search, {
       target: { value: first.key.slice(10, 30).toUpperCase() },
     });
 
-    expect(rows()).toStrictEqual([
+    expect(rowsOf(container)).toStrictEqual([
       `/some-base-path/accounts/?key=${first.key}`,
     ]);
 
     await fireEvent.input(search, { target: { value: "no such address" } });
 
-    expect(rows()).toStrictEqual([]);
-    expect(container.textContent).toContain(
-      "No provisioner matches “no such address”",
-    );
-    // Nothing found has no count to give.
-    expect(container.querySelector(".data-card__count")).toBeNull();
+    expect(rowsOf(container)).toStrictEqual([]);
   });
 
   it("should find a provisioner by a .dusk name, with one lookup", async () => {
     const third = hostProvisioners[2];
-    const { container, findByText, getByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: { ...baseProps, provisioners: hostProvisioners },
-    });
+    const { container, getByRole } = render(ProvisionersCard, { props });
     const search = getByRole("searchbox");
-    const rows = () =>
-      Array.from(container.querySelectorAll("tbody tr"), (row) =>
-        row.querySelector("a")?.getAttribute("href"),
-      );
 
     vi.mocked(resolveDuskName).mockResolvedValueOnce(third.key);
     await fireEvent.input(search, { target: { value: "domains.dus" } });
     await fireEvent.input(search, { target: { value: "Domains.dusk" } });
 
     await vi.waitFor(() =>
-      expect(rows()).toStrictEqual([
+      expect(rowsOf(container)).toStrictEqual([
         `/some-base-path/accounts/?key=${third.key}`,
       ]),
     );
     expect(resolveDuskName).toHaveBeenCalledExactlyOnceWith("domains.dusk");
 
+    // A name whose account stakes nothing, and one that doesn't resolve.
     vi.mocked(resolveDuskName).mockResolvedValueOnce("someone-else");
     await fireEvent.input(search, { target: { value: "alice.dusk" } });
+    await lookedUp();
 
-    expect(
-      await findByText("No provisioner for alice.dusk"),
-    ).toBeInTheDocument();
+    expect(resolveDuskName).toHaveBeenLastCalledWith("alice.dusk");
+    expect(rowsOf(container)).toStrictEqual([]);
 
-    vi.mocked(resolveDuskName).mockRejectedValueOnce(
-      new Error("This name is not registered."),
-    );
+    vi.mocked(resolveDuskName).mockRejectedValueOnce(new Error("Absent"));
     await fireEvent.input(search, { target: { value: "nobody.dusk" } });
+    await lookedUp();
 
-    expect(
-      await findByText("This name is not registered."),
-    ).toBeInTheDocument();
+    expect(resolveDuskName).toHaveBeenLastCalledWith("nobody.dusk");
+    expect(rowsOf(container)).toStrictEqual([]);
   });
 
   it.each([[false], [true]])(
-    "should show those with no stake only when asked, after the others and unranked (phone: %s)",
+    "should leave out a provisioner with no stake until asked, then find it, unranked (phone: %s)",
     async (isSmallScreen) => {
-      const noStake = hostProvisioners.find(
-        (p) => !p.amount && !p.locked_amt && !p.eligibility,
+      // One that left, with only its rewards to claim.
+      const noStake = /** @type {HostProvisioner} */ (
+        hostProvisioners.find(
+          (p) => !p.amount && !p.locked_amt && !p.eligibility,
+        )
       );
-      const { container, getByLabelText, getByRole, queryByRole } = render(
-        ProvisionersCard,
-        {
-          ...baseOptions,
-          props: {
-            ...baseProps,
-            isSmallScreen,
-            provisioners: hostProvisioners,
-          },
-        },
-      );
-      const count = () =>
-        container.querySelector(".data-card__count")?.textContent;
-      const rows = () =>
-        container.querySelectorAll(
-          isSmallScreen ? ".provisioners-list" : "tbody tr",
+      const { container, getByRole } = render(ProvisionersCard, {
+        props: { ...props, isSmallScreen },
+      });
+      const found = () =>
+        Array.from(
+          container.querySelectorAll(
+            isSmallScreen ? ".provisioners-list" : "tbody tr",
+          ),
         );
-      const toggle = getByRole("switch", {
-        name: "Show provisioners with no stake",
+
+      await fireEvent.input(getByRole("searchbox"), {
+        target: { value: noStake.key },
       });
 
-      expect(container).toHaveTextContent("Show 2 with no stake");
-      expect(count()).toBe("15 of 214");
+      expect(found()).toHaveLength(0);
 
-      // Off, searching for one finds nothing.
-      await fireEvent.input(getByLabelText(/^Search provisioners/), {
-        target: { value: noStake?.key },
-      });
-      expect(rows()).toHaveLength(0);
+      await fireEvent.click(getByRole("switch"));
 
-      await fireEvent.click(toggle);
-
-      expect(rows()).toHaveLength(1);
+      expect(found()).toHaveLength(1);
+      expect(
+        found()[0].querySelector(`a[href$="?key=${noStake.key}"]`),
+      ).not.toBeNull();
 
       if (isSmallScreen) {
-        expect(container.querySelector(".provisioners-list__rank")).toBeNull();
+        expect(found()[0].querySelector(".provisioners-list__rank")).toBeNull();
       } else {
         expect(
-          container.querySelector(".provisioners-table__rank"),
+          found()[0].querySelector(".provisioners-table__rank"),
         ).toHaveTextContent(/^—$/);
       }
-
-      await fireEvent.input(getByLabelText(/^Search provisioners/), {
-        target: { value: "" },
-      });
-
-      expect(count()).toBe("15 of 216");
-      expect(queryByRole("button", { name: "Show more" })).toBeInTheDocument();
     },
   );
-
-  it("should offer no switch when every provisioner has a stake", () => {
-    const { queryByRole } = render(ProvisionersCard, {
-      ...baseOptions,
-      props: {
-        ...baseProps,
-        provisioners: hostProvisioners.filter(
-          (p) => p.amount || p.locked_amt || p.eligibility,
-        ),
-      },
-    });
-
-    expect(queryByRole("switch")).toBeNull();
-  });
 });

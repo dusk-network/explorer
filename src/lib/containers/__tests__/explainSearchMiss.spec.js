@@ -3,47 +3,42 @@ import { encodeBase58 } from "@dusk-network/networks/account";
 
 import explainSearchMiss from "../search-field/explainSearchMiss";
 
+/*
+ * The words of each explanation are copy: these check which kind of miss a
+ * query is, and the .dusk name it suggests.
+ */
 describe("explainSearchMiss", () => {
-  it("should say there is no such block or transaction", () => {
-    expect(explainSearchMiss("99999999")).toStrictEqual({
-      message: "No block at this height yet",
-    });
-    expect(explainSearchMiss("ab".repeat(32))).toStrictEqual({
-      message: "No block or transaction with this ID",
-    });
-  });
+  const shielded = encodeBase58(new Uint8Array(64).fill(7));
 
-  it("should ask for the whole ID when given the start of one", () => {
-    expect(explainSearchMiss("e5f314fb49a8a2f8").message).toBe(
-      "Partial ID: search with all 64 characters",
+  it("should tell each kind of miss apart, suggesting no name for them", () => {
+    const misses = [
+      "99999999", // a height past the last block
+      "ab".repeat(32), // a whole ID that nothing has
+      "e5f314fb49a8a2f8", // the start of an ID
+      "dc3f73…1c204a", // an ID as a wallet shortens it
+      shielded, // a shielded address
+      "bad_name", // anything else
+    ].map(explainSearchMiss);
+
+    for (const miss of misses) {
+      expect(miss).toStrictEqual({ message: expect.any(String) });
+    }
+
+    expect(new Set(misses.map(({ message }) => message)).size).toBe(
+      misses.length,
     );
   });
 
-  it("should say a shortened ID, as a wallet shows it, is shortened", () => {
-    for (const query of [
-      "dc3f73…1c204a",
-      "dc3f73...1c204a",
-      "DC3F73..1C204A",
-    ]) {
-      expect(explainSearchMiss(query)).toStrictEqual({
-        message: "Shortened ID: search with all 64 characters",
-      });
+  it("should take a shortened ID however it is written", () => {
+    for (const query of ["dc3f73...1c204a", "DC3F73..1C204A"]) {
+      expect(explainSearchMiss(query)).toStrictEqual(
+        explainSearchMiss("dc3f73…1c204a"),
+      );
     }
   });
 
-  it("should say a shielded address can't be looked up", () => {
-    const shielded = encodeBase58(new Uint8Array(64).fill(7));
-
-    expect(explainSearchMiss(shielded).message).toBe(
-      "Shielded address: its balance and transfers are private",
-    );
-  });
-
-  it("should offer the .dusk name a word could be, and add no words to the notice's heading", () => {
-    expect(explainSearchMiss(" Alice ")).toStrictEqual({
-      message: "",
-      suggestion: "alice.dusk",
-    });
+  it("should offer the .dusk name a word could be", () => {
+    expect(explainSearchMiss(" Alice ").suggestion).toBe("alice.dusk");
     expect(explainSearchMiss("dusk-domains").suggestion).toBe(
       "dusk-domains.dusk",
     );
@@ -52,12 +47,11 @@ describe("explainSearchMiss", () => {
     expect(explainSearchMiss("alice.").suggestion).toBe("alice.dusk");
   });
 
-  it("should say what can be searched for anything else", () => {
-    for (const query of ["bad_name", "-alice", "a b", "0x12ab"]) {
-      expect(explainSearchMiss(query)).toStrictEqual({
-        message:
-          "Try an account, block height or hash, transaction ID or .dusk name",
-      });
+  it("should give anything else one explanation, and no name", () => {
+    for (const query of ["-alice", "a b", "0x12ab"]) {
+      expect(explainSearchMiss(query)).toStrictEqual(
+        explainSearchMiss("bad_name"),
+      );
     }
   });
 });

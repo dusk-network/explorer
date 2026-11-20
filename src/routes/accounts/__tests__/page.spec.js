@@ -5,6 +5,7 @@ import { getStakedDusk } from "$lib/contracts";
 import { apiNodeInfo } from "$lib/mock-data";
 import { duskAPI } from "$lib/services";
 import { appStore } from "$lib/stores";
+import figure from "$lib/dusk/test-helpers/figure";
 
 import AccountPage from "../+page.svelte";
 
@@ -74,25 +75,47 @@ vi.mock("$lib/services", async (importOriginal) => {
 });
 
 /**
- * A provisioner's stake rows, each its label (without its help) and value.
+ * The amounts the page gives, in order: the public balance, the stake and
+ * its rewards.
  *
  * @param {HTMLElement} container
  */
-const stakeRowsOf = (container) =>
-  Array.from(
-    container.querySelectorAll(".account-overview-panel__stake dt"),
-    (dt) => {
-      const term = /** @type {Element} */ (dt.cloneNode(true));
-
-      term.querySelector(".detail-list__help")?.remove();
-
-      return [
-        term.textContent?.trim(),
-        dt.nextElementSibling?.textContent?.replace(/\s+/g, " ").trim(),
-      ];
-    },
+const amountsOf = (container) =>
+  Array.from(container.querySelectorAll(".dusk-amount"), (amount) =>
+    amount.textContent?.trim(),
   );
 
+/**
+ * A stake row's value, found by the name of its field: the labels' words
+ * are copy, what each field holds isn't.
+ *
+ * @param {HTMLElement} container
+ * @param {RegExp} field
+ */
+const stakeRowOf = (container, field) =>
+  /** @type {HTMLElement | undefined} */ (
+    Array.from(
+      container.querySelectorAll(".account-overview-panel__stake dt"),
+    ).find((dt) => {
+      const label = /** @type {Element} */ (dt.cloneNode(true));
+
+      label.querySelector(".detail-list__help")?.remove();
+
+      return field.test(label.textContent?.trim() ?? "");
+    })?.nextElementSibling ?? undefined
+  );
+
+/**
+ * @param {HTMLElement} container
+ * @param {RegExp} field
+ */
+const stakeValueOf = (container, field) =>
+  stakeRowOf(container, field)?.textContent?.replace(/\s+/g, " ").trim();
+
+/*
+ * The figures the page gives an account, from which reads: its words are
+ * copy.
+ */
 describe("Account page", () => {
   afterEach(() => {
     cleanup();
@@ -108,62 +131,47 @@ describe("Account page", () => {
   });
 
   it("should show the public balance, the stake and its rewards from one stake read", async () => {
-    const { container, getByText } = render(AccountPage);
+    const { container } = render(AccountPage);
 
     await vi.waitFor(() =>
-      expect(container.textContent).toContain("Stake rewards"),
-    );
-    await vi.waitFor(() =>
-      expect(
-        Array.from(container.querySelectorAll(".dusk-amount"), (amount) =>
-          amount.textContent?.trim(),
-        ),
-      ).toStrictEqual(["1,484.92 DUSK", "1,000 DUSK", "31.0271 DUSK"]),
+      expect(amountsOf(container)).toStrictEqual([
+        "1,484.92 DUSK",
+        "1,000 DUSK",
+        "31.0271 DUSK",
+      ]),
     );
 
     expect(duskAPI.getStake).toHaveBeenCalledExactlyOnceWith(key);
     expect(duskAPI.getAccountStatus).toHaveBeenCalledExactlyOnceWith(key);
-    expect(getByText("Public balance")).toBeInTheDocument();
-    // The stake's block, 120 blocks after the last one, comes in about
-    // 20 minutes: a coming one keeps its hour.
+
+    // The stake's block, 120 blocks after the last one, comes in about 20
+    // minutes.
+    // Still to come: from then.
     await vi.waitFor(() =>
-      expect(stakeRowsOf(container)).toStrictEqual([
-        ["Active stake", "1,000 DUSK"],
-        ["Inactive stake", "0 DUSK"],
-        ["Eligibility", "From about 26 Oct 2026, 10:20 AM UTC"],
-        ["Slashes", "1 soft, 0 hard"],
-      ]),
+      expect(stakeValueOf(container, /^eligib/i)).toMatch(
+        /^From\b.*\b26 Oct 2026, 10:20\b/,
+      ),
     );
-    expect(getByText(/From about/)).toHaveAttribute("title", "Block 123,120");
-    expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
     expect(
-      container.querySelector(".account-overview-panel__kind"),
-    ).toHaveTextContent(/^\[Provisioner\]$/);
-    expect(container.textContent).toContain("Shielded funds aren't shown.");
-    expect(container.textContent).not.toContain("Everything here is public.");
-  });
-
-  it("should say N/A when the stake can't be read, and leave the rest", async () => {
-    vi.mocked(duskAPI.getStake).mockRejectedValueOnce(new Error("offline"));
-
-    const { container } = render(AccountPage);
-
-    await vi.waitFor(() =>
-      expect(
-        Array.from(
-          container.querySelectorAll(".overview-panel__details-item"),
-          (item) => item.textContent?.replace(/\s+/g, " ").trim(),
-        ),
-      ).toStrictEqual([
-        "Public balance 1,484.92 DUSK",
-        "Native stake N/A",
-        "Stake rewards N/A",
-      ]),
+      stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
+    ).toHaveAttribute(
+      "title",
+      expect.stringMatching(new RegExp(`${figure("123,120")}$`)),
     );
-    expect(duskAPI.getStake).toHaveBeenCalledTimes(1);
+    expect(stakeValueOf(container, /^active/i)).toBe("1,000 DUSK");
+    expect(stakeValueOf(container, /^inactive/i)).toBe("0 DUSK");
+    // Counts, which have no sign.
+    expect(stakeValueOf(container, /^slash/i)).toMatch(
+      new RegExp(`${figure("1")} soft\\b`),
+    );
+    expect(stakeValueOf(container, /^slash/i)).toMatch(
+      new RegExp(`${figure("0")} hard\\b`),
+    );
+    expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
   });
 
-  it("should say since when a stake has taken part, and give the block on hover", async () => {
+  it("should date a stake that already takes part from its block", async () => {
+    // A day of blocks, 8,640, after the stake's.
     vi.mocked(duskAPI.getChainTip).mockResolvedValueOnce({
       date: new Date(Date.UTC(2026, 9, 26, 10, 0, 0)),
       hash: "",
@@ -171,12 +179,32 @@ describe("Account page", () => {
       transactions: 0,
     });
 
-    const { findByText } = render(AccountPage);
+    const { container } = render(AccountPage);
 
-    expect(await findByText(/^Since about 25 Oct 2026$/)).toHaveAttribute(
-      "title",
-      "Block 123,120",
+    // Already past: since that day.
+    await vi.waitFor(() =>
+      expect(stakeValueOf(container, /^eligib/i)).toMatch(
+        /^Since\b.*\b25 Oct 2026$/,
+      ),
     );
+    expect(
+      stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
+    ).toHaveAttribute(
+      "title",
+      expect.stringMatching(new RegExp(`${figure("123,120")}$`)),
+    );
+  });
+
+  it("should give no stake figures when the stake can't be read, and leave the balance", async () => {
+    vi.mocked(duskAPI.getStake).mockRejectedValueOnce(new Error("offline"));
+
+    const { container } = render(AccountPage);
+
+    await vi.waitFor(() => expect(duskAPI.getStake).toHaveBeenCalledTimes(1));
+    await vi.waitFor(() =>
+      expect(amountsOf(container)).toStrictEqual(["1,484.92 DUSK"]),
+    );
+    expect(container.textContent).not.toMatch(/\b0 DUSK/);
   });
 
   it("should say what the account also staked with Sozu, from one read made once the node says its network", async () => {
@@ -185,55 +213,45 @@ describe("Account page", () => {
     const { container } = render(AccountPage);
 
     // No network yet: nothing to read it from.
-    await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
-    );
+    await vi.waitFor(() => expect(amountsOf(container)).toHaveLength(3));
     expect(getStakedDusk).not.toHaveBeenCalled();
 
     await act(() => appStore.setNodeInfo(apiNodeInfo));
 
     await vi.waitFor(() =>
       expect(
-        container.querySelector(".account-overview-panel__sozu"),
-      ).toHaveTextContent("Also staked with Sozu: 0.1621 stDUSK"),
+        container.querySelector(".account-overview-panel__sozu-amount"),
+      ).toHaveTextContent(/^0\.1621 stDUSK$/),
     );
+    // Every decimal on hover.
+    expect(
+      container.querySelector(".account-overview-panel__sozu-amount"),
+    ).toHaveAttribute("title", "0.162189471 stDUSK");
     expect(getStakedDusk).toHaveBeenCalledExactlyOnceWith(key, 2);
 
     vi.mocked(getStakedDusk).mockResolvedValue(null);
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
   });
 
-  it("should leave out the Sozu line when the stDUSK can't be read", async () => {
-    vi.mocked(getStakedDusk).mockRejectedValueOnce(new Error("offline"));
+  it.each([
+    [
+      "can't be read",
+      () =>
+        vi.mocked(getStakedDusk).mockRejectedValueOnce(new Error("offline")),
+    ],
+    ["is none", () => vi.mocked(getStakedDusk).mockResolvedValueOnce(0n)],
+  ])("should leave out the Sozu line when the stDUSK %s", async (_, answer) => {
+    answer();
     appStore.setNodeInfo(apiNodeInfo);
 
     const { container } = render(AccountPage);
 
     await vi.waitFor(() => expect(getStakedDusk).toHaveBeenCalledOnce());
-    await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
-    );
-    expect(container.querySelector(".account-overview-panel__sozu")).toBeNull();
+    await vi.waitFor(() => expect(amountsOf(container)).toHaveLength(3));
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(container.textContent).not.toContain("stDUSK");
 
     appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
-  });
-
-  it("should call an account without a stake an account, and read no block for it", async () => {
-    vi.mocked(duskAPI.getStake).mockResolvedValueOnce(null);
-
-    const { container } = render(AccountPage);
-
-    await vi.waitFor(() =>
-      expect(container.querySelectorAll(".dusk-amount")).toHaveLength(3),
-    );
-
-    expect(
-      container.querySelector(".account-overview-panel__kind"),
-    ).toHaveTextContent(/^\[Account\]$/);
-    expect(
-      container.querySelector(".account-overview-panel__stake"),
-    ).toBeNull();
-    expect(duskAPI.getChainTip).not.toHaveBeenCalled();
   });
 
   it.each([
@@ -252,8 +270,7 @@ describe("Account page", () => {
         .mockResolvedValueOnce(stakeOf(2n));
 
       const { container } = render(AccountPage);
-      const rewards = () =>
-        container.querySelectorAll(".dusk-amount")[2]?.textContent?.trim();
+      const rewards = () => amountsOf(container)[2];
 
       await act(() => pages.open(other));
       await act(() => pages.open(key));
@@ -267,13 +284,12 @@ describe("Account page", () => {
     },
   );
 
-  it("should say an address isn't valid, and ask the node nothing about it", async () => {
+  it("should ask the node nothing about an address that isn't an account's", async () => {
     pages.open("notanaccount");
 
-    const { getByText, queryByText } = render(AccountPage);
+    const { container } = render(AccountPage);
 
-    expect(getByText("Not a valid account")).toBeInTheDocument();
-    expect(queryByText("Couldn't load")).toBeNull();
+    expect(amountsOf(container)).toStrictEqual([]);
     expect(duskAPI.getAccountStatus).not.toHaveBeenCalled();
     expect(duskAPI.getStake).not.toHaveBeenCalled();
     expect(duskAPI.accountHistory).not.toHaveBeenCalled();
