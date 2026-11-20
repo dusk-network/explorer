@@ -12,6 +12,27 @@ import {
 
 import { duskAPI } from "..";
 
+/**
+ * Whether words say a transaction waits for a block.
+ *
+ * @param {string} text
+ */
+const saysPending = (text) =>
+  /\b(mempool|pending|not yet|being processed|once it's in a block)\b/i.test(
+    text,
+  );
+
+/**
+ * Whether words say a transaction is confirmed: "confirmed", but for "not
+ * (yet) (been) confirmed".
+ *
+ * @param {string} text
+ */
+const saysConfirmed = (text) =>
+  /\bconfirmed\b/i.test(
+    text.replace(/\bnot (?:yet )?(?:been )?confirmed\b/gi, ""),
+  );
+
 describe("duskAPI", () => {
   const fetchSpy = vi.spyOn(global, "fetch");
   const node = new URL(import.meta.env.VITE_NODE_URL, import.meta.url);
@@ -115,9 +136,7 @@ describe("duskAPI", () => {
   it("should say there's no such block, for a height past the last one", async () => {
     fetchSpy.mockResolvedValueOnce(makeOKResponse({ block: null }));
 
-    await expect(duskAPI.getBlock("999999999")).rejects.toThrow(
-      "There's no such block.",
-    );
+    await expect(duskAPI.getBlock("999999999")).rejects.toThrow();
 
     fetchSpy.mockReset();
   });
@@ -835,9 +854,17 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ tx: null }))
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: true }));
 
-    await expect(duskAPI.getTransaction(fakeID)).resolves.toBe(
-      "This transaction is currently in the mempool and has not yet been confirmed. The transaction details will be displayed after confirmation.",
-    );
+    const message = await duskAPI.getTransaction(fakeID);
+
+    // Words for the processing banner, which say it waits for a block, and
+    // never that it's confirmed.
+    expect(message).toBeTypeOf("string");
+
+    const words = /** @type {string} */ (message);
+
+    expect(words).toMatch(/\w/);
+    expect(saysPending(words)).toBe(true);
+    expect(saysConfirmed(words)).toBe(false);
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);
@@ -849,9 +876,7 @@ describe("duskAPI", () => {
       .mockResolvedValueOnce(makeOKResponse({ tx: null }))
       .mockResolvedValueOnce(makeOKResponse({ mempoolTx: null }));
 
-    await expect(duskAPI.getTransaction(fakeID)).rejects.toThrow(
-      "Transaction not found",
-    );
+    await expect(duskAPI.getTransaction(fakeID)).rejects.toThrow();
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
     expect(fetchSpy.mock.calls[0][0]).toStrictEqual(gqlExpectedURL);

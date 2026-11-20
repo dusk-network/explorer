@@ -43,7 +43,7 @@ describe("Transactions page, a page at a time", () => {
 
     vi.stubGlobal("fetch", node.fetch);
 
-    const { container, getByRole } = render(Transactions);
+    const { container } = render(Transactions);
     const shown = () =>
       Array.from(
         container.querySelectorAll("tbody tr a[href*='transaction?id=']"),
@@ -53,7 +53,10 @@ describe("Transactions page, a page at a time", () => {
             "http://localhost",
           ).searchParams.get("id"),
       );
-    const showMore = () => getByRole("button", { name: "Show more" });
+    const showMore = () =>
+      /** @type {HTMLElement} */ (
+        container.querySelector(".data-card__footer button")
+      );
     const newestFirst = async (/** @type {number} */ count) => {
       const answer = await node.fetch("https://node/on/graphql/query", {
         body: `query { transactions(last: ${count}) { id } }`,

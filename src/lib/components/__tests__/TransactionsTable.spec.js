@@ -1,344 +1,287 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { readFileSync } from "node:fs";
 
+import { STAKE_CONTRACT } from "$lib/network";
 import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
+import { Tooltip } from "$lib/dusk/components";
 
 import { TransactionsTable } from "..";
 
 /** @param {string} path relative to this folder */
 const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 
+// The tooltip watches what it points at, which jsdom can't.
+vi.stubGlobal(
+  "IntersectionObserver",
+  class {
+    disconnect() {}
+    observe() {}
+    takeRecords() {
+      return [];
+    }
+    unobserve() {}
+  },
+);
+
+/**
+ * Opens the tooltip of what a row points at, and gives the words it shows.
+ *
+ * @param {Element} target
+ */
+const tooltipOf = async (target) => {
+  render(Tooltip, { props: { defaultDelayShow: 0, id: "main-tooltip" } });
+  await fireEvent.mouseEnter(target);
+
+  const tooltip = /** @type {HTMLElement} */ (
+    document.querySelector("#main-tooltip")
+  );
+
+  await vi.waitFor(() =>
+    expect(tooltip).toHaveAttribute("aria-hidden", "false"),
+  );
+
+  return tooltip.textContent?.trim();
+};
+
+/**
+ * What a part of a row shows on screen.
+ *
+ * @param {Element} row
+ * @param {string} selector
+ */
+const shownIn = (row, selector) => {
+  const part = /** @type {Element} */ (
+    row.querySelector(selector)?.cloneNode(true)
+  );
+
+  part.querySelectorAll(".sr-only").forEach((hidden) => hidden.remove());
+
+  return part.textContent?.replace(/\s+/g, " ").trim();
+};
+
+/**
+ * The status words a row's line shows: "Failed", or none for a
+ * transaction that went through.
+ *
+ * @param {Element | null} line
+ */
+const statusWordsOf = (line) =>
+  (line?.textContent ?? "")
+    .split("·")
+    .map((part) => part.trim())
+    .filter((part) => /^(failed|completed)$/i.test(part))
+    .join(" · ") || null;
+
+/*
+ * A table of transactions: the accounts, the figures and the state each
+ * row shows, whatever its words.
+ */
 describe("Transactions Table", () => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date(2024, 4, 30));
 
-  afterEach(cleanup);
+  const transfer = transformTransaction(gqlTransaction.tx);
+  const sender = String(transfer.from);
+  const receiver = String(transfer.to);
+  /** @param {string} id */
+  const short = (id) => `${id.slice(0, 6)}…${id.slice(-6)}`;
+
+  afterEach(() => {
+    cleanup();
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+  });
 
   afterAll(() => {
     vi.useRealTimers();
   });
 
-  describe("Columns", () => {
-    const transfer = transformTransaction(gqlTransaction.tx);
-    const call = {
-      ...transfer,
-      amount: 0,
-      contract:
-        "0200000000000000000000000000000000000000000000000000000000000000",
-      deposit: 0,
-      method: "withdraw",
-      to: null,
-      txerror: "Panic",
-      txid: "f".repeat(64),
-    };
+  it("should give the sender and the receiver on their own accounts, the amount and the fee in full on hover, and the ID, short in its case, opening the transaction and copied whole", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
 
-    /** @param {HTMLElement} container */
-    const getHeaders = (container) =>
-      Array.from(container.querySelectorAll("th"), (th) =>
-        th.textContent?.trim(),
-      );
+    Object.assign(navigator, { clipboard: { writeText } });
 
-    /** @param {HTMLElement} row */
-    const getCells = (row) =>
-      Array.from(row.querySelectorAll("td"), (td) =>
-        td.textContent?.replace(/\s+/g, " ").trim(),
-      );
-
-    /**
-     * What a part of a row says, as a screen reader reads it: the arrow
-     * between the sender and the receiver is drawn, not read.
-     *
-     * @param {Element} row
-     * @param {string} selector
-     */
-    const readOut = (row, selector) => {
-      const part = /** @type {Element} */ (
-        row.querySelector(selector)?.cloneNode(true)
-      );
-
-      part
-        .querySelectorAll("[aria-hidden='true']")
-        .forEach((el) => el.remove());
-
-      return part.textContent?.replace(/\s+/g, " ").trim();
-    };
-
-    /**
-     * What a part of a row shows.
-     *
-     * @param {Element} row
-     * @param {string} selector
-     */
-    const textOf = (row, selector) =>
-      row.querySelector(selector)?.textContent?.replace(/\s+/g, " ").trim();
-
-    it("should show who sent how much to whom, and leave gas to the transaction page", async () => {
-      const { container, getAllByText, getByRole, getByText } = render(
-        TransactionsTable,
-        {
-          props: { data: [transfer, call], mode: "full" },
-        },
-      );
-      const rows = container.querySelectorAll("tbody tr");
-
-      expect(getHeaders(container)).toStrictEqual([
-        "Transaction",
-        "ID",
-        "Time",
-        "Fee",
-        "Amount",
-      ]);
-      expect(readOut(rows[0], ".transaction__parties")).toBe(
-        `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
-      );
-      expect(getCells(/** @type {HTMLElement} */ (rows[0]))[4]).toBe(
-        "9,812.3789 DUSK",
-      );
-      // Four decimals at most, as in the wallets, and every one on hover. A
-      // fee under 0.01 DUSK keeps two significant digits, to the nearest.
-      expect(getByText("9,812.3789")).toHaveAttribute(
-        "title",
-        "9,812.378912731 DUSK",
-      );
-      expect(getAllByText("0.00029")[0]).toHaveAttribute(
-        "title",
-        "0.000290766 DUSK",
-      );
-      expect(
-        getByRole("link", {
-          name: `${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
-        }),
-      ).toHaveAttribute("href", `/some-base-path/accounts/?key=${transfer.to}`);
-      await vi.waitFor(() => {
-        expect(readOut(rows[1], ".transaction__parties")).toBe(
-          `From ${transfer.from?.slice(0, 6)}…${transfer.from?.slice(-6)} To Stake contract`,
-        );
-        // A failure says so first, and what failed sent nothing: its amount is muted.
-        expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
-        );
-      });
-      expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0 DUSK");
-      expect(rows[1].querySelector(".row-amount")).toHaveClass(
-        "row-amount--muted",
-      );
-      expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
+    const { container } = render(TransactionsTable, {
+      props: { data: [transfer], mode: "full" },
     });
+    const [row] = container.querySelectorAll("tbody tr");
+    const id = /** @type {Element} */ (row.querySelector(".transaction__link"));
 
-    it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
-      const convert = {
-        ...call,
-        contract: "01".padEnd(64, "0"),
-        method: "convert",
-        txerror: "",
-      };
-      const { container } = render(TransactionsTable, {
-        props: {
-          data: [
-            convert,
-            // A value sent along: the receiver is an account.
-            {
-              ...convert,
-              amount: 1_000_000_000,
-              to: transfer.to,
-              txid: "e".repeat(64),
-            },
-          ],
-          mode: "full",
-        },
-      });
-      const [toContract, toAccount] = container.querySelectorAll("tbody tr");
+    expect(
+      Array.from(
+        row.querySelectorAll(".transaction-party--account"),
+        (party) => [party.textContent?.trim(), party.getAttribute("href")],
+      ),
+    ).toStrictEqual([
+      [short(sender), `/some-base-path/accounts/?key=${sender}`],
+      [short(receiver), `/some-base-path/accounts/?key=${receiver}`],
+    ]);
+    expect(shownIn(row, ".row-amount")).toBe("9,812.3789 DUSK");
+    expect(row.querySelector(".row-amount [title]")).toHaveAttribute(
+      "title",
+      "9,812.378912731 DUSK",
+    );
+    // Under 0.01 DUSK, a fee keeps two significant digits, to the nearest.
+    expect(shownIn(row, ".transaction__fee")).toBe("0.00029 DUSK");
+    expect(row.querySelector(".transaction__fee [title]")).toHaveAttribute(
+      "title",
+      "0.000290766 DUSK",
+    );
+    expect(id.textContent?.trim()).toBe(short(transfer.txid));
+    expect(id).toHaveAttribute(
+      "href",
+      `/some-base-path/transactions/transaction?id=${transfer.txid}`,
+    );
 
-      await vi.waitFor(() => {
-        expect(readOut(toContract, ".transaction__parties")).toMatch(
-          / To Transfer contract$/,
-        );
-        // Plain words only: the function's name is for the transaction page.
-        expect(textOf(toContract, ".transaction__line")).toBe(
-          "Contract call · convert",
-        );
-        expect(readOut(toAccount, ".transaction__parties")).toMatch(
-          ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
-        );
-        expect(textOf(toAccount, ".transaction__line")).toBe(
-          "Transfer contract · convert",
-        );
-      });
-    });
+    await fireEvent.click(
+      /** @type {Element} */ (
+        id
+          .closest(".transaction__transaction-id-container")
+          ?.querySelector("button")
+      ),
+    );
 
-    it("should give each time in full on hover, in the viewer's zone, and IDs as six and six characters", async () => {
-      const { container } = render(TransactionsTable, {
-        props: {
-          data: [
-            transfer,
-            { ...call, contract: "ab".repeat(32), method: "submit", to: null },
-          ],
-          mode: "full",
-        },
-      });
-
-      // The tests run in UTC.
-      expect(container.querySelector("time")).toHaveAttribute(
-        "data-tooltip-text",
-        "Tue 16 Apr 2024, 6:39:09 AM UTC",
-      );
-      expect(container.querySelector(".transaction__link")).toHaveTextContent(
-        `${transfer.txid.slice(0, 6)}…${transfer.txid.slice(-6)}`,
-      );
-      await vi.waitFor(() =>
-        expect(
-          readOut(
-            container.querySelectorAll("tbody tr")[1],
-            ".transaction__parties",
-          ),
-        ).toMatch(/ To Contract ababab…ababab$/),
-      );
-    });
-
-    it("should show the DuskEVM address a deposit to DuskEVM pays, read from its call data", async () => {
-      const bridge =
-        "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
-      const deposit = {
-        ...transfer,
-        amount: 0,
-        contract: bridge,
-        deposit: 500_000_000,
-        method: "depositETHToWithValue",
-        payload: /** @type {any} */ ({
-          call: {
-            fn_args: "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
-          },
-        }),
-        to: null,
-      };
-
-      const fetchSpy = vi.spyOn(globalThis, "fetch");
-
-      appStore.setNodeInfo(apiNodeInfo);
-
-      const { container } = render(TransactionsTable, {
-        props: { data: [deposit], mode: "full" },
-      });
-
-      await vi.waitFor(() =>
-        expect(
-          container.querySelector(".transaction-party--evm"),
-        ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
-      );
-      // The address and "on DuskEVM" each wrap whole.
-      expect(
-        Array.from(
-          container.querySelectorAll(".transaction-party--evm > *"),
-          (part) => part.textContent,
-        ),
-      ).toStrictEqual(["0x5A3d…8a01", "on DuskEVM"]);
-      // The address opens on the testnet's DuskEVM explorer.
-      expect(
-        container.querySelector(".transaction-party--evm > a"),
-      ).toHaveAttribute(
-        "href",
-        "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01",
-      );
-      // Its DuskEVM transaction is for its own page: a list asks nothing.
-      expect(fetchSpy).not.toHaveBeenCalled();
-
-      fetchSpy.mockRestore();
-      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
-    });
-
-    it("should strike through what a failed transaction would have sent, as it moved nothing", () => {
-      const style = document.createElement("style");
-
-      style.textContent = readCss("../../../style/app-components/rows.css");
-      document.head.append(style);
-
-      // A shield that failed: it would have sent 20 DUSK to the transfer contract.
-      const shield = {
-        ...call,
-        contract: `01${"0".repeat(62)}`,
-        deposit: 20_000_000_000,
-        method: "convert",
-      };
-      const { container } = render(TransactionsTable, {
-        props: {
-          account: String(transfer.from),
-          data: [
-            shield,
-            call,
-            { ...shield, txerror: "", txid: "e".repeat(64) },
-          ],
-          mode: "full",
-        },
-      });
-      const [failedShield, failedCall, shieldDone] = Array.from(
-        container.querySelectorAll("tbody tr .row-amount"),
-      );
-      /** @param {Element} amount */
-      const struck = (amount) =>
-        getComputedStyle(amount).textDecoration.includes("line-through");
-
-      expect(failedShield.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "20 DUSK, nothing sent",
-      );
-      expect(struck(failedShield)).toBe(true);
-      // A failure that would have sent nothing, and a shield that went through.
-      expect(struck(failedCall)).toBe(false);
-      expect(shieldDone.textContent?.replace(/\s+/g, " ").trim()).toBe(
-        "−20 DUSK",
-      );
-      expect(struck(shieldDone)).toBe(false);
-
-      style.remove();
-    });
-
-    it("should fit the home page: no fee or time column, the time under the amount, failures first", async () => {
-      const { container } = render(TransactionsTable, {
-        props: { data: [transfer, call], mode: "compact" },
-      });
-      const rows = container.querySelectorAll("tbody tr");
-
-      expect(getHeaders(container)).toStrictEqual([
-        "Transaction",
-        "ID",
-        "Amount",
-      ]);
-      expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
-      await vi.waitFor(() =>
-        expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
-        ),
-      );
-      expect(
-        rows[0].querySelectorAll("td")[2].querySelector("time"),
-      ).toHaveAttribute("data-tooltip-text", "Tue 16 Apr 2024, 6:39:09 AM UTC");
-    });
+    expect(writeText).toHaveBeenCalledExactlyOnceWith(transfer.txid);
   });
 
   it("should sign each amount by which way it went for the account whose page it is", () => {
-    const transfer = transformTransaction(gqlTransaction.tx);
     const { container } = render(TransactionsTable, {
       props: {
-        account: String(transfer.from),
+        account: sender,
         data: [
           transfer,
-          {
-            ...transfer,
-            from: String(transfer.to),
-            to: transfer.from,
-            txid: "e".repeat(64),
-          },
+          { ...transfer, from: receiver, to: sender, txid: "e".repeat(64) },
         ],
         mode: "full",
       },
     });
 
     expect(
-      Array.from(container.querySelectorAll(".row-amount"), (amount) =>
-        amount.textContent?.replace(/\s+/g, " ").trim(),
+      Array.from(container.querySelectorAll("tbody tr"), (row) =>
+        shownIn(row, ".row-amount"),
       ),
     ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
+  });
+
+  it("should mark a failed transaction failed, and strike through what it would have sent", () => {
+    const style = document.createElement("style");
+
+    style.textContent = readCss("../../../style/app-components/rows.css");
+    document.head.append(style);
+
+    // A shield: 20 DUSK to the transfer contract, failed and then done;
+    // and a failed reward claim, which would have sent nothing.
+    const shield = {
+      ...transfer,
+      amount: 0,
+      contract: `01${"0".repeat(62)}`,
+      deposit: 20_000_000_000,
+      method: "convert",
+      to: null,
+      txerror: "Panic",
+      txid: "f".repeat(64),
+    };
+    const claim = {
+      ...shield,
+      contract: STAKE_CONTRACT,
+      deposit: 0,
+      method: "withdraw",
+      txid: "d".repeat(64),
+    };
+    const { container } = render(TransactionsTable, {
+      props: {
+        account: sender,
+        data: [shield, claim, { ...shield, txerror: "", txid: "e".repeat(64) }],
+        mode: "full",
+      },
+    });
+
+    expect(
+      Array.from(container.querySelectorAll("tbody tr"), (row) => ({
+        amount: shownIn(row, ".row-amount"),
+        // The status it shows, and the one marked in red: "Failed", or none.
+        red: row.querySelector(".row-failed")?.textContent?.trim() ?? null,
+        status: statusWordsOf(row.querySelector(".transaction__line")),
+        struck: getComputedStyle(
+          /** @type {Element} */ (row.querySelector(".row-amount")),
+        ).textDecoration.includes("line-through"),
+      })),
+    ).toStrictEqual([
+      {
+        amount: "20 DUSK",
+        red: "Failed",
+        status: "Failed",
+        struck: true,
+      },
+      {
+        amount: "0 DUSK",
+        red: "Failed",
+        status: "Failed",
+        struck: false,
+      },
+      {
+        amount: "−20 DUSK",
+        red: null,
+        status: null,
+        struck: false,
+      },
+    ]);
+
+    style.remove();
+  });
+
+  it("should give the DuskEVM address a deposit pays, on DuskEVM, and ask DuskEVM's explorer nothing", async () => {
+    const bridge =
+      "2257e5f8ff49cf7c9704a14ca35acbf48eb7ade11a079d98d5cd5655eea1b31d";
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+
+    appStore.setNodeInfo(apiNodeInfo);
+
+    const { container } = render(TransactionsTable, {
+      props: {
+        data: [
+          {
+            ...transfer,
+            amount: 0,
+            contract: bridge,
+            deposit: 500_000_000,
+            method: "depositETHToWithValue",
+            payload: /** @type {any} */ ({
+              call: {
+                fn_args:
+                  "AGXNHQAAAABaPY4bfC9Ka54NHD9ae5wtTm+KAUANAwDg////AAAAAA==",
+              },
+            }),
+            to: null,
+          },
+        ],
+        mode: "full",
+      },
+    });
+
+    await vi.waitFor(() =>
+      expect(
+        container.querySelector(".transaction-party--evm"),
+      ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
+    );
+    // The whole address, and its network, in its tooltip.
+    expect(
+      await tooltipOf(
+        /** @type {Element} */ (
+          container.querySelector(".transaction-party--evm")
+        ),
+      ),
+    ).toBe("0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM");
+    expect(
+      container.querySelector(".transaction-party__evm-address"),
+    ).toHaveAttribute(
+      "href",
+      "https://explorer.testnet.evm.dusk.network/address/0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01",
+    );
+    expect(fetchSpy).not.toHaveBeenCalled();
+
+    fetchSpy.mockRestore();
   });
 });

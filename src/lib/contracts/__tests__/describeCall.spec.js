@@ -20,6 +20,10 @@ describe("describeCall", () => {
       label: "Stake",
       name: "Stake contract",
     });
+    await expect(describeCall(STAKE_CONTRACT, "unstake")).resolves.toEqual({
+      label: "Unstake",
+      name: "Stake contract",
+    });
   });
 
   it("should say what a stake withdrawal does", async () => {

@@ -1,70 +1,105 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
-import { readFileSync } from "node:fs";
+import { globSync, readFileSync } from "node:fs";
 
 import { gqlTransaction, hostProvisioners } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 
 import { ProvisionersList, TransactionsList } from "..";
 
-/** @param {string} path relative to this folder */
-const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
+/**
+ * The `text-transform` an element's text shows with. It is inherited: the
+ * nearest one set, on the element or above it, applies.
+ *
+ * @param {Element} element
+ */
+const textTransformOf = (element) => {
+  let at = element;
+  let transform = getComputedStyle(at).textTransform;
+
+  while (!transform && at.parentElement) {
+    at = at.parentElement;
+    transform = getComputedStyle(at).textTransform;
+  }
+
+  return transform || "none";
+};
 
 /*
- * Addresses and hashes are case-sensitive. The components' own styles,
+ * Dusk accounts are case-sensitive base58, and IDs are hashes: in another
+ * case, an address reads as another, wrong account. The app's styles,
  * which tests don't load by themselves, must show them as they are.
  */
 describe("Identifier case", () => {
-  /** @type {HTMLStyleElement} */
-  let style;
+  /** @type {HTMLStyleElement[]} */
+  let sheets = [];
 
   beforeEach(() => {
-    style = document.createElement("style");
-    style.textContent = [
-      "../list-item/ListItem.css",
-      "../provisioners-list/ProvisionersList.css",
-      "../transactions-list/TransactionsList.css",
-    ]
-      .map(readCss)
-      .join("\n");
-    document.head.append(style);
+    sheets = globSync("src/**/*.css").map((path) => {
+      const sheet = document.createElement("style");
+
+      sheet.textContent = readFileSync(path, "utf8");
+      document.head.append(sheet);
+
+      return sheet;
+    });
   });
 
   afterEach(() => {
     cleanup();
-    style.remove();
+    sheets.forEach((sheet) => sheet.remove());
   });
 
-  it("should keep the case of a provisioner's staking address", () => {
-    const provisioner = {
-      ...hostProvisioners[0],
-      hasSeparateOwner: false,
-      ownerAddress: hostProvisioners[0].key,
-      ownerType: "Account",
-      rank: 1,
-    };
+  it("should show a provisioner's staking address as it is, with no text-transform", () => {
+    const [provisioner] = hostProvisioners;
+    const { key } = provisioner;
     const { container } = render(ProvisionersList, {
-      props: { data: provisioner },
+      props: {
+        data: {
+          ...provisioner,
+          hasSeparateOwner: false,
+          ownerAddress: provisioner.key,
+          ownerType: "Account",
+          rank: 1,
+        },
+      },
     });
-    const address = /** @type {HTMLElement} */ (
-      container.querySelector(".provisioners-list__staking-address")
-    );
 
-    expect(style.textContent).toContain(".provisioners-list");
-    expect(address.textContent).toMatch(/[a-z]/);
-    expect(getComputedStyle(address).textTransform).not.toBe("uppercase");
+    expect(
+      Array.from(
+        container.querySelectorAll(".provisioners-list__staking-address"),
+        (address) => [address.textContent?.trim(), textTransformOf(address)],
+      ),
+    ).toStrictEqual([[`${key.slice(0, 6)}…${key.slice(-6)}`, "none"]]);
   });
 
-  it("should keep the case of a transaction ID in the phone list", () => {
+  it("should show a transaction's accounts and ID as they are, with no text-transform", () => {
     const transaction = transformTransaction(gqlTransaction.tx);
+    const { txid } = transaction;
+    const [sender, receiver] = [
+      String(transaction.from),
+      String(transaction.to),
+    ];
     const { container } = render(TransactionsList, {
       props: { data: transaction },
     });
-    const link = /** @type {HTMLElement} */ (
-      container.querySelector(`a[href$="?id=${transaction.txid}"]`)
-    );
 
-    expect(link.textContent).toMatch(/[a-f]/);
-    expect(getComputedStyle(link).textTransform).not.toBe("uppercase");
+    expect(
+      Array.from(
+        container.querySelectorAll(
+          `.transaction-party--account, a[href$="?id=${txid}"]`,
+        ),
+        (shown) => [shown.textContent?.trim(), textTransformOf(shown)],
+      ),
+    ).toStrictEqual([
+      [`${sender.slice(0, 4)}…${sender.slice(-4)}`, "none"],
+      [`${receiver.slice(0, 4)}…${receiver.slice(-4)}`, "none"],
+      [
+        expect.stringMatching(
+          new RegExp(`(^| )${txid.slice(0, 6)}…${txid.slice(-6)}$`),
+        ),
+        "none",
+      ],
+    ]);
   });
 });

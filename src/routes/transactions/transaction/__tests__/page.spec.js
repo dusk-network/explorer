@@ -1,62 +1,88 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render } from "@testing-library/svelte";
 
-import { resolveAfter } from "$lib/dusk/promise";
-import { duskAPI } from "$lib/services";
+import TransactionPage from "../+page.svelte";
 
-import TransactionDetails from "../+page.svelte";
+const { id } = vi.hoisted(() => ({ id: "ab".repeat(32) }));
 
-const marketDataSettleTime = vi.hoisted(() => {
-  vi.useFakeTimers();
-  vi.setSystemTime(new Date(2024, 4, 20));
-
-  return 100;
-});
-
-vi.mock("$lib/dusk-domains", async (importOriginal) => ({
-  ...(await importOriginal()),
-  getPrimaryName: vi.fn().mockResolvedValue(null),
-}));
-
-vi.mock("$lib/services", async (importOriginal) => {
-  /** @type {import("$lib/services")} */
-  const original = await importOriginal();
-  const { transformTransaction } = await import("$lib/chain-info");
-  const { apiMarketData, gqlTransaction } = await import("$lib/mock-data");
-  const { current_price: currentPrice, market_cap: marketCap } =
-    apiMarketData.market_data;
+vi.mock("$app/stores", async (importOriginal) => {
+  const { readable } = await import("svelte/store");
 
   return {
-    ...original,
-    duskAPI: {
-      ...original.duskAPI,
-      getMarketData: () =>
-        resolveAfter(marketDataSettleTime, { currentPrice, marketCap }),
-      getTransaction: vi
-        .fn()
-        .mockResolvedValue(transformTransaction(gqlTransaction.tx)),
-    },
+    .../** @type {object} */ (await importOriginal()),
+    page: readable({
+      url: new URL(`http://localhost/transactions/transaction/?id=${id}`),
+    }),
   };
 });
 
-describe("Transaction Details", () => {
+/**
+ * Whether words say a transaction waits for a block.
+ *
+ * @param {string} text
+ */
+const saysPending = (text) =>
+  /\b(mempool|pending|not yet|being processed|once it's in a block)\b/i.test(
+    text,
+  );
+
+/**
+ * Whether words say a transaction is confirmed: "confirmed", but for "not
+ * (yet) (been) confirmed".
+ *
+ * @param {string} text
+ */
+const saysConfirmed = (text) =>
+  /\bconfirmed\b/i.test(
+    text.replace(/\bnot (?:yet )?(?:been )?confirmed\b/gi, ""),
+  );
+
+/*
+ * A transaction the node holds in its mempool, not yet in a block.
+ */
+describe("Transaction page", () => {
   afterEach(() => {
     cleanup();
-    vi.clearAllMocks();
+    vi.unstubAllGlobals();
   });
 
   afterAll(() => {
-    vi.useRealTimers();
-    vi.doUnmock("$lib/services");
+    vi.doUnmock("$app/stores");
   });
 
-  it("should render the Transaction details page", async () => {
-    render(TransactionDetails);
+  it("should show a transaction in the mempool as being processed, with words that say so, and no details", async () => {
+    // No block has it, the mempool does.
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(Response.json({ tx: null }))
+      .mockResolvedValueOnce(Response.json({ mempoolTx: true }));
 
-    expect(duskAPI.getTransaction).toHaveBeenCalledTimes(1);
+    vi.stubGlobal("fetch", fetch);
 
-    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+    const { container } = render(TransactionPage);
 
-    // snapshot with received data from APIs
+    await vi.waitFor(() =>
+      expect(container.querySelector(".dusk-banner--info")).not.toBeNull(),
+    );
+
+    const banner = /** @type {Element} */ (
+      container.querySelector(".dusk-banner--info")?.cloneNode(true)
+    );
+
+    const title = banner.querySelector(".dusk-banner__title");
+
+    // Its state, in words: being processed.
+    expect(saysPending(title?.textContent ?? "")).toBe(true);
+    title?.remove();
+
+    // And the node's words under it: waiting for a block, never confirmed.
+    const body = banner.textContent?.replace(/\s+/g, " ").trim() ?? "";
+
+    expect(body).toMatch(/\w/);
+    expect(saysPending(body)).toBe(true);
+    expect(saysConfirmed(body)).toBe(false);
+    expect(container.querySelector(".transaction-details__outcome")).toBeNull();
+    expect(String(fetch.mock.calls[0][1]?.body)).toContain(id);
+    expect(fetch).toHaveBeenCalledTimes(2);
   });
 });
