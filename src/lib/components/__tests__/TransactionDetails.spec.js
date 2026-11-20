@@ -192,7 +192,7 @@ describe("Transaction Details", () => {
     ]);
   });
 
-  it("should give a call's type and function in the headline, where its Type and Method rows were", async () => {
+  it("should give a call's type and function in the headline, and its function under Details", async () => {
     const { container } = render(TransactionDetails, {
       ...baseProps,
       data: {
@@ -208,8 +208,16 @@ describe("Transaction Details", () => {
         container.querySelector(".transaction-details__summary-text"),
       ).toHaveTextContent(/^Contract call · schedule$/),
     );
-    expect(getTerms(container)).not.toContain("method");
     expect(getTerms(container)).not.toContain("type");
+    expect(
+      Array.from(
+        /** @type {HTMLElement} */ (
+          container.querySelector("details")
+        ).querySelectorAll("dt"),
+        termOf,
+      )[0],
+    ).toBe("method");
+    expect(getDefinition(container, "method")).toBe("schedule");
     expect(
       container.querySelector("summary .detail-technical__chevron"),
     ).toBeInTheDocument();
@@ -323,12 +331,10 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `DuskEVM bridge ${bridge}`,
       );
-      expect(getDefinition(container, "visibility")).toBe(
-        "Public Sender, receiver and amount are visible to everyone",
-      );
+      expect(getDefinition(container, "visibility")).toBe("Public");
       expect(
         container.querySelector(".transaction-details__summary-text"),
-      ).toHaveTextContent(/^Deposit to DuskEVM · depositETHToWithValue$/);
+      ).toHaveTextContent(/^Deposit to DuskEVM$/);
     });
 
     // The address opens on the testnet's DuskEVM explorer, its arrow
@@ -495,7 +501,9 @@ describe("Transaction Details", () => {
     const { getAllByRole } = render(TransactionDetails, baseProps);
     const helps = getAllByRole("button", { name: /^About / });
 
+    // What Public shows is a tooltip on its row: the screen stays short.
     expect(helps.map((help) => help.getAttribute("aria-label"))).toStrictEqual([
+      "About visibility",
       "About gas used",
       "About gas price",
       "About nonce",
@@ -503,23 +511,24 @@ describe("Transaction Details", () => {
     expect(
       helps.map((help) => help.getAttribute("data-tooltip-text")),
     ).toStrictEqual([
+      "Sender, receiver and amount are visible to everyone",
       "The gas the transaction used, of the most it could use. Only the gas used is paid for",
       "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
       "The number of transactions sent from this account",
     ]);
-    expect(helps[1].tagName).toBe("BUTTON");
-    expect(helps[1]).toHaveAccessibleDescription(
+    expect(helps[2].tagName).toBe("BUTTON");
+    expect(helps[2]).toHaveAccessibleDescription(
       "The transaction gas price, in LUX (1 DUSK = 1,000,000,000 LUX)",
     );
   });
 
-  it("should show amounts in DUSK, with dollars rounded to cents, and none for 0 DUSK", () => {
+  it("should show amounts in DUSK, with dollars rounded to cents where there's a cent or more, and the fee in DUSK alone", () => {
     const { container } = render(TransactionDetails, baseProps);
 
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK (< $0.01)");
+    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK");
 
     cleanup();
 
@@ -655,12 +664,13 @@ describe("Transaction Details", () => {
       expect(getDefinition(container, "contract")).toBe(
         `Stake contract ${stake}`,
       );
-      // Plain words in the headline, and the function the call ran.
+      // Plain words in the headline; the function it ran under Details.
       expect(
         container.querySelector(".transaction-details__summary-text"),
-      ).toHaveTextContent(/^Claim rewards · withdraw$/);
+      ).toHaveTextContent(/^Claim rewards$/);
     });
     expect(getTerms(container)).not.toContain("to");
+    expect(getDefinition(container, "method")).toBe("withdraw");
   });
 
   it("should give no method for a transaction that calls no contract", () => {
@@ -702,16 +712,24 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "from")).toBe("Shielded");
     expect(getDefinition(container, "to")).toBe("Shielded");
     expect(getDefinition(container, "amount")).toBe("Shielded");
-    expect(getDefinition(container, "visibility")).toBe(
-      "Shielded Sender, receiver and amount are hidden",
+    expect(getDefinition(container, "visibility")).toBe("Shielded");
+    expect(
+      container.querySelector("[aria-label='About visibility']"),
+    ).toHaveAttribute(
+      "data-tooltip-text",
+      "Sender, receiver and amount are hidden",
     );
   });
 
-  it("should say in a row of its own that a transaction is public, and what that shows", async () => {
+  it("should say in a row of its own that a transaction is public, and what that shows on hover", async () => {
     const { container } = render(TransactionDetails, baseProps);
 
-    expect(getDefinition(container, "visibility")).toBe(
-      "Public Sender, receiver and amount are visible to everyone",
+    expect(getDefinition(container, "visibility")).toBe("Public");
+    expect(
+      container.querySelector("[aria-label='About visibility']"),
+    ).toHaveAttribute(
+      "data-tooltip-text",
+      "Sender, receiver and amount are visible to everyone",
     );
     // Not as a tag beside the headline.
     await vi.waitFor(() =>
@@ -786,7 +804,7 @@ describe("Transaction Details", () => {
     expect(getDefinition(container, "amount")).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK (< $0.01)");
+    expect(getDefinition(container, "fee")).toBe("0.000290766 DUSK");
   });
 
   it("should say what a call to the stake contract did, in its type's words, as the Dusk wallets do", async () => {
@@ -802,7 +820,7 @@ describe("Transaction Details", () => {
     const cases = [
       [{ ...call, deposit: 442_409_461_511, method: "stake" }, "Stake"],
       [{ ...call, method: "unstake" }, "Unstake"],
-      [{ ...call, method: "withdraw" }, "Claim rewards · withdraw"],
+      [{ ...call, method: "withdraw" }, "Claim rewards"],
       [
         {
           ...call,
@@ -821,7 +839,7 @@ describe("Transaction Details", () => {
           method: "withdraw",
           txtype: "Phoenix",
         },
-        "Claim rewards · withdraw",
+        "Claim rewards",
       ],
     ];
 
@@ -836,9 +854,9 @@ describe("Transaction Details", () => {
             .trim(),
         ).toBe(headline),
       );
-      // The headline has them: no row repeats them.
+      // The headline says it; the function's name is under Details.
       expect(getTerms(container)).not.toContain("type");
-      expect(getTerms(container)).not.toContain("method");
+      expect(getDefinition(container, "method")).toBe(data.method);
       cleanup();
     }
   });

@@ -80,7 +80,7 @@ describe("Transactions List", () => {
     expect(container.textContent).not.toMatch(/gas|fee/i);
   });
 
-  it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+  it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
     const call = {
       ...transaction,
       amount: 0,
@@ -95,11 +95,11 @@ describe("Transactions List", () => {
       data: { ...call, amount: 1_000_000_000, to: transaction.to },
     }).container;
 
-    // Plain words, and the function it ran.
+    // The function it ran: the row names the contract.
     await vi.waitFor(() => {
       expect(
         toContract.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^Contract call · \S+$/);
+      ).toHaveTextContent(/^convert$/);
       expect(
         toAccount.querySelector(".transaction-row__line"),
       ).toHaveTextContent(/^Transfer contract · \S+$/);
@@ -131,7 +131,7 @@ describe("Transactions List", () => {
     await vi.waitFor(() =>
       expect(
         lines.map((line) => line?.textContent?.replace(/\s+/g, " ").trim()),
-      ).toStrictEqual(["Stake", "Unstake", "Claim rewards · withdraw"]),
+      ).toStrictEqual(["Stake", "Unstake", "Claim rewards"]),
     );
   });
 
@@ -191,7 +191,7 @@ describe("Transactions List", () => {
         rows[1]
           .closest(".transaction-row")
           ?.querySelector(".transaction-row__line"),
-      ).toHaveTextContent(/^Contract call · \S+$/),
+      ).toHaveTextContent(/^[a-z_]+$/),
     );
 
     // On testnet, whose file labels both.

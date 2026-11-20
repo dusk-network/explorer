@@ -69,7 +69,7 @@
   // to the city; the map groups them by city.
   $: located = nodesData?.reduce((sum, { count }) => sum + count, 0) ?? 0;
   $: locatedNodes =
-    located === 1 ? "1 node" : located ? `${located} nodes` : "The nodes";
+    located === 1 ? "1 node" : located ? `${located} nodes` : "Nodes";
 
   /**
    * Live while new blocks come, waiting once the newest one came over 30
@@ -119,7 +119,6 @@
 
   /**
    * @typedef {{
-   *   approximate: boolean,
    *   attributes: Record<string, string> | null,
    *   canBeStale: boolean,
    *   compact: boolean | null,
@@ -142,7 +141,6 @@
    * @returns {Statistic}
    */
   const statistic = (title, data, rest = {}) => ({
-    approximate: false,
     attributes: null,
     canBeStale: false,
     compact: true,
@@ -163,7 +161,6 @@
    */
   const stakeStatistic = (title, lux) =>
     statistic(title, lux ? luxToDusk(lux) : undefined, {
-      approximate: !!lux,
       attributes: {
         "data-tooltip-id": "main-tooltip",
         "data-tooltip-place": "top",
@@ -271,16 +268,11 @@
       ];
 </script>
 
-<!-- A number's value: "≈" when rounded, its unit, and whether it is stale. -->
+<!-- A number's value, its unit, and whether it is stale. -->
 {#snippet valueOf(
   /** @type {Statistic} */ item,
   /** @type {"div" | "span"} */ tag,
 )}
-  {#if item.approximate}
-    <span class="statistics-panel__statistics-item-about"
-      ><span aria-hidden="true">≈</span><span class="sr-only">about</span></span
-    >
-  {/if}
   <svelte:element this={tag} class="statistics-panel__statistics-item-value">
     <DataGuard data={item.data}>
       {item.prefix}{#if item.compact}
@@ -309,8 +301,7 @@
   <figure class="statistics-panel__face">
     <WorldMap nodes={nodesData ?? []} />
     <figcaption class="statistics-panel__face-caption">
-      {locatedNodes} the explorer's node knows of, located by IP to the city. The
-      bigger the ring, the more nodes.
+      {locatedNodes}, located roughly by IP
     </figcaption>
   </figure>
   <div class="statistics-panel__statistics">
@@ -333,9 +324,9 @@
               >{#if chain !== "unknown"}{#key newest?.height}<span
                     aria-hidden="true"
                     class="statistics-panel__live-dot"
-                  ></span>{/key}{chain === "live"
-                  ? "Live"
-                  : "Waiting for blocks"}{/if}</span
+                  ></span>{/key}{#if chain === "live"}<span class="sr-only"
+                    >Live</span
+                  >{:else}Waiting for blocks{/if}{/if}</span
             >
           {/if}</span
         >

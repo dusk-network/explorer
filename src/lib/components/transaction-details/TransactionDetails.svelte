@@ -60,17 +60,20 @@
 
   /**
    * An amount in DUSK, every decimal of it, with its value in dollars when
-   * the price is known: on mainnet only. None for 0 DUSK, which is $0. The
-   * price is an argument, so that an amount shown before the price came
-   * gets its dollars when it comes.
+   * the price is known, on mainnet only, and it is a cent or more: "0 DUSK",
+   * not "0 DUSK ($0.00)". The price is an argument, so that an amount shown
+   * before the price came gets its dollars when it comes.
    *
    * @param {number} lux
    * @param {number | undefined} price A DUSK's price in dollars
    */
-  const toDuskAndUsd = (lux, price) =>
-    price === undefined || !lux
+  const toDuskAndUsd = (lux, price) => {
+    const usd = price === undefined ? 0 : luxToDusk(lux) * price;
+
+    return usd < 0.01
       ? `${formatDuskExact(lux)} DUSK`
-      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
+      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(usd)})`;
+  };
 
   $: usdPrice = market?.currentPrice.usd;
 
@@ -136,7 +139,7 @@
   <div class="transaction-details__summary detail-summary">
     <TransactionIcon transaction={data} />
     <p class="transaction-details__summary-lines detail-summary__lines">
-      <!-- What it did, and the function a call ran: who with, how much and the fee are the rows. -->
+      <!-- What it did: who with, how much and the fee are the rows. -->
       <span class="transaction-details__summary-text detail-summary__text"
         ><TransactionType {data} showPrivacy={false} /></span
       >
@@ -338,23 +341,19 @@
     <ListItem>
       <svelte:fragment slot="term">Fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {toDuskAndUsd(data.feepaid, usdPrice)}
-        <StaleDataNotice />
+        {formatDuskExact(data.feepaid)} DUSK
       </svelte:fragment>
     </ListItem>
 
-    <!-- VISIBILITY: public or shielded, and what that shows everyone -->
+    <!-- VISIBILITY: public or shielded; what that shows everyone, on hover -->
     {#if visibility}
-      <ListItem>
+      <ListItem tooltipText={visibility.seen}>
         <svelte:fragment slot="term">Visibility</svelte:fragment>
         <span class="transaction-details__visibility" slot="definition"
           ><span class="transaction-details__visibility-label"
             >{visibility.label}</span
           >
-          <span class="transaction-details__visibility-seen"
-            >{visibility.seen}</span
-          ></span
-        >
+        </span>
       </ListItem>
     {/if}
 
@@ -401,6 +400,16 @@
       /></summary
     >
     <dl class="transaction-details__list detail-rows">
+      <!-- METHOD: the name of the contract's function the call ran -->
+      {#if data.contract}
+        <ListItem wide>
+          <svelte:fragment slot="term">Method</svelte:fragment>
+          <code class="transaction-details__function" slot="definition"
+            >{data.method}</code
+          >
+        </ListItem>
+      {/if}
+
       <!-- GAS USED, OF THE TRANSACTION'S LIMIT -->
       <ListItem
         tooltipText="The gas the transaction used, of the most it could use. Only the gas used is paid for"

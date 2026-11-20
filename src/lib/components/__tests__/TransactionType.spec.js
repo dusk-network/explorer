@@ -37,7 +37,7 @@ describe("TransactionType", () => {
     );
   });
 
-  it("should show the function a call ran, unless its words already say it", async () => {
+  it("should show the function a call ran, unless the call has plain words", async () => {
     const contract =
       "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c";
     const stake =
@@ -69,9 +69,10 @@ describe("TransactionType", () => {
       "Stake",
       undefined,
     ]);
+    // Its function's name is the transaction page's detail.
     expect(await words({ contract: stake, method: "withdraw" })).toStrictEqual([
       "Claim rewards",
-      "withdraw",
+      undefined,
     ]);
     expect(
       await words({ contract: undefined, method: "transfer" }),

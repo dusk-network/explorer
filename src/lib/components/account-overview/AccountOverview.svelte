@@ -243,7 +243,5 @@
     </dl>
   {/if}
 
-  <p class="account-overview-panel__note">
-    Everything here is public. Shielded funds aren't shown.
-  </p>
+  <p class="account-overview-panel__note">Shielded funds aren't shown.</p>
 </section>

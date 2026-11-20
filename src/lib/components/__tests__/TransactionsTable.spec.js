@@ -119,7 +119,7 @@ describe("Transactions Table", () => {
         );
         // A failure says so first, and what failed sent nothing: its amount is muted.
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
+          "Failed · Claim rewards",
         );
       });
       expect(getCells(/** @type {HTMLElement} */ (rows[1]))[4]).toBe("0");
@@ -129,7 +129,7 @@ describe("Transactions Table", () => {
       expect(container.textContent).not.toMatch(/PRICE|LIMIT/);
     });
 
-    it('should say "Contract call" for a call with no plain words when its receiver names the contract, and name the contract when the receiver is an account', async () => {
+    it("should give a call with no plain words as the function it ran when its receiver names the contract, and name the contract when the receiver is an account", async () => {
       const convert = {
         ...call,
         contract: "01".padEnd(64, "0"),
@@ -158,9 +158,7 @@ describe("Transactions Table", () => {
           / To Transfer contract$/,
         );
         // Plain words only: the function's name is for the transaction page.
-        expect(textOf(toContract, ".transaction__line")).toBe(
-          "Contract call · convert",
-        );
+        expect(textOf(toContract, ".transaction__line")).toBe("convert");
         expect(readOut(toAccount, ".transaction__parties")).toMatch(
           ` To ${transfer.to?.slice(0, 6)}…${transfer.to?.slice(-6)}`,
         );
@@ -307,7 +305,7 @@ describe("Transactions Table", () => {
       expect(textOf(rows[0], ".transaction__line")).not.toContain("Failed");
       await vi.waitFor(() =>
         expect(textOf(rows[1], ".transaction__line")).toBe(
-          "Failed · Claim rewards · withdraw",
+          "Failed · Claim rewards",
         ),
       );
       expect(

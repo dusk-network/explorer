@@ -139,9 +139,8 @@ describe("Account page", () => {
     expect(
       container.querySelector(".account-overview-panel__kind"),
     ).toHaveTextContent(/^\[Provisioner\]$/);
-    expect(container.textContent).toContain(
-      "Everything here is public. Shielded funds aren't shown.",
-    );
+    expect(container.textContent).toContain("Shielded funds aren't shown.");
+    expect(container.textContent).not.toContain("Everything here is public.");
   });
 
   it("should say N/A when the stake can't be read, and leave the rest", async () => {
