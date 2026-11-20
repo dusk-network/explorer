@@ -52,6 +52,25 @@ describe("Main layout", () => {
   };
 
   it("should warn at the top of a test network's pages that test DUSK has no value, and not on mainnet", async () => {
+    // Before the node says which network it is on: no warning yet.
+    const answer = Promise.withResolvers();
+
+    getNodeInfo.mockReturnValueOnce(/** @type {any} */ (answer.promise));
+
+    const before = render(MainLayout);
+
+    await vi.waitFor(() => expect(getNodeInfo).toHaveBeenCalledOnce());
+
+    expect(before.queryByRole("note")).toBeNull();
+
+    answer.resolve({ ...apiNodeInfo, chain_id: 2 });
+
+    await vi.waitFor(() =>
+      expect(before.queryByRole("note")).toHaveTextContent(/no value/i),
+    );
+    cleanup();
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: undefined });
+
     // Testnet, a devnet and a local node.
     for (const chainId of [2, 3, 0]) {
       const { container, getByRole } = await renderOn(chainId);

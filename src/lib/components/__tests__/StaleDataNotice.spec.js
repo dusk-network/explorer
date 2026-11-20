@@ -29,7 +29,7 @@ describe("StaleDataNotice", () => {
     vi.doUnmock("$lib/services");
   });
 
-  it("should warn once the market data is stale: not while it is fresh or being read again, and once a read failed", async () => {
+  it("should warn once the market data is stale: not while it is fresh or read again, but once it got old or a read failed", async () => {
     vi.useFakeTimers();
 
     const {
@@ -38,6 +38,7 @@ describe("StaleDataNotice", () => {
       market_cap: marketCap,
     } = apiMarketData.market_data;
     const next = Promise.withResolvers();
+    const interval = get(appStore).marketDataFetchInterval;
 
     vi.mocked(duskAPI.getMarketData)
       .mockResolvedValueOnce({ circulatingSupply, currentPrice, marketCap })
@@ -54,18 +55,33 @@ describe("StaleDataNotice", () => {
     expect(duskAPI.getMarketData).toHaveBeenCalledOnce();
     expect(warned()).toBe(false);
 
-    // Read again later, which takes a while: no warning while it's read.
-    await vi.advanceTimersByTimeAsync(
-      get(appStore).marketDataFetchInterval * 1.5,
+    // A hidden tab reads nothing: the data gets old, with no read failing,
+    // and says so as the page draws again.
+    const hidden = vi.spyOn(document, "hidden", "get").mockReturnValue(true);
+
+    document.dispatchEvent(new Event("visibilitychange"));
+    await vi.advanceTimersByTimeAsync(interval * 1.5);
+    await act(() =>
+      appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1, version: "next" }),
     );
+
+    expect(duskAPI.getMarketData).toHaveBeenCalledOnce();
+    expect(warned()).toBe(true);
+
+    // Shown again, it reads again: no warning while it does.
+    hidden.mockReturnValue(false);
+    document.dispatchEvent(new Event("visibilitychange"));
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(duskAPI.getMarketData).toHaveBeenCalledTimes(2);
     expect(warned()).toBe(false);
 
-    // That read failed: what the page shows is stale.
+    // That read failed: stale again.
     await act(() => next.reject(new Error("offline")));
     await vi.advanceTimersByTimeAsync(0);
 
     expect(warned()).toBe(true);
+
+    hidden.mockRestore();
   });
 });

@@ -5,6 +5,7 @@ import { getStakedDusk } from "$lib/contracts";
 import { apiNodeInfo } from "$lib/mock-data";
 import { duskAPI } from "$lib/services";
 import { appStore } from "$lib/stores";
+import figure from "$lib/dusk/test-helpers/figure";
 
 import AccountPage from "../+page.svelte";
 
@@ -153,12 +154,19 @@ describe("Account page", () => {
     );
     expect(
       stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
-    ).toHaveAttribute("title", expect.stringMatching(/\b123,120$/));
+    ).toHaveAttribute(
+      "title",
+      expect.stringMatching(new RegExp(`${figure("123,120")}$`)),
+    );
     expect(stakeValueOf(container, /^active/i)).toBe("1,000 DUSK");
     expect(stakeValueOf(container, /^inactive/i)).toBe("0 DUSK");
     // Counts, which have no sign.
-    expect(stakeValueOf(container, /^slash/i)).toMatch(/(?<![\d−-])1 soft\b/);
-    expect(stakeValueOf(container, /^slash/i)).toMatch(/(?<![\d−-])0 hard\b/);
+    expect(stakeValueOf(container, /^slash/i)).toMatch(
+      new RegExp(`${figure("1")} soft\\b`),
+    );
+    expect(stakeValueOf(container, /^slash/i)).toMatch(
+      new RegExp(`${figure("0")} hard\\b`),
+    );
     expect(duskAPI.getChainTip).toHaveBeenCalledTimes(1);
   });
 
@@ -181,7 +189,10 @@ describe("Account page", () => {
     );
     expect(
       stakeRowOf(container, /^eligib/i)?.querySelector("[title]"),
-    ).toHaveAttribute("title", expect.stringMatching(/\b123,120$/));
+    ).toHaveAttribute(
+      "title",
+      expect.stringMatching(new RegExp(`${figure("123,120")}$`)),
+    );
   });
 
   it("should give no stake figures when the stake can't be read, and leave the balance", async () => {

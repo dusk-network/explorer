@@ -1,8 +1,6 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render } from "@testing-library/svelte";
 
-import { COPIED_FOR } from "$lib/dusk/motion";
-
 import { CopyButton } from "..";
 
 vi.mock("$lib/dusk/components/toast/store", () => ({ toast: vi.fn() }));
@@ -40,7 +38,7 @@ describe("CopyButton", () => {
     vi.useRealTimers();
   });
 
-  it("should copy the value whole, as it is, and say Copied for a moment", async () => {
+  it("should copy the value whole, as it is, and say Copied for 1.5 s", async () => {
     const writeText = clipboardThat();
     const { getByRole } = render(CopyButton, { props });
 
@@ -54,8 +52,12 @@ describe("CopyButton", () => {
     expect(getByRole("button")).toHaveAccessibleName("Copied");
     expect(toast).not.toHaveBeenCalled();
 
-    // Then it says Copy again.
-    await vi.advanceTimersByTimeAsync(COPIED_FOR);
+    // Still at 1.4 s, and Copy again by 1.6 s.
+    await vi.advanceTimersByTimeAsync(1350);
+
+    expect(getByRole("button")).toHaveTextContent(/^Copied$/);
+
+    await vi.advanceTimersByTimeAsync(200);
 
     expect(getByRole("button")).toHaveTextContent(/^Copy$/);
     expect(getByRole("button")).not.toHaveAccessibleName("Copied");
@@ -74,11 +76,17 @@ describe("CopyButton", () => {
 
     expect(toast).toHaveBeenCalledExactlyOnceWith(
       "error",
-      expect.any(String),
+      expect.not.stringMatching(/copied/i),
       expect.any(String),
     );
     expect(getByRole("button")).toHaveTextContent(/^Copy$/);
     expect(getByRole("button")).not.toHaveAccessibleName("Copied");
+
+    // Nowhere on the page, at any time after.
+    for (let at = 0; at < 2000; at += 500) {
+      expect(document.body.textContent).not.toMatch(/copied/i);
+      await vi.advanceTimersByTimeAsync(500);
+    }
   });
 
   it("should not say Copied for a value it didn't copy", async () => {

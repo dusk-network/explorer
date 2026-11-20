@@ -15,6 +15,7 @@ import { apiMarketData, apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { getPrimaryName } from "$lib/dusk-domains";
 import { appStore } from "$lib/stores";
+import figure from "$lib/dusk/test-helpers/figure";
 
 import { TransactionDetails } from "..";
 
@@ -80,6 +81,19 @@ const leadOf = (container) =>
  */
 const statusOf = (container) =>
   container.querySelector(".transaction-details__outcome")?.textContent?.trim();
+
+/**
+ * The colour the status is given: one of the two, never both.
+ *
+ * @param {HTMLElement} container
+ */
+const colourOf = (container) => {
+  const outcome = container.querySelector(".transaction-details__outcome");
+
+  return ["completed", "failed"].filter((state) =>
+    outcome?.classList.contains(`transaction-details__outcome--${state}`),
+  );
+};
 
 /**
  * What an explanation of a transaction's privacy says is hidden, and what
@@ -193,7 +207,7 @@ describe("Transaction Details", () => {
     const { container } = render(TransactionDetails, props);
 
     expect(valueOf(container, /^gas used$/i)).toMatch(
-      /^290,766[^\d−-]+500,000,000$/,
+      new RegExp(`^${figure("290,766")}\\D+${figure("500,000,000")}$`),
     );
     expect(valueOf(container, /^gas price$/i)).toBe("1 LUX");
   });
@@ -223,6 +237,7 @@ describe("Transaction Details", () => {
     }).container;
 
     expect(statusOf(completed)).toBe("Completed");
+    expect(colourOf(completed)).toStrictEqual(["completed"]);
     expect(struckIn(completed)).toBeUndefined();
     await vi.waitFor(() =>
       expect(leadOf(completed)).toBe(
@@ -262,6 +277,7 @@ describe("Transaction Details", () => {
       });
 
       expect(statusOf(container)).toBe("Failed");
+      expect(colourOf(container)).toStrictEqual(["failed"]);
       expect(struckIn(container)?.textContent).toBe(unsent);
       await vi.waitFor(() => expect(leadOf(container)).toMatch(lead));
       // Only tried: never sent, paid or staked.

@@ -4,6 +4,8 @@ import { get } from "svelte/store";
 
 import * as mockData from "$lib/mock-data";
 import { resolveAfter } from "$lib/dusk/promise";
+import figure from "$lib/dusk/test-helpers/figure";
+import { duskAPI } from "$lib/services";
 import { appStore, chainHeadStore, chainStatsStore } from "$lib/stores";
 
 import { StatisticsPanel } from "..";
@@ -13,6 +15,11 @@ const marketDataSettleTime = vi.hoisted(() => {
 
   return 100;
 });
+// The price's move over 24 hours the market data gives, unless the
+// mock data's.
+const market = vi.hoisted(() => ({
+  priceChange24h: /** @type {number | null} */ (null),
+}));
 // The numbers, without drawing the map's countries.
 vi.mock("$lib/components", async (importOriginal) => {
   /** @type {import("$lib/components")} */
@@ -37,13 +44,14 @@ vi.mock("$lib/services", async (importOriginal) => {
     ...original,
     duskAPI: {
       ...original.duskAPI,
-      getMarketData: () =>
+      getMarketData: vi.fn(() =>
         resolveAfter(marketDataSettleTime, {
           circulatingSupply,
           currentPrice,
           marketCap,
-          priceChange24h,
+          priceChange24h: market.priceChange24h ?? priceChange24h,
         }),
+      ),
       getNodeLocations: vi.fn().mockResolvedValue(nodeLocationsCount),
     },
   };
@@ -171,7 +179,13 @@ describe("StatisticsPanel", () => {
     expect(valueOf(cardOf(container, /market cap/i))).toBe("$168.00M");
   });
 
-  it("should give the price's move with its sign, and the stake's share of the circulating supply", async () => {
+  /** The time it takes the market data to be read again. */
+  const nextRead = () =>
+    vi.advanceTimersByTimeAsync(
+      get(appStore).marketDataFetchInterval + marketDataSettleTime,
+    );
+
+  it("should give the price's move with its sign and colour, and the stake's share of the circulating supply", async () => {
     setChain(1);
 
     const { container } = render(StatisticsPanel);
@@ -179,13 +193,75 @@ describe("StatisticsPanel", () => {
     await act(() => newestBlock(mockData.apiStats.lastBlock));
     await vi.advanceTimersByTimeAsync(marketDataSettleTime);
 
-    const price = noteOf(cardOf(container, /price/i));
-    const stake = noteOf(cardOf(container, /^(?!pending).*stake/i));
+    /** The price's move, and the colours it's given: one of the two. */
+    const move = () => {
+      const note = noteOf(cardOf(container, /price/i));
+
+      return [
+        note?.textContent?.replace(/\s+/g, " ").trim(),
+        ["down", "up"].filter((way) =>
+          note?.classList.contains(
+            `statistics-panel__statistics-item-note--${way}`,
+          ),
+        ),
+      ];
+    };
 
     // -8.04817% in 24 hours: down, in red, to two decimals.
-    expect(price).toHaveTextContent(/^(?:Down |[−-])8\.05%/);
-    expect(price).toHaveClass("statistics-panel__statistics-item-note--down");
+    expect(move()).toStrictEqual([
+      expect.stringMatching(
+        new RegExp(
+          `^(?:Down ${figure("8.05%")}|${figure("−8.05%")}).*\\b24 ?h\\b`,
+        ),
+      ),
+      ["down"],
+    ]);
     // 58,226,174 DUSK staked of 457,027,796 in circulation.
-    expect(stake).toHaveTextContent(/^12\.7%/);
+    expect(
+      noteOf(cardOf(container, /^(?!pending).*stake/i))?.textContent?.trim(),
+    ).toMatch(new RegExp(`^${figure("12.7%")} of circulating supply$`));
+
+    // A rise, read next: up, in green.
+    market.priceChange24h = 8.04817;
+    await nextRead();
+
+    expect(move()).toStrictEqual([
+      expect.stringMatching(
+        new RegExp(
+          `^(?:Up ${figure("8.05%")}|${figure("+8.05%")}).*\\b24 ?h\\b`,
+        ),
+      ),
+      ["up"],
+    ]);
+
+    market.priceChange24h = null;
+  });
+
+  it("should warn by the price and the market cap once the market data is stale", async () => {
+    setChain(1);
+
+    const { container } = render(StatisticsPanel);
+    const warned = (/** @type {RegExp} */ label) =>
+      cardOf(container, label)?.querySelector(
+        "[data-tooltip-type='warning']",
+      ) != null;
+
+    await nextRead();
+
+    expect([warned(/price/i), warned(/market cap/i)]).toStrictEqual([
+      false,
+      false,
+    ]);
+
+    // The next read fails: what the two show is stale.
+    vi.mocked(duskAPI.getMarketData).mockRejectedValueOnce(
+      new Error("offline"),
+    );
+    await nextRead();
+
+    expect([warned(/price/i), warned(/market cap/i)]).toStrictEqual([
+      true,
+      true,
+    ]);
   });
 });

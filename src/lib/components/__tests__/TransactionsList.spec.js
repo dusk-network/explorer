@@ -1,16 +1,50 @@
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render } from "@testing-library/svelte";
+import { cleanup, fireEvent, render } from "@testing-library/svelte";
 import { readFileSync } from "node:fs";
 
 import { STAKE_CONTRACT } from "$lib/network";
 import { apiNodeInfo, gqlTransaction } from "$lib/mock-data";
 import { transformTransaction } from "$lib/chain-info";
 import { appStore } from "$lib/stores";
+import { Tooltip } from "$lib/dusk/components";
 
 import { TransactionsList } from "..";
 
 /** @param {string} path relative to this folder */
 const readCss = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
+
+// The tooltip watches what it points at, which jsdom can't.
+vi.stubGlobal(
+  "IntersectionObserver",
+  class {
+    disconnect() {}
+    observe() {}
+    takeRecords() {
+      return [];
+    }
+    unobserve() {}
+  },
+);
+
+/**
+ * Opens the tooltip of what a row points at, and gives the words it shows.
+ *
+ * @param {Element} target
+ */
+const tooltipOf = async (target) => {
+  render(Tooltip, { props: { defaultDelayShow: 0, id: "main-tooltip" } });
+  await fireEvent.mouseEnter(target);
+
+  const tooltip = /** @type {HTMLElement} */ (
+    document.querySelector("#main-tooltip")
+  );
+
+  await vi.waitFor(() =>
+    expect(tooltip).toHaveAttribute("aria-hidden", "false"),
+  );
+
+  return tooltip.textContent?.trim();
+};
 
 /**
  * The amount a row shows, as it reads on screen.
@@ -26,6 +60,19 @@ const amountOf = (container) => {
 
   return amount.textContent?.replace(/\s+/g, " ").trim();
 };
+
+/**
+ * The status words a row's line shows: "Failed", or none for a
+ * transaction that went through.
+ *
+ * @param {Element | null} line
+ */
+const statusWordsOf = (line) =>
+  (line?.textContent ?? "")
+    .split("·")
+    .map((part) => part.trim())
+    .filter((part) => /^(failed|completed)$/i.test(part))
+    .join(" · ") || null;
 
 /*
  * A phone's row of a transaction: the accounts, the figures and the state
@@ -75,11 +122,19 @@ describe("Transactions List", () => {
       "href",
       `/some-base-path/transactions/transaction?id=${transaction.txid}`,
     );
-    // The fee and the gas are for the transaction's page.
-    expect(container.textContent).not.toMatch(/gas|fee/i);
-    for (const figure of ["0.00029", "290,766", "500,000,000"]) {
-      expect(container.innerHTML).not.toContain(figure);
-    }
+    // The fee and the gas are for the transaction's page: no word of them,
+    // and no figure in DUSK but the amount, on the row or in its tooltips.
+    const everything = [
+      container.textContent,
+      ...Array.from(container.querySelectorAll("*"), (element) =>
+        Array.from(element.attributes, ({ value }) => value).join(" "),
+      ),
+    ].join(" ");
+
+    expect(everything).not.toMatch(/\b(gas|fees?|cost|LUX)\b/i);
+    expect(new Set(everything.match(/[\d.,]+(?=\s*DUSK)/g))).toStrictEqual(
+      new Set(["9,812.3789", "9,812.378912731"]),
+    );
   });
 
   it("should sign the amount by which way it went for the account whose page it is", () => {
@@ -113,11 +168,12 @@ describe("Transactions List", () => {
 
       return {
         amount: amountOf(container),
-        // The status it shows in words: "Failed" first, or none.
-        line: container
-          .querySelector(".transaction-row__line")
-          ?.textContent?.replace(/\s+/g, " ")
-          .trim(),
+        // The status it shows, and the one marked in red: "Failed", or none.
+        red:
+          container.querySelector(".row-failed")?.textContent?.trim() ?? null,
+        status: statusWordsOf(
+          container.querySelector(".transaction-row__line"),
+        ),
         struck:
           getComputedStyle(amount).textDecoration.includes("line-through"),
       };
@@ -125,12 +181,14 @@ describe("Transactions List", () => {
 
     expect(rowOf(transaction)).toStrictEqual({
       amount: "9,812.3789 DUSK",
-      line: expect.not.stringMatching(/Failed/),
+      red: null,
+      status: null,
       struck: false,
     });
     expect(rowOf({ ...transaction, txerror: "Panic" })).toStrictEqual({
       amount: "9,812.3789 DUSK",
-      line: expect.stringMatching(/^Failed\b/),
+      red: "Failed",
+      status: "Failed",
       struck: true,
     });
     // A call's deposit doesn't reach its contract either.
@@ -146,7 +204,8 @@ describe("Transactions List", () => {
       }),
     ).toStrictEqual({
       amount: "20 DUSK",
-      line: expect.stringMatching(/^Failed\b/),
+      red: "Failed",
+      status: "Failed",
       struck: true,
     });
 
@@ -206,11 +265,14 @@ describe("Transactions List", () => {
         container.querySelector(".transaction-party--evm"),
       ).toHaveTextContent(/^0x5A3d…8a01 on DuskEVM$/),
     );
-    // The whole address, and its network, on hover.
-    expect(container.querySelector(".transaction-party--evm")).toHaveAttribute(
-      "data-tooltip-text",
-      "0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM",
-    );
+    // The whole address, and its network, in its tooltip.
+    expect(
+      await tooltipOf(
+        /** @type {Element} */ (
+          container.querySelector(".transaction-party--evm")
+        ),
+      ),
+    ).toBe("0x5A3d8e1B7c2f4A6b9e0D1C3f5A7b9C2D4e6F8a01 on DuskEVM");
     expect(
       container.querySelector(".transaction-party__evm-address"),
     ).toHaveAttribute(
