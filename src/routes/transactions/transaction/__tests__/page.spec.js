@@ -22,7 +22,7 @@ vi.mock("$app/stores", async (importOriginal) => {
  * @param {string} text
  */
 const saysPending = (text) =>
-  /\b(mempool|pending|not yet|being processed|once it's in a block)\b/i.test(
+  /\b(mempool|pending|not yet|not confirmed yet|being processed|once it's in a block)\b/i.test(
     text,
   );
 

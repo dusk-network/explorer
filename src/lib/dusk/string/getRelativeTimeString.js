@@ -43,19 +43,51 @@ function getCountAndUnit(diff) {
 }
 
 /**
+ * Each unit as a list writes it, compact: "18 s ago", "40 min ago". One
+ * day, week, month or year keeps its words: "yesterday", "last week".
+ *
+ * @type {Record<string, { short: string, words: boolean }>}
+ */
+const compactUnits = {
+  day: { short: "d", words: true },
+  hour: { short: "h", words: false },
+  minute: { short: "min", words: false },
+  month: { short: "mo", words: true },
+  second: { short: "s", words: false },
+  week: { short: "wk", words: true },
+  year: { short: "y", words: true },
+};
+
+/**
+ * How long ago, or how soon, in English. "compact" writes the units short,
+ * "18 s ago" or "in 3 h", and keeps the words for one day, week, month or
+ * year: "yesterday", "last week".
+ *
  * @param {Date} date
- * @param {"long" | "short" | "narrow"} style
+ * @param {"long" | "short" | "narrow" | "compact"} style
  * @return {String}
  */
 function getRelativeTimeString(date, style) {
   const rtf = new Intl.RelativeTimeFormat("en", {
     localeMatcher: "best fit",
     numeric: "auto",
-    style,
+    style: style === "compact" ? "long" : style,
   });
   const [count, unit] = getCountAndUnit(date.getTime() - Date.now());
 
-  return rtf.format(count, unit.name);
+  const compact = compactUnits[unit.name];
+
+  if (
+    style !== "compact" ||
+    count === 0 ||
+    (Math.abs(count) === 1 && compact.words)
+  ) {
+    return rtf.format(count, unit.name);
+  }
+
+  const amount = `${Math.abs(count)} ${compact.short}`;
+
+  return count < 0 ? `${amount} ago` : `in ${amount}`;
 }
 
 export default getRelativeTimeString;

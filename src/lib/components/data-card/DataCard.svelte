@@ -104,7 +104,7 @@
     <div class="alert" class:alert--error={!!error}>
       {#if error}
         <p class="alert__title">
-          <Icon path={mdiAlertCircleOutline} />Couldn't load this.
+          <Icon path={mdiAlertCircleOutline} />Couldn't load
         </p>
         {#if error.message}
           <p class="alert__error-message">{error.message}</p>

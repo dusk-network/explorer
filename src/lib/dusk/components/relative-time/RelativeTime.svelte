@@ -19,13 +19,13 @@
 <time {...$$restProps} class={classes} datetime={date.toISOString()}>
   {#if autoRefresh}
     <Rerender
-      generateValue={() => getRelativeTimeString(date, "long")}
+      generateValue={() => getRelativeTimeString(date, "compact")}
       let:value
     >
       <slot relativeTime={value}>{value}</slot>
     </Rerender>
   {:else}
-    {@const relativeTime = getRelativeTimeString(date, "long")}
+    {@const relativeTime = getRelativeTimeString(date, "compact")}
     <slot {relativeTime}>{relativeTime}</slot>
   {/if}
 </time>

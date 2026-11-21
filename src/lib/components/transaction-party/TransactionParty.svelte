@@ -9,7 +9,7 @@
   import { AppAnchor } from "$lib/components";
   import { bridgeDepositRecipient, describeCall } from "$lib/contracts";
   import { Anchor } from "$lib/dusk/components";
-  import { middleEllipsis, shortId } from "$lib/dusk/string";
+  import { shortId } from "$lib/dusk/string";
   import { duskEvmAddressUrl, labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
@@ -73,16 +73,10 @@
       ? bridgeDepositRecipient(transaction, chainId)
       : null;
   $: shortAddress =
-    party?.kind === "account"
-      ? narrow
-        ? middleEllipsis(party.address, 4)
-        : shortId(party.address)
-      : "";
+    party?.kind === "account" ? shortId(party.address, narrow ? 4 : 6) : "";
   $: shortContractId =
     party?.kind === "contract"
-      ? narrow
-        ? middleEllipsis(formatContractId(party.id), 4)
-        : formatContractId(party.id, { short: true })
+      ? shortId(formatContractId(party.id), narrow ? 4 : 6)
       : "";
 </script>
 

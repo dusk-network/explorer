@@ -118,13 +118,19 @@ describe("Transactions Table", () => {
       [short(sender), `/some-base-path/accounts/?key=${sender}`],
       [short(receiver), `/some-base-path/accounts/?key=${receiver}`],
     ]);
-    expect(shownIn(row, ".row-amount")).toBe("9,812.3789 DUSK");
+    // The unit is the columns': their cells give the numbers.
+    expect(
+      Array.from(container.querySelectorAll("thead th"), (th) =>
+        th.textContent?.trim(),
+      ).slice(-2),
+    ).toStrictEqual(["Fee (DUSK)", "Amount (DUSK)"]);
+    expect(shownIn(row, ".row-amount")).toBe("9,812.3789");
     expect(row.querySelector(".row-amount [title]")).toHaveAttribute(
       "title",
       "9,812.378912731 DUSK",
     );
     // Under 0.01 DUSK, a fee keeps two significant digits, to the nearest.
-    expect(shownIn(row, ".transaction__fee")).toBe("0.00029 DUSK");
+    expect(shownIn(row, ".transaction__fee")).toBe("0.00029");
     expect(row.querySelector(".transaction__fee [title]")).toHaveAttribute(
       "title",
       "0.000290766 DUSK",
@@ -162,7 +168,7 @@ describe("Transactions Table", () => {
       Array.from(container.querySelectorAll("tbody tr"), (row) =>
         shownIn(row, ".row-amount"),
       ),
-    ).toStrictEqual(["−9,812.3789 DUSK", "+9,812.3789 DUSK"]);
+    ).toStrictEqual(["−9,812.3789", "+9,812.3789"]);
   });
 
   it("should mark a failed transaction failed, and strike through what it would have sent", () => {
@@ -210,19 +216,19 @@ describe("Transactions Table", () => {
       })),
     ).toStrictEqual([
       {
-        amount: "20 DUSK",
+        amount: "20",
         red: "Failed",
         status: "Failed",
         struck: true,
       },
       {
-        amount: "0 DUSK",
+        amount: "0",
         red: "Failed",
         status: "Failed",
         struck: false,
       },
       {
-        amount: "−20 DUSK",
+        amount: "−20",
         red: null,
         status: null,
         struck: false,
@@ -230,6 +236,34 @@ describe("Transactions Table", () => {
     ]);
 
     style.remove();
+  });
+
+  it("should give the function each contract call ran in its row, after plain words where it has them", async () => {
+    // Calls that send no DUSK along: the receiver is the contract.
+    const call = { ...transfer, amount: 0, deposit: 0, to: null };
+    const calls = [
+      { ...call, contract: STAKE_CONTRACT, method: "withdraw" },
+      {
+        ...call,
+        contract: "ab".repeat(32),
+        method: "transfer_remote",
+        txid: "e".repeat(64),
+      },
+    ];
+    const { container } = render(TransactionsTable, {
+      props: { data: calls, mode: "full" },
+    });
+    const [claim, remote] = container.querySelectorAll("tbody tr");
+
+    await vi.waitFor(() =>
+      expect(shownIn(claim, ".transaction__line")).toBe(
+        "Claim rewards · withdraw",
+      ),
+    );
+    expect(claim.querySelector("code")?.textContent).toBe("withdraw");
+    // A call with no plain words: its function, as the row names the contract.
+    expect(shownIn(remote, ".transaction__line")).toBe("transfer_remote");
+    expect(remote.querySelector("code")?.textContent).toBe("transfer_remote");
   });
 
   it("should give the DuskEVM address a deposit pays, on DuskEVM, and ask DuskEVM's explorer nothing", async () => {

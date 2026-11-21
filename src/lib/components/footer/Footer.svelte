@@ -11,6 +11,9 @@
 
   const currentYear = new Date().getFullYear();
 
+  // The build's commit: its build info is the commit, then the build's date.
+  const [commit] = import.meta.env.APP_BUILD_INFO.split(" ");
+
   $: ({ darkMode, nodeInfo } = $appStore);
   $: network = networkOf(nodeInfo.chain_id);
 
@@ -26,9 +29,7 @@
 <div class="footer">
   <div class="footer__copyright-container">
     <p>© 2018 - {currentYear} Dusk Network B.V. All Rights Reserved.</p>
-    <p>
-      Explorer v{import.meta.env.APP_VERSION} ({import.meta.env.APP_BUILD_INFO})
-    </p>
+    <p>v{import.meta.env.APP_VERSION} · {commit}</p>
   </div>
   <div class="footer__explorers-links-container">
     {#each otherExplorers as { label, url } (url)}
@@ -40,10 +41,10 @@
 
   <div class="footer__misc-links-container">
     <Anchor onSurface={false} href={privacyUrl} className="footer__link"
-      >Privacy policy</Anchor
+      >Privacy</Anchor
     >
     <Anchor onSurface={false} href={termsUrl} className="footer__link"
-      >Terms of use</Anchor
+      >Terms</Anchor
     >
   </div>
 

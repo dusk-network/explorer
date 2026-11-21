@@ -79,9 +79,9 @@
       <TableCell type="th">ID</TableCell>
       {#if isFull}
         <TableCell type="th">Time</TableCell>
-        <TableCell align="right" type="th">Fee</TableCell>
+        <TableCell align="right" type="th">Fee (DUSK)</TableCell>
       {/if}
-      <TableCell align="right" type="th">Amount</TableCell>
+      <TableCell align="right" type="th">Amount (DUSK)</TableCell>
     </TableRow>
   </TableHead>
   <TableBody>
@@ -158,8 +158,7 @@
             <span class="transaction__fee"
               ><span title="{formatDuskExact(transaction.feepaid)} DUSK"
                 >{formatFee(transaction.feepaid)}</span
-              >
-              <span class="row-unit">DUSK</span></span
+              ></span
             >
           </TableCell>
         {/if}
@@ -174,8 +173,6 @@
               >{amountSign(direction, amount.lux, failed)}<span
                 title="{formatDuskExact(amount.lux)} DUSK"
                 >{formatDusk(amount.lux)}</span
-              >
-              <span class="row-unit">DUSK</span
               >{#if failed && amount.lux > 0}<span class="sr-only"
                   >, nothing sent</span
                 >{/if}</span

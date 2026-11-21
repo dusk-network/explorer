@@ -94,6 +94,7 @@
   font-size: 0.8rem;
 }
 
+/* The function a call ran. */
 .transaction-details__function {
   font-size: 0.8125rem;
   overflow-wrap: anywhere;
@@ -109,17 +110,12 @@
   color: var(--calm-muted);
 }
 
-/* Public or shielded, and under it what that shows everyone. */
+/* Public or shielded. */
 .transaction-details__visibility {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.125rem;
-}
-
-.transaction-details__visibility-seen {
-  color: var(--calm-muted);
-  font-size: 0.8125rem;
 }
 
 /* Wide screens: at the start of the value's column, as every value. */

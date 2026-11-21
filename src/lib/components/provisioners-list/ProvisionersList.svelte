@@ -29,7 +29,7 @@
         className="provisioners-list__staking-address chain-link"
         href="/accounts/?key={data.key}">{shortId(data.key)}</AppAnchor
       >
-      <CopyButton name="Staking address" rawValue={data.key} />
+      <CopyButton name="Staking account" rawValue={data.key} />
     </svelte:fragment>
   </ListItem>
 
@@ -89,7 +89,7 @@
         {:else}
           <span class:provisioners-list__staking-address={!ownerLabel}
             >{ownerLabel ??
-              `Contract ${formatContractId(data.ownerAddress, { short: true })}`}</span
+              `Contract ${shortId(formatContractId(data.ownerAddress))}`}</span
           >
         {/if}
       </svelte:fragment>

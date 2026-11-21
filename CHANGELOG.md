@@ -13,6 +13,7 @@ and this project adheres to
 ### Changed
 
 - Link the other networks' explorers at their own domains
+- Say the same things in fewer words: units in column headers, short relative times, dates without the weekday, and a transaction page that leads with what it did
 
 ### Removed
 

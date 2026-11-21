@@ -12,7 +12,7 @@
 <p class="search-page">
   {query
     ? "Searching…"
-    : "Search by account address, block height or hash, transaction ID or .dusk name."}
+    : "Try an account, block height or hash, transaction ID or .dusk name"}
 </p>
 
 <style>

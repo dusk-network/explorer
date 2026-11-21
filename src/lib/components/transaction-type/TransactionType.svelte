@@ -26,8 +26,9 @@
   export let showPrivacy = true;
 
   /**
-   * Whether a call with no plain words for it is named by its contract. A
-   * row whose receiver already is the contract says "Contract call".
+   * Whether a call with no plain words for it is named by its contract, or
+   * "Contract call" for one with no name. A row whose receiver already is
+   * the contract names the function alone.
    *
    * @type {boolean}
    */
@@ -63,15 +64,17 @@
   $: transferDirection =
     !data.contract && data.method === "transfer" ? direction : undefined;
 
-  // A call shows plain words, or the contract's name, and the function it
-  // ran, unless those words already say it.
+  // What the transaction did and the function a call ran, as main gives
+  // them: a call's plain words, as "Claim rewards · withdraw", unless the
+  // words already say it; else the contract's name, or "Contract call", and
+  // the function, or the function alone where the row names the contract.
   $: callLabel = data.contract
     ? describeCall(data.contract, data.method, $appStore.nodeInfo.chain_id)
         .then(
           ({ label, name }) =>
-            label ?? (nameContract ? name : null) ?? "Contract call",
+            label ?? (nameContract ? (name ?? "Contract call") : null) ?? "",
         )
-        .catch(() => "Contract call")
+        .catch(() => (nameContract ? "Contract call" : ""))
     : Promise.resolve(plainTypes.get(data.method) ?? data.method);
 </script>
 
@@ -92,11 +95,15 @@
         >{directionWords[transferDirection]}</span
       >
     {:else}
-      {#await callLabel then label}
-        <span class="transaction-type__label">{label}</span>
-        {#if showMethod && data.contract && data.method && data.method.toLowerCase() !== label.toLowerCase()}
-          <span aria-hidden="true">·</span>
+      {#await callLabel then text}
+        {#if text}
+          <span class="transaction-type__label">{text}</span>
+        {/if}
+        {#if showMethod && data.contract && data.method && data.method.toLowerCase() !== text.toLowerCase()}
+          {#if text}<span aria-hidden="true">·</span>{/if}
           <code class="transaction-type__method">{data.method}</code>
+        {:else if !text && data.contract}
+          <span class="transaction-type__label">Contract call</span>
         {/if}
       {/await}
     {/if}

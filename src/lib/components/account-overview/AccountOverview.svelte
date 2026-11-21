@@ -81,6 +81,7 @@
 
   // An account with a stake is a provisioner.
   $: isProvisioner = !!(stake && (stake.active || stake.inactive));
+  $: kindWord = isProvisioner ? "Provisioner" : "Account";
 
   // As lists show addresses: the first and last six characters.
   $: shortAddress = shortId(accountAddress);
@@ -109,18 +110,25 @@
       ? "Provisioner"
       : "Account"}<span aria-hidden="true" class="ledger-bracket">]</span>
   </p>
-  <!-- The heading holds only the name or the address; its link sits beside it. -->
+  <!--
+    The heading holds its name, or what it is and its address, as every
+    detail page heads: "Provisioner 271zWx…F9MFrk". Its link sits beside it.
+  -->
   <div class="account-overview-panel__title">
     <h1 class="account-overview-panel__header">
       {#await headingName}
-        <span class="account-overview-panel__address">{shortAddress}</span>
+        {`${kindWord} `}<span class="account-overview-panel__address"
+          >{shortAddress}</span
+        >
       {:then name}
         {#if name}
           {name.name}
         {:else if label}
           {label}
         {:else}
-          <span class="account-overview-panel__address">{shortAddress}</span>
+          {`${kindWord} `}<span class="account-overview-panel__address"
+            >{shortAddress}</span
+          >
         {/if}
       {/await}
     </h1>
@@ -145,12 +153,7 @@
   {/await}
   <div class="account-overview-panel__address-row">
     <FullValue value={accountAddress} />
-    <CopyButton
-      name="Account address"
-      rawValue={accountAddress}
-      text="Copy"
-      variant="secondary"
-    />
+    <CopyButton name="Account" rawValue={accountAddress} variant="secondary" />
   </div>
 
   <div class="account-overview-panel__details">
@@ -228,6 +231,8 @@
               >{stake.eligibility > tip.height ? "From about" : "Since about"}
               {formatDateTime(estimateDate(stake.eligibility, tip), {
                 seconds: false,
+                // A day for a past one; a coming one keeps its hour.
+                time: stake.eligibility > tip.height,
               })}</span
             >
           {:else}
@@ -246,7 +251,5 @@
     </dl>
   {/if}
 
-  <p class="account-overview-panel__note">
-    Everything here is public. Shielded funds aren't shown.
-  </p>
+  <p class="account-overview-panel__note">Shielded funds aren't shown.</p>
 </section>

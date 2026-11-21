@@ -23,8 +23,12 @@ describe("Blocks Table", () => {
     const [busyRow, emptyRow] = container.querySelectorAll("tbody tr");
     const [full, fees] = busyRow.querySelectorAll(".block__line");
 
+    // The unit is the reward column's; its cells give the number.
+    expect(container.querySelectorAll("thead th")[3]).toHaveTextContent(
+      /^Reward \(DUSK\)$/,
+    );
     for (const row of [busyRow, emptyRow]) {
-      expect(row.querySelector(".row-amount")).toHaveTextContent(/^16 DUSK$/);
+      expect(row.querySelector(".row-amount")).toHaveTextContent(/^16$/);
       expect(row.querySelector(".row-amount [title]")).toHaveAttribute(
         "title",
         "16 DUSK",
@@ -37,7 +41,7 @@ describe("Blocks Table", () => {
         new RegExp(`^${figure("580,718")}\\D+${figure("5,000,000,000")}\\D*$`),
       ),
     );
-    expect(fees).toHaveTextContent(/^\+ ?0\.00058 DUSK\b/);
+    expect(fees).toHaveTextContent(/^\+ ?0\.00058 fees$/);
     expect(fees).toHaveAttribute("title", "0.000580718 DUSK");
     expect(emptyRow.querySelectorAll(".block__line")).toHaveLength(0);
   });

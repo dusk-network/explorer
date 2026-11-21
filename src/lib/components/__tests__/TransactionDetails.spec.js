@@ -110,11 +110,16 @@ const saidOf = (text = "") => {
   };
 };
 
-/** @param {HTMLElement} container */
+/**
+ * What the Visibility row's help says: a tooltip on the row.
+ *
+ * @param {HTMLElement} container
+ */
 const explanationOf = (container) =>
   container
-    .querySelector(".transaction-details__visibility-seen")
-    ?.textContent?.trim();
+    .querySelector("[aria-label='About visibility']")
+    ?.getAttribute("data-tooltip-text")
+    ?.trim();
 
 describe("Transaction Details", () => {
   vi.useFakeTimers();
@@ -176,14 +181,14 @@ describe("Transaction Details", () => {
     vi.useRealTimers();
   });
 
-  it("should give the amount and the fee in DUSK, each with its worth in dollars rounded to cents", () => {
+  it("should give the amount in DUSK with its worth in dollars rounded to cents, and the fee, under a cent, in DUSK alone", () => {
     const { container } = render(TransactionDetails, props);
 
     // 9,812.378912731 DUSK at $0.36835.
     expect(valueOf(container, /^amount$/i)).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(valueOf(container, /^fee/i)).toBe("0.000290766 DUSK (< $0.01)");
+    expect(valueOf(container, /^fee/i)).toBe("0.000290766 DUSK");
   });
 
   it("should give amounts in DUSK alone while there is no price, and add the dollars once it comes", async () => {
@@ -200,7 +205,7 @@ describe("Transaction Details", () => {
     expect(valueOf(container, /^amount$/i)).toBe(
       "9,812.378912731 DUSK ($3,614.39)",
     );
-    expect(valueOf(container, /^fee/i)).toBe("0.000290766 DUSK (< $0.01)");
+    expect(valueOf(container, /^fee/i)).toBe("0.000290766 DUSK");
   });
 
   it("should give the gas used, then its limit, and the gas price in LUX", () => {
@@ -239,19 +244,24 @@ describe("Transaction Details", () => {
     expect(statusOf(completed)).toBe("Completed");
     expect(colourOf(completed)).toStrictEqual(["completed"]);
     expect(struckIn(completed)).toBeUndefined();
+    // What it is and the DUSK it moved lead; who with are the rows.
     await vi.waitFor(() =>
-      expect(leadOf(completed)).toBe(
-        "kT5Bam…LwKbXj sent 9,812.378912731 DUSK to mHWZo9…pjiUnj",
-      ),
+      expect(leadOf(completed)).toBe("Transfer of 9,812.378912731 DUSK"),
     );
+    expect(
+      completed
+        .querySelector(".transaction-details__summary-meta")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim(),
+    ).toBe("Completed · 16 Apr 2024, 6:39:09 AM UTC");
     cleanup();
 
-    /** @type {[any, string, RegExp][]} */
+    /** @type {[any, string, string][]} */
     const failures = [
       [
         { ...transaction, txerror: "Panic" },
         "9,812.378912731 DUSK",
-        /^kT5Bam…LwKbXj .* 9,812\.378912731 DUSK .* mHWZo9…pjiUnj$/,
+        "Transfer of 9,812.378912731 DUSK",
       ],
       // A call's deposit doesn't reach its contract either.
       [
@@ -265,7 +275,7 @@ describe("Transaction Details", () => {
           txerror: "Panic",
         },
         "20 DUSK",
-        /^kT5Bam…LwKbXj .* 20 DUSK$/,
+        "Stake of 20 DUSK",
       ],
     ];
 
@@ -279,10 +289,23 @@ describe("Transaction Details", () => {
       expect(statusOf(container)).toBe("Failed");
       expect(colourOf(container)).toStrictEqual(["failed"]);
       expect(struckIn(container)?.textContent).toBe(unsent);
-      await vi.waitFor(() => expect(leadOf(container)).toMatch(lead));
-      // Only tried: never sent, paid or staked.
-      expect(leadOf(container)).toMatch(/\btried\b/);
+      await vi.waitFor(() => expect(leadOf(container)).toBe(lead));
+      // Failed, under it: what leads never says it sent, paid or staked,
+      // and its amount is struck through as not moved.
       expect(leadOf(container)).not.toMatch(/\b(sent|paid|staked)\b/i);
+      expect(
+        Array.from(
+          container.querySelectorAll(".transaction-details__summary-text *"),
+        ).find((part) =>
+          getComputedStyle(part).textDecoration.includes("line-through"),
+        )?.textContent,
+      ).toBe(unsent);
+      expect(
+        container
+          .querySelector(".transaction-details__summary-meta")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim(),
+      ).toBe("Failed · 16 Apr 2024, 6:39:09 AM UTC");
       cleanup();
     }
 
@@ -331,6 +354,103 @@ describe("Transaction Details", () => {
 
       expect(writeText).toHaveBeenCalledExactlyOnceWith(account);
     }
+  });
+
+  it("should give the function a contract call ran in its own row on the main view, and none for a transfer", async () => {
+    /** @type {[string, string, string][]} */
+    const calls = [
+      [stake, "withdraw", "Claim rewards"],
+      [
+        "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c",
+        "transfer_remote",
+        "Call to transfer_remote",
+      ],
+    ];
+
+    for (const [contract, method, lead] of calls) {
+      const { container } = render(TransactionDetails, {
+        ...props,
+        data: {
+          ...transaction,
+          amount: 0,
+          contract,
+          deposit: 0,
+          method,
+          to: null,
+        },
+        market: null,
+      });
+
+      expect(valueOf(container, /^method$/i)).toBe(method);
+      // Not folded away under Details.
+      expect(rowOf(container, /^method$/i).closest("details")).toBeNull();
+      // What leads says what it did; the function is its row.
+      await vi.waitFor(() => expect(leadOf(container)).toBe(lead));
+      cleanup();
+    }
+
+    const transfer = render(TransactionDetails, {
+      ...props,
+      market: null,
+    }).container;
+
+    expect(rowOf(transfer, /^method$/i)).toBeUndefined();
+  });
+
+  it("should lead a call with no plain words for it with the function it called", async () => {
+    const transferContract =
+      "0100000000000000000000000000000000000000000000000000000000000000";
+    const { container } = render(TransactionDetails, {
+      ...props,
+      data: {
+        ...transaction,
+        amount: 0,
+        contract: transferContract,
+        deposit: 0,
+        method: "convert",
+        to: null,
+      },
+      market: null,
+    });
+
+    await vi.waitFor(() => expect(leadOf(container)).toBe("Call to convert"));
+    expect(valueOf(container, /^method$/i)).toBe("convert");
+  });
+
+  it("should lead a transfer to an account the network's labels name with whom it went to, and any other with what it did alone", async () => {
+    const bscBridge =
+      "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";
+
+    // On mainnet, whose labels name the BSC bridge's account.
+    appStore.setNodeInfo({ ...apiNodeInfo, chain_id: 1 });
+
+    const labelled = render(TransactionDetails, {
+      ...props,
+      data: { ...transaction, to: bscBridge },
+      market: null,
+    }).container;
+
+    await vi.waitFor(() =>
+      expect(leadOf(labelled)).toBe(
+        "Transfer to BSC bridge of 9,812.378912731 DUSK",
+      ),
+    );
+    // As the screen shows it, its spaces as they are: none joined or doubled.
+    expect(
+      labelled.querySelector(".transaction-details__summary-text")?.textContent,
+    ).toBe("Transfer to BSC bridge of 9,812.378912731 DUSK");
+    // The receiver's row still gives the account in full.
+    expect(valueOf(labelled, /^to$/i)).toBe(`BSC bridge ${bscBridge}`);
+    cleanup();
+
+    const plain = render(TransactionDetails, {
+      ...props,
+      market: null,
+    }).container;
+
+    await vi.waitFor(() =>
+      expect(leadOf(plain)).toBe("Transfer of 9,812.378912731 DUSK"),
+    );
   });
 
   it("should give the sender's and the receiver's primary names, each linked to its own account", async () => {
@@ -468,9 +588,7 @@ describe("Transaction Details", () => {
       expect(valueOf(container, /^contract$/i)).toBe(
         `DuskEVM bridge ${bridge}`,
       );
-      expect(leadOf(container)).toMatch(
-        /^kT5Bam…LwKbXj .* 0\.5 DUSK .* 0x5A3d…8a01 on DuskEVM$/,
-      );
+      expect(leadOf(container)).toBe("Deposit to DuskEVM of 0.5 DUSK");
     });
     // Its lookup of the payment on DuskEVM ends here, with this test.
     await vi.waitFor(() => expect(fetchSpy).toHaveBeenCalledOnce());
@@ -557,7 +675,7 @@ describe("Transaction Details", () => {
     const cases = [
       [
         { ...call, deposit: 442_409_461_511, method: "stake" },
-        "Stake",
+        "Stake of 442.409461511 DUSK",
         "442.409461511 DUSK",
       ],
       [{ ...call, method: "unstake" }, "Unstake", "0 DUSK"],
@@ -571,7 +689,8 @@ describe("Transaction Details", () => {
         market: null,
       });
 
-      await vi.waitFor(() => expect(valueOf(container, /^type$/i)).toBe(type));
+      // What it did leads the page, in its type's words.
+      await vi.waitFor(() => expect(leadOf(container)).toBe(type));
       expect(valueOf(container, /^amount$/i)).toBe(amount);
       expect(valueOf(container, /^contract$/i)).toBe(`Stake contract ${stake}`);
       cleanup();

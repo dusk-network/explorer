@@ -16,45 +16,39 @@ function explainSearchMiss(query) {
   // An ID as wallets and lists shorten it: its start and end.
   if (/^[0-9a-f]{4,}(?:…|\.{2,3})[0-9a-f]{4,}$/i.test(text)) {
     return {
-      message:
-        "This is a shortened ID. Copy the whole ID, 64 characters, and search again.",
+      message: "Shortened ID: search with all 64 characters",
     };
   }
 
   if (/^\d+$/.test(text)) {
-    return { message: "There is no block at this height." };
+    return { message: "No block at this height yet" };
   }
 
   if (isHex && text.length === 64) {
-    return { message: "No block or transaction has this ID." };
+    return { message: "No block or transaction with this ID" };
   }
 
   if (isHex && text.length >= 12) {
     return {
-      message:
-        "This looks like the start of an ID. Search with the whole ID, 64 characters.",
+      message: "Partial ID: search with all 64 characters",
     };
   }
 
   if (decodeBase58(text)?.length === 64) {
     return {
-      message:
-        "This is a shielded address. Shielded balances and transfers are private, so the explorer can't show them.",
+      message: "Shielded address: its balance and transfers are private",
     };
   }
 
   const suggestion = asDuskName(text);
 
   if (suggestion) {
-    return {
-      message: "No account, block or transaction matches this.",
-      suggestion,
-    };
+    return { message: "", suggestion };
   }
 
   return {
     message:
-      "Search by account address, block height or hash, transaction ID or .dusk name.",
+      "Try an account, block height or hash, transaction ID or .dusk name",
   };
 }
 

@@ -181,10 +181,10 @@ describe("Account page", () => {
 
     const { container } = render(AccountPage);
 
-    // Already past: since then.
+    // Already past: since that day.
     await vi.waitFor(() =>
       expect(stakeValueOf(container, /^eligib/i)).toMatch(
-        /^Since\b.*\b25 Oct 2026, 10:00\b/,
+        /^Since\b.*\b25 Oct 2026$/,
       ),
     );
     expect(
@@ -192,6 +192,30 @@ describe("Account page", () => {
     ).toHaveAttribute(
       "title",
       expect.stringMatching(new RegExp(`${figure("123,120")}$`)),
+    );
+  });
+
+  it("should head with what the account is and its address, short as every Dusk app shortens one", async () => {
+    /** @param {HTMLElement} container */
+    const headingOf = (container) =>
+      container.querySelector("h1")?.textContent?.replace(/\s+/g, " ").trim();
+
+    // With a stake: a provisioner.
+    const staking = render(AccountPage).container;
+
+    await vi.waitFor(() =>
+      expect(headingOf(staking)).toBe("Provisioner qxwSid…kQ2Bgr"),
+    );
+    cleanup();
+
+    // Without one: an account.
+    vi.mocked(duskAPI.getStake).mockRejectedValueOnce(new Error("offline"));
+
+    const plain = render(AccountPage).container;
+
+    await vi.waitFor(() => expect(duskAPI.getStake).toHaveBeenCalled());
+    await vi.waitFor(() =>
+      expect(headingOf(plain)).toBe("Account qxwSid…kQ2Bgr"),
     );
   });
 

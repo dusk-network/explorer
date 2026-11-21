@@ -32,4 +32,28 @@ describe("Block Details", () => {
 
     expect(row?.textContent?.trim()).toBe("1.23 LUX");
   });
+
+  it("should head with the word Block and its height, then its time and how many transactions it holds", () => {
+    const { container } = render(BlockDetails, {
+      data,
+      error: null,
+      loading: false,
+      payload: "",
+    });
+
+    // What people read, screenshot and share: never the height alone.
+    expect(
+      container
+        .querySelector(".block-details__summary-text")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim(),
+    ).toBe("Block 495,868");
+    // The tests run in UTC: block 495,868 was made at 1713298022.
+    expect(
+      container
+        .querySelector(".block-details__summary-meta")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim(),
+    ).toBe("16 Apr 2024, 8:07:02 PM UTC · 2 transactions");
+  });
 });

@@ -150,12 +150,12 @@
 <form on:submit|preventDefault={submitHandler}>
   <div class="textbox-button" style="width: {width};">
     <Textbox
-      aria-label="Search by address, block, transaction or .dusk name"
+      aria-label="Search by account, block, transaction or .dusk name"
       className="textbox-button__input"
       bind:this={field}
       bind:value
       required
-      placeholder="Address, hash or .dusk name"
+      placeholder="Account, ID, hash or .dusk name"
     />
     <Button
       aria-label="Search"

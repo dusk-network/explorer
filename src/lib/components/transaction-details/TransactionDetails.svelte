@@ -2,10 +2,6 @@
 
 <script>
   import { mdiAlertCircleOutline, mdiCheck, mdiChevronDown } from "@mdi/js";
-  import {
-    formatContractId,
-    formatEvmAddress,
-  } from "@dusk-network/networks/format";
 
   import { Anchor, CopyButton, Icon, Switch } from "$lib/dusk/components";
   import { createValueFormatter } from "$lib/dusk/value";
@@ -15,7 +11,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
-  import { hexToText, shortId } from "$lib/dusk/string";
+  import { hexToText } from "$lib/dusk/string";
   import {
     AppAnchor,
     DataCard,
@@ -23,20 +19,14 @@
     ListItem,
     StaleDataNotice,
     TransactionIcon,
-    TransactionType,
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
-  import {
-    describeTransaction,
-    summarizeTransaction,
-    visibilityOf,
-  } from "$lib/chain-info";
+  import { summarizeTransaction, visibilityOf } from "$lib/chain-info";
   import {
     bridgeDepositRecipient,
     describeCall,
     findDepositArrival,
   } from "$lib/contracts";
-  import { getPrimaryName } from "$lib/dusk-domains";
   import {
     duskEvmAddressUrl,
     duskEvmTransactionUrl,
@@ -69,60 +59,19 @@
 
   /**
    * An amount in DUSK, every decimal of it, with its value in dollars when
-   * the price is known: on mainnet only. The price is an argument, so that
-   * an amount shown before the price came gets its dollars when it comes.
+   * the price is known, on mainnet only, and it is a cent or more: "0 DUSK",
+   * not "0 DUSK ($0.00)". The price is an argument, so that an amount shown
+   * before the price came gets its dollars when it comes.
    *
    * @param {number} lux
    * @param {number | undefined} price A DUSK's price in dollars
    */
-  const toDuskAndUsd = (lux, price) =>
-    price === undefined
+  const toDuskAndUsd = (lux, price) => {
+    const usd = price === undefined ? 0 : luxToDusk(lux) * price;
+
+    return usd < 0.01
       ? `${formatDuskExact(lux)} DUSK`
-      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(luxToDusk(lux) * price)})`;
-
-  /**
-   * A party as the leading sentence names it, at first by its short
-   * address: the names come from lookups the rows below make too.
-   *
-   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
-   * @returns {string | null}
-   */
-  const shortNameOf = (party) =>
-    party?.kind === "account"
-      ? shortId(party.address)
-      : party?.kind === "contract"
-        ? `contract ${formatContractId(party.id, { short: true })}`
-        : null;
-
-  /**
-   * An account by the name the network's labels give it, else by its
-   * primary name; a contract by its name.
-   *
-   * @param {import("$lib/chain-info/summarizeTransaction").TransactionParty | null} party
-   * @param {number | null | undefined} chainId
-   * @returns {Promise<string | null>}
-   */
-  const nameOf = async (party, chainId) => {
-    const short = shortNameOf(party);
-
-    if (party?.kind === "account") {
-      return (
-        labelOf(chainId, party.address) ??
-        getPrimaryName(party.address).then(
-          (found) => found?.name ?? short,
-          () => short,
-        )
-      );
-    }
-
-    if (party?.kind === "contract") {
-      return describeCall(party.id, "", chainId).then(
-        ({ name }) => name ?? short,
-        () => short,
-      );
-    }
-
-    return short;
+      : `${formatDuskExact(lux)} DUSK (${fiatFormatter(usd)})`;
   };
 
   $: usdPrice = market?.currentPrice.usd;
@@ -139,6 +88,32 @@
     ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
     : Promise.resolve(null);
 
+  /** What a transaction that calls no contract is, by its method. */
+  const plainKinds = new Map([
+    ["blob", "Data blob"],
+    ["deploy", "Contract deployed"],
+    ["transfer", "Transfer"],
+  ]);
+
+  // What it is, as every detail page heads: a call's plain words, as
+  // "Stake", else "Call to" the function it ran; a transfer to an account
+  // the network's labels name says whom, as "Transfer to BSC bridge".
+  $: kindOf = !data
+    ? Promise.resolve("")
+    : data.contract
+      ? describeCall(data.contract, data.method, chainId).then(
+          ({ label }) => label ?? `Call to ${data.method}`,
+          () => `Call to ${data.method}`,
+        )
+      : Promise.resolve(
+          `${plainKinds.get(data.method) ?? data.method}${toLabel ? ` to ${toLabel}` : ""}`,
+        );
+
+  // Its key fact: the DUSK it moves, or would have moved, exactly: the
+  // value sent, or a call's deposit to its contract.
+  $: movedLux =
+    amount && amount.kind !== "shielded" && amount.lux > 0 ? amount.lux : 0;
+
   // Who a deposit to DuskEVM pays, from its call data, and the DuskEVM
   // transaction that paid it: asked of DuskEVM's explorer on this page only.
   $: duskEvmRecipient = data ? bridgeDepositRecipient(data, chainId) : null;
@@ -148,24 +123,6 @@
   $: fromLabel =
     from?.kind === "account" ? labelOf(chainId, from.address) : null;
   $: toLabel = to?.kind === "account" ? labelOf(chainId, to.address) : null;
-  $: shortLead = data
-    ? describeTransaction(data, {
-        from: shortNameOf(from),
-        to: shortNameOf(to),
-      })
-    : "";
-  $: lead = data
-    ? Promise.all([nameOf(from, chainId), nameOf(to, chainId)]).then(
-        ([fromName, toName]) =>
-          describeTransaction(data, {
-            duskEvm:
-              duskEvmRecipient &&
-              formatEvmAddress(duskEvmRecipient, { short: true }),
-            from: fromName,
-            to: toName,
-          }),
-      )
-    : Promise.resolve("");
 </script>
 
 <!-- An amount; one a failure would have sent is struck through: it didn't move. -->
@@ -194,13 +151,6 @@
     >{/if}
 {/snippet}
 
-<!-- A sentence's shortened IDs stay whole: a line may break after "…". -->
-{#snippet withWholeIds(/** @type {string} */ sentence)}
-  {#each sentence.split(/(\S*…\S*)/) as part, index (index)}{#if index % 2}<span
-        class="detail-summary__id">{part}</span
-      >{:else}{part}{/if}{/each}
-{/snippet}
-
 <DataCard
   on:retry
   {data}
@@ -214,10 +164,18 @@
   <div class="transaction-details__summary detail-summary">
     <TransactionIcon transaction={data} />
     <p class="transaction-details__summary-lines detail-summary__lines">
+      <!--
+        What it did; a transfer to an account the network's labels name says
+        whom, as "Transfer to BSC bridge". Who with, how much and the fee are
+        the rows.
+      -->
       <span class="transaction-details__summary-text detail-summary__text"
-        >{#await lead}{@render withWholeIds(
-            shortLead,
-          )}{:then sentence}{@render withWholeIds(sentence)}{/await}</span
+        >{#await kindOf then kind}{movedLux
+            ? `${kind} of `
+            : kind}{#if movedLux}<span
+              class:transaction-details__unsent={failed}
+              >{`${formatDuskExact(movedLux)} DUSK`}</span
+            >{/if}{/await}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">
         <span
@@ -250,7 +208,6 @@
         <CopyButton
           name="Transaction ID"
           rawValue={data.txid}
-          text="Copy"
           variant="secondary"
         />
       </svelte:fragment>
@@ -277,9 +234,8 @@
               >
             </span>
             <CopyButton
-              name="Sender's address"
+              name="Sender's account"
               rawValue={from.address}
-              text="Copy"
               variant="secondary"
             />
           {:else}
@@ -303,7 +259,6 @@
           <CopyButton
             name="DuskEVM address"
             rawValue={duskEvmRecipient}
-            text="Copy"
             variant="secondary"
           />
         </svelte:fragment>
@@ -323,7 +278,6 @@
             <CopyButton
               name="DuskEVM transaction"
               rawValue={hash}
-              text="Copy"
               variant="secondary"
             />
           </svelte:fragment>
@@ -350,9 +304,8 @@
             >
           </span>
           <CopyButton
-            name="Receiver's address"
+            name="Receiver's account"
             rawValue={to.address}
-            text="Copy"
             variant="secondary"
           />
         </svelte:fragment>
@@ -385,7 +338,6 @@
           <CopyButton
             name="Contract ID"
             rawValue={data.contract}
-            text="Copy"
             variant="secondary"
           />
         </svelte:fragment>
@@ -421,22 +373,9 @@
     {/if}
 
     <ListItem>
-      <svelte:fragment slot="term">Fee paid</svelte:fragment>
+      <svelte:fragment slot="term">Fee</svelte:fragment>
       <svelte:fragment slot="definition">
-        {toDuskAndUsd(data.feepaid, usdPrice)}
-        <StaleDataNotice />
-      </svelte:fragment>
-    </ListItem>
-
-    <ListItem>
-      <svelte:fragment slot="term">Type</svelte:fragment>
-      <svelte:fragment slot="definition">
-        <TransactionType
-          {data}
-          displayTooltips={true}
-          showMethod={false}
-          showPrivacy={false}
-        />
+        {formatDuskExact(data.feepaid)} DUSK
       </svelte:fragment>
     </ListItem>
 
@@ -450,18 +389,15 @@
       </ListItem>
     {/if}
 
-    <!-- VISIBILITY: public or shielded, and what that shows everyone -->
+    <!-- VISIBILITY: public or shielded; what that shows everyone, on hover -->
     {#if visibility}
-      <ListItem>
+      <ListItem tooltipText={visibility.seen}>
         <svelte:fragment slot="term">Visibility</svelte:fragment>
         <span class="transaction-details__visibility" slot="definition"
           ><span class="transaction-details__visibility-label"
             >{visibility.label}</span
           >
-          <span class="transaction-details__visibility-seen"
-            >{visibility.seen}</span
-          ></span
-        >
+        </span>
       </ListItem>
     {/if}
 
@@ -487,7 +423,7 @@
     {/if}
 
     <ListItem>
-      <svelte:fragment slot="term">Block height</svelte:fragment>
+      <svelte:fragment slot="term">Block</svelte:fragment>
       <svelte:fragment slot="definition">
         <AppAnchor
           className="transaction-details__block-link chain-link"
@@ -502,7 +438,7 @@
   <details class="transaction-details__technical detail-technical">
     <summary
       class="transaction-details__technical-summary detail-technical__summary"
-      >Technical details<Icon
+      >Details<Icon
         className="detail-technical__chevron"
         path={mdiChevronDown}
       /></summary
@@ -531,7 +467,7 @@
 
       {#if data.txtype.toLowerCase() === "moonlight" && data.nonce}
         <ListItem
-          tooltipText="The number of transactions sent from this address"
+          tooltipText="The number of transactions sent from this account"
         >
           <svelte:fragment slot="term">Nonce</svelte:fragment>
           <svelte:fragment slot="definition">{data.nonce}</svelte:fragment>
@@ -576,7 +512,6 @@
                   <CopyButton
                     name="Blob hash"
                     rawValue={blobHash}
-                    text="Copy"
                     variant="secondary"
                   />
                 </li>

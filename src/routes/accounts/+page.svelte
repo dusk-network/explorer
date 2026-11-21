@@ -219,9 +219,7 @@
     />
   </section>
 {:else if key}
-  <p class="account-missing">
-    This isn't a valid account address. Check it and search again.
-  </p>
+  <p class="account-missing">Not a valid account</p>
 {:else}
   <p class="account-missing">No account given.</p>
 {/if}
