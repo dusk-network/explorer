@@ -12,12 +12,22 @@ and this project adheres to
 
 ### Changed
 
-- Link the other networks' explorers at their own domains
-- Say the same things in fewer words: units in column headers, short relative times, dates without the weekday, and a transaction page that leads with what it did
-
 ### Removed
 
 ### Fixed
+
+## [1.8.0] - 2026-11-21
+
+### Changed
+
+- Link the other networks' explorers at their own domains
+- Say the same things in fewer words: units in column headers, short relative times and dates without the weekday
+- Head every detail page with what it is and its key fact ("Block 5,807,008", "Transfer of 2,419.879265012 DUSK", "Call to transfer_remote"), with its status and time below
+- Show accounts and IDs in full on the pages about them, 6…6 elsewhere and 4…4 in phone lists
+
+### Fixed
+
+- Make tooltip text readable in both themes
 
 ## [1.7.5] - 2026-11-03
 
@@ -472,6 +482,7 @@ dusk-network/rusk#3985: https://github.com/dusk-network/rusk/issues/3985
 <!-- VERSIONS -->
 
 [Unreleased]: https://github.com/dusk-network/explorer/tree/main
+[1.8.0]: https://github.com/dusk-network/explorer/tree/explorer-v1.8.0
 [1.7.5]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.5
 [1.7.4]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.4
 [1.7.3]: https://github.com/dusk-network/explorer/tree/explorer-v1.7.3
