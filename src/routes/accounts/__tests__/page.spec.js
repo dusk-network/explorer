@@ -195,6 +195,30 @@ describe("Account page", () => {
     );
   });
 
+  it("should head with what the account is and its address, short as every Dusk app shortens one", async () => {
+    /** @param {HTMLElement} container */
+    const headingOf = (container) =>
+      container.querySelector("h1")?.textContent?.replace(/\s+/g, " ").trim();
+
+    // With a stake: a provisioner.
+    const staking = render(AccountPage).container;
+
+    await vi.waitFor(() =>
+      expect(headingOf(staking)).toBe("Provisioner qxwSid…kQ2Bgr"),
+    );
+    cleanup();
+
+    // Without one: an account.
+    vi.mocked(duskAPI.getStake).mockRejectedValueOnce(new Error("offline"));
+
+    const plain = render(AccountPage).container;
+
+    await vi.waitFor(() => expect(duskAPI.getStake).toHaveBeenCalled());
+    await vi.waitFor(() =>
+      expect(headingOf(plain)).toBe("Account qxwSid…kQ2Bgr"),
+    );
+  });
+
   it("should give no stake figures when the stake can't be read, and leave the balance", async () => {
     vi.mocked(duskAPI.getStake).mockRejectedValueOnce(new Error("offline"));
 

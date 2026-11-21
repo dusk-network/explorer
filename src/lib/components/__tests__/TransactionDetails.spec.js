@@ -244,8 +244,16 @@ describe("Transaction Details", () => {
     expect(statusOf(completed)).toBe("Completed");
     expect(colourOf(completed)).toStrictEqual(["completed"]);
     expect(struckIn(completed)).toBeUndefined();
-    // What it did leads; who with and how much are the rows.
-    await vi.waitFor(() => expect(leadOf(completed)).toBe("Transfer"));
+    // What it is and the DUSK it moved lead; who with are the rows.
+    await vi.waitFor(() =>
+      expect(leadOf(completed)).toBe("Transfer of 9,812.378912731 DUSK"),
+    );
+    expect(
+      completed
+        .querySelector(".transaction-details__summary-meta")
+        ?.textContent?.replace(/\s+/g, " ")
+        .trim(),
+    ).toBe("Completed · 16 Apr 2024, 6:39:09 AM UTC");
     cleanup();
 
     /** @type {[any, string, string][]} */
@@ -253,7 +261,7 @@ describe("Transaction Details", () => {
       [
         { ...transaction, txerror: "Panic" },
         "9,812.378912731 DUSK",
-        "Transfer",
+        "Transfer of 9,812.378912731 DUSK",
       ],
       // A call's deposit doesn't reach its contract either.
       [
@@ -267,7 +275,7 @@ describe("Transaction Details", () => {
           txerror: "Panic",
         },
         "20 DUSK",
-        "Stake",
+        "Stake of 20 DUSK",
       ],
     ];
 
@@ -282,8 +290,22 @@ describe("Transaction Details", () => {
       expect(colourOf(container)).toStrictEqual(["failed"]);
       expect(struckIn(container)?.textContent).toBe(unsent);
       await vi.waitFor(() => expect(leadOf(container)).toBe(lead));
-      // Failed, beside it: what leads never says it sent, paid or staked.
+      // Failed, under it: what leads never says it sent, paid or staked,
+      // and its amount is struck through as not moved.
       expect(leadOf(container)).not.toMatch(/\b(sent|paid|staked)\b/i);
+      expect(
+        Array.from(
+          container.querySelectorAll(".transaction-details__summary-text *"),
+        ).find((part) =>
+          getComputedStyle(part).textDecoration.includes("line-through"),
+        )?.textContent,
+      ).toBe(unsent);
+      expect(
+        container
+          .querySelector(".transaction-details__summary-meta")
+          ?.textContent?.replace(/\s+/g, " ")
+          .trim(),
+      ).toBe("Failed · 16 Apr 2024, 6:39:09 AM UTC");
       cleanup();
     }
 
@@ -341,14 +363,21 @@ describe("Transaction Details", () => {
       [
         "590429da249cbb6f0a680e1d5f6ecdc885912fc836589c38bb8fd5e6ea4f722c",
         "transfer_remote",
-        "Contract call",
+        "Call to transfer_remote",
       ],
     ];
 
     for (const [contract, method, lead] of calls) {
       const { container } = render(TransactionDetails, {
         ...props,
-        data: { ...transaction, contract, method, to: null },
+        data: {
+          ...transaction,
+          amount: 0,
+          contract,
+          deposit: 0,
+          method,
+          to: null,
+        },
         market: null,
       });
 
@@ -368,6 +397,26 @@ describe("Transaction Details", () => {
     expect(rowOf(transfer, /^method$/i)).toBeUndefined();
   });
 
+  it("should lead a call with no plain words for it with the function it called", async () => {
+    const transferContract =
+      "0100000000000000000000000000000000000000000000000000000000000000";
+    const { container } = render(TransactionDetails, {
+      ...props,
+      data: {
+        ...transaction,
+        amount: 0,
+        contract: transferContract,
+        deposit: 0,
+        method: "convert",
+        to: null,
+      },
+      market: null,
+    });
+
+    await vi.waitFor(() => expect(leadOf(container)).toBe("Call to convert"));
+    expect(valueOf(container, /^method$/i)).toBe("convert");
+  });
+
   it("should lead a transfer to an account the network's labels name with whom it went to, and any other with what it did alone", async () => {
     const bscBridge =
       "24jFms4JqYdWb19jFn3CUjNUQz1AeRozYnwsHuUkLbXAj2gRBq598aLAJmqmsaPcsCNJTgTaJTaUZCXpT3s9UeWBsHTmd5hQx95JymZSUsmtwoibiB8AMp4bZjAiLMjmAH3x";
@@ -382,16 +431,14 @@ describe("Transaction Details", () => {
     }).container;
 
     await vi.waitFor(() =>
-      expect(leadOf(labelled)).toBe("Transfer to BSC bridge"),
+      expect(leadOf(labelled)).toBe(
+        "Transfer to BSC bridge of 9,812.378912731 DUSK",
+      ),
     );
-    // As the screen shows it: the type's label is a flex box, so its own
-    // spaces don't show; the receiver's words carry the space between.
+    // As the screen shows it, its spaces as they are: none joined or doubled.
     expect(
-      [
-        labelled.querySelector(".transaction-type__label")?.textContent?.trim(),
-        labelled.querySelector(".transaction-details__summary-to")?.textContent,
-      ].join(""),
-    ).toBe("Transfer to BSC bridge");
+      labelled.querySelector(".transaction-details__summary-text")?.textContent,
+    ).toBe("Transfer to BSC bridge of 9,812.378912731 DUSK");
     // The receiver's row still gives the account in full.
     expect(valueOf(labelled, /^to$/i)).toBe(`BSC bridge ${bscBridge}`);
     cleanup();
@@ -401,7 +448,9 @@ describe("Transaction Details", () => {
       market: null,
     }).container;
 
-    await vi.waitFor(() => expect(leadOf(plain)).toBe("Transfer"));
+    await vi.waitFor(() =>
+      expect(leadOf(plain)).toBe("Transfer of 9,812.378912731 DUSK"),
+    );
   });
 
   it("should give the sender's and the receiver's primary names, each linked to its own account", async () => {
@@ -539,7 +588,7 @@ describe("Transaction Details", () => {
       expect(valueOf(container, /^contract$/i)).toBe(
         `DuskEVM bridge ${bridge}`,
       );
-      expect(leadOf(container)).toBe("Deposit to DuskEVM");
+      expect(leadOf(container)).toBe("Deposit to DuskEVM of 0.5 DUSK");
     });
     // Its lookup of the payment on DuskEVM ends here, with this test.
     await vi.waitFor(() => expect(fetchSpy).toHaveBeenCalledOnce());
@@ -626,7 +675,7 @@ describe("Transaction Details", () => {
     const cases = [
       [
         { ...call, deposit: 442_409_461_511, method: "stake" },
-        "Stake",
+        "Stake of 442.409461511 DUSK",
         "442.409461511 DUSK",
       ],
       [{ ...call, method: "unstake" }, "Unstake", "0 DUSK"],

@@ -100,11 +100,6 @@
   overflow-wrap: anywhere;
 }
 
-/* The headline's words, a call's function too, at the headline's size. */
-.transaction-details__summary-text .transaction-type__method {
-  font-size: inherit;
-}
-
 /* A contract's name, and an account's when the network's labels name it. */
 .transaction-details__contract-name,
 .transaction-details__label {

@@ -59,7 +59,7 @@
     >
     <p class="block-details__summary-lines detail-summary__lines">
       <span class="block-details__summary-text detail-summary__text"
-        >{formatter(data.header.height)}</span
+        >Block {formatter(data.header.height)}</span
       >
       <span class="block-details__summary-meta detail-summary__meta">
         {formatDateTime(data.header.date)}

@@ -19,7 +19,6 @@
     ListItem,
     StaleDataNotice,
     TransactionIcon,
-    TransactionType,
   } from "$lib/components";
   import { PrimaryName } from "$lib/containers";
   import { summarizeTransaction, visibilityOf } from "$lib/chain-info";
@@ -89,6 +88,32 @@
     ? describeCall(data.contract, data.method, chainId).then(({ name }) => name)
     : Promise.resolve(null);
 
+  /** What a transaction that calls no contract is, by its method. */
+  const plainKinds = new Map([
+    ["blob", "Data blob"],
+    ["deploy", "Contract deployed"],
+    ["transfer", "Transfer"],
+  ]);
+
+  // What it is, as every detail page heads: a call's plain words, as
+  // "Stake", else "Call to" the function it ran; a transfer to an account
+  // the network's labels name says whom, as "Transfer to BSC bridge".
+  $: kindOf = !data
+    ? Promise.resolve("")
+    : data.contract
+      ? describeCall(data.contract, data.method, chainId).then(
+          ({ label }) => label ?? `Call to ${data.method}`,
+          () => `Call to ${data.method}`,
+        )
+      : Promise.resolve(
+          `${plainKinds.get(data.method) ?? data.method}${toLabel ? ` to ${toLabel}` : ""}`,
+        );
+
+  // Its key fact: the DUSK it moves, or would have moved, exactly: the
+  // value sent, or a call's deposit to its contract.
+  $: movedLux =
+    amount && amount.kind !== "shielded" && amount.lux > 0 ? amount.lux : 0;
+
   // Who a deposit to DuskEVM pays, from its call data, and the DuskEVM
   // transaction that paid it: asked of DuskEVM's explorer on this page only.
   $: duskEvmRecipient = data ? bridgeDepositRecipient(data, chainId) : null;
@@ -145,13 +170,12 @@
         the rows.
       -->
       <span class="transaction-details__summary-text detail-summary__text"
-        ><TransactionType
-          {data}
-          showMethod={false}
-          showPrivacy={false}
-        />{#if !data.contract && toLabel}<span
-            class="transaction-details__summary-to">{` to ${toLabel}`}</span
-          >{/if}</span
+        >{#await kindOf then kind}{movedLux
+            ? `${kind} of `
+            : kind}{#if movedLux}<span
+              class:transaction-details__unsent={failed}
+              >{`${formatDuskExact(movedLux)} DUSK`}</span
+            >{/if}{/await}</span
       >
       <span class="transaction-details__summary-meta detail-summary__meta">
         <span
