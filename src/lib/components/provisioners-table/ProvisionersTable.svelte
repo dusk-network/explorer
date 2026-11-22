@@ -14,7 +14,7 @@
   import { CopyButton } from "$lib/dusk/components";
   import { formatDusk, formatDuskExact } from "$lib/dusk/currency";
   import { makeClassName, shortId } from "$lib/dusk/string";
-  import { createValueFormatter } from "$lib/dusk/value";
+  import { compareValues, createValueFormatter } from "$lib/dusk/value";
   import { labelOf } from "$lib/network";
   import { appStore } from "$lib/stores";
 
@@ -68,8 +68,8 @@
   const columnComparators = {
     [SortColumn.STAKING_ADDRESS]: (a, b) => a.key.localeCompare(b.key),
     [SortColumn.OWNER]: (a, b) => a.ownerAddress.localeCompare(b.ownerAddress),
-    [SortColumn.STAKE]: (a, b) => Number(a.amount) - Number(b.amount),
-    [SortColumn.REWARD]: (a, b) => Number(a.reward) - Number(b.reward),
+    [SortColumn.STAKE]: (a, b) => compareValues(a.amount, b.amount),
+    [SortColumn.REWARD]: (a, b) => compareValues(a.reward, b.reward),
     [SortColumn.SLASHES]: (a, b) => slashes(a) - slashes(b),
   };
 

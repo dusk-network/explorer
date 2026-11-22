@@ -10,10 +10,10 @@ describe("calculateStats", () => {
   it("should calculate the stats with the given parameters", () => {
     const expectedStats = {
       activeProvisioners: 213,
-      activeStake: 56732778800000000,
+      activeStake: 56732778800000000n,
       lastBlock: 1498332,
       waitingProvisioners: 0,
-      waitingStake: 0,
+      waitingStake: 0n,
     };
     expect(calculateStats(hostProvisioners, lastBlockHeight)).toStrictEqual(
       expectedStats,
@@ -23,10 +23,10 @@ describe("calculateStats", () => {
   it("should accept an empty array of provisioners and transactions", () => {
     const expectedStats = {
       activeProvisioners: 0,
-      activeStake: 0,
+      activeStake: 0n,
       lastBlock: 1498332,
       waitingProvisioners: 0,
-      waitingStake: 0,
+      waitingStake: 0n,
     };
 
     expect(calculateStats([], lastBlockHeight)).toStrictEqual(expectedStats);

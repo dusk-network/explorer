@@ -157,10 +157,10 @@
    * A stake, rounded to the DUSK, with the exact amount on hover.
    *
    * @param {string} title
-   * @param {number | undefined} lux
+   * @param {NodeInteger | undefined} lux
    */
   const stakeStatistic = (title, lux) =>
-    statistic(title, lux ? luxToDusk(lux) : undefined, {
+    statistic(title, lux ? luxToDusk(Number(lux)) : undefined, {
       attributes: {
         "data-tooltip-id": "main-tooltip",
         "data-tooltip-place": "top",
@@ -193,7 +193,7 @@
         statsData?.activeStake && marketData?.circulatingSupply
           ? {
               more: null,
-              text: `${((luxToDusk(statsData.activeStake) / marketData.circulatingSupply) * 100).toFixed(1)}% of circulating supply`,
+              text: `${((luxToDusk(Number(statsData.activeStake)) / marketData.circulatingSupply) * 100).toFixed(1)}% of circulating supply`,
               way: null,
             }
           : null,

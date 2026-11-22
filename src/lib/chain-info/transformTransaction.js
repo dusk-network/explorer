@@ -1,4 +1,5 @@
 import { unixTsToDate } from "$lib/dusk/date";
+import { parseJson } from "$lib/dusk/json";
 
 /** @type {(tx: GQLTransaction["tx"]) => string} */
 const getTransactionMethod = (tx) =>
@@ -11,7 +12,7 @@ const getTransactionMethod = (tx) =>
 /** @type {(v: GQLTransaction) => Transaction} */
 const transformTransaction = (tx) => {
   const payloadString = tx.tx.json ?? "{}";
-  const payload = JSON.parse(payloadString);
+  const payload = parseJson(payloadString);
 
   return {
     amount: payload.value,
@@ -21,7 +22,8 @@ const transformTransaction = (tx) => {
     contract: tx.tx.callData?.contractId,
     date: unixTsToDate(tx.blockTimestamp),
     deposit: payload.deposit ?? 0,
-    feepaid: tx.gasSpent * tx.tx.gasPrice,
+    // Exact: the product of two safe numbers can pass 2^53.
+    feepaid: BigInt(tx.gasSpent) * BigInt(tx.tx.gasPrice),
     from: payload.sender,
     gaslimit: tx.tx.gasLimit,
     gasprice: tx.tx.gasPrice,

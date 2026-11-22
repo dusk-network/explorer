@@ -16,6 +16,8 @@ and this project adheres to
 
 ### Fixed
 
+- Keep amounts past 9,007,199 DUSK exact to the LUX, as the node gives them: in their tooltips, totals, order and raw details
+
 ## [1.8.0] - 2026-11-21
 
 ### Changed

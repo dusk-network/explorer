@@ -21,7 +21,7 @@ const transformBlock = (v) => ({
   transactions: {
     data: map(v.transactions, transformTransaction),
     stats: {
-      averageGasPrice: v.gasSpent > 0 ? v.fees / v.gasSpent : 0,
+      averageGasPrice: v.gasSpent > 0 ? Number(v.fees) / Number(v.gasSpent) : 0,
       gasLimit: v.header.gasLimit,
       gasUsed: v.gasSpent,
     },

@@ -16,6 +16,7 @@
   import { CopyButton, Icon, ProgressBar, Switch } from "$lib/dusk/components";
   import { formatDuskExact } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
+  import { formatJson, parseJson } from "$lib/dusk/json";
   import { createValueFormatter } from "$lib/dusk/value";
   import "./BlockDetails.css";
 
@@ -125,7 +126,9 @@
       <svelte:fragment slot="definition">
         {formatter(gasUsed)} of {formatter(gasLimit)}
         <ProgressBar
-          currentPercentage={gasLimit === 0 ? 0 : (gasUsed / gasLimit) * 100}
+          currentPercentage={gasLimit === 0
+            ? 0
+            : (Number(gasUsed) / Number(gasLimit)) * 100}
           className="block-details__gas-used"
           ariaLabel="Gas Used"
         />
@@ -177,7 +180,7 @@
         <svelte:fragment slot="definition">
           {#if isPayloadToggled}
             <pre class="block-details__payload detail-payload">{payload
-                ? JSON.stringify(JSON.parse(payload), null, 2)
+                ? formatJson(parseJson(payload))
                 : "—"}</pre>
           {/if}
         </svelte:fragment>

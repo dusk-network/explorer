@@ -42,7 +42,7 @@ export default directionOf;
  * nothing.
  *
  * @param {"in" | "out" | "self" | undefined} direction
- * @param {number} lux
+ * @param {NodeInteger} lux
  * @param {boolean} failed
  * @returns {"" | "+" | "−"}
  */

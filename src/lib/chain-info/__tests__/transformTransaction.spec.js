@@ -15,7 +15,7 @@ describe("transformTransaction", () => {
     contract: undefined,
     date: new Date(tx.blockTimestamp * 1000),
     deposit: 0,
-    feepaid: 290766,
+    feepaid: 290766n,
     from: "kT5BamV2Xq6JpnoCq9ux7EmYRShdg4W1sLzyGFUqicmZTqxeMWLiTGpBWNhpjiPtKqvWFFmdxVBAjts3oEnZgPfuiyTRwDdASJQjTSy7wNhHdCeKtzExREcXZsmmMRLwKbXj",
     gaslimit: 500000000,
     gasprice: 1,

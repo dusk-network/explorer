@@ -9,6 +9,7 @@
   } from "$lib/components";
   import { Button, Switch, Textbox } from "$lib/dusk/components";
   import { isDuskName, resolveDuskName } from "$lib/dusk-domains";
+  import { compareValues } from "$lib/dusk/value";
   import { appStore } from "$lib/stores";
 
   import "./ProvisionersCard.css";
@@ -76,7 +77,7 @@
   $: withStake = all
     .filter(hasActiveStake)
     .map(withOwner)
-    .toSorted((a, b) => Number(b.amount ?? 0) - Number(a.amount ?? 0))
+    .toSorted((a, b) => compareValues(b.amount ?? 0, a.amount ?? 0))
     .map((p, index) => ({ ...p, rank: index + 1 }));
 
   // After those with a stake and unranked, the most rewards first.
@@ -84,7 +85,7 @@
   $: withNoStake = all
     .filter((p) => !hasActiveStake(p))
     .map(withOwner)
-    .toSorted((a, b) => Number(b.reward ?? 0) - Number(a.reward ?? 0));
+    .toSorted((a, b) => compareValues(b.reward ?? 0, a.reward ?? 0));
 
   /** @type {EnrichedProvisioner[]} */
   $: enrichedProvisioners = showNoStake

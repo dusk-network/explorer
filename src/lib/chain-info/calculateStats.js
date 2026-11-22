@@ -1,6 +1,4 @@
-import { always, condition, filterWith, partition } from "lamb";
-
-import { arraySumByKey } from "$lib/dusk/array";
+import { filterWith, partition } from "lamb";
 
 /**
  * We take into account only provisioners with
@@ -11,14 +9,14 @@ import { arraySumByKey } from "$lib/dusk/array";
 const getValidProvisioners = filterWith((p) => p.amount >= 1e12);
 
 /**
- * Sums the values of the "amount" key in the received array.
- * Returns zero if the array is empty.
+ * Sums the provisioners' amounts, exactly: added as numbers, a total past
+ * 2^53 LUX loses digits. Zero if there are none.
+ *
+ * @param {HostProvisioner[]} provisioners
+ * @returns {bigint}
  */
-const sumByAmount = condition(
-  (provisioners) => provisioners.length > 0,
-  arraySumByKey("amount"),
-  always(0),
-);
+const sumByAmount = (provisioners) =>
+  provisioners.reduce((total, p) => total + BigInt(p.amount), 0n);
 
 /**
  * @param {HostProvisioner[]} provisioners

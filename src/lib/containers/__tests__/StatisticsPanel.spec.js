@@ -237,6 +237,42 @@ describe("StatisticsPanel", () => {
     market.priceChange24h = null;
   });
 
+  it("should give the stakes exactly on hover, past 2^53 LUX", async () => {
+    setChain(1);
+
+    const { container } = render(StatisticsPanel);
+
+    await act(() => newestBlock(mockData.apiStats.lastBlock));
+    // Exact totals of stakes, as the provisioners' are added up.
+    await act(() =>
+      stats.set({
+        data: {
+          ...mockData.apiStats,
+          activeStake: 37037759002609331n,
+          waitingStake: 18446744073709551615n,
+        },
+        error: null,
+      }),
+    );
+    await vi.advanceTimersByTimeAsync(marketDataSettleTime);
+
+    const staked = cardOf(container, /^(?!pending).*stake/i);
+
+    expect(staked).toHaveAttribute(
+      "data-tooltip-text",
+      "37,037,759.002609331 DUSK",
+    );
+    expect(cardOf(container, /pending stake/i)).toHaveAttribute(
+      "data-tooltip-text",
+      "18,446,744,073.709551615 DUSK",
+    );
+    // The rounded figures stay as they were.
+    expect(valueOf(staked)).toBe("37.04M");
+    expect(noteOf(staked)?.textContent?.trim()).toMatch(
+      new RegExp(`^${figure("8.1%")} of circulating supply$`),
+    );
+  });
+
   it("should warn by the price and the market cap once the market data is stale", async () => {
     setChain(1);
 

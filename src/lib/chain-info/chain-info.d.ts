@@ -1,3 +1,9 @@
+/**
+ * An integer the node wrote, as the explorer reads it: a number while a
+ * number holds it exactly, a bigint past 2^53.
+ */
+type NodeInteger = number | bigint;
+
 type AccountStake = {
   /** The stake taking part in consensus, in LUX. */
   active: bigint;
@@ -13,14 +19,14 @@ type AccountStake = {
 
 type BlockHeader = {
   date: Date;
-  feespaid: number;
+  feespaid: NodeInteger;
   /** The key of the provisioner that made the block: its account. */
   generator: string;
   hash: string;
   height: number;
   nextblockhash: string;
   prevblockhash: string;
-  reward: number;
+  reward: NodeInteger;
   seed: string;
   statehash: string;
 };
@@ -29,8 +35,8 @@ type BlockTransactions = {
   data: Transaction[];
   stats: {
     averageGasPrice: number;
-    gasLimit: number;
-    gasUsed: number;
+    gasLimit: NodeInteger;
+    gasUsed: NodeInteger;
   };
 };
 
@@ -50,21 +56,21 @@ type SearchResult = {
 };
 
 type Transaction = {
-  amount: number | undefined;
+  amount: NodeInteger | undefined;
   blobHashes: string[];
   /** The contract a call went to. */
   contract?: string;
   /** The DUSK, in LUX, a call sent to its contract. */
-  deposit?: number;
+  deposit?: NodeInteger;
   from: string | undefined;
   to: string | null | undefined;
   blockhash: string;
   blockheight: number;
   date: Date;
-  feepaid: number;
-  gaslimit: number;
-  gasprice: number;
-  gasspent: number;
+  feepaid: bigint;
+  gaslimit: NodeInteger;
+  gasprice: NodeInteger;
+  gasspent: NodeInteger;
   memo: string;
   method: string;
   success: boolean;
@@ -72,5 +78,5 @@ type Transaction = {
   txid: string;
   txtype: string;
   payload: string;
-  nonce: number | undefined;
+  nonce: NodeInteger | undefined;
 };

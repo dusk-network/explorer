@@ -37,11 +37,11 @@
   /**
    * The share of a block's gas limit its transactions used, as a percent.
    *
-   * @param {number} used
-   * @param {number} limit
+   * @param {NodeInteger} used
+   * @param {NodeInteger} limit
    */
   function fullness(used, limit) {
-    const share = limit ? (used / limit) * 100 : 0;
+    const share = limit ? (Number(used) / Number(limit)) * 100 : 0;
 
     return share < 0.01
       ? "<0.01%"
