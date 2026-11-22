@@ -113,11 +113,11 @@
 
     if (delayHide) {
       timeoutID = window.setTimeout(() => {
-        event.target.removeAttribute("aria-described-by");
+        clearAriaDescription(event.target);
         state.set(newState);
       }, delayHide);
     } else {
-      event.target.removeAttribute("aria-described-by");
+      clearAriaDescription(event.target);
       state.set(newState);
     }
   }
@@ -197,9 +197,24 @@
   /** @param {HTMLElement} target */
   function setAriaDescription(target) {
     document
-      .querySelector(`[aria-described-by="${id}"]`)
-      ?.removeAttribute("aria-described-by");
-    target.setAttribute("aria-described-by", id);
+      .querySelectorAll(`[aria-describedby="${id}"]`)
+      .forEach(clearAriaDescription);
+
+    // One with a description of its own keeps it.
+    if (!target.hasAttribute("aria-describedby")) {
+      target.setAttribute("aria-describedby", id);
+    }
+  }
+
+  /**
+   * Takes the tooltip's description off what it was about, and only it.
+   *
+   * @param {Element} target
+   */
+  function clearAriaDescription(target) {
+    if (target.getAttribute("aria-describedby") === id) {
+      target.removeAttribute("aria-describedby");
+    }
   }
 
   onDestroy(() => {
