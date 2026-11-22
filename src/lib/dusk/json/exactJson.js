@@ -20,6 +20,9 @@ const MARK = `bigint-${Math.random().toString(36).slice(2)}:`;
 
 const MARKED = new RegExp(`"${MARK}(-?\\d+)"`, "g");
 
+/** A run of digits long enough to be past 2^53. */
+const LONG_DIGITS = /\d{16}/;
+
 /** @param {string} token */
 const isPastSafe = (token) =>
   /^-?\d+$/.test(token) && !Number.isSafeInteger(Number(token));
@@ -32,15 +35,32 @@ const isPastSafe = (token) =>
  * @returns {any}
  */
 export function parseJson(text) {
+  // Past 2^53 an integer has at least 16 digits: without a run that long,
+  // nothing can lose a digit, and the engine's own parser does it all.
+  if (!LONG_DIGITS.test(text)) {
+    return JSON.parse(text);
+  }
+
   let inString = false;
+  let found = false;
 
   const marked = text.replace(TOKEN, (token) => {
     if (token === '"') {
       inString = !inString;
     }
 
-    return !inString && isPastSafe(token) ? `"${MARK}${token}"` : token;
+    if (!inString && isPastSafe(token)) {
+      found = true;
+
+      return `"${MARK}${token}"`;
+    }
+
+    return token;
   });
+
+  if (!found) {
+    return JSON.parse(marked);
+  }
 
   return JSON.parse(marked, (_, value) =>
     typeof value === "string" && value.startsWith(MARK)
