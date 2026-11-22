@@ -79,8 +79,9 @@
     </pattern>
   </defs>
   <path d={land} style="fill:url(#vertical-lines)" />
+  <!-- Each place the list gives: two can share a point, as a lookup puts them. -->
   <g>
-    {#each nodes ? nodes : [] as marker (`${marker.lon}x${marker.lat}`)}
+    {#each nodes ? nodes : [] as marker (marker)}
       <g
         class="nodes-world-map__location"
         data-tooltip-id="main-tooltip"

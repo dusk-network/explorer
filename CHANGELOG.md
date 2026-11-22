@@ -23,6 +23,7 @@ and this project adheres to
 - Keep an exact amount on one line in its tooltip, the tooltip's arrow on what it's about
 - Show button labels' descenders, a switch's knob in its track, and the footer at the window's foot after a search that found nothing
 - Let screen readers read a tooltip as the description of what it is about
+- Show the home page's numbers when two node locations share one point
 
 ## [1.8.0] - 2026-11-21
 
