@@ -66,6 +66,7 @@
     offset: defaultOffset,
     place: defaultPlace,
     text: "",
+    tipShift: 0,
     type: defaultType,
     visible: false,
     x: 0,
@@ -141,7 +142,7 @@
     state.set({ ...$state, text: tooltipText });
     intersectionObserver.observe(event.target);
 
-    const { placement, x, y } = await computePosition(
+    const { middlewareData, placement, x, y } = await computePosition(
       event.target,
       tooltipElement,
       {
@@ -162,9 +163,16 @@
       placement.replace(/-.+$/, "")
     );
 
+    // The tooltip was moved along its side to stay in the window: its arrow
+    // moves back as much, to point at what it is about.
+    const shifted = middlewareData.shift ?? { x: 0, y: 0 };
+
     const newState = {
       ...$state,
       place,
+      tipShift: -(place === "top" || place === "bottom"
+        ? shifted.x
+        : shifted.y),
       type: tooltipType,
       visible: true,
       x,
@@ -201,6 +209,7 @@
   $: ({
     place = defaultPlace,
     text,
+    tipShift,
     type = defaultType,
     visible,
     x,
@@ -229,6 +238,7 @@
   class={classes}
   {id}
   role="tooltip"
+  style:--tip-shift={`${tipShift}px`}
   style:left={`${x}px`}
   style:top={`${y}px`}
 >

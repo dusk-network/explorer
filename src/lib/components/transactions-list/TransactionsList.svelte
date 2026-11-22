@@ -74,16 +74,19 @@
         />
       </span>
       {#if to}
-        <span aria-hidden="true" class="transaction-row__arrow">→</span>
-        <span class="transaction-row__party">
-          <span class="sr-only">To</span>
-          <TransactionParty
-            contractWord={false}
-            name={nameOf(names, to)}
-            narrow
-            party={to}
-            transaction={data}
-          />
+        <!-- The arrow goes with the receiver, onto the next line if need be. -->
+        <span class="transaction-row__to">
+          <span aria-hidden="true" class="transaction-row__arrow">→</span>
+          <span class="transaction-row__party">
+            <span class="sr-only">To</span>
+            <TransactionParty
+              contractWord={false}
+              name={nameOf(names, to)}
+              narrow
+              party={to}
+              transaction={data}
+            />
+          </span>
         </span>
       {/if}
     </span>

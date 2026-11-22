@@ -70,10 +70,18 @@
   opacity: 0.58;
 }
 
+/*
+ * A label cut with an ellipsis when it runs out of room. Its box is one
+ * line-height tall, so the room it clips at reaches past it, above and
+ * below, by as much as it takes back: descenders show, and the button
+ * keeps its height.
+ */
 .dusk-button > span,
 .dusk-anchor-button > span {
   flex: 1;
   display: inline-block;
+  padding-block: 0.15em;
+  margin-block: -0.15em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
