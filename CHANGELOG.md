@@ -18,6 +18,7 @@ and this project adheres to
 
 - Keep amounts past 9,007,199 DUSK exact to the LUX, as the node gives them: in their tooltips, totals, order and raw details
 - Keep a transaction's sender and receiver whole in a phone's list: the receiver goes to the next line when both don't fit
+- Keep both parties whole beside the largest amounts on a 320 px phone: the amount and its time go under them when the row is too narrow
 - Line up the numbers of the home page's cards, and keep the line under each inside its card
 - Fit the provisioners table on the page from 1024 px, and keep a sorted column's label over its numbers
 - Keep an exact amount on one line in its tooltip, the tooltip's arrow on what it's about
