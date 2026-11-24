@@ -1,23 +1,27 @@
 /*
  * A row of the web wallet's History on a phone: the icon, who and what on
- * the left, the amount and the time on the right.
+ * the left, the amount and the time on the right. When the row is too
+ * narrow for an amount beside its parties, each whole, the amount and the
+ * time go under them, still at the right.
  */
 .transaction-row {
   position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.25rem 0.75rem;
   min-height: 3.5rem;
   padding: 0.625rem 0;
   border-bottom: 1px solid var(--calm-line);
 }
 
+/* Never narrower than its widest party. */
 .transaction-row__main {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
   gap: 0.125rem;
-  min-width: 0;
+  min-width: min-content;
 }
 
 /*
@@ -62,7 +66,23 @@
   font-weight: 400;
 }
 
-/* The type reads as one line, cut at its end if need be. */
+/*
+ * A name keeps to 17 characters, as everywhere, here without a share of
+ * the row: the row sizes itself to its parties, and a share would make it
+ * count the whole name.
+ */
+.transaction-row__parties .transaction-party--named {
+  max-width: 17ch;
+}
+
+/*
+ * The type reads as one line, cut at its end if need be: it takes the
+ * width the parties leave, and asks for none.
+ */
+.transaction-row__line {
+  contain: inline-size;
+}
+
 .transaction-row__line .transaction-type,
 .transaction-row__line .transaction-type__call {
   display: inline;
@@ -73,6 +93,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.125rem;
+  margin-left: auto;
   font-size: 0.875rem;
 }
 
