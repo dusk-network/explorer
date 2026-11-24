@@ -11,6 +11,7 @@
     luxToDusk,
   } from "$lib/dusk/currency";
   import { formatDateTime } from "$lib/dusk/date";
+  import { formatJson } from "$lib/dusk/json";
   import { hexToText } from "$lib/dusk/string";
   import {
     AppAnchor,
@@ -63,11 +64,11 @@
    * not "0 DUSK ($0.00)". The price is an argument, so that an amount shown
    * before the price came gets its dollars when it comes.
    *
-   * @param {number} lux
+   * @param {NodeInteger} lux
    * @param {number | undefined} price A DUSK's price in dollars
    */
   const toDuskAndUsd = (lux, price) => {
-    const usd = price === undefined ? 0 : luxToDusk(lux) * price;
+    const usd = price === undefined ? 0 : luxToDusk(Number(lux)) * price;
 
     return usd < 0.01
       ? `${formatDuskExact(lux)} DUSK`
@@ -126,7 +127,10 @@
 </script>
 
 <!-- An amount; one a failure would have sent is struck through: it didn't move. -->
-{#snippet sentAmount(/** @type {string} */ text, /** @type {number} */ lux)}
+{#snippet sentAmount(
+  /** @type {string} */ text,
+  /** @type {NodeInteger} */ lux,
+)}
   {#if failed && lux}<span class="transaction-details__unsent">{text}</span
     ><span class="sr-only">, nothing sent</span>{:else}{text}{/if}
 {/snippet}
@@ -491,10 +495,8 @@
           <svelte:fragment slot="definition">
             {#if isPayloadToggled}
               <pre
-                class="transaction-details__payload detail-payload">{JSON.stringify(
+                class="transaction-details__payload detail-payload">{formatJson(
                   data.payload,
-                  null,
-                  2,
                 )}</pre>
             {/if}
           </svelte:fragment>

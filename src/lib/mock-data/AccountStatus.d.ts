@@ -1,4 +1,4 @@
 type AccountStatus = {
-  balance: bigint;
-  nonce: bigint;
+  balance: NodeInteger;
+  nonce: NodeInteger;
 };

@@ -57,10 +57,11 @@ body {
   padding: 2.25rem var(--page-gutter) 3rem;
 }
 
+/* At the window's foot also when the page above it is hidden by a search. */
 #app-container > footer {
   width: 100%;
   max-width: var(--page-max-width);
-  margin: 0 auto;
+  margin: auto auto 0;
   padding: 0 var(--page-gutter);
 }
 

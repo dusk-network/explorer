@@ -16,9 +16,13 @@
   background-color: var(--calm-s3);
 }
 
+/*
+ * The knob: a block at the track's start, which the text alignment around
+ * the switch can't move, as a right-aligned value's would.
+ */
 .dusk-switch::after {
   content: "";
-  display: inline-block;
+  display: block;
   transition:
     background-color 0.2s ease,
     transform 0.2s ease-in-out 0s;

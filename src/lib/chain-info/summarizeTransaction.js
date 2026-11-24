@@ -5,7 +5,7 @@
  */
 
 /**
- * @typedef {{ kind: "value" | "deposit", lux: number }
+ * @typedef {{ kind: "value" | "deposit", lux: NodeInteger }
  *   | { kind: "shielded" }} TransactionAmount
  */
 

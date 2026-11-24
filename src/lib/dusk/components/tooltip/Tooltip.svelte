@@ -66,6 +66,7 @@
     offset: defaultOffset,
     place: defaultPlace,
     text: "",
+    tipShift: 0,
     type: defaultType,
     visible: false,
     x: 0,
@@ -112,11 +113,11 @@
 
     if (delayHide) {
       timeoutID = window.setTimeout(() => {
-        event.target.removeAttribute("aria-described-by");
+        clearAriaDescription(event.target);
         state.set(newState);
       }, delayHide);
     } else {
-      event.target.removeAttribute("aria-described-by");
+      clearAriaDescription(event.target);
       state.set(newState);
     }
   }
@@ -141,7 +142,7 @@
     state.set({ ...$state, text: tooltipText });
     intersectionObserver.observe(event.target);
 
-    const { placement, x, y } = await computePosition(
+    const { middlewareData, placement, x, y } = await computePosition(
       event.target,
       tooltipElement,
       {
@@ -162,9 +163,16 @@
       placement.replace(/-.+$/, "")
     );
 
+    // The tooltip was moved along its side to stay in the window: its arrow
+    // moves back as much, to point at what it is about.
+    const shifted = middlewareData.shift ?? { x: 0, y: 0 };
+
     const newState = {
       ...$state,
       place,
+      tipShift: -(place === "top" || place === "bottom"
+        ? shifted.x
+        : shifted.y),
       type: tooltipType,
       visible: true,
       x,
@@ -189,9 +197,24 @@
   /** @param {HTMLElement} target */
   function setAriaDescription(target) {
     document
-      .querySelector(`[aria-described-by="${id}"]`)
-      ?.removeAttribute("aria-described-by");
-    target.setAttribute("aria-described-by", id);
+      .querySelectorAll(`[aria-describedby="${id}"]`)
+      .forEach(clearAriaDescription);
+
+    // One with a description of its own keeps it.
+    if (!target.hasAttribute("aria-describedby")) {
+      target.setAttribute("aria-describedby", id);
+    }
+  }
+
+  /**
+   * Takes the tooltip's description off what it was about, and only it.
+   *
+   * @param {Element} target
+   */
+  function clearAriaDescription(target) {
+    if (target.getAttribute("aria-describedby") === id) {
+      target.removeAttribute("aria-describedby");
+    }
   }
 
   onDestroy(() => {
@@ -201,6 +224,7 @@
   $: ({
     place = defaultPlace,
     text,
+    tipShift,
     type = defaultType,
     visible,
     x,
@@ -229,6 +253,7 @@
   class={classes}
   {id}
   role="tooltip"
+  style:--tip-shift={`${tipShift}px`}
   style:left={`${x}px`}
   style:top={`${y}px`}
 >

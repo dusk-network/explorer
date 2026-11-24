@@ -3,6 +3,7 @@ import { getKey, getPath, mapWith, setPathIn } from "lamb";
 
 import { unixTsToDate } from "$lib/dusk/date";
 import { failureToRejection } from "$lib/dusk/http";
+import { parseJson } from "$lib/dusk/json";
 import { makeNodeUrl } from "$lib/url";
 import { STAKE_CONTRACT } from "$lib/network";
 
@@ -48,6 +49,15 @@ const oneLine = (query) =>
     .trim();
 
 /**
+ * The node's JSON, read exactly: it writes amounts as bare numbers, and
+ * one past 2^53 LUX is a bigint (`parseJson`).
+ *
+ * @param {Response} res
+ * @returns {Promise<any>}
+ */
+const readExact = (res) => res.text().then(parseJson);
+
+/**
  * A GraphQL query, its values written in, sent as plain text with no
  * headers of its own: a request a browser sends without asking the node
  * first whether it may.
@@ -61,13 +71,13 @@ const gqlGet = (queryInfo) =>
     method: "POST",
   })
     .then(failureToRejection)
-    .then((res) => res.json());
+    .then(readExact);
 
 /**
  * @param {string} endpoint
- * @returns {Promise<any>}
+ * @returns {Promise<Response>}
  */
-const nodePost = (endpoint, options = {}) =>
+const nodeAsk = (endpoint, options = {}) =>
   fetch(makeNodeUrl(endpoint), {
     headers: {
       Accept: "application/json",
@@ -76,9 +86,14 @@ const nodePost = (endpoint, options = {}) =>
     },
     method: "POST",
     ...options,
-  })
-    .then(failureToRejection)
-    .then((res) => res.json());
+  }).then(failureToRejection);
+
+/**
+ * @param {string} endpoint
+ * @returns {Promise<any>}
+ */
+const nodePost = (endpoint, options = {}) =>
+  nodeAsk(endpoint, options).then(readExact);
 
 /** How long the node gets to answer what it is, in ms. */
 const NODE_INFO_TIMEOUT = 20_000;
@@ -312,11 +327,16 @@ const duskAPI = {
    * @returns {Promise<NodeInfo>}
    */
   getNodeInfo() {
-    nodeInfoRequest ??= nodePost("/on/node/info", {
+    // As plain JSON: no amount in it, and the layout compares it as JSON
+    // text, which a bigint can't be written as. Its heights up to u64::MAX
+    // are never shown.
+    nodeInfoRequest ??= nodeAsk("/on/node/info", {
       signal: AbortSignal.timeout(NODE_INFO_TIMEOUT),
-    }).finally(() => {
-      nodeInfoRequest = null;
-    });
+    })
+      .then((res) => res.json())
+      .finally(() => {
+        nodeInfoRequest = null;
+      });
 
     return nodeInfoRequest;
   },

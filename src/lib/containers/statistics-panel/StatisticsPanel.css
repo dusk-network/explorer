@@ -63,6 +63,20 @@
   border-radius: 1rem;
 }
 
+/*
+ * Cards side by side share their rows, label, number and note: a label on
+ * two lines moves the numbers beside it down with its own.
+ */
+@supports (grid-template-rows: subgrid) {
+  .statistics-panel__statistics-item--primary {
+    display: grid;
+    grid-row: span 3;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: subgrid;
+    align-items: start;
+  }
+}
+
 /* The labels in the ledger's type. */
 .statistics-panel__statistics-item-title {
   display: flex;
@@ -81,7 +95,8 @@
 /*
  * By the last block: a green dot and "Live" while new blocks come, each
  * new one ringing out once; a grey dot and "Waiting for blocks" when none
- * has come for a while.
+ * has come for a while, which, on a line of its own, starts under the
+ * label's words.
  */
 .statistics-panel__live {
   display: inline-flex;
@@ -93,6 +108,10 @@
   letter-spacing: 0;
   text-transform: none;
   white-space: nowrap;
+}
+
+.statistics-panel__live--waiting {
+  margin-left: 1.5rem;
 }
 
 .statistics-panel__live-dot {
@@ -182,7 +201,8 @@
 
 /*
  * The line under a number, muted; the price's move in red when down and in
- * green when up, its words saying the same. Each part stays whole.
+ * green when up, its words saying the same. Each part stays whole, unless
+ * it is longer than the card is wide.
  */
 .statistics-panel__statistics-item-note {
   color: var(--calm-muted);
@@ -199,7 +219,8 @@
 }
 
 .statistics-panel__statistics-item-note-part {
-  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
 }
 
 /* The rest: one card, its labels and values small. */
@@ -218,6 +239,19 @@
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
+}
+
+/* Side by side, as the cards: labels on one row, values on the next. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 48rem) {
+    .statistics-panel__statistics-item--secondary {
+      display: grid;
+      grid-row: span 2;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: subgrid;
+      align-items: start;
+    }
+  }
 }
 
 .statistics-panel__statistics-item--secondary
@@ -313,6 +347,10 @@
 
   .statistics-panel__statistics-item-title .dusk-icon {
     display: none;
+  }
+
+  .statistics-panel__live--waiting {
+    margin-left: 0;
   }
 
   .statistics-panel__statistics-item--primary

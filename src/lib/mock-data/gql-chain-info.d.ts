@@ -1,8 +1,8 @@
 type GQLBlock = {
-  fees: number;
-  gasSpent: number;
+  fees: NodeInteger;
+  gasSpent: NodeInteger;
   header: {
-    gasLimit: number;
+    gasLimit: NodeInteger;
     generatorBlsPubkey?: string;
     hash: string;
     height: number;
@@ -12,7 +12,7 @@ type GQLBlock = {
     stateHash: string;
     timestamp: number;
   };
-  reward: number;
+  reward: NodeInteger;
   transactions: GQLTransaction[];
 };
 
@@ -45,13 +45,13 @@ type GQLTransaction = {
   blockHeight: number;
   blockTimestamp: number;
   err: string | null;
-  gasSpent: number;
+  gasSpent: NodeInteger;
   id: string;
   tx: {
     blobHashes: string[] | null;
     callData: GQLCallData | null;
-    gasLimit: number;
-    gasPrice: number;
+    gasLimit: NodeInteger;
+    gasPrice: NodeInteger;
     id: string;
     isDeploy: boolean;
     memo: string;

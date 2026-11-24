@@ -16,6 +16,15 @@ and this project adheres to
 
 ### Fixed
 
+- Keep amounts past 9,007,199 DUSK exact to the LUX, as the node gives them: in their tooltips, totals, order and raw details
+- Keep a transaction's sender and receiver whole in a phone's list: the receiver goes to the next line when both don't fit
+- Line up the numbers of the home page's cards, and keep the line under each inside its card
+- Fit the provisioners table on the page from 1024 px, and keep a sorted column's label over its numbers
+- Keep an exact amount on one line in its tooltip, the tooltip's arrow on what it's about
+- Show button labels' descenders, a switch's knob in its track, and the footer at the window's foot after a search that found nothing
+- Let screen readers read a tooltip as the description of what it is about
+- Show the home page's numbers when two node locations share one point
+
 ## [1.8.0] - 2026-11-21
 
 ### Changed

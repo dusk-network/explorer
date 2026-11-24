@@ -39,6 +39,20 @@
   display: block;
 }
 
+/*
+ * Narrower than 1280 px, the line under a stake breaks between its parts,
+ * each whole, so the table fits the page.
+ */
+@media (max-width: 79.99rem) {
+  .provisioners-table .provisioners-table__stake-line {
+    white-space: normal;
+  }
+
+  .provisioners-table__stake-line > span {
+    white-space: nowrap;
+  }
+}
+
 .provisioners-table .row-amount {
   display: block;
 }
@@ -70,7 +84,23 @@
   font-size: 0.875em;
 }
 
-/* The amounts' headers line up with them, at the right. */
+/*
+ * The amounts' headers line up with them, at the right. A sort's arrow
+ * hangs after the label, in the cell's padding, so the label stays put.
+ */
 .provisioners-table .table__header-cell:nth-child(n + 4) {
   text-align: right;
+}
+
+.provisioners-table
+  .table__header-cell:nth-child(n + 4)
+  .provisioners-table__header-button {
+  position: relative;
+}
+
+.provisioners-table
+  .table__header-cell:nth-child(n + 4)
+  .provisioners-table__header-sort-indicator {
+  position: absolute;
+  left: calc(100% + 0.125rem);
 }

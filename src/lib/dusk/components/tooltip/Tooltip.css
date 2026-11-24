@@ -1,8 +1,13 @@
+/*
+ * At most 40% of the window, or 22rem, but never narrower than the largest
+ * amount of DUSK there can be, 999,999,999.999999999: 21 characters, each
+ * digit 1ch wide. A number then never breaks; a long hash still does.
+ */
 .dusk-tooltip {
   position: fixed;
   display: inline-block;
   width: max-content;
-  max-width: min(40%, 22rem);
+  max-width: max(min(40%, 22rem), calc(21ch + 1.25rem));
   white-space: break-spaces;
   overflow-wrap: anywhere;
   z-index: 9999;
@@ -10,6 +15,16 @@
   --tip-size: 0.625em;
   --half-tip-size: calc(var(--tip-size) / 2);
   --tip-main-axis-offset: -0.0625em;
+  /*
+   * Where the arrow points along its side: the middle, moved back by as
+   * much as the tooltip was moved to stay in the window (`--tip-shift`),
+   * and never into its rounded corners.
+   */
+  --tip-at: clamp(
+    calc(0.5rem + var(--half-tip-size)),
+    calc(50% + var(--tip-shift, 0px)),
+    calc(100% - 0.5rem - var(--half-tip-size))
+  );
 
   border-radius: 0.5rem;
   background-color: var(--calm-s2);
@@ -51,7 +66,7 @@
 
 .dusk-tooltip.dusk-tooltip-bottom::after {
   bottom: 100%;
-  left: 50%;
+  left: var(--tip-at);
   margin-left: calc(var(--half-tip-size) * -1);
   margin-bottom: calc(var(--half-tip-size) * -1 + var(--tip-main-axis-offset));
   border-bottom-color: transparent;
@@ -59,7 +74,7 @@
 }
 
 .dusk-tooltip.dusk-tooltip-left::after {
-  top: 50%;
+  top: var(--tip-at);
   left: 100%;
   margin-left: calc(var(--half-tip-size) * -1 + var(--tip-main-axis-offset));
   margin-top: calc(var(--half-tip-size) * -1);
@@ -68,7 +83,7 @@
 }
 
 .dusk-tooltip.dusk-tooltip-right::after {
-  top: 50%;
+  top: var(--tip-at);
   right: 100%;
   margin-right: calc(var(--half-tip-size) * -1 + var(--tip-main-axis-offset));
   margin-top: calc(var(--half-tip-size) * -1);
@@ -78,7 +93,7 @@
 
 .dusk-tooltip.dusk-tooltip-top::after {
   top: 100%;
-  left: 50%;
+  left: var(--tip-at);
   margin-left: calc(var(--half-tip-size) * -1);
   margin-top: calc(var(--half-tip-size) * -1 + var(--tip-main-axis-offset));
   border-top-color: transparent;
