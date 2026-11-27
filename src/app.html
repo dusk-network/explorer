@@ -5,8 +5,29 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="The block explorer for the Dusk network. Access data about network activity like blocks, transactions, nodes, and staked DUSK with a user-friendly interface."
+      content="Blocks, transactions, provisioners and staked DUSK on the Dusk network."
     />
+    <!-- One head for every page and network: no canonical address, as each
+      page is its own. Off mainnet, the Deploy workflow keeps the pages out
+      of search results. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dusk" />
+    <meta property="og:title" content="Dusk Explorer" />
+    <meta
+      property="og:description"
+      content="Blocks, transactions, provisioners and staked DUSK on the Dusk network."
+    />
+    <meta
+      property="og:image"
+      content="https://explorer.dusk.network/social.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Dusk Explorer: blocks, transactions, provisioners and staked DUSK on the Dusk network. explorer.dusk.network"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" href="%sveltekit.assets%/favicon.png" />
     <link
       rel="icon"
@@ -20,6 +41,24 @@
     data-sveltekit-preload-code="viewport"
     data-sveltekit-preload-data="hover"
   >
+    <noscript>
+      <h1>Dusk Explorer</h1>
+      <p>
+        The official block explorer for the Dusk network: blocks, transactions,
+        accounts, provisioners and staked DUSK. It needs JavaScript.
+      </p>
+      <p>
+        Official addresses: mainnet
+        <a href="https://explorer.dusk.network/">explorer.dusk.network</a>,
+        testnet
+        <a href="https://explorer.testnet.dusk.network/"
+          >explorer.testnet.dusk.network</a
+        >. All of Dusk's apps:
+        <a href="https://docs.dusk.network/learn/stay-safe/#official-apps"
+          >docs.dusk.network/learn/stay-safe</a
+        >.
+      </p>
+    </noscript>
     <div id="app-container">%sveltekit.body%</div>
   </body>
 </html>
