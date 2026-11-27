@@ -10,6 +10,8 @@ and this project adheres to
 
 ### Added
 
+- Describe the explorer to search engines and link previews: a picture for shared links, a robots.txt and sitemap, and, without JavaScript, what the explorer is and its official addresses; testnet's and devnet's pages stay out of search results
+
 ### Changed
 
 ### Removed

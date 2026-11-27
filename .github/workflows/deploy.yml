@@ -54,6 +54,14 @@ jobs:
         env:
           VITE_FEATURE_BLOB_HASHES: "true"
 
+      # Search engines list mainnet's explorer alone: testnet's and devnet's
+      # pages say noindex, beside the rules static/_headers has for every
+      # network.
+      - name: Keeping testnet and devnet out of search results
+        if: github.ref_type != 'tag'
+        run: |
+          printf '\n/*\n  X-Robots-Tag: noindex\n' >> build/_headers
+
       - name: Deploying to Cloudflare
         run: |
           for network in $NETWORKS; do
